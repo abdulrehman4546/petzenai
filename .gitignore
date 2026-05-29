@@ -1,0 +1,32 @@
+# WordPress Core (don't push — download separately)
+/wp-admin/
+/wp-includes/
+
+# Config with DB credentials — NEVER push
+wp-config.php
+
+# Uploads — too large, backup separately
+/wp-content/uploads/
+
+# Cache & temp files
+/wp-content/cache/
+/wp-content/upgrade/
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Node / Composer
+node_modules/
+vendor/
+
+# Env files
+.env
+.env.local
+
+# Temp scripts (already deleted but just in case)
+pz-*.php
+
+# OS files
+desktop.ini
+ehthumbs.db

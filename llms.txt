@@ -1,0 +1,32 @@
+# PetZenAI
+> Free AI-powered pet care tools and expert guides for dogs, cats, and other pets. Science-backed, vet-reviewed content helping pet owners make informed decisions.
+
+## Free Pet Care Tools
+- [Pet Food Portion Calculator](https://petzenai.com/tools/pet-food-portion-calculator/): Calculate daily food portions for dogs, cats, rabbits, birds based on weight, age and activity level
+- [Pet Age Calculator](https://petzenai.com/tools/pet-age-calculator/): Convert your pet's age to human years using breed-specific, DNA-based scientific formulas
+- [Pet Vaccination Schedule](https://petzenai.com/tools/pet-vaccination-schedule/): Get a complete vet-recommended immunization schedule tailored to your pet's age and type
+- [AI Pet Name Generator](https://petzenai.com/tools/ai-pet-name-generator/): Generate unique pet names filtered by species, gender, personality and meaning
+- [Pet Exercise Calculator](https://petzenai.com/tools/pet-exercise-calculator/): Calculate daily exercise needs based on breed energy level, age, weight and health
+- [What Pet Should I Get?](https://petzenai.com/tools/what-pet-should-i-get/): 10-question lifestyle quiz to find your perfect pet match
+
+## Blog — Expert Pet Care Guides
+- [Blog Home](https://petzenai.com/blog/): 30+ expert-written pet care articles updated regularly
+- [How Much to Feed a Dog](https://petzenai.com/blog/how-much-to-feed-dog/): Complete dog feeding guide by weight and age
+- [Dog Vaccination Schedule](https://petzenai.com/blog/dog-vaccination-schedule-guide/): Complete puppy and adult dog vaccine guide
+- [Cat Nutrition Guide](https://petzenai.com/blog/cat-nutrition-guide/): What to feed your cat for a long, healthy life
+- [Senior Dog Care](https://petzenai.com/blog/senior-dog-care-guide/): Complete care guide for dogs 7+ years
+
+## Tool Categories (300+ Guides)
+- [Dog Grooming Tools](https://petzenai.com/tools/dog-grooming/): 20 guides on bathing, trimming, brushing
+- [Dog Health Tools](https://petzenai.com/tools/dog-health/): 25 health checkers and calculators
+- [Cat Health Tools](https://petzenai.com/tools/cat-health/): Nutrition, grooming and health guides
+- [Small Pet Care](https://petzenai.com/tools/small-pets/): Hamster, rabbit, guinea pig guides
+
+## About
+- [About PetZenAI](https://petzenai.com/about/): Our mission — science-backed pet care for every owner
+- [Contact](https://petzenai.com/contact/): Get help and support
+- [Privacy Policy](https://petzenai.com/privacy-policy/): How we handle your data
+- [Terms of Service](https://petzenai.com/terms-of-service/): Usage terms
+
+## Optional
+- [Sitemap](https://petzenai.com/sitemap-clean.xml): Full XML sitemap index

@@ -1,0 +1,72 @@
+# PetZenAI — robots.txt
+
+# ── All crawlers ──────────────────────────────────────────────
+User-agent: *
+Allow: /
+Allow: /blog/
+Allow: /tools/
+Disallow: /wp-admin/
+Disallow: /wp-login.php
+Disallow: /wp-includes/
+Disallow: /xmlrpc.php
+Disallow: /feed/
+Disallow: /wp-json/
+Disallow: /*?*
+Disallow: /pz-*.php
+
+# ── Google ────────────────────────────────────────────────────
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /wp-content/uploads/
+
+# ── Google AI (Gemini / SGE) ──────────────────────────────────
+User-agent: Google-Extended
+Allow: /blog/
+Allow: /tools/
+
+# ── OpenAI GPTBot ─────────────────────────────────────────────
+User-agent: GPTBot
+Allow: /blog/
+Allow: /tools/
+Allow: /about/
+Disallow: /wp-admin/
+
+# ── Anthropic Claude ──────────────────────────────────────────
+User-agent: anthropic-ai
+Allow: /blog/
+Allow: /tools/
+
+User-agent: ClaudeBot
+Allow: /blog/
+Allow: /tools/
+
+# ── Perplexity ────────────────────────────────────────────────
+User-agent: PerplexityBot
+Allow: /blog/
+Allow: /tools/
+
+# ── Common Crawl (AI training) — block ───────────────────────
+User-agent: CCBot
+Disallow: /
+
+# ── Spam/scraper bots — block ─────────────────────────────────
+User-agent: Bytespider
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /
+
+# ── SEO tools — crawl delay ───────────────────────────────────
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+# ── Sitemaps ──────────────────────────────────────────────────
+Sitemap: https://petzenai.com/sitemap-clean.xml
+Sitemap: https://petzenai.com/sitemap_index.xml
+
+# AI guide: https://petzenai.com/llms.txt
