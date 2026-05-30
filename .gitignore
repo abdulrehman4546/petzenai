@@ -24,8 +24,9 @@ vendor/
 .env
 .env.local
 
-# Temp scripts (already deleted but just in case)
-pz-*.php
+# Temp scripts - ignore install/debug only
+pz-install.php
+pz-debug.php
 
 # OS files
 desktop.ini
