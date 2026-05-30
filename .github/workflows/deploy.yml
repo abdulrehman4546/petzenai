@@ -12,36 +12,23 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Deploy Theme via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USER }}
-          password: ${{ secrets.FTP_PASS }}
-          protocol: ftp
-          port: 21
-          server-dir: public_html/petzenai.com/wp-content/themes/petzenai-theme/
-          local-dir: ./wp-content/themes/petzenai-theme/
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
+      - name: Install lftp
+        run: sudo apt-get install -y lftp
 
-      - name: Deploy robots.txt and llms.txt
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USER }}
-          password: ${{ secrets.FTP_PASS }}
-          protocol: ftp
-          port: 21
-          server-dir: public_html/petzenai.com/
-          local-dir: ./
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/wp-content/**
-            **/node_modules/**
-            **/.github/**
-            **/wp-admin/**
-            **/wp-includes/**
+      - name: Deploy Theme Files via FTP
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASS: ${{ secrets.FTP_PASS }}
+        run: |
+          lftp -u "$FTP_USER","$FTP_PASS" "$FTP_HOST" <<EOF
+          set ftp:passive-mode true
+          set ssl:verify-certificate false
+          set ftp:ssl-allow true
+          mirror -R --delete --verbose \
+            ./wp-content/themes/petzenai-theme/ \
+            /public_html/petzenai.com/wp-content/themes/petzenai-theme/
+          put robots.txt -o /public_html/petzenai.com/robots.txt
+          put llms.txt -o /public_html/petzenai.com/llms.txt
+          bye
+          EOF
