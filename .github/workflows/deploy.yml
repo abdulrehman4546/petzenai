@@ -27,8 +27,8 @@ jobs:
           set ftp:ssl-allow true
           mirror -R --delete --verbose \
             ./wp-content/themes/petzenai-theme/ \
-            /public_html/petzenai.com/wp-content/themes/petzenai-theme/
-          put robots.txt -o /public_html/petzenai.com/robots.txt
-          put llms.txt -o /public_html/petzenai.com/llms.txt
+            /public_html6/wp-content/themes/petzenai-theme/
+          put robots.txt -o /public_html6/robots.txt
+          put llms.txt -o /public_html6/llms.txt
           bye
           EOF
