@@ -6,13 +6,12 @@ on:
 
 jobs:
   deploy:
-    name: Trigger cPanel Deploy
+    name: Auto Deploy Theme
     runs-on: ubuntu-latest
 
     steps:
-      - name: Notify Deploy
+      - name: Trigger server deploy
         run: |
-          echo "✅ Push to main detected"
-          echo "Commit: ${{ github.sha }}"
-          echo "By: ${{ github.actor }}"
-          echo "cPanel Git Version Control will auto-deploy from GitHub"
+          echo "Triggering deploy..."
+          curl -f "https://petzenai.com/git-deploy.php?token=${{ secrets.DEPLOY_TOKEN }}"
+          echo "Done!"
