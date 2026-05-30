@@ -7,30 +7,35 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      - name: Deploy via FTP to petzenai.com
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Deploy Theme via FTP
+        uses: SamKirkland/FTP-Deploy-Action@4.3.4
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
-          server-dir: /public_html/wp-content/themes/petzenai-theme/
+          protocol: ftp
+          port: 21
+          server-dir: public_html/wp-content/themes/petzenai-theme/
           local-dir: ./wp-content/themes/petzenai-theme/
           exclude: |
             **/.git*
             **/.git*/**
             **/node_modules/**
 
-      - name: Deploy robots.txt
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Deploy robots.txt and llms.txt
+        uses: SamKirkland/FTP-Deploy-Action@4.3.4
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
-          server-dir: /public_html/
+          protocol: ftp
+          port: 21
+          server-dir: public_html/
           local-dir: ./
           exclude: |
             **/.git*
@@ -38,3 +43,5 @@ jobs:
             **/wp-content/**
             **/node_modules/**
             **/.github/**
+            **/wp-admin/**
+            **/wp-includes/**
