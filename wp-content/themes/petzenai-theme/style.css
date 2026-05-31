@@ -1111,4 +1111,39 @@ ul { list-style: none; }
   .footer-grid { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
   .hero-btns { justify-content: center; }
+  .hero-title { font-size: clamp(28px, 7vw, 48px); }
+  .hero-desc { font-size: 16px; }
+  .hero { padding-top: 70px; }
+  .hero-container { padding: 0 16px; gap: 32px; }
+  .hero-visual img { max-height: 300px; }
+  .section-title { font-size: clamp(24px, 5vw, 36px); }
+}
+
+@media (max-width: 480px) {
+  .hero { padding-top: 70px; min-height: auto; padding-bottom: 40px; }
+  .hero-container { padding: 0 16px; gap: 24px; }
+  .hero-title { font-size: clamp(26px, 8vw, 38px); line-height: 1.2; }
+  .hero-desc { font-size: 15px; line-height: 1.6; }
+  .hero-badge { font-size: 12px; padding: 6px 14px; }
+  .hero-btns { flex-direction: column; align-items: center; gap: 12px; width: 100%; }
+  .hero-btns .btn, .hero-btns a { width: 100%; text-align: center; justify-content: center; }
+  .hero-stats { gap: 20px; flex-wrap: wrap; justify-content: center; }
+  .hero-visual { display: none; }
+  .nav-logo span { font-size: 20px; }
+  .pets-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .pet-card { padding: 20px 12px; }
+  .tool-card { padding: 20px; }
+  .section { padding: 50px 0; }
+  .section-header { margin-bottom: 30px; }
+  .footer-grid { gap: 24px; }
+  .why-grid { gap: 24px; }
+  .why-img-wrap { display: none; }
+  .testimonial-card { padding: 24px 16px; }
+  .blog-card-body { padding: 20px; }
+}
+
+@media (max-width: 375px) {
+  .hero-title { font-size: 24px; }
+  .hero-badge { font-size: 11px; padding: 5px 12px; }
+  .pets-grid { grid-template-columns: 1fr; }
 }
