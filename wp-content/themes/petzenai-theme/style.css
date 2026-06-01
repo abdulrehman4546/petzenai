@@ -1032,7 +1032,7 @@ ul { list-style: none; }
 .pz-breadcrumb {
   background: var(--dark);
   padding: 14px 0;
-  position: sticky; top: 64px; z-index: 99;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 .pz-breadcrumb-list {
   display: flex; flex-wrap: wrap; align-items: center;

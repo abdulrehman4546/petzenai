@@ -43,6 +43,7 @@ function pz_render_tool_page( $tool ) {
 
     // ── Breadcrumb ──
     ?>
+    <div style="height:64px;background:#1A1A2E"></div>
     <nav class="pz-breadcrumb" aria-label="Breadcrumb">
       <div class="container">
         <ol class="pz-breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
