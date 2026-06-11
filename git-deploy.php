@@ -59,6 +59,7 @@ foreach (glob($root_src . 'pz-*.php') as $file) {
 }
 if (file_exists($root_src . 'robots.txt')) copy($root_src . 'robots.txt', $root_dst . 'robots.txt');
 if (file_exists($root_src . 'llms.txt')) copy($root_src . 'llms.txt', $root_dst . 'llms.txt');
+if (file_exists($root_src . 'ads.txt')) copy($root_src . 'ads.txt', $root_dst . 'ads.txt');
 
 // Cleanup
 array_map('unlink', glob("$extract_dir/*.*"));
