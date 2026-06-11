@@ -74,6 +74,16 @@ add_action( 'template_redirect', function() {
             }
             echo "  </url>\n";
         }
+        // Category archive pages
+        $cats = get_categories(['hide_empty' => false]);
+        foreach ( $cats as $cat ) {
+            echo "  <url>\n";
+            echo "    <loc>" . esc_url(get_category_link($cat->term_id)) . "</loc>\n";
+            echo "    <lastmod>" . $now . "</lastmod>\n";
+            echo "    <changefreq>weekly</changefreq>\n";
+            echo "    <priority>0.6</priority>\n";
+            echo "  </url>\n";
+        }
     }
 
     if ( $type === 'tools' ) {

@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#FF6B1A">
 <?php wp_head(); ?>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4379837532366669"
+     crossorigin="anonymous"></script>
 </head>
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
