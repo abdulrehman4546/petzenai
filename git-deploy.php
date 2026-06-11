@@ -60,15 +60,25 @@ $root_files = [
     'pz-security.php', 'ads.txt', 'llms.txt', 'git-deploy.php',
 ];
 $raw_base = 'https://raw.githubusercontent.com/abdulrehman4546/petzenai/main/';
+$log = "Deploy log " . date('Y-m-d H:i:s') . "\n";
+$log .= "root_src exists: " . (is_dir($root_src) ? 'YES' : 'NO') . "\n";
+$log .= "root_dst writable: " . (is_writable($root_dst) ? 'YES' : 'NO') . "\n";
 foreach ($root_files as $f) {
     $src_file = $root_src . $f;
     if (file_exists($src_file)) {
-        copy($src_file, $root_dst . $f);
+        $ok = copy($src_file, $root_dst . $f);
+        $log .= "$f: zip-copy=" . ($ok ? 'OK' : 'FAIL') . "\n";
     } else {
         $raw = @file_get_contents($raw_base . $f, false, stream_context_create(['http'=>['timeout'=>30]]));
-        if ($raw !== false) file_put_contents($root_dst . $f, $raw);
+        if ($raw !== false) {
+            $ok = file_put_contents($root_dst . $f, $raw);
+            $log .= "$f: raw-download=" . ($ok !== false ? 'OK' : 'FAIL') . "\n";
+        } else {
+            $log .= "$f: raw-download=FETCH_FAILED\n";
+        }
     }
 }
+file_put_contents($root_dst . 'pz-deploy-log.txt', $log);
 
 // Cleanup
 array_map('unlink', glob("$extract_dir/*.*"));
