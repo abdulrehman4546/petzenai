@@ -13,5 +13,9 @@ jobs:
       - name: Trigger server deploy
         run: |
           echo "Triggering deploy..."
-          curl -f -X POST "https://petzenai.com/git-deploy.php" -d "token=pz_deploy_2026_secret"
+          curl -f -X POST "https://petzenai.com/git-deploy.php" \
+            -d "token=pz_deploy_2026_secret" \
+            -H "Cache-Control: no-cache, no-store" \
+            -H "Pragma: no-cache" \
+            -H "X-No-Cache: 1"
           echo "Done!"
