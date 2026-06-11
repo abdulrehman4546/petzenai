@@ -1,6 +1,7 @@
 <?php
 $token = 'pz_deploy_2026_secret';
-if (!isset($_GET['token']) || $_GET['token'] !== $token) {
+$provided = isset($_POST['token']) ? $_POST['token'] : (isset($_GET['token']) ? $_GET['token'] : '');
+if ($provided !== $token) {
     http_response_code(403); die('Unauthorized');
 }
 
@@ -60,6 +61,7 @@ foreach (glob($root_src . 'pz-*.php') as $file) {
 if (file_exists($root_src . 'robots.txt')) copy($root_src . 'robots.txt', $root_dst . 'robots.txt');
 if (file_exists($root_src . 'llms.txt')) copy($root_src . 'llms.txt', $root_dst . 'llms.txt');
 if (file_exists($root_src . 'ads.txt')) copy($root_src . 'ads.txt', $root_dst . 'ads.txt');
+if (file_exists($root_src . 'git-deploy.php')) copy($root_src . 'git-deploy.php', $root_dst . 'git-deploy.php');
 
 // Cleanup
 array_map('unlink', glob("$extract_dir/*.*"));
