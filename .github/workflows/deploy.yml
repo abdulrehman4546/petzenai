@@ -13,5 +13,5 @@ jobs:
       - name: Trigger server deploy
         run: |
           echo "Triggering deploy..."
-          curl -f -X POST "https://petzenai.com/git-deploy.php" -d "token=${{ secrets.DEPLOY_TOKEN }}"
+          curl -f -X POST "https://petzenai.com/git-deploy.php" -d "token=pz_deploy_2026_secret"
           echo "Done!"
