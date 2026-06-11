@@ -54,14 +54,21 @@ function pz_copy_dir($src, $dst) {
 
 pz_copy_dir($src, $dst);
 
-// Copy root PHP utility files (pz-*.php, robots.txt, llms.txt)
-foreach (glob($root_src . 'pz-*.php') as $file) {
-    copy($file, $root_dst . basename($file));
+// Copy root files — via extracted zip AND direct GitHub raw download as fallback
+$root_files = [
+    'pz-fix-images.php', 'pz-force-deploy.php', 'pz-rankmath-fix.php',
+    'pz-security.php', 'ads.txt', 'llms.txt', 'git-deploy.php',
+];
+$raw_base = 'https://raw.githubusercontent.com/abdulrehman4546/petzenai/main/';
+foreach ($root_files as $f) {
+    $src_file = $root_src . $f;
+    if (file_exists($src_file)) {
+        copy($src_file, $root_dst . $f);
+    } else {
+        $raw = @file_get_contents($raw_base . $f, false, stream_context_create(['http'=>['timeout'=>30]]));
+        if ($raw !== false) file_put_contents($root_dst . $f, $raw);
+    }
 }
-if (file_exists($root_src . 'robots.txt')) copy($root_src . 'robots.txt', $root_dst . 'robots.txt');
-if (file_exists($root_src . 'llms.txt')) copy($root_src . 'llms.txt', $root_dst . 'llms.txt');
-if (file_exists($root_src . 'ads.txt')) copy($root_src . 'ads.txt', $root_dst . 'ads.txt');
-if (file_exists($root_src . 'git-deploy.php')) copy($root_src . 'git-deploy.php', $root_dst . 'git-deploy.php');
 
 // Cleanup
 array_map('unlink', glob("$extract_dir/*.*"));
