@@ -15,7 +15,7 @@ $today_year = date('Y');
   <div class="container pz-page-hero-content">
     <span class="section-tag">Legal</span>
     <h1 class="pz-page-hero-title">Privacy Policy</h1>
-    <p class="pz-page-hero-desc">Last updated: <?php echo date('F j, Y'); ?> &nbsp;·&nbsp; Effective: January 1, <?php echo $today_year; ?></p>
+    <p class="pz-page-hero-desc">Last updated: June 11, 2026 &nbsp;·&nbsp; Effective: January 1, <?php echo $today_year; ?></p>
   </div>
 </section>
 

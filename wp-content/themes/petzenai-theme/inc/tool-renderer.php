@@ -541,11 +541,12 @@ function pz_get_checker_questions($tool) {
 }
 
 function pz_section_what_is($tool) {
-    $a = ucfirst($tool['animal'] === 'all' ? 'pet' : $tool['animal']);
-    $t = esc_html($tool['title']);
+    $a  = ucfirst($tool['animal'] === 'all' ? 'pet' : $tool['animal']);
+    $t  = esc_html($tool['title']);
+    $kw = ! empty($tool['kw']) ? esc_html($tool['kw']) : '';
     ob_start(); ?>
-    <p>The <strong><?php echo $t; ?></strong> is a comprehensive, vet-reviewed resource designed to help <?php echo $a; ?> owners make informed decisions about their pet's health and wellbeing. Built on peer-reviewed veterinary science, this tool provides accurate, personalized guidance tailored to your specific <?php echo strtolower($a); ?>.</p>
-    <p>Whether you're a first-time owner or an experienced <?php echo strtolower($a); ?> parent, understanding the fundamentals covered in this guide can significantly improve your pet's quality of life and help you catch potential health issues early.</p>
+    <p>The <strong><?php echo $t; ?></strong> is a comprehensive, vet-reviewed resource designed to help <?php echo $a; ?> owners make informed decisions about their pet's health and wellbeing.<?php if ($kw): ?> This <?php echo $kw; ?> guide is built on peer-reviewed veterinary science and provides accurate, personalized guidance tailored to your specific <?php echo strtolower($a); ?>.<?php else: ?> Built on peer-reviewed veterinary science, this tool provides accurate, personalized guidance tailored to your specific <?php echo strtolower($a); ?>.<?php endif; ?></p>
+    <p>Whether you're a first-time owner or an experienced <?php echo strtolower($a); ?> parent, understanding the fundamentals covered in this <?php echo $kw ? $kw . ' ' : ''; ?>guide can significantly improve your pet's quality of life and help you catch potential health issues early.</p>
     <div class="pz-info-box">
       <strong>🔬 Science Fact:</strong> Studies show that pet owners who follow structured, evidence-based care guidelines report significantly better health outcomes for their animals. Regular monitoring and proactive care can add years to your pet's life.
     </div>

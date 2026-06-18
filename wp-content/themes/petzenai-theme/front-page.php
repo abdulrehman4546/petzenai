@@ -32,7 +32,7 @@ $why_img  = pz_url( 'petzenai_why_image'  ) ?: 'https://images.unsplash.com/phot
     <div class="hero-text">
       <div class="hero-badge">
         <span class="badge-dot" aria-hidden="true"></span>
-        <?php echo pz('petzenai_hero_badge','#1 AI Pet Care Platform in America'); ?>
+        <?php echo pz('petzenai_hero_badge','Trusted by 50,000+ Pet Owners Across America'); ?>
       </div>
 
       <h1 class="hero-title" itemprop="headline">
@@ -301,10 +301,12 @@ $why_img  = pz_url( 'petzenai_why_image'  ) ?: 'https://images.unsplash.com/phot
     <div class="pets-grid">
       <?php
       $pets = [
-        ['Dogs',    'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&q=80&auto=format&fit=crop',  '5 Tools Available', '/tools/pet-food-portion-calculator/'],
-        ['Cats',    'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&q=80&auto=format&fit=crop',  '4 Tools Available', '/tools/pet-age-calculator/'],
-        ['Birds',   'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400&q=80&auto=format&fit=crop',    '3 Tools Available', '/tools/pet-food-portion-calculator/'],
-        ['Rabbits', 'https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=400&q=80&auto=format&fit=crop', '3 Tools Available', '/tools/pet-food-portion-calculator/'],
+        ['Dogs',     'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&q=80&auto=format&fit=crop',  '80+ Tools',  '/tools/dog-grooming/'],
+        ['Cats',     'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&q=80&auto=format&fit=crop',  '35+ Tools',  '/tools/cat-grooming/'],
+        ['Birds',    'https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400&q=80&auto=format&fit=crop',     '15+ Tools',  '/tools/bird-care/'],
+        ['Rabbits',  'https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=400&q=80&auto=format&fit=crop',  '12+ Tools',  '/tools/rabbit-care/'],
+        ['Fish',     'https://images.unsplash.com/photo-1535591273668-578e31182c4f?w=400&q=80&auto=format&fit=crop',  '10+ Tools',  '/tools/fish-aquarium/'],
+        ['Reptiles', 'https://images.unsplash.com/photo-1504450874802-0ba2bcd9b5ae?w=400&q=80&auto=format&fit=crop',  '10+ Tools',  '/tools/reptile-care/'],
       ];
       foreach($pets as $i => $p): ?>
       <article class="pet-card" data-aos data-aos-delay="<?php echo $i*80; ?>">
@@ -327,48 +329,31 @@ $why_img  = pz_url( 'petzenai_why_image'  ) ?: 'https://images.unsplash.com/phot
   </div>
 </section>
 
-<!-- ===================== TESTIMONIALS ===================== -->
-<section class="section" id="reviews" aria-label="Testimonials"
-  itemscope itemtype="https://schema.org/ItemList">
+<!-- ===================== TRUSTED BY PET OWNERS ===================== -->
+<section class="section" id="reviews" aria-label="Trusted By Pet Owners">
   <div class="container">
     <div class="section-header" data-aos>
-      <span class="section-tag">Reviews</span>
-      <h2 class="section-title">Pet Owners <span>Love PetZenAI</span></h2>
-      <p class="section-desc">Join 50,000+ happy pet owners who trust our tools every day.</p>
-    </div>
-
-    <!-- Stars summary -->
-    <div class="reviews-summary" data-aos itemscope itemtype="https://schema.org/AggregateRating">
-      <div class="reviews-stars" aria-label="4.9 out of 5 stars">★★★★★</div>
-      <div class="reviews-score" itemprop="ratingValue">4.9</div>
-      <div class="reviews-text">from <span itemprop="reviewCount">2,400+</span> reviews</div>
+      <span class="section-tag">By The Numbers</span>
+      <h2 class="section-title">Trusted By <span>Pet Owners</span></h2>
+      <p class="section-desc">Real numbers from a platform built on science, not guesswork.</p>
     </div>
 
     <div class="testimonials-grid">
       <?php
-      $reviews = [
-        ['"The food calculator is spot on! My vet was surprised by the accuracy. Max lost 2lbs in a month."','Sarah M.','Dog Mom — Golden Retriever','🐶'],
-        ['"Finally a free tool that actually works. The vaccine tracker saved me from missing Whisker\'s booster."','James T.','Cat Dad — Persian Mix','🐱'],
-        ['"I used the name generator and found the perfect name — Luna! Out of 10,000 options, it fit perfectly."','Priya K.','Rabbit Owner','🐰'],
+      $trust_stats = [
+        ['🐾', '50,000+', 'Pet Owners Served', 'Families across America use PetZenAI tools every month for science-based pet care guidance.'],
+        ['🛠️', '300+',    'Free Tools',         'Calculators, trackers, and guides covering nutrition, health, grooming, training, and more.'],
+        ['🐶', '6',       'Pet Species Covered', 'Dogs, cats, birds, rabbits, fish, and reptiles — expert care tools for every companion.'],
+        ['✅', '100%',    'Free, Always',        'No subscriptions, no hidden fees, no sign-up required. Every tool on PetZenAI is completely free.'],
       ];
-      foreach($reviews as $i => $r): ?>
-      <article class="testimonial-card" data-aos data-aos-delay="<?php echo $i*100; ?>"
-        itemscope itemtype="https://schema.org/Review">
-        <div class="t-card-top">
-          <div class="t-stars" aria-label="5 stars" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
-            <meta itemprop="ratingValue" content="5">
-            ★★★★★
-          </div>
-          <div class="t-quote-icon" aria-hidden="true">"</div>
+      foreach($trust_stats as $i => $s): ?>
+      <article class="testimonial-card" data-aos data-aos-delay="<?php echo $i*100; ?>" style="text-align:center;padding:36px 28px">
+        <div class="t-card-top" style="justify-content:center;margin-bottom:12px">
+          <div style="font-size:40px"><?php echo $s[0]; ?></div>
         </div>
-        <p class="t-text" itemprop="reviewBody"><?php echo esc_html($r[0]); ?></p>
-        <div class="t-author">
-          <div class="t-avatar" aria-hidden="true"><?php echo $r[3]; ?></div>
-          <div>
-            <div class="t-name" itemprop="author"><?php echo esc_html($r[1]); ?></div>
-            <div class="t-role"><?php echo esc_html($r[2]); ?></div>
-          </div>
-        </div>
+        <div style="font-size:42px;font-weight:900;color:var(--orange);line-height:1;margin-bottom:6px"><?php echo esc_html($s[1]); ?></div>
+        <div style="font-size:16px;font-weight:800;color:#0D0D0D;margin-bottom:10px"><?php echo esc_html($s[2]); ?></div>
+        <p style="font-size:13px;color:#666;line-height:1.6;margin:0"><?php echo esc_html($s[3]); ?></p>
       </article>
       <?php endforeach; ?>
     </div>

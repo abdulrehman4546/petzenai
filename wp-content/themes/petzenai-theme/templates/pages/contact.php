@@ -79,35 +79,35 @@ $hours2 = esc_html( get_theme_mod('petzenai_contact_hours2', 'Sat–Sun: 10AM–
                 <?php the_content(); ?>
               <?php else: ?>
                 <!-- Fallback native form -->
-                <form method="POST" action="" class="pz-contact-form" onsubmit="pzContactSubmit(event)">
-                  <?php wp_nonce_field('pz_contact','pz_nonce'); ?>
+                <form method="POST" action="" id="pz-contact-form" class="pz-contact-form" onsubmit="pzContactSubmit(event)">
+                  <?php wp_nonce_field('pz_contact_nonce', 'pz_contact_nonce_field'); ?>
                   <div class="pz-form-grid pz-form-grid--2" style="margin-bottom:20px">
                     <div class="pz-field">
                       <label for="cf-name">Your Name *</label>
-                      <input type="text" id="cf-name" name="cf_name" placeholder="John Smith" required>
+                      <input type="text" id="cf-name" name="name" placeholder="John Smith" required>
                     </div>
                     <div class="pz-field">
                       <label for="cf-email">Email Address *</label>
-                      <input type="email" id="cf-email" name="cf_email" placeholder="you@email.com" required>
+                      <input type="email" id="cf-email" name="email" placeholder="you@email.com" required>
                     </div>
                   </div>
                   <div class="pz-field" style="margin-bottom:20px">
                     <label for="cf-subject">Subject</label>
-                    <select id="cf-subject" name="cf_subject" aria-label="Subject">
-                      <option value="general">General Question</option>
-                      <option value="tool-help">Tool Help</option>
-                      <option value="vet-question">Pet Health Question</option>
-                      <option value="suggestion">Feature Suggestion</option>
-                      <option value="bug">Report a Bug</option>
+                    <select id="cf-subject" name="subject" aria-label="Subject">
+                      <option value="General Question">General Question</option>
+                      <option value="Tool Help">Tool Help</option>
+                      <option value="Pet Health Question">Pet Health Question</option>
+                      <option value="Feature Suggestion">Feature Suggestion</option>
+                      <option value="Report a Bug">Report a Bug</option>
                     </select>
                   </div>
                   <div class="pz-field" style="margin-bottom:24px">
                     <label for="cf-message">Message *</label>
-                    <textarea id="cf-message" name="cf_message" rows="5" placeholder="Tell us how we can help..." required
+                    <textarea id="cf-message" name="message" rows="5" placeholder="Tell us how we can help..." required
                       style="width:100%;padding:12px 16px;border:2px solid #E8E8E8;border-radius:12px;font-size:15px;font-family:inherit;resize:vertical;outline:none;transition:border-color 0.3s"
                       onfocus="this.style.borderColor='var(--orange)'" onblur="this.style.borderColor='#E8E8E8'"></textarea>
                   </div>
-                  <button type="submit" class="pz-btn-calculate" style="width:100%">📨 Send Message</button>
+                  <button type="submit" id="pzSubmitBtn" class="pz-btn-calculate" style="width:100%">📨 Send Message</button>
                 </form>
               <?php endif; ?>
             <?php endwhile; endif; ?>
@@ -120,15 +120,32 @@ $hours2 = esc_html( get_theme_mod('petzenai_contact_hours2', 'Sat–Sun: 10AM–
 </main>
 
 <script>
+var pzAjaxUrl = '<?php echo esc_js( admin_url('admin-ajax.php') ); ?>';
 function pzContactSubmit(e) {
-  e.preventDefault();
-  var btn = e.target.querySelector('.pz-btn-calculate');
-  btn.textContent = '⏳ Sending...';
-  setTimeout(function() {
-    btn.textContent = '✅ Sent! We\'ll reply soon.';
-    btn.style.background = '#4CAF50';
-    e.target.reset();
-  }, 1200);
+    e.preventDefault();
+    var btn = document.getElementById('pzSubmitBtn');
+    var form = document.getElementById('pz-contact-form');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    var data = new FormData(form);
+    data.append('action', 'pz_contact_form');
+    data.append('nonce', form.querySelector('[name="pz_contact_nonce_field"]').value);
+    fetch(pzAjaxUrl, {method:'POST', body: data})
+    .then(function(r){ return r.json(); })
+    .then(function(res){
+        if(res.success){
+            form.innerHTML = '<div style="text-align:center;padding:40px;color:#4CAF50;font-size:18px;">&#x2705; Message sent! We\'ll reply within 24 hours.</div>';
+        } else {
+            btn.textContent = '📨 Send Message';
+            btn.disabled = false;
+            alert(res.data || 'Failed to send. Please try again.');
+        }
+    })
+    .catch(function(){
+        btn.textContent = '📨 Send Message';
+        btn.disabled = false;
+        alert('Network error. Please try again.');
+    });
 }
 </script>
 

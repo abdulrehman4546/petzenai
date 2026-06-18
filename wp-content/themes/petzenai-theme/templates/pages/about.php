@@ -56,7 +56,7 @@ get_header();
         <?php
         $stats = [
           ['50,000+','Pet Owners Helped'],
-          ['6','Free Tools'],
+          ['300+','Free Tools'],
           ['10,000+','Pet Names'],
           ['4.9★','Average Rating'],
         ];

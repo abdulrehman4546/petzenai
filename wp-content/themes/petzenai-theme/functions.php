@@ -1166,3 +1166,33 @@ function pz_admin_tools_bulk() {
     </div>
     <?php
 }
+
+
+// ── Contact form AJAX handler ──────────────────────────────────────────────
+add_action('wp_ajax_pz_contact_form',        'pz_handle_contact');
+add_action('wp_ajax_nopriv_pz_contact_form', 'pz_handle_contact');
+function pz_handle_contact() {
+    if ( ! isset($_POST['nonce']) || ! wp_verify_nonce($_POST['nonce'], 'pz_contact_nonce') ) {
+        wp_send_json_error('Invalid request');
+    }
+    $name    = sanitize_text_field($_POST['name']    ?? '');
+    $email   = sanitize_email($_POST['email']        ?? '');
+    $subject = sanitize_text_field($_POST['subject'] ?? 'General Inquiry');
+    $message = sanitize_textarea_field($_POST['message'] ?? '');
+    if ( empty($name) || empty($email) || empty($message) ) {
+        wp_send_json_error('Please fill all required fields');
+    }
+    if ( ! is_email($email) ) {
+        wp_send_json_error('Invalid email address');
+    }
+    $to      = 'info@petzenai.com';
+    $subject = '[PetZenAI Contact] ' . $subject . ' — from ' . $name;
+    $body    = "Name: $name\nEmail: $email\n\nMessage:\n$message";
+    $headers = ['Content-Type: text/plain; charset=UTF-8', 'Reply-To: ' . $name . ' <' . $email . '>'];
+    $sent = wp_mail($to, $subject, $body, $headers);
+    if ( $sent ) {
+        wp_send_json_success('Message sent successfully');
+    } else {
+        wp_send_json_error('Failed to send. Please email us directly.');
+    }
+}
