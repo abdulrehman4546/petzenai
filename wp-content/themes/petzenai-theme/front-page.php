@@ -61,8 +61,8 @@ $why_img  = pz_url( 'petzenai_why_image'  ) ?: 'https://images.unsplash.com/phot
         </div>
         <div class="hero-stat-divider" aria-hidden="true"></div>
         <div class="hero-stat">
-          <span class="hero-stat-num" data-count="<?php echo esc_attr(get_theme_mod('petzenai_hero_stat2_num','6')); ?>">0</span>
-          <span class="hero-stat-label"><?php echo pz('petzenai_hero_stat2_label','Free Tools'); ?></span>
+          <span class="hero-stat-num" data-count="<?php echo esc_attr(get_theme_mod('petzenai_hero_stat2_num','300')); ?>">0</span>
+          <span class="hero-stat-label"><?php echo pz('petzenai_hero_stat2_label','Tools'); ?></span>
         </div>
         <div class="hero-stat-divider" aria-hidden="true"></div>
         <div class="hero-stat">
@@ -403,7 +403,8 @@ $why_img  = pz_url( 'petzenai_why_image'  ) ?: 'https://images.unsplash.com/phot
             <div class="blog-card-overlay" aria-hidden="true"></div>
           </a>
           <div class="blog-card-body">
-            <span class="blog-card-cat">Pet Health</span>
+            <?php $cats = get_the_category(); $cat_name = !empty($cats) ? esc_html($cats[0]->name) : 'Pet Care'; ?>
+            <span class="blog-card-cat"><?php echo $cat_name; ?></span>
             <h3 class="blog-card-title" itemprop="headline"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
             <p class="blog-card-desc"><?php echo wp_trim_words(get_the_excerpt(),18); ?></p>
             <div class="blog-card-footer">
@@ -425,7 +426,7 @@ $why_img  = pz_url( 'petzenai_why_image'  ) ?: 'https://images.unsplash.com/phot
             <h3 class="blog-card-title"><a href="<?php echo home_url('/blog/'); ?>"><?php echo esc_html($fp[0]); ?></a></h3>
             <p class="blog-card-desc"><?php echo esc_html($fp[1]); ?></p>
             <div class="blog-card-footer">
-              <span class="blog-card-date">📅 2026</span>
+              <span class="blog-card-date">📅 <?php echo date('Y'); ?></span>
               <a href="<?php echo home_url('/blog/'); ?>" class="blog-read-more">Read More →</a>
             </div>
           </div>

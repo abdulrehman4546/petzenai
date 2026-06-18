@@ -451,8 +451,8 @@ function petzenai_seo_meta() {
                 ['@type'=>'SiteNavigationElement','position'=>1,'name'=>'Home','url'=>$site_url],
                 ['@type'=>'SiteNavigationElement','position'=>2,'name'=>'Tools','url'=>$site_url.'tools/'],
                 ['@type'=>'SiteNavigationElement','position'=>3,'name'=>'Blog','url'=>$site_url.'blog/'],
-                ['@type'=>'SiteNavigationElement','position'=>4,'name'=>'About Us','url'=>$site_url.'about-us/'],
-                ['@type'=>'SiteNavigationElement','position'=>5,'name'=>'Contact','url'=>$site_url.'contact-us/'],
+                ['@type'=>'SiteNavigationElement','position'=>4,'name'=>'About Us','url'=>$site_url.'about/'],
+                ['@type'=>'SiteNavigationElement','position'=>5,'name'=>'Contact','url'=>$site_url.'contact/'],
             ],
         ];
         echo '<script type="application/ld+json">' . wp_json_encode($nav_schema, JSON_UNESCAPED_SLASHES) . '</script>' . "\n";

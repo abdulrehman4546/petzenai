@@ -245,7 +245,7 @@ $read_min = max(1, ceil(str_word_count(strip_tags(get_the_content())) / 200));
           </div>
         </div>
       </article>
-      <?php endwhile; wp_reset_postdata($recent_posts); ?>
+      <?php endwhile; wp_reset_postdata(); ?>
     </div>
   </div>
 </section>
