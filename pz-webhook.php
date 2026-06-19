@@ -57,7 +57,7 @@ pz_copy_dir($src, $dst);
 // Copy root files — via extracted zip AND direct GitHub raw download as fallback
 $root_files = [
     'pz-fix-images.php', 'pz-force-deploy.php', 'pz-rankmath-fix.php',
-    'pz-security.php', 'ads.txt', 'llms.txt', 'pz-webhook.php',
+    'pz-security.php', 'ads.txt', 'llms.txt', 'pz-webhook.php', 'pz-blog-writer.php',
 ];
 $raw_base = 'https://raw.githubusercontent.com/abdulrehman4546/petzenai/main/';
 $log = "Deploy log " . date('Y-m-d H:i:s') . "\n";
