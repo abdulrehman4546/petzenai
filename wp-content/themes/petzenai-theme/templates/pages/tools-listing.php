@@ -13,7 +13,7 @@ get_header();
   <div class="container pz-page-hero-content">
     <span class="section-tag">100% Free</span>
     <h1 class="pz-page-hero-title">All Pet Care Tools</h1>
-    <p class="pz-page-hero-desc">6 free AI-powered tools to help you feed, track, and care for your pet — no sign-up needed.</p>
+    <p class="pz-page-hero-desc">6 free, science-based tools to help you feed, track, and care for your pet — no sign-up needed.</p>
   </div>
 </section>
 

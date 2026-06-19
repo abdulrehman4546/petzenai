@@ -140,7 +140,7 @@ $read_min = max(1, ceil(str_word_count(strip_tags(get_the_content())) / 200));
         <span class="pz-inline-cta-icon" aria-hidden="true">🐾</span>
         <div>
           <strong>Try Our Free Tool</strong><br>
-          <span>Use our AI-powered calculators to put this advice into action instantly.</span>
+          <span>Use our science-based calculators to put this advice into action instantly.</span>
         </div>
         <a href="<?php echo home_url('/tools/'); ?>" class="btn-primary" style="flex-shrink:0;padding:12px 24px;font-size:14px">
           See All Tools →

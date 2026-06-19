@@ -9,8 +9,8 @@
 <section class="ht-hero" style="background:linear-gradient(135deg,#0D0D1A,#2a0a1a)">
   <span class="ht-hero-icon">❓</span>
   <h1>What Pet Should <span>I Get?</span></h1>
-  <p>Answer 10 quick questions about your lifestyle, home, and personality — our AI finds your perfect pet match.</p>
-  <div class="ht-badges"><span class="ht-badge green">✅ Science-Based</span><span class="ht-badge purple">🎯 AI-Powered</span><span class="ht-badge orange">10 Questions</span></div>
+  <p>Answer 10 quick questions about your lifestyle, home, and personality — we match you to your perfect pet.</p>
+  <div class="ht-badges"><span class="ht-badge green">✅ Science-Based</span><span class="ht-badge purple">🎯 Personalized</span><span class="ht-badge orange">10 Questions</span></div>
 </section>
 <div class="ht-main">
   <div class="ht-tool-wrap">

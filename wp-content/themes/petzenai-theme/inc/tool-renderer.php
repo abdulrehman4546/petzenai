@@ -530,14 +530,49 @@ function pz_render_interactive( $tool ) {
 }
 
 function pz_get_checker_questions($tool) {
-    $defaults = [
-        ['q'=>'Is your pet eating normally?', 'opts'=>['yes'=>'Yes, normal appetite','less'=>'Eating less than usual','no'=>'Not eating at all']],
-        ['q'=>'How is your pet\'s energy level?', 'opts'=>['normal'=>'Normal / Active','lower'=>'Slightly lower than usual','very_low'=>'Very lethargic or weak']],
-        ['q'=>'Any vomiting or diarrhea in the last 24 hours?', 'opts'=>['none'=>'None','once'=>'Once or twice','frequent'=>'Frequent / Ongoing']],
-        ['q'=>'Is your pet drinking water normally?', 'opts'=>['normal'=>'Normal','more'=>'Drinking more than usual','less'=>'Drinking less than usual']],
-        ['q'=>'Any visible injuries, swelling, or discharge?', 'opts'=>['none'=>'None observed','mild'=>'Mild / Minor','severe'=>'Significant / Concerning']],
+    $a = $tool['animal'] ?? 'pet';
+
+    $questions = [
+        'fish' => [
+            ['q' => 'Is your fish eating normally?', 'opts' => ['yes' => 'Yes, eating well', 'less' => 'Eating less than usual', 'no' => 'Refusing all food', 'unknown' => 'Haven\'t checked']],
+            ['q' => 'How is your fish swimming?', 'opts' => ['normal' => 'Normal and active', 'sluggish' => 'Sluggish or slow', 'abnormal' => 'Floating, sinking, or spinning', 'bottom' => 'Staying at bottom or surface']],
+            ['q' => 'Any visible physical changes?', 'opts' => ['none' => 'No visible changes', 'spots' => 'Spots, patches, or discoloration', 'fins' => 'Fin damage or rot', 'bloat' => 'Bloating or unusual shape']],
+            ['q' => 'What do the droppings look like?', 'opts' => ['normal' => 'Normal (dark, short strings)', 'white' => 'White or stringy', 'unusual' => 'Unusual color', 'unchecked' => 'Haven\'t noticed']],
+            ['q' => 'How is the water quality?', 'opts' => ['good' => 'Tested recently — all good', 'untested' => 'Haven\'t tested recently', 'off' => 'Parameters are off', 'cloudy' => 'Tank looks cloudy']],
+        ],
+        'bird' => [
+            ['q' => 'Is your bird eating and drinking normally?', 'opts' => ['yes' => 'Yes, normal appetite', 'less' => 'Eating less than usual', 'no' => 'Refusing food or water', 'unknown' => 'Hard to tell']],
+            ['q' => 'How is your bird\'s energy and behavior?', 'opts' => ['normal' => 'Active and vocal as usual', 'quiet' => 'Quieter than normal', 'fluffed' => 'Fluffed up and sleepy', 'still' => 'Not moving much']],
+            ['q' => 'What do the droppings look like?', 'opts' => ['normal' => 'Normal (dark green/white)', 'watery' => 'Watery or very loose', 'unusual' => 'Unusual color (yellow, red, black)', 'unchecked' => 'Haven\'t checked']],
+            ['q' => 'Any physical signs of illness?', 'opts' => ['none' => 'No visible signs', 'discharge' => 'Nasal or eye discharge', 'feathers' => 'Feather loss or over-preening', 'swelling' => 'Swelling or injury']],
+            ['q' => 'Is your bird breathing normally?', 'opts' => ['yes' => 'Yes, breathing normally', 'tail' => 'Tail bobbing when breathing', 'open' => 'Open-beak breathing', 'wheeze' => 'Wheezing or clicking sounds']],
+        ],
+        'reptile' => [
+            ['q' => 'Is your reptile eating normally?', 'opts' => ['yes' => 'Yes, eating on schedule', 'skipped' => 'Skipped one feeding', 'refusing' => 'Refusing food for 2+ weeks', 'brumation' => 'In brumation/normal fast']],
+            ['q' => 'How is your reptile\'s activity level?', 'opts' => ['normal' => 'Active and responsive', 'low' => 'Slightly less active', 'lethargic' => 'Very lethargic or unresponsive', 'mobility' => 'Unable to move normally']],
+            ['q' => 'Any shedding problems?', 'opts' => ['good' => 'Shed went well', 'partial' => 'Partial shed or stuck pieces', 'cloudy' => 'Eyes cloudy without upcoming shed', 'none' => 'No recent shed']],
+            ['q' => 'How do the droppings look?', 'opts' => ['normal' => 'Normal for this species', 'runny' => 'Runny or unusual color', 'none' => 'No droppings in 2+ weeks', 'unchecked' => 'Haven\'t checked']],
+            ['q' => 'Are temperatures and humidity correct?', 'opts' => ['yes' => 'Yes, checked recently', 'unsure' => 'Not sure — need to check', 'off' => 'Equipment seems off', 'unchecked' => 'Haven\'t checked in a while']],
+        ],
+        'rabbit' => [
+            ['q' => 'Is your rabbit eating hay and drinking water?', 'opts' => ['yes' => 'Yes, eating hay and drinking normally', 'less' => 'Eating less hay than usual', 'no' => 'Refusing food completely', 'unknown' => 'Hard to tell']],
+            ['q' => 'Are you seeing normal droppings?', 'opts' => ['yes' => 'Yes, normal round pellets', 'fewer' => 'Fewer droppings than usual', 'none' => 'No droppings for several hours', 'soft' => 'Soft or misshapen droppings']],
+            ['q' => 'How is your rabbit\'s energy and behavior?', 'opts' => ['normal' => 'Active and curious', 'quiet' => 'Quieter than usual', 'hiding' => 'Hiding and hunched posture', 'flat' => 'Lying flat and unresponsive']],
+            ['q' => 'Any physical signs to report?', 'opts' => ['none' => 'No visible signs', 'discharge' => 'Runny nose or wet eyes', 'wet' => 'Wet chin or dewlap', 'tilt' => 'Tilted head or loss of balance']],
+            ['q' => 'Does your rabbit\'s belly feel normal?', 'opts' => ['normal' => 'Feels normal when gently touched', 'gassy' => 'Seems gassy or bloated', 'pain' => 'Tooth grinding or signs of pain', 'unchecked' => 'Haven\'t checked']],
+        ],
     ];
-    return $defaults;
+
+    // Default (dog, cat, general)
+    $default_questions = [
+        ['q' => 'Is your pet eating normally?', 'opts' => ['yes' => 'Yes, normal appetite', 'less' => 'Eating less than usual', 'no' => 'Refusing all food', 'unknown' => 'Hard to tell']],
+        ['q' => 'How is your pet\'s energy level?', 'opts' => ['normal' => 'Normal and active', 'lower' => 'Slightly low energy', 'very_low' => 'Very lethargic', 'unable' => 'Unable to stand or move']],
+        ['q' => 'Any vomiting or diarrhea in the last 24 hours?', 'opts' => ['none' => 'No symptoms', 'once' => 'Once or twice', 'frequent' => 'Multiple times', 'blood' => 'Vomiting with blood']],
+        ['q' => 'Is your pet drinking water normally?', 'opts' => ['normal' => 'Yes, drinking normally', 'less' => 'Drinking less than usual', 'more' => 'Drinking much more than usual', 'none' => 'Not drinking at all']],
+        ['q' => 'Any visible injuries, swelling, or discharge?', 'opts' => ['none' => 'No visible signs', 'mild' => 'Minor discharge from eyes or nose', 'swelling' => 'Swelling or limping', 'severe' => 'Open wound or severe injury']],
+    ];
+
+    return isset($questions[$a]) ? $questions[$a] : $default_questions;
 }
 
 function pz_section_what_is($tool) {
@@ -548,7 +583,7 @@ function pz_section_what_is($tool) {
     <p>The <strong><?php echo $t; ?></strong> is a comprehensive, vet-reviewed resource designed to help <?php echo $a; ?> owners make informed decisions about their pet's health and wellbeing.<?php if ($kw): ?> This <?php echo $kw; ?> guide is built on peer-reviewed veterinary science and provides accurate, personalized guidance tailored to your specific <?php echo strtolower($a); ?>.<?php else: ?> Built on peer-reviewed veterinary science, this tool provides accurate, personalized guidance tailored to your specific <?php echo strtolower($a); ?>.<?php endif; ?></p>
     <p>Whether you're a first-time owner or an experienced <?php echo strtolower($a); ?> parent, understanding the fundamentals covered in this <?php echo $kw ? $kw . ' ' : ''; ?>guide can significantly improve your pet's quality of life and help you catch potential health issues early.</p>
     <div class="pz-info-box">
-      <strong>🔬 Science Fact:</strong> Studies show that pet owners who follow structured, evidence-based care guidelines report significantly better health outcomes for their animals. Regular monitoring and proactive care can add years to your pet's life.
+      <strong>🔬 Good to Know:</strong> Regular monitoring and consistent care routines are the foundation of good pet health — and this guide gives you a practical place to start.
     </div>
     <?php return ob_get_clean();
 }
@@ -569,7 +604,7 @@ function pz_section_why_important($tool) {
         <span class="pz-why-icon">❤️</span>
         <div>
           <strong>Longer, Healthier Life</strong>
-          <p>Pets with attentive owners who follow science-based care guidelines live significantly longer on average.</p>
+          <p>Pets with attentive owners who follow consistent, science-based care routines tend to stay healthier and catch problems earlier.</p>
         </div>
       </div>
       <div class="pz-why-item">
@@ -658,72 +693,163 @@ function pz_section_tips($tool) {
     echo '<ul class="pz-tips-list">';
     foreach($tips as $tip) echo '<li>' . str_replace("$a", "<strong>$a</strong>", esc_html($tip)) . '</li>';
     echo '</ul>';
-    echo '<div class="pz-info-box" style="margin-top:20px"><strong>💡 Pro Tip:</strong> The best pet care is preventive, not reactive. Establishing good routines now can prevent 60-70% of common health issues that require veterinary intervention.</div>';
+    echo '<div class="pz-info-box" style="margin-top:20px"><strong>💡 Pro Tip:</strong> The best pet care is preventive, not reactive. Building consistent habits now saves you stress, money, and unnecessary vet visits later.</div>';
     return ob_get_clean();
 }
 
 function pz_section_mistakes($tool) {
-    $a = ucfirst($tool['animal'] === 'all' ? 'pet' : $tool['animal']);
-    $mistakes = [
-        ['❌','Ignoring Subtle Changes','Small behavioral or physical changes are often the first signs of health issues. Never dismiss what seems minor without monitoring it for 24-48 hours.'],
-        ['❌','Following Generic Advice','Not all advice applies to every pet. Breed, age, size, and health status all affect what\'s appropriate. Always tailor recommendations to your specific pet.'],
-        ['❌','Skipping Regular Vet Visits','Even when your pet seems perfectly healthy, annual vet check-ups catch issues that aren\'t visible externally. Preventive care is always cheaper than treatment.'],
-        ['❌','Overfeeding Treats','Treats should make up no more than 10% of your pet\'s daily calorie intake. Overfeeding with treats is one of the leading causes of pet obesity in the US.'],
-        ['❌','Using Human Products on Pets','Many products safe for humans (shampoos, medications, foods) are toxic to pets. Always use species-specific products unless directed by a vet.'],
-        ['❌','Delaying Vet Care','When your pet shows signs of distress, pain, or illness, same-day veterinary attention is almost always better than "wait and see." Conditions can deteriorate rapidly.'],
+    $a = $tool['animal'] ?? 'pet';
+
+    $mistakes_map = [
+        'dog' => [
+            ['❌ Overfeeding Based on Bag Guidelines', 'Feeding instructions on dog food bags are set by manufacturers — they tend to run high. Most dogs need 10-20% less than what the bag recommends, especially if they are spayed or neutered.'],
+            ['❌ Skipping Dental Care', 'Over 80% of dogs show signs of dental disease by age 3. Daily tooth brushing or dental chews prevent painful infections that affect the heart and kidneys too.'],
+            ['❌ Ignoring Weight Creep', 'A few extra pounds on a dog equals significant health strain. An overweight Labrador at 85 lbs vs. an ideal 70 lbs has 50% more stress on its joints.'],
+            ['❌ Using Human Shampoo or Products', 'Human skin is pH 5.5; dog skin is pH 7.5. Human shampoos disrupt the skin barrier and lead to dryness, itching, and infection. Always use dog-specific grooming products.'],
+            ['❌ Punishing Instead of Redirecting', 'Punishment-based training increases anxiety and aggression. Positive reinforcement (reward the behavior you want) is faster, kinder, and produces lasting results.'],
+        ],
+        'cat' => [
+            ['❌ Free-Feeding Dry Kibble All Day', 'Cats are obligate carnivores designed to eat small, protein-rich meals. Constant access to dry food leads to obesity, urinary tract disease, and diabetes.'],
+            ['❌ Skipping the Litter Box Cleaning', 'Cats are extremely clean animals. A dirty litter box is the number one cause of inappropriate elimination. Scoop daily; full change weekly.'],
+            ['❌ Ignoring Water Intake', 'Cats evolved in deserts and have a low thirst drive. Most cats on dry food are chronically dehydrated. Add wet food or a cat water fountain to increase hydration.'],
+            ['❌ Assuming Hiding Means "Fine"', 'Cats hide pain. A cat that hides more than usual, stops grooming, or loses interest in play may be ill — not just moody. Any behavioral change lasting 48+ hours warrants a vet call.'],
+            ['❌ Declawing as a Solution', 'Declawing removes the last bone of each toe — equivalent to cutting human fingers at the first knuckle. It causes chronic pain, litter box avoidance, and increased biting.'],
+        ],
+        'bird' => [
+            ['❌ Seed-Only Diet', 'A seed-only diet is the leading cause of malnutrition in pet birds. Seeds are high in fat and low in vitamins A, D, and calcium. Pellets plus fresh vegetables should make up 70-80% of the diet.'],
+            ['❌ Non-Stick Cookware Fumes', 'PTFE (Teflon) coating releases fumes when overheated that are odorless to humans but fatal to birds within minutes. Use stainless steel, cast iron, or ceramic cookware in any home with birds.'],
+            ['❌ Keeping Bird in Draft or Direct Sun', 'Birds are sensitive to temperature extremes. Avoid placing cages near air vents, windows with direct afternoon sun, or exterior walls.'],
+            ['❌ Ignoring Beak and Nail Overgrowth', 'Overgrown beaks prevent eating; overgrown nails lead to perching injuries. Provide proper perch textures and schedule regular grooming.'],
+            ['❌ Leaving Bird Alone for Long Hours Daily', 'Parrots and budgies are highly social. Consistent isolation leads to feather-destructive behavior, screaming, and self-mutilation. Birds need daily interaction or a companion bird.'],
+        ],
+        'fish' => [
+            ['❌ Overstocking the Tank', 'Too many fish per gallon is the most common beginner mistake. A general rule: 1 inch of adult fish per gallon of water. Overstocking spikes ammonia and causes chronic stress.'],
+            ['❌ Skipping the Nitrogen Cycle', 'Adding fish to an uncycled tank exposes them to lethal ammonia spikes. Cycle a new tank for 4-6 weeks before adding fish — test for 0 ammonia, 0 nitrite, and low nitrate.'],
+            ['❌ Overfeeding', 'Uneaten food decomposes and spikes ammonia within hours. Feed only what your fish can eat in 2-3 minutes, once or twice daily. Remove uneaten food promptly.'],
+            ['❌ Doing 100% Water Changes', 'Complete water changes crash your tank\'s beneficial bacteria colony. Do partial water changes of 20-30% weekly using a siphon to remove debris.'],
+            ['❌ Mixing Incompatible Species', 'Researching compatibility before buying saves lives. Cichlids eat small fish. Betta fish attack other bettas. Goldfish are coldwater fish that do poorly in tropical tanks.'],
+        ],
+        'reptile' => [
+            ['❌ Wrong Temperature Gradient', 'Reptiles are ectothermic — they need a warm side and a cool side to thermoregulate. A uniform temperature causes chronic stress, poor digestion, and immune suppression.'],
+            ['❌ Feeding Prey Larger Than the Head Width', 'Prey items should be no wider than the widest part of your reptile\'s head. Oversized prey causes regurgitation and can injure or kill your animal.'],
+            ['❌ Inadequate UVB Lighting', 'Most reptiles require UVB light to synthesize vitamin D3. Without it, they develop metabolic bone disease — a slow, painful, preventable condition. Replace UVB bulbs every 6-12 months even if they still glow.'],
+            ['❌ Handling Too Soon After Feeding', 'Wait 48-72 hours after feeding before handling your reptile. Premature handling causes stress-induced regurgitation, which wastes energy and can cause esophageal damage.'],
+            ['❌ Ignoring Humidity Requirements', 'Every reptile species has specific humidity needs. Too low causes stuck sheds and dehydration; too high causes respiratory infections and scale rot.'],
+        ],
+        'rabbit' => [
+            ['❌ Too Little Hay', 'Hay should make up 80-90% of a rabbit\'s diet — not pellets. Unlimited timothy hay keeps the gut moving (critical — GI stasis is a life-threatening emergency) and wears down constantly-growing teeth.'],
+            ['❌ Housing on Wire-Bottom Cages', 'Wire flooring causes sore hocks (painful ulcerated foot pads). Rabbits need solid flooring with soft bedding — fleece blankets, hay, or wooden boards work well.'],
+            ['❌ Too Many Sugary Treats or Fruit', 'Rabbits have sensitive digestive systems. More than one tablespoon of fruit per day causes cecal dysbiosis — dangerous bacterial overgrowth in the gut.'],
+            ['❌ Assuming Rabbits Are Low-Maintenance', 'Rabbits are the third most surrendered pet. They live 8-12 years, need daily social interaction, cannot be left alone for days, and require a rabbit-savvy vet. They are not starter pets.'],
+            ['❌ Bathing a Rabbit', 'Rabbits groom themselves like cats. Bathing causes extreme stress and can trigger fatal shock. Spot-clean with a damp cloth only if absolutely necessary.'],
+        ],
     ];
-    ob_start();
-    echo '<div class="pz-mistakes-grid">';
-    foreach($mistakes as $m) {
-        echo '<div class="pz-mistake-item">';
-        echo '<div class="pz-mistake-icon">' . $m[0] . '</div>';
-        echo '<div><strong>' . esc_html($m[1]) . '</strong><p>' . esc_html($m[2]) . '</p></div>';
-        echo '</div>';
+
+    $default_mistakes = [
+        ['❌ Ignoring Subtle Early Signs', 'Behavioral and physical changes are often the first signs of illness. Knowing your pet\'s normal baseline makes early detection possible.'],
+        ['❌ Using Human Products on Pets', 'Many medications, shampoos, and foods safe for humans are toxic to pets. Always use species-specific products.'],
+        ['❌ Skipping Routine Vet Visits', 'Annual or biannual wellness checks catch health issues before they become emergencies. Senior pets benefit from twice-yearly exams.'],
+        ['❌ Following Generic Online Advice', 'Not all advice fits every species, breed, age, or health condition. When in doubt, your vet is the most reliable source.'],
+        ['❌ Delaying Vet Care When Worried', 'If something feels off, it usually is. A quick vet call costs less than a delayed diagnosis.'],
+    ];
+
+    $items = isset($mistakes_map[$a]) ? $mistakes_map[$a] : $default_mistakes;
+    $animal_label = ucfirst($a);
+
+    $html = '<section class="pz-section pz-mistakes">';
+    $html .= '<div class="pz-container">';
+    $html .= '<h2 class="pz-section-title">🚫 Common ' . $animal_label . ' Care Mistakes to Avoid</h2>';
+    $html .= '<p class="pz-section-intro">Even experienced ' . $animal_label . ' owners make these mistakes. Knowing what to avoid is just as important as knowing what to do.</p>';
+    $html .= '<div class="pz-mistakes-grid">';
+
+    foreach ($items as $item) {
+        $html .= '<div class="pz-mistake-card">';
+        $html .= '<h3 class="pz-mistake-title">' . esc_html($item[0]) . '</h3>';
+        $html .= '<p>' . esc_html($item[1]) . '</p>';
+        $html .= '</div>';
     }
-    echo '</div>';
-    return ob_get_clean();
+
+    $html .= '</div></div></section>';
+    return $html;
 }
 
 function pz_section_warning_signs($tool) {
-    $a = ucfirst($tool['animal'] === 'all' ? 'pet' : $tool['animal']);
-    ob_start(); ?>
-    <p>These are the warning signs that require <strong>immediate veterinary attention</strong>:</p>
-    <div class="pz-warning-grid">
-      <div class="pz-warning-item pz-warning-red">
-        <h4>🚨 Emergency (Call Vet Now)</h4>
-        <ul>
-          <li>Difficulty breathing or labored breathing</li>
-          <li>Collapse or inability to stand</li>
-          <li>Suspected poisoning or toxin ingestion</li>
-          <li>Severe bleeding or deep wounds</li>
-          <li>Seizures lasting more than 2 minutes</li>
-          <li>Extreme pain (vocalizing, guarding body)</li>
-        </ul>
-      </div>
-      <div class="pz-warning-item pz-warning-yellow">
-        <h4>⚠️ Urgent (See Vet Within 24 Hours)</h4>
-        <ul>
-          <li>Not eating for more than 24 hours</li>
-          <li>Persistent vomiting or diarrhea (3+ times)</li>
-          <li>Significant lethargy or behavior change</li>
-          <li>Swollen abdomen or limping</li>
-          <li>Eye discharge, cloudiness, or squinting</li>
-          <li>Unusual lumps or rapid weight change</li>
-        </ul>
-      </div>
-      <div class="pz-warning-item pz-warning-green">
-        <h4>✅ Monitor Closely (Vet Check Soon)</h4>
-        <ul>
-          <li>Occasional soft stool or vomiting (once)</li>
-          <li>Mild scratching or licking one area</li>
-          <li>Slight decrease in appetite for 1 day</li>
-          <li>Minor behavioral changes</li>
-          <li>Small cuts or scrapes</li>
-          <li>Mild bad breath or ear odor</li>
-        </ul>
-      </div>
-    </div>
-    <?php return ob_get_clean();
+    $a = $tool['animal'] ?? 'pet';
+
+    $signs = [
+        'dog' => [
+            'emergency' => ['Difficulty breathing or labored breathing', 'Collapse or inability to stand', 'Seizures lasting more than 2 minutes', 'Suspected poisoning or toxin ingestion', 'Severe bleeding or deep wounds', 'Extreme bloating or distended belly (GDH risk)'],
+            'vet_soon' => ['Vomiting or diarrhea lasting more than 24 hours', 'Refusing food for more than 48 hours', 'Limping or reluctance to bear weight', 'Excessive drinking or urination', 'Swollen or painful abdomen', 'Eye discharge or cloudiness'],
+            'monitor' => ['Mild lethargy or low energy', 'Soft stool without blood', 'Minor scratching or licking', 'Small appetite reduction for under 24 hours']
+        ],
+        'cat' => [
+            'emergency' => ['Open-mouth breathing or panting (cats rarely pant)', 'Collapse or sudden weakness', 'Suspected poisoning (lilies, antifreeze, etc.)', 'Urinary blockage (straining, crying in litter box)', 'Seizures', 'Pale, white, blue or yellow gums'],
+            'vet_soon' => ['Not urinating for over 24 hours', 'Hiding and refusing all food for 24+ hours', 'Third eyelid visible', 'Sneezing with thick nasal discharge', 'Rapid unexplained weight loss', 'Crying out when touched'],
+            'monitor' => ['Mild sneezing without discharge', 'Slightly reduced appetite', 'Occasional hairball', 'Mild lethargy for under 12 hours']
+        ],
+        'bird' => [
+            'emergency' => ['Fluffed feathers with eyes closed (severe illness sign)', 'Breathing with tail bobbing or open beak', 'Bleeding from any body part', 'Collapse or inability to perch', 'Suspected toxin exposure (fumes, lead, zinc)', 'Seizures or loss of balance'],
+            'vet_soon' => ['Nasal discharge or crusty nares', 'Changes in droppings for more than 24 hours', 'Feather destruction or over-preening', 'Regurgitating repeatedly (different from normal feeding)', 'Voice changes or loss of vocalization', 'Swollen eye or eyelid'],
+            'monitor' => ['Mild change in droppings for less than 24 hours', 'Slightly reduced seed intake', 'Quieter than normal for one day']
+        ],
+        'fish' => [
+            'emergency' => ['Floating upside down or sideways', 'Gasping at the surface continuously', 'Severe fin rot reaching the body', 'Visible parasites covering large body area', 'Rapid mass die-off in tank', 'Tank ammonia or nitrite spike above 0.5 ppm'],
+            'vet_soon' => ['White spots covering body (Ich)', 'Clamped fins lasting more than 24 hours', 'Visible fungal growth (white cotton-like patches)', 'Not eating for 3+ days', 'Abnormal swimming pattern (spinning, sinking)', 'Popeye (bulging eyes)'],
+            'monitor' => ['Slightly reduced appetite', 'Minor fin fraying', 'Hiding more than usual for 1-2 days', 'Mild color fading']
+        ],
+        'reptile' => [
+            'emergency' => ['Inability to close mouth (mouth gaping)', 'Respiratory infection signs (wheezing, mucus)', 'Prolapsed organ (tissue outside body)', 'Seizures or loss of muscle control', 'Suspected impaction (no bowel movement 2+ weeks)', 'Retained shed covering eyes or constricting limbs'],
+            'vet_soon' => ['Not eating for 4+ weeks (outside brumation)', 'Swollen limbs or joints', 'Abnormal skin coloring or dark patches', 'Runny or unusual droppings', 'Labored breathing', 'Cloudy or sunken eyes outside shed'],
+            'monitor' => ['Skipping one or two meals (normal for some species)', 'Hiding more than usual', 'Mild color changes during shed', 'Reduced activity during cooler months']
+        ],
+        'rabbit' => [
+            'emergency' => ['Complete loss of appetite (GI stasis — life threatening within hours)', 'No droppings for 12+ hours', 'Labored breathing or blue-tinged lips', 'Head tilt with loss of balance (E. cuniculi)', 'Suspected fly strike (maggots on skin)', 'Paralyzed or dragging hind legs'],
+            'vet_soon' => ['Reduced droppings or very small/misshapen pellets', 'Teeth grinding (pain signal)', 'Eye or nasal discharge', 'Wet dewlap or chin (dental or drinking issue)', 'Uneaten cecotropes (soft night droppings)', 'Limping or reluctance to move'],
+            'monitor' => ['Slightly reduced veggie intake', 'Mild soft cecotropes', 'Less grooming than usual for 1 day', 'Quieter than normal']
+        ],
+    ];
+
+    // Default for general/unknown animals
+    $default = [
+        'emergency' => ['Difficulty breathing', 'Collapse or inability to stand', 'Seizures', 'Suspected poisoning', 'Severe bleeding', 'Extreme pain or vocalizing'],
+        'vet_soon' => ['Vomiting or diarrhea lasting 24+ hours', 'Refusing food for 48+ hours', 'Unexplained weight loss', 'Swelling or lumps', 'Changes in drinking or urination', 'Eye or nasal discharge'],
+        'monitor' => ['Mild lethargy', 'Slight appetite reduction under 24 hours', 'Minor behavior changes', 'Soft stool without blood']
+    ];
+
+    $w = isset($signs[$a]) ? $signs[$a] : $default;
+    $animal_label = ucfirst($a);
+
+    // Build the HTML output
+    $html = '<section class="pz-section pz-warning-signs">';
+    $html .= '<div class="pz-container">';
+    $html .= '<h2 class="pz-section-title">⚠️ ' . $animal_label . ' Warning Signs — When to Act</h2>';
+    $html .= '<p class="pz-section-intro">Knowing when to call the vet versus when to monitor at home is one of the most important skills for any ' . $animal_label . ' owner. Use this guide as a reference — when in doubt, always call your vet.</p>';
+
+    $html .= '<div class="pz-warning-grid">';
+
+    // Emergency
+    $html .= '<div class="pz-warning-card pz-warning-emergency">';
+    $html .= '<h3>🚨 Emergency — Call Vet Immediately</h3><ul>';
+    foreach ($w['emergency'] as $s) $html .= '<li>' . esc_html($s) . '</li>';
+    $html .= '</ul></div>';
+
+    // Vet Soon
+    $html .= '<div class="pz-warning-card pz-warning-soon">';
+    $html .= '<h3>⚠️ Vet Visit Soon — Within 24-48 Hours</h3><ul>';
+    foreach ($w['vet_soon'] as $s) $html .= '<li>' . esc_html($s) . '</li>';
+    $html .= '</ul></div>';
+
+    // Monitor
+    $html .= '<div class="pz-warning-card pz-warning-monitor">';
+    $html .= '<h3>👀 Monitor at Home — Watch Closely</h3><ul>';
+    foreach ($w['monitor'] as $s) $html .= '<li>' . esc_html($s) . '</li>';
+    $html .= '</ul></div>';
+
+    $html .= '</div>'; // grid
+    $html .= '<p class="pz-warning-disclaimer"><strong>Important:</strong> This guide is for informational purposes only. It is not a substitute for professional veterinary advice. If your ' . $animal_label . ' shows any concerning signs, contact your vet or an emergency animal hospital immediately.</p>';
+    $html .= '</div></section>';
+
+    return $html;
 }
 
 function pz_section_breed_variations($tool) {

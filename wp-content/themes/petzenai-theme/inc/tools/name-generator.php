@@ -11,7 +11,7 @@ add_shortcode( 'petzenai_name_gen', function () {
   <div class="pz-tool-header">
     <span class="pz-tool-icon" aria-hidden="true">✨</span>
     <h1 class="pz-tool-title">AI Pet Name Generator</h1>
-    <p class="pz-tool-desc">Find the perfect name for your new companion. 10,000+ unique names filtered by pet type, gender, and personality — powered by AI.</p>
+    <p class="pz-tool-desc">Find the perfect name for your new companion. 10,000+ unique names filtered by pet type, gender, and personality — instantly personalized.</p>
   </div>
 
   <div class="pz-tool-body">

@@ -32,7 +32,7 @@ $today_year = date('Y');
         <p>By accessing or using <?php echo esc_html($site_name); ?>, you confirm that you are at least 13 years of age, have read and understood these Terms, and agree to be legally bound by them. If you are using the Site on behalf of an organization, you represent that you have the authority to bind that organization to these Terms.</p>
 
         <h2>2. Description of Service</h2>
-        <p><?php echo esc_html($site_name); ?> provides free AI-powered pet care tools and educational content, including:</p>
+        <p><?php echo esc_html($site_name); ?> provides free, science-based pet care tools and educational content, including:</p>
         <ul>
           <li>Pet Food Portion Calculator</li>
           <li>Pet Age Calculator</li>

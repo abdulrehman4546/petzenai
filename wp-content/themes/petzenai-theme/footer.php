@@ -6,7 +6,7 @@
         <div class="footer-brand-logo">
           <span class="logo-icon">🐾</span> PetZen<span>AI</span>
         </div>
-        <p class="footer-brand-desc">Science-based diet planning and AI-powered tools for healthier, happier pets across America. Your trusted partner in pet wellness.</p>
+        <p class="footer-brand-desc">Science-based diet planning and vet-formulated tools for healthier, happier pets across America. Your trusted partner in pet wellness.</p>
         <div class="footer-socials">
           <?php $fb = get_theme_mod('petzenai_social_facebook',''); ?>
           <?php if($fb): ?><a href="<?php echo esc_url($fb); ?>" class="footer-social" aria-label="Facebook" target="_blank" rel="noopener">📘</a><?php endif; ?>

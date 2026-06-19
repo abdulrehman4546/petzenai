@@ -42,7 +42,7 @@ $why_img  = pz_url( 'petzenai_why_image'  ) ?: 'https://images.unsplash.com/phot
       </h1>
 
       <p class="hero-desc" itemprop="description">
-        <?php echo esc_html( get_theme_mod('petzenai_hero_desc','Empower your pet\'s health with free AI-powered calculators, diet planners, and vaccination trackers — trusted by over 50,000 pet owners across the USA.') ); ?>
+        <?php echo esc_html( get_theme_mod('petzenai_hero_desc','Empower your pet\'s health with free, vet-formulated calculators, diet planners, and vaccination trackers — trusted by over 50,000 pet owners across the USA.') ); ?>
       </p>
 
       <div class="hero-btns">
@@ -117,7 +117,7 @@ $why_img  = pz_url( 'petzenai_why_image'  ) ?: 'https://images.unsplash.com/phot
 <div class="marquee-strip" aria-hidden="true">
   <div class="marquee-track">
     <?php
-    $items = ['🐶 Dog Nutrition','🐱 Cat Diet Plans','🐰 Rabbit Care','🐦 Bird Feeding','🐠 Fish Wellness','🐾 Science-Based','❤️ Trusted by 50K+','🧬 AI-Powered','🏥 Vet-Approved','🌟 100% Free','🐾 No Sign-Up','⚡ Instant Results'];
+    $items = ['🐶 Dog Nutrition','🐱 Cat Diet Plans','🐰 Rabbit Care','🐦 Bird Feeding','🐠 Fish Wellness','🐾 Science-Based','❤️ Trusted by 50K+','🧬 Vet-Formulated','🏥 Vet-Approved','🌟 100% Free','🐾 No Sign-Up','⚡ Instant Results'];
     $all = array_merge($items,$items,$items);
     foreach($all as $item) echo "<span class='marquee-item'>{$item}</span>";
     ?>
@@ -130,7 +130,7 @@ $why_img  = pz_url( 'petzenai_why_image'  ) ?: 'https://images.unsplash.com/phot
     <div class="section-header" data-aos>
       <span class="section-tag"><?php echo pz('petzenai_tools_tag','Free Tools'); ?></span>
       <h2 class="section-title"><?php echo pz('petzenai_tools_title','6 Powerful Pet Care Tools'); ?> <span>Completely Free</span></h2>
-      <p class="section-desc"><?php echo esc_html( get_theme_mod('petzenai_tools_desc','Everything your pet needs — powered by AI and veterinary science.') ); ?></p>
+      <p class="section-desc"><?php echo esc_html( get_theme_mod('petzenai_tools_desc','Everything your pet needs — built on veterinary science and evidence-based research.') ); ?></p>
     </div>
     <div class="tools-grid">
       <?php
@@ -271,7 +271,7 @@ $why_img  = pz_url( 'petzenai_why_image'  ) ?: 'https://images.unsplash.com/phot
           <?php
           $feats = [
             ['🔬', get_theme_mod('petzenai_why_feat1_title','Veterinary Science Backed'), get_theme_mod('petzenai_why_feat1_desc','All our tools are built on peer-reviewed nutritional research and veterinary guidelines.')],
-            ['🤖', get_theme_mod('petzenai_why_feat2_title','AI-Powered Accuracy'),       get_theme_mod('petzenai_why_feat2_desc','Our algorithms adapt to your pet\'s breed, weight, age, and activity level for personalized recommendations.')],
+            ['🤖', get_theme_mod('petzenai_why_feat2_title','Science-Based Accuracy'),    get_theme_mod('petzenai_why_feat2_desc','Our calculators adapt to your pet\'s breed, weight, age, and activity level for personalized, evidence-based recommendations.')],
             ['🆓', get_theme_mod('petzenai_why_feat3_title','100% Free Forever'),         get_theme_mod('petzenai_why_feat3_desc','No subscriptions, no hidden fees. Every tool on PetZenAI is completely free.')],
             ['⚡', get_theme_mod('petzenai_why_feat4_title','Instant Results'),           get_theme_mod('petzenai_why_feat4_desc','Get science-backed answers in seconds. No sign-up required.')],
           ];
