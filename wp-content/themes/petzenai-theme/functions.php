@@ -313,7 +313,7 @@ function petzenai_seo_meta() {
     $site_url    = home_url('/');
     $desc        = get_theme_mod('petzenai_seo_description','Free vet-formulated pet care tools — food calculators, vaccine trackers, age calculators & more. Science-based diet planning for healthier pets.');
     $keywords    = get_theme_mod('petzenai_seo_keywords','pet food calculator, pet age calculator, dog nutrition, cat diet, pet vaccination schedule, AI pet tools');
-    $og_image    = get_theme_mod('petzenai_og_image', get_template_directory_uri() . '/assets/images/og-default.jpg');
+    $og_image    = get_theme_mod('petzenai_og_image', 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1200&h=630&q=80&auto=format&fit=crop');
     $logo_url    = get_theme_mod('petzenai_logo_image', $og_image);
     $title       = $site_name;
     $permalink   = get_permalink() ?: $site_url;
