@@ -335,6 +335,10 @@ function petzenai_seo_meta() {
             $is_tool_page = true;
             if ( function_exists('pz_get_tool_data') ) {
                 $tool_data = pz_get_tool_data($post->post_name);
+                // Use keyword-optimised meta description for tool pages
+                if ( $tool_data && ! $rm_desc && function_exists('pz_get_meta_description') ) {
+                    $desc = pz_get_meta_description($tool_data);
+                }
             }
         }
     } elseif ( is_singular('post') && $post ) {

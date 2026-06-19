@@ -576,16 +576,144 @@ function pz_get_checker_questions($tool) {
 }
 
 function pz_section_what_is($tool) {
-    $a  = ucfirst($tool['animal'] === 'all' ? 'pet' : $tool['animal']);
-    $t  = esc_html($tool['title']);
-    $kw = ! empty($tool['kw']) ? esc_html($tool['kw']) : '';
-    ob_start(); ?>
-    <p>The <strong><?php echo $t; ?></strong> is a comprehensive, vet-reviewed resource designed to help <?php echo $a; ?> owners make informed decisions about their pet's health and wellbeing.<?php if ($kw): ?> This <?php echo $kw; ?> guide is built on peer-reviewed veterinary science and provides accurate, personalized guidance tailored to your specific <?php echo strtolower($a); ?>.<?php else: ?> Built on peer-reviewed veterinary science, this tool provides accurate, personalized guidance tailored to your specific <?php echo strtolower($a); ?>.<?php endif; ?></p>
-    <p>Whether you're a first-time owner or an experienced <?php echo strtolower($a); ?> parent, understanding the fundamentals covered in this <?php echo $kw ? $kw . ' ' : ''; ?>guide can significantly improve your pet's quality of life and help you catch potential health issues early.</p>
-    <div class="pz-info-box">
-      <strong>🔬 Good to Know:</strong> Regular monitoring and consistent care routines are the foundation of good pet health — and this guide gives you a practical place to start.
-    </div>
-    <?php return ob_get_clean();
+    $a    = $tool['animal'] === 'all' ? 'pet' : $tool['animal'];
+    $al   = ucfirst($a);
+    $t    = esc_html($tool['title']);
+    $kw   = ! empty($tool['kw']) ? esc_html($tool['kw']) : strtolower($t);
+    $type = $tool['type'] ?? 'guide';
+
+    // Secondary keyword lookup by animal + type
+    $secondary_kw_map = [
+        'dog' => [
+            'calculator' => 'how much should I feed my dog per day',
+            'checker'    => 'dog health symptoms checker',
+            'guide'      => 'dog care tips for owners',
+            'tracker'    => 'dog health tracking',
+        ],
+        'cat' => [
+            'calculator' => 'cat feeding guide by weight',
+            'checker'    => 'cat illness symptoms',
+            'guide'      => 'cat care advice',
+            'tracker'    => 'cat health log',
+        ],
+        'fish' => [
+            'calculator' => 'aquarium water parameters',
+            'checker'    => 'fish disease symptoms',
+            'guide'      => 'fish tank care guide',
+            'tracker'    => 'fish tank maintenance log',
+        ],
+        'bird' => [
+            'calculator' => 'pet bird diet calculator',
+            'checker'    => 'sick bird symptoms',
+            'guide'      => 'pet bird care tips',
+            'tracker'    => 'bird health log',
+        ],
+        'reptile' => [
+            'calculator' => 'reptile habitat requirements',
+            'checker'    => 'sick reptile signs',
+            'guide'      => 'reptile care for beginners',
+            'tracker'    => 'reptile feeding log',
+        ],
+        'rabbit' => [
+            'calculator' => 'rabbit diet and feeding guide',
+            'checker'    => 'rabbit health symptoms',
+            'guide'      => 'rabbit care tips',
+            'tracker'    => 'rabbit health log',
+        ],
+        'all' => [
+            'calculator' => 'pet care calculator',
+            'checker'    => 'pet health symptoms',
+            'guide'      => 'pet care guide',
+            'tracker'    => 'pet health tracker',
+        ],
+    ];
+
+    $animal_key = isset($secondary_kw_map[$a]) ? $a : 'all';
+    $secondary  = esc_html($secondary_kw_map[$animal_key][$type] ?? 'pet care guide');
+
+    // Paragraph 1 — define the tool, use focus keyword in first sentence
+    $p1_map = [
+        'calculator' => "The <strong>{$t}</strong> helps {$a} owners calculate <em>{$kw}</em> quickly and accurately. Whether you're working this out for the first time or rechecking after a change in your {$a}'s weight, age, or activity level, this tool gives you a vet-informed starting point based on established veterinary formulas.",
+        'checker'    => "The <strong>{$t}</strong> is a structured, vet-informed resource for {$a} owners who want to evaluate <em>{$kw}</em> without guesswork. Instead of searching through unreliable forums, this checker walks you through the key questions vets ask first — giving you a proportionate, level-headed assessment in under two minutes.",
+        'guide'      => "The <strong>{$t}</strong> is a comprehensive, vet-reviewed resource covering every aspect of <em>{$kw}</em> for {$a} owners. Whether you're brand new to owning a {$a} or looking to sharpen your existing care routine, this guide gives you structured, species-appropriate information built on current veterinary best practices.",
+        'tracker'    => "The <strong>{$t}</strong> helps {$a} owners monitor <em>{$kw}</em> consistently over time. Tracking key health indicators — rather than relying on memory — is one of the most practical things you can do to catch gradual changes before they become serious health concerns.",
+    ];
+    $p1 = $p1_map[$type] ?? $p1_map['guide'];
+
+    // Paragraph 2 — animal-specific, use secondary keyword naturally
+    $consequence_map = [
+        'dog'     => [
+            'calculator' => 'overfeeding and obesity — the leading preventable health problem in dogs',
+            'checker'    => 'delayed diagnosis of conditions that are treatable when caught early',
+            'guide'      => 'inconsistent care that causes preventable health and behavioral problems',
+            'tracker'    => 'missing gradual changes that only become visible in trend data',
+        ],
+        'cat'     => [
+            'calculator' => 'chronic overweight conditions and related diseases like diabetes and joint disease',
+            'checker'    => 'missing serious illness — cats hide pain and discomfort instinctively',
+            'guide'      => 'common but preventable issues like urinary disease, obesity, and dental disease',
+            'tracker'    => 'slow health decline that shows in trends long before obvious symptoms appear',
+        ],
+        'fish'    => [
+            'calculator' => 'poor water quality from excess waste — the number one cause of fish disease',
+            'checker'    => 'rapid disease spread through the tank before you can intervene',
+            'guide'      => 'avoidable losses from water quality issues, incompatible species, or incorrect setup',
+            'tracker'    => 'missing early parameter shifts that signal tank health problems',
+        ],
+        'bird'    => [
+            'calculator' => 'nutritional deficiencies that develop gradually and are often irreversible by the time symptoms show',
+            'checker'    => 'missing the early, subtle signs birds show before becoming critically ill',
+            'guide'      => 'preventable issues like feather destruction, nutritional disease, and toxin exposure',
+            'tracker'    => 'missing behavioral and physical changes that appear slowly over weeks',
+        ],
+        'reptile' => [
+            'calculator' => 'incorrect feeding that causes obesity, impaction, or nutritional deficiencies',
+            'checker'    => 'delayed treatment of conditions like metabolic bone disease or respiratory infection',
+            'guide'      => 'husbandry errors — temperature, humidity, and lighting mistakes cause most reptile illness',
+            'tracker'    => 'missing the gradual decline that precedes most serious reptile health events',
+        ],
+        'rabbit'  => [
+            'calculator' => 'gut imbalances and GI stasis — a life-threatening emergency that develops from improper diet',
+            'checker'    => 'missing early warning signs of GI stasis, which becomes critical within hours',
+            'guide'      => 'preventable problems including GI stasis, dental disease, and housing-related injuries',
+            'tracker'    => 'missing the subtle changes in eating and droppings that signal GI trouble early',
+        ],
+        'all'     => [
+            'calculator' => 'errors that affect your pet\'s long-term health',
+            'checker'    => 'delayed diagnosis of treatable conditions',
+            'guide'      => 'preventable health and behavioral problems',
+            'tracker'    => 'missing gradual health changes that trends reveal',
+        ],
+    ];
+    $consequence = esc_html($consequence_map[$animal_key][$type] ?? 'preventable health problems');
+
+    $p2_map = [
+        'calculator' => "For {$a} owners, <em>{$secondary}</em> is one of the most common questions — and one of the most important to get right. Getting it wrong can lead to {$consequence}. This calculator removes the guesswork by applying the same weight-and-activity formulas used in veterinary practice, adjusted for your {$a}'s specific profile.",
+        'checker'    => "For {$a} owners, knowing how to assess <em>{$secondary}</em> accurately is an essential skill. Getting this wrong can lead to {$consequence}. This checker provides a structured framework — the kind of systematic observation vets use — so you can respond proportionately rather than either panicking or dismissing something serious.",
+        'guide'      => "For {$a} owners, understanding <em>{$secondary}</em> thoroughly is what separates reactive care from proactive care. Gaps in care knowledge can lead to {$consequence}. This guide covers the full picture — from daily routines to warning signs — so you have a reliable reference for every stage of your {$a}'s life.",
+        'tracker'    => "For {$a} owners, consistent <em>{$secondary}</em> is one of the highest-value habits you can build. Without it, you're relying on memory and impression rather than data. Missing gradual changes can mean {$consequence}. This tracker gives you a simple, repeatable system to build that habit.",
+    ];
+    $p2 = $p2_map[$type] ?? $p2_map['guide'];
+
+    // Paragraph 3 — how to use, CTA-style
+    $p3_map = [
+        'calculator' => "Use the calculator above to get your personalized result, then scroll down for vet-backed tips specific to {$a} owners, a complete warning signs reference, and answers to the most common questions {$a} owners ask about {$kw}.",
+        'checker'    => "Use the checker above to complete your assessment, then read on for vet-backed guidance on the warning signs that need immediate attention, common mistakes {$a} owners make, and a detailed FAQ written for the questions people actually type into search engines.",
+        'guide'      => "Work through this guide from top to bottom for the most complete picture, or use the Table of Contents to jump to the section most relevant to you right now. The FAQ at the bottom answers the specific questions {$a} owners ask most often about {$kw}.",
+        'tracker'    => "Set up your tracking routine using the tool above, then read through the tips and warning signs sections below — they'll help you know what to track, what changes matter, and when a trend warrants a call to your vet.",
+    ];
+    $p3 = $p3_map[$type] ?? $p3_map['guide'];
+
+    $html  = '<p>' . $p1 . '</p>';
+    $html .= '<p>' . $p2 . '</p>';
+    $html .= '<p>' . $p3 . '</p>';
+    $html .= '<div class="pz-info-box">';
+    $html .= '<strong>Focus Keyword:</strong> ' . $kw . ' &nbsp;|&nbsp; ';
+    $html .= '<strong>Best For:</strong> ' . $al . ' owners &nbsp;|&nbsp; ';
+    $html .= '<strong>Tool Type:</strong> ' . ucfirst($type);
+    $html .= '</div>';
+
+    return $html;
 }
 
 function pz_section_why_important($tool) {
@@ -626,9 +754,30 @@ function pz_section_why_important($tool) {
 }
 
 function pz_section_steps($tool) {
-    $a = ucfirst($tool['animal'] === 'all' ? 'pet' : $tool['animal']);
+    $a     = ucfirst($tool['animal'] === 'all' ? 'pet' : $tool['animal']);
     $steps = pz_get_steps_for_tool($tool);
-    ob_start(); ?>
+
+    // Build HowTo JSON-LD schema for Google rich results
+    $schema_steps = [];
+    foreach ($steps as $i => $step) {
+        $schema_steps[] = [
+            '@type'    => 'HowToStep',
+            'position' => $i + 1,
+            'name'     => strip_tags($step['title']),
+            'text'     => strip_tags($step['desc']),
+        ];
+    }
+    $howto_schema = json_encode([
+        '@context'    => 'https://schema.org',
+        '@type'       => 'HowTo',
+        'name'        => 'How to Use the ' . $tool['title'],
+        'description' => 'Step-by-step guide for ' . strtolower($a) . ' owners using the ' . $tool['title'],
+        'step'        => $schema_steps,
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+
+    ob_start();
+    echo '<script type="application/ld+json">' . $howto_schema . '</script>';
+    ?>
     <p>Follow these vet-recommended steps for the best results with your <?php echo strtolower($a); ?>:</p>
     <ol class="pz-steps-list" itemscope itemtype="https://schema.org/HowTo">
       <?php foreach($steps as $i=>$step): ?>
@@ -679,19 +828,49 @@ function pz_get_steps_for_tool($tool) {
 }
 
 function pz_section_tips($tool) {
-    $a = ucfirst($tool['animal'] === 'all' ? 'pet' : $tool['animal']);
-    $tips = [
-        "Always approach your {$a} calmly and gently. Stress can affect health readings and behavioral responses, making assessments less accurate.",
-        "Keep a dedicated pet health journal or use a notes app to track patterns over time. Small changes that seem insignificant individually can be important trends.",
-        "Establish a consistent routine — {$a}s thrive on predictability. Consistent schedules reduce stress and make health monitoring more reliable.",
-        "Involve the whole family in your {$a}'s care routine. Everyone should know the basics so care is consistent even when you're away.",
-        "Never make dramatic changes to your {$a}'s care routine without a 7-10 day transition period. Sudden changes can cause stress and digestive issues.",
-        "Take photos or short videos when you notice something unusual about your {$a}. Visual documentation is invaluable when consulting your vet.",
-        "Research your specific breed's tendencies and health predispositions. Breed-specific knowledge helps you anticipate and prevent common issues early.",
+    $a    = ucfirst($tool['animal'] === 'all' ? 'pet' : $tool['animal']);
+    $al   = strtolower($a);
+    $type = $tool['type'] ?? 'guide';
+
+    // Tips keyed by tool type so calculator/checker/guide/tracker each get relevant advice
+    $tips_by_type = [
+        'calculator' => [
+            ['📏 Measure First, Input Second', "Get accurate measurements before using any calculator — estimated inputs produce estimated outputs. For weight-based tools, weigh your {$al} on a reliable pet scale rather than estimating."],
+            ['🔄 Recalculate Regularly', "Results change as your {$al} ages, gains or loses weight, or changes activity levels. Revisit this calculator every 3 months or after any significant life change."],
+            ['📋 Share Results With Your Vet', "Bring your calculator result to your next vet appointment. Vets appreciate when owners come prepared with specific numbers — it makes the conversation faster and more productive."],
+            ['⚖️ Use as a Baseline, Not a Prescription', "Calculators give you a science-based starting point — your vet adjusts for your individual {$al}'s health history, medications, and breed-specific factors."],
+            ['📱 Bookmark This Page', "Save this page so you can quickly recalculate whenever your {$al}'s needs change. A few minutes each quarter keeps your care plan accurate."],
+        ],
+        'checker' => [
+            ['🕐 Time Your Observations', "Before checking symptoms, note when they started and how frequently they occur. Duration and frequency are the first things your vet will ask — have these details ready."],
+            ['📸 Document With Photos or Video', "If your {$al} is showing physical symptoms, photograph them. Video is even better for behavioral or movement symptoms — it shows things that are hard to describe in words."],
+            ['🧾 Keep a Simple Health Log', "Write down: date, symptom, severity (mild/moderate/severe), and what changed. This log becomes invaluable at vet appointments and helps you spot patterns over time."],
+            ['🚫 Don\'t Search Symptoms Alone', "Search engines surface worst-case scenarios first. Use structured tools like this checker to get proportionate, level-headed guidance based on what you actually observe."],
+            ['📞 When in Doubt, Call', "Most vets offer a quick phone consultation for symptom questions. A 5-minute call is always worth it when you're unsure whether to come in."],
+        ],
+        'guide' => [
+            ['📖 Read All the Way Through First', "Skim the entire guide before acting on any one section. Context matters — a tip in section 4 might change how you approach section 2."],
+            ['🗓️ Build Routines, Not One-Off Actions', "The best {$al} care happens on a consistent schedule. Use this guide to build weekly and monthly habits, not just one-time actions or emergency responses."],
+            ['🤝 Involve Your Whole Household', "Everyone in the home who interacts with your {$al} should know the basics in this guide. Inconsistent care confuses animals and creates unnecessary stress."],
+            ['📝 Annotate What Works For Your ' . $a, "Every {$al} is different. Note which tips work best for yours so you build a personalized care reference over time — one that reflects your specific animal."],
+            ['🔗 Share With Your Vet', "Send your vet a link to this guide and ask which recommendations apply most strongly to your specific {$al}. This kind of preparation makes vet visits more efficient."],
+        ],
+        'tracker' => [
+            ['📅 Set a Tracking Reminder', "Tracking only works if it's consistent. Set a weekly phone reminder to record your {$al}'s data — consistency is what turns individual data points into useful trends."],
+            ['📊 Look for Trends, Not Just Numbers', "A single data point means little. After 4 weeks of tracking, look for trends — gradual changes often reveal health shifts before symptoms appear."],
+            ['🏥 Bring Your Tracking Data to Vet Visits', "A month of logged data is worth more than your memory. Vets make better decisions with objective trend data than with your best recollection of recent changes."],
+            ['🔔 Set Thresholds for Action', "Decide in advance: if X changes by more than Y, I will call the vet. This removes the guesswork and hesitation when something shifts — and makes you more likely to act early."],
+            ['💾 Back Up Your Records', "Screenshot or export your tracking data regularly. Health records have long-term value — previous trends become important context at future vet appointments."],
+        ],
     ];
+
+    $tips = isset($tips_by_type[$type]) ? $tips_by_type[$type] : $tips_by_type['guide'];
+
     ob_start();
     echo '<ul class="pz-tips-list">';
-    foreach($tips as $tip) echo '<li>' . str_replace("$a", "<strong>$a</strong>", esc_html($tip)) . '</li>';
+    foreach ($tips as $tip) {
+        echo '<li><strong>' . esc_html($tip[0]) . '</strong> — ' . esc_html($tip[1]) . '</li>';
+    }
     echo '</ul>';
     echo '<div class="pz-info-box" style="margin-top:20px"><strong>💡 Pro Tip:</strong> The best pet care is preventive, not reactive. Building consistent habits now saves you stress, money, and unnecessary vet visits later.</div>';
     return ob_get_clean();
@@ -946,47 +1125,123 @@ function pz_section_vet_advice($tool) {
 }
 
 function pz_section_faq($tool) {
-    $a = ucfirst($tool['animal'] === 'all' ? 'pet' : $tool['animal']);
-    $faqs = [
-        [
-            "q" => "How accurate is this {$tool['title']} tool?",
-            "a" => "Our tool is built on peer-reviewed veterinary research and follows guidelines from leading veterinary associations including AVMA and AAFCO. Results are accurate for the average {$a}, but individual animals may vary. Always confirm results with your veterinarian."
+    $t    = $tool['title'];
+    $a    = $tool['animal'] ?? 'pet';
+    $al   = ucfirst($a === 'all' ? 'pet' : $a);
+    $kw   = $tool['kw'] ?? strtolower($t);
+    $type = $tool['type'] ?? 'guide';
+
+    // Animal + type specific FAQ sets — written as people actually ask on ChatGPT/voice search
+    $faqs_by_animal_type = [
+        'dog_calculator' => [
+            ["How accurate is the {$t}?", "The {$t} uses established veterinary formulas as a baseline. Results are accurate for healthy adult dogs with typical activity levels. Individual variation — breed genetics, health conditions, metabolism — means your vet should always validate the output for your specific dog."],
+            ["How often should I use the {$t}?", "Recalculate every 3 months for adult dogs, monthly for puppies under 12 months, and any time your dog's weight changes by more than 5%, their activity level changes significantly, or they start or stop medication."],
+            ["Can I use the {$t} for puppies?", "Most calculators include a puppy mode or age input. Puppies have very different nutritional and physiological needs from adult dogs — always check that the tool is set for your dog's life stage before acting on the result."],
+            ["What if the {$kw} result seems too high or too low?", "Double-check your inputs first — weight in the right unit, correct age, correct activity level. If the result still seems off after verifying your inputs, bring it to your vet. They can validate or adjust based on your dog's individual health history."],
+            ["Is the {$t} free to use?", "Yes — all PetZenAI tools are completely free. No signup, no subscription, no hidden cost. Save the page so you can return and recalculate whenever your dog's needs change."],
         ],
-        [
-            "q" => "How often should I use this tool?",
-            "a" => "We recommend using this tool at least once every 3-6 months, or whenever you notice changes in your {$a}'s health, weight, or behavior. For puppies and senior pets, monthly checks are beneficial."
+        'cat_calculator' => [
+            ["How do I use the {$t} correctly?", "Enter your cat's current weight, age (in years and months for kittens), and activity level. For indoor cats, select 'low activity.' For cats with outdoor access, select 'moderate.' Review your result and cross-check with your vet at your next appointment."],
+            ["Does the {$t} work for senior cats?", "Yes. Senior cats (7+ years) have different metabolic rates and nutritional needs. The tool accounts for age — be sure to enter your cat's actual age so the tool applies age-appropriate formulas."],
+            ["My cat's result seems higher than what the food bag recommends — which is right?", "Food bag guidelines are set by manufacturers and tend to be generous. Calculator results based on your cat's actual weight and activity level are often more precise. When in doubt, ask your vet — they know your cat's history."],
+            ["Can I use this for a kitten?", "Yes, but kitten calculations differ significantly from adult cat calculations. Kittens need more calories per pound of body weight. Make sure to enter the correct age so the tool applies kitten-appropriate formulas."],
+            ["How often should I recalculate?", "Monthly for kittens under 12 months. Every 3-6 months for healthy adults. After any weight change of more than 0.5 kg, illness, pregnancy, or after spaying or neutering."],
         ],
-        [
-            "q" => "Can I use this tool for any breed?",
-            "a" => "Yes, the tool is designed to work across all breeds by incorporating size, age, and activity level adjustments. However, some breeds have unique health requirements — always consult a breed-specific vet or specialist for the most accurate guidance."
+        'fish_guide' => [
+            ["What is the most important thing to know about {$kw}?", "Water quality is the foundation of all fish health. Before worrying about diet, decor, or diseases, get your water parameters stable — ammonia 0, nitrite 0, nitrate below 20 ppm, and pH appropriate for your species."],
+            ["How often should I do water changes for my fish tank?", "Most freshwater tanks need a 20-30% water change weekly. Heavily stocked tanks may need twice weekly. Marine tanks vary — follow species-specific guidelines. Always treat tap water with a dechlorinator before adding it to the tank."],
+            ["Can different fish species share the same tank?", "Only if they have compatible water parameters, temperament, and size ratios. Research each species before combining them. Aggressive fish will stress and injure peaceful species even when water parameters match perfectly."],
+            ["How do I know if my fish is sick?", "Early signs: clamped fins, color change, reduced appetite, abnormal swimming, hiding more than usual. Immediate concern: white spots (Ich), cotton-like patches (fungus), gasping at the surface, or floating sideways."],
+            ["Is {$kw} difficult for beginners?", "It depends on the species. Some fish (betta, guppies, goldfish) tolerate beginner mistakes better than others (discus, saltwater reef fish). Start with hardy species and a stable setup before advancing to more sensitive species."],
         ],
-        [
-            "q" => "Is this tool suitable for senior pets?",
-            "a" => "Absolutely. Senior pets often have different needs than younger animals. Select the appropriate age category in the tool and pay attention to any senior-specific recommendations highlighted in the results."
+        'reptile_guide' => [
+            ["What temperature should I keep for {$kw}?", "Reptiles are ectothermic and require a temperature gradient — a warm basking spot and a cooler retreat. The exact range depends on species. Always research the specific requirements for your reptile — incorrect temperatures are the leading cause of illness in captive reptiles."],
+            ["How often should I feed my reptile?", "Frequency depends on species and age. Juvenile reptiles generally eat more frequently than adults. Many reptiles eat every 2-7 days. Overfeeding causes obesity; underfeeding stunts growth. Research your specific species' recommended feeding schedule."],
+            ["Why is my reptile not eating?", "Common causes: incorrect temperatures (most common), stress from a new environment, shedding cycle, seasonal slowdown (brumation), illness, or prey that is too large. Rule out temperature issues first — they cause the majority of feeding refusals."],
+            ["Do reptiles need UVB lighting?", "Most reptiles — especially lizards and many turtles — require UVB light to synthesize Vitamin D3. Without it, they develop Metabolic Bone Disease over time. Replace UVB bulbs every 6-12 months even if they still produce visible light."],
+            ["How do I know if my reptile is healthy?", "Signs of a healthy reptile: clear eyes (except during shed), clean nostrils, firm and consistent body weight, regular feeding, normal shedding, regular waste production, and alert behavior when awake."],
         ],
-        [
-            "q" => "Do I need to create an account to use this tool?",
-            "a" => "No account or registration is required. All PetZenAI tools are 100% free and available instantly without sign-up. We believe quality pet care information should be accessible to everyone."
+        'bird_guide' => [
+            ["What should I feed my {$al}?", "The foundation of a healthy {$al} diet is high-quality pellets (not seeds alone), fresh vegetables, and limited fruit. Seeds are high in fat and nutritionally incomplete as a sole diet. A pellet and veggie foundation provides the vitamins, minerals, and protein birds need."],
+            ["How do I know if my bird is sick?", "Birds hide illness instinctively — by the time symptoms are obvious, they may have been sick for days. Early warning signs: fluffed feathers, eyes closed during the day, tail bobbing when breathing, nasal discharge, or changes in droppings. Any of these warrants a vet call."],
+            ["How much attention does a {$al} need daily?", "Parrots and other social species need 2-4 hours of out-of-cage interaction daily. Finches and canaries are more independent but still need daily visual interaction and environmental enrichment. Isolation leads to feather-destructive behavior and chronic stress."],
+            ["Are non-stick pans dangerous to birds?", "Yes — this is a life-threatening hazard. Non-stick coatings (PTFE/Teflon) release invisible fumes when overheated that cause acute respiratory failure in birds within minutes. Use stainless steel, cast iron, or ceramic cookware in any home with birds."],
+            ["How long do {$al}s live?", "Lifespan varies greatly by species. Budgies: 5-10 years. Cockatiels: 15-20 years. African Grey Parrots: 40-60 years. Macaws: 50-80 years. Research your specific species — many parrots outlive their owners and require long-term life planning."],
         ],
-        [
-            "q" => "Can I download or print the results?",
-            "a" => "Yes! Use the '📥 Download PDF' button to save or print a personalized PDF of this guide. You can share it with family members, pet sitters, or your veterinarian."
+        'rabbit_guide' => [
+            ["What should rabbits eat every day?", "Unlimited timothy hay (80-90% of diet), fresh leafy greens (1-2 cups per 5 lbs body weight), a small amount of high-quality pellets (1/4 cup per 5 lbs), and unlimited fresh water. Fruit and treats should be limited to a teaspoon per day."],
+            ["How do I know if my rabbit is sick?", "The most critical warning sign is GI stasis — if your rabbit stops eating and stops producing droppings, this is a medical emergency. Go to a vet immediately, even at night. Other warning signs: tooth grinding, hunched posture, hiding, and labored breathing."],
+            ["Do rabbits need to go to the vet?", "Yes. Rabbits need an annual wellness exam with a rabbit-savvy vet. They also need spaying or neutering, which dramatically reduces cancer risk — especially in females. Find a vet who specializes in exotic animals, as not all small animal vets have rabbit expertise."],
+            ["Can rabbits live alone?", "Rabbits are highly social and generally do better with a companion rabbit. A lone rabbit needs significantly more human interaction to remain mentally healthy. If you can only have one rabbit, plan for multiple hours of daily interaction and enrichment."],
+            ["Are rabbits good pets for children?", "Rabbits are often misrepresented as easy starter pets. They are not — they live 8-12 years, require daily interaction, a specialized diet, and a rabbit-savvy vet. Most rabbits dislike being held. They suit calm, patient households where an adult manages their primary care."],
         ],
     ];
 
+    // Build lookup key from animal + type
+    $a_key      = $a === 'all' ? 'pet' : $a;
+    $lookup_key = $a_key . '_' . $type;
+
+    // Default FAQs for animal/type combinations not specifically covered above
+    $default_faqs = [
+        ["What is the {$t} and how does it work?", "The {$t} is a free, vet-informed {$type} designed to help {$al} owners make better care decisions. It provides structured guidance based on species-appropriate veterinary knowledge — use it as a starting point, then discuss results with your vet."],
+        ["Is the {$t} free to use?", "Yes — completely free. No account, no signup, no subscription required. All PetZenAI tools are free for {$al} owners worldwide."],
+        ["How accurate is the information in this {$type}?", "Content is based on established veterinary guidelines and current best practices in {$al} care. It is reviewed for accuracy but is not a substitute for professional veterinary advice. Your vet knows your specific {$al} and should always be the final authority on their care."],
+        ["How often should I use the {$t}?", "Use it whenever your {$al}'s situation changes — new symptoms, age milestones, diet changes, or any time you have a new question. Bookmark it for easy access so it's there when you need it."],
+        ["Can I share this {$type} with my vet?", "Absolutely. Many owners share PetZenAI tool results during vet appointments as a conversation starter. Your vet can validate, adjust, or build on the guidance provided here."],
+        ["What should I do if my {$al}'s situation doesn't match what this {$type} describes?", "Every {$al} is an individual. If your {$al}'s situation feels different from what's described here, trust your instincts and consult your vet. This tool covers typical cases — your vet handles the specific."],
+    ];
+
+    $faqs = isset($faqs_by_animal_type[$lookup_key]) ? $faqs_by_animal_type[$lookup_key] : $default_faqs;
+
+    // Build FAQ JSON-LD schema for GEO/AI search and Google rich results
+    $schema_faqs = [];
+    foreach ($faqs as $faq) {
+        $schema_faqs[] = [
+            '@type' => 'Question',
+            'name'  => $faq[0],
+            'acceptedAnswer' => ['@type' => 'Answer', 'text' => $faq[1]],
+        ];
+    }
+    $schema = json_encode([
+        '@context'   => 'https://schema.org',
+        '@type'      => 'FAQPage',
+        'mainEntity' => $schema_faqs,
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+
     ob_start();
-    foreach($faqs as $i=>$faq): ?>
+    echo '<script type="application/ld+json">' . $schema . '</script>';
+    foreach ($faqs as $faq): ?>
     <div class="pz-faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
       <button class="pz-faq-q" onclick="pzToggleFaq(this)" aria-expanded="false" itemprop="name">
-        <?php echo esc_html($faq['q']); ?>
+        <?php echo esc_html($faq[0]); ?>
         <span class="pz-faq-arrow" aria-hidden="true">▾</span>
       </button>
       <div class="pz-faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" hidden>
-        <p itemprop="text"><?php echo esc_html($faq['a']); ?></p>
+        <p itemprop="text"><?php echo esc_html($faq[1]); ?></p>
       </div>
     </div>
     <?php endforeach;
     return ob_get_clean();
+}
+
+/* ─────────────────────────────────────────────
+   META DESCRIPTION GENERATOR
+   Called from functions.php for tool pages
+───────────────────────────────────────────── */
+function pz_get_meta_description($tool) {
+    $t    = $tool['title'];
+    $kw   = $tool['kw'] ?? strtolower($t);
+    $a    = $tool['animal'] === 'all' ? 'pet' : $tool['animal'];
+    $type = $tool['type'] ?? 'guide';
+
+    $templates = [
+        'calculator' => "Use our free {$kw} to get instant, vet-informed results for your {$a}. No signup required — accurate, science-based {$a} care calculators trusted by owners worldwide.",
+        'checker'    => "Check your {$a}'s symptoms with our free {$kw}. Get vet-backed guidance on when to worry, when to monitor, and when to call the vet immediately.",
+        'guide'      => "Complete {$kw} for {$a} owners. Vet-reviewed tips, warning signs, common mistakes, and step-by-step guidance — all free on PetZenAI.",
+        'tracker'    => "Track your {$a}'s health with our free {$kw}. Log changes, spot trends early, and bring accurate records to your next vet visit.",
+    ];
+
+    return $templates[$type] ?? "Free {$kw} for {$a} owners. Vet-reviewed guidance, practical tips, and science-based care advice — all free on PetZenAI.";
 }
 
 function pz_sidebar_quick_facts($tool) {
