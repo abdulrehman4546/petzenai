@@ -158,6 +158,13 @@ function petzenai_setup() {
 add_action( 'after_setup_theme', 'petzenai_setup' );
 
 /* ============================================================
+   GOOGLE SEARCH CONSOLE VERIFICATION
+   ============================================================ */
+add_action( 'wp_head', function() {
+    echo '<meta name="google-site-verification" content="eezwBdQGbzOVJOj2JU5KPScMAL9DFx6qZV8Fe9ck-pg" />' . "\n";
+}, 1 );
+
+/* ============================================================
    ISSUE 1 — Limit homepage <title> to max 60 characters
    ============================================================ */
 add_filter( 'pre_get_document_title', function( $title ) {
