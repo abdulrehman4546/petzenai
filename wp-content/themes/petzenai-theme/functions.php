@@ -158,6 +158,16 @@ function petzenai_setup() {
 add_action( 'after_setup_theme', 'petzenai_setup' );
 
 /* ============================================================
+   ISSUE 1 — Limit homepage <title> to max 60 characters
+   ============================================================ */
+add_filter( 'pre_get_document_title', function( $title ) {
+    if ( is_front_page() && ! defined('RANK_MATH_VERSION') ) {
+        return get_theme_mod( 'petzenai_hero_seo_title', 'PetZenAI — Free Pet Care Tools & Calculators' );
+    }
+    return $title;
+} );
+
+/* ============================================================
    ENQUEUE
    ============================================================ */
 function petzenai_enqueue() {
@@ -322,7 +332,7 @@ function petzenai_seo_meta() {
 
     // Per-page overrides
     if ( is_front_page() ) {
-        $title = get_theme_mod('petzenai_hero_seo_title','PetZenAI — Science-Based Pet Care Tools');
+        $title = get_theme_mod('petzenai_hero_seo_title','PetZenAI — Free Pet Care Tools & Calculators');
     } elseif ( is_singular() && $post ) {
         $title    = get_post_meta($post->ID,'rank_math_title',true) ?: get_the_title() . ' — ' . $site_name;
         $rm_desc  = get_post_meta($post->ID,'rank_math_description',true);
@@ -551,11 +561,17 @@ function petzenai_seo_meta() {
             'name'                => $tool_title,
             'url'                 => $tool_url,
             'description'         => $desc,
-            'applicationCategory' => 'HealthApplication',
+            'applicationCategory' => 'LifestyleApplication',
             'operatingSystem'     => 'Web Browser',
-            'offers'              => ['@type'=>'Offer','price'=>'0','priceCurrency'=>'USD'],
+            'browserRequirements' => 'Requires JavaScript',
+            'offers'              => [
+                '@type'        => 'Offer',
+                'price'        => '0',
+                'priceCurrency'=> 'USD',
+                'availability' => 'https://schema.org/InStock',
+            ],
             'aggregateRating'     => ['@type'=>'AggregateRating','ratingValue'=>'4.9','reviewCount'=>'2400','bestRating'=>'5'],
-            'author'              => ['@type'=>'Organization','name'=>$site_name,'url'=>$site_url],
+            'provider'            => ['@type'=>'Organization','name'=>$site_name,'url'=>$site_url],
         ];
         echo '<script type="application/ld+json">' . wp_json_encode($app_schema, JSON_UNESCAPED_SLASHES) . '</script>' . "\n";
     }

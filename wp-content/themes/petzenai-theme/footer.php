@@ -51,7 +51,7 @@
       <div class="footer-bottom-links">
         <a href="<?php echo home_url('/privacy-policy/'); ?>">Privacy Policy</a>
         <a href="<?php echo home_url('/terms-of-service/'); ?>">Terms of Service</a>
-        <a href="<?php echo home_url('/sitemap/'); ?>">Sitemap</a>
+        <a href="<?php echo home_url('/sitemap-clean.xml'); ?>">Sitemap</a>
       </div>
     </div>
   </div>

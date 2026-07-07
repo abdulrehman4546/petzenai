@@ -27,7 +27,7 @@ $posts = new WP_Query(['posts_per_page' => 9, 'post_status' => 'publish', 'paged
           <article class="blog-card" data-aos itemscope itemtype="https://schema.org/BlogPosting">
             <a href="<?php the_permalink(); ?>" class="blog-card-img-wrap" aria-label="<?php the_title_attribute(); ?>">
               <?php if ( has_post_thumbnail() ): ?>
-                <?php the_post_thumbnail('petzenai-thumb', ['loading' => 'lazy', 'itemprop' => 'image']); ?>
+                <?php the_post_thumbnail('petzenai-thumb', ['loading' => 'lazy', 'itemprop' => 'image', 'alt' => esc_attr(get_the_title().' — PetZenAI')]); ?>
               <?php else: ?>
                 <img src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=600&q=80&auto=format&fit=crop"
                      alt="<?php the_title_attribute(); ?>" loading="lazy" width="600" height="280">

@@ -56,6 +56,7 @@ $read_min = max(1, ceil(str_word_count(strip_tags(get_the_content())) / 200));
       'class'   => 'pz-featured-img',
       'loading' => 'eager',
       'itemprop'=> 'image',
+      'alt'     => esc_attr(get_the_title().' — PetZenAI'),
     ]); ?>
   </div>
 </div>
@@ -197,7 +198,7 @@ $read_min = max(1, ceil(str_word_count(strip_tags(get_the_content())) / 200));
         <h3 class="pz-sidebar-title">📚 Related Articles</h3>
         <?php while($related->have_posts()): $related->the_post(); ?>
         <a href="<?php the_permalink(); ?>" class="pz-related-item">
-          <?php if(has_post_thumbnail()): the_post_thumbnail('thumbnail',['class'=>'pz-related-thumb','loading'=>'lazy']); else: ?>
+          <?php if(has_post_thumbnail()): the_post_thumbnail('thumbnail',['class'=>'pz-related-thumb','loading'=>'lazy','alt'=>esc_attr(get_the_title().' — PetZenAI')]); else: ?>
           <div class="pz-related-thumb-placeholder" aria-hidden="true">🐾</div>
           <?php endif; ?>
           <span><?php the_title(); ?></span>
