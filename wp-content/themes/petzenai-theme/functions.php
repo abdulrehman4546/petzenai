@@ -35,6 +35,31 @@ add_filter( 'query_vars', function( $vars ) {
     return $vars;
 } );
 
+// Intercept sitemap_index.xml and all sitemap URLs — no rewrite flush needed
+add_action( 'template_redirect', function() {
+    $uri = isset($_SERVER['REQUEST_URI']) ? strtolower($_SERVER['REQUEST_URI']) : '';
+
+    if ( strpos($uri, 'sitemap_index.xml') !== false || $uri === '/sitemap_index.xml' ) {
+        header('Content-Type: application/xml; charset=UTF-8');
+        $now = date('c');
+        echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+        echo '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+        foreach ( ['blog','tools','pages'] as $s ) {
+            echo "  <sitemap><loc>" . home_url("/sitemap-{$s}.xml") . "</loc><lastmod>{$now}</lastmod></sitemap>\n";
+        }
+        echo '</sitemapindex>';
+        exit;
+    }
+
+    if ( preg_match('#/sitemap-(blog|tools|pages)\.xml#', $uri, $m) ) {
+        set_query_var('pz_sitemap', $m[1]);
+    }
+
+    if ( strpos($uri, 'sitemap-clean.xml') !== false ) {
+        set_query_var('pz_sitemap', 'index');
+    }
+}, 0 );
+
 add_action( 'template_redirect', function() {
     $type = get_query_var('pz_sitemap');
     if ( ! $type ) return;
