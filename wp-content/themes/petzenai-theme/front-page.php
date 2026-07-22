@@ -79,7 +79,7 @@ $why_img  = pz_url( 'petzenai_why_image'  ) ?: 'https://images.unsplash.com/phot
         <div class="hero-img-blob"></div>
         <img src="<?php echo $hero_img; ?>"
              alt="Happy pet with PetZenAI nutrition tools"
-             width="620" height="480" loading="eager" class="hero-img">
+             width="620" height="480" loading="eager" fetchpriority="high" class="hero-img">
         <div class="hero-paw-trail" aria-hidden="true">
           <span>🐾</span><span>🐾</span><span>🐾</span>
         </div>

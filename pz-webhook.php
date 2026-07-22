@@ -1,7 +1,16 @@
 <?php
-$token = 'pz_deploy_2026_secret';
-$provided = isset($_POST['token']) ? $_POST['token'] : (isset($_GET['token']) ? $_GET['token'] : '');
-if ($provided !== $token) {
+$secret_file = __DIR__ . '/pz-deploy-secret.php';
+if ( ! file_exists( $secret_file ) ) {
+    http_response_code(500); die('Deploy not configured');
+}
+require_once $secret_file;
+
+// POST only — a GET token ends up in server access logs and Referer headers.
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405); die('Method Not Allowed');
+}
+$provided = isset($_POST['token']) ? (string) $_POST['token'] : '';
+if (!hash_equals(PZ_DEPLOY_TOKEN, $provided)) {
     http_response_code(403); die('Unauthorized');
 }
 

@@ -121,7 +121,7 @@ function petzenai_customizer( $wp_customize ) {
     ]);
     $url_ctrl('petzenai_social_facebook',  'Facebook URL',  'petzenai_social', '' );
     $url_ctrl('petzenai_social_instagram', 'Instagram URL', 'petzenai_social', '' );
-    $url_ctrl('petzenai_social_twitter',   'Twitter/X URL', 'petzenai_social', '' );
+    $url_ctrl('petzenai_social_twitter',   'Twitter/X URL', 'petzenai_social', '@petzenai_app' );
     $url_ctrl('petzenai_social_youtube',   'YouTube URL',   'petzenai_social', '' );
     $url_ctrl('petzenai_social_tiktok',    'TikTok URL',    'petzenai_social', '' );
 

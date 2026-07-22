@@ -42,6 +42,17 @@ function pz_render_tool_page( $tool ) {
     $slug   = $tool['slug'];
 
     // ── Breadcrumb ──
+    $bc_schema = [
+        '@context' => 'https://schema.org',
+        '@type'    => 'BreadcrumbList',
+        'itemListElement' => [
+            ['@type'=>'ListItem','position'=>1,'name'=>'Home','item'=>home_url('/')],
+            ['@type'=>'ListItem','position'=>2,'name'=>'Tools','item'=>home_url('/tools/')],
+            ['@type'=>'ListItem','position'=>3,'name'=>esc_html($cat['label']),'item'=>home_url('/tools/'.esc_attr($tool['cat']).'/')],
+            ['@type'=>'ListItem','position'=>4,'name'=>$title,'item'=>get_permalink()],
+        ],
+    ];
+    echo '<script type="application/ld+json">' . wp_json_encode($bc_schema, JSON_UNESCAPED_SLASHES) . '</script>' . "\n";
     ?>
     <div style="height:64px;background:#1A1A2E"></div>
     <nav class="pz-breadcrumb" aria-label="Breadcrumb">
@@ -58,7 +69,7 @@ function pz_render_tool_page( $tool ) {
           </li>
           <span class="pz-bc-sep" aria-hidden="true">›</span>
           <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-            <a href="<?php echo home_url('/tool-category/' . esc_attr($tool['cat']) . '/'); ?>" itemprop="item">
+            <a href="<?php echo home_url('/tools/' . esc_attr($tool['cat']) . '/'); ?>" itemprop="item">
               <span itemprop="name"><?php echo esc_html($cat['label']); ?></span>
             </a>
             <meta itemprop="position" content="3">
@@ -707,11 +718,6 @@ function pz_section_what_is($tool) {
     $html  = '<p>' . $p1 . '</p>';
     $html .= '<p>' . $p2 . '</p>';
     $html .= '<p>' . $p3 . '</p>';
-    $html .= '<div class="pz-info-box">';
-    $html .= '<strong>Focus Keyword:</strong> ' . $kw . ' &nbsp;|&nbsp; ';
-    $html .= '<strong>Best For:</strong> ' . $al . ' owners &nbsp;|&nbsp; ';
-    $html .= '<strong>Tool Type:</strong> ' . ucfirst($type);
-    $html .= '</div>';
 
     return $html;
 }
@@ -757,26 +763,7 @@ function pz_section_steps($tool) {
     $a     = ucfirst($tool['animal'] === 'all' ? 'pet' : $tool['animal']);
     $steps = pz_get_steps_for_tool($tool);
 
-    // Build HowTo JSON-LD schema for Google rich results
-    $schema_steps = [];
-    foreach ($steps as $i => $step) {
-        $schema_steps[] = [
-            '@type'    => 'HowToStep',
-            'position' => $i + 1,
-            'name'     => strip_tags($step['title']),
-            'text'     => strip_tags($step['desc']),
-        ];
-    }
-    $howto_schema = json_encode([
-        '@context'    => 'https://schema.org',
-        '@type'       => 'HowTo',
-        'name'        => 'How to Use the ' . $tool['title'],
-        'description' => 'Step-by-step guide for ' . strtolower($a) . ' owners using the ' . $tool['title'],
-        'step'        => $schema_steps,
-    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
-
     ob_start();
-    echo '<script type="application/ld+json">' . $howto_schema . '</script>';
     ?>
     <p>Follow these vet-recommended steps for the best results with your <?php echo strtolower($a); ?>:</p>
     <ol class="pz-steps-list" itemscope itemtype="https://schema.org/HowTo">

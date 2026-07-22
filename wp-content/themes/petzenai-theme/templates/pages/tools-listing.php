@@ -2,7 +2,7 @@
 /**
  * Template Name: Tools Listing Page
  * Template Post Type: page
- * Description: Shows all 6 pet care tools in a grid.
+ * Description: Dynamically lists all tool pages using the auto-tool template.
  */
 get_header();
 ?>
@@ -13,53 +13,55 @@ get_header();
   <div class="container pz-page-hero-content">
     <span class="section-tag">100% Free</span>
     <h1 class="pz-page-hero-title">All Pet Care Tools</h1>
-    <p class="pz-page-hero-desc">6 free, science-based tools to help you feed, track, and care for your pet — no sign-up needed.</p>
+    <p class="pz-page-hero-desc">Free, science-based tools to help you feed, track, and care for your pet — no sign-up needed.</p>
   </div>
 </section>
 
 <!-- Tools Grid -->
 <section class="section" aria-label="All Tools">
   <div class="container">
+    <?php
+    $tools_query = new WP_Query([
+        'post_type'      => 'page',
+        'posts_per_page' => -1,
+        'meta_key'       => '_wp_page_template',
+        'meta_value'     => 'templates/pages/auto-tool.php',
+        'orderby'        => 'title',
+        'order'          => 'ASC',
+    ]);
+    ?>
     <div class="tools-grid">
-      <?php
-      $tools = [
-        ['🍽️','Pet Food Portion Calculator',
-         'Calculate the perfect daily food portions for dogs, cats, birds, rabbits and more based on weight, age & activity level.',
-         '/tools/pet-food-portion-calculator/', 'Dogs · Cats · Rabbits · Birds'],
-        ['🎂','Pet Age Calculator',
-         'Convert your pet\'s age to human years using science-backed, breed-specific formulas — not the "multiply by 7" myth.',
-         '/tools/pet-age-calculator/', 'Dogs · Cats · Rabbits · Birds · Hamsters'],
-        ['💉','Vaccination Schedule Tracker',
-         'Get a complete vet-recommended vaccination schedule. See overdue, upcoming, and completed vaccines at a glance.',
-         '/tools/pet-vaccination-schedule/', 'Dogs · Cats'],
-        ['✨','AI Pet Name Generator',
-         'Find the perfect name from 10,000+ options — filtered by pet type, gender, personality, and starting letter.',
-         '/tools/ai-pet-name-generator/', 'All Pets'],
-        ['🏃','Pet Exercise Calculator',
-         'Discover how much daily exercise your pet needs based on breed energy level, age, weight, and health condition.',
-         '/tools/pet-exercise-calculator/', 'Dogs · Cats · Rabbits · Birds'],
-        ['❓','What Pet Should I Get?',
-         'Answer 10 lifestyle questions and our AI matches you with your perfect companion pet.',
-         '/tools/what-pet-should-i-get/', 'All Pet Types'],
-      ];
-      foreach ( $tools as $i => $t ): ?>
-      <article class="tool-card" data-aos data-aos-delay="<?php echo $i * 80; ?>"
+      <?php if ( $tools_query->have_posts() ) :
+        $i = 0;
+        while ( $tools_query->have_posts() ) : $tools_query->the_post();
+          $tool_icon = get_post_meta( get_the_ID(), 'pz_tool_icon', true ) ?: '🐾';
+          $works_for = get_post_meta( get_the_ID(), 'pz_works_for', true );
+          $excerpt   = get_the_excerpt();
+      ?>
+      <article class="tool-card" data-aos data-aos-delay="<?php echo ( $i % 6 ) * 80; ?>"
         itemscope itemtype="https://schema.org/SoftwareApplication">
         <div class="tool-card-glow" aria-hidden="true"></div>
         <div class="tool-icon-wrap" aria-hidden="true">
-          <span class="tool-icon"><?php echo $t[0]; ?></span>
+          <span class="tool-icon"><?php echo esc_html( $tool_icon ); ?></span>
         </div>
-        <h2 class="tool-title" itemprop="name"><?php echo esc_html($t[1]); ?></h2>
-        <p class="tool-desc" itemprop="description"><?php echo esc_html($t[2]); ?></p>
+        <h2 class="tool-title" itemprop="name"><?php the_title(); ?></h2>
+        <?php if ( $excerpt ) : ?>
+        <p class="tool-desc" itemprop="description"><?php echo esc_html( $excerpt ); ?></p>
+        <?php endif; ?>
+        <?php if ( $works_for ) : ?>
         <p style="font-size:12px;color:#999;margin-bottom:16px;font-weight:600">
-          Works for: <?php echo esc_html($t[4]); ?>
+          Works for: <?php echo esc_html( $works_for ); ?>
         </p>
-        <a href="<?php echo home_url($t[3]); ?>" class="tool-link" itemprop="url">
+        <?php endif; ?>
+        <a href="<?php the_permalink(); ?>" class="tool-link" itemprop="url">
           Use Tool Free <span class="tool-link-arrow">→</span>
         </a>
         <div class="tool-card-paw" aria-hidden="true">🐾</div>
       </article>
-      <?php endforeach; ?>
+      <?php $i++; endwhile; wp_reset_postdata();
+      else : ?>
+      <p style="text-align:center;color:#888;padding:40px 0">No tools found.</p>
+      <?php endif; ?>
     </div>
   </div>
 </section>

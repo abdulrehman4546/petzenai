@@ -48,12 +48,6 @@ function petzenai_setup() {
 }
 add_action( 'after_setup_theme', 'petzenai_setup' );
 
-/* ============================================================
-   GOOGLE SEARCH CONSOLE VERIFICATION
-   ============================================================ */
-add_action( 'wp_head', function() {
-    echo '<meta name="google-site-verification" content="eezwBdQGbzOVJOj2JU5KPScMAL9DFx6qZV8Fe9ck-pg" />' . "\n";
-}, 1 );
 
 /* ============================================================
    ISSUE 1 — Limit homepage <title> to max 60 characters
@@ -70,10 +64,13 @@ add_filter( 'pre_get_document_title', function( $title ) {
    ============================================================ */
 function petzenai_enqueue() {
     $v = '2.0';
-    wp_enqueue_style( 'google-fonts',
-        'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@700;800;900&display=swap',
-        [], null
-    );
+    // Google Fonts loaded non-blocking (avoid render-blocking penalty)
+    add_action('wp_head', function(){
+        echo '<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>' . "\n";
+        echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
+        echo '<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@700;800;900&display=swap" onload="this.onload=null;this.rel=\'stylesheet\'">' . "\n";
+        echo '<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@700;800;900&display=swap"></noscript>' . "\n";
+    }, 2);
     wp_enqueue_style( 'petzenai-style',  get_stylesheet_uri(), [], $v );
     wp_enqueue_style( 'petzenai-tools',  get_template_directory_uri() . '/assets/css/tools.css', [], $v );
     wp_enqueue_script( 'petzenai-tools', get_template_directory_uri() . '/assets/js/tools.js',  [], $v, true );
@@ -113,7 +110,7 @@ add_action( 'wp_head', function() {
 
 // Google Search Console verification
 add_action( 'wp_head', function() {
-    $gsc = get_theme_mod( 'petzenai_gsc_verify', '' );
+    $gsc = get_theme_mod( 'petzenai_gsc_verify', 'eezwBdQGbzOVJOj2JU5KPScMAL9DFx6qZV8Fe9ck-pg' );
     if ( $gsc ) {
         echo '<meta name="google-site-verification" content="' . esc_attr( sanitize_text_field($gsc) ) . '">' . "\n";
     }
@@ -224,14 +221,28 @@ function petzenai_seo_meta() {
     $og_image    = get_theme_mod('petzenai_og_image', 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1200&h=630&q=80&auto=format&fit=crop');
     $logo_url    = get_theme_mod('petzenai_logo_image', $og_image);
     $title       = $site_name;
-    $permalink   = get_permalink() ?: $site_url;
+    $permalink   = $site_url;
     $is_tool_page = false;
     $tool_data    = null;
 
+    // noindex for search results and 404s
+    if ( is_search() || is_404() ) {
+        echo '<meta name="robots" content="noindex, follow">' . "\n";
+        return;
+    }
+
     // Per-page overrides
     if ( is_front_page() ) {
-        $title = get_theme_mod('petzenai_hero_seo_title','PetZenAI — Free Pet Care Tools & Calculators');
+        $title     = get_theme_mod('petzenai_hero_seo_title','PetZenAI — Free Pet Care Tools & Calculators');
+        $permalink = $site_url;
+    } elseif ( is_archive() || is_category() || is_tag() || is_date() ) {
+        $paged     = get_query_var('paged') ?: 1;
+        $permalink = get_pagenum_link($paged);
+        $title     = wp_strip_all_tags(get_the_archive_title()) . ' — ' . $site_name;
+        $arch_desc = get_the_archive_description();
+        if ( $arch_desc ) $desc = wp_strip_all_tags($arch_desc);
     } elseif ( is_singular() && $post ) {
+        $permalink = get_permalink();
         $title    = get_post_meta($post->ID,'rank_math_title',true) ?: get_the_title() . ' — ' . $site_name;
         $rm_desc  = get_post_meta($post->ID,'rank_math_description',true);
         $desc     = $rm_desc ?: (has_excerpt() ? strip_tags(get_the_excerpt()) : $desc);
@@ -243,16 +254,11 @@ function petzenai_seo_meta() {
             $is_tool_page = true;
             if ( function_exists('pz_get_tool_data') ) {
                 $tool_data = pz_get_tool_data($post->post_name);
-                // Use keyword-optimised meta description for tool pages
                 if ( $tool_data && ! $rm_desc && function_exists('pz_get_meta_description') ) {
                     $desc = pz_get_meta_description($tool_data);
                 }
             }
         }
-    } elseif ( is_singular('post') && $post ) {
-        $title    = get_the_title() . ' — ' . $site_name;
-        $desc     = has_excerpt() ? strip_tags(get_the_excerpt()) : $desc;
-        $og_image = has_post_thumbnail() ? get_the_post_thumbnail_url($post->ID,'large') : $og_image;
     }
 
     // ── Basic Meta ──
@@ -261,10 +267,17 @@ function petzenai_seo_meta() {
     echo '<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">' . "\n";
     echo '<meta name="author" content="'       . esc_attr($site_name) . '">' . "\n";
     echo '<link rel="canonical" href="'        . esc_url($permalink)  . '">' . "\n";
+    // Pagination links for archives
+    if ( is_paged() ) {
+        global $wp_query;
+        $paged = get_query_var('paged');
+        if ( $paged > 1 ) echo '<link rel="prev" href="' . esc_url(get_pagenum_link($paged - 1)) . '">' . "\n";
+        if ( $paged < $wp_query->max_num_pages ) echo '<link rel="next" href="' . esc_url(get_pagenum_link($paged + 1)) . '">' . "\n";
+    }
 
     // ── Open Graph ──
     echo '<meta property="og:locale" content="en_US">' . "\n";
-    echo '<meta property="og:type" content="' . (is_singular('post') ? 'article' : 'website') . '">' . "\n";
+    echo '<meta property="og:type" content="' . (is_singular() ? 'article' : 'website') . '">' . "\n";
     echo '<meta property="og:title" content="'       . esc_attr($title)     . '">' . "\n";
     echo '<meta property="og:description" content="' . esc_attr($desc)      . '">' . "\n";
     echo '<meta property="og:url" content="'         . esc_url($permalink)  . '">' . "\n";
@@ -468,7 +481,6 @@ function petzenai_seo_meta() {
                 'priceCurrency'=> 'USD',
                 'availability' => 'https://schema.org/InStock',
             ],
-            'aggregateRating'     => ['@type'=>'AggregateRating','ratingValue'=>'4.9','reviewCount'=>'2400','bestRating'=>'5'],
             'provider'            => ['@type'=>'Organization','name'=>$site_name,'url'=>$site_url],
         ];
         echo '<script type="application/ld+json">' . wp_json_encode($app_schema, JSON_UNESCAPED_SLASHES) . '</script>' . "\n";
@@ -508,7 +520,7 @@ function petzenai_seo_meta() {
             'datePublished'    => get_the_date('c'),
             'dateModified'     => get_the_modified_date('c'),
             'image'            => ['@type'=>'ImageObject','url'=>$og_image,'width'=>1200,'height'=>630,'alt'=>get_the_title()],
-            'author'           => ['@type'=>'Person','name'=>get_the_author(),'url'=>$site_url],
+            'author'           => ['@type'=>'Organization','name'=>'PetZenAI Editorial Team','url'=>$site_url.'about/'],
             'publisher'        => ['@type'=>'Organization','name'=>$site_name,'url'=>$site_url,'logo'=>['@type'=>'ImageObject','url'=>$logo_url,'width'=>200,'height'=>60]],
             'mainEntityOfPage' => ['@type'=>'WebPage','@id'=>get_permalink()],
             'articleSection'   => $cat_name,
@@ -549,7 +561,7 @@ add_action( 'wp_head', 'petzenai_dynamic_css' );
 /* ============================================================
    EXCERPT
    ============================================================ */
-add_filter( 'excerpt_length', fn() => 22 );
+add_filter( 'excerpt_length', fn() => 30 );
 add_filter( 'excerpt_more',   fn() => '...' );
 
 /* ============================================================

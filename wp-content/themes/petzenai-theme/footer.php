@@ -22,6 +22,7 @@
         <h4 class="footer-col-title">Quick Links</h4>
         <ul class="footer-links">
           <li><a href="<?php echo home_url('/'); ?>">Home</a></li>
+          <li><a href="<?php echo home_url('/tools/'); ?>">All Tools</a></li>
           <li><a href="<?php echo home_url('/about/'); ?>">About Us</a></li>
           <li><a href="<?php echo home_url('/blog/'); ?>">Blog</a></li>
           <li><a href="<?php echo home_url('/contact/'); ?>">Contact</a></li>
@@ -51,7 +52,7 @@
       <div class="footer-bottom-links">
         <a href="<?php echo home_url('/privacy-policy/'); ?>">Privacy Policy</a>
         <a href="<?php echo home_url('/terms-of-service/'); ?>">Terms of Service</a>
-        <a href="<?php echo home_url('/sitemap-clean.xml'); ?>">Sitemap</a>
+        <a href="<?php echo home_url('/sitemap_index.xml'); ?>">Sitemap</a>
       </div>
     </div>
   </div>

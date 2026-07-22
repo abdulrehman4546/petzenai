@@ -28,6 +28,12 @@ vendor/
 pz-install.php
 pz-debug.php
 
+# Deploy webhook secret — NEVER push
+pz-deploy-secret.php
+
 # OS files
 desktop.ini
 ehthumbs.db
+
+# Claude Code local tool state (agent worktrees, session data)
+/.claude/
