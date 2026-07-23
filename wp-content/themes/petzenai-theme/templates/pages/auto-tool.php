@@ -258,6 +258,14 @@ get_footer();
   .pz-auto-tool-layout{grid-template-columns:1fr!important}
   .pz-tool-hero{background:#0D0D0D!important;-webkit-print-color-adjust:exact}
   body{font-size:12px}
+  /* Result-only PDF: triggered by the "Download This Result as PDF" button inside a result card */
+  body.pz-printing-result-only .pz-tool-hero,
+  body.pz-printing-result-only #pz-auto-toc,
+  body.pz-printing-result-only .pz-tool-section:not(:has(#pz-calc-result)),
+  body.pz-printing-result-only .pz-int-header,
+  body.pz-printing-result-only .pz-int-grid,
+  body.pz-printing-result-only .pz-int-btn:not([onclick*="pzPrintResult"]){display:none!important}
+  body.pz-printing-result-only .pz-int-wrap{border:none;box-shadow:none}
 }
 </style>
 
@@ -435,6 +443,99 @@ function pzGenGuide() {
     +'<li>Download this guide as PDF to keep it handy at home</li>'
     +'<li>Review progress monthly and adjust your routine as needed</li>'
     +'</ul></div></div>';
+}
+
+// ── Dog Bathing Frequency Calculator
+function pzCalcBathingFrequency() {
+  var coat = document.getElementById('pz_coat_type')?.value || 'short';
+  var life = document.getElementById('pz_lifestyle')?.value || 'outdoor';
+  var skin = document.getElementById('pz_skin_condition')?.value || 'normal';
+  var allergy = document.getElementById('pz_allergies')?.value || 'no';
+  var result = document.getElementById('pz-calc-result');
+  if (!result) return;
+
+  var baseWeeks = {short:6, double:8, long:4, curly:4}[coat];
+  var lifeAdj = {indoor:1, outdoor:0, muddy:-3}[life];
+  var skinAdj = {normal:0, dry:2, oily:-2}[skin];
+  var allergyAdj = allergy === 'yes' ? -1 : 0;
+  var weeks = Math.max(1, Math.min(10, baseWeeks + lifeAdj + skinAdj + allergyAdj));
+  var lowWeeks = Math.max(1, weeks - 1);
+  var highWeeks = weeks + 1;
+
+  var coatLabels = {short:'short/smooth', double:'double-coated', long:'long-haired', curly:'curly/wavy'};
+  var notes = [];
+  if (skin === 'dry') notes.push('Use a moisturizing, oatmeal-based shampoo — frequent bathing on dry skin can worsen irritation if the product is too harsh.');
+  if (skin === 'oily') notes.push('A clarifying or deodorizing shampoo helps manage odor between baths without over-drying the coat.');
+  if (life === 'muddy') notes.push('Quick rinses after muddy walks don\'t count as full baths — plain water rinses are fine more often than the shampoo schedule above.');
+  if (coat === 'double') notes.push('Never shave a double coat to "reduce bathing" — it disrupts natural insulation and can permanently damage the coat texture.');
+  if (allergy === 'yes') notes.push('Bathing reduces loose dander short-term, but for real allergy relief, pair this with frequent brushing and a HEPA air purifier.');
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="pz-result-success" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:linear-gradient(135deg,#1B5E20,#2E7D32);color:#fff;padding:28px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.7;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">✅ Your Bathing Schedule</div>'
+    + '<div class="pz-result-number">' + lowWeeks + '–' + highWeeks + '</div>'
+    + '<div class="pz-result-unit">weeks between baths</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Coat Type</div><div class="pz-result-cell-val" style="font-size:13px;text-transform:capitalize">' + coatLabels[coat] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Base Frequency</div><div class="pz-result-cell-val">Every ' + baseWeeks + ' wks</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Adjusted For You</div><div class="pz-result-cell-val">Every ' + weeks + ' wks</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>📋 Notes For Your Dog</h4><ul>'
+    + (notes.length ? notes.map(function(n){ return '<li>' + n + '</li>'; }).join('') : '<li>This range fits your dog\'s profile well — no special adjustments needed.</li>')
+    + '<li>Between baths, brush regularly to keep the coat clean and distribute natural oils.</li>'
+    + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0" onclick="pzPrintResult()">📥 Download This Result as PDF</button></div>'
+    + '</div>';
+}
+
+// ── Dog Grooming Schedule Calculator
+function pzCalcGroomingSchedule() {
+  var coat = document.getElementById('pz_coat_type2')?.value || 'short';
+  var size = document.getElementById('pz_breed_size2')?.value || 'medium';
+  var ear  = document.getElementById('pz_ear_type')?.value || 'upright';
+  var life = document.getElementById('pz_lifestyle2')?.value || 'outdoor';
+  var result = document.getElementById('pz-calc-result');
+  if (!result) return;
+
+  var brushing = {short:'Weekly', double:'3–4x/week (daily during seasonal shedding)', long:'Daily', curly:'Every other day'}[coat];
+  var bathBase = {short:6, double:8, long:4, curly:4}[coat];
+  var bathAdj = {indoor:1, outdoor:-2, muddy:-4}[life];
+  var bathWeeks = Math.max(1, Math.min(10, bathBase + bathAdj));
+  var nailWeeks = (life === 'outdoor' || life === 'muddy') ? '4–6 weeks (regular walking on pavement naturally files nails)' : '3–4 weeks';
+  var earFreq = ear === 'floppy' ? 'Weekly check, clean as needed' : 'Monthly check';
+  var teeth = 'Daily brushing ideal — minimum 2–3x/week';
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="pz-result-success" style="border-radius:16px;overflow:hidden">'
+    + '<div style="background:linear-gradient(135deg,#1B5E20,#2E7D32);color:#fff;padding:24px">'
+    + '<div style="font-size:13px;opacity:.7;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">🎯 Your Full Grooming Schedule</div>'
+    + '<div style="font-size:20px;font-weight:900">Based on ' + coat + ' coat, ' + size + ' size</div>'
+    + '</div>'
+    + '<table style="width:100%;border-collapse:collapse;font-size:14px">'
+    + '<tr><td style="padding:14px 20px;border-bottom:1px solid #eee;font-weight:700">🖌️ Brushing</td><td style="padding:14px 20px;border-bottom:1px solid #eee;text-align:right">' + brushing + '</td></tr>'
+    + '<tr><td style="padding:14px 20px;border-bottom:1px solid #eee;font-weight:700">🛁 Bathing</td><td style="padding:14px 20px;border-bottom:1px solid #eee;text-align:right">Every ' + bathWeeks + ' weeks</td></tr>'
+    + '<tr><td style="padding:14px 20px;border-bottom:1px solid #eee;font-weight:700">💅 Nail Trim</td><td style="padding:14px 20px;border-bottom:1px solid #eee;text-align:right">' + nailWeeks + '</td></tr>'
+    + '<tr><td style="padding:14px 20px;border-bottom:1px solid #eee;font-weight:700">👂 Ear Cleaning</td><td style="padding:14px 20px;border-bottom:1px solid #eee;text-align:right">' + earFreq + '</td></tr>'
+    + '<tr><td style="padding:14px 20px;font-weight:700">🦷 Teeth Brushing</td><td style="padding:14px 20px;text-align:right">' + teeth + '</td></tr>'
+    + '</table>'
+    + '<div class="pz-result-tips"><h4>📋 Tips</h4><ul>'
+    + '<li>Set calendar reminders for bathing and nail trims — brushing and teeth are easiest to keep on a daily habit.</li>'
+    + (ear === 'floppy' ? '<li>Floppy ears trap moisture and reduce airflow — check weekly for odor or redness, both early signs of infection.</li>' : '')
+    + (coat === 'double' ? '<li>Never shave a double coat — it disrupts insulation and can cause permanent coat damage.</li>' : '')
+    + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0" onclick="pzPrintResult()">📥 Download This Result as PDF</button></div>'
+    + '</div>';
+}
+
+// ── Print just the result card (used by calculator "Download This Result as PDF" buttons)
+function pzPrintResult() {
+  document.body.classList.add('pz-printing-result-only');
+  window.print();
+  setTimeout(function(){ document.body.classList.remove('pz-printing-result-only'); }, 500);
 }
 
 // ── FAQ Toggle

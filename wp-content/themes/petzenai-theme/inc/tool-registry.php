@@ -27,11 +27,11 @@ function pz_get_all_tools() {
         // DOG GROOMING (20)
         // ═══════════════════════════════════════════
         ['slug'=>'dog-nail-trimming-guide','title'=>'Dog Nail Trimming Guide & Schedule','cat'=>'dog-grooming','animal'=>'dog','type'=>'guide','kw'=>'dog nail trimming guide','icon'=>'✂️'],
-        ['slug'=>'dog-bathing-frequency-calculator','title'=>'How Often Should I Bathe My Dog? Calculator','cat'=>'dog-grooming','animal'=>'dog','type'=>'calculator','kw'=>'how often bathe dog','icon'=>'🛁'],
+        ['slug'=>'dog-bathing-frequency-calculator','title'=>'How Often Should I Bathe My Dog? Calculator','cat'=>'dog-grooming','animal'=>'dog','type'=>'calculator','kw'=>'how often bathe dog','icon'=>'🛁','calc'=>'dog_bathing_frequency'],
         ['slug'=>'dog-shedding-guide','title'=>'Dog Shedding Guide: Control & Solutions','cat'=>'dog-grooming','animal'=>'dog','type'=>'guide','kw'=>'dog shedding guide','icon'=>'🪮'],
         ['slug'=>'dog-ear-cleaning-guide','title'=>'Dog Ear Cleaning Guide & Schedule','cat'=>'dog-grooming','animal'=>'dog','type'=>'guide','kw'=>'dog ear cleaning guide','icon'=>'👂'],
         ['slug'=>'dog-teeth-brushing-guide','title'=>'Dog Teeth Brushing Guide for Beginners','cat'=>'dog-grooming','animal'=>'dog','type'=>'guide','kw'=>'how to brush dog teeth','icon'=>'🦷'],
-        ['slug'=>'dog-grooming-schedule-calculator','title'=>'Dog Grooming Schedule Calculator by Breed','cat'=>'dog-grooming','animal'=>'dog','type'=>'calculator','kw'=>'dog grooming schedule','icon'=>'📅'],
+        ['slug'=>'dog-grooming-schedule-calculator','title'=>'Dog Grooming Schedule Calculator by Breed','cat'=>'dog-grooming','animal'=>'dog','type'=>'calculator','kw'=>'dog grooming schedule','icon'=>'📅','calc'=>'dog_grooming_schedule'],
         ['slug'=>'puppy-first-grooming-guide','title'=>'Puppy First Grooming: Complete Guide','cat'=>'dog-grooming','animal'=>'dog','type'=>'guide','kw'=>'puppy first grooming guide','icon'=>'🐶'],
         ['slug'=>'dog-coat-type-guide','title'=>'Dog Coat Types: Care Guide for Every Breed','cat'=>'dog-grooming','animal'=>'dog','type'=>'guide','kw'=>'dog coat types care guide','icon'=>'🐩'],
         ['slug'=>'dog-eye-cleaning-guide','title'=>'Dog Eye Discharge Cleaning Guide','cat'=>'dog-grooming','animal'=>'dog','type'=>'guide','kw'=>'clean dog eye discharge','icon'=>'👁️'],

@@ -325,8 +325,10 @@ function pz_render_interactive( $tool ) {
     ?>
     <div class="pz-int-wrap" id="pz-int-tool">
 
-    <?php if ($type === 'calculator'): ?>
-    <!-- ══ CALCULATOR ══ -->
+    <?php if ($type === 'calculator' && !empty($tool['calc']) && function_exists('pz_render_calc_' . $tool['calc'])):
+        call_user_func('pz_render_calc_' . $tool['calc'], $tool);
+    elseif ($type === 'calculator'): ?>
+    <!-- ══ CALCULATOR (generic food/calorie) ══ -->
     <div class="pz-int-header">
       <div class="pz-int-header-left">
         <span class="pz-int-big-icon"><?php echo $icon; ?></span>
@@ -536,6 +538,133 @@ function pz_render_interactive( $tool ) {
       <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
     </div>
     <?php endif; ?>
+    </div>
+    <?php
+}
+
+/* ─────────────────────────────────────────────
+   TOOL-SPECIFIC CALCULATORS
+   Each renders its own form + calls its own JS calc function
+   (defined in templates/pages/auto-tool.php). Falls back to the
+   generic food/calorie calculator when no match is registered.
+───────────────────────────────────────────── */
+
+function pz_render_calc_dog_bathing_frequency( $tool ) {
+    $icon = $tool['icon'] ?? '🛁';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Bathing Frequency Calculator</div>
+          <div class="pz-int-sublabel">Vet-reviewed · Based on coat type, lifestyle &amp; skin condition</div>
+        </div>
+      </div>
+      <div class="pz-int-badges">
+        <span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span>
+        <span class="pz-int-badge pz-int-badge--blue">🔬 Science-Based</span>
+      </div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Coat Type</label>
+          <select id="pz_coat_type" class="pz-int-select">
+            <option value="short">Short / Smooth (Beagle, Boxer, Dachshund)</option>
+            <option value="double">Double-Coated (Husky, Lab, Shepherd, Golden)</option>
+            <option value="long">Long-Haired (Shih Tzu, Maltese, Collie)</option>
+            <option value="curly">Curly / Wavy (Poodle, Doodle, Bichon)</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Lifestyle</label>
+          <select id="pz_lifestyle" class="pz-int-select">
+            <option value="indoor">Mostly Indoor / Low Mess</option>
+            <option value="outdoor" selected>Regular Outdoor Play</option>
+            <option value="muddy">Swims Often / Very Muddy</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Skin Condition</label>
+          <select id="pz_skin_condition" class="pz-int-select">
+            <option value="normal">Normal</option>
+            <option value="dry">Sensitive / Dry Skin</option>
+            <option value="oily">Oily / Odor-Prone</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Allergies in Household? <span class="pz-int-optional">(optional)</span></label>
+          <select id="pz_allergies" class="pz-int-select">
+            <option value="no">No</option>
+            <option value="yes">Yes — reduce dander</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzCalcBathingFrequency()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Calculate Bathing Frequency
+      </button>
+      <div id="pz-calc-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+function pz_render_calc_dog_grooming_schedule( $tool ) {
+    $icon = $tool['icon'] ?? '📅';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Grooming Schedule Calculator</div>
+          <div class="pz-int-sublabel">A full maintenance calendar — bathing, brushing, nails, ears &amp; teeth</div>
+        </div>
+      </div>
+      <div class="pz-int-badges">
+        <span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span>
+        <span class="pz-int-badge pz-int-badge--purple">🎯 Personalized</span>
+      </div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Coat Type</label>
+          <select id="pz_coat_type2" class="pz-int-select">
+            <option value="short">Short / Smooth (Beagle, Boxer, Dachshund)</option>
+            <option value="double">Double-Coated (Husky, Lab, Shepherd, Golden)</option>
+            <option value="long">Long-Haired (Shih Tzu, Maltese, Collie)</option>
+            <option value="curly">Curly / Wavy (Poodle, Doodle, Bichon)</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Breed Size</label>
+          <select id="pz_breed_size2" class="pz-int-select">
+            <option value="small">Toy / Small (under 25 lbs)</option>
+            <option value="medium" selected>Medium (25–60 lbs)</option>
+            <option value="large">Large / Giant (60+ lbs)</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Ear Type</label>
+          <select id="pz_ear_type" class="pz-int-select">
+            <option value="floppy">Floppy / Drop Ears (Cocker, Basset, Retriever)</option>
+            <option value="upright">Upright Ears (Shepherd, Husky, Corgi)</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Lifestyle</label>
+          <select id="pz_lifestyle2" class="pz-int-select">
+            <option value="indoor">Mostly Indoor / Low Mess</option>
+            <option value="outdoor" selected>Regular Outdoor Play</option>
+            <option value="muddy">Swims Often / Very Muddy</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzCalcGroomingSchedule()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Generate My Grooming Schedule
+      </button>
+      <div id="pz-calc-result" style="display:none" aria-live="polite"></div>
     </div>
     <?php
 }
