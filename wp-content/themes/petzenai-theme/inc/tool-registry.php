@@ -50,31 +50,31 @@ function pz_get_all_tools() {
         // ═══════════════════════════════════════════
         // DOG HEALTH (25)
         // ═══════════════════════════════════════════
-        ['slug'=>'dog-fever-checker','title'=>'Dog Fever Checker: Symptoms & What To Do','cat'=>'dog-health','animal'=>'dog','type'=>'checker','kw'=>'dog fever symptoms checker','icon'=>'🌡️'],
-        ['slug'=>'dog-weight-calculator','title'=>'Dog Ideal Weight Calculator by Breed','cat'=>'dog-health','animal'=>'dog','type'=>'calculator','kw'=>'dog ideal weight calculator','icon'=>'⚖️'],
-        ['slug'=>'dog-bmi-calculator','title'=>'Dog Body Condition Score (BCS) Calculator','cat'=>'dog-health','animal'=>'dog','type'=>'calculator','kw'=>'dog body condition score calculator','icon'=>'📊'],
-        ['slug'=>'dog-lifespan-calculator','title'=>'Dog Lifespan Calculator by Breed & Size','cat'=>'dog-health','animal'=>'dog','type'=>'calculator','kw'=>'dog lifespan calculator','icon'=>'📅'],
-        ['slug'=>'dog-parasite-prevention-guide','title'=>'Dog Parasite Prevention: Flea, Tick & Worm Guide','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'dog parasite prevention guide','icon'=>'🦟'],
-        ['slug'=>'dog-deworming-schedule','title'=>'Dog Deworming Schedule Calculator','cat'=>'dog-health','animal'=>'dog','type'=>'calculator','kw'=>'dog deworming schedule','icon'=>'💊'],
-        ['slug'=>'puppy-health-checklist','title'=>'Puppy Health Checklist: First Year Guide','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'puppy health checklist','icon'=>'✅'],
-        ['slug'=>'dog-spay-neuter-guide','title'=>'Dog Spay & Neuter: Age, Benefits & Recovery','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'when to spay neuter dog','icon'=>'🏥'],
-        ['slug'=>'dog-allergy-symptoms-checker','title'=>'Dog Allergy Symptoms Checker & Relief Guide','cat'=>'dog-health','animal'=>'dog','type'=>'checker','kw'=>'dog allergy symptoms checker','icon'=>'🤧'],
-        ['slug'=>'dog-joint-health-guide','title'=>'Dog Joint Health & Arthritis Prevention Guide','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'dog joint health guide','icon'=>'🦴'],
-        ['slug'=>'senior-dog-health-guide','title'=>'Senior Dog Health Guide: 7+ Years Care','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'senior dog health guide','icon'=>'👴'],
-        ['slug'=>'dog-heat-stroke-guide','title'=>'Dog Heat Stroke: Signs, Prevention & First Aid','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'dog heat stroke signs prevention','icon'=>'🌡️'],
-        ['slug'=>'dog-pregnancy-calculator','title'=>'Dog Pregnancy Calculator & Whelping Guide','cat'=>'dog-health','animal'=>'dog','type'=>'calculator','kw'=>'dog pregnancy calculator','icon'=>'🤰'],
-        ['slug'=>'dog-heart-health-guide','title'=>'Dog Heart Health: Signs & Prevention Guide','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'dog heart health guide','icon'=>'❤️'],
-        ['slug'=>'dog-skin-conditions-guide','title'=>'Common Dog Skin Conditions: Guide & Treatment','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'dog skin conditions guide','icon'=>'🔬'],
-        ['slug'=>'dog-eye-problems-guide','title'=>'Dog Eye Problems: Symptoms & Treatment Guide','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'dog eye problems guide','icon'=>'👁️'],
-        ['slug'=>'dog-ear-infection-guide','title'=>'Dog Ear Infection: Symptoms, Causes & Treatment','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'dog ear infection guide','icon'=>'👂'],
-        ['slug'=>'dog-diabetes-guide','title'=>'Dog Diabetes: Signs, Management & Diet Guide','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'dog diabetes guide','icon'=>'💉'],
-        ['slug'=>'dog-cancer-signs-guide','title'=>'Dog Cancer Early Warning Signs Guide','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'dog cancer early warning signs','icon'=>'🔬'],
-        ['slug'=>'dog-anxiety-guide','title'=>'Dog Anxiety: Types, Triggers & Solutions Guide','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'dog anxiety guide','icon'=>'😰'],
-        ['slug'=>'dog-kennel-cough-guide','title'=>'Kennel Cough in Dogs: Symptoms & Treatment','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'kennel cough in dogs','icon'=>'🤧'],
-        ['slug'=>'dog-hypothyroidism-guide','title'=>'Dog Hypothyroidism: Symptoms & Management','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'dog hypothyroidism guide','icon'=>'🏥'],
-        ['slug'=>'dog-first-aid-guide','title'=>'Dog First Aid Guide: Emergency Situations','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'dog first aid guide','icon'=>'🚑'],
-        ['slug'=>'dog-vet-visit-frequency','title'=>'How Often Should Dogs Visit the Vet? Calculator','cat'=>'dog-health','animal'=>'dog','type'=>'calculator','kw'=>'how often dog vet visit','icon'=>'📅'],
-        ['slug'=>'dog-hip-dysplasia-guide','title'=>'Dog Hip Dysplasia: Signs, Breeds & Management','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'dog hip dysplasia guide','icon'=>'🦴'],
+        ['slug'=>'dog-fever-checker','title'=>'Dog Fever Checker: Symptoms & What To Do','cat'=>'dog-health','animal'=>'dog','type'=>'checker','kw'=>'dog fever symptoms checker','icon'=>'🌡️','calc'=>'dog_fever_checker'],
+        ['slug'=>'dog-weight-calculator','title'=>'Dog Ideal Weight Calculator by Breed','cat'=>'dog-health','animal'=>'dog','type'=>'calculator','kw'=>'dog ideal weight calculator','icon'=>'⚖️','calc'=>'dog_weight_calc'],
+        ['slug'=>'dog-bmi-calculator','title'=>'Dog Body Condition Score (BCS) Calculator','cat'=>'dog-health','animal'=>'dog','type'=>'calculator','kw'=>'dog body condition score calculator','icon'=>'📊','calc'=>'dog_bmi_calc'],
+        ['slug'=>'dog-lifespan-calculator','title'=>'Dog Lifespan Calculator by Breed & Size','cat'=>'dog-health','animal'=>'dog','type'=>'calculator','kw'=>'dog lifespan calculator','icon'=>'📅','calc'=>'dog_lifespan_calc'],
+        ['slug'=>'dog-parasite-prevention-guide','title'=>'Dog Parasite Prevention: Flea, Tick & Worm Guide','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'dog parasite prevention guide','icon'=>'🦟','calc'=>'dog_parasite_prevention'],
+        ['slug'=>'dog-deworming-schedule','title'=>'Dog Deworming Schedule Calculator','cat'=>'dog-health','animal'=>'dog','type'=>'calculator','kw'=>'dog deworming schedule','icon'=>'💊','calc'=>'dog_deworming_schedule'],
+        ['slug'=>'puppy-health-checklist','title'=>'Puppy Health Checklist: First Year Guide','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'puppy health checklist','icon'=>'✅','calc'=>'puppy_health_checklist'],
+        ['slug'=>'dog-spay-neuter-guide','title'=>'Dog Spay & Neuter: Age, Benefits & Recovery','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'when to spay neuter dog','icon'=>'🏥','calc'=>'dog_spay_neuter'],
+        ['slug'=>'dog-allergy-symptoms-checker','title'=>'Dog Allergy Symptoms Checker & Relief Guide','cat'=>'dog-health','animal'=>'dog','type'=>'checker','kw'=>'dog allergy symptoms checker','icon'=>'🤧','calc'=>'dog_allergy_checker'],
+        ['slug'=>'dog-joint-health-guide','title'=>'Dog Joint Health & Arthritis Prevention Guide','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'dog joint health guide','icon'=>'🦴','calc'=>'dog_joint_health'],
+        ['slug'=>'senior-dog-health-guide','title'=>'Senior Dog Health Guide: 7+ Years Care','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'senior dog health guide','icon'=>'👴','calc'=>'senior_dog_health'],
+        ['slug'=>'dog-heat-stroke-guide','title'=>'Dog Heat Stroke: Signs, Prevention & First Aid','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'dog heat stroke signs prevention','icon'=>'🌡️','calc'=>'dog_heat_stroke'],
+        ['slug'=>'dog-pregnancy-calculator','title'=>'Dog Pregnancy Calculator & Whelping Guide','cat'=>'dog-health','animal'=>'dog','type'=>'calculator','kw'=>'dog pregnancy calculator','icon'=>'🤰','calc'=>'dog_pregnancy_calc'],
+        ['slug'=>'dog-heart-health-guide','title'=>'Dog Heart Health: Signs & Prevention Guide','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'dog heart health guide','icon'=>'❤️','calc'=>'dog_heart_health'],
+        ['slug'=>'dog-skin-conditions-guide','title'=>'Common Dog Skin Conditions: Guide & Treatment','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'dog skin conditions guide','icon'=>'🔬','calc'=>'dog_skin_conditions'],
+        ['slug'=>'dog-eye-problems-guide','title'=>'Dog Eye Problems: Symptoms & Treatment Guide','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'dog eye problems guide','icon'=>'👁️','calc'=>'dog_eye_problems'],
+        ['slug'=>'dog-ear-infection-guide','title'=>'Dog Ear Infection: Symptoms, Causes & Treatment','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'dog ear infection guide','icon'=>'👂','calc'=>'dog_ear_infection'],
+        ['slug'=>'dog-diabetes-guide','title'=>'Dog Diabetes: Signs, Management & Diet Guide','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'dog diabetes guide','icon'=>'💉','calc'=>'dog_diabetes'],
+        ['slug'=>'dog-cancer-signs-guide','title'=>'Dog Cancer Early Warning Signs Guide','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'dog cancer early warning signs','icon'=>'🔬','calc'=>'dog_cancer_signs'],
+        ['slug'=>'dog-anxiety-guide','title'=>'Dog Anxiety: Types, Triggers & Solutions Guide','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'dog anxiety guide','icon'=>'😰','calc'=>'dog_anxiety'],
+        ['slug'=>'dog-kennel-cough-guide','title'=>'Kennel Cough in Dogs: Symptoms & Treatment','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'kennel cough in dogs','icon'=>'🤧','calc'=>'dog_kennel_cough'],
+        ['slug'=>'dog-hypothyroidism-guide','title'=>'Dog Hypothyroidism: Symptoms & Management','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'dog hypothyroidism guide','icon'=>'🏥','calc'=>'dog_hypothyroidism'],
+        ['slug'=>'dog-first-aid-guide','title'=>'Dog First Aid Guide: Emergency Situations','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'dog first aid guide','icon'=>'🚑','calc'=>'dog_first_aid'],
+        ['slug'=>'dog-vet-visit-frequency','title'=>'How Often Should Dogs Visit the Vet? Calculator','cat'=>'dog-health','animal'=>'dog','type'=>'calculator','kw'=>'how often dog vet visit','icon'=>'📅','calc'=>'dog_vet_visit_frequency'],
+        ['slug'=>'dog-hip-dysplasia-guide','title'=>'Dog Hip Dysplasia: Signs, Breeds & Management','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'dog hip dysplasia guide','icon'=>'🦴','calc'=>'dog_hip_dysplasia'],
 
         // ═══════════════════════════════════════════
         // DOG NUTRITION (20)
@@ -366,11 +366,11 @@ function pz_get_all_tools() {
         // ═══════════════════════════════════════════
         // BONUS — DOG HEALTH EXTRA (5)
         // ═══════════════════════════════════════════
-        ['slug'=>'dog-bloat-gDV-guide','title'=>'Dog Bloat (GDV): Signs, Prevention & Emergency','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'dog bloat GDV guide','icon'=>'🚨'],
-        ['slug'=>'dog-parvovirus-guide','title'=>'Parvovirus in Dogs: Symptoms, Treatment & Prevention','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'parvovirus in dogs guide','icon'=>'🦠'],
-        ['slug'=>'dog-heartworm-prevention','title'=>'Dog Heartworm Prevention: Complete Guide','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'dog heartworm prevention guide','icon'=>'❤️'],
-        ['slug'=>'dog-lyme-disease-guide','title'=>'Lyme Disease in Dogs: Ticks, Signs & Treatment','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'lyme disease in dogs guide','icon'=>'🦟'],
-        ['slug'=>'dog-cushing-disease-guide','title'=>'Cushing\'s Disease in Dogs: Symptoms & Management','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'cushings disease in dogs','icon'=>'🏥'],
+        ['slug'=>'dog-bloat-gdv-guide','title'=>'Dog Bloat (GDV): Signs, Prevention & Emergency','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'dog bloat GDV guide','icon'=>'🚨','calc'=>'dog_bloat_gdv'],
+        ['slug'=>'dog-parvovirus-guide','title'=>'Parvovirus in Dogs: Symptoms, Treatment & Prevention','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'parvovirus in dogs guide','icon'=>'🦠','calc'=>'dog_parvovirus'],
+        ['slug'=>'dog-heartworm-prevention','title'=>'Dog Heartworm Prevention: Complete Guide','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'dog heartworm prevention guide','icon'=>'❤️','calc'=>'dog_heartworm_prevention'],
+        ['slug'=>'dog-lyme-disease-guide','title'=>'Lyme Disease in Dogs: Ticks, Signs & Treatment','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'lyme disease in dogs guide','icon'=>'🦟','calc'=>'dog_lyme_disease'],
+        ['slug'=>'dog-cushing-disease-guide','title'=>'Cushing\'s Disease in Dogs: Symptoms & Management','cat'=>'dog-health','animal'=>'dog','type'=>'guide','kw'=>'cushings disease in dogs','icon'=>'🏥','calc'=>'dog_cushing_disease'],
 
         // ═══════════════════════════════════════════
         // BONUS — CAT HEALTH EXTRA (5)

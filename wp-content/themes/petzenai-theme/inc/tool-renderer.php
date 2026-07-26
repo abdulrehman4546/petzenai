@@ -464,7 +464,9 @@ function pz_render_interactive( $tool ) {
       <div id="pz-calc-result" style="display:none" aria-live="polite"></div>
     </div>
 
-    <?php elseif ($type === 'checker'): ?>
+    <?php elseif ($type === 'checker' && !empty($tool['calc']) && function_exists('pz_render_checker_' . $tool['calc'])):
+        call_user_func('pz_render_checker_' . $tool['calc'], $tool);
+    elseif ($type === 'checker'): ?>
     <!-- ══ CHECKER ══ -->
     <div class="pz-int-header">
       <div class="pz-int-header-left">
@@ -3760,6 +3762,5261 @@ function pz_mistakes_pro_vs_home_grooming() {
         ['❌ Treating the Choice as Permanent', "This decision doesn't need to be made once and never revisited — circumstances change, and the right path can change with them."],
         ['❌ Comparing Only Sticker Cost Per Visit', "Looking at cost per visit alone, without factoring in how often that visit needs to happen, gives a misleading picture of the real annual cost."],
     ];
+}
+
+/* ═══════════════════════════════════════════════════════════
+   DOG-HEALTH CALCULATORS — 6 tools × 10 functions
+   Weight, BCS, Lifespan, Deworming, Pregnancy, Vet-Visit Frequency
+═══════════════════════════════════════════════════════════ */
+
+/* ══ 1. Dog Ideal Weight Calculator (dog_weight_calc) ══ */
+
+function pz_hero_quickanswer_dog_weight_calc() { ?>
+    <div class="pz-hero-quickanswer"><strong>Quick answer:</strong> A healthy weight depends entirely on your dog's breed-size category — a Toy breed tops out around 10 lbs while a Giant breed can top 100 lbs. Enter your dog's size category, current weight, and age above to see how they compare to the typical healthy range for dogs their size.</div>
+<?php }
+
+function pz_hero_trust_dog_weight_calc() { ?>
+      <span>✅ 5 breed-size categories</span>
+      <span>✅ Puppy-safe logic</span>
+      <span>✅ Free vet-ready summary</span>
+<?php }
+
+function pz_methodology_heading_dog_weight_calc() { return "What Decides Your Dog's Ideal Weight"; }
+
+function pz_methodology_dog_weight_calc() { ?>
+    <p style="color:#555;margin-bottom:20px">There's no single healthy weight number for "a dog" — the calculator starts from your dog's breed-size category, then checks whether their current weight and age put them within, above, or below the typical range for dogs that size.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">📏</div>
+        <strong>Breed Size Category</strong>
+        <p>Toy, Small, Medium, Large, and Giant breeds have completely different healthy weight ranges — comparing a Chihuahua and a Great Dane to the same number would be meaningless.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🐶</div>
+        <strong>Age &amp; Growth Stage</strong>
+        <p>Puppies aren't measured against adult ranges at all — they're still growing toward their eventual adult size, so the calculator shows their target range instead of flagging over- or underweight.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">⚖️</div>
+        <strong>Distance From Range</strong>
+        <p>Being a little outside the ideal range reads very differently than being far outside it — the calculator estimates roughly how far over or under so you know how much attention it needs.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🩺</div>
+        <strong>Individual Variation</strong>
+        <p>Two dogs in the same size category can have different healthy weights depending on frame, muscle mass, and build — this is a starting estimate, not the final word.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_weight_calc() {
+    return [
+        ["What's a healthy weight range for my dog's breed size?", "As a general guide: Toy breeds 4–10 lbs, Small breeds 10–25 lbs, Medium breeds 25–60 lbs, Large breeds 60–100 lbs, and Giant breeds roughly 100–180 lbs. These are population ranges — your dog's individual ideal weight depends on their specific frame and build, which is why a hands-on vet body condition check is the most accurate method."],
+        ["My dog is a mixed breed — how do I pick a size category?", "Use your dog's expected or current adult weight to pick the closest category rather than trying to match a specific breed. If you're unsure where a mixed-breed puppy will land as an adult, your vet can often estimate this from paw size and growth pattern at an early check-up."],
+        ["My puppy weighs less than the adult range — is that a problem?", "No — this is completely expected. Puppies grow into their adult weight gradually, so comparing a growing puppy to an adult target range isn't meaningful. Ask your vet to track your puppy's weight on a breed-appropriate growth chart instead, which shows whether they're growing at a healthy pace."],
+        ["How much over the ideal range is actually a concern?", "A small percentage over — roughly under 10% — is often minor and worth simply monitoring. Being 15 to 20% or more over the ideal range is associated with meaningfully higher risk for joint strain, diabetes, and other weight-related conditions, and is worth a conversation with your vet about a gradual weight-loss plan."],
+        ["Does this calculator replace a vet weight check?", "No. This is a starting estimate based on breed-size averages. Your vet can physically assess body condition — feeling for ribs, waist, and belly tuck — which is more accurate for your individual dog than any weight-only number, since two dogs at the same weight can have very different body compositions."],
+    ];
+}
+
+function pz_render_calc_dog_weight_calc( $tool ) {
+    $icon = $tool['icon'] ?? '⚖️';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Ideal Weight Calculator by Breed</div>
+          <div class="pz-int-sublabel">Compare your dog's weight to a healthy breed-size range</div>
+        </div>
+      </div>
+      <div class="pz-int-badges">
+        <span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span>
+        <span class="pz-int-badge pz-int-badge--blue">📏 Breed-Size Based</span>
+      </div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Breed Size Category</label>
+          <select id="pz_dw_size" class="pz-int-select">
+            <option value="toy">Toy (adult target 4–10 lbs)</option>
+            <option value="small">Small (adult target 10–25 lbs)</option>
+            <option value="medium" selected>Medium (adult target 25–60 lbs)</option>
+            <option value="large">Large (adult target 60–100 lbs)</option>
+            <option value="giant">Giant (adult target 100+ lbs)</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Current Weight</label>
+          <div class="pz-int-input-wrap">
+            <input type="number" id="pz_dw_weight" class="pz-int-input" placeholder="e.g. 42" min="0.5" max="250" step="0.1">
+            <span class="pz-int-input-suffix">lbs</span>
+          </div>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Age Group</label>
+          <select id="pz_dw_age" class="pz-int-select">
+            <option value="puppy">Puppy (under 1 year)</option>
+            <option value="adult" selected>Adult (1–7 years)</option>
+            <option value="senior">Senior (7+ years)</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzCalcDogWeight()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Check My Dog's Weight
+      </button>
+      <div id="pz-calc-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+function pz_what_is_dog_weight_calc() {
+    ob_start(); ?>
+    <p>The Dog Ideal Weight Calculator compares your dog's current weight to the typical healthy range for their breed-size category — Toy, Small, Medium, Large, or Giant — and tells you whether they're within, above, or below that range. Rather than relying on a single one-size-fits-all number, it starts from the size category your dog actually belongs to, since a healthy Chihuahua and a healthy Great Dane weigh in completely different worlds.</p>
+    <p>Weight is one of the clearest early signals of a dog's overall health, and errors in either direction carry real consequences. Dogs that drift over their ideal range face higher long-term risk of joint strain, arthritis, diabetes, and reduced mobility, while dogs that sit well under range may not be getting adequate nutrition or could have an underlying issue that hasn't been investigated yet. Neither extreme is something to guess about.</p>
+    <p>Enter your dog's breed-size category, current weight, and age above to get your result, then scroll down for the reasoning behind the ranges and the FAQ covering the specific weight questions dog owners ask most — including what to do about mixed breeds and how much "over" actually matters.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_weight_calc() {
+    ob_start(); ?>
+    <p>Weight is one of the easiest health indicators to measure at home — and one of the most commonly misjudged, because owners often compare their dog to a generic number instead of their actual breed-size category.</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🦴</span>
+        <div>
+          <strong>Joint &amp; Mobility Health</strong>
+          <p>Excess weight puts direct mechanical strain on joints and is one of the most preventable contributors to arthritis and reduced mobility, especially in larger breeds already prone to hip and joint issues.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🩺</span>
+        <div>
+          <strong>Disease Risk</strong>
+          <p>Carrying excess weight is strongly linked to higher rates of diabetes, heart strain, and reduced lifespan in dogs — knowing where your dog stands is a simple, actionable first step.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">📏</span>
+        <div>
+          <strong>Breed-Size Accuracy</strong>
+          <p>A weight that's perfectly healthy for a Labrador would be dangerously low for a Chihuahua and dangerously high for a Yorkie — comparing to the right category avoids both false alarms and missed concerns.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🐶</span>
+        <div>
+          <strong>Puppy-Safe Logic</strong>
+          <p>Growing puppies are never compared against adult ranges — doing so would create needless worry over completely normal growth, so the calculator treats puppies differently from adults and seniors.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_weight_calc() {
+    return [
+        ['title'=>"Identify Your Dog's Breed-Size Category", 'desc'=>"Choose Toy, Small, Medium, Large, or Giant based on your dog's breed or, for mixed breeds, their expected adult weight. This sets the healthy range the rest of the result is built from."],
+        ['title'=>'Weigh Your Dog Accurately', 'desc'=>"Use a reliable pet scale, or for smaller dogs, weigh yourself holding your dog and subtract your own weight. Vet clinic scales are the most accurate option if you're unsure."],
+        ['title'=>'Select the Correct Age Group', 'desc'=>"Puppies are treated differently from adults and seniors — selecting the right age group determines whether you get a target growth range or an over/under comparison."],
+        ['title'=>'Review Your Result', 'desc'=>"Read whether your dog falls within, above, or below the ideal range for their size category, along with the rough percentage if they're outside it."],
+        ['title'=>'Note the Guidance For Your Result', 'desc'=>"Over-range and under-range results each come with specific next-step guidance — read it rather than just the headline number."],
+        ['title'=>'Bring the Result to Your Next Vet Visit', 'desc'=>"Share your result at your dog's next check-up so your vet can confirm it with a hands-on body condition assessment, which is more precise than weight alone."],
+    ];
+}
+
+function pz_tips_dog_weight_calc() {
+    return [
+        ['Weigh at the Same Time of Day', "Weight can fluctuate slightly through the day. For the most consistent tracking, weigh your dog at roughly the same time each time — first thing in the morning before breakfast works well."],
+        ['Recheck Every 4–8 Weeks', "Weight changes gradually. Rechecking every 4–8 weeks (more often for puppies) lets you catch a drifting trend early, before it becomes a larger gap to close."],
+        ["Pair Weight With a Body Condition Look", "Weight alone can't tell the difference between muscle and fat. Combine your weight result with a quick look at your dog's waist and rib coverage — our Body Condition Score calculator covers this in detail."],
+        ['Adjust Food Gradually, Not Drastically', "If your dog needs to gain or lose weight, change portions gradually over several weeks rather than making a sudden large cut or increase, which can cause digestive upset."],
+        ["Don't Override Your Vet's Specific Target", "If your vet has already set a target weight for your dog based on their individual health history, follow that number over this calculator's general breed-size range."],
+    ];
+}
+
+function pz_mistakes_dog_weight_calc() {
+    return [
+        ['❌ Comparing All Dogs to One Universal Number', "Treating every dog against one flat ideal-weight number ignores that Toy and Giant breeds differ by a factor of 20 or more — always compare within the correct breed-size category."],
+        ['❌ Judging Puppies Against Adult Ranges', "A growing puppy will always weigh less than the adult range — that's expected, not a red flag. Puppies should be tracked against a growth curve, not an adult target."],
+        ['❌ Making Sudden, Large Feeding Changes', "Cutting or increasing food drastically to hit a target weight fast can cause digestive upset and nutrient imbalances — gradual changes over weeks are safer and more sustainable."],
+        ['❌ Relying on Weight Alone Without a Body Check', "Two dogs at the identical weight can have very different body compositions — a lean, muscular dog and a soft, out-of-condition dog can weigh the same. A physical body condition check catches what the scale can't."],
+        ['❌ Ignoring a Steady Weight Drift', "A slow creep of a pound every few months adds up over a year. Catching the trend early with regular rechecks is far easier than reversing a large gap later."],
+    ];
+}
+
+/* ══ 2. Dog Body Condition Score / BCS Calculator (dog_bmi_calc) ══ */
+
+function pz_hero_quickanswer_dog_bmi_calc() { ?>
+    <div class="pz-hero-quickanswer"><strong>Quick answer:</strong> Vets use a 9-point Body Condition Score (BCS) — not the bathroom scale — to judge whether a dog is at a healthy weight. Answer three quick questions about rib feel, waist, and belly tuck above to get your dog's estimated BCS and category.</div>
+<?php }
+
+function pz_hero_trust_dog_bmi_calc() { ?>
+      <span>✅ Vet-standard 9-point scale</span>
+      <span>✅ 3 quick questions</span>
+      <span>✅ Free category guidance</span>
+<?php }
+
+function pz_methodology_heading_dog_bmi_calc() { return "How the Body Condition Score Is Built"; }
+
+function pz_methodology_dog_bmi_calc() { ?>
+    <p style="color:#555;margin-bottom:20px">Body Condition Score (BCS) is the veterinary-standard way to judge a dog's weight — more informative than the bathroom scale alone, because it measures body composition directly through touch and visual checks rather than a number that can't tell frame from fat.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🖐️</div>
+        <strong>Rib Feel</strong>
+        <p>How easily you can feel your dog's ribs under the coat, and how much padding sits over them, is the single strongest signal in the whole scale.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">⏳</div>
+        <strong>Waist From Above</strong>
+        <p>Looking down at your dog from above, a visible "waist" indentation behind the ribs is a hallmark of a healthy body condition.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">📐</div>
+        <strong>Belly Tuck From Side</strong>
+        <p>Viewed from the side, a healthy dog's belly should tuck upward behind the ribcage rather than hang level with or below the chest.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🔢</div>
+        <strong>Combined Scoring</strong>
+        <p>No single sign is used alone — the calculator combines all three into the same 1–9 scale vets use, then maps your score to a standard category with tailored guidance.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_bmi_calc() {
+    return [
+        ["What is a Body Condition Score (BCS)?", "BCS is a 9-point scale veterinarians use to assess a dog's body fat and muscle condition by touch and sight, rather than weight alone. A score of 4 to 5 out of 9 is considered ideal for most dogs; scores below that indicate thinness, and scores above indicate excess weight."],
+        ["How is BCS different from a weight-based calculation?", "A weight number alone can't tell the difference between muscle and fat, and it doesn't account for your dog's individual frame. BCS solves this by physically checking rib coverage, waist definition, and belly tuck — the same three checks a vet performs during an exam."],
+        ["What does it mean if my dog scores Very Thin or Thin?", "A low score can be normal for some naturally lean, athletic breeds, but it can also signal inadequate nutrition or an underlying illness. Rather than simply feeding more, a vet visit to rule out a medical cause is the recommended next step for a low score."],
+        ["What does it mean if my dog scores Overweight or Obese?", "Higher scores are linked to increased risk of joint disease, diabetes, and a shorter lifespan. A vet-guided, gradual weight-loss plan — rather than a sudden diet change — is the safest way to bring a dog back toward the ideal range."],
+        ["Can I do a BCS check reliably at home?", "Yes, with practice — running your hands along the ribs is the most useful check you can do yourself. Thick, long, or curly coats can visually hide a dog's true shape, though, so a vet's hands-on confirmation is worth getting periodically, especially for heavily coated breeds."],
+    ];
+}
+
+function pz_render_calc_dog_bmi_calc( $tool ) {
+    $icon = $tool['icon'] ?? '📊';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Body Condition Score (BCS) Calculator</div>
+          <div class="pz-int-sublabel">The vet-standard 9-point scale — 3 quick touch-and-look checks</div>
+        </div>
+      </div>
+      <div class="pz-int-badges">
+        <span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span>
+        <span class="pz-int-badge pz-int-badge--blue">🔬 9-Point Scale</span>
+      </div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Rib Feel</label>
+          <select id="pz_bcs_ribs" class="pz-int-select">
+            <option value="visible">Ribs visible, no fat cover</option>
+            <option value="easy">Ribs easily felt, minimal fat cover</option>
+            <option value="slight_press" selected>Ribs felt with slight pressure</option>
+            <option value="mod_press">Ribs felt only with moderate pressure</option>
+            <option value="hard">Ribs very hard to feel under fat</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Waist From Above</label>
+          <select id="pz_bcs_waist" class="pz-int-select">
+            <option value="dramatic">Dramatic hourglass waist</option>
+            <option value="defined">Well-defined waist</option>
+            <option value="slight" selected>Slight waist visible</option>
+            <option value="none">No waist, straight or barrel-shaped</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Belly Tuck From Side</label>
+          <select id="pz_bcs_tuck" class="pz-int-select">
+            <option value="severe">Severe tuck, ribs/hips prominent</option>
+            <option value="good" selected>Good tuck, abdomen rises to waist</option>
+            <option value="slight">Slight or no tuck</option>
+            <option value="none">No tuck, belly may hang below chest</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzCalcDogBmi()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Dog's BCS
+      </button>
+      <div id="pz-calc-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+function pz_what_is_dog_bmi_calc() {
+    ob_start(); ?>
+    <p>The Dog Body Condition Score (BCS) Calculator applies the same 9-point scale veterinarians use in exam rooms to assess whether your dog is at a healthy weight — based on how their ribs feel, whether they have a visible waist from above, and whether their belly tucks up from the side. This is more informative than a weight number alone, since it directly measures body composition rather than a figure that can't distinguish muscle from fat.</p>
+    <p>Getting body condition wrong in either direction has real consequences. Dogs scoring in the overweight or obese range face meaningfully higher risk of joint disease, diabetes, and a shortened lifespan, while dogs scoring very thin or thin may be dealing with inadequate nutrition or an underlying illness that a vet needs to investigate — simply feeding more isn't always the right fix.</p>
+    <p>Answer the three questions above to get your dog's estimated score and category, then scroll down for the reasoning behind each check and the FAQ covering the questions dog owners ask most about body condition scoring.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_bmi_calc() {
+    ob_start(); ?>
+    <p>Body Condition Score catches what a bathroom scale can't — because it's a direct read of body composition, not just a number that changes for many reasons.</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🩺</span>
+        <div>
+          <strong>Vet-Standard Accuracy</strong>
+          <p>This is the exact scoring system used in veterinary exam rooms — learning to read it yourself means you can catch changes between annual visits, not just at them.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">⚠️</span>
+        <div>
+          <strong>Early Illness Detection</strong>
+          <p>A dropping score in a dog that hasn't changed diet can be an early sign of illness — catching it through routine checks often means earlier, more effective treatment.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">❤️</span>
+        <div>
+          <strong>Obesity-Linked Disease Prevention</strong>
+          <p>Obesity is one of the most preventable contributors to joint disease, diabetes, and reduced lifespan in dogs — a body condition check is a simple way to catch the drift before it becomes a diagnosis.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🧥</span>
+        <div>
+          <strong>Coat-Independent Assessment</strong>
+          <p>Thick or fluffy coats can visually hide a dog's true shape — the hands-on rib and waist checks see through the coat in a way that eyeballing your dog across the room can't.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_bmi_calc() {
+    return [
+        ['title'=>"Feel Along Your Dog's Ribs", 'desc'=>"Run your fingers gently along your dog's rib cage with light pressure. Note whether ribs are visible, easily felt, felt with slight pressure, felt only with moderate pressure, or barely felt at all."],
+        ['title'=>'Look at the Waist From Above', 'desc'=>"Standing over your dog and looking straight down, check for an hourglass indentation behind the ribs versus a straight or barrel-shaped outline."],
+        ['title'=>'Check the Belly Tuck From the Side', 'desc'=>"Viewed from the side, see whether the belly rises up sharply behind the ribcage (a tuck) or hangs level with or below the chest."],
+        ['title'=>'Select the Closest Matching Answers', 'desc'=>"Choose the option for each question that best matches what you felt and saw — exact precision matters less than an honest, closest-match answer."],
+        ['title'=>'Review Your Score and Category', 'desc'=>"Read your estimated BCS number and category — Very Thin, Thin, Ideal, Overweight, or Obese — along with the guidance specific to that category."],
+        ['title'=>'Share an Out-of-Range Score With Your Vet', 'desc'=>"If your score lands outside the Ideal range, bring it to your next vet visit. They can confirm it hands-on and rule out or address any underlying cause."],
+    ];
+}
+
+function pz_tips_dog_bmi_calc() {
+    return [
+        ['Use Your Hands, Not Just Your Eyes', "A thick or fluffy coat can make a dog look leaner or heavier than they are. Always run your hands along the ribs and waist rather than judging by sight alone."],
+        ['Recheck Monthly for Dogs Mid-Adjustment', "If your dog is on a vet-guided weight-loss or weight-gain plan, rechecking BCS monthly gives you an early read on whether the plan is working before the scale confirms it."],
+        ['Compare Against Your Own Dog Over Time', "Body condition varies naturally between individual dogs and breeds. Tracking your own dog's score over months is often more useful than comparing to a single universal target."],
+        ["Check Puppies and Seniors With Extra Care", "Growing puppies and older dogs can show body condition changes for very different reasons — growth spurts versus muscle loss — so mention their age when discussing a score change with your vet."],
+        ['Pair BCS With a Weight Log', "BCS and weight tell you different things — combining a body condition check with a logged weight number gives your vet the fullest picture at your next visit."],
+    ];
+}
+
+function pz_mistakes_dog_bmi_calc() {
+    return [
+        ['❌ Judging Body Condition by Eye Alone', "Coat thickness and length can completely disguise a dog's true shape. Always use hands-on rib and waist checks rather than relying on how your dog looks from across the room."],
+        ["❌ Feeding a Thin Dog More Without a Vet Check", "A low score isn't automatically solved by more food — it can signal an underlying illness. Rule out a medical cause with your vet before assuming the fix is simply more calories."],
+        ['❌ Treating a High Score as Just a Cosmetic Issue', "Overweight and obese scores carry real medical risk — joint disease, diabetes, and shortened lifespan — not just an appearance concern. Treat an elevated score as a health signal worth addressing."],
+        ['❌ Using Human Body Standards as the Benchmark', "A visibly lean, almost gaunt look is not the healthy target for dogs — the ideal BCS range still includes a light, even fat covering over the ribs, not a fully visible skeleton."],
+        ['❌ Only Checking Once a Year at the Vet', "Body condition can shift gradually over months without anyone noticing day to day. A quick self-check every few weeks catches drift far earlier than an annual exam alone."],
+    ];
+}
+
+/* ══ 3. Dog Lifespan Calculator (dog_lifespan_calc) ══ */
+
+function pz_hero_quickanswer_dog_lifespan_calc() { ?>
+    <div class="pz-hero-quickanswer"><strong>Quick answer:</strong> Average lifespan tracks closely with breed size — toy and small breeds average 12–16 years, medium breeds 10–14, large breeds 8–12, and giant breeds 6–10. This is a population average for planning purposes, not a prediction for your individual dog — genetics, diet, and veterinary care matter more than any general number.</div>
+<?php }
+
+function pz_hero_trust_dog_lifespan_calc() { ?>
+      <span>✅ Population-average ranges</span>
+      <span>✅ Spay/neuter &amp; health aware</span>
+      <span>✅ Calm, planning-focused framing</span>
+<?php }
+
+function pz_methodology_heading_dog_lifespan_calc() { return "How the Lifespan Range Is Estimated"; }
+
+function pz_methodology_dog_lifespan_calc() { ?>
+    <p style="color:#555;margin-bottom:20px">This calculator uses population-level veterinary data — not a prediction about any individual dog — to give you a general range that's useful for long-term planning and preventive care scheduling.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">📏</div>
+        <strong>Breed Size</strong>
+        <p>Smaller dogs consistently average longer lifespans than larger and giant breeds across veterinary population studies — one of the most well-established patterns in canine health data.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">✂️</div>
+        <strong>Spay/Neuter Status</strong>
+        <p>Population data shows spayed and neutered dogs average roughly one to one and a half years longer than intact dogs, largely tied to reduced risk of certain cancers and reproductive illness.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">❤️</div>
+        <strong>Overall Health</strong>
+        <p>Dogs managing one or more chronic conditions may see the general range shift — which is exactly why your vet's specific guidance always outweighs a population average.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🎂</div>
+        <strong>Current Life Stage</strong>
+        <p>Where your dog sits in their life stage today — puppy, young adult, adult, or senior — shapes what kind of preventive care matters most right now.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_lifespan_calc() {
+    return [
+        ["How accurate is a breed-size lifespan average for my dog?", "It's a population statistic drawn from many dogs of similar size, not a measurement of your specific dog. Individual lifespan varies widely based on genetics, diet, weight management, and the quality of veterinary care a dog receives throughout life."],
+        ["Does spaying or neutering really add years?", "Population studies consistently show spayed and neutered dogs averaging roughly one to one and a half years longer than intact dogs, largely linked to reduced risk of certain reproductive cancers and illnesses. Talk to your vet about the right timing for your individual dog."],
+        ["Why do giant breeds have shorter average lifespans?", "This is a well-documented pattern in veterinary research — larger dogs tend to grow faster and experience more age-related wear earlier than smaller breeds. It's a population-level finding, not a statement about any one giant-breed dog."],
+        ["My dog has a chronic condition — does that mean a shorter life?", "Not necessarily. Many chronic conditions are well-managed for years with consistent veterinary guidance, medication, and monitoring. Your vet's specific plan for your dog's condition is a far better guide than any general number."],
+        ["Is this calculator predicting when my dog will pass away?", "No. This tool is built for planning and preventive care — helping you think about vaccination schedules, senior bloodwork timing, and general life-stage care. It is not a prediction about any individual dog's future, and genetics and care matter far more than a breed average."],
+    ];
+}
+
+function pz_render_calc_dog_lifespan_calc( $tool ) {
+    $icon = $tool['icon'] ?? '📅';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Lifespan Calculator by Breed &amp; Size</div>
+          <div class="pz-int-sublabel">A population-average range for planning and preventive care</div>
+        </div>
+      </div>
+      <div class="pz-int-badges">
+        <span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span>
+        <span class="pz-int-badge pz-int-badge--blue">📊 Population Data</span>
+      </div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Breed Size Category</label>
+          <select id="pz_ls_size" class="pz-int-select">
+            <option value="toy">Toy (adult target 4–10 lbs)</option>
+            <option value="small">Small (adult target 10–25 lbs)</option>
+            <option value="medium" selected>Medium (adult target 25–60 lbs)</option>
+            <option value="large">Large (adult target 60–100 lbs)</option>
+            <option value="giant">Giant (adult target 100+ lbs)</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Current Age</label>
+          <div class="pz-int-input-wrap">
+            <input type="number" id="pz_ls_age" class="pz-int-input" placeholder="e.g. 4" min="0" max="25" step="0.5">
+            <span class="pz-int-input-suffix">years</span>
+          </div>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Spayed / Neutered</label>
+          <select id="pz_ls_fixed" class="pz-int-select">
+            <option value="yes" selected>Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Overall Health</label>
+          <select id="pz_ls_health" class="pz-int-select">
+            <option value="excellent" selected>Excellent, no known issues</option>
+            <option value="good">Good, minor issues managed</option>
+            <option value="fair">Fair, one or more chronic conditions</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzCalcDogLifespan()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        See My Dog's Lifespan Range
+      </button>
+      <div id="pz-calc-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+function pz_what_is_dog_lifespan_calc() {
+    ob_start(); ?>
+    <p>The Dog Lifespan Calculator gives you a general population-average lifespan range for your dog's breed-size category, adjusted for spay/neuter status and overall health, so you can plan preventive care around the life stages ahead. It draws on established veterinary population data — the same kind of pattern vets reference when timing vaccine schedules, senior wellness visits, and bloodwork.</p>
+    <p>This is intentionally framed as a planning tool, not a prediction. Genetics, diet, weight management, and the quality of veterinary care a dog receives shape an individual dog's actual lifespan far more than any breed-size average ever could. The number this calculator gives you is a starting point for thinking about what kind of preventive care matters at each stage of your dog's life — nothing more, and nothing to worry over.</p>
+    <p>Enter your dog's breed size, current age, spay/neuter status, and health status above to see your result, then scroll down for the reasoning behind the ranges and a calmly-written FAQ covering the questions dog owners most often have about breed lifespan averages.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_lifespan_calc() {
+    ob_start(); ?>
+    <p>A general lifespan range isn't about predicting the future — it's a practical planning tool that helps you time preventive care to the stage your dog is actually in.</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🗓️</span>
+        <div>
+          <strong>Preventive Care Planning</strong>
+          <p>Knowing roughly where your dog sits on their expected life-stage timeline helps you and your vet plan when to start senior bloodwork, joint support, and more frequent wellness visits.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">✂️</span>
+        <div>
+          <strong>Spay/Neuter Context</strong>
+          <p>Understanding the population-level benefit of spaying or neutering can help inform that conversation with your vet, alongside your dog's individual health and breed considerations.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🎯</span>
+        <div>
+          <strong>Life-Stage-Appropriate Care</strong>
+          <p>A giant breed and a toy breed reach "senior" status at very different ages — knowing your dog's life stage helps you and your vet apply age-appropriate care rather than a one-size-fits-all schedule.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🙂</span>
+        <div>
+          <strong>Calm, Realistic Framing</strong>
+          <p>This tool is built to inform planning, not to alarm. Population averages are just that — averages — and your individual dog's genetics and care matter far more than any general number.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_lifespan_calc() {
+    return [
+        ['title'=>"Select Your Dog's Breed-Size Category", 'desc'=>"Choose Toy, Small, Medium, Large, or Giant. This sets the population-average baseline range the rest of the result builds from."],
+        ['title'=>"Enter Your Dog's Current Age", 'desc'=>"This determines their current life stage — puppy, young adult, adult, or senior — which is shown alongside the lifespan range."],
+        ['title'=>'Note Spay/Neuter Status', 'desc'=>"Spayed and neutered dogs average a slightly longer lifespan at the population level — enter this accurately for the most relevant range."],
+        ['title'=>'Select Overall Health Status', 'desc'=>"Choose the option that best reflects your dog's current health. Dogs managing chronic conditions get gentler framing that points toward their vet's specific guidance."],
+        ['title'=>'Review Your Range and Life Stage', 'desc'=>"Read the average range for your dog's profile along with their current life-stage label — this is your planning reference, not a countdown."],
+        ['title'=>'Use It to Plan, Not to Worry', 'desc'=>"Use your result to think about preventive care timing — senior bloodwork, joint support, more frequent checkups — rather than as a prediction to dwell on."],
+    ];
+}
+
+function pz_tips_dog_lifespan_calc() {
+    return [
+        ['Schedule Wellness Visits by Life Stage, Not Just Age', "A senior-stage dog benefits from more frequent wellness visits than a young adult, regardless of the exact number of years — use life stage, not age alone, to set your visit schedule."],
+        ['Start Senior Bloodwork Earlier for Giant Breeds', "Giant breeds often benefit from starting senior-level bloodwork and joint support around age 5 to 6, well before the age a small-breed dog would need the same shift."],
+        ['Weight Management Extends Healthy Years', "Keeping your dog at a healthy body condition score is one of the most impactful, controllable factors in supporting a longer healthy lifespan — more so than breed size alone."],
+        ["Dental Care Matters More Than Owners Expect", "Untreated dental disease can affect organs beyond the mouth over time. Regular dental care is a straightforward, often-overlooked way to support long-term health."],
+        ['Research Breed-Specific Health Risks Before Adopting', "If you're choosing a breed, understanding common breed-specific health conditions ahead of time helps you plan preventive care from day one rather than reacting later."],
+    ];
+}
+
+function pz_mistakes_dog_lifespan_calc() {
+    return [
+        ['❌ Treating the Average as a Guarantee', "A breed-size lifespan range is a population statistic, not a promise about any individual dog. Many dogs live well beyond their breed average with good genetics and consistent care."],
+        ['❌ Skipping Preventive Care While a Dog Is "Still Young"', "Preventive habits — dental care, weight management, regular checkups — matter most when started early, well before any age-related issue would show up on its own."],
+        ["❌ Waiting Too Long to Start Senior-Level Care in Giant Breeds", "Giant breeds age faster than the numbers alone suggest — waiting until a dog is chronologically 7 to start senior care means starting years later than their body actually needs."],
+        ['❌ Comparing Your Dog Anxiously to the Average Number', "A dog living near or slightly under a breed average is not automatically a cause for worry — individual variation is normal and expected. Focus on your vet's assessment of your specific dog over the general number."],
+        ['❌ Ignoring Your Vet\'s Individual Guidance in Favor of a General Range', "If your vet has given you a specific outlook based on your dog's actual health history, that individualized guidance should always take priority over any population-average calculator."],
+    ];
+}
+
+/* ══ 4. Dog Deworming Schedule Calculator (dog_deworming_schedule) ══ */
+
+function pz_hero_quickanswer_dog_deworming_schedule() { ?>
+    <div class="pz-hero-quickanswer"><strong>Quick answer:</strong> Puppies need deworming every 2 weeks until 12 weeks old, then monthly until 6 months. Adult dogs on a monthly parasite preventive typically need a check every 3 months, shifting to monthly if they hunt, scavenge, or have high outdoor exposure. Enter your dog's details above for their exact schedule.</div>
+<?php }
+
+function pz_hero_trust_dog_deworming_schedule() { ?>
+      <span>✅ Vet-protocol based</span>
+      <span>✅ Exposure-level aware</span>
+      <span>✅ Free calendar reminder</span>
+<?php }
+
+function pz_methodology_heading_dog_deworming_schedule() { return "What Decides Your Dog's Deworming Schedule"; }
+
+function pz_methodology_dog_deworming_schedule() { ?>
+    <p style="color:#555;margin-bottom:20px">The calculator follows the standard veterinary deworming protocol, adjusted for how much parasite exposure your dog realistically gets day to day.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🐶</div>
+        <strong>Age &amp; Growth Stage</strong>
+        <p>Puppies are dewormed most frequently of all because they can be born with roundworms passed from their mother, or pick them up through nursing — frequent early treatment breaks that cycle.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🌳</div>
+        <strong>Lifestyle Exposure</strong>
+        <p>Dogs that hunt, scavenge, or eat wildlife or feces face substantially higher reinfection risk than dogs with limited outdoor access, which is why exposure level shifts the recommended frequency.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">💊</div>
+        <strong>Parasite Preventive Use</strong>
+        <p>Many monthly heartworm and parasite preventives also control common intestinal parasites, which is part of why a quarterly check is often enough for lower-risk adult dogs already on one.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🔬</div>
+        <strong>Fecal Testing</strong>
+        <p>Your vet's fecal exam result and knowledge of local parasite prevalence should always fine-tune this general schedule for your specific dog and area.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_deworming_schedule() {
+    return [
+        ["Why do puppies need deworming so often?", "Puppies can be born with roundworms passed from their mother across the placenta, or pick them up through nursing shortly after birth. Frequent early treatment — every 2 weeks until 12 weeks, then monthly until 6 months — breaks the parasite life cycle before it causes health problems."],
+        ["Does my adult dog still need routine deworming if they're on heartworm prevention?", "Many monthly heartworm preventives also treat or control common intestinal parasites, but not every product covers every parasite type. A periodic dewormer or fecal check — typically quarterly for low-exposure dogs — is still generally recommended as a safety net."],
+        ["What if my dog hunts or eats wild animal droppings?", "Dogs with this kind of exposure face meaningfully higher reinfection risk, since they're repeatedly exposed to parasite eggs and larvae in the environment. Shifting to a monthly schedule is the standard adjustment for high-exposure lifestyles."],
+        ["How do I know if my dog has worms?", "Possible signs include visible worms or segments in stool, a bloated or pot-bellied appearance in puppies, unexplained weight loss, a dull coat, or scooting. That said, dogs can carry a parasite load without obvious symptoms — a fecal test is the only reliable way to know for sure."],
+        ["Can I just deworm on a fixed schedule without a fecal test?", "A fixed schedule is a reasonable general baseline, but it isn't a substitute for testing. Your vet's fecal exam result and knowledge of local parasite prevalence should fine-tune both the frequency and the specific product used for your dog."],
+    ];
+}
+
+function pz_render_calc_dog_deworming_schedule( $tool ) {
+    $icon = $tool['icon'] ?? '💊';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Deworming Schedule Calculator</div>
+          <div class="pz-int-sublabel">Vet-protocol timing based on age and lifestyle exposure</div>
+        </div>
+      </div>
+      <div class="pz-int-badges">
+        <span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span>
+        <span class="pz-int-badge pz-int-badge--blue">📅 Next-Due Date</span>
+      </div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Age Group</label>
+          <select id="pz_dw2_age" class="pz-int-select">
+            <option value="puppy_young">Puppy under 12 weeks</option>
+            <option value="puppy_older">Puppy 12 weeks – 6 months</option>
+            <option value="adult" selected>Adult (6 months+)</option>
+            <option value="senior">Senior</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Lifestyle Exposure</label>
+          <select id="pz_dw2_exposure" class="pz-int-select">
+            <option value="low">Mostly indoor, low exposure</option>
+            <option value="moderate" selected>Regular outdoor access</option>
+            <option value="high">Hunts, scavenges, or eats wildlife/feces</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Last Deworming Date <span class="pz-int-optional">(optional — for your next-due date)</span></label>
+          <input type="date" id="pz_dw2_last" class="pz-int-input">
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzCalcDewormingSchedule()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Dog's Deworming Schedule
+      </button>
+      <div id="pz-calc-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+function pz_what_is_dog_deworming_schedule() {
+    ob_start(); ?>
+    <p>The Dog Deworming Schedule Calculator applies the standard veterinary deworming protocol to your dog's specific age group and lifestyle exposure, giving you a concrete frequency — and, if you enter your last deworming date, an exact next-due date — instead of a vague "regularly" recommendation.</p>
+    <p>Intestinal parasites are extremely common, especially in puppies, and some — including roundworms and hookworms — can even spread to people, particularly children, making consistent deworming a household health matter and not just a dog health one. Skipping or spacing out deworming too far apart lets reinfection cycles continue, especially for dogs with meaningful outdoor exposure.</p>
+    <p>Select your dog's age group and lifestyle exposure above to get your schedule, then scroll down for the reasoning behind each interval and the FAQ covering the deworming questions dog owners ask most often.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_deworming_schedule() {
+    ob_start(); ?>
+    <p>Deworming frequency isn't one-size-fits-all — a schedule built for age and exposure catches parasites more reliably than a generic reminder.</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">👶</span>
+        <div>
+          <strong>Zoonotic Risk to People</strong>
+          <p>Some intestinal parasites, including roundworms and hookworms, can spread to humans — especially children who play in soil or grass frequented by dogs — making a consistent schedule a household health matter.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🐶</span>
+        <div>
+          <strong>Puppy Vulnerability</strong>
+          <p>Puppies are especially vulnerable since they can be born with parasites or infected through nursing, and heavy parasite loads can affect their growth and development if not addressed early.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🔁</span>
+        <div>
+          <strong>Reinfection Cycles From Exposure</strong>
+          <p>Dogs that hunt, scavenge, or spend a lot of time outdoors are repeatedly exposed to parasite eggs and larvae in soil and other animals' waste, which is why exposure level — not just age — belongs in the schedule.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">💰</span>
+        <div>
+          <strong>Prevention Costs Less Than Treatment</strong>
+          <p>Routine deworming is inexpensive compared to treating a heavy parasite burden or the secondary health issues it can cause — a consistent schedule is the cost-effective path.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_deworming_schedule() {
+    return [
+        ['title'=>"Select Your Dog's Age Group", 'desc'=>"Choose the option that matches your dog's current age — puppy under 12 weeks, puppy 12 weeks to 6 months, adult, or senior. This sets the baseline interval."],
+        ['title'=>'Select Lifestyle Exposure', 'desc'=>"Be honest about how much outdoor, hunting, or scavenging exposure your dog gets — this is what shifts an adult dog from a quarterly to a monthly schedule."],
+        ['title'=>'Enter Your Last Deworming Date If Known', 'desc'=>"Adding this optional date lets the calculator show you an exact next-due date instead of just a general interval."],
+        ['title'=>'Review Your Recommended Frequency', 'desc'=>"Read your interval and, if provided, your next-due date, along with the reasoning specific to your dog's age and exposure level."],
+        ['title'=>'Add a Calendar Reminder', 'desc'=>"Use the calendar link to set a reminder for the next-due date so you're not relying on memory for a recurring task."],
+        ['title'=>"Confirm With a Fecal Test at Your Vet", 'desc'=>"Bring a fresh stool sample to your next vet visit — a fecal test confirms whether this general schedule needs to be adjusted for your dog specifically."],
+    ];
+}
+
+function pz_tips_dog_deworming_schedule() {
+    return [
+        ['Bring a Fresh Stool Sample to Checkups', "A fecal test is the most reliable way to know whether your dog currently has a parasite burden — bring a same-day sample to your vet visit for the most accurate result."],
+        ['Clean Up Yard Waste Promptly', "Picking up feces quickly, both in your yard and on walks, reduces the amount of parasite eggs that can survive in the environment and cause reinfection."],
+        ["Monthly Preventives Don't Replace Every Check", "Even dogs on a monthly heartworm and parasite preventive can benefit from periodic fecal testing, since not every product controls every parasite type equally."],
+        ['Keep Dogs From Scavenging When Possible', "Discouraging your dog from eating found items, wildlife carcasses, or other animals' feces on walks meaningfully lowers their reinfection risk."],
+        ['Treat All Household Pets on the Same Schedule', "If you have multiple dogs or cats, treating them together rather than staggered helps prevent pets from reinfecting each other between treatments."],
+    ];
+}
+
+function pz_mistakes_dog_deworming_schedule() {
+    return [
+        ['❌ Stopping After the Puppy Series Ends', "The puppy deworming series breaks the early-life parasite cycle, but it doesn't provide lifetime protection — adult dogs still need an ongoing schedule based on their exposure level."],
+        ['❌ Assuming Heartworm Prevention Covers All Worm Types', "Not every monthly heartworm preventive controls every intestinal parasite. Check your specific product's label and confirm coverage with your vet rather than assuming full protection."],
+        ['❌ Skipping Fecal Tests Because the Dog Seems Fine', "Dogs can carry a parasite burden without obvious symptoms. Relying on visible signs alone means many cases go undetected until the load is significant."],
+        ["❌ Treating Only One Pet in a Multi-Pet Household", "Pets in the same household can reinfect each other through shared spaces. Deworming on a staggered or partial basis often undoes the benefit of treating any one pet."],
+        ['❌ Not Adjusting for a New High-Exposure Lifestyle', "A dog that starts hunting, visiting dog parks heavily, or spending more time outdoors needs a more frequent schedule than one still following an old, lower-exposure routine."],
+    ];
+}
+
+/* ══ 5. Dog Pregnancy Calculator (dog_pregnancy_calc) ══ */
+
+function pz_hero_quickanswer_dog_pregnancy_calc() { ?>
+    <div class="pz-hero-quickanswer"><strong>Quick answer:</strong> Canine pregnancy lasts about 63 days from ovulation. Since the exact ovulation date is rarely known, this calculator estimates a due-date window of 61 to 65 days from the mating date you enter. Add the date above to see your estimated due-date range and current trimester.</div>
+<?php }
+
+function pz_hero_trust_dog_pregnancy_calc() { ?>
+      <span>✅ 61–65 day due window</span>
+      <span>✅ Trimester &amp; vet-checkpoint guide</span>
+      <span>✅ Free calendar reminder</span>
+<?php }
+
+function pz_methodology_heading_dog_pregnancy_calc() { return "How the Due Date Range Is Estimated"; }
+
+function pz_methodology_dog_pregnancy_calc() { ?>
+    <p style="color:#555;margin-bottom:20px">Canine gestation length is remarkably consistent across breeds — the range in this calculator comes from the uncertainty around exactly when mating led to ovulation, not from breed differences.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">📆</div>
+        <strong>Gestation Length</strong>
+        <p>Canine pregnancy runs about 63 days from ovulation, consistently across toy through giant breeds — gestation length itself doesn't vary meaningfully by size.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🔬</div>
+        <strong>Ovulation vs. Mating Date</strong>
+        <p>Because mating can happen a few days before or after ovulation, and sperm can survive inside the female for several days, a due-date range is more honest than a single exact date.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🐾</div>
+        <strong>Trimester Milestones</strong>
+        <p>Each third of the pregnancy lines up with a different stage of puppy development and a different vet checkpoint — ultrasound confirmation, then an X-ray puppy count, then whelping preparation.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🐕</div>
+        <strong>Breed Size &amp; Litter Size</strong>
+        <p>Litter size tends to track loosely with breed size, though this is a general tendency for context — gestation length itself stays the same across all sizes.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_pregnancy_calc() {
+    return [
+        ["How long are dogs pregnant?", "Canine gestation is about 63 days from ovulation. Since the exact ovulation date is rarely known from the mating date alone, this calculator gives you a due-date window of 61 to 65 days from the mating date you enter, which covers the normal range of when ovulation likely occurred."],
+        ["When can a vet confirm my dog is pregnant?", "An ultrasound can typically confirm pregnancy starting around day 28 from mating. This is the earliest reliable confirmation point — earlier tests are generally not accurate enough to rely on."],
+        ["When can I find out how many puppies to expect?", "An X-ray from around day 45 onward, once puppy skeletons have started to calcify, gives a much more accurate puppy count than an ultrasound. This is the standard way vets estimate litter size before whelping."],
+        ["What should I prepare before the due date?", "Set up a quiet, clean whelping box in a low-traffic area a week or two before the due-date window begins. Learn the signs of approaching labor — nesting behavior, restlessness, and a temperature drop — and keep your vet's contact information easily accessible."],
+        ["What if my dog goes past 65 days without labor starting?", "If more than 65 days have passed since the mating date without labor starting, contact your vet promptly. It's a reasonable, precautionary step to have mom and the pregnancy checked rather than waiting indefinitely."],
+    ];
+}
+
+function pz_render_calc_dog_pregnancy_calc( $tool ) {
+    $icon = $tool['icon'] ?? '🤰';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Pregnancy Calculator &amp; Whelping Guide</div>
+          <div class="pz-int-sublabel">Due-date window, current trimester, and vet checkpoints</div>
+        </div>
+      </div>
+      <div class="pz-int-badges">
+        <span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span>
+        <span class="pz-int-badge pz-int-badge--blue">📅 61–65 Day Window</span>
+      </div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Breeding / Mating Date</label>
+          <input type="date" id="pz_preg_date" class="pz-int-input" required>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Breed Size <span class="pz-int-optional">(for typical litter size reference)</span></label>
+          <select id="pz_preg_size" class="pz-int-select">
+            <option value="toy">Toy (adult target 4–10 lbs)</option>
+            <option value="small">Small (adult target 10–25 lbs)</option>
+            <option value="medium" selected>Medium (adult target 25–60 lbs)</option>
+            <option value="large">Large (adult target 60–100 lbs)</option>
+            <option value="giant">Giant (adult target 100+ lbs)</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzCalcDogPregnancy()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Calculate My Due-Date Window
+      </button>
+      <div id="pz-calc-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+function pz_what_is_dog_pregnancy_calc() {
+    ob_start(); ?>
+    <p>The Dog Pregnancy Calculator estimates your dog's due-date window from the mating date you enter, using the well-established fact that canine gestation runs about 63 days from ovulation. Because the exact ovulation date usually isn't known, the calculator gives you a 61-to-65-day range rather than pretending to know one precise date, along with your dog's current estimated day of pregnancy and trimester.</p>
+    <p>Knowing roughly where your dog is in pregnancy helps you plan the right things at the right time — scheduling an ultrasound confirmation around day 28, an X-ray puppy count from day 45 onward, and having a whelping box ready well before the due-date window opens. Preparation matters here, and a calm, informed timeline beats guesswork.</p>
+    <p>Enter your dog's mating date above to see your due-date window and current trimester, then scroll down for the vet-checkpoint timeline and the FAQ covering the questions owners ask most during this exciting stretch of waiting.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_pregnancy_calc() {
+    ob_start(); ?>
+    <p>Knowing an approximate timeline turns an uncertain waiting period into a set of clear, plannable steps.</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🩺</span>
+        <div>
+          <strong>Prenatal Care Timing</strong>
+          <p>Knowing roughly what day of pregnancy your dog is on helps you schedule the ultrasound confirmation and X-ray puppy count at the right points, rather than too early to be useful or too late to be helpful.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">📦</span>
+        <div>
+          <strong>Whelping Preparedness</strong>
+          <p>A due-date window gives you a realistic timeframe to set up a quiet whelping area and gather supplies well ahead of time, rather than scrambling once labor starts.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">📞</span>
+        <div>
+          <strong>Knowing When to Call the Vet</strong>
+          <p>Understanding the normal 61-to-65-day window means you'll recognize promptly if your dog goes meaningfully past it — a clear signal to check in with your vet rather than wait indefinitely.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🐾</span>
+        <div>
+          <strong>Realistic Litter Expectations</strong>
+          <p>General breed-size litter size tendencies help set reasonable expectations ahead of the X-ray count, while you wait for the more accurate day-45-plus confirmation.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_pregnancy_calc() {
+    return [
+        ['title'=>'Enter the Mating Date', 'desc'=>"Enter the date mating occurred as accurately as you can — this is the single most important input, since the whole due-date window is calculated from it."],
+        ['title'=>"Note Breed Size for Litter Context", 'desc'=>"Select your dog's breed size to see a general litter-size tendency for context — this doesn't affect the due-date calculation itself, only the reference framing."],
+        ['title'=>'Review Your Due-Date Window', 'desc'=>"Read your estimated 61-to-65-day due-date range along with your dog's current estimated day of pregnancy and trimester."],
+        ['title'=>'Mark the Day-28 Ultrasound Checkpoint', 'desc'=>"Schedule an ultrasound around day 28 from the mating date to get vet confirmation of pregnancy."],
+        ['title'=>'Mark the Day-45+ X-ray Checkpoint', 'desc'=>"Plan an X-ray from around day 45 onward for a much more accurate puppy count than an early ultrasound can provide."],
+        ['title'=>'Prepare the Whelping Box in the Final Week', 'desc'=>"Set up a quiet, clean whelping area before the due-date window opens, and review the signs of approaching labor so you recognize them when they start."],
+    ];
+}
+
+function pz_tips_dog_pregnancy_calc() {
+    return [
+        ['Record the Mating Date Precisely', "Write down the exact mating date as soon as it happens rather than estimating later from memory — this single date drives the entire due-date window."],
+        ["Increase Food Gradually in the Final Third", "Under your vet's guidance, pregnant dogs typically need increased calories in the final third of pregnancy as puppies grow rapidly — avoid sudden large diet changes."],
+        ['Set Up the Whelping Area Early, Not Last-Minute', "Introduce your dog to the whelping box a week or two before the due-date window so she's comfortable with it once labor begins."],
+        ['Keep Your Vet\'s After-Hours Number Handy', "Labor can start at any hour. Having your vet's regular and after-hours or emergency contact information easy to find removes one source of stress if you need it."],
+        ['Track Behavior Changes as the Due Date Approaches', "Nesting behavior, restlessness, and appetite changes often appear in the days before labor — noting them helps you recognize when things are progressing normally."],
+    ];
+}
+
+function pz_mistakes_dog_pregnancy_calc() {
+    return [
+        ['❌ Treating the Due Date as One Exact Day', "Because ovulation timing relative to mating varies, a single exact due date is misleading — plan around the full 61-to-65-day window instead of one specific date."],
+        ["❌ Skipping the Day-45+ X-ray, Relying on Ultrasound Alone", "An early ultrasound confirms pregnancy but is not reliable for counting puppies. An X-ray from day 45 onward, once skeletons calcify, gives a far more accurate count."],
+        ['❌ Setting Up the Whelping Box at the Last Minute', "Introducing the whelping box only once labor starts can leave a dog unfamiliar and unsettled with the space right when calm surroundings matter most."],
+        ["❌ Not Knowing the Signs of Labor Complications", "Understanding what's normal during labor versus signs that warrant an urgent call to your vet — such as prolonged straining without progress — matters more once the due-date window arrives."],
+        ['❌ Waiting Indefinitely Past 65 Days', "If more than 65 days have passed since mating without labor starting, that's a clear signal to contact your vet promptly rather than continuing to wait it out."],
+    ];
+}
+
+/* ══ 6. How Often Should Dogs Visit the Vet? Calculator (dog_vet_visit_frequency) ══ */
+
+function pz_hero_quickanswer_dog_vet_visit_frequency() { ?>
+    <div class="pz-hero-quickanswer"><strong>Quick answer:</strong> Puppies need vet visits every 3–4 weeks until their vaccine series finishes around 16 weeks. Healthy adults typically need one visit a year, while healthy seniors (7+) benefit from checkups every 6 months. Dogs managing a chronic condition usually need more frequent visits — enter your dog's details above for a specific cadence.</div>
+<?php }
+
+function pz_hero_trust_dog_vet_visit_frequency() { ?>
+      <span>✅ Age &amp; health aware</span>
+      <span>✅ Vet-protocol cadence</span>
+      <span>✅ Free calendar reminder</span>
+<?php }
+
+function pz_methodology_heading_dog_vet_visit_frequency() { return "What Decides How Often Your Dog Needs Vet Visits"; }
+
+function pz_methodology_dog_vet_visit_frequency() { ?>
+    <p style="color:#555;margin-bottom:20px">The right visit cadence changes based on life stage and health status — the calculator combines both to give you a general recommended frequency, not a one-size-fits-all annual reminder.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">💉</div>
+        <strong>Vaccine Series Timing</strong>
+        <p>Puppies need a tightly spaced series of visits to build immunity in stages before their maternal antibody protection fades — spacing these too far apart can leave gaps in protection.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🎂</div>
+        <strong>Life Stage</strong>
+        <p>Senior dogs experience health changes faster than young adults, which is why the recommended visit cadence shortens as dogs move into their senior years.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🩺</div>
+        <strong>Chronic Condition Management</strong>
+        <p>An ongoing condition needs closer, more frequent monitoring than a standard annual wellness exam can provide — your vet's specific plan should guide the exact cadence.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🧪</div>
+        <strong>Preventive Bloodwork</strong>
+        <p>Routine bloodwork at senior and chronic-condition visits often catches issues before symptoms appear, when they're generally easiest and least costly to address.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_vet_visit_frequency() {
+    return [
+        ["How often should a healthy adult dog see the vet?", "Once a year for most healthy adult dogs under 7, covering a wellness exam, vaccine boosters as needed, and preventive care review. This annual rhythm is the standard baseline for dogs without ongoing health concerns."],
+        ["Why do senior dogs need more frequent visits?", "Health changes happen faster in senior dogs, and catching a developing issue at 6 months rather than 12 makes a meaningful difference in how early it can be treated. Biannual visits — roughly every 6 months — are the standard recommendation for healthy seniors."],
+        ["How often do puppies need to go to the vet?", "Roughly every 3 to 4 weeks until their vaccine series completes around 16 weeks of age. This spacing builds immunity in stages while their maternal antibody protection naturally fades."],
+        ["My dog has a chronic condition — how often should we go?", "A general cadence of every 3 to 6 months is common for dogs managing an ongoing condition, but this varies significantly by the specific condition. Your vet's individualized monitoring plan should always take priority over this general guideline."],
+        ["What happens at a routine senior wellness visit?", "A typical senior visit includes bloodwork, a weight and body condition check, joint and organ function screening, a dental check, and a general physical exam — aimed at catching age-related changes before they become symptomatic."],
+    ];
+}
+
+function pz_render_calc_dog_vet_visit_frequency( $tool ) {
+    $icon = $tool['icon'] ?? '📅';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">How Often Should Dogs Visit the Vet? Calculator</div>
+          <div class="pz-int-sublabel">A recommended visit cadence based on age and health status</div>
+        </div>
+      </div>
+      <div class="pz-int-badges">
+        <span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span>
+        <span class="pz-int-badge pz-int-badge--blue">📅 Next-Visit Date</span>
+      </div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Age Group</label>
+          <select id="pz_vv_age" class="pz-int-select">
+            <option value="puppy">Puppy (under 4 months, still vaccinating)</option>
+            <option value="young_adult" selected>Adult under 7 years</option>
+            <option value="senior">Senior (7+ years)</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Health Status</label>
+          <select id="pz_vv_health" class="pz-int-select">
+            <option value="healthy" selected>Healthy, no known issues</option>
+            <option value="chronic">One or more chronic conditions</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Last Vet Visit Date <span class="pz-int-optional">(optional — for your next-visit date)</span></label>
+          <input type="date" id="pz_vv_last" class="pz-int-input">
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzCalcVetVisitFrequency()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Recommended Visit Schedule
+      </button>
+      <div id="pz-calc-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+function pz_what_is_dog_vet_visit_frequency() {
+    ob_start(); ?>
+    <p>The "How Often Should Dogs Visit the Vet?" Calculator gives you a recommended check-up cadence based on your dog's age group and health status — from the tightly spaced puppy vaccine series, to an annual visit for healthy adults, to the more frequent monitoring senior and chronic-condition dogs typically benefit from.</p>
+    <p>Visit frequency isn't a fixed number that applies to every dog at every stage of life — a schedule built for a healthy 3-year-old under-serves a senior dog managing a chronic condition, while over-scheduling a young healthy dog wastes time and money without added benefit. Matching cadence to life stage and health status is how vets actually plan recall schedules.</p>
+    <p>Select your dog's age group and health status above to get your recommended cadence, then scroll down for the reasoning behind each interval and the FAQ covering the vet-visit-frequency questions dog owners ask most.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_vet_visit_frequency() {
+    ob_start(); ?>
+    <p>Getting the visit cadence right — not too sparse, not unnecessarily frequent — is how routine care actually catches problems early.</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🔍</span>
+        <div>
+          <strong>Early Disease Detection</strong>
+          <p>Many conditions are far easier and less costly to treat when caught early at a routine visit than once symptoms become obvious enough to prompt an unplanned trip to the vet.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">💉</span>
+        <div>
+          <strong>Vaccine Timing Windows</strong>
+          <p>Puppy vaccines are given in a specific sequence timed around when maternal antibodies fade — spacing visits too far apart can leave gaps where a puppy isn't fully protected.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🎂</span>
+        <div>
+          <strong>Age-Adjusted Care</strong>
+          <p>A healthy young adult and a healthy senior have genuinely different monitoring needs — matching visit frequency to life stage means neither over- nor under-scheduling care.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">📈</span>
+        <div>
+          <strong>Chronic Condition Monitoring</strong>
+          <p>Ongoing conditions can shift gradually — more frequent visits let your vet catch and adjust for those shifts before they become a bigger problem.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_vet_visit_frequency() {
+    return [
+        ['title'=>"Select Your Dog's Age Group", 'desc'=>"Choose puppy, adult under 7, or senior (7+). This sets the baseline recommended visit cadence."],
+        ['title'=>'Select Health Status', 'desc'=>"Indicate whether your dog is healthy or managing one or more chronic conditions — this can meaningfully shorten the recommended interval."],
+        ['title'=>'Enter Your Last Vet Visit Date If Known', 'desc'=>"Adding this optional date lets the calculator show an exact next-recommended-visit date rather than just a general cadence."],
+        ['title'=>'Review Your Recommended Cadence', 'desc'=>"Read your recommended visit frequency and, if provided, your next-recommended-visit date."],
+        ['title'=>'Add a Calendar Reminder', 'desc'=>"Use the calendar link to set a reminder for the next-recommended visit — annual and biannual visits are easy to let slip without one."],
+        ['title'=>"Follow Your Vet's Individualized Plan If Given One", 'desc'=>"If your vet has already set a specific monitoring schedule for a chronic condition, follow that plan over this general cadence."],
+    ];
+}
+
+function pz_tips_dog_vet_visit_frequency() {
+    return [
+        ['Keep a Running List of Questions Between Visits', "Jot down questions or small concerns as they come up rather than trying to remember them at the appointment — this makes each visit more productive."],
+        ["Bring a Stool or Urine Sample If Requested", "If your vet's office asks for a sample ahead of a visit, bringing a fresh one saves an extra trip and speeds up results."],
+        ['Log Appetite, Weight, and Behavior Changes', "A simple running note of any changes between visits gives your vet objective information that's far more useful than trying to recall details from memory."],
+        ['Get Baseline Bloodwork While Your Dog Is Healthy', "Senior dogs especially benefit from a baseline bloodwork panel done while healthy — it gives your vet a comparison point that makes future results much more meaningful."],
+        ['Set a Recurring Reminder for Annual and Biannual Visits', "Wellness visits without acute symptoms are the easiest to let slip. A standing calendar reminder helps keep routine care on schedule."],
+    ];
+}
+
+function pz_mistakes_dog_vet_visit_frequency() {
+    return [
+        ['❌ Stopping Regular Visits Once Puppy Vaccines Are Complete', "Finishing the puppy vaccine series doesn't mean visits are done — annual wellness exams remain important for healthy adult dogs going forward."],
+        ['❌ Waiting for Symptoms Before Scheduling Senior Visits', "Senior dogs benefit from routine biannual visits regardless of whether anything seems wrong — many age-related changes are easiest to catch before obvious symptoms appear."],
+        ["❌ Not Increasing Frequency After a Chronic Diagnosis", "A new chronic condition usually calls for more frequent monitoring than the standard annual visit — check with your vet about an adjusted schedule rather than defaulting to once a year."],
+        ['❌ Assuming a Healthy-Looking Dog Doesn\'t Need Bloodwork', "Dogs can look and act completely normal while bloodwork reveals an early developing issue — routine bloodwork at senior and chronic-condition visits catches what a visual check alone can't."],
+        ['❌ Treating Dental Checks as Optional', "Dental health is a standard part of routine visits, not an add-on — untreated dental disease can affect more than just the mouth over time."],
+    ];
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   NEW DOG-HEALTH TOOLS — Fever Checker, Allergy Checker,
+   Parasite Prevention, Puppy Checklist, Spay/Neuter, Joint Health
+═══════════════════════════════════════════════════════════ */
+
+/* ══ 1. Dog Fever Checker (dog_fever_checker) ══ */
+
+function pz_hero_quickanswer_dog_fever_checker() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>A normal dog's temperature is <strong>101°F–102.5°F</strong>, and only a rectal thermometer can confirm a true fever — this checker can't take your dog's temperature for you. What it can do is help you gauge how urgently to act based on the pattern of signs you're seeing. Answer the 5 questions below for a clear next step.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_fever_checker() { ?>
+      <span>✅ Vet-informed triage logic</span>
+      <span>⚡ 5 quick questions</span>
+      <span>🚨 Flags emergencies first</span>
+<?php }
+
+function pz_methodology_heading_dog_fever_checker() { return "How This Fever Risk Assessment Works"; }
+
+function pz_methodology_dog_fever_checker() { ?>
+    <p style="color:#555;margin-bottom:20px">This checker doesn't guess your dog's temperature — it can't. Instead, it works the way a vet phone-triage line does: weighing the combination and severity of signs you're seeing to judge how urgently your dog needs to be seen, with any single severe sign — like pale gums or breathing trouble — taking priority over the overall total rather than being averaged away.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🌡️</div>
+        <strong>Warmth &amp; Touch</strong>
+        <p>A hands-on check of ears, paws, and belly, since heat distribution changes noticeably as internal temperature climbs.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">⚡</div>
+        <strong>Energy &amp; Responsiveness</strong>
+        <p>Lethargy and unwillingness to get up are some of the most reliable indicators of how sick a feverish dog actually feels.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🍽️</div>
+        <strong>Appetite &amp; Thirst</strong>
+        <p>Reduced appetite is common with fever; refusing water too is a more urgent combination that changes the result.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🚨</div>
+        <strong>Associated Symptoms &amp; Duration</strong>
+        <p>Vomiting, diarrhea, breathing difficulty, and how long signs have persisted change the urgency dramatically — a single severe symptom is weighted independently, not just averaged in.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_fever_checker() {
+    return [
+        ["What is a normal temperature for a dog?", "A healthy dog's normal body temperature is typically 101°F to 102.5°F (38.3°C to 39.2°C). A rectal reading meaningfully above that range is generally considered a fever. Ear and touch checks can suggest warmth but can't confirm an exact number."],
+        ["Can I tell if my dog has a fever just by touching their ears or nose?", "Not reliably. A warm nose or ears can be normal after sleeping, playing, or being in a warm room, and a cool nose doesn't rule out fever. Touch can suggest something's off, but only a rectal thermometer reading confirms a true fever."],
+        ["How can I safely take my dog's temperature at home?", "A digital rectal thermometer, lubricated and inserted about an inch, gives the most accurate reading. If you're not comfortable doing this or don't have a thermometer, use this checker's symptom pattern instead to judge urgency, and let your vet take the actual reading."],
+        ["What temperature is an emergency in dogs?", "A temperature above 103.5°F (39.7°C) is generally a concern, and above 106°F (41°C) is a life-threatening emergency requiring immediate veterinary care. If you can't get a reading and your dog shows severe signs — pale or dark gums, labored breathing, or collapse — treat it as an emergency regardless of the number."],
+        ["What can cause a fever in dogs besides infection?", "Infections are the most common cause, but fever can also come from vaccine reactions (usually mild and short-lived), inflammation, certain toxins, heatstroke, or less commonly some cancers. A vet visit is the only reliable way to identify the actual cause."],
+    ];
+}
+
+function pz_what_is_dog_fever_checker() {
+    ob_start(); ?>
+    <p>The Dog Fever Checker walks through five quick questions about warmth, energy, appetite, other symptoms, and duration to give you a proportionate read on how urgently your dog needs veterinary attention — without requiring you to already own a thermometer or know what a "concerning" symptom looks like.</p>
+    <p>Fever itself is a symptom, not a diagnosis — it's the body's response to infection, inflammation, or another underlying issue, and the truly informative part isn't the fever alone but what's paired with it. A mildly warm, still-playful, still-eating dog is a very different situation from a hot, lethargic dog refusing food and water, even though both might technically have "a fever."</p>
+    <p>Answer the questions above for your result, then scroll down for what a true fever reading actually means and the FAQ covering the questions dog owners ask most — this checker is a guide for urgency, not a replacement for a thermometer or a vet exam.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_fever_checker() {
+    ob_start(); ?>
+    <p>Fever is one of the most common reasons dog owners reach out to a vet — and one of the easiest to either dangerously ignore or unnecessarily panic over. Getting the urgency level right matters:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🚨</span>
+        <div>
+          <strong>Some Fevers Are Emergencies</strong>
+          <p>High or rapidly climbing fevers, especially paired with pale gums or breathing trouble, can indicate sepsis, heatstroke, or another life-threatening process that needs immediate care.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🏠</span>
+        <div>
+          <strong>Most Mild Cases Can Be Monitored</strong>
+          <p>A dog that feels slightly warm but has normal energy, appetite, and behavior often just needs monitoring and a recheck in a few hours — treating every warm ear as an emergency creates unnecessary stress and cost.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🩺</span>
+        <div>
+          <strong>Only a Thermometer Confirms It</strong>
+          <p>Touch alone can't distinguish a genuinely feverish dog from one that's simply warm from sleeping in the sun — an actual reading removes the guesswork.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">⏱️</span>
+        <div>
+          <strong>Duration Changes the Picture</strong>
+          <p>A symptom pattern that's tolerable at the 2-hour mark becomes far more concerning at the 2-day mark, which is why how long it's been going on is weighted into the result.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_fever_checker() {
+    return [
+        ['title'=>'Observe Before You Touch', 'desc'=>"Watch your dog's general behavior for a few minutes first — energy, posture, willingness to move — before doing a hands-on warmth check, since behavior often tells you more than touch alone."],
+        ['title'=>'Check Warmth at Ears, Paws, and Belly', 'desc'=>"These areas reflect internal temperature changes more noticeably than the nose. Compare to how your dog normally feels if you can."],
+        ['title'=>'Note Appetite and Thirst', 'desc'=>"Whether your dog is eating and drinking normally — or refusing one or both — is one of the strongest signals of how unwell they actually feel."],
+        ['title'=>'Scan for Other Symptoms', 'desc'=>"Check gum color, breathing rate, and look for vomiting, diarrhea, or shivering. Pale or dark gums and labored breathing are signs that override everything else."],
+        ['title'=>'Answer the 5 Questions Above', 'desc'=>"Work through the checker honestly rather than optimistically — an accurate answer, even an uncomfortable one, gives you a more useful result."],
+        ['title'=>'Follow the Urgency Guidance', 'desc'=>"Whether your result says monitor, call today, or go now, act on it rather than waiting to see if things change on their own, especially with any high-severity result."],
+    ];
+}
+
+function pz_tips_dog_fever_checker() {
+    return [
+        ['Confirm With a Real Thermometer', "If you own a digital rectal thermometer, use it — 101–102.5°F is the normal range for most adult dogs. A confirmed reading is always more useful than a touch-based guess."],
+        ["Track How Symptoms Change Over a Few Hours", "A single snapshot can be misleading. If your result says monitor at home, recheck your dog's energy, appetite, and warmth every couple of hours rather than only once."],
+        ['Keep Your Dog Hydrated', "Fever increases fluid loss. Keep fresh water available and easy to reach, especially if your dog seems reluctant to get up."],
+        ["Don't Give Human Fever Medication", "Never give a dog acetaminophen (Tylenol) or ibuprofen for a suspected fever — both are toxic to dogs, even at doses that seem small. Only vet-prescribed medication is safe."],
+        ['Write Down When Symptoms Started', "Vets will ask about timeline first. Noting when you first noticed warmth, lethargy, or appetite changes makes your vet call or visit faster and more useful."],
+    ];
+}
+
+function pz_mistakes_dog_fever_checker() {
+    return [
+        ['❌ Assuming a Warm Nose Means Fever', "A warm, dry nose is often just from sleeping, sun exposure, or normal variation — it's one of the least reliable fever indicators on its own."],
+        ["❌ Giving Human Medication to \"Help\"", "Tylenol and ibuprofen are toxic to dogs and can cause serious organ damage. Never medicate a feverish dog without your vet's specific guidance."],
+        ['❌ Waiting Out Severe Symptoms', "Pale or dark gums, labored breathing, or an unresponsive dog are emergencies regardless of how the rest of the picture looks — waiting to see if it passes can cost critical time."],
+        ["❌ Ignoring a Fever Because the Dog \"Seems Fine Otherwise\"", "Some dogs mask discomfort well. A confirmed elevated temperature is worth a vet call even if energy and appetite seem only mildly affected."],
+        ['❌ Skipping the Thermometer Confirmation', "Touch and behavior are useful for judging urgency, but they can't replace an actual reading — get a confirmed number when you can, especially before any vet call so you can report it."],
+    ];
+}
+
+function pz_render_checker_dog_fever_checker( $tool ) {
+    $icon = $tool['icon'] ?? '🌡️';
+    $questions = [
+        ['q' => "Does your dog feel warm to the touch (ears, paws, belly)?", 'opts' => [
+            'no'            => ['✅', 'No / unsure'],
+            'warm'          => ['⚠️', 'Yes, slightly warm'],
+            'hot'           => ['🚨', 'Yes, noticeably hot'],
+            'hot_lethargic' => ['🚨', 'Yes, and shivering or lethargic'],
+        ]],
+        ['q' => "How is your dog's energy level right now?", 'opts' => [
+            'normal'        => ['✅', 'Normal / active'],
+            'slightly_less' => ['⚠️', 'Slightly less energetic'],
+            'lethargic'     => ['🚨', 'Noticeably lethargic'],
+            'unresponsive'  => ['🚨', "Won't get up / unresponsive"],
+        ]],
+        ['q' => "Is your dog eating and drinking normally?", 'opts' => [
+            'normal'        => ['✅', 'Yes, normal'],
+            'eating_less'   => ['⚠️', 'Eating less than usual'],
+            'refusing_food' => ['⚠️', 'Refusing food but drinking'],
+            'refusing_both' => ['🚨', 'Refusing both food and water'],
+        ]],
+        ['q' => "Any other symptoms present?", 'opts' => [
+            'none'      => ['✅', 'None of these'],
+            'gi'        => ['⚠️', 'Vomiting or diarrhea'],
+            'shivering' => ['⚠️', 'Shivering or trembling'],
+            'severe'    => ['🚨', 'Pale or dark gums, or difficulty breathing'],
+        ]],
+        ['q' => "How long has this been going on?", 'opts' => [
+            'just_noticed'  => ['✅', 'Just noticed, under 2 hours'],
+            'few_hours'     => ['⚠️', 'A few hours'],
+            'over_24h'      => ['⚠️', 'Over 24 hours'],
+            'two_plus_days' => ['🚨', '2+ days'],
+        ]],
+    ];
+    $total = count($questions);
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Fever Checker</div>
+          <div class="pz-int-sublabel">5 quick questions · Get a clear next step</div>
+        </div>
+      </div>
+      <div class="pz-int-badges">
+        <span class="pz-int-badge pz-int-badge--green">✅ Vet-Informed Triage</span>
+        <span class="pz-int-badge pz-int-badge--orange">🚨 Flags Emergencies First</span>
+      </div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-checker-progress-wrap">
+        <div class="pz-checker-progress-bar"><div class="pz-checker-progress-fill" id="pz-prog-fill" style="width:0%"></div></div>
+        <span class="pz-checker-progress-txt" id="pz-prog-txt">Question 1 of <?php echo $total; ?></span>
+      </div>
+      <?php foreach ($questions as $i => $q): ?>
+      <div class="pz-checker-step <?php echo $i===0?'active':''; ?>" id="pz-step-<?php echo $i; ?>">
+        <div class="pz-checker-q-num">Question <?php echo $i+1; ?> / <?php echo $total; ?></div>
+        <p class="pz-checker-q-text"><?php echo esc_html($q['q']); ?></p>
+        <div class="pz-checker-cards">
+          <?php foreach ($q['opts'] as $val => $opt): ?>
+          <label class="pz-checker-card">
+            <input type="radio" name="pzq_<?php echo $i; ?>" value="<?php echo esc_attr($val); ?>"
+                   onchange="pzCheckerNext(<?php echo $i; ?>, <?php echo $total-1; ?>)">
+            <span class="pz-checker-card-icon"><?php echo $opt[0]; ?></span>
+            <span class="pz-checker-card-txt"><?php echo esc_html($opt[1]); ?></span>
+          </label>
+          <?php endforeach; ?>
+        </div>
+      </div>
+      <?php endforeach; ?>
+      <button class="pz-int-btn" id="pz-checker-submit" onclick="pzCheckDogFever()" style="display:none">
+        🔍 Get My Fever Risk Assessment
+      </button>
+      <div id="pz-checker-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ 2. Dog Allergy Symptoms Checker (dog_allergy_checker) ══ */
+
+function pz_hero_quickanswer_dog_allergy_checker() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Most allergic reactions in dogs are uncomfortable but not dangerous — itching, redness, occasional hot spots. A small minority progress fast into an emergency. This checker helps tell the two apart: answer the 5 questions below to find out whether you're likely looking at a manageable environmental or food allergy, or a reaction that needs a vet call today — or an emergency clinic right now.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_allergy_checker() { ?>
+      <span>✅ Distinguishes allergy types</span>
+      <span>🚨 Flags anaphylaxis risk</span>
+      <span>⚡ 5 quick questions</span>
+<?php }
+
+function pz_methodology_heading_dog_allergy_checker() { return "How This Allergy Risk Assessment Works"; }
+
+function pz_methodology_dog_allergy_checker() { ?>
+    <p style="color:#555;margin-bottom:20px">Most allergic reactions in dogs are uncomfortable but not dangerous — itching, redness, occasional hot spots. A small minority progress quickly and become emergencies. This checker is built to tell those apart fast, weighting facial swelling and breathing difficulty far more heavily than routine itching, because a true allergic emergency can escalate within minutes.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🩹</div>
+        <strong>Symptom Type &amp; Severity</strong>
+        <p>Itching alone is very different from facial swelling or hives, which is why symptom type carries the most weight in the result.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">📅</div>
+        <strong>Timing Pattern</strong>
+        <p>Seasonal timing points toward environmental allergens; a reaction right after a new food or treat points toward a food allergy; sudden onset out of nowhere gets flagged for closer attention.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">📍</div>
+        <strong>Location on the Body</strong>
+        <p>Paws and ears are the classic environmental-allergy pattern; facial or muzzle swelling is a different, far more urgent category entirely.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🫁</div>
+        <strong>Breathing &amp; GI Signs</strong>
+        <p>Any breathing difficulty alongside skin symptoms is treated as a possible emergency regardless of how mild everything else looks, since this is the hallmark of a serious allergic reaction.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_allergy_checker() {
+    return [
+        ["What's the difference between a food allergy and an environmental allergy in dogs?", "Food allergies typically cause year-round itching (often with GI symptoms) and are linked to a specific ingredient — commonly chicken, beef, dairy, or wheat. Environmental allergies (pollen, dust mites, mold, fleas) often follow a seasonal pattern and tend to affect paws, ears, and the belly first. Many dogs have some combination of both, which is why a vet-guided elimination diet or allergy testing is the reliable way to pin down the exact trigger."],
+        ["Can I give my dog Benadryl for allergies?", "Some vets do recommend diphenhydramine (Benadryl) for dogs, but dosing is weight-based and formulation matters — many Benadryl products contain other ingredients that are unsafe for dogs. Never give a human antihistamine without confirming the dose and product with your vet first."],
+        ["What does facial swelling in a dog mean?", "Facial or muzzle swelling, especially if it comes on suddenly, can indicate a serious allergic reaction (angioedema) that can progress to anaphylaxis. This is treated as an emergency — head to a vet or emergency clinic immediately rather than waiting to see if it goes down on its own."],
+        ["How long does a dog allergy flare-up usually last?", "A mild environmental flare can settle in a few days with reduced exposure and vet-guided treatment. Food allergy symptoms typically take 8–12 weeks of a strict elimination diet to fully resolve and confirm the trigger. Chronic, unmanaged allergies can persist indefinitely without identifying and addressing the actual cause."],
+        ["Are some dog breeds more prone to allergies?", "Yes — breeds like French Bulldogs, Retrievers, Bulldogs, Terriers, and Shar-Peis are statistically more prone to environmental and food allergies, often related to skin barrier differences. That said, any dog of any breed can develop allergies at any age."],
+    ];
+}
+
+function pz_what_is_dog_allergy_checker() {
+    ob_start(); ?>
+    <p>The Dog Allergy Symptoms Checker asks five questions about what symptoms you're seeing, when they happen, where they're located, and whether any breathing or GI signs are present alongside them — then gives you a proportionate next step, from home management to an emergency vet visit.</p>
+    <p>Most dog allergies are environmental or food-related and, while uncomfortable, aren't dangerous — they're a quality-of-life issue to manage with your vet's guidance. But a small number of allergic reactions are true emergencies: facial swelling, hives with breathing difficulty, or a sudden severe reaction can be the start of anaphylaxis, which can become life-threatening within minutes. This checker is built to flag that difference immediately rather than averaging it into a routine "manage at home" result.</p>
+    <p>Answer the questions above for your result, then scroll down for guidance on identifying and managing common allergy triggers, plus the FAQ covering the questions dog owners ask most about allergies.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_allergy_checker() {
+    ob_start(); ?>
+    <p>Getting the urgency right on a dog allergy matters in both directions — under-reacting to a true emergency is dangerous, and over-reacting to routine itching creates unnecessary stress and cost:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🚨</span>
+        <div>
+          <strong>Anaphylaxis Is Rare But Fast-Moving</strong>
+          <p>True allergic emergencies in dogs can progress from first sign to life-threatening within minutes, which is why facial swelling or breathing difficulty is treated as urgent regardless of anything else in the picture.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🏠</span>
+        <div>
+          <strong>Most Allergies Are Manageable</strong>
+          <p>The large majority of dog allergies are chronic-but-livable conditions, well controlled with trigger identification, diet changes, or vet-guided medication — not emergencies.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🔍</span>
+        <div>
+          <strong>Identifying the Trigger Takes Structure</strong>
+          <p>Guessing at food or environmental triggers rarely works — a proper elimination diet or allergy test, done with your vet, is what actually pinpoints the cause.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">💊</span>
+        <div>
+          <strong>Self-Medicating Carries Real Risk</strong>
+          <p>Human antihistamines and other over-the-counter products can be unsafe at the wrong dose or formulation — a vet's specific guidance protects against both under- and over-treating.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_allergy_checker() {
+    return [
+        ['title'=>'Observe the Full Symptom Picture', 'desc'=>"Look beyond just itching — check for redness, hair loss, swelling (especially around the face), hives, and whether your dog seems otherwise normal or is showing breathing changes or vomiting."],
+        ['title'=>'Note When It Started', 'desc'=>"Seasonal patterns, a recent new food or treat, or a sudden onset out of nowhere each point toward a different type of trigger — write down what changed recently."],
+        ['title'=>'Check the Location', 'desc'=>"Paws and ears are the classic environmental-allergy pattern. Widespread itching or facial/muzzle swelling are different categories that need different responses."],
+        ['title'=>'Watch for Breathing or GI Involvement', 'desc'=>"Any breathing difficulty alongside skin symptoms is the single most important thing to catch — this is treated as a possible emergency regardless of how mild the skin symptoms look."],
+        ['title'=>'Answer the 5 Questions Above', 'desc'=>"Work through the checker for a proportionate, level-headed read on urgency based on the actual pattern you're seeing, not just the first symptom you noticed."],
+        ['title'=>'Follow the Guidance and Track Response', 'desc'=>"Whether your result points to home management or a vet visit, follow it — and if you start a new diet or treatment, track your dog's response over the following weeks to help confirm what's actually working."],
+    ];
+}
+
+function pz_tips_dog_allergy_checker() {
+    return [
+        ['Photograph Skin Changes Over Time', "Redness, hot spots, and hair loss patterns are much easier for your vet to assess from photos taken over several days than from your description alone."],
+        ['Try an Elimination Diet Only Under Vet Guidance', "A proper elimination diet takes 8–12 strict weeks and reintroduces ingredients one at a time — done informally or too fast, it rarely gives a reliable answer."],
+        ['Keep a Trigger Log', "Note flare-ups alongside season, recent food changes, new products, and location (indoor vs. outdoor) — patterns often become obvious after a few weeks of logging."],
+        ['Ask About Year-Round Flea Prevention', "Flea allergy dermatitis is one of the most common and most overlooked triggers — consistent flea prevention rules this out as a contributing factor."],
+        ['Never Give Human Antihistamines Without Vet Dosing Guidance', "Even when a human antihistamine is appropriate, the dose is weight-based and the specific product matters — confirm both with your vet before giving anything."],
+    ];
+}
+
+function pz_mistakes_dog_allergy_checker() {
+    return [
+        ['❌ Waiting Out Facial Swelling', "Facial or muzzle swelling can be the start of a rapidly progressing allergic reaction — this is treated as an emergency, not something to watch and wait on."],
+        ['❌ Guessing at Food Triggers Without a Structured Diet', "Randomly swapping foods rarely identifies the actual allergen and can drag the problem out for months. A proper vet-guided elimination diet is far more reliable."],
+        ['❌ Giving Human Antihistamines at a Guessed Dose', "Dosing by guesswork, or using a combination product with other active ingredients, can be unsafe. Confirm the specific product and dose with your vet first."],
+        ["❌ Assuming It's \"Just Seasonal\" Every Time", "A dog with a known seasonal allergy can still develop a new food allergy or a genuine emergency reaction — don't let a past pattern wave off new or different symptoms."],
+        ['❌ Ignoring Mild Vomiting Alongside Skin Symptoms', "GI symptoms paired with skin symptoms can indicate a more significant reaction than skin symptoms alone — this combination is worth a vet call even if each symptom individually seems minor."],
+    ];
+}
+
+function pz_render_checker_dog_allergy_checker( $tool ) {
+    $icon = $tool['icon'] ?? '🤧';
+    $questions = [
+        ['q' => "What symptoms are you seeing?", 'opts' => [
+            'itch_only'     => ['✅', 'Itching / scratching only'],
+            'itch_red'      => ['⚠️', 'Itching plus red skin or hot spots'],
+            'itch_hairloss' => ['⚠️', 'Itching plus hair loss'],
+            'severe'        => ['🚨', 'Facial swelling, hives, or sudden severe symptoms'],
+        ]],
+        ['q' => "When do symptoms happen?", 'opts' => [
+            'seasonal'     => ['✅', 'Seasonally / certain times of year'],
+            'year_round'   => ['⚠️', 'Year-round'],
+            'after_food'   => ['⚠️', 'Right after a new food or treat'],
+            'sudden_today' => ['🚨', 'Suddenly today, never before'],
+        ]],
+        ['q' => "Where on the body?", 'opts' => [
+            'paws_ears'     => ['✅', 'Paws / ears mainly'],
+            'widespread'    => ['⚠️', 'Widespread, all over'],
+            'face_swelling' => ['🚨', 'Face / muzzle swelling'],
+            'after_sting'   => ['🚨', 'Just started after a bee sting or new medication'],
+        ]],
+        ['q' => "Any breathing difficulty or vomiting alongside the skin symptoms?", 'opts' => [
+            'no'        => ['✅', 'No'],
+            'vomiting'  => ['⚠️', 'Mild vomiting only'],
+            'breathing' => ['🚨', 'Any breathing difficulty'],
+        ]],
+        ['q' => "How long has this been going on?", 'opts' => [
+            'chronic' => ['✅', 'Chronic, weeks to months'],
+            'days'    => ['⚠️', 'Days'],
+            'hours'   => ['⚠️', 'Just started, under a few hours'],
+        ]],
+    ];
+    $total = count($questions);
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Allergy Symptoms Checker</div>
+          <div class="pz-int-sublabel">5 quick questions · Get a clear next step</div>
+        </div>
+      </div>
+      <div class="pz-int-badges">
+        <span class="pz-int-badge pz-int-badge--green">✅ Vet-Informed Triage</span>
+        <span class="pz-int-badge pz-int-badge--orange">🚨 Flags Emergencies First</span>
+      </div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-checker-progress-wrap">
+        <div class="pz-checker-progress-bar"><div class="pz-checker-progress-fill" id="pz-prog-fill" style="width:0%"></div></div>
+        <span class="pz-checker-progress-txt" id="pz-prog-txt">Question 1 of <?php echo $total; ?></span>
+      </div>
+      <?php foreach ($questions as $i => $q): ?>
+      <div class="pz-checker-step <?php echo $i===0?'active':''; ?>" id="pz-step-<?php echo $i; ?>">
+        <div class="pz-checker-q-num">Question <?php echo $i+1; ?> / <?php echo $total; ?></div>
+        <p class="pz-checker-q-text"><?php echo esc_html($q['q']); ?></p>
+        <div class="pz-checker-cards">
+          <?php foreach ($q['opts'] as $val => $opt): ?>
+          <label class="pz-checker-card">
+            <input type="radio" name="pzq_<?php echo $i; ?>" value="<?php echo esc_attr($val); ?>"
+                   onchange="pzCheckerNext(<?php echo $i; ?>, <?php echo $total-1; ?>)">
+            <span class="pz-checker-card-icon"><?php echo $opt[0]; ?></span>
+            <span class="pz-checker-card-txt"><?php echo esc_html($opt[1]); ?></span>
+          </label>
+          <?php endforeach; ?>
+        </div>
+      </div>
+      <?php endforeach; ?>
+      <button class="pz-int-btn" id="pz-checker-submit" onclick="pzCheckDogAllergy()" style="display:none">
+        🔍 Get My Allergy Risk Assessment
+      </button>
+      <div id="pz-checker-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ 3. Dog Parasite Prevention Guide (dog_parasite_prevention) ══ */
+
+function pz_hero_quickanswer_dog_parasite_prevention() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>A complete prevention plan has three parts: monthly heartworm preventive (blood test required first), monthly flea &amp; tick protection, and a deworming schedule set with your vet. Dogs with frequent outdoor exposure or in warm year-round climates need all three running with no gaps. Answer the 3 questions above for a plan scaled to your dog.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_parasite_prevention() { ?>
+      <span>✅ Vet-informed priority order</span>
+      <span>🦟 Flea, tick &amp; heartworm covered</span>
+      <span>📋 Free personalized plan</span>
+<?php }
+
+function pz_methodology_heading_dog_parasite_prevention() { return "How This Prevention Plan Is Built"; }
+
+function pz_methodology_dog_parasite_prevention() { ?>
+    <p style="color:#555;margin-bottom:20px">Parasite prevention isn't one product — it's three separate categories (heartworm, flea/tick, and intestinal worms) that need their own schedules. The guide scales each one based on your dog's exposure, your region's climate, and how much of the plan you already have in place.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🐾</div>
+        <strong>Lifestyle &amp; Exposure</strong>
+        <p>Dogs with frequent woods, trail, or dog-park exposure face meaningfully higher parasite risk than mostly-indoor dogs and need tighter coverage.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🌡️</div>
+        <strong>Regional Climate</strong>
+        <p>Warm year-round climates keep fleas, ticks, and mosquitoes (which spread heartworm) active every month — cold winters reduce but don't eliminate the risk.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">📋</div>
+        <strong>Current Coverage Gaps</strong>
+        <p>The plan identifies exactly which of the three protection types is missing or inconsistent, rather than repeating generic advice you may already be following.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🩺</div>
+        <strong>Vet-Set Priority Order</strong>
+        <p>When multiple gaps exist, heartworm prevention comes first — heartworm treatment is far more dangerous and expensive than prevention — followed by flea/tick, then deworming.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_parasite_prevention() {
+    return [
+        ["Do indoor dogs need parasite prevention?", "Yes, though the risk is lower than for dogs with regular outdoor exposure. Fleas hitch rides indoors on humans, other pets, or through screens, and mosquitoes (which spread heartworm) can get inside too. Most vets still recommend at least baseline monthly heartworm and flea/tick prevention for indoor dogs, especially in warmer climates."],
+        ["Why does heartworm prevention need a blood test first?", "Giving heartworm preventive to a dog that's already infected can trigger a dangerous, sometimes fatal reaction as the medication rapidly affects existing worms and larvae. A quick vet blood test confirms your dog is heartworm-negative before starting or restarting monthly prevention."],
+        ["Can I skip parasite prevention in winter?", "It depends on your climate. In regions with hard freezes, flea, tick, and mosquito activity drops significantly in winter, and some vets allow a seasonal pause. In warm year-round climates, or for dogs with any indoor flea history, most vets recommend continuing monthly prevention through winter too."],
+        ["How is deworming different from heartworm and flea/tick prevention?", "Deworming targets intestinal parasites (roundworms, hookworms, tapeworms, whipworms) picked up through contaminated soil, feces, or prey — a separate category from heartworm (spread by mosquitoes) and fleas/ticks (external parasites). Many monthly heartworm products include some intestinal parasite coverage, but your vet can confirm what your specific product covers."],
+        ["What happens if my dog gets heartworm?", "Heartworm treatment involves a series of injections, strict activity restriction for weeks to months, and carries real risk and significant cost — far more of all three than monthly prevention. This is why closing a heartworm prevention gap is treated as the top priority whenever multiple gaps exist."],
+    ];
+}
+
+function pz_what_is_dog_parasite_prevention() {
+    ob_start(); ?>
+    <p>The Dog Parasite Prevention Guide builds a three-part protection plan — heartworm, flea/tick, and deworming — scaled to your dog's lifestyle, your region's climate, and what you already have in place. Rather than a generic "use monthly prevention" line, it tells you specifically which gaps to close first and why.</p>
+    <p>Parasite prevention is really three separate systems working together: a monthly heartworm preventive (which requires a vet blood test before starting), monthly external parasite protection against fleas and ticks, and a periodic deworming schedule for intestinal parasites. Skipping or being inconsistent with any one of the three leaves a real gap, even if the other two are covered.</p>
+    <p>Answer the questions above for your personalized plan, then scroll down for the reasoning behind the priority order and the FAQ covering the parasite prevention questions dog owners ask most.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_parasite_prevention() {
+    ob_start(); ?>
+    <p>Parasites aren't just an itching nuisance — several of them cause serious, expensive, and sometimes fatal disease if prevention lapses. Here's what's actually at stake:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">❤️</span>
+        <div>
+          <strong>Heartworm Is Preventable But Dangerous Untreated</strong>
+          <p>Heartworm disease damages the heart and lungs and can be fatal. Monthly prevention is inexpensive and highly effective; treatment after infection is risky, restrictive, and far more costly.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🦟</span>
+        <div>
+          <strong>Fleas and Ticks Spread Disease, Not Just Itching</strong>
+          <p>Beyond skin irritation and flea allergy dermatitis, ticks transmit Lyme disease, ehrlichiosis, and other serious infections — consistent prevention is what actually blocks transmission.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🪱</span>
+        <div>
+          <strong>Intestinal Worms Affect Nutrition and Growth</strong>
+          <p>Untreated intestinal parasites can cause weight loss, poor coat condition, and in puppies, stunted growth — regular deworming keeps this in check.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">👪</span>
+        <div>
+          <strong>Some Parasites Are Zoonotic</strong>
+          <p>Certain intestinal parasites and fleas can be transmitted to humans, particularly children — consistent prevention protects your household, not just your dog.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_parasite_prevention() {
+    return [
+        ['title'=>"Identify Your Dog's Exposure Level", 'desc'=>"Mostly indoor, regular outdoor/yard time, or frequent woods, trails, and other dogs — this sets the baseline risk the rest of the plan scales from."],
+        ['title'=>"Note Your Region's Climate", 'desc'=>"Warm year-round climates keep parasites active every month; seasonal climates with hard winters reduce but don't eliminate the risk."],
+        ['title'=>"Review What You Currently Have Covered", 'desc'=>"Be honest about whether you're on nothing, some inconsistent products, or full monthly prevention — the plan is built around closing your actual gaps."],
+        ['title'=>"Get Your Personalized 3-Part Plan", 'desc'=>"Review your heartworm, flea/tick, and deworming recommendations, prioritized in the order that matters most for your dog's situation."],
+        ['title'=>"Book a Vet Visit for the Heartworm Blood Test", 'desc'=>"If heartworm prevention isn't already running, this blood test is required before starting — it confirms your dog isn't already infected."],
+        ['title'=>"Set Monthly Reminders", 'desc'=>"Once your plan is running, monthly consistency is what actually protects your dog — a reminder each month prevents gaps from creeping back in."],
+    ];
+}
+
+function pz_tips_dog_parasite_prevention() {
+    return [
+        ['Give Preventives on the Same Date Each Month', "Picking a fixed date — like the 1st of the month — makes monthly prevention far easier to stay consistent with than trying to remember a rolling date."],
+        ["Check Your Dog After Every Outdoor Outing in Tick Season", "A quick hands-on check for ticks after hikes or tall-grass walks catches them before they've had time to attach and transmit disease."],
+        ['Treat the Yard, Not Just the Dog', "Fleas and ticks live in yard vegetation and shaded areas, not just on your dog — treating the yard alongside your dog's prevention reduces overall exposure."],
+        ["Don't Assume One Product Covers Everything", "Not every monthly product covers heartworm, fleas, ticks, and intestinal worms all at once — check your specific product's label or ask your vet exactly what it protects against."],
+        ['Keep Prevention Records', "Note the date and product for each dose given — this avoids double-dosing or missed months and gives your vet a clear history at checkups."],
+    ];
+}
+
+function pz_mistakes_dog_parasite_prevention() {
+    return [
+        ['❌ Starting Heartworm Prevention Without a Blood Test', "Giving heartworm preventive to an already-infected dog can trigger a dangerous reaction. Always confirm heartworm-negative status with a vet blood test first."],
+        ['❌ Stopping Prevention Over Winter in a Mild Climate', "Fleas, ticks, and mosquitoes can remain active through mild winters or survive indoors — a full seasonal pause carries real risk outside of genuinely hard-freeze climates."],
+        ['❌ Treating Deworming as a One-Time Event', "Intestinal parasites can be picked up repeatedly from soil, feces, or prey — deworming is an ongoing schedule set with your vet, not a single treatment you complete once."],
+        ['❌ Assuming Indoor Dogs Are Fully Protected', "Fleas travel indoors on people and other pets, and mosquitoes get inside too — indoor-only dogs still carry meaningful risk and generally need baseline prevention."],
+        ['❌ Mixing Products Without Checking Compatibility', "Combining certain flea/tick and heartworm products without vet guidance can lead to overdosing or gaps in coverage — check with your vet before layering multiple products."],
+    ];
+}
+
+function pz_render_guide_dog_parasite_prevention( $tool ) {
+    $icon = $tool['icon'] ?? '🦟';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Parasite Prevention Plan Builder</div>
+          <div class="pz-int-sublabel">Flea, tick &amp; heartworm · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🦟 3-Part Plan</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Lifestyle</label>
+          <select id="pz_pp_lifestyle" class="pz-int-select">
+            <option value="indoor">Mostly indoor</option>
+            <option value="outdoor" selected>Regular outdoor / yard time</option>
+            <option value="high_exposure">Frequent woods / trails / other dogs</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Current Prevention</label>
+          <select id="pz_pp_current" class="pz-int-select">
+            <option value="none">Nothing currently</option>
+            <option value="some" selected>Some products, not consistent</option>
+            <option value="full">Full monthly prevention year-round</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Region Climate</label>
+          <select id="pz_pp_climate" class="pz-int-select">
+            <option value="warm_yearround">Warm year-round (parasites active all year)</option>
+            <option value="seasonal" selected>Seasonal (cold winters reduce risk)</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenParasitePrevention()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Build My Prevention Plan
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ 4. Puppy Health Checklist (puppy_health_checklist) ══ */
+
+function pz_hero_quickanswer_puppy_health_checklist() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>What your puppy needs changes fast in the first year: deworming and no vaccines yet under 8 weeks, a 3-round core vaccine series between 8–16 weeks, boosters and a spay/neuter conversation around 4–6 months, and a rabies booster plus first adult wellness exam by 6–12 months. Select your puppy's age and vaccination status above for a checklist matched to their exact stage.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_puppy_health_checklist() { ?>
+      <span>✅ Age-stage specific</span>
+      <span>💉 Vaccine timeline included</span>
+      <span>🚩 Flags mismatched vaccine status</span>
+<?php }
+
+function pz_methodology_heading_puppy_health_checklist() { return "How This Checklist Is Built"; }
+
+function pz_methodology_puppy_health_checklist() { ?>
+    <p style="color:#555;margin-bottom:20px">A puppy's health needs shift every few weeks during the first year — what's appropriate at 6 weeks (no vaccines yet, first vet visit) is very different from what's appropriate at 10 months (rabies booster, adult food transition). This checklist matches your puppy's current age window to the tasks that actually apply right now, and separately checks whether their vaccination status lines up with what's expected for that age.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">📅</div>
+        <strong>Age Window</strong>
+        <p>Under 8 weeks, 8–16 weeks, 4–6 months, and 6–12 months each carry a distinct set of appropriate tasks and milestones.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">💉</div>
+        <strong>Vaccination Status</strong>
+        <p>The core vaccine series is typically given across three rounds through the 8–16 week window — status is checked against what's typical for the current age.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🚩</div>
+        <strong>Mismatch Detection</strong>
+        <p>If vaccination status looks behind schedule for the selected age, the checklist flags it gently as worth an urgent vet call, rather than silently showing the generic list.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🐕</div>
+        <strong>Whole-Year Coverage</strong>
+        <p>From the first vet visit through the first "adult" wellness exam around 12 months, the checklist walks the full first-year arc, not just vaccines.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_puppy_health_checklist() {
+    return [
+        ["When should my puppy get their first vaccines?", "The core vaccine series (typically covering parvovirus, distemper, and adenovirus, among others your vet may add) usually starts around 6–8 weeks and is given across three rounds through roughly 16 weeks. Your vet sets the exact schedule based on your puppy's specific situation."],
+        ["When can my puppy go to the dog park?", "Most vets recommend waiting until the core vaccine series is fully complete, typically around 16 weeks, before visiting dog parks or other areas with unknown-vaccination dogs. Before that, controlled socialization with known, healthy, vaccinated dogs is safer."],
+        ["When should I spay or neuter my puppy?", "This varies by breed size — many vets recommend around 6 months for small/medium breeds, while large and giant breeds increasingly wait closer to 12–18 months for growth plate and joint health reasons. The 4–6 month window is a good time to start this conversation with your vet."],
+        ["What if my puppy is behind on vaccines for their age?", "It's worth an urgent call to your vet rather than waiting for the next routine visit — being unvaccinated or under-vaccinated past the typical window leaves a puppy vulnerable to serious, preventable diseases during a high-risk period."],
+        ["When does my puppy need a rabies vaccine?", "Timing is set by local law and varies by location, but it's often given toward the end of the core series or by 6 months to a year of age. Your vet will confirm the exact required timing for your area."],
+    ];
+}
+
+function pz_what_is_puppy_health_checklist() {
+    ob_start(); ?>
+    <p>The Puppy Health Checklist gives you an age-appropriate list of what should be done, in progress, or coming up for your puppy's current stage — from the first vet visit under 8 weeks through the first "adult" wellness exam around 12 months.</p>
+    <p>Puppies go through more health milestones in their first year than at any other point in their life: deworming, a multi-round core vaccine series, a spay/neuter conversation, teething, and eventually a transition to adult food and care. Missing or delaying the wrong milestone at the wrong time — especially vaccines — carries real risk, which is why this checklist also checks whether your puppy's vaccination status matches what's typical for their age.</p>
+    <p>Select your puppy's age and vaccination status above for your checklist, then scroll down for the reasoning behind each stage and the FAQ covering the questions new puppy owners ask most.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_puppy_health_checklist() {
+    ob_start(); ?>
+    <p>The first year sets the foundation for your puppy's lifelong health — getting the timing right on a few key milestones matters more than people expect:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">💉</span>
+        <div>
+          <strong>Vaccine Timing Protects Against Serious Disease</strong>
+          <p>Puppies are especially vulnerable to parvovirus and distemper before their immune system and vaccine series are complete — timing gaps leave a real window of risk.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🐕‍🦺</span>
+        <div>
+          <strong>Socialization Has a Critical Window</strong>
+          <p>The early weeks are a key developmental period for social confidence, but need to be balanced carefully against infection risk until vaccines are complete.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🦴</span>
+        <div>
+          <strong>Growth-Stage Decisions Matter</strong>
+          <p>Spay/neuter timing and activity levels during growth affect joint and skeletal development, especially in larger breeds — the right timing depends on breed size.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">📋</span>
+        <div>
+          <strong>Early Habits Set the Long-Term Baseline</strong>
+          <p>The wellness exam around 12 months establishes your dog's adult health baseline — showing up prepared and on schedule makes that exam far more useful.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_puppy_health_checklist() {
+    return [
+        ['title'=>"Identify Your Puppy's Current Age Window", 'desc'=>"Under 8 weeks, 8–16 weeks, 4–6 months, or 6–12 months — this determines which tasks and milestones actually apply right now."],
+        ['title'=>'Confirm Vaccination Status', 'desc'=>"Not started, started but not complete, or core series complete — this is checked against what's typical for your puppy's age."],
+        ['title'=>'Review Your Age-Matched Checklist', 'desc'=>"Read through the specific tasks and milestones for your puppy's current stage, rather than a generic one-size-fits-all puppy list."],
+        ['title'=>'Address Any Mismatch Flag Immediately', 'desc'=>"If your puppy's vaccine status looks behind schedule for their age, treat it as an urgent vet call rather than something to handle at the next routine visit."],
+        ['title'=>'Schedule Upcoming Milestones', 'desc'=>"Book appointments for the next vaccine round, spay/neuter conversation, or booster before you need them, not after you realize you're behind."],
+        ['title'=>'Recheck the Checklist as Your Puppy Grows', 'desc'=>"Come back and re-select the age group every few weeks through the first year to stay ahead of the next stage's tasks."],
+    ];
+}
+
+function pz_tips_puppy_health_checklist() {
+    return [
+        ['Keep a Vaccine Record Card', "Ask your vet for a written vaccine record and keep it accessible — many boarding facilities, groomers, and dog parks require proof, and it helps track exactly what's been given."],
+        ["Don't Skip the First Vet Visit Even If Your Puppy Seems Healthy", "The first visit establishes a health baseline, starts deworming, and sets the vaccine schedule — waiting until something looks wrong means starting behind."],
+        ['Balance Socialization With Infection Risk', "Controlled exposure to healthy, vaccinated dogs and calm new environments during the early weeks supports development without the risk of unvaccinated-area exposure."],
+        ['Start the Spay/Neuter Conversation Early', "Bring it up around 4–6 months even if you plan to wait — breed-size-specific timing takes planning, and starting the conversation early avoids a rushed decision later."],
+        ['Track Growth, Not Just Weight', "Puppies grow in spurts. Tracking general growth trend and body condition with your vet matters more than chasing a specific number on any given week."],
+    ];
+}
+
+function pz_mistakes_puppy_health_checklist() {
+    return [
+        ['❌ Taking an Under-Vaccinated Puppy to Dog Parks', "Visiting dog parks or high-traffic dog areas before the core vaccine series is complete exposes a vulnerable puppy to serious, preventable diseases like parvovirus."],
+        ['❌ Assuming One Vaccine Visit Is the Whole Series', "The core series is typically given across three rounds, not one — stopping after the first shot leaves real gaps in protection."],
+        ['❌ Isolating a Puppy Completely Until Vaccines Are Done', "Skipping socialization entirely to avoid infection risk can create long-term behavioral issues — controlled, careful socialization with healthy dogs can and should still happen."],
+        ['❌ Waiting Too Long to Start the Spay/Neuter Conversation', "Breed-size-specific timing recommendations take planning — bringing it up for the first time at 10 months leaves little room to plan appropriately."],
+        ['❌ Ignoring a Vaccine Schedule That Falls Behind', "If vaccination status doesn't match what's typical for your puppy's age, treat it as urgent rather than assuming it will catch up on its own at the next routine visit."],
+    ];
+}
+
+function pz_render_guide_puppy_health_checklist( $tool ) {
+    $icon = $tool['icon'] ?? '✅';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Puppy Health Checklist</div>
+          <div class="pz-int-sublabel">Age-matched · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">💉 Vaccine-Aware</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Puppy Age</label>
+          <select id="pz_phc_age" class="pz-int-select">
+            <option value="under8">Under 8 weeks</option>
+            <option value="8to16" selected>8–16 weeks</option>
+            <option value="4to6mo">4–6 months</option>
+            <option value="6to12mo">6–12 months</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Vaccination Status</label>
+          <select id="pz_phc_vax" class="pz-int-select">
+            <option value="none">Not started</option>
+            <option value="partial" selected>Started, not complete</option>
+            <option value="complete">Core series complete</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenPuppyHealthChecklist()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Puppy's Checklist
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ 5. Dog Spay & Neuter Guide (dog_spay_neuter) ══ */
+
+function pz_hero_quickanswer_dog_spay_neuter() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Many vets recommend spaying/neutering small and medium breeds around 6 months, while for large and giant breeds many vets now recommend waiting closer to 12–18 months for growth plate and joint health reasons. This is a general talking point, not an absolute rule — your vet's recommendation for your specific dog always takes priority. Enter your dog's details above for guidance matched to their size and age.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_spay_neuter() { ?>
+      <span>✅ Size-specific timing</span>
+      <span>🔬 Current, evidence-based guidance</span>
+      <span>🩹 Recovery basics included</span>
+<?php }
+
+function pz_methodology_heading_dog_spay_neuter() { return "How This Timing Guidance Is Built"; }
+
+function pz_methodology_dog_spay_neuter() { ?>
+    <p style="color:#555;margin-bottom:20px">Spay/neuter timing advice has genuinely evolved. The old one-size-fits-all "6 months for every dog" rule has been refined as research linked early spay/neuter in large and giant breeds to a higher rate of certain joint issues tied to open growth plates. This guide reflects that more current, size-aware thinking — while being clear that the final call always belongs to your dog's individual vet.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🐕</div>
+        <strong>Breed Size</strong>
+        <p>Small and medium breeds mature and reach skeletal maturity faster than large and giant breeds, which is the main driver behind the different timing windows.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🦴</div>
+        <strong>Growth Plate Closure</strong>
+        <p>In large and giant breeds, growth plates stay open longer — many vets now recommend waiting until they're closer to closed before spaying or neutering.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">📅</div>
+        <strong>Current Age</strong>
+        <p>Your dog's current age is compared to the typical window for their size to tell you where they stand — and reassures you it's not "too late" if you're past it.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🩺</div>
+        <strong>Your Vet Has the Final Say</strong>
+        <p>Individual health history, behavior, and specific breed all factor into your vet's actual recommendation — this guide is a starting point for that conversation, not a replacement for it.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_spay_neuter() {
+    return [
+        ["What's the best age to spay or neuter my dog?", "It depends mainly on breed size. Many vets recommend around 6 months for small and medium breeds, while for large and giant breeds many vets now recommend waiting until closer to 12–18 months to support growth plate and joint health. This is general guidance — your vet's recommendation for your specific dog takes priority."],
+        ["Why do large breeds need to wait longer?", "Research has linked early spay/neuter in large and giant breeds to a somewhat higher rate of certain joint conditions, linked to how spay/neuter affects growth plate closure timing. Waiting until closer to skeletal maturity is now a common recommendation for these breeds, though it's an evolving area and your vet may weigh other factors too."],
+        ["Is it too late to spay/neuter my adult dog?", "No — it's essentially never \"too late\" in a general sense. If your dog is past the typical window for their size, it's still worth discussing with your vet, who can advise based on your dog's specific age, health, and history."],
+        ["What is recovery like after spay or neuter surgery?", "Most dogs need about 10–14 days of restricted activity to heal properly, along with an e-collar or recovery suit to prevent licking the incision. Watch the incision site daily for redness, discharge, or swelling, which can indicate infection and should be checked by your vet."],
+        ["Does spaying or neutering change my dog's behavior?", "It commonly reduces or eliminates certain hormone-driven behaviors like roaming, marking, and some aggression, though individual results vary and it's not a guaranteed behavior fix. Training and environment still play a major role in behavior regardless of spay/neuter status."],
+    ];
+}
+
+function pz_what_is_dog_spay_neuter() {
+    ob_start(); ?>
+    <p>The Dog Spay &amp; Neuter Guide gives you a current, size-aware read on typical timing — small/medium breeds are often spayed or neutered around 6 months, while large and giant breeds increasingly wait until closer to 12–18 months, reflecting growth plate and joint health considerations that have become part of mainstream vet guidance in recent years.</p>
+    <p>This is genuinely more nuanced than the old blanket "6 months for every dog" advice, and it's framed here as "many vets now recommend," not an absolute rule — plenty of individual factors (breed, health history, behavior, living situation) can shift your vet's specific recommendation for your dog. If your dog is already past the typical window, that's not a problem this guide will tell you to worry about — it's still worth a conversation with your vet, never "too late" in a general sense.</p>
+    <p>Enter your dog's sex, breed size, and current age above for guidance, then scroll down for recovery basics and the FAQ covering the questions dog owners ask most about spay/neuter timing.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_spay_neuter() {
+    ob_start(); ?>
+    <p>Spay/neuter timing affects more than just population control — it intersects with growth, joint health, and long-term behavior in ways that are genuinely size-dependent:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🦴</span>
+        <div>
+          <strong>Joint Health Is Size-Dependent</strong>
+          <p>For large and giant breeds, timing relative to growth plate closure is now a real factor vets weigh — a one-size-fits-all timing rule ignores this.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🏥</span>
+        <div>
+          <strong>Health Benefits Are Real</strong>
+          <p>Spaying and neutering reduce or eliminate the risk of certain reproductive cancers and infections, alongside population control benefits.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🩹</span>
+        <div>
+          <strong>Recovery Needs Real Planning</strong>
+          <p>10–14 days of restricted activity and consistent e-collar use directly affect how smoothly recovery goes — going in prepared matters.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🐕</span>
+        <div>
+          <strong>Behavior Can Shift, But Isn't Guaranteed</strong>
+          <p>Some hormone-driven behaviors often improve, but spay/neuter isn't a substitute for training — setting realistic expectations avoids disappointment.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_spay_neuter() {
+    return [
+        ['title'=>"Confirm Your Dog's Breed Size Category", 'desc'=>"Small/medium (under 60 lbs adult) or large/giant (60+ lbs adult) — this is the main factor driving the recommended timing window."],
+        ['title'=>"Enter Your Dog's Current Age", 'desc'=>"This compares your dog's age to the typical window for their size, showing whether they're ahead of, within, or past the common range."],
+        ['title'=>'Review Your Personalized Guidance', 'desc'=>"Read the size-specific timing recommendation, remembering it's framed as common current practice, not an absolute rule for every individual dog."],
+        ['title'=>'Discuss With Your Vet', 'desc'=>"Bring this guidance to your vet, who will factor in your dog's specific health history, behavior, and living situation for a final recommendation."],
+        ['title'=>'Schedule the Procedure', 'desc'=>"Once you and your vet settle on timing, book the surgery and ask about pre-op requirements like fasting instructions."],
+        ['title'=>'Plan for a 10–14 Day Recovery', 'desc'=>"Prepare a quiet, restricted-activity space, have an e-collar ready, and know what incision changes to watch for before surgery day."],
+    ];
+}
+
+function pz_tips_dog_spay_neuter() {
+    return [
+        ["Prepare the Recovery Space Before Surgery Day", "Set up a quiet, low-traffic area with easy access to water, away from stairs or jumping opportunities, before your dog comes home from surgery."],
+        ['Use the E-Collar Consistently', "Licking or chewing at the incision is one of the most common causes of complications — consistent e-collar or recovery-suit use, even when your dog seems fine, prevents this."],
+        ['Restrict Activity for the Full 10–14 Days', "Resuming normal activity too early is a common cause of complications like incision reopening — stick to the full restricted period even once your dog seems back to normal."],
+        ['Check the Incision Daily', "Look for redness, discharge, swelling, or odor once a day during recovery — catching an infection early makes it far easier to treat."],
+        ["Ask Your Vet About Pre-Op Bloodwork", "A pre-surgical blood panel can catch underlying issues before anesthesia, adding an extra layer of safety, especially for adult or senior dogs."],
+    ];
+}
+
+function pz_mistakes_dog_spay_neuter() {
+    return [
+        ['❌ Applying the Same Timing to Every Breed Size', 'Using a flat "6 months for every dog" rule ignores that large and giant breeds often benefit from waiting longer for growth plate and joint health reasons.'],
+        ["❌ Letting Activity Resume Too Early", "Normal-looking behavior a few days after surgery doesn't mean healing is complete — early activity is a common cause of incision complications."],
+        ['❌ Skipping the E-Collar Because "They Seem Fine"', "Even calm dogs can lick or chew at an incision the moment they're unsupervised — consistent e-collar use isn't optional just because your dog seems relaxed."],
+        ['❌ Assuming It\'s "Too Late" for an Adult Dog', "There's no general age cutoff that makes spay/neuter off the table — if your dog is past the typical window, it's still worth a vet conversation, not something to rule out."],
+        ['❌ Not Checking the Incision Site Daily', "Infections are far easier to treat when caught early — skipping the daily check means problems like redness or discharge can progress before you notice."],
+    ];
+}
+
+function pz_render_guide_dog_spay_neuter( $tool ) {
+    $icon = $tool['icon'] ?? '🏥';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Spay &amp; Neuter Timing Guide</div>
+          <div class="pz-int-sublabel">Size-aware guidance · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🔬 Current Guidance</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Sex</label>
+          <select id="pz_sn_sex" class="pz-int-select">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Breed Size</label>
+          <select id="pz_sn_size" class="pz-int-select">
+            <option value="small">Small / Medium (under 60 lbs adult)</option>
+            <option value="large">Large / Giant (60+ lbs adult)</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Current Age</label>
+          <div class="pz-int-input-wrap">
+            <input type="number" id="pz_sn_age" class="pz-int-input" placeholder="e.g. 7" min="1" max="240" step="1">
+            <span class="pz-int-input-suffix">months</span>
+          </div>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenSpayNeuter()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Timing Guidance
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ 6. Dog Joint Health & Arthritis Prevention Guide (dog_joint_health) ══ */
+
+function pz_hero_quickanswer_dog_joint_health() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Excess weight is one of the single biggest modifiable risk factors for joint stress and arthritis progression in dogs. Young dogs with no signs benefit most from prevention; senior dogs or any dog with noticeable limping should see a vet for an actual joint assessment. Select your dog's age, weight status, and current signs above for guidance matched to their stage.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_joint_health() { ?>
+      <span>✅ Weight-risk aware</span>
+      <span>🦴 Age-stage specific</span>
+      <span>🚫 No unsafe human medication advice</span>
+<?php }
+
+function pz_methodology_heading_dog_joint_health() { return "How This Joint Health Guidance Is Built"; }
+
+function pz_methodology_dog_joint_health() { ?>
+    <p style="color:#555;margin-bottom:20px">Joint health guidance changes with three things: how old your dog is (prevention vs. management), whether they're carrying excess weight (the single biggest modifiable risk factor), and whether any signs are already present. The guide combines all three rather than giving the same generic advice to a healthy 1-year-old and a limping 10-year-old.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">📅</div>
+        <strong>Age Group</strong>
+        <p>Young dogs benefit most from prevention habits; senior dogs need a management-focused approach since age itself increases arthritis risk.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">⚖️</div>
+        <strong>Weight Status</strong>
+        <p>Excess weight is one of the most significant, modifiable contributors to joint stress and arthritis progression — flagged prominently whenever it applies.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">👀</div>
+        <strong>Current Signs</strong>
+        <p>No signs, occasional stiffness, or noticeable limping each call for a different level of urgency, from prevention habits to a vet assessment.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🩺</div>
+        <strong>Safe Management Options</strong>
+        <p>Supplements, weight management, and low-impact exercise are covered as real options — alongside a clear warning against unsafe human pain medications.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_joint_health() {
+    return [
+        ["What are the early signs of joint problems in dogs?", "Occasional stiffness after rest, slower to get up, hesitation before jumping or using stairs, and reduced interest in activity are common early signs. These are worth mentioning at your dog's next routine vet visit rather than waiting for them to become noticeable limping."],
+        ["Can I give my dog human pain medication for joint pain?", "No — never give human NSAIDs like ibuprofen or naproxen to a dog; they're toxic and can cause serious stomach ulcers, kidney damage, or worse. If your dog is diagnosed with arthritis, your vet can prescribe a dog-safe pain management option."],
+        ["Does being overweight really affect a dog's joints that much?", "Yes — excess weight is one of the single biggest modifiable risk factors for joint stress and arthritis progression. Every extra pound adds mechanical load to the joints with every step, and weight loss alone can meaningfully reduce pain in overweight arthritic dogs."],
+        ["What supplements help with dog joint health?", "Glucosamine, chondroitin, and omega-3 fatty acids are commonly recommended and have reasonable supporting evidence for joint support, though they work gradually and aren't a substitute for veterinary diagnosis and treatment if arthritis is already present."],
+        ["Is swimming good exercise for a dog with joint issues?", "Yes — swimming is a classic low-impact exercise that builds and maintains muscle around the joints without the repetitive impact of running or jumping, making it a commonly recommended option for dogs with existing joint concerns."],
+    ];
+}
+
+function pz_what_is_dog_joint_health() {
+    ob_start(); ?>
+    <p>The Dog Joint Health &amp; Arthritis Prevention Guide gives you age-stage-specific guidance — prevention-focused for young, sign-free dogs, and management-focused for senior dogs or any dog already showing stiffness or limping — while flagging excess weight prominently whenever it applies, since it's one of the biggest modifiable risk factors for joint stress.</p>
+    <p>Joint health sits on a spectrum from pure prevention to active management: a healthy young dog benefits from maintaining ideal weight and avoiding repetitive high-impact activity, while a senior dog or one already showing signs needs an actual vet assessment to determine whether arthritis or another joint condition is present and what treatment options make sense.</p>
+    <p>Select your dog's age group, weight status, and current signs above for guidance, then scroll down for prevention and management detail plus the FAQ covering the joint health questions dog owners ask most.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_joint_health() {
+    ob_start(); ?>
+    <p>Joint health affects a dog's comfort and mobility every single day — and several of the biggest risk factors are things owners can actually influence:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">⚖️</span>
+        <div>
+          <strong>Weight Is the Biggest Modifiable Factor</strong>
+          <p>Excess weight adds direct mechanical strain to every joint with every step — it's one of the most significant, and most controllable, contributors to arthritis progression.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">⏱️</span>
+        <div>
+          <strong>Early Intervention Changes the Trajectory</strong>
+          <p>Occasional stiffness caught early and mentioned to a vet can be managed proactively, rather than waiting for it to progress into noticeable, painful limping.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🏃</span>
+        <div>
+          <strong>Exercise Type Matters As Much As Amount</strong>
+          <p>Repetitive high-impact activity, especially excessive jumping in growing large breeds, stresses developing joints differently than steady, low-impact movement.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">💊</span>
+        <div>
+          <strong>Safe Pain Management Requires a Vet</strong>
+          <p>Human NSAIDs are toxic to dogs — real pain relief for a diagnosed joint condition has to come from a vet-prescribed, dog-safe option.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_joint_health() {
+    return [
+        ['title'=>"Identify Your Dog's Age Group", 'desc'=>"Young (under 2), adult (2–7), or senior (7+) — this determines whether the focus is prevention or active management."],
+        ['title'=>"Assess Current Weight Status Honestly", 'desc'=>"Overweight is one of the biggest modifiable risk factors for joint stress — an honest assessment here changes the guidance meaningfully."],
+        ['title'=>'Note Any Current Signs', 'desc'=>"No signs, occasional stiffness after rest, or noticeable limping each call for a different level of urgency in the guidance you receive."],
+        ['title'=>'Review Your Personalized Guidance', 'desc'=>"Read the prevention or management recommendations matched to your dog's specific combination of age, weight, and signs."],
+        ['title'=>'Address Weight First If Flagged', 'desc'=>"If overweight is flagged, treat it as a priority — pair this guide with our Dog Ideal Weight or Body Condition Score calculators to get started."],
+        ['title'=>'Schedule a Vet Visit If Indicated', 'desc'=>"For senior dogs or any noticeable signs, book an actual joint assessment rather than relying on supplements or home management alone."],
+    ];
+}
+
+function pz_tips_dog_joint_health() {
+    return [
+        ['Keep Your Dog at an Ideal Weight', "This is the single most impactful thing most owners can control — even modest weight loss in an overweight dog measurably reduces joint stress and often improves comfort."],
+        ['Favor Low-Impact Exercise', "Swimming and steady leash walks build and maintain muscle around the joints without the repetitive impact of running, jumping, or hard stops on pavement."],
+        ['Avoid Excessive Jumping in Growing Large Breeds', "Repeated jumping on and off furniture or out of vehicles adds real stress to developing joints in large-breed puppies — moderate it during the growth period."],
+        ['Ask About Joint Supplements Early', "Glucosamine, chondroitin, and omega-3s work gradually and are more useful started proactively than only after signs appear — ask your vet what's appropriate for your dog."],
+        ['Use Ramps or Steps for Furniture and Vehicles', "A small ramp reduces repetitive jumping impact for dogs of any age, and is an easy habit to build before signs ever appear."],
+    ];
+}
+
+function pz_mistakes_dog_joint_health() {
+    return [
+        ['❌ Giving Human NSAIDs for Joint Pain', "Ibuprofen, naproxen, and other human NSAIDs are toxic to dogs and can cause serious stomach ulcers or kidney damage. Only vet-prescribed, dog-safe pain medication is appropriate."],
+        ['❌ Ignoring Excess Weight as "Just Extra Padding"', "Excess weight is one of the biggest modifiable contributors to joint stress and arthritis progression — it's not a cosmetic issue, it's a direct mechanical load on every joint."],
+        ["❌ Waiting for Noticeable Limping Before Mentioning It to a Vet", "Occasional stiffness after rest is worth an early mention at a routine visit — waiting until limping is obvious means starting management later than necessary."],
+        ["❌ Over-Exercising a Dog With Existing Signs", "Pushing through stiffness or limping with normal exercise levels can worsen joint irritation — dogs with signs need a vet assessment before adjusting activity, not more of the same."],
+        ["❌ Relying on Supplements Alone Once Signs Appear", "Glucosamine, chondroitin, and omega-3s support joint health but aren't a substitute for a vet diagnosis once noticeable signs are present — get an actual assessment first."],
+    ];
+}
+
+function pz_render_guide_dog_joint_health( $tool ) {
+    $icon = $tool['icon'] ?? '🦴';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Joint Health &amp; Arthritis Guide</div>
+          <div class="pz-int-sublabel">Prevention &amp; management · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🦴 Age-Stage Specific</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Age Group</label>
+          <select id="pz_jh_age" class="pz-int-select">
+            <option value="young">Young (under 2 years)</option>
+            <option value="adult" selected>Adult (2–7 years)</option>
+            <option value="senior">Senior (7+ years)</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Weight Status</label>
+          <select id="pz_jh_weight" class="pz-int-select">
+            <option value="ideal">At ideal weight</option>
+            <option value="overweight">Overweight</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Current Signs</label>
+          <select id="pz_jh_signs" class="pz-int-select">
+            <option value="none">No signs noticed</option>
+            <option value="mild">Occasional stiffness, especially after rest</option>
+            <option value="noticeable">Noticeable limping or reluctance to move</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenJointHealth()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Joint Health Guidance
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ 7. Senior Dog Health Guide (senior_dog_health) ══ */
+
+function pz_hero_quickanswer_senior_dog_health() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>"Senior" isn't the same age for every dog — giant breeds age faster and are typically senior by around 6 years, large breeds by 7–8, while small and medium breeds usually aren't senior until 10–12. Select your dog's age, breed size, and current health concerns above for focus areas matched to their actual life stage, not a one-size-fits-all number.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_senior_dog_health() { ?>
+      <span>✅ Size-adjusted senior age</span>
+      <span>🧠 Cognitive change awareness</span>
+      <span>🦴 Mobility &amp; diet guidance</span>
+<?php }
+
+function pz_methodology_heading_senior_dog_health() { return "How This Senior Care Guidance Is Built"; }
+
+function pz_methodology_senior_dog_health() { ?>
+    <p style="color:#555;margin-bottom:20px">Senior dog care isn't determined by calendar age alone. This guidance combines whether your dog is actually in the senior range for their specific breed size — since giant breeds age much faster than small ones — with any current health concerns you've noticed, to point you toward the focus areas that matter most right now.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">📏</div>
+        <strong>Size-Adjusted Age</strong>
+        <p>A 6-year-old giant breed is already a senior; a 6-year-old small breed likely has years to go. Size changes what "senior" means.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🩺</div>
+        <strong>Vet Visit Cadence</strong>
+        <p>True seniors benefit from biannual vet visits rather than the annual schedule appropriate for younger, healthy dogs.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🧠</div>
+        <strong>Cognitive Changes</strong>
+        <p>Disorientation, altered sleep-wake cycles, and house-training lapses can signal canine cognitive dysfunction — not just "getting old."</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🤝</div>
+        <strong>Coordinated Care</strong>
+        <p>Multiple chronic conditions call for a vet-led care plan that considers how issues interact, rather than piecemeal home fixes.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_senior_dog_health() {
+    return [
+        ["At what age is my dog actually considered a senior?", "It depends heavily on breed size. Small and medium breeds are typically senior around 10–12 years, large breeds around 7–8 years, and giant breeds as early as 6 years. A giant breed ages noticeably faster than a small one, so the same calendar age means something different for each."],
+        ["How often should a senior dog see the vet?", "Most vets recommend biannual (twice yearly) wellness visits for true senior dogs, compared to annual visits for younger healthy adults. More frequent checkups catch age-related changes — in bloodwork, joints, organ function — while they're still manageable."],
+        ["Is it normal for an older dog to seem confused or have house-training accidents?", "Occasional lapses can happen, but disorientation, pacing at night, altered sleep-wake cycles, or new house-training accidents can be early signs of canine cognitive dysfunction — a real, manageable condition, not just \"getting old.\" It's worth a specific conversation with your vet rather than assuming nothing can be done."],
+        ["Should I change my senior dog's food?", "Many senior dogs benefit from a senior-formula diet, and easier-to-chew options if dental issues are present. Weight management matters even more in senior dogs, since extra weight compounds joint strain on already-aging joints. Ask your vet for a recommendation based on your dog's specific health profile."],
+        ["My senior dog has multiple health conditions — where do I start?", "When several chronic conditions are present, coordinated vet-led care planning matters more than managing each one separately at home. Treatments can interact, so a vet who sees the whole picture is better positioned to prioritize and sequence care than piecemeal home management."],
+    ];
+}
+
+function pz_what_is_senior_dog_health() {
+    ob_start(); ?>
+    <p>The Senior Dog Health Guide gives you age-stage-specific focus areas by first determining whether your dog is actually in the senior range for their breed size — since giant breeds age faster than small ones, the same calendar age can mean very different life stages — and then matching guidance to that stage plus any current health concerns you've noted.</p>
+    <p>Senior care spans several areas that become more important with age: how often to see the vet, keeping weight in check since extra pounds compound joint strain, diet adjustments including senior formulas and easier-to-chew options, watching for cognitive changes like disorientation or altered sleep patterns, and supporting mobility with ramps and orthopedic bedding rather than stairs and jumping.</p>
+    <p>Select your dog's current age, breed size, and any health concerns above for guidance, then scroll down for detail on each focus area plus the FAQ covering the questions senior dog owners ask most.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_senior_dog_health() {
+    ob_start(); ?>
+    <p>Aging changes a dog's needs gradually — owners who adjust their care approach as those changes appear tend to catch problems earlier and keep their senior dogs more comfortable:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🩺</span>
+        <div>
+          <strong>More Frequent Vet Visits Catch More</strong>
+          <p>Biannual checkups for true seniors catch age-related bloodwork, joint, and organ changes earlier than an annual visit would.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">⚖️</span>
+        <div>
+          <strong>Weight Compounds Joint Strain</strong>
+          <p>Extra weight on an already-aging joint accelerates discomfort — weight management matters more in seniors, not less.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🧠</span>
+        <div>
+          <strong>Cognitive Changes Are Often Missed</strong>
+          <p>Disorientation and house-training lapses get written off as "just old age" when they can signal a manageable condition worth discussing with a vet.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🐾</span>
+        <div>
+          <strong>Mobility Support Prevents Injury</strong>
+          <p>Ramps and orthopedic bedding reduce strain on aging joints, lowering the risk of a fall or an overexertion injury.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_senior_dog_health() {
+    return [
+        ['title'=>"Determine Your Dog's True Senior Status", 'desc'=>"Match current age against your dog's breed size — giant breeds are senior around 6, large breeds around 7–8, small/medium breeds around 10–12."],
+        ['title'=>'Note Any Current Health Concerns', 'desc'=>"None, mobility/joint issues, or multiple chronic conditions — this determines whether the focus is prevention or coordinated management."],
+        ['title'=>'Review Your Focus Areas', 'desc'=>"Read the vet visit cadence, weight, diet, cognitive, and mobility guidance matched to your dog's specific age-size-concern combination."],
+        ['title'=>'Adjust Your Vet Visit Schedule', 'desc'=>"If your dog is a true senior, move from annual to biannual wellness visits so age-related changes are caught earlier."],
+        ['title'=>'Make Mobility and Diet Adjustments', 'desc'=>"Add ramps instead of stairs or jumping, supportive orthopedic bedding, and consider a senior formula or easier-to-chew diet if needed."],
+        ['title'=>'Watch for Cognitive Changes', 'desc'=>"Disorientation, altered sleep-wake cycles, or new house-training lapses are worth a specific vet conversation, not dismissal as normal aging."],
+    ];
+}
+
+function pz_tips_senior_dog_health() {
+    return [
+        ['Move to Biannual Vet Visits', "True senior dogs benefit from twice-yearly wellness exams rather than annual visits — more frequent checkups catch age-related changes while they're still manageable."],
+        ["Keep Weight in Check", "Extra weight compounds joint strain on aging joints more than it does on a younger dog — weight management is one of the highest-value things you can control."],
+        ['Add Ramps Instead of Stairs or Jumping', "A ramp for the couch, bed, or car reduces repetitive strain and fall risk on aging joints — pair it with supportive orthopedic bedding for daily comfort."],
+        ["Don't Dismiss Behavior Changes as \"Just Old Age\"", "Disorientation, altered sleep-wake cycles, or house-training lapses can signal canine cognitive dysfunction — a real, manageable condition worth a vet conversation."],
+        ['Coordinate Care If Multiple Conditions Are Present', "When several chronic conditions overlap, a vet-led care plan that considers how treatments interact works better than managing each one separately at home."],
+    ];
+}
+
+function pz_mistakes_senior_dog_health() {
+    return [
+        ['❌ Using One "Senior" Age for Every Dog', "Giant breeds are senior around 6 years, large breeds around 7–8, and small/medium breeds not until 10–12 — treating every dog the same way ignores this real difference in aging pace."],
+        ['❌ Writing Off Confusion or Accidents as "Just Getting Old"', "Disorientation, altered sleep-wake cycles, and new house-training lapses can point to canine cognitive dysfunction, a condition worth discussing with a vet rather than dismissing."],
+        ['❌ Sticking to Annual Vet Visits for a True Senior', "Biannual visits catch age-related bloodwork, joint, and organ changes earlier — waiting a full year between checkups means changes can progress further before they're caught."],
+        ['❌ Letting Weight Creep Up "Because They\'re Older Now"', "Extra weight compounds joint strain on already-aging joints — weight management matters more in seniors, not less, even though activity naturally slows."],
+        ['❌ Managing Multiple Conditions Piecemeal at Home', "When several chronic conditions are present, treatments can interact — a coordinated, vet-led care plan works better than addressing each issue in isolation."],
+    ];
+}
+
+function pz_render_guide_senior_dog_health( $tool ) {
+    $icon = $tool['icon'] ?? '👴';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Senior Dog Health Guide</div>
+          <div class="pz-int-sublabel">Size-adjusted senior age · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">👴 Age-Stage Specific</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Current Age</label>
+          <div class="pz-int-input-wrap">
+            <input type="number" id="pz_sdh_age" class="pz-int-input" placeholder="e.g. 8" min="0" max="30" step="0.5">
+            <span class="pz-int-input-suffix">years</span>
+          </div>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Breed Size</label>
+          <select id="pz_sdh_size" class="pz-int-select">
+            <option value="small">Small/Medium (senior ~10-12 yrs)</option>
+            <option value="large">Large (senior ~7-8 yrs)</option>
+            <option value="giant">Giant (senior ~6 yrs)</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Current Health Concerns</label>
+          <select id="pz_sdh_concerns" class="pz-int-select">
+            <option value="none">None noticed</option>
+            <option value="mobility">Mobility/joint issues</option>
+            <option value="multiple">Multiple chronic conditions</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenSeniorHealth()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Senior Care Guidance
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ 8. Dog Heat Stroke: Signs, Prevention & First Aid (dog_heat_stroke) ══ */
+
+function pz_hero_quickanswer_dog_heat_stroke() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>A dog left in a parked car, even briefly, is a time-critical emergency — cars heat up dangerously fast even with windows cracked. A collapsed, wobbly, or vomiting dog needs a vet immediately. Heavy panting alone while resting usually means move to a cool area and monitor. Select your dog's symptoms and situation above for guidance matched to the actual urgency.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_heat_stroke() { ?>
+      <span>🚨 Emergency-aware guidance</span>
+      <span>❄️ Safe cooling methods only</span>
+      <span>🐕 Brachycephalic-risk aware</span>
+<?php }
+
+function pz_methodology_heading_dog_heat_stroke() { return "How This Heat Stroke Guidance Is Built"; }
+
+function pz_methodology_dog_heat_stroke() { ?>
+    <p style="color:#555;margin-bottom:20px">Heat stroke guidance is built around two things: what situation your dog was in, and what symptoms they're currently showing. A parked car is treated as an emergency regardless of symptoms, because cars heat up dangerously fast even with windows cracked. Symptoms are then triaged from prevention-only through immediate-emergency, so you get guidance proportionate to actual risk.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🚗</div>
+        <strong>Situation First</strong>
+        <p>A parked car is always flagged as an emergency scenario — vehicle interiors heat up to dangerous levels within minutes, even with windows cracked.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🌡️</div>
+        <strong>Symptom Severity</strong>
+        <p>None, panting-only, confused/vomiting, or collapsed each call for a distinctly different response — from prevention tips to immediate emergency care.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">❄️</div>
+        <strong>Safe Cooling Methods</strong>
+        <p>Cool — not ice-cold — water is used throughout. Ice water can cause shock via rapid vasoconstriction, so this guide never recommends it.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🐕</div>
+        <strong>Higher-Risk Groups</strong>
+        <p>Flat-faced (brachycephalic) breeds, seniors, and overweight dogs are flagged as higher-risk since they cool themselves less effectively.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_heat_stroke() {
+    return [
+        ["How long can a dog be left in a parked car safely?", "Never — not even briefly. Car interiors heat up dangerously fast, even with windows cracked, and temperatures can climb to dangerous levels within just a few minutes on a warm day. There is no safe duration for leaving a dog in a parked car."],
+        ["What are the first signs of heat stroke in dogs?", "Heavy panting, excessive drooling, bright red gums, and restlessness are early signs. As it progresses, dogs may become wobbly, confused, or start vomiting. Collapse or unresponsiveness is a critical emergency requiring immediate veterinary care."],
+        ["Should I use ice water to cool down an overheated dog?", "No — use cool, not ice-cold, water on the paw pads, groin, armpits, and ears, along with wet towels and a fan if available. Ice-cold water can cause blood vessels to constrict rapidly, which can actually trap heat inside the body and lead to shock."],
+        ["Which dogs are at higher risk of heat stroke?", "Flat-faced (brachycephalic) breeds like Bulldogs and Pugs are at significantly elevated risk because their airway shape reduces their ability to pant-cool effectively. Senior dogs and overweight dogs are also higher-risk and need extra caution in heat."],
+        ["My dog is just panting heavily but seems alert — is that an emergency?", "Heavy panting or drooling while otherwise alert is usually a sign to move your dog to a cool area, offer water, and monitor closely for escalation. It's still reasonable to call your vet, especially for flat-faced breeds, seniors, or overweight dogs, but it's not automatically a collapse-level emergency."],
+    ];
+}
+
+function pz_what_is_dog_heat_stroke() {
+    ob_start(); ?>
+    <p>The Dog Heat Stroke Guide helps you recognize the signs of overheating, understand which situations are automatically dangerous regardless of symptoms, and know exactly what to do — from prevention tips for a healthy dog on a hot day to immediate first-aid steps for a dog showing serious symptoms.</p>
+    <p>Heat stroke risk depends heavily on situation, not just symptoms: a dog that was in a parked car, even briefly, is treated as an emergency because vehicle interiors heat up to dangerous levels within minutes, even with windows cracked. Symptoms then range from none (prevention-focused) through heavy panting, to confusion or vomiting, to collapse — each requiring a meaningfully different response.</p>
+    <p>Select your dog's current symptoms and situation above for guidance, then scroll down for prevention detail, safe cooling methods, and the FAQ covering the heat stroke questions dog owners ask most.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_heat_stroke() {
+    ob_start(); ?>
+    <p>Heat stroke can progress from mild warning signs to a life-threatening emergency quickly — knowing what to watch for and how to respond correctly matters:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🚗</span>
+        <div>
+          <strong>Parked Cars Are Always Dangerous</strong>
+          <p>Vehicle interiors heat up dangerously fast, even with windows cracked — there is no safe duration for leaving a dog in a parked car, even briefly.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">⏱️</span>
+        <div>
+          <strong>Speed of Progression Matters</strong>
+          <p>Heat stroke can move from heavy panting to collapse quickly — recognizing escalating symptoms early changes the outcome.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">❄️</span>
+        <div>
+          <strong>The Wrong Cooling Method Can Harm</strong>
+          <p>Ice-cold water can cause shock via rapid vasoconstriction — cool water and airflow are the safe approach for cooling an overheated dog.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🐕</span>
+        <div>
+          <strong>Some Dogs Are at Much Higher Risk</strong>
+          <p>Flat-faced breeds, seniors, and overweight dogs cool themselves less effectively and need extra caution and a lower threshold for concern.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_heat_stroke() {
+    return [
+        ['title'=>"Assess the Situation", 'desc'=>"Was your dog in a parked car, active outdoors, or resting in shade? A parked car is always treated as an emergency, regardless of symptoms."],
+        ['title'=>'Check Current Symptoms', 'desc'=>"None, heavy panting/drooling, wobbly/confused/vomiting, or collapsed — each level calls for a different, proportionate response."],
+        ['title'=>'Move to a Cool Area Immediately', 'desc'=>"If any concerning symptoms are present, get your dog to shade or air conditioning right away, before anything else."],
+        ['title'=>'Begin Safe Cooling If Needed', 'desc'=>"Use cool — not ice-cold — water on paw pads, groin, armpits, and ears, plus wet towels and a fan if available."],
+        ['title'=>'Go to a Vet for Anything Beyond Mild', 'desc'=>"Confusion, vomiting, or collapse need a vet immediately — do not wait to see if it improves on its own."],
+        ['title'=>'Review Prevention for Next Time', 'desc'=>"Never leave a dog in a parked car, avoid peak-heat exercise, and know if your dog is in a higher-risk group like flat-faced breeds."],
+    ];
+}
+
+function pz_tips_dog_heat_stroke() {
+    return [
+        ['Never Leave a Dog in a Parked Car', "Not even briefly, not even with windows cracked — vehicle interiors heat up to dangerous levels within minutes, and there is no safe duration."],
+        ['Avoid Exercise During Peak Heat', "Walk or exercise your dog during cooler morning or evening hours in hot weather, and avoid strenuous activity during midday heat."],
+        ['Ensure Constant Shade and Water Outdoors', "Any dog spending time outside in heat needs continuous access to shade and fresh water, not just occasional checks."],
+        ["Know Your Dog's Risk Level", "Flat-faced (brachycephalic) breeds, seniors, and overweight dogs are at significantly elevated risk and need extra caution and a lower threshold for concern."],
+        ['Use Cool Water, Never Ice-Cold, to Cool Down', "If cooling is needed, cool water on paw pads, groin, armpits, and ears is safe — ice-cold water can cause shock via rapid vasoconstriction."],
+    ];
+}
+
+function pz_mistakes_dog_heat_stroke() {
+    return [
+        ['❌ Leaving a Dog in a Parked Car "Just for a Minute"', "Car interiors heat up dangerously fast, even with windows cracked — there is no safe duration, and this remains one of the most preventable causes of heat stroke."],
+        ['❌ Using Ice-Cold Water to Cool Down Quickly', "Ice-cold water can cause blood vessels to constrict rapidly, potentially trapping heat inside and leading to shock. Cool — not cold — water is the safer choice."],
+        ['❌ Waiting to See If Symptoms Improve On Their Own', "Confusion, vomiting, or collapse need a vet immediately — heat stroke can progress quickly, and delaying care to \"wait and see\" costs valuable time."],
+        ['❌ Exercising Heavily During Midday Heat', "Peak-heat exercise, especially in flat-faced, senior, or overweight dogs, is one of the most common preventable triggers for heat stroke."],
+        ['❌ Underestimating Risk for Flat-Faced Breeds', "Brachycephalic breeds like Bulldogs and Pugs have a significantly reduced ability to pant-cool effectively — what's mild heat stress for one breed can be dangerous for these dogs."],
+    ];
+}
+
+function pz_render_guide_dog_heat_stroke( $tool ) {
+    $icon = $tool['icon'] ?? '🌡️';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Heat Stroke Guide</div>
+          <div class="pz-int-sublabel">Signs, prevention &amp; first aid · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🚨 Emergency-Aware</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Current Symptoms</label>
+          <select id="pz_hs_symptoms" class="pz-int-select">
+            <option value="none">None — just checking prevention tips</option>
+            <option value="panting">Heavy panting/drooling, otherwise alert</option>
+            <option value="confused">Wobbly, confused, or vomiting</option>
+            <option value="collapsed">Collapsed or unresponsive</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Situation</label>
+          <select id="pz_hs_situation" class="pz-int-select">
+            <option value="resting">Hot day, resting in shade</option>
+            <option value="active">Hot day, was exercising/active</option>
+            <option value="car">Was in a parked car, even briefly</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenHeatStroke()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Heat Stroke Guidance
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ 9. Dog Heart Health: Signs & Prevention Guide (dog_heart_health) ══ */
+
+function pz_hero_quickanswer_dog_heart_health() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Fainting or pale/blue-tinged gums are serious cardiac warning signs that need prompt vet evaluation. A cough combined with reduced exercise tolerance is worth a vet visit soon, especially in senior small breeds or predisposed large breeds. An occasional cough alone often has non-cardiac causes. Select your dog's age, breed size, and symptoms above for guidance matched to actual risk.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_heart_health() { ?>
+      <span>❤️ Symptom-severity aware</span>
+      <span>🐕 Breed-predisposition aware</span>
+      <span>🩺 Prevention &amp; warning-sign guidance</span>
+<?php }
+
+function pz_methodology_heading_dog_heart_health() { return "How This Heart Health Guidance Is Built"; }
+
+function pz_methodology_dog_heart_health() { ?>
+    <p style="color:#555;margin-bottom:20px">Heart health guidance is built from three inputs: age group, breed size, and any symptoms noticed. Symptoms drive the urgency level — from prevention-only through a vet-visit recommendation to an urgent flag — while age and breed size add context, since certain heart conditions are more common in specific combinations, like mitral valve disease in aging small breeds or dilated cardiomyopathy predisposition in some large and giant breeds.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🔍</div>
+        <strong>Symptom Severity Drives Urgency</strong>
+        <p>None, cough alone, cough with reduced tolerance, or fainting/pale gums each call for a distinctly different level of concern.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">📅</div>
+        <strong>Age Group Context</strong>
+        <p>Senior dogs are more likely to develop age-related heart conditions, adding relevant context to any symptoms noticed.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🐕</div>
+        <strong>Breed Predisposition</strong>
+        <p>Small breeds are more prone to mitral valve disease with age; some large and giant breeds are predisposed to dilated cardiomyopathy.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🛡️</div>
+        <strong>Prevention Habits</strong>
+        <p>Annual auscultation, healthy weight, and regular moderate exercise are covered as the foundation for dogs showing no symptoms.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_heart_health() {
+    return [
+        ["What are the warning signs of heart disease in dogs?", "A persistent cough, reduced exercise tolerance, fainting, and pale or blue-tinged gums are key warning signs. Fainting or pale/blue-tinged gums are especially serious and need prompt veterinary evaluation, not a wait-and-see approach."],
+        ["Is an occasional cough in my dog something to worry about?", "Not automatically — many non-cardiac causes exist too, including kennel cough and allergies. An occasional cough alone is worth mentioning at your dog's next routine vet visit, but it isn't a red flag by itself unless paired with reduced exercise tolerance or other symptoms."],
+        ["Which dog breeds are more prone to heart disease?", "Mitral valve disease is common in aging small breeds like Cavalier King Charles Spaniels and Chihuahuas. Some large and giant breeds, including Dobermans and Great Danes, are predisposed to dilated cardiomyopathy. Knowing your breed's predisposition helps you know what to watch for."],
+        ["Do vets check for heart problems during routine exams?", "Yes — a heart listen (auscultation) is a standard part of annual vet exams for dogs showing no symptoms. This is one of the simplest and most effective ways heart murmurs and irregular rhythms get caught early."],
+        ["Can diet and exercise really affect my dog's heart health?", "Yes — maintaining a healthy weight reduces strain on the cardiovascular system, and regular moderate exercise supports heart health over time. These are two of the most controllable factors in long-term cardiovascular health for dogs."],
+    ];
+}
+
+function pz_what_is_dog_heart_health() {
+    ob_start(); ?>
+    <p>The Dog Heart Health Guide helps you understand what your dog's symptoms — or lack of symptoms — mean for their cardiovascular health, from prevention habits for a symptom-free dog to an urgent vet flag for serious warning signs like fainting or pale gums.</p>
+    <p>Heart disease risk in dogs is shaped by age, breed size, and current symptoms together: mitral valve disease is common in aging small breeds, some large and giant breeds are predisposed to dilated cardiomyopathy, and symptoms ranging from an occasional cough to fainting each carry a different level of urgency that this guide helps you interpret correctly.</p>
+    <p>Select your dog's age group, breed size, and any symptoms noticed above for guidance, then scroll down for prevention detail plus the FAQ covering the heart health questions dog owners ask most.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_heart_health() {
+    ob_start(); ?>
+    <p>Heart disease often develops gradually and silently — knowing what's normal and what's a warning sign changes when a dog gets help:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🚨</span>
+        <div>
+          <strong>Some Signs Are Genuinely Urgent</strong>
+          <p>Fainting and pale or blue-tinged gums are serious cardiac warning signs that need prompt veterinary evaluation, not a wait-and-see approach.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🐕</span>
+        <div>
+          <strong>Breed Predisposition Matters</strong>
+          <p>Mitral valve disease in aging small breeds and dilated cardiomyopathy predisposition in some large breeds mean knowing your breed's risk changes what to watch for.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🩺</span>
+        <div>
+          <strong>Annual Screening Catches Problems Early</strong>
+          <p>A heart listen at routine vet exams is a standard, simple way heart murmurs and irregular rhythms get caught before symptoms appear.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">⚖️</span>
+        <div>
+          <strong>Weight and Exercise Are Controllable</strong>
+          <p>Maintaining a healthy weight and regular moderate exercise both reduce strain on the cardiovascular system over a dog's lifetime.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_heart_health() {
+    return [
+        ['title'=>"Identify Your Dog's Age Group", 'desc'=>"Young (under 5), middle-aged (5-9), or senior (10+) — heart disease risk generally rises with age."],
+        ['title'=>'Note Breed Size and Predisposition', 'desc'=>"Small breeds are more prone to mitral valve disease with age; some large/giant breeds are predisposed to dilated cardiomyopathy."],
+        ['title'=>'Check for Symptoms Honestly', 'desc'=>"None, occasional cough only, cough plus reduced exercise tolerance, or fainting/pale gums — each calls for a different response."],
+        ['title'=>'Review Your Personalized Guidance', 'desc'=>"Read the prevention or vet-visit recommendation matched to your dog's specific age, size, and symptom combination."],
+        ['title'=>'Act on Urgent Flags Immediately', 'desc'=>"Fainting or pale/blue-tinged gums need prompt veterinary evaluation — don't wait for a routine appointment slot."],
+        ['title'=>'Schedule Annual (or Biannual) Heart Screening', 'desc'=>"Make sure your vet includes a heart listen at every routine exam, especially as your dog enters a higher-risk age or breed category."],
+    ];
+}
+
+function pz_tips_dog_heart_health() {
+    return [
+        ['Keep Your Dog at a Healthy Weight', "Excess weight strains the cardiovascular system directly — maintaining an ideal weight is one of the most controllable factors in long-term heart health."],
+        ['Support Regular Moderate Exercise', "Consistent, moderate exercise supports cardiovascular health over a dog's lifetime — sudden intense exertion in an unconditioned dog is not the goal."],
+        ["Know Your Breed's Predisposition", "Mitral valve disease is common in aging small breeds; some large and giant breeds are predisposed to dilated cardiomyopathy. Ask your vet what to watch for in your specific breed."],
+        ['Make Sure Annual Exams Include a Heart Listen', "Auscultation is a standard part of a routine exam — confirm it's happening so murmurs and irregular rhythms get caught early, before symptoms appear."],
+        ["Don't Dismiss a Cough Paired With Reduced Activity", "A cough alone is often benign, but cough plus reduced exercise tolerance together is a combination worth a vet visit soon, not a wait-and-see approach."],
+    ];
+}
+
+function pz_mistakes_dog_heart_health() {
+    return [
+        ['❌ Assuming Fainting Is "Just Overexcitement"', "Fainting is a serious cardiac warning sign that needs prompt veterinary evaluation — it should never be dismissed as simple excitement or heat, especially alongside other symptoms."],
+        ['❌ Ignoring Pale or Blue-Tinged Gums', "Gum color changes indicate a real oxygenation or circulation problem — this is one of the clearest urgent warning signs and needs immediate veterinary attention."],
+        ['❌ Treating Every Cough as Kennel Cough', "A cough combined with reduced exercise tolerance is a combination that can indicate early heart disease, especially in predisposed breeds — it's worth ruling out, not assuming."],
+        ['❌ Skipping Routine Exams Because "Nothing Seems Wrong"', "Heart disease often develops silently — the annual heart listen at a routine exam is often how murmurs and irregular rhythms are caught before any symptoms appear."],
+        ["❌ Not Knowing Your Breed's Predisposition", "Mitral valve disease in small breeds and dilated cardiomyopathy risk in some large breeds are well-documented — not knowing your dog's risk profile means missing early warning signs that matter for that breed."],
+    ];
+}
+
+function pz_render_guide_dog_heart_health( $tool ) {
+    $icon = $tool['icon'] ?? '❤️';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Heart Health Guide</div>
+          <div class="pz-int-sublabel">Signs &amp; prevention · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">❤️ Symptom-Aware</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Age Group</label>
+          <select id="pz_hh_age" class="pz-int-select">
+            <option value="young">Young (under 5)</option>
+            <option value="middle">Middle-aged (5-9)</option>
+            <option value="senior">Senior (10+)</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Breed Size</label>
+          <select id="pz_hh_size" class="pz-int-select">
+            <option value="small">Small breed</option>
+            <option value="large">Large/Giant breed</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Symptoms Noticed</label>
+          <select id="pz_hh_symptoms" class="pz-int-select">
+            <option value="none">None noticed</option>
+            <option value="cough">Occasional cough only</option>
+            <option value="exercise">Coughing plus reduced exercise tolerance</option>
+            <option value="severe">Fainting or pale/blue-tinged gums</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenHeartHealth()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Heart Health Guidance
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ 10. Common Dog Skin Conditions: Guide & Treatment (dog_skin_conditions) ══ */
+
+function pz_hero_quickanswer_dog_skin_conditions() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Hives can signal an allergic reaction — check for facial swelling or breathing difficulty and treat as more urgent if present. Scabs often mean infection or parasites and need a vet look, especially if not improving within a few days. Hair loss has several possible causes, including contagious ringworm, so it needs a vet diagnosis rather than a guess. Select your dog's symptom and duration above for guidance.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_skin_conditions() { ?>
+      <span>🔬 Symptom-specific guidance</span>
+      <span>🧴 No guess-and-treat advice</span>
+      <span>🐾 Allergy &amp; parasite aware</span>
+<?php }
+
+function pz_methodology_heading_dog_skin_conditions() { return "How This Skin Condition Guidance Is Built"; }
+
+function pz_methodology_dog_skin_conditions() { ?>
+    <p style="color:#555;margin-bottom:20px">Skin conditions in dogs have overlapping symptoms but very different causes — allergies, parasites, infection, and hormonal issues can all look similar at first glance. This guidance is built around the specific symptom type you've noticed and how long it's been present, pointing you toward the right next step rather than a generic "try this cream" answer.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🔍</div>
+        <strong>Symptom Type</strong>
+        <p>Itching, redness, hair loss, scabs, and hives each point toward a different set of likely causes and next steps.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">⏱️</div>
+        <strong>Duration</strong>
+        <p>New, ongoing for weeks, or chronic/recurring changes the likely cause — chronic itching often points to an underlying allergy.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🦠</div>
+        <strong>Contagion Awareness</strong>
+        <p>Hair loss patches can indicate ringworm, which is contagious to humans and other pets — this is flagged rather than assumed benign.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🩺</div>
+        <strong>When a Vet Diagnosis Is Needed</strong>
+        <p>Several skin symptoms look identical across very different causes — this guide is honest about when self-treating isn't the safe option.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_skin_conditions() {
+    return [
+        ["Should I worry if my dog suddenly gets hives?", "Hives can indicate an allergic reaction. If it's sudden or severe, check for other allergy signs like facial swelling or breathing difficulty — treat it as more urgent if those are present. For a fuller assessment, our dedicated dog allergy symptoms checker can help walk through the full picture."],
+        ["My dog has scabs — is this an infection?", "Scabs can indicate infection or parasites like mites or fleas. A vet visit is recommended, especially if they're not improving within a few days. Avoid using over-the-counter products without knowing the actual cause — treating the wrong issue can delay real relief."],
+        ["What causes hair loss patches in dogs?", "Several things can cause hair loss: allergies, parasites, hormonal imbalance, or ringworm. Ringworm is contagious to humans and other pets, which makes getting an accurate vet diagnosis important rather than guessing and self-treating."],
+        ["My dog has been itchy for months with no visible rash — what's going on?", "Chronic itching without obvious skin changes often points to an underlying allergy, whether environmental or food-related. An elimination diet or allergy testing, guided by your vet, is typically the next step to identify the actual trigger."],
+        ["Are there general skin care habits that help prevent problems?", "Yes — regular brushing and grooming helps you catch skin issues early, omega-3 fatty acids support the skin barrier, and human skincare products should be avoided on dogs since dog skin has a different pH than human skin."],
+    ];
+}
+
+function pz_what_is_dog_skin_conditions() {
+    ob_start(); ?>
+    <p>The Common Dog Skin Conditions Guide helps you make sense of symptoms like itching, redness, hair loss, scabs, and hives — several very different underlying causes can produce similar-looking symptoms, so this guide points you toward what's likely going on and whether it needs a vet visit.</p>
+    <p>Skin symptoms in dogs span a wide range of causes: allergic reactions (sometimes showing as hives, sometimes as chronic itching), parasites like mites or fleas, infections that need targeted treatment, hormonal imbalances, and contagious conditions like ringworm. Duration matters too — something that's just started is treated differently than a chronic, recurring issue.</p>
+    <p>Select your dog's symptom type and how long it's been present above for guidance, then scroll down for prevention tips and the FAQ covering the skin condition questions dog owners ask most.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_skin_conditions() {
+    ob_start(); ?>
+    <p>Skin symptoms often look similar on the surface but come from very different causes — getting the right read matters for choosing the right next step:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🤧</span>
+        <div>
+          <strong>Hives Can Signal a Real Allergic Reaction</strong>
+          <p>Sudden or severe hives, especially alongside facial swelling or breathing trouble, should be treated as more urgent, not just an odd rash.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🦠</span>
+        <div>
+          <strong>Some Causes Are Contagious</strong>
+          <p>Ringworm, a common cause of hair loss patches, is contagious to humans and other pets — worth knowing before assuming it's "just dry skin."</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🚫</span>
+        <div>
+          <strong>Guessing and Self-Treating Can Delay Relief</strong>
+          <p>Scabs, hair loss, and persistent redness can come from infection, parasites, or hormonal causes — treating the wrong one wastes time and can make things worse.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🧴</span>
+        <div>
+          <strong>Dog Skin Has a Different pH Than Human Skin</strong>
+          <p>Human skincare products can disrupt a dog's skin barrier — using dog-appropriate products and habits protects skin health long-term.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_skin_conditions() {
+    return [
+        ['title'=>'Identify the Symptom Type', 'desc'=>"Itching alone, redness or rash, hair loss patches, scabs or sores, or hives — each points toward a different set of likely causes."],
+        ['title'=>"Note How Long It's Been Present", 'desc'=>"Just started, a few weeks, or chronic/recurring — duration changes both the likely cause and the recommended next step."],
+        ['title'=>'Check for Related Signs', 'desc'=>"With hives, check for facial swelling or breathing difficulty. With hair loss, note if it's spreading, since ringworm is contagious."],
+        ['title'=>'Review Your Personalized Guidance', 'desc'=>"Read the likely-cause and recommended-action guidance matched to your dog's specific symptom and duration combination."],
+        ['title'=>'Avoid Guessing With Over-the-Counter Products', 'desc'=>"Without knowing the actual cause, the wrong product can mask symptoms or delay real treatment — get a vet diagnosis first when indicated."],
+        ['title'=>'Build Preventive Skin Care Habits', 'desc'=>"Regular brushing, omega-3 fatty acids, and dog-specific grooming products support skin health and help you catch issues early."],
+    ];
+}
+
+function pz_tips_dog_skin_conditions() {
+    return [
+        ['Brush and Groom Regularly', "Regular brushing helps you catch skin issues — redness, scabs, hot spots — early, before they progress into something more serious."],
+        ['Consider Omega-3 Fatty Acids', "Omega-3s support the skin barrier and are commonly recommended as part of a broader skin health routine — ask your vet for a dosing recommendation."],
+        ['Never Use Human Skincare Products on Dogs', "Dog skin has a different pH than human skin — human shampoos and lotions can disrupt the skin barrier and worsen irritation or dryness."],
+        ["Don't Self-Treat Scabs or Sores With Random Products", "Scabs can mean infection or parasites — using the wrong over-the-counter product without knowing the actual cause can delay real treatment."],
+        ['Watch for Spreading With Hair Loss', "If a hair loss patch is spreading or new patches appear, consider ringworm as a possibility — it's contagious to humans and other pets."],
+    ];
+}
+
+function pz_mistakes_dog_skin_conditions() {
+    return [
+        ['❌ Dismissing Hives as "Just a Weird Rash"', "Hives can indicate an allergic reaction — sudden or severe cases, especially with facial swelling or breathing difficulty, should be treated as more urgent."],
+        ['❌ Using Leftover or Human Skincare Products', "Dog skin has a different pH than human skin. Using human shampoos, or leftover medicated products from a different issue, can worsen irritation or mask what's actually going on."],
+        ['❌ Assuming Hair Loss Is "Just Shedding"', "Hair loss patches can stem from allergies, parasites, hormonal imbalance, or ringworm — which is contagious to humans and other pets. A vet diagnosis rules these apart rather than assuming the benign explanation."],
+        ["❌ Waiting Too Long on Scabs That Aren't Healing", "Scabs that don't improve within a few days can indicate infection or parasites that need vet-guided treatment, not just continued home care."],
+        ['❌ Treating Chronic Itching as a One-Time Issue', "Itching without visible changes that persists chronically often points to an underlying allergy — repeatedly treating flare-ups without addressing the root cause means it keeps coming back."],
+    ];
+}
+
+function pz_render_guide_dog_skin_conditions( $tool ) {
+    $icon = $tool['icon'] ?? '🔬';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Skin Conditions Guide</div>
+          <div class="pz-int-sublabel">Symptom-specific · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🔬 Symptom-Specific</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Symptom Type</label>
+          <select id="pz_sc_symptom" class="pz-int-select">
+            <option value="itch_only">Itching, no visible skin changes</option>
+            <option value="redness">Redness or rash</option>
+            <option value="hairloss">Hair loss patches</option>
+            <option value="scabs">Scabs or sores</option>
+            <option value="hives">Hives or sudden swelling</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Duration</label>
+          <select id="pz_sc_duration" class="pz-int-select">
+            <option value="new">Just started, days</option>
+            <option value="weeks">A few weeks</option>
+            <option value="chronic">Chronic or recurring</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenSkinConditions()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Skin Condition Guidance
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ 11. Dog Eye Problems: Symptoms & Treatment Guide (dog_eye_problems) ══ */
+
+function pz_hero_quickanswer_dog_eye_problems() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Squinting or signs of sudden vision loss need a same-day vet visit — eye conditions can worsen quickly and squinting signals real pain. Cloudiness could be normal age-related change or something more serious, so it needs a vet check either way. Watery discharge alone is often a minor irritant response. Select your dog's symptom and which eye(s) are affected above for guidance.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_eye_problems() { ?>
+      <span>👁️ Urgency-aware guidance</span>
+      <span>🚫 No guess-and-treat advice</span>
+      <span>🩺 Vet-diagnosis focused</span>
+<?php }
+
+function pz_methodology_heading_dog_eye_problems() { return "How This Eye Problem Guidance Is Built"; }
+
+function pz_methodology_dog_eye_problems() { ?>
+    <p style="color:#555;margin-bottom:20px">Eye problems are treated with more caution than most skin or coat issues, because the eye can be genuinely and quickly damaged. This guidance is built from the specific symptom you've noticed and whether one or both eyes are affected — since a single affected eye often points toward a localized cause, while both eyes more often suggests something allergic or systemic.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🚨</div>
+        <strong>Pain and Vision Signs Are Urgent</strong>
+        <p>Squinting (a pain signal) and sudden vision loss both trigger a same-day vet recommendation — these can worsen quickly if left unaddressed.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">👁️</div>
+        <strong>One Eye vs. Both</strong>
+        <p>One affected eye often points to a localized cause like a scratch or irritant; both eyes more often suggests an allergic or systemic cause.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">☁️</div>
+        <strong>Cloudiness Needs a Look</strong>
+        <p>Cloudiness could be normal age-related lenticular sclerosis or something more serious like cataracts — only a vet exam can tell these apart.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">💧</div>
+        <strong>Discharge Type Matters</strong>
+        <p>Watery discharge is often minor; thick or colored discharge more often signals an active infection needing vet-guided treatment.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_eye_problems() {
+    return [
+        ["My dog is squinting — how urgent is that?", "Squinting is a pain signal and should be treated as urgent — see a vet the same day if possible. Eye conditions can worsen quickly, and pain in the eye is not something to wait out at home."],
+        ["Is cloudy eyes in my senior dog just normal aging?", "It could be — nuclear (lenticular) sclerosis is a common, usually harmless age-related haze that doesn't significantly impair vision. But cloudiness can also mean cataracts or something more serious. A vet exam is needed to tell these apart, so don't assume it's \"just aging\" without a check."],
+        ["What does thick or colored eye discharge mean?", "Thick or colored discharge usually points to an active infection like conjunctivitis. Bacterial and viral causes are treated differently, so vet-guided treatment matters. Avoid using old or leftover eye drops — including human ones — as they can make things worse."],
+        ["Is watery eye discharge always a problem?", "Not always — it's often a minor irritant response to dust or allergens. But persistent watering needs a check. Also worth knowing: flat-faced breeds often have breed-normal tear-staining, which is cosmetic, not medical."],
+        ["Should I worry more if both of my dog's eyes are affected?", "It depends on the symptom, but generally: one eye affected often points to a localized cause like a scratch, irritant, or foreign body, while both eyes more often suggests an allergic or systemic cause. Either way, our routine dog eye cleaning guide covers daily care, while this guide is specifically for identifying problems."],
+    ];
+}
+
+function pz_what_is_dog_eye_problems() {
+    ob_start(); ?>
+    <p>The Dog Eye Problems Guide helps you interpret eye symptoms — from watery discharge to sudden vision changes — and understand which ones are minor and which need a prompt vet visit, since the eye can be damaged quickly if a genuine problem is left unaddressed.</p>
+    <p>Eye symptoms range widely in urgency: watery discharge is often a minor irritant response, thick or colored discharge usually signals an active infection, cloudiness could be normal aging or something more serious, and squinting or sudden vision loss are pain and urgency signals that warrant same-day veterinary attention. Whether one eye or both are affected adds further context about the likely cause.</p>
+    <p>Select your dog's specific symptom and which eye(s) are affected above for guidance, then scroll down for detail and the FAQ covering the eye problem questions dog owners ask most. Note this guide is about identifying problems — for routine eye-area cleaning, see our dedicated dog eye cleaning guide.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_eye_problems() {
+    ob_start(); ?>
+    <p>Eyes are delicate and can be damaged quickly — recognizing which symptoms are urgent changes how fast a dog gets the help they need:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🚨</span>
+        <div>
+          <strong>Squinting Signals Real Pain</strong>
+          <p>Squinting isn't just discomfort — it's a clear pain signal, and eye conditions causing it can worsen quickly without prompt treatment.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">👀</span>
+        <div>
+          <strong>Sudden Vision Loss Needs Fast Action</strong>
+          <p>A dog suddenly bumping into things is a serious sign — prompt evaluation gives the best chance of identifying and addressing the cause.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">☁️</span>
+        <div>
+          <strong>Cloudiness Isn't Always "Just Age"</strong>
+          <p>Age-related haze and cataracts can look similar to an owner — only a vet exam reliably tells them apart.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">💧</span>
+        <div>
+          <strong>The Wrong Eye Drop Can Make Things Worse</strong>
+          <p>Old, leftover, or human eye drops used on an infected eye can worsen the problem — vet-guided treatment matters for discharge that looks infected.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_eye_problems() {
+    return [
+        ['title'=>'Identify the Symptom', 'desc'=>"Watery discharge, thick/colored discharge, redness or squinting, cloudiness, or sudden vision loss signs — each carries a different urgency level."],
+        ['title'=>'Check How Many Eyes Are Affected', 'desc'=>"One eye often points to a localized cause like a scratch or irritant; both eyes more often suggests an allergic or systemic cause."],
+        ['title'=>'Treat Pain and Vision Signs as Urgent', 'desc'=>"Squinting or signs of sudden vision loss warrant a same-day vet visit — don't wait to see if it resolves on its own."],
+        ['title'=>'Review Your Personalized Guidance', 'desc'=>"Read the likely-cause and recommended-action guidance matched to your dog's specific symptom and eyes-affected combination."],
+        ['title'=>'Avoid Old or Leftover Eye Drops', 'desc'=>"Using human eye drops or leftover prescriptions from a past issue can make an active infection worse — get a vet-guided treatment instead."],
+        ['title'=>'Distinguish From Routine Cleaning Needs', 'desc'=>"If this is just everyday tear-staining or debris with no other symptoms, our dog eye cleaning guide covers routine care separately."],
+    ];
+}
+
+function pz_tips_dog_eye_problems() {
+    return [
+        ['Treat Squinting as a Same-Day Concern', "Squinting is a pain signal — eye conditions causing it can worsen quickly, so same-day veterinary attention is the safest approach."],
+        ["Don't Assume Cloudiness Is Just Aging", "Nuclear sclerosis is common and usually harmless, but cataracts can look similar to an owner — only a vet exam reliably tells them apart."],
+        ['Never Use Old or Human Eye Drops', "Leftover prescriptions or human eye drops can worsen an active infection — get a fresh, vet-guided diagnosis and treatment instead."],
+        ['Note One Eye vs. Both', "One eye affected often points to a localized cause like a scratch; both eyes more often suggests an allergic or systemic cause — mention this to your vet."],
+        ['Distinguish Tear-Staining From a Medical Issue', "Flat-faced breeds often have breed-normal tear-staining that's cosmetic, not medical — but persistent watering beyond that still deserves a check."],
+    ];
+}
+
+function pz_mistakes_dog_eye_problems() {
+    return [
+        ['❌ Waiting Out Squinting or Redness', "Squinting is a pain signal, and eye conditions can worsen quickly. Waiting to see if it resolves risks losing the window for the most effective, least invasive treatment."],
+        ['❌ Assuming All Cloudiness Is "Just Old Age"', "Age-related haze and cataracts can look similar — assuming it's benign without a vet exam means a treatable condition could be missed."],
+        ['❌ Reusing Old or Leftover Eye Drops', "Using a leftover prescription from a past issue, or human eye drops, on a new problem can worsen an active infection rather than help it."],
+        ['❌ Ignoring Sudden Bumping-Into-Things Behavior', "Signs of sudden vision loss need prompt evaluation — dismissing clumsiness as random behavior risks missing a genuinely urgent issue."],
+        ['❌ Confusing Breed-Normal Tear-Staining With a Medical Problem (or Vice Versa)', "Flat-faced breeds often have cosmetic tear-staining, but persistent watery discharge beyond that baseline still deserves a proper check rather than being dismissed either way."],
+    ];
+}
+
+function pz_render_guide_dog_eye_problems( $tool ) {
+    $icon = $tool['icon'] ?? '👁️';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Eye Problems Guide</div>
+          <div class="pz-int-sublabel">Symptoms &amp; treatment · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">👁️ Urgency-Aware</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Symptom</label>
+          <select id="pz_ep_symptom" class="pz-int-select">
+            <option value="watery">Watery discharge</option>
+            <option value="colored">Thick or colored discharge</option>
+            <option value="red_squint">Redness or squinting (pain signs)</option>
+            <option value="cloudy">Cloudiness or visible change to the eye</option>
+            <option value="vision">Signs of sudden vision loss (bumping into things)</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Eyes Affected</label>
+          <select id="pz_ep_eyes" class="pz-int-select">
+            <option value="one">One eye</option>
+            <option value="both">Both eyes</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenEyeProblems()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Eye Problem Guidance
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ 12. Dog Ear Infection: Symptoms, Causes & Treatment (dog_ear_infection) ══ */
+
+function pz_hero_quickanswer_dog_ear_infection() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Head tilt or shaking is more urgent — it can mean the infection has reached the middle or inner ear, a more serious situation than a surface infection. Redness or discharge usually needs vet diagnosis since bacterial vs. yeast infections are treated differently. Recurring infections are often driven by an underlying allergy that needs addressing, not just repeated treatment. Select your dog's symptoms and history above for guidance.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_ear_infection() { ?>
+      <span>👂 Severity-aware guidance</span>
+      <span>🔁 Recurring-cause focused</span>
+      <span>🩺 No guess-and-treat advice</span>
+<?php }
+
+function pz_methodology_heading_dog_ear_infection() { return "How This Ear Infection Guidance Is Built"; }
+
+function pz_methodology_dog_ear_infection() { ?>
+    <p style="color:#555;margin-bottom:20px">Ear infection guidance is built from current symptoms and history together. Symptoms range from mild odor through to pain and swelling, with head tilt or shaking flagged as more urgent since it can signal the infection has spread beyond the outer ear. History matters separately — a first-time issue points toward early treatment and reviewing your cleaning routine, while a recurring issue points toward finding and addressing the underlying cause, often allergies.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🚨</div>
+        <strong>Head Tilt Is a Red Flag</strong>
+        <p>Head shaking or tilt can mean the infection has reached the middle or inner ear — a more serious situation than a surface infection.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🦠</div>
+        <strong>Bacterial vs. Yeast Matters</strong>
+        <p>These need different treatments — using the wrong product, or a leftover one from a past infection, can prolong or mask the real problem.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🔁</div>
+        <strong>Recurring Points to Root Cause</strong>
+        <p>Allergies are a very common driver of recurring ear infections — treating only the current infection without addressing this means it returns.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🧼</div>
+        <strong>First-Time vs. Routine Prevention</strong>
+        <p>A first-time mild issue is a good moment to review your ear-cleaning routine before it becomes a recurring pattern.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_ear_infection() {
+    return [
+        ["My dog is tilting their head — how serious is that?", "Head tilt is more urgent than typical ear infection symptoms — it can indicate the infection has reached the middle or inner ear, which is a more serious situation than a surface infection. This warrants a prompt vet visit, not home treatment."],
+        ["Can I just clean my dog's ears at home to treat an infection?", "If there's redness or discharge, it likely needs vet diagnosis rather than home cleaning alone — bacterial and yeast infections require different treatments, and typically a prescription. Using the wrong product, or a leftover one from a past infection, can prolong the problem."],
+        ["Why does my dog keep getting ear infections?", "Recurring ear infections are very commonly driven by an underlying allergy — environmental or food-related. Treating only the current infection without addressing the underlying cause with your vet means it's likely to keep coming back."],
+        ["My dog just has a mild odor and occasional scratching — do I need a vet?", "For a first-time, mild issue, a vet visit before it progresses is still recommended, along with reviewing your ear-cleaning routine. Our dedicated dog ear cleaning guide covers routine prevention if this turns out to be early-stage or preventable."],
+        ["What does pain or swelling in the ear mean?", "Pain when touched or visible swelling is a more urgent presentation and needs a prompt vet visit — these signs suggest a more advanced or more serious infection than mild odor or scratching alone."],
+    ];
+}
+
+function pz_what_is_dog_ear_infection() {
+    ob_start(); ?>
+    <p>The Dog Ear Infection Guide helps you interpret ear symptoms — from mild odor to head tilt — and understand what they likely mean, whether home care or a vet visit is the right next step, and why recurring infections need a different approach than a first-time issue.</p>
+    <p>Ear infections range in severity and cause: mild odor or occasional scratching can be early-stage, redness or discharge usually signals an active infection needing vet diagnosis since bacterial and yeast infections are treated differently, and head shaking or tilt is a more urgent sign that the infection may have reached the middle or inner ear. Recurring infections point toward an underlying cause — very often allergies — that needs to be addressed directly.</p>
+    <p>Select your dog's symptoms and whether this is a first-time or recurring issue above for guidance, then scroll down for detail and the FAQ covering the ear infection questions dog owners ask most. For routine prevention, see our dedicated dog ear cleaning guide.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_ear_infection() {
+    ob_start(); ?>
+    <p>Ear infections range from mild and easily managed to genuinely serious — knowing the difference changes how quickly a dog needs help:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🚨</span>
+        <div>
+          <strong>Head Tilt Can Mean It's Spread</strong>
+          <p>Head shaking or tilt can indicate the infection has reached the middle or inner ear — a more serious situation than a surface infection.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🦠</span>
+        <div>
+          <strong>The Wrong Treatment Can Prolong It</strong>
+          <p>Bacterial and yeast infections need different treatments — using the wrong product, or a leftover one, can mask or worsen the real issue.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🔁</span>
+        <div>
+          <strong>Recurring Infections Have a Root Cause</strong>
+          <p>Allergies very commonly drive recurring ear infections — treating symptoms alone without addressing this means the cycle keeps repeating.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🧼</span>
+        <div>
+          <strong>Early Attention Prevents Progression</strong>
+          <p>A mild, first-time issue caught early and paired with a reviewed cleaning routine is far easier to manage than a progressed infection.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_ear_infection() {
+    return [
+        ['title'=>'Identify Current Symptoms', 'desc'=>"Mild odor/scratching, redness/discharge, head shaking/tilt, or pain/swelling — each level calls for a different response."],
+        ['title'=>'Note Whether This Is First-Time or Recurring', 'desc'=>"A first-time mild issue points to early treatment; a recurring issue points to finding and addressing an underlying cause."],
+        ['title'=>'Treat Head Tilt as Urgent', 'desc'=>"Head shaking or tilt can mean the infection has reached the middle or inner ear — this warrants a prompt vet visit."],
+        ['title'=>'Get a Vet Diagnosis for Discharge', 'desc'=>"Redness or discharge likely needs vet-guided treatment, since bacterial and yeast infections are treated differently."],
+        ['title'=>'Review Your Personalized Guidance', 'desc'=>"Read the recommended next step matched to your dog's specific symptom and history combination."],
+        ['title'=>'Discuss Root Causes If Recurring', 'desc'=>"If this keeps happening, talk to your vet about underlying allergies rather than just treating each infection as it comes."],
+    ];
+}
+
+function pz_tips_dog_ear_infection() {
+    return [
+        ['Treat Head Tilt as an Urgent Sign', "Head shaking or tilt can mean the infection has reached the middle or inner ear — this is more serious than a surface infection and needs prompt attention."],
+        ["Don't Reuse Leftover Ear Products", "Using a product left over from a past infection, without knowing if this is bacterial or yeast, can prolong the problem or mask what's really going on."],
+        ['Ask About Underlying Allergies If Recurring', "Recurring ear infections are very commonly driven by allergies — addressing the root cause with your vet is more effective than treating each flare-up alone."],
+        ['Review Your Ear-Cleaning Routine Early', "For a first-time, mild issue, checking that your ear-cleaning routine is appropriate can help prevent progression — see our dog ear cleaning guide for prevention."],
+        ['Get Discharge Diagnosed, Not Guessed At', "Bacterial and yeast infections look similar to an owner but need different treatments — a vet diagnosis avoids wasted time on the wrong product."],
+    ];
+}
+
+function pz_mistakes_dog_ear_infection() {
+    return [
+        ['❌ Dismissing Head Tilt as Just "Shaking Off Water"', "Head tilt can indicate the infection has reached the middle or inner ear — a more serious situation than a surface infection that needs prompt evaluation."],
+        ['❌ Using a Leftover Product From a Past Infection', "Bacterial and yeast infections require different treatments — reusing an old product without a current diagnosis can prolong the problem or mask what's happening."],
+        ['❌ Treating Each Recurrence Without Asking Why', "Recurring infections are very commonly driven by an underlying allergy — treating only the current infection each time means it's likely to keep coming back."],
+        ['❌ Waiting Through Pain or Visible Swelling', "Pain when touched or visible swelling is a more advanced presentation that needs a prompt vet visit, not continued home monitoring."],
+        ['❌ Over-Cleaning Ears as a "Just in Case" Habit', "Excessive cleaning can irritate the ear canal and disrupt its natural balance — a reviewed, appropriate routine matters more than frequency alone."],
+    ];
+}
+
+function pz_render_guide_dog_ear_infection( $tool ) {
+    $icon = $tool['icon'] ?? '👂';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Ear Infection Guide</div>
+          <div class="pz-int-sublabel">Symptoms, causes &amp; treatment · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">👂 Severity-Aware</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Symptoms</label>
+          <select id="pz_ei_symptom" class="pz-int-select">
+            <option value="mild">Mild odor or occasional scratching</option>
+            <option value="discharge">Redness or discharge</option>
+            <option value="tilt">Head shaking or head tilt</option>
+            <option value="severe">Pain when touched or visible swelling</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">History</label>
+          <select id="pz_ei_history" class="pz-int-select">
+            <option value="first">First time noticing this</option>
+            <option value="recurring">Recurring issue</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenEarInfection()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Ear Infection Guidance
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Dog Diabetes: Signs, Management & Diet Guide (dog_diabetes) ══ */
+
+function pz_hero_quickanswer_dog_diabetes() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Increased thirst and urination, or weight loss despite a normal appetite, are the classic early warning signs of diabetes in dogs — either one on its own is worth a vet visit for bloodwork and a urinalysis without delay. Vomiting, lethargy, and not eating together can signal diabetic ketoacidosis, a genuine emergency complication — this needs a vet visit now, not a wait-and-see approach. No symptoms at all just means prevention and routine bloodwork matter, especially for overweight, senior, or predisposed-breed dogs. Select your dog's symptoms and risk factors above for guidance.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_diabetes() { ?>
+      <span>💉 Symptom-severity aware</span>
+      <span>⚖️ Risk-factor aware</span>
+      <span>🩺 Testing-focused, not diagnostic</span>
+<?php }
+
+function pz_methodology_heading_dog_diabetes() { return "How This Diabetes Guidance Is Built"; }
+
+function pz_methodology_dog_diabetes() { ?>
+    <p style="color:#555;margin-bottom:20px">Diabetes guidance is built from symptoms noticed and known risk factors together. Symptoms drive the urgency level — from prevention-only through a bloodwork recommendation to an urgent flag for possible diabetic ketoacidosis — while risk factors like being overweight, senior age, or a predisposed breed add context for dogs showing no symptoms yet.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🔍</div>
+        <strong>Symptom Severity Drives Urgency</strong>
+        <p>None, increased thirst/urination, weight loss, or vomiting-lethargy-not eating together each call for a distinctly different response.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">⚖️</div>
+        <strong>Risk Factor Context</strong>
+        <p>Being overweight, senior age, and certain breed predispositions all raise baseline risk, even before any symptoms appear.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🩸</div>
+        <strong>Testing, Not Guessing</strong>
+        <p>Bloodwork and a urinalysis are the actual way to confirm diabetes — this guide points you toward testing, not a diagnosis by symptom list alone.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">💊</div>
+        <strong>Diagnosed Dogs Follow Their Vet's Plan</strong>
+        <p>If your dog is already diagnosed, this tool defers entirely to your vet's specific insulin and diet plan.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_diabetes() {
+    return [
+        ["What are the early warning signs of diabetes in dogs?", "Increased thirst and urination, and weight loss despite a normal appetite, are the two most common early signs. Either one on its own is worth a vet visit for bloodwork and a urinalysis — these are the most common early presentation of diabetes and shouldn't be waited out."],
+        ["My dog is vomiting, lethargic, and not eating — is this an emergency?", "Yes, treat this combination as urgent. It can indicate diabetic ketoacidosis, a genuine emergency complication of diabetes, and needs a vet visit now rather than a wait-and-see approach."],
+        ["Which dogs are at higher risk for diabetes?", "Overweight dogs, senior dogs, and dogs of certain predisposed breeds all carry a higher baseline risk. None of these guarantee diabetes will develop, but they're a good reason to keep up with routine annual bloodwork."],
+        ["My dog isn't showing any symptoms — do I still need to do anything?", "Not urgently, but maintaining a healthy weight and keeping up with routine annual bloodwork is worthwhile, especially if your dog has a risk factor. Bloodwork can catch early signs before symptoms ever appear."],
+        ["My dog is already diagnosed with diabetes — does this tool help manage it?", "Not directly — this tool isn't a substitute for your vet's specific insulin and diet plan. It's meant to help decide whether symptoms warrant getting tested in the first place, not to manage an existing diagnosis."],
+    ];
+}
+
+function pz_what_is_dog_diabetes() {
+    ob_start(); ?>
+    <p>The Dog Diabetes Guide helps you interpret symptoms — or the absence of symptoms — and understand whether they warrant getting your dog tested for diabetes, from prevention habits for a symptom-free dog to an urgent flag for possible diabetic ketoacidosis.</p>
+    <p>Diabetes in dogs typically shows up first as increased thirst and urination, or weight loss despite a normal appetite — these are the two most common early signs and are worth bloodwork and a urinalysis without delay. Vomiting, lethargy, and not eating together are more serious and can signal diabetic ketoacidosis, a genuine emergency. Risk factors like being overweight, senior age, or a predisposed breed matter most when no symptoms are present yet, since they point toward the value of routine screening.</p>
+    <p>Select your dog's symptoms and risk factors above for guidance, then scroll down for detail and the FAQ covering the diabetes questions dog owners ask most. If your dog is already diagnosed, always defer to your vet's specific management plan.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_diabetes() {
+    ob_start(); ?>
+    <p>Diabetes symptoms range from easy to miss to a genuine emergency — knowing the difference changes how quickly a dog gets help:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🚨</span>
+        <div>
+          <strong>Diabetic Ketoacidosis Is a Real Emergency</strong>
+          <p>Vomiting, lethargy, and not eating together can indicate this serious complication — it needs a vet visit now, not monitoring at home.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">💧</span>
+        <div>
+          <strong>Thirst and Weight Loss Are the Classic Early Signs</strong>
+          <p>Increased thirst/urination and unexplained weight loss are the most common early presentation — both deserve prompt bloodwork.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">⚖️</span>
+        <div>
+          <strong>Weight Management Lowers Risk</strong>
+          <p>Maintaining a healthy weight is one of the most controllable factors in reducing a dog's baseline diabetes risk.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🩺</span>
+        <div>
+          <strong>Routine Bloodwork Catches It Early</strong>
+          <p>Annual bloodwork can catch early signs of diabetes before symptoms ever appear, especially in at-risk dogs.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_diabetes() {
+    return [
+        ['title'=>'Note Any Symptoms Noticed', 'desc'=>"None, increased thirst/urination, weight loss despite normal appetite, or vomiting-lethargy-not eating together — each calls for a different response."],
+        ['title'=>"Consider Your Dog's Risk Factors", 'desc'=>"Being overweight, senior age, or a known breed predisposition all raise baseline risk, even with no symptoms yet."],
+        ['title'=>'Treat Severe Symptoms as an Emergency', 'desc'=>"Vomiting, lethargy, and not eating together can indicate diabetic ketoacidosis — this needs a vet visit now."],
+        ['title'=>'Get Bloodwork for Early Warning Signs', 'desc'=>"Increased thirst/urination or weight loss on their own are worth a vet visit for bloodwork and a urinalysis without delay."],
+        ['title'=>'Review Your Personalized Guidance', 'desc'=>"Read the recommendation matched to your dog's specific symptom and risk factor combination."],
+        ['title'=>'Build Prevention Habits If No Symptoms', 'desc'=>"Maintain a healthy weight and keep up with routine annual bloodwork, especially if a risk factor is present."],
+    ];
+}
+
+function pz_tips_dog_diabetes() {
+    return [
+        ['Keep Your Dog at a Healthy Weight', "Excess weight is one of the most controllable risk factors for diabetes — maintaining an ideal weight lowers baseline risk meaningfully."],
+        ['Schedule Annual Bloodwork, Especially If At-Risk', "Routine bloodwork can catch early signs of diabetes before symptoms ever appear — this matters most for overweight, senior, or predisposed-breed dogs."],
+        ['Know the Early Warning Signs', "Increased thirst and urination, and weight loss despite normal appetite, are the two most common early signs — don't dismiss either one."],
+        ["Don't Wait Out Vomiting, Lethargy, and Not Eating Together", "This combination can indicate diabetic ketoacidosis, a genuine emergency complication that needs a vet visit now."],
+        ["Follow Your Vet's Specific Plan If Already Diagnosed", "This tool helps decide whether to get tested — it isn't a substitute for your vet's individualized insulin and diet plan once diagnosed."],
+    ];
+}
+
+function pz_mistakes_dog_diabetes() {
+    return [
+        ['❌ Dismissing Increased Thirst as "Just the Weather"', "Increased thirst and urination is one of the two most common early signs of diabetes — it deserves a vet visit for bloodwork, not an assumption about the heat."],
+        ['❌ Waiting to See If Vomiting and Lethargy Pass', "Vomiting, lethargy, and not eating together can indicate diabetic ketoacidosis, a genuine emergency — this combination needs a vet visit now."],
+        ['❌ Assuming Only Overweight Dogs Get Diabetes', "Senior age and certain breed predispositions also raise risk independent of weight — knowing your dog's full risk profile matters."],
+        ['❌ Skipping Annual Bloodwork in At-Risk Dogs', "Routine bloodwork is one of the most reliable ways to catch diabetes before symptoms appear, especially for overweight, senior, or predisposed dogs."],
+        ["❌ Using General Guidance as a Substitute for Your Vet's Plan", "If your dog is already diagnosed with diabetes, this tool isn't a substitute for your vet's specific insulin and diet plan — it's meant to help decide whether symptoms warrant getting tested in the first place."],
+    ];
+}
+
+function pz_render_guide_dog_diabetes( $tool ) {
+    $icon = $tool['icon'] ?? '💉';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Diabetes Guide</div>
+          <div class="pz-int-sublabel">Signs, management &amp; diet · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">💉 Symptom-Aware</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Symptoms Noticed</label>
+          <select id="pz_db_symptoms" class="pz-int-select">
+            <option value="none">None — just learning</option>
+            <option value="thirst">Increased thirst and urination</option>
+            <option value="weightloss">Weight loss despite normal appetite</option>
+            <option value="severe">Vomiting, lethargy, and not eating</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Risk Factors</label>
+          <select id="pz_db_risk" class="pz-int-select">
+            <option value="none">None known</option>
+            <option value="overweight">Overweight</option>
+            <option value="senior">Senior age</option>
+            <option value="breed">Known breed predisposition</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenDiabetes()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Diabetes Guidance
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Dog Cancer Early Warning Signs Guide (dog_cancer_signs) ══ */
+
+function pz_hero_quickanswer_dog_cancer_signs() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Most new lumps and bumps in dogs are benign — but appearance and feel alone can't confirm that, so any new lump still deserves a vet check. Multiple signs together, or a single change that's persisted a month or more, are worth a proper diagnostic workup soon, since early detection generally means more treatment options. Weight loss and non-healing wounds have several possible causes beyond cancer, but persistent changes are worth checking regardless of the cause. Select what you've noticed and how long it's been present above for guidance.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_cancer_signs() { ?>
+      <span>🔍 Calm, non-alarming guidance</span>
+      <span>🩺 Diagnosis-focused, not guesswork</span>
+      <span>📋 Awareness checklist included</span>
+<?php }
+
+function pz_methodology_heading_dog_cancer_signs() { return "How This Cancer Sign Guidance Is Built"; }
+
+function pz_methodology_dog_cancer_signs() { ?>
+    <p style="color:#555;margin-bottom:20px">This guidance starts from an important fact: most lumps, bumps, and skin changes in dogs are benign. But because you can't reliably tell benign from something that needs attention just by looking or feeling, any new or persistent change is worth a vet check. Duration and whether multiple signs are present together both raise how soon that check should happen.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🔍</div>
+        <strong>Benign Is Common, But Not Guaranteed</strong>
+        <p>Lipomas and similar benign lumps are common — but look and feel alone can't confirm that, which is why a check matters regardless.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">⏱️</div>
+        <strong>Duration Changes the Recommendation</strong>
+        <p>A change that's persisted a month or more moves from "keep an eye on it" to "worth a vet visit soon."</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🧩</div>
+        <strong>Multiple Signs Together Matter More</strong>
+        <p>Several signs appearing at once raises the priority of a full diagnostic workup, compared to any one sign alone.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">📋</div>
+        <strong>What Vets Watch For</strong>
+        <p>Even with nothing noticed yet, knowing the general categories vets screen for helps you catch changes early at routine visits.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_cancer_signs() {
+    return [
+        ["I found a new lump on my dog — does that mean cancer?", "No — most new lumps and bumps in dogs, like lipomas, are benign and harmless. But appearance and feel alone can't confirm that, so it's still worth having a vet check it, often with a quick cytology sample, just to be sure."],
+        ["How urgent is it if my dog has multiple signs together, or something that's lasted over a month?", "This combination is worth a vet visit soon for a proper diagnostic workup. It doesn't mean cancer is confirmed — it means the combination is significant enough that finding out matters, and early detection generally improves treatment options if anything does need addressing."],
+        ["My dog has lost weight but seems to be eating fine otherwise — should I worry?", "Weight loss has many possible causes beyond cancer, including dental issues, GI problems, and thyroid changes. Whatever the underlying cause turns out to be, a persistent unexplained change is worth a vet visit to find out what's going on."],
+        ["What if my dog just has a wound or swelling that won't heal?", "Most minor wounds heal within a week or two. One that persists beyond that, or unusual swelling that doesn't resolve, is worth a vet look — this is about ruling things out with a proper exam, not a sign of anything specific on its own."],
+        ["What general signs do vets watch for even if my dog seems fine right now?", "Lumps that grow or change, sores that don't heal, unexplained weight loss, decreased appetite, unusual bleeding or discharge, persistent lameness, difficulty breathing, eating, or swallowing, and an unusual odor are all worth a mention at your next routine visit. Regular vet exams catch most things early."],
+    ];
+}
+
+function pz_what_is_dog_cancer_signs() {
+    ob_start(); ?>
+    <p>The Dog Cancer Early Warning Signs Guide helps you understand what a lump, a weight change, a wound, or several signs together are likely to mean — and calmly walks through why any of them are worth a vet check, without assuming the worst.</p>
+    <p>It's worth saying plainly: most lumps and bumps dogs develop are benign, and there are many non-cancer explanations for weight loss, appetite changes, and slow-healing wounds. The reason any of these still deserve a vet visit is simple — you can't reliably tell benign from something that needs attention just by looking or feeling it. A vet exam, sometimes with a quick cytology sample, is what actually tells them apart. Multiple signs together, or a change that's persisted a month or more, raise how soon that visit should happen.</p>
+    <p>Select what you've noticed and how long it's been present above for guidance, then scroll down for the general warning-sign categories worth knowing and the FAQ covering the questions dog owners ask most about this topic.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_cancer_signs() {
+    ob_start(); ?>
+    <p>Getting a calm, accurate read on a new sign — rather than panicking or dismissing it — changes both peace of mind and outcomes:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🔍</span>
+        <div>
+          <strong>Look and Feel Alone Aren't Diagnostic</strong>
+          <p>Benign and concerning lumps can feel similar to an owner's hand — a vet exam is the only reliable way to tell them apart.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🧩</span>
+        <div>
+          <strong>Multiple or Persistent Signs Raise Priority</strong>
+          <p>Several signs together, or something that's lasted a month or more, are worth a proper diagnostic workup sooner rather than later.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">⏱️</span>
+        <div>
+          <strong>Early Detection Improves Options</strong>
+          <p>If something does need treatment, catching it earlier generally means more treatment options and better outcomes.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">📋</span>
+        <div>
+          <strong>Awareness Helps You Catch Changes Early</strong>
+          <p>Knowing the general categories vets watch for means you're more likely to notice and mention a change at your next routine visit.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_cancer_signs() {
+    return [
+        ['title'=>"Identify What You've Noticed", 'desc'=>"A new lump, weight loss or appetite change, a non-healing wound or swelling, multiple signs together, or nothing at all yet."],
+        ['title'=>"Note How Long It's Been Present", 'desc'=>"Just noticed, a few weeks, or a month or more — duration changes how soon a vet visit is recommended."],
+        ['title'=>'Treat Multiple Signs or Long Duration as a Priority', 'desc'=>"Several signs together, or anything that's persisted a month or more, is worth a proper diagnostic workup soon."],
+        ['title'=>'Remember Most Lumps Are Benign, But Still Get Checked', 'desc'=>"The large majority of new lumps are harmless — but only a vet exam can confirm that reliably, not appearance alone."],
+        ['title'=>'Review Your Personalized Guidance', 'desc'=>"Read the recommendation matched to what you've noticed and how long it's been present."],
+        ['title'=>'Bring the General Warning Sign List to Routine Visits', 'desc'=>"Even with nothing noticed now, mentioning the general categories vets screen for at checkups helps catch changes early."],
+    ];
+}
+
+function pz_tips_dog_cancer_signs() {
+    return [
+        ['Get New Lumps Checked, Even If They Seem Harmless', "Most lumps are benign, but appearance alone can't confirm that — a quick vet check, sometimes with a cytology sample, settles it either way."],
+        ['Track Duration and Any Changes', "Note when you first noticed something and whether it's grown, changed, or stayed the same — this detail helps your vet assess it accurately."],
+        ["Don't Wait Out Multiple Signs Together", "Several signs appearing at once is worth a vet visit soon for a full diagnostic workup, rather than watching each one individually."],
+        ['Keep Up With Regular Vet Exams', "Routine exams catch most early changes before an owner would notice them at home — consistency matters more than any single check."],
+        ['Know the General Categories Vets Watch For', "Lumps that change, non-healing sores, weight loss, appetite changes, unusual discharge, lameness, and breathing or swallowing difficulty are all worth mentioning at checkups."],
+    ];
+}
+
+function pz_mistakes_dog_cancer_signs() {
+    return [
+        ['❌ Assuming a Lump "Looks Benign" Is Enough', "Appearance and feel alone can't reliably tell benign from something that needs attention — a vet check is the only way to actually know."],
+        ["❌ Waiting Out a Wound That Isn't Healing", "Most minor wounds heal within a week or two — one that persists beyond that is worth a vet look rather than continued home care."],
+        ['❌ Dismissing Weight Loss Because Appetite Seems Normal', "Weight loss despite normal eating has several possible causes, and a persistent unexplained change is worth checking regardless of what's behind it."],
+        ['❌ Ignoring Multiple Signs Because Each One Seems Minor Alone', "Signs that would each seem small individually carry more weight when they show up together — this combination is worth a vet visit soon."],
+        ['❌ Skipping Routine Exams Because "Nothing Seems Wrong"', "Regular vet exams are how most early changes get caught — waiting for obvious symptoms means missing the window when options are broadest."],
+    ];
+}
+
+function pz_render_guide_dog_cancer_signs( $tool ) {
+    $icon = $tool['icon'] ?? '🔬';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Cancer Early Warning Signs Guide</div>
+          <div class="pz-int-sublabel">Calm, vet-reviewed guidance · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🔬 Non-Alarming Guidance</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Signs Noticed</label>
+          <select id="pz_cs_signs" class="pz-int-select">
+            <option value="none">None — just learning what to watch for</option>
+            <option value="lump">A new lump or bump</option>
+            <option value="weightloss">Weight loss or appetite change</option>
+            <option value="wound">A non-healing wound or unusual swelling</option>
+            <option value="multiple">Multiple signs together</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Duration</label>
+          <select id="pz_cs_duration" class="pz-int-select">
+            <option value="new">Just noticed</option>
+            <option value="weeks">A few weeks</option>
+            <option value="months">A month or more</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenCancerSigns()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Guidance
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Dog Anxiety: Types, Triggers & Solutions Guide (dog_anxiety) ══ */
+
+function pz_hero_quickanswer_dog_anxiety() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Severe anxiety — destructive behavior or self-harm — warrants a vet or veterinary behaviorist visit; medication alongside behavior modification may genuinely help at this level, not as a last resort. Separation, noise, and social triggers each respond best to a specific gradual desensitization approach, never punishment. Anxiety with no clear trigger can sometimes stem from an underlying medical cause, like chronic pain or a thyroid imbalance, worth ruling out first. Select your dog's trigger pattern and severity above for guidance.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_anxiety() { ?>
+      <span>😰 Trigger-specific protocols</span>
+      <span>🚫 No punishment-based advice</span>
+      <span>🩺 Medical-cause aware</span>
+<?php }
+
+function pz_methodology_heading_dog_anxiety() { return "How This Anxiety Guidance Is Built"; }
+
+function pz_methodology_dog_anxiety() { ?>
+    <p style="color:#555;margin-bottom:20px">Anxiety guidance is built from the trigger pattern and severity together. Separation, noise, and social triggers each call for a specific desensitization protocol, while severity decides how urgently professional help is needed — from a consistent at-home approach for mild cases up to a vet or veterinary behaviorist visit for severe, destructive, or self-harming behavior. Anxiety with no clear trigger is treated differently, since it can sometimes have an underlying medical cause.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🎯</div>
+        <strong>Trigger Pattern Shapes the Approach</strong>
+        <p>Separation, noise, and social anxiety each respond best to a different, specific desensitization protocol — not a one-size-fits-all fix.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">📊</div>
+        <strong>Severity Drives the Recommendation</strong>
+        <p>Mild and moderate anxiety are typically manageable at home; severe, destructive, or self-harming behavior needs professional involvement.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🚫</div>
+        <strong>Punishment Backfires</strong>
+        <p>Punishing anxiety-driven behavior worsens the underlying anxiety rather than fixing it — this guidance never recommends it.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🩺</div>
+        <strong>Undifferentiated Anxiety Gets a Medical Check</strong>
+        <p>Constant anxiety with no clear trigger can sometimes mimic an underlying medical issue — ruling that out comes first.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_anxiety() {
+    return [
+        ["My dog is anxious whenever I leave — what actually helps?", "Gradual desensitization to departure cues (keys, shoes, grabbing your bag) helps break the association with you leaving for good. Never use punishment for anxiety-driven behavior — it worsens things. Crate training can help if your dog already finds the crate comforting, and calming aids can help mild cases."],
+        ["My dog panics during storms and fireworks — what can I do?", "The same gradual desensitization approach helps, along with giving your dog a safe, quiet space during events. For severe storm or fireworks anxiety, situational vet-discussed medication is a reasonable option — not a last resort to feel guilty about."],
+        ["Is it ever okay to use medication for my dog's anxiety?", "Yes. For severe anxiety, or situational triggers like fireworks, medication alongside behavior modification can be genuinely appropriate and effective. This is a decision to make with your vet, not something to avoid out of guilt."],
+        ["My dog seems anxious all the time with no clear trigger — what does that mean?", "Constant, undifferentiated anxiety can sometimes have an underlying medical cause, like chronic pain or a thyroid imbalance, that mimics behavioral anxiety. A vet exam to rule out medical causes is the recommended first step before assuming it's purely behavioral."],
+        ["My dog is destructive or hurts itself when anxious — is this normal?", "No — this level of severity shouldn't just be waited out. A vet or veterinary behaviorist visit is recommended, and medication alongside behavior modification may be appropriate to help your dog make progress."],
+    ];
+}
+
+function pz_what_is_dog_anxiety() {
+    ob_start(); ?>
+    <p>The Dog Anxiety Guide helps you match your dog's specific trigger pattern and severity level to the right approach — from a gradual at-home desensitization protocol to knowing when a vet or veterinary behaviorist visit is the right next step.</p>
+    <p>Anxiety in dogs shows up differently depending on the trigger: separation anxiety responds to desensitizing departure cues, noise anxiety benefits from a safe space plus gradual exposure, and social anxiety needs gentle, positive-reinforcement exposure rather than forcing interaction. Anxiety with no clear trigger is a different case — it can sometimes point to an underlying medical cause that needs ruling out first. Severity matters too: mild and moderate anxiety are typically manageable with a consistent approach, while severe, destructive, or self-harming behavior needs professional support.</p>
+    <p>Select your dog's trigger pattern and severity above for guidance, then scroll down for detail and the FAQ covering the anxiety questions dog owners ask most.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_anxiety() {
+    ob_start(); ?>
+    <p>Getting the right approach for the right type and severity of anxiety changes how effectively — and how kindly — it gets addressed:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🚨</span>
+        <div>
+          <strong>Severe Anxiety Needs Professional Help</strong>
+          <p>Destructive behavior or self-harm shouldn't just be waited out — a vet or veterinary behaviorist visit, sometimes with medication, is appropriate.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🚫</span>
+        <div>
+          <strong>Punishment Makes Anxiety Worse</strong>
+          <p>Punishing anxiety-driven behavior worsens the underlying anxiety rather than resolving it — positive, gradual methods work better.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🩺</span>
+        <div>
+          <strong>Medical Causes Can Mimic Behavioral Anxiety</strong>
+          <p>Chronic pain or a thyroid imbalance can look like constant anxiety with no clear trigger — ruling this out matters before assuming it's behavioral.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🎯</span>
+        <div>
+          <strong>The Right Protocol Depends on the Trigger</strong>
+          <p>Separation, noise, and social anxiety each respond to a specific approach — using the wrong one wastes time and can worsen fear.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_anxiety() {
+    return [
+        ['title'=>'Identify the Trigger Pattern', 'desc'=>"Separation, noise, social situations, or no clear trigger at all — each points toward a different approach."],
+        ['title'=>'Rate the Severity Honestly', 'desc'=>"Mild and occasional, moderate and fairly regular, or severe with destructive or self-harming behavior — severity changes the recommendation."],
+        ['title'=>"Rule Out Medical Causes If There's No Clear Trigger", 'desc'=>"Constant, undifferentiated anxiety can sometimes stem from chronic pain or a thyroid imbalance — a vet exam comes first."],
+        ['title'=>'Apply the Trigger-Specific Protocol', 'desc'=>"Gradual desensitization for separation and noise, gentle positive-reinforcement exposure for social anxiety."],
+        ['title'=>'Avoid Punishment-Based Responses', 'desc'=>"Punishing anxiety-driven behavior worsens it — redirect and reward calm behavior instead."],
+        ['title'=>'Escalate to a Vet or Behaviorist for Severe Cases', 'desc'=>"Destructive behavior or self-harm needs professional involvement — medication alongside behavior modification may be appropriate."],
+    ];
+}
+
+function pz_tips_dog_anxiety() {
+    return [
+        ['Use Gradual Desensitization, Not Forced Exposure', "Slowly building tolerance to departure cues, noise, or new situations works far better than forcing your dog through overwhelming exposure."],
+        ['Never Punish Anxiety-Driven Behavior', "Punishment for chewing, accidents, or barking caused by anxiety increases the underlying anxiety rather than fixing the behavior."],
+        ['Consider Situational Medication Without Guilt', "For severe or event-specific anxiety like fireworks, vet-discussed medication alongside behavior modification is a legitimate, effective option."],
+        ["Rule Out Medical Causes for Undifferentiated Anxiety", "If there's no clear trigger and anxiety seems constant, a vet exam to check for chronic pain or thyroid imbalance is the right first step."],
+        ['Give Anxious Dogs a Safe Retreat Space', "A quiet, den-like space to retreat to during stressful events — like storms — helps dogs self-soothe rather than escalate."],
+    ];
+}
+
+function pz_mistakes_dog_anxiety() {
+    return [
+        ['❌ Punishing Destructive or Anxious Behavior', "Punishment for anxiety-driven behavior worsens the underlying anxiety — it doesn't teach the dog anything except that you're now also a source of stress."],
+        ['❌ Forcing Exposure ("Flooding") to Fix Social Fear', "Forcing a fearful dog into an overwhelming social situation typically worsens fear rather than resolving it — gradual, positive exposure works better."],
+        ["❌ Waiting Out Severe or Self-Harming Anxiety", "Destructive behavior or self-harm shouldn't just be waited out — a vet or veterinary behaviorist visit, sometimes with medication, is the appropriate response."],
+        ['❌ Assuming Constant Anxiety Is "Just Personality"', "Undifferentiated anxiety with no clear trigger can sometimes have an underlying medical cause, like chronic pain or thyroid imbalance, worth ruling out."],
+        ["❌ Feeling Guilty About Situational Medication", "Vet-discussed medication for severe or event-specific anxiety is a legitimate tool alongside behavior modification, not a sign of giving up."],
+    ];
+}
+
+function pz_render_guide_dog_anxiety( $tool ) {
+    $icon = $tool['icon'] ?? '😰';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Anxiety Guide</div>
+          <div class="pz-int-sublabel">Types, triggers &amp; solutions · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">😰 Trigger-Specific</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Trigger Pattern</label>
+          <select id="pz_anx_trigger" class="pz-int-select">
+            <option value="separation">Anxious when left alone</option>
+            <option value="noise">Loud noises (storms, fireworks)</option>
+            <option value="social">New people or places</option>
+            <option value="general">Seems anxious most of the time, no clear trigger</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Severity</label>
+          <select id="pz_anx_severity" class="pz-int-select">
+            <option value="mild">Mild, occasional</option>
+            <option value="moderate">Moderate, fairly regular</option>
+            <option value="severe">Severe — destructive behavior or self-harm</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenAnxiety()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Anxiety Guidance
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Kennel Cough in Dogs: Symptoms & Treatment (dog_kennel_cough) ══ */
+
+function pz_hero_quickanswer_dog_kennel_cough() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Severe breathing difficulty needs a vet visit right now — it can indicate a pneumonia complication or a different, more serious respiratory issue. A cough paired with lethargy or appetite loss is worth a vet visit too, since a secondary bacterial infection is possible. A dry, honking cough after recent boarding, daycare, or dog park exposure is the classic kennel cough presentation — usually self-limiting in 1-3 weeks, but still worth a vet visit for puppies, seniors, or dogs with weaker immune systems. Select your dog's symptoms and recent exposure above for guidance.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_kennel_cough() { ?>
+      <span>🤧 Symptom-severity aware</span>
+      <span>🫁 Breathing-difficulty flagged</span>
+      <span>🩺 Exposure-history aware</span>
+<?php }
+
+function pz_methodology_heading_dog_kennel_cough() { return "How This Kennel Cough Guidance Is Built"; }
+
+function pz_methodology_dog_kennel_cough() { ?>
+    <p style="color:#555;margin-bottom:20px">Kennel cough guidance is built from current symptoms and recent exposure history together. Symptoms range from a dry, honking cough while otherwise acting normal, through cough plus lethargy or appetite loss, up to severe breathing difficulty flagged as urgent. Recent exposure to boarding, daycare, or a dog park supports a classic kennel cough diagnosis; no known exposure with a persistent cough points toward ruling out other causes entirely.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🚨</div>
+        <strong>Breathing Difficulty Is Urgent</strong>
+        <p>Severe breathing difficulty can indicate a pneumonia complication or a different, more serious respiratory issue — this needs a vet visit now.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🦠</div>
+        <strong>Secondary Infection Risk</strong>
+        <p>Cough plus lethargy or appetite loss can mean a secondary bacterial infection on top of kennel cough — treatable, but needs diagnosis.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🐕</div>
+        <strong>Exposure History Matters</strong>
+        <p>Recent boarding, daycare, or dog park exposure supports a classic kennel cough presentation, typically self-limiting in 1-3 weeks.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🫀</div>
+        <strong>Ruling Out Other Causes</strong>
+        <p>A persistent cough with no known exposure could be heart disease, a collapsing trachea, or allergies rather than kennel cough at all.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_kennel_cough() {
+    return [
+        ["How urgent is it if my dog is having breathing difficulty?", "Treat this as urgent — severe breathing difficulty could indicate a pneumonia complication or a different, more serious respiratory issue. See a vet now rather than waiting to see if it passes."],
+        ["My dog has a cough plus lethargy — is that normal kennel cough?", "It's worth a vet visit. A secondary bacterial infection on top of kennel cough is possible when lethargy or appetite loss join the cough, and while it's treatable, it needs an actual diagnosis rather than continued home monitoring."],
+        ["My dog was just at daycare and now has a dry, honking cough — is this kennel cough?", "That's the classic presentation — a dry, honking cough after recent boarding, daycare, or dog park exposure, typically self-limiting in 1-3 weeks. A vet visit is still recommended, especially for puppies, seniors, or dogs with weaker immune systems. Use a harness instead of a collar, run a humidifier, rest, and isolate from other dogs since it's contagious."],
+        ["My dog has a persistent cough but no known exposure to other dogs — what could it be?", "Worth a vet visit to rule out other causes entirely. Heart disease, a collapsing trachea (common in small breeds), or allergies can all cause a chronic cough that isn't kennel cough at all."],
+        ["How long does kennel cough usually last?", "Typically 1-3 weeks and self-limiting in otherwise healthy adult dogs. It's contagious, so isolating from other dogs during that time matters, and a vet visit is still worthwhile, especially for puppies, seniors, or immune-compromised dogs."],
+    ];
+}
+
+function pz_what_is_dog_kennel_cough() {
+    ob_start(); ?>
+    <p>The Kennel Cough Guide helps you interpret cough-related symptoms in dogs — from a mild, classic case to signs that point toward something more serious — and understand what recent exposure history adds to the picture.</p>
+    <p>Kennel cough classically shows up as a dry, honking cough in a dog that's otherwise acting normal, often after recent boarding, daycare, or dog park exposure, and typically resolves on its own within 1-3 weeks. Cough combined with lethargy or appetite loss raises the possibility of a secondary bacterial infection needing diagnosis and treatment. Severe breathing difficulty is a different situation entirely and needs a vet visit right now. A persistent cough with no known exposure history is worth investigating for other causes, like heart disease, a collapsing trachea, or allergies.</p>
+    <p>Select your dog's symptoms and recent exposure above for guidance, then scroll down for supportive care tips and the FAQ covering the kennel cough questions dog owners ask most.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_kennel_cough() {
+    ob_start(); ?>
+    <p>Most coughs in dogs are mild and self-limiting, but a few specific signs change that — knowing which is which matters:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🚨</span>
+        <div>
+          <strong>Breathing Difficulty Signals Something More Serious</strong>
+          <p>Severe breathing difficulty can indicate a pneumonia complication or a different respiratory issue — this needs prompt veterinary attention.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🦠</span>
+        <div>
+          <strong>Lethargy Can Mean a Secondary Infection</strong>
+          <p>Cough plus lethargy or appetite loss raises the possibility of a treatable secondary bacterial infection that still needs diagnosis.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🐕</span>
+        <div>
+          <strong>Exposure History Points to the Likely Cause</strong>
+          <p>Recent boarding, daycare, or dog park visits make a classic kennel cough diagnosis far more likely than an unrelated cause.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🫀</span>
+        <div>
+          <strong>A Chronic Cough Isn't Always Kennel Cough</strong>
+          <p>Heart disease, a collapsing trachea, or allergies can all cause a persistent cough — especially with no known contagious exposure.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_kennel_cough() {
+    return [
+        ['title'=>"Identify Your Dog's Main Symptom", 'desc'=>"A dry, honking cough alone, cough plus lethargy or appetite loss, or severe breathing difficulty — each calls for a different response."],
+        ['title'=>'Note Recent Exposure History', 'desc'=>"Recent boarding, daycare, or dog park visits support a classic kennel cough diagnosis; no known exposure points elsewhere."],
+        ['title'=>'Treat Breathing Difficulty as an Emergency', 'desc'=>"Severe breathing difficulty needs a vet visit now — it can indicate a pneumonia complication or another serious respiratory issue."],
+        ['title'=>'Get Lethargy Paired With Cough Checked', 'desc'=>"A secondary bacterial infection is possible and treatable, but it needs an actual diagnosis rather than continued home monitoring."],
+        ['title'=>'Apply Supportive Care for a Classic Case', 'desc'=>"Use a harness instead of a collar, run a humidifier, ensure rest, and isolate from other dogs since kennel cough is contagious."],
+        ['title'=>"Rule Out Other Causes If There's No Exposure", 'desc'=>"A persistent cough with no known exposure could be heart disease, a collapsing trachea, or allergies rather than kennel cough."],
+    ];
+}
+
+function pz_tips_dog_kennel_cough() {
+    return [
+        ['Use a Harness Instead of a Collar', "A collar puts direct pressure on an already irritated throat — a harness reduces throat irritation while your dog recovers."],
+        ['Run a Humidifier', "A humidifier can help soothe irritated airways, making the cough a bit more comfortable while it runs its course."],
+        ['Isolate From Other Dogs While Contagious', "Kennel cough spreads easily between dogs — keeping your dog away from daycare, boarding, and dog parks during recovery protects others."],
+        ['Still See a Vet for Puppies, Seniors, or Weaker Immune Systems', "Even a classic, mild-looking case is worth a vet visit for dogs in these groups, since complications are more likely."],
+        ["Don't Assume Every Cough Is Kennel Cough", "A persistent cough with no known exposure history could be heart disease, a collapsing trachea, or allergies instead — worth ruling out."],
+    ];
+}
+
+function pz_mistakes_dog_kennel_cough() {
+    return [
+        ['❌ Waiting Out Breathing Difficulty', "Severe breathing difficulty can indicate a pneumonia complication or a more serious respiratory issue — this needs a vet visit now, not monitoring at home."],
+        ['❌ Ignoring Lethargy Paired With a Cough', "A secondary bacterial infection is possible when lethargy or appetite loss joins a cough — it's treatable, but needs an actual diagnosis."],
+        ["❌ Using a Collar Instead of a Harness During Recovery", "A collar puts pressure directly on an irritated throat — switching to a harness reduces unnecessary irritation while your dog heals."],
+        ["❌ Assuming No Exposure Means It Can't Be Contagious", "A persistent cough with no known exposure history is actually a reason to look elsewhere — at heart disease, a collapsing trachea, or allergies."],
+        ["❌ Not Ruling Out Heart Disease or Tracheal Issues for a Chronic Cough", "Small breeds especially can develop a collapsing trachea that causes a chronic cough easily mistaken for kennel cough — a vet visit tells them apart."],
+    ];
+}
+
+function pz_render_guide_dog_kennel_cough( $tool ) {
+    $icon = $tool['icon'] ?? '🤧';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Kennel Cough Guide</div>
+          <div class="pz-int-sublabel">Symptoms &amp; treatment · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🤧 Severity-Aware</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Symptoms</label>
+          <select id="pz_kc_symptoms" class="pz-int-select">
+            <option value="dry_cough">Dry, honking cough, otherwise acting normal</option>
+            <option value="lethargy">Cough plus lethargy or appetite loss</option>
+            <option value="breathing">Severe breathing difficulty</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Recent Exposure</label>
+          <select id="pz_kc_exposure" class="pz-int-select">
+            <option value="yes">Recent boarding, daycare, or dog park</option>
+            <option value="no">No known exposure</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenKennelCough()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Kennel Cough Guidance
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Dog Hypothyroidism: Symptoms & Management (dog_hypothyroidism) ══ */
+
+function pz_hero_quickanswer_dog_hypothyroidism() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Multiple signs together, or any single sign in a middle-aged, medium-to-large breed dog, are worth a thyroid blood panel (T4/TSH) — good news first: it's a simple test, and hypothyroidism is very manageable with daily medication once diagnosed. Weight gain despite a normal diet and coat thinning are both recognized signs on their own, though coat changes have other possible causes too and need bloodwork to confirm. Select your dog's symptoms and risk profile above for guidance.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_hypothyroidism() { ?>
+      <span>🏥 Risk-profile aware</span>
+      <span>🩸 Simple-test framing</span>
+      <span>💊 Manageable-condition focus</span>
+<?php }
+
+function pz_methodology_heading_dog_hypothyroidism() { return "How This Hypothyroidism Guidance Is Built"; }
+
+function pz_methodology_dog_hypothyroidism() { ?>
+    <p style="color:#555;margin-bottom:20px">Hypothyroidism is most commonly diagnosed in middle-aged, medium-to-large breed dogs — a real epidemiological pattern that shapes this guidance alongside symptoms noticed. Multiple signs together, or any single sign in a higher-risk dog, point toward a thyroid blood panel. Single signs in a lower-risk profile are treated more cautiously, since several have other possible causes too.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🐕</div>
+        <strong>Middle-Aged, Medium-Large Breeds Are the Typical Profile</strong>
+        <p>This is the demographic hypothyroidism is most commonly diagnosed in — worth knowing even before any symptoms appear.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🧩</div>
+        <strong>Multiple Signs Raise Priority</strong>
+        <p>Several signs together, or one sign in a higher-risk dog, move this from "keep an eye on it" to "get a blood panel."</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🩸</div>
+        <strong>A Simple Blood Panel Confirms It</strong>
+        <p>A T4/TSH thyroid panel is a straightforward, routine blood test — not an invasive or complicated diagnostic process.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">💊</div>
+        <strong>Very Manageable Once Diagnosed</strong>
+        <p>Hypothyroidism is one of the more manageable chronic conditions in dogs — daily medication typically controls it well.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_hypothyroidism() {
+    return [
+        ["What are the signs of hypothyroidism in dogs?", "Weight gain despite a normal diet, lethargy and unusual cold intolerance, and coat thinning or skin changes are the main signs. Multiple signs appearing together are more indicative than any one sign alone."],
+        ["Which dogs are most likely to develop hypothyroidism?", "Hypothyroidism is most commonly diagnosed in middle-aged, medium-to-large breed dogs. Young, small-breed dogs can develop it too, but it's less typical for that profile."],
+        ["Is testing for hypothyroidism complicated?", "No — it's a simple thyroid blood panel (T4/TSH), the kind of routine bloodwork your vet can run without any special preparation."],
+        ["Is hypothyroidism a serious, hard-to-manage condition?", "Not once diagnosed — it's actually good news in that sense. Hypothyroidism is very manageable with daily medication, and most dogs do very well long-term on treatment."],
+        ["My dog's coat is thinning but nothing else seems different — is this hypothyroidism?", "It could be — symmetrical coat thinning and a dull coat are recognized signs. But allergies and parasites can cause similar changes, so bloodwork is needed to confirm the actual cause rather than assuming."],
+    ];
+}
+
+function pz_what_is_dog_hypothyroidism() {
+    ob_start(); ?>
+    <p>The Dog Hypothyroidism Guide helps you understand what your dog's symptoms — and risk profile — mean for their likelihood of having an underactive thyroid, and what a straightforward diagnosis and treatment path looks like.</p>
+    <p>Hypothyroidism is most commonly diagnosed in middle-aged, medium-to-large breed dogs, though it can occur outside that profile too. Weight gain despite a normal diet, lethargy with unusual cold intolerance, and coat thinning or skin changes are the recognized signs — with multiple signs together, or any single sign in a higher-risk dog, pointing toward getting a thyroid blood panel done. The good news, worth leading with: it's a simple test, and the condition is very manageable with daily medication once diagnosed.</p>
+    <p>Select your dog's symptoms and risk profile above for guidance, then scroll down for detail and the FAQ covering the hypothyroidism questions dog owners ask most.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_hypothyroidism() {
+    ob_start(); ?>
+    <p>Recognizing hypothyroidism's typical profile and signs means getting a simple test done sooner rather than living with unexplained symptoms:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🐕</span>
+        <div>
+          <strong>Breed and Age Profile Matters</strong>
+          <p>Hypothyroidism is most commonly diagnosed in middle-aged, medium-to-large breed dogs — worth knowing your dog's baseline risk.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🧩</span>
+        <div>
+          <strong>Multiple Signs Together Are More Telling</strong>
+          <p>Weight gain, lethargy, cold intolerance, and coat changes appearing together point more strongly toward getting tested.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🩸</span>
+        <div>
+          <strong>Diagnosis Is a Simple Blood Test</strong>
+          <p>A T4/TSH thyroid panel is routine bloodwork — there's no reason to put off testing out of concern it will be complicated.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">💊</span>
+        <div>
+          <strong>Daily Medication Manages It Well</strong>
+          <p>Once diagnosed, hypothyroidism is one of the more manageable chronic conditions — most dogs do very well on daily treatment.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_hypothyroidism() {
+    return [
+        ['title'=>'Identify Symptoms Noticed', 'desc'=>"None, weight gain, lethargy and cold intolerance, coat thinning, or multiple signs together — each calls for a different response."],
+        ['title'=>"Note Your Dog's Risk Profile", 'desc'=>"Young, small breed is lower risk; middle-aged, medium-large breed is the profile hypothyroidism is most commonly diagnosed in."],
+        ['title'=>'Recognize the Typical Age and Breed Pattern', 'desc'=>"Knowing this pattern helps you take a single sign more seriously if your dog fits the higher-risk profile."],
+        ['title'=>'Get a Thyroid Panel If Indicated', 'desc'=>"Multiple signs together, or any sign in a higher-risk dog, are worth a simple T4/TSH blood panel."],
+        ['title'=>'Review Your Personalized Guidance', 'desc'=>"Read the recommendation matched to your dog's specific symptom and risk profile combination."],
+        ['title'=>"Follow Your Vet's Medication Plan Once Diagnosed", 'desc'=>"Hypothyroidism is very manageable with daily medication — most dogs do very well on treatment long-term."],
+    ];
+}
+
+function pz_tips_dog_hypothyroidism() {
+    return [
+        ['Know the Typical Risk Profile', "Hypothyroidism is most commonly diagnosed in middle-aged, medium-to-large breed dogs — worth knowing if your dog fits that pattern."],
+        ["Don't Dismiss Weight Gain With No Diet Change", "Weight gain despite a normal diet is a common early sign — worth a blood panel rather than just adjusting food further."],
+        ['Get Coat Changes Confirmed, Not Assumed', "Coat thinning is a recognized sign, but allergies and parasites cause similar changes — bloodwork confirms the actual cause."],
+        ['Ask for a Thyroid Panel If Multiple Signs Appear', "Weight gain, lethargy, cold intolerance, and coat changes together are a strong indication a simple T4/TSH test is worthwhile."],
+        ['Expect a Manageable Path Once Diagnosed', "Hypothyroidism responds very well to daily medication — this is one of the more straightforward chronic conditions to manage long-term."],
+    ];
+}
+
+function pz_mistakes_dog_hypothyroidism() {
+    return [
+        ['❌ Assuming Weight Gain Is Just Diet or Age', "Weight gain despite a normal diet is a recognized early sign of hypothyroidism — worth a blood panel rather than assuming it's simply aging."],
+        ['❌ Blaming Coat Thinning on Allergies Without Testing', "Coat thinning can be a hypothyroidism sign, but allergies and parasites look similar — bloodwork tells them apart rather than a guess."],
+        ["❌ Not Knowing Your Dog's Risk Profile", "Middle-aged, medium-to-large breed dogs are the typical profile — not knowing this means taking a single sign less seriously than you should."],
+        ['❌ Treating Multiple Signs as Unrelated Coincidences', "Weight gain, lethargy, cold intolerance, and coat changes together are more indicative when they appear as a group, not separately."],
+        ["❌ Worrying That Hypothyroidism Is Untreatable", "It's actually one of the more manageable chronic conditions — daily medication controls it well, and most dogs do very well long-term."],
+    ];
+}
+
+function pz_render_guide_dog_hypothyroidism( $tool ) {
+    $icon = $tool['icon'] ?? '🏥';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Hypothyroidism Guide</div>
+          <div class="pz-int-sublabel">Symptoms &amp; management · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🏥 Risk-Profile Aware</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Symptoms</label>
+          <select id="pz_ht_symptoms" class="pz-int-select">
+            <option value="none">None — just learning</option>
+            <option value="weightgain">Weight gain despite a normal diet</option>
+            <option value="lethargy">Lethargy and unusual cold intolerance</option>
+            <option value="coat">Coat thinning or skin changes</option>
+            <option value="multiple">Multiple signs together</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Risk Profile</label>
+          <select id="pz_ht_risk" class="pz-int-select">
+            <option value="lower">Young, small breed</option>
+            <option value="higher">Middle-aged, medium-large breed</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenHypothyroidism()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Hypothyroidism Guidance
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Dog First Aid Guide: Emergency Situations (dog_first_aid) ══ */
+
+function pz_hero_quickanswer_dog_first_aid() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Choking, bleeding, suspected poisoning, and seizures each need a different immediate response — get it right first, then always follow up with your vet or an emergency clinic. Never do a blind finger-sweep on a choking dog, never induce vomiting for suspected poisoning without being told to by a vet or poison control, and never restrain a seizing dog. Select the scenario you're preparing for above for step-by-step guidance.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_first_aid() { ?>
+      <span>🚑 Scenario-specific steps</span>
+      <span>🚫 No guesswork on stabilization</span>
+      <span>📞 Emergency-contact ready</span>
+<?php }
+
+function pz_methodology_heading_dog_first_aid() { return "How This First Aid Guidance Is Built"; }
+
+function pz_methodology_dog_first_aid() { ?>
+    <p style="color:#555;margin-bottom:20px">This guide is built as a preparedness and reference resource, not a diagnostic tool. Each scenario — choking, bleeding, suspected poisoning, and seizures — gets its own clear, ordered set of immediate steps, along with the specific things not to do that can make an emergency worse. General preparedness guidance covers building a first aid kit before you need one.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🚑</div>
+        <strong>Scenario-Matched Steps</strong>
+        <p>Choking, bleeding, poisoning, and seizures each need a specific response — this guide matches steps to the actual situation.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🚫</div>
+        <strong>What Not to Do Matters Just as Much</strong>
+        <p>A blind finger-sweep, inducing vomiting without guidance, or restraining a seizing dog can all make things worse — these are flagged clearly.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🎒</div>
+        <strong>Preparedness Before an Emergency Happens</strong>
+        <p>A basic first aid kit and saved emergency numbers mean you're not scrambling to find them in the middle of a crisis.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">📞</div>
+        <strong>Stabilization, Then Professional Care</strong>
+        <p>Every scenario here is about immediate stabilization — always followed by a vet visit or emergency clinic for anything serious.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_first_aid() {
+    return [
+        ["My dog is choking — what do I do?", "Check the mouth for a visible object and remove it carefully only if it's visible and easily reachable — a blind finger-sweep can push it deeper, so don't do that. If it isn't visible or reachable, use back blows or modified chest thrusts. Get to a vet immediately even after the object comes out, to check for internal injury."],
+        ["My dog is bleeding — what's the right first step?", "Apply firm direct pressure with a clean cloth and elevate the injured area if possible. Do not remove an embedded object — removing it can worsen the bleeding. Anything beyond a minor cut needs a vet visit."],
+        ["I think my dog ate something poisonous — should I make them vomit?", "No — do not induce vomiting unless directed by a vet or poison control. Some substances are caustic or corrosive and cause additional damage coming back up. Call ASPCA Animal Poison Control or your vet immediately, and bring the substance's packaging or label if possible to help identify it."],
+        ["My dog is having a seizure — what should I do?", "Do not restrain your dog, and move nearby objects out of the way to prevent injury. Time the seizure's duration, and keep your hands away from the mouth — there's a bite risk, and the old advice about dogs swallowing their tongue is a myth that doesn't actually happen. Seek vet care especially if a single seizure lasts over 5 minutes, or if multiple seizures occur close together."],
+        ["What should be in a dog first aid kit?", "Gauze and vet wrap, a digital thermometer, hydrogen peroxide (only to be used to induce vomiting if directed by a vet or poison control — never self-administered otherwise), a muzzle for safely handling an injured or frightened dog, and your vet's plus a 24-hour emergency clinic's phone numbers saved and easily findable."],
+    ];
+}
+
+function pz_what_is_dog_first_aid() {
+    ob_start(); ?>
+    <p>The Dog First Aid Guide is a preparedness and reference resource covering the immediate steps for the emergency situations dog owners are most likely to face: choking, bleeding, suspected poisoning, and seizures — plus what to have ready before any of them happen.</p>
+    <p>Each scenario has its own specific immediate response, and just as importantly, its own specific things not to do — a blind finger-sweep on a choking dog, inducing vomiting without guidance for suspected poisoning, or restraining a seizing dog can all make an emergency worse rather than better. This guide is for immediate stabilization only; it isn't a substitute for professional veterinary care.</p>
+    <p>Select the scenario you want steps for above, or choose general preparedness to build a first aid kit before you need one, then scroll down for detail and the FAQ covering the first aid questions dog owners ask most.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_first_aid() {
+    ob_start(); ?>
+    <p>The first few minutes of a dog emergency matter — knowing the right immediate response, and avoiding the wrong instinct, changes outcomes:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🚫</span>
+        <div>
+          <strong>The Wrong First Instinct Can Make Things Worse</strong>
+          <p>A blind finger-sweep, removing an embedded object, or restraining a seizing dog are natural instincts that can actually cause more harm.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🐍</span>
+        <div>
+          <strong>Poisoning Needs a Call, Not a Guess</strong>
+          <p>Inducing vomiting without guidance can cause additional damage with caustic substances — calling poison control or your vet first is the safe step.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🧠</span>
+        <div>
+          <strong>Seizure Myths Can Cause Injury</strong>
+          <p>Reaching toward the mouth during a seizure risks a bite — the "swallowed tongue" myth has led to unnecessary injuries for both dogs and owners.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🎒</span>
+        <div>
+          <strong>A Kit Ready Before You Need It Saves Time</strong>
+          <p>Gauze, a thermometer, a muzzle, and saved emergency numbers mean you're acting immediately instead of searching during a crisis.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_first_aid() {
+    return [
+        ['title'=>"Identify the Scenario You're Facing (or Preparing For)", 'desc'=>"Choking, bleeding, suspected poisoning, seizure, or general preparedness — each has its own specific set of steps."],
+        ['title'=>'Follow the Scenario-Specific Immediate Steps', 'desc'=>"Read and apply the ordered steps matched to your exact situation above."],
+        ['title'=>'Know What NOT to Do for Each Scenario', 'desc'=>"A blind finger-sweep, removing an embedded object, inducing vomiting without guidance, or restraining a seizing dog can all worsen the situation."],
+        ['title'=>'Call Your Vet or Poison Control When Indicated', 'desc'=>"For suspected poisoning especially, call before acting — some substances need specific guidance rather than a generic response."],
+        ['title'=>'Build or Check Your First Aid Kit', 'desc'=>"Gauze, vet wrap, a digital thermometer, hydrogen peroxide, a muzzle, and saved emergency numbers should all be ready in advance."],
+        ['title'=>'Always Follow Up With Professional Care', 'desc'=>"This guide is for immediate stabilization only — always follow up with your vet or head to an emergency clinic for anything serious."],
+    ];
+}
+
+function pz_tips_dog_first_aid() {
+    return [
+        ['Save Emergency Numbers Now, Not During a Crisis', "Your vet's number and a 24-hour emergency clinic's number should be saved and easily findable before you ever need them."],
+        ["Learn the \"Don'ts\" Before You Need Them", "Knowing not to finger-sweep blindly, induce vomiting without guidance, or restrain a seizing dog matters as much as knowing what to do."],
+        ['Build a Basic First Aid Kit', "Gauze and vet wrap, a digital thermometer, and hydrogen peroxide (for vet or poison-control-directed use only) cover the basics."],
+        ["A Muzzle Isn't Just for Aggressive Dogs", "Even friendly dogs may bite when injured or frightened — a muzzle lets you safely handle and help a dog in pain."],
+        ['Time Any Seizure', "Knowing exactly how long a seizure lasted helps your vet assess it — seek care especially if it goes over 5 minutes or seizures cluster close together."],
+    ];
+}
+
+function pz_mistakes_dog_first_aid() {
+    return [
+        ['❌ Blind Finger-Sweeping for a Choking Dog', "Reaching in without seeing the object can push it deeper — only remove it carefully if it's visible and easily reachable."],
+        ["❌ Inducing Vomiting Without Being Told To", "Some substances are caustic or corrosive and cause additional damage coming back up — always call a vet or poison control first."],
+        ['❌ Restraining a Seizing Dog', "This doesn't stop a seizure and risks injury to both of you — move objects out of the way and let it run its course instead."],
+        ['❌ Removing an Embedded Object From a Wound', "Removing it can worsen the bleeding — apply firm pressure around it instead and get to a vet."],
+        ['❌ Not Having Emergency Numbers Saved in Advance', "Searching for your vet's number or a 24-hour clinic's number during an actual emergency wastes critical time."],
+    ];
+}
+
+function pz_render_guide_dog_first_aid( $tool ) {
+    $icon = $tool['icon'] ?? '🚑';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog First Aid Guide</div>
+          <div class="pz-int-sublabel">Emergency situations · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🚑 Scenario-Specific</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Scenario Focus</label>
+          <select id="pz_fa_scenario" class="pz-int-select">
+            <option value="general">General preparedness</option>
+            <option value="choking">Choking</option>
+            <option value="bleeding">Bleeding or a wound</option>
+            <option value="poison">Suspected poisoning</option>
+            <option value="seizure">Seizure</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Have a First Aid Kit?</label>
+          <select id="pz_fa_kit" class="pz-int-select">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+            <option value="unsure">Not sure what to include</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenFirstAid()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My First Aid Guidance
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Dog Hip Dysplasia: Signs, Breeds & Management (dog_hip_dysplasia) ══ */
+
+function pz_hero_quickanswer_dog_hip_dysplasia() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>A "bunny-hopping" gait or noticeable limping are classic enough signs to warrant a vet visit for an exam on their own — severe difficulty rising or getting around calls for an orthopedic exam and X-rays without delay. Occasional stiffness after rest in a large or giant breed is worth mentioning to your vet early, since weight management and appropriate low-impact exercise can meaningfully slow progression. Hip dysplasia has a real, well-documented genetic component in certain large and giant breeds, so prevention-minded owners of at-risk puppies should focus on lean body condition and avoiding high-impact exercise during the growth period. Select your dog's breed risk, age, and signs above for guidance.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_hip_dysplasia() { ?>
+      <span>🦴 Breed-risk aware</span>
+      <span>🐕 Gait-pattern specific</span>
+      <span>⚖️ Weight-management focus</span>
+<?php }
+
+function pz_methodology_heading_dog_hip_dysplasia() { return "How This Hip Dysplasia Guidance Is Built"; }
+
+function pz_methodology_dog_hip_dysplasia() { ?>
+    <p style="color:#555;margin-bottom:20px">This guidance combines your dog's breed-size risk category, age, and the specific signs noticed — since hip dysplasia has a real genetic component in certain large and giant breeds, and its presentation and urgency both shift meaningfully with severity. A "bunny-hopping" gait and noticeable limping are classically recognized signs treated with real priority, while a puppy showing no signs at all gets prevention-focused guidance instead.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🧬</div>
+        <strong>Genetic Risk Is Real and Well-Documented</strong>
+        <p>Certain large and giant breeds have a well-documented genetic predisposition to hip dysplasia — worth knowing before any signs appear.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🐇</div>
+        <strong>Gait Pattern Is a Named, Recognized Sign</strong>
+        <p>The "bunny-hopping" gait is a classically-recognized hip dysplasia sign, not a vague description — it's specific enough to act on.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">⚖️</div>
+        <strong>Weight Is the Biggest Modifiable Factor</strong>
+        <p>Extra weight is one of the biggest modifiable factors in both onset and progression — lean body condition matters at every age.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🩻</div>
+        <strong>Severity Determines the Path Forward</strong>
+        <p>From prevention through management to surgical options like FHO or total hip replacement — guidance is matched to actual severity.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_hip_dysplasia() {
+    return [
+        ["What is hip dysplasia in dogs?", "Hip dysplasia is a malformation of the hip joint where the ball and socket don't fit together properly, leading to wear, instability, and eventually arthritis. It has a well-documented genetic component in certain large and giant breeds, though it can occur in smaller dogs too."],
+        ["What does a 'bunny-hopping' gait look like, and does it always mean hip dysplasia?", "It's when a dog moves both back legs together in a hopping motion rather than alternating them normally — a classically-recognized hip dysplasia sign. It's specific enough to be worth a vet visit, though your vet will still confirm with an exam and X-rays rather than diagnosing from the gait alone."],
+        ["My puppy is a large breed with no signs yet — is there anything I should do now?", "Yes — avoid excessive high-impact exercise and jumping during the growth period, and maintain a lean body condition throughout your dog's life, since extra weight is one of the biggest modifiable risk factors. Some breeders also screen breeding dogs with OFA or PennHIP hip evaluations, which is worth asking about if you're choosing a puppy."],
+        ["Does hip dysplasia always require surgery?", "No — management often starts with weight control, joint supplements, low-impact exercise, and pain management. Surgical options like a femoral head osteotomy (FHO) or total hip replacement exist for more severe cases, but they're not the first step for every dog."],
+        ["My dog is just a little stiff after resting — is that hip dysplasia?", "It could be an early sign, especially in a large or giant breed, but occasional stiffness has other possible causes too. It's worth mentioning at a vet visit rather than assuming either way — early intervention can meaningfully slow progression if it is hip dysplasia."],
+    ];
+}
+
+function pz_what_is_dog_hip_dysplasia() {
+    ob_start(); ?>
+    <p>The Dog Hip Dysplasia Guide helps you understand what your dog's breed risk, age, and current signs mean for their likelihood of having this joint condition, and what a sensible next step looks like — from prevention to a vet-guided management plan.</p>
+    <p>Hip dysplasia is a malformation of the hip joint with a real, well-documented genetic component in certain large and giant breeds. Signs range from none at all, through occasional stiffness after rest, to noticeable limping or the classically-recognized "bunny-hopping" gait, to severe difficulty rising or getting around — each level calling for a different response, from prevention-focused habits to an orthopedic exam and X-rays.</p>
+    <p>Select your dog's breed risk, age, and signs noticed above for guidance, then scroll down for detail and the FAQ covering the hip dysplasia questions dog owners ask most.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_hip_dysplasia() {
+    ob_start(); ?>
+    <p>Recognizing hip dysplasia's genetic risk pattern and its recognizable signs means catching it — or preventing it — sooner rather than watching a dog's mobility decline unexplained:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🧬</span>
+        <div>
+          <strong>Genetic Risk Is Real in Certain Breeds</strong>
+          <p>Large and giant breeds carry a well-documented genetic predisposition — worth knowing your dog's baseline risk before signs ever appear.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🐇</span>
+        <div>
+          <strong>The "Bunny-Hop" Gait Is a Named Warning Sign</strong>
+          <p>This specific gait pattern is classically recognized enough to justify a vet visit on its own, not just a "wait and see" observation.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">⚖️</span>
+        <div>
+          <strong>Weight Is the Biggest Modifiable Factor</strong>
+          <p>Keeping a lean body condition throughout your dog's life is one of the most effective things you can control, at any risk level.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🩻</span>
+        <div>
+          <strong>Early Intervention Can Slow Progression</strong>
+          <p>Weight management and appropriate low-impact exercise, started early, can meaningfully slow how much a dog's hip dysplasia progresses.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_hip_dysplasia() {
+    return [
+        ['title'=>"Note Your Dog's Breed Risk", 'desc'=>"Large and giant breeds carry a well-documented genetic predisposition to hip dysplasia; small and medium breeds are lower risk but not immune."],
+        ['title'=>"Identify Your Dog's Age Stage", 'desc'=>"Puppy, adult, or senior — this shapes whether the focus is prevention, monitoring, or active management."],
+        ['title'=>'Check for Current Signs', 'desc'=>"None, occasional stiffness after rest, noticeable limping or a 'bunny-hopping' gait, or severe difficulty rising — each calls for a different response."],
+        ['title'=>'Review Your Personalized Guidance', 'desc'=>"Read the recommendation matched to your dog's specific breed risk, age, and signs combination."],
+        ['title'=>'See a Vet for an Orthopedic Exam If Indicated', 'desc'=>"Limping, the 'bunny-hop' gait, or severe difficulty warrant an actual exam and X-rays rather than guessing at home."],
+        ['title'=>'Apply Prevention or Management Steps', 'desc'=>"Lean body condition, appropriate exercise, joint supplements, or — in more severe cases — surgical options like FHO or total hip replacement."],
+    ];
+}
+
+function pz_tips_dog_hip_dysplasia() {
+    return [
+        ['Keep a Lean Body Condition for Life', "Extra weight is one of the biggest modifiable risk factors for both hip dysplasia onset and progression — this matters at every age."],
+        ['Go Easy on High-Impact Exercise in Growing Puppies', "Avoid excessive jumping and high-impact activity during the growth period in large and giant breed puppies, especially if there's a known family history."],
+        ["Take the \"Bunny-Hop\" Gait Seriously", "This specific gait pattern is a classically-recognized hip dysplasia sign — it's specific enough to warrant a vet visit rather than a wait-and-see approach."],
+        ['Ask Breeders About OFA or PennHIP Screening', "Reputable breeders often screen breeding dogs' hips through OFA or PennHIP evaluations — worth asking about if you're choosing a puppy from an at-risk breed."],
+        ['Mention Early Stiffness at a Routine Vet Visit', "Occasional stiffness after rest in a higher-risk breed is worth flagging early — early intervention can meaningfully slow progression."],
+    ];
+}
+
+function pz_mistakes_dog_hip_dysplasia() {
+    return [
+        ['❌ Assuming Only Giant Breeds Get Hip Dysplasia', "It's most common in large and giant breeds, but smaller dogs can develop it too — breed risk shifts the odds, it doesn't rule it out."],
+        ['❌ Letting a Growing Puppy Do Excessive High-Impact Exercise', "Excessive jumping and high-impact activity during the growth period can work against a large or giant breed puppy's joint development."],
+        ["❌ Dismissing the \"Bunny-Hop\" Gait as Just a Quirky Walk", "This is a classically-recognized hip dysplasia sign, not a harmless habit — it's worth a vet visit rather than assuming it's nothing."],
+        ['❌ Letting Weight Creep Up "Since the Joints Are Already a Problem"', "The opposite is true — weight management matters even more once hip dysplasia is a concern, since extra weight accelerates progression."],
+        ['❌ Assuming Surgery Is the Only Option', "Weight control, joint supplements, and low-impact exercise manage many cases well — surgical options like FHO or total hip replacement are for more severe cases, not a default first step."],
+    ];
+}
+
+function pz_render_guide_dog_hip_dysplasia( $tool ) {
+    $icon = $tool['icon'] ?? '🦴';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Hip Dysplasia Guide</div>
+          <div class="pz-int-sublabel">Signs, breeds &amp; management · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🦴 Breed-Risk Aware</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Breed Risk</label>
+          <select id="pz_hd_risk" class="pz-int-select">
+            <option value="high">Large/giant breed (higher genetic risk)</option>
+            <option value="lower">Small/medium breed (lower risk)</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Age</label>
+          <select id="pz_hd_age" class="pz-int-select">
+            <option value="puppy">Puppy, under 2 years</option>
+            <option value="adult">Adult</option>
+            <option value="senior">Senior</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Signs Noticed</label>
+          <select id="pz_hd_signs" class="pz-int-select">
+            <option value="none">None noticed</option>
+            <option value="stiff">Occasional stiffness, especially after rest</option>
+            <option value="limp">Noticeable limping or a "bunny-hopping" gait</option>
+            <option value="severe">Severe difficulty rising or getting around</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenHipDysplasia()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Hip Dysplasia Guidance
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Dog Bloat (GDV): Signs, Prevention & Emergency (dog_bloat_gdv) ══ */
+
+function pz_hero_quickanswer_dog_bloat_gdv() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p><strong>If your dog has a distended, hard belly with restlessness and unproductive retching (trying to vomit with nothing coming up), this is a life-threatening emergency — go to an emergency vet immediately.</strong> Do not wait, do not try home remedies, and do not give it a few hours to see if it passes. GDV (Gastric Dilatation-Volvulus) can be fatal within hours without emergency surgery. Collapse or pale/white gums mean the same thing — drive to the nearest emergency vet right now. Select your dog's current symptoms above.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_bloat_gdv() { ?>
+      <span>🚨 True emergency awareness</span>
+      <span>⏱️ Minutes-matter framing</span>
+      <span>🐕 Deep-chested breed aware</span>
+<?php }
+
+function pz_methodology_heading_dog_bloat_gdv() { return "How This Bloat (GDV) Guidance Is Built"; }
+
+function pz_methodology_dog_bloat_gdv() { ?>
+    <p style="color:#555;margin-bottom:20px">This guide treats GDV for what it is: a true medical emergency with no safe "wait and see" option. Any dog showing the classic triad — a distended, hard belly, restlessness, and unproductive retching — gets unambiguous instructions to seek emergency care immediately, with no hedging. Dogs with no current symptoms get evidence-based prevention information instead, framed honestly about what is and isn't settled science.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🚨</div>
+        <strong>No Hedging on the Emergency Signs</strong>
+        <p>A distended belly, restlessness, and unproductive retching together mean go now — this guide never suggests waiting to see.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🐕</div>
+        <strong>Deep-Chested Breeds Carry Real Risk</strong>
+        <p>Great Danes, Standard Poodles, German Shepherds, and similar deep-chested body types are at documented elevated risk.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🍽️</div>
+        <strong>Feeding Pattern Is a Modifiable Factor</strong>
+        <p>Eating one large meal quickly, versus smaller frequent meals, is a well-studied risk factor you can actually control.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🔬</div>
+        <strong>Honest About What's Unsettled</strong>
+        <p>Elevated feeding bowls are often mentioned as prevention, but current veterinary understanding of their actual effect is mixed — this guide says so rather than overstating it.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_bloat_gdv() {
+    return [
+        ["What is bloat (GDV) in dogs?", "GDV — Gastric Dilatation-Volvulus — is when a dog's stomach fills with gas and then twists on itself, cutting off blood flow. It is a true medical emergency that can be fatal within hours without emergency surgery. It is not something to monitor at home."],
+        ["What are the emergency signs of GDV I need to recognize immediately?", "A distended or hard belly, restlessness, and unproductive retching — trying to vomit with nothing coming up — together are the classic GDV presentation. Collapse or pale/white gums are also emergency signs and may mean the dog is already in shock. Any of these means go to an emergency vet immediately — do not wait."],
+        ["Which dogs are most at risk for bloat?", "Deep-chested large and giant breeds — Great Danes, Standard Poodles, German Shepherds, and similar body types — carry elevated risk. Eating one large meal quickly rather than smaller frequent meals, vigorous exercise right before or after eating, and a family or breed history of GDV are all well-studied risk factors."],
+        ["Do elevated food bowls prevent bloat?", "This has historically been suggested, but current veterinary understanding of their actual effect on GDV risk is mixed and unclear — it isn't settled science, so it shouldn't be relied on as a proven prevention step on its own."],
+        ["Is there a surgery that can prevent bloat before it happens?", "Yes — a preventive gastropexy, which surgically tacks the stomach in place, is something some vets recommend for high-risk breeds. It's often performed during another procedure, like a spay or neuter, to avoid a separate anesthesia event."],
+    ];
+}
+
+function pz_what_is_dog_bloat_gdv() {
+    ob_start(); ?>
+    <p>The Dog Bloat (GDV) Guide covers Gastric Dilatation-Volvulus, a true life-threatening emergency where the stomach fills with gas and twists on itself, cutting off blood flow. It can be fatal within hours without emergency surgery — this guide is built to help you recognize the emergency signs instantly and act on them without hesitation, plus understand the real, evidence-based prevention factors for dogs not currently showing symptoms.</p>
+    <p><strong>If your dog is showing the classic triad right now — a distended, hard belly, restlessness, and unproductive retching — or has collapsed or has pale/white gums, stop reading and get to an emergency vet immediately.</strong> There is no home remedy and no safe waiting period for GDV.</p>
+    <p>Select your dog's current symptoms above for guidance, then scroll down for prevention detail and the FAQ covering the bloat/GDV questions dog owners ask most.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_bloat_gdv() {
+    ob_start(); ?>
+    <p>GDV moves from first sign to life-threatening within hours — knowing the emergency signs cold, and acting on them instantly, is what actually saves lives with this condition:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">⏱️</span>
+        <div>
+          <strong>Hours, Not Days, Matter</strong>
+          <p>GDV can be fatal within hours without emergency surgery — there is no safe window to "wait and see" if the signs are there.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🚨</span>
+        <div>
+          <strong>The Classic Triad Is Specific and Recognizable</strong>
+          <p>A distended, hard belly, restlessness, and unproductive retching together are specific enough to act on immediately, not just watch.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🐕</span>
+        <div>
+          <strong>Deep-Chested Breeds Carry Real, Documented Risk</strong>
+          <p>Great Danes, Standard Poodles, German Shepherds, and similar body types are known to be at elevated risk — worth knowing in advance.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🩺</span>
+        <div>
+          <strong>Preventive Gastropexy Is a Real Option for High-Risk Dogs</strong>
+          <p>Surgically tacking the stomach in place, often during a spay/neuter, is something worth discussing with your vet for high-risk breeds.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_bloat_gdv() {
+    return [
+        ['title'=>'Know the Emergency Signs Before You Ever Need Them', 'desc'=>"A distended, hard belly, restlessness, and unproductive retching together are the classic GDV presentation — memorize this triad now."],
+        ['title'=>'Recognize Collapse or Pale Gums as the Same Emergency', 'desc'=>"These may mean your dog is already in shock — the same immediate action applies: go to an emergency vet right now."],
+        ['title'=>'Act Immediately — Do Not Wait or Try Home Remedies', 'desc'=>"GDV can be fatal within hours without emergency surgery. There is no safe waiting period and no home treatment."],
+        ['title'=>'Know Your Deep-Chested Breed Risk', 'desc'=>"Great Danes, Standard Poodles, German Shepherds, and similar deep-chested breeds carry documented elevated risk."],
+        ['title'=>'Apply Feeding and Exercise Prevention Habits', 'desc'=>"Smaller, more frequent meals instead of one large fast meal, and avoiding vigorous exercise right before or after eating, are well-studied risk reducers."],
+        ['title'=>'Discuss Preventive Gastropexy for High-Risk Breeds', 'desc'=>"Some vets recommend this stomach-tacking surgery for high-risk dogs, often performed alongside a spay/neuter."],
+    ];
+}
+
+function pz_tips_dog_bloat_gdv() {
+    return [
+        ['Memorize the Emergency Triad Now', "A distended, hard belly, restlessness, and unproductive retching together mean go to an emergency vet immediately — knowing this cold before it happens saves critical time."],
+        ['Feed Smaller, More Frequent Meals', "One large meal eaten quickly is a well-studied risk factor — smaller, more frequent meals are a genuinely useful prevention habit."],
+        ['Avoid Vigorous Exercise Right Before or After Eating', "Give your dog time to settle before and after meals rather than vigorous exercise immediately around feeding time."],
+        ['Ask About Preventive Gastropexy for High-Risk Breeds', "If your dog is a deep-chested large or giant breed, ask your vet about a preventive gastropexy — often done during a spay/neuter to avoid a separate procedure."],
+        ["Don't Rely on Elevated Bowls as Proven Prevention", "Current veterinary understanding of elevated feeding bowls' actual effect on GDV risk is mixed and unclear — don't treat it as a settled prevention step."],
+    ];
+}
+
+function pz_mistakes_dog_bloat_gdv() {
+    return [
+        ['❌ Waiting "A Few Hours to See" With Emergency Signs Present', "GDV can be fatal within hours without surgery — waiting to see if a distended belly, restlessness, and unproductive retching resolve on their own can cost a dog's life."],
+        ['❌ Trying Home Remedies for Suspected Bloat', "There is no home remedy for GDV — inducing burping, walking it off, or waiting are not treatments, and none of them address the underlying twisted stomach."],
+        ["❌ Assuming Only Great Danes Get Bloat", "Any deep-chested large or giant breed — Standard Poodles, German Shepherds, and similar body types included — carries elevated risk, not just one breed."],
+        ['❌ Feeding One Large Meal Quickly', "This is a well-studied risk factor — smaller, more frequent meals are safer than one large fast meal, especially in at-risk breeds."],
+        ["❌ Treating Elevated Bowls as Guaranteed Prevention", "Current veterinary understanding of elevated bowls' actual effect on GDV risk is mixed — relying on them alone while ignoring feeding pattern and exercise timing is a mistake."],
+    ];
+}
+
+function pz_render_guide_dog_bloat_gdv( $tool ) {
+    $icon = $tool['icon'] ?? '🚨';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Bloat (GDV) Guide</div>
+          <div class="pz-int-sublabel">Signs, prevention &amp; emergency · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🚨 Emergency-Aware</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Symptoms Right Now</label>
+          <select id="pz_bg_symptoms" class="pz-int-select">
+            <option value="none">None — just learning prevention</option>
+            <option value="classic">Distended/hard belly, restless, unproductive retching (trying to vomit, nothing comes up)</option>
+            <option value="collapse">Collapse or pale/white gums</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenBloatGDV()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Check My Dog's Bloat/GDV Risk
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Parvovirus in Dogs: Symptoms, Treatment & Prevention (dog_parvovirus) ══ */
+
+function pz_hero_quickanswer_dog_parvovirus() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Bloody diarrhea, severe lethargy, and not eating need an emergency vet visit now — this is especially urgent in puppies or partially vaccinated dogs, since parvovirus can be fatal within 48-72 hours without treatment. Vomiting, diarrhea, and lethargy in an unvaccinated or partially vaccinated dog also need urgent attention — a fecal ELISA snap test is quick and shouldn't be delayed. In fully vaccinated dogs, these symptoms are still worth a vet visit, but parvo itself is much less likely. Select your dog's vaccination status and symptoms above for guidance.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_parvovirus() { ?>
+      <span>💉 Vaccination-status aware</span>
+      <span>🧫 Fast-test framing</span>
+      <span>☣️ Contagion-conscious</span>
+<?php }
+
+function pz_methodology_heading_dog_parvovirus() { return "How This Parvovirus Guidance Is Built"; }
+
+function pz_methodology_dog_parvovirus() { ?>
+    <p style="color:#555;margin-bottom:20px">This guidance is built around two factors that both matter for parvovirus: vaccination status and current symptoms. Severe symptoms are always urgent, but the urgency compounds sharply in puppies and partially vaccinated dogs, where parvo is a much more likely cause. Fully vaccinated dogs with similar symptoms still need a vet visit, but with a much lower likelihood of parvo specifically — that context changes how you should respond.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">💉</div>
+        <strong>Vaccination Status Changes the Odds</strong>
+        <p>Full vaccination makes parvo much less likely; puppies and partially vaccinated dogs are at real, significant risk.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">⏱️</div>
+        <strong>Speed Matters — 48 to 72 Hours</strong>
+        <p>Parvovirus can be fatal within 48-72 hours without treatment, which is why severe symptoms call for immediate action, not a wait-and-see approach.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🧫</div>
+        <strong>Testing Is Fast — No Reason to Delay</strong>
+        <p>A fecal ELISA snap test for parvo is quick and should be done without delay once it's a real possibility.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">☣️</div>
+        <strong>Highly Contagious and Environmentally Hardy</strong>
+        <p>The virus can persist in the environment for months, which is why isolating a suspected case matters immediately, not just for treatment reasons.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_parvovirus() {
+    return [
+        ["What are the symptoms of parvovirus in dogs?", "Vomiting, diarrhea (which can become bloody), lethargy, and loss of appetite are the main symptoms. Bloody diarrhea combined with severe lethargy and not eating is a medical emergency, especially in puppies or partially vaccinated dogs."],
+        ["How urgent is parvovirus, really?", "Very — parvovirus can be fatal within 48-72 hours without treatment. It typically requires IV fluids and hospitalization. Any dog showing severe symptoms, especially an unvaccinated or partially vaccinated one, needs an emergency vet visit now, not a wait-and-see approach."],
+        ["My dog is fully vaccinated but has vomiting and diarrhea — could it still be parvo?", "It's much less likely with full vaccination, but many illnesses cause similar symptoms, so a vet visit is still worthwhile to investigate the actual cause. This is a case for investigating calmly rather than panicking."],
+        ["How is parvovirus tested and treated?", "A fecal ELISA snap test can confirm parvovirus quickly, right in a vet clinic. Treatment is largely supportive — IV fluids, anti-nausea medication, and hospitalization in most moderate-to-severe cases — since there's no drug that directly kills the virus itself."],
+        ["How do I protect my puppy from parvovirus before they're fully vaccinated?", "Keep puppies away from dog parks, other dogs' waste, and high-traffic dog areas until their full vaccine series is complete. This is exactly why the puppy vaccine schedule timing matters so much — protection builds with each round of shots."],
+    ];
+}
+
+function pz_what_is_dog_parvovirus() {
+    ob_start(); ?>
+    <p>The Parvovirus Guide helps you understand what your dog's vaccination status and current symptoms mean for their risk of this highly contagious, potentially fatal virus, and what to do next — from urgent testing and treatment to prevention for a puppy still completing their vaccine series.</p>
+    <p>Parvovirus causes vomiting, diarrhea, lethargy, and loss of appetite, progressing to bloody diarrhea and severe lethargy in serious cases — it can be fatal within 48-72 hours without treatment, and it's highly contagious, with the virus able to persist in the environment for months. Vaccination status changes the odds significantly: fully vaccinated dogs are much less likely to have parvo even with similar symptoms, while puppies and partially vaccinated dogs face real, significant risk.</p>
+    <p>Select your dog's vaccination status and symptoms above for guidance, then scroll down for detail and the FAQ covering the parvovirus questions dog owners ask most.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_parvovirus() {
+    ob_start(); ?>
+    <p>Parvovirus can move from first symptoms to critical within a couple of days — knowing your dog's real risk based on vaccination status changes how quickly you need to act:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">⏱️</span>
+        <div>
+          <strong>48-72 Hours Without Treatment Can Be Fatal</strong>
+          <p>This is a genuinely fast-moving disease — severe symptoms need an emergency vet visit now, not a wait-and-see approach.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">💉</span>
+        <div>
+          <strong>Vaccination Status Changes the Real Risk</strong>
+          <p>Puppies and partially vaccinated dogs face significant risk; fully vaccinated dogs are much less likely to have parvo specifically.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🧫</span>
+        <div>
+          <strong>Testing Is Fast — Don't Wait to "See"</strong>
+          <p>A fecal ELISA snap test gives a quick answer — there's no reason to delay testing once parvo is a real possibility.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">☣️</span>
+        <div>
+          <strong>It's Highly Contagious and Hardy in the Environment</strong>
+          <p>The virus can persist for months in the environment, which is why isolating a suspected case immediately matters for other dogs too.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_parvovirus() {
+    return [
+        ['title'=>"Check Your Dog's Vaccination Status", 'desc'=>"Fully vaccinated, partial/unvaccinated, or a puppy still completing their series — this changes how likely parvo actually is."],
+        ['title'=>'Assess Current Symptoms', 'desc'=>"None, vomiting/diarrhea/lethargy, or bloody diarrhea with severe lethargy and not eating — severity drives urgency."],
+        ['title'=>'Act Immediately on Severe Symptoms', 'desc'=>"Bloody diarrhea, severe lethargy, and not eating need an emergency vet visit now — parvo can be fatal within 48-72 hours untreated."],
+        ['title'=>'Isolate a Suspected Case From Other Dogs', 'desc'=>"Parvovirus is highly contagious and the virus can persist in the environment for months — isolate immediately, don't wait for test results."],
+        ['title'=>'Get a Fecal ELISA Snap Test Without Delay', 'desc'=>"This is quick and should be done right away for moderate symptoms in puppies or partially vaccinated dogs — don't wait to see if it gets better."],
+        ['title'=>'Protect Unvaccinated Puppies Proactively', 'desc'=>"Keep them away from dog parks, other dogs' waste, and high-traffic areas until their full vaccine series is complete."],
+    ];
+}
+
+function pz_tips_dog_parvovirus() {
+    return [
+        ['Complete the Full Puppy Vaccine Series', "Puppies aren't fully protected until the complete series is done — this is exactly why the vaccine schedule timing matters so much."],
+        ["Don't \"Wait to See\" With Severe Symptoms", "Bloody diarrhea, severe lethargy, and not eating need an emergency vet visit now — parvo can be fatal within 48-72 hours without treatment."],
+        ['Get a Fecal ELISA Snap Test Early, Not Late', "This test is quick and gives a fast answer — there's no reason to delay it once parvo is a real possibility given symptoms and vaccination status."],
+        ['Isolate a Suspected Case Immediately', "Parvovirus is highly contagious and the virus can persist in the environment for months — isolate from other dogs right away, before test results even come back."],
+        ["Keep Unvaccinated Puppies Away From High-Traffic Dog Areas", "Dog parks, other dogs' waste, and high-traffic areas are real exposure risks until your puppy's vaccine series is complete."],
+    ];
+}
+
+function pz_mistakes_dog_parvovirus() {
+    return [
+        ["❌ Waiting to \"See If It Gets Better\" With Vomiting and Diarrhea in an Unvaccinated Puppy", "Given how fast parvo can progress, a fecal ELISA snap test should be done without delay rather than waiting a day or two to see."],
+        ["❌ Assuming a Fully Vaccinated Dog Can't Get Sick", "Vaccination makes parvo much less likely, but other illnesses can cause similar symptoms — a vet visit is still worthwhile to find the actual cause."],
+        ["❌ Not Isolating a Suspected Case From Other Dogs", "Parvovirus is highly contagious and can persist in the environment for months — isolating immediately protects other dogs, not just your own."],
+        ['❌ Letting an Unvaccinated Puppy Visit Dog Parks Too Early', "Puppies aren't protected until their full vaccine series is complete — high-traffic dog areas are real exposure risk before then."],
+        ["❌ Underestimating How Fast Parvo Can Progress", "It can be fatal within 48-72 hours without treatment — severe symptoms need an emergency vet visit now, not a same-day-or-tomorrow plan."],
+    ];
+}
+
+function pz_render_guide_dog_parvovirus( $tool ) {
+    $icon = $tool['icon'] ?? '🦠';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Parvovirus in Dogs Guide</div>
+          <div class="pz-int-sublabel">Symptoms, treatment &amp; prevention · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🦠 Vaccination-Aware</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Vaccination Status</label>
+          <select id="pz_pv_vax" class="pz-int-select">
+            <option value="full">Fully vaccinated</option>
+            <option value="partial">Partial or unvaccinated</option>
+            <option value="puppy">Puppy, not yet fully vaccinated</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Symptoms</label>
+          <select id="pz_pv_symptoms" class="pz-int-select">
+            <option value="none">None — just learning</option>
+            <option value="moderate">Vomiting, diarrhea, lethargy</option>
+            <option value="severe">Bloody diarrhea, severe lethargy, not eating</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenParvovirus()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Parvovirus Guidance
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Dog Heartworm Prevention: Complete Guide (dog_heartworm_prevention) ══ */
+
+function pz_hero_quickanswer_dog_heartworm_prevention() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>If your dog isn't currently on prevention and hasn't been tested recently, see a vet for a heartworm test before starting any preventive — testing first matters, since starting certain preventives in an already-infected dog can trigger a dangerous reaction. Inconsistent or seasonal-only dosing is riskier in warm climates, where mosquitoes (heartworm's transmission vector) may be active nearly year-round. If you're already on monthly prevention and tested negative within the past year, you're doing it right — keep the annual test going too, since no preventive is 100% effective. Select your current prevention, climate, and testing status above for guidance.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_heartworm_prevention() { ?>
+      <span>🦟 Climate-aware risk</span>
+      <span>🧪 Test-before-treat safety</span>
+      <span>💊 Consistency-focused</span>
+<?php }
+
+function pz_methodology_heading_dog_heartworm_prevention() { return "How This Heartworm Prevention Guidance Is Built"; }
+
+function pz_methodology_dog_heartworm_prevention() { ?>
+    <p style="color:#555;margin-bottom:20px">This guidance combines three factors: your dog's current prevention status, your regional climate, and recent testing. A dog not on any prevention and not recently tested needs testing first — a genuine safety matter, not just a formality, since starting certain preventives in an already-infected dog can cause a dangerous reaction. Warm, year-round climates raise the stakes on any gaps in consistent dosing, since mosquitoes may be active nearly all year there.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🧪</div>
+        <strong>Test Before You Treat</strong>
+        <p>Starting prevention in an already-infected dog can trigger a dangerous reaction — testing first is a real safety step, not a formality.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🌡️</div>
+        <strong>Climate Changes the Real Risk Window</strong>
+        <p>Mosquitoes — heartworm's transmission vector — may be active nearly year-round in warm climates, making gaps in dosing riskier there.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">📅</div>
+        <strong>Consistency Beats Seasonal Dosing</strong>
+        <p>True year-round, gap-free dosing is the standard recommendation over seasonal-only prevention, even in colder climates.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">⚠️</div>
+        <strong>Treatment Is Far Harder Than Prevention</strong>
+        <p>Heartworm treatment involves an arsenic-based injectable drug and months of strict crate rest — prevention is dramatically easier and safer.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_heartworm_prevention() {
+    return [
+        ["Why does my dog need a heartworm test before starting prevention?", "Starting certain heartworm preventives in a dog that's already infected can cause a dangerous reaction. Testing first confirms your dog is heartworm-negative, so prevention can be started safely."],
+        ["Does my dog need heartworm prevention in winter?", "In warm, year-round climates where mosquitoes stay active, yes — consistent, gap-free dosing matters just as much in winter. In seasonal climates with cold winters, risk drops in the coldest months, but most vets still recommend true year-round dosing for consistency and to avoid missed doses."],
+        ["My dog is on monthly prevention — do I still need an annual test?", "Yes. No preventive is 100% effective, so an annual heartworm test confirms your dog is actually negative even while on prevention. It's a quick, worthwhile check, not a redundant step."],
+        ["What does heartworm treatment actually involve if a dog gets infected?", "It's far more arduous than prevention — typically an arsenic-based injectable drug given in stages, plus months of strict crate rest and activity restriction, since exertion can be dangerous while worms are dying off. This is exactly why prevention is so strongly emphasized."],
+        ["I've been inconsistent with prevention — what should I do?", "Get back on a true year-round schedule with no seasonal gaps, and get a heartworm test done, especially if you live in a warm climate where mosquitoes may have been active during the gap."],
+    ];
+}
+
+function pz_what_is_dog_heartworm_prevention() {
+    ob_start(); ?>
+    <p>The Dog Heartworm Prevention Guide helps you understand what your current prevention habits, regional climate, and testing history mean for your dog's actual heartworm risk, and what to do next — whether that's getting tested before starting prevention, tightening up an inconsistent schedule, or simply confirming you're on the right track.</p>
+    <p>Heartworm is transmitted by mosquito bites, so climate matters: warm, year-round climates keep mosquitoes active nearly all the time, while seasonal climates with cold winters see lower risk in the coldest months. Testing before starting prevention is a genuine safety step, not a formality — some preventives can cause a dangerous reaction in an already-infected dog. And once on prevention, an annual test remains worthwhile, since no preventive is 100% effective.</p>
+    <p>Select your current prevention status, regional climate, and recent testing above for guidance, then scroll down for detail and the FAQ covering the heartworm prevention questions dog owners ask most.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_heartworm_prevention() {
+    ob_start(); ?>
+    <p>Heartworm prevention is one of the more consequential routine decisions in dog care — largely because treatment, if it's ever needed, is so much harder than prevention ever is:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🧪</span>
+        <div>
+          <strong>Testing First Is a Genuine Safety Step</strong>
+          <p>Starting certain preventives in an already-infected dog can cause a dangerous reaction — testing first isn't just a formality.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🌡️</span>
+        <div>
+          <strong>Warm Climates Mean Near Year-Round Risk</strong>
+          <p>Mosquitoes may stay active nearly all year in warm climates, making inconsistent or seasonal-only dosing genuinely riskier there.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">📅</span>
+        <div>
+          <strong>Annual Testing Still Matters on Prevention</strong>
+          <p>No preventive is 100% effective — an annual test confirms your dog is actually negative, even while doing everything right.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">💉</span>
+        <div>
+          <strong>Treatment Is Arduous — Prevention Is Not</strong>
+          <p>An arsenic-based injectable drug and months of strict crate rest make treatment far harder on a dog than monthly prevention ever is.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_heartworm_prevention() {
+    return [
+        ['title'=>'Check Your Current Prevention Status', 'desc'=>"Monthly year-round, inconsistent/seasonal, or none at all — this determines your dog's real exposure window."],
+        ['title'=>'Consider Your Regional Climate', 'desc'=>"Warm year-round climates keep mosquitoes active nearly all year; seasonal climates see lower risk in the coldest months."],
+        ['title'=>'Get Tested Before Starting Any New Prevention', 'desc'=>"If not currently on prevention and not recently tested, get a heartworm test first — starting prevention in an infected dog can cause a dangerous reaction."],
+        ['title'=>'Close Any Gaps in Dosing', 'desc'=>"Switch from inconsistent or seasonal-only to true year-round, gap-free monthly dosing, especially in warm climates."],
+        ['title'=>'Keep Annual Testing Going Even While on Prevention', 'desc'=>"No preventive is 100% effective — an annual test confirms your dog is actually heartworm-negative."],
+        ['title'=>'Understand Why Prevention Is Worth the Consistency', 'desc'=>"Heartworm treatment is arduous — an arsenic-based injectable and months of strict crate rest — far harder than any preventive routine."],
+    ];
+}
+
+function pz_tips_dog_heartworm_prevention() {
+    return [
+        ['Test Before You Start Prevention', "Starting certain preventives in an already-infected dog can cause a dangerous reaction — always test first if your dog isn't currently protected."],
+        ['Go Year-Round, Even in Cold Climates', "Most vets recommend true year-round dosing over seasonal-only prevention, even where winters are cold, to avoid missed doses and maintain consistency."],
+        ["Don't Skip the Annual Test Just Because You're on Prevention", "No preventive is 100% effective — an annual heartworm test confirms your dog is actually negative, which matters even with perfect dosing."],
+        ['Take Warm-Climate Risk Seriously', "Mosquitoes — heartworm's transmission vector — may be active nearly year-round in warm climates, so gaps in dosing carry more real risk there."],
+        ['Remember Treatment Is Far Harder Than Prevention', "An arsenic-based injectable drug and months of strict crate rest make heartworm treatment dramatically more arduous than monthly prevention ever is."],
+    ];
+}
+
+function pz_mistakes_dog_heartworm_prevention() {
+    return [
+        ['❌ Starting Prevention Without Testing First', "Starting certain preventives in an already-infected dog can trigger a dangerous reaction — testing first is a real safety step, not a formality."],
+        ['❌ Treating Prevention as Seasonal in a Warm Climate', "Mosquitoes may be active nearly year-round in warm climates — seasonal-only dosing leaves real gaps in exposure windows there."],
+        ["❌ Skipping the Annual Test While on Monthly Prevention", "No preventive is 100% effective — skipping the annual test means a rare breakthrough case could go undetected longer than it should."],
+        ['❌ Assuming Cold Winters Mean No Prevention Needed', "Most vets recommend true year-round dosing even in seasonal climates, since missed seasonal restarts are a common source of gaps."],
+        ["❌ Underestimating How Hard Heartworm Treatment Really Is", "An arsenic-based injectable drug and months of strict crate rest and activity restriction make treatment far more arduous, expensive, and hard on a dog than prevention ever is."],
+    ];
+}
+
+function pz_render_guide_dog_heartworm_prevention( $tool ) {
+    $icon = $tool['icon'] ?? '❤️';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Heartworm Prevention Guide</div>
+          <div class="pz-int-sublabel">Complete guide · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">❤️ Climate-Aware</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Current Prevention</label>
+          <select id="pz_hw_current" class="pz-int-select">
+            <option value="monthly">On monthly preventive, year-round</option>
+            <option value="inconsistent">Inconsistent or seasonal only</option>
+            <option value="none">Not currently on prevention</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Region Climate</label>
+          <select id="pz_hw_climate" class="pz-int-select">
+            <option value="warm">Warm year-round (mosquitoes active most/all of the year)</option>
+            <option value="seasonal">Seasonal, with cold winters</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Tested Recently</label>
+          <select id="pz_hw_tested" class="pz-int-select">
+            <option value="yes">Yes, within the past year</option>
+            <option value="no">No, not recently or never</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenHeartwormPrevention()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Heartworm Prevention Guidance
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Lyme Disease in Dogs: Ticks, Signs & Treatment (dog_lyme_disease) ══ */
+
+function pz_hero_quickanswer_dog_lyme_disease() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Shifting-leg lameness plus fever, lethargy, and swollen joints is the classically-recognized Lyme presentation in dogs — get a vet test (a 4Dx-style snap test checks for Lyme antibodies) rather than dismissing it as "just some limping," since it's treatable with antibiotics when caught, but untreated Lyme can rarely lead to kidney complications. Lameness that shifts between legs on its own is also suggestive and worth testing. If your dog has high tick exposure and isn't on prevention, start a tick preventive and add daily tick checks — ticks typically need 24-48 hours attached to transmit Lyme, so catching and removing them early is a genuinely effective extra layer. Select your dog's tick exposure, symptoms, and prevention status above for guidance.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_lyme_disease() { ?>
+      <span>🦟 Exposure-level aware</span>
+      <span>🦵 Shifting-lameness specific</span>
+      <span>🧪 Testable &amp; treatable framing</span>
+<?php }
+
+function pz_methodology_heading_dog_lyme_disease() { return "How This Lyme Disease Guidance Is Built"; }
+
+function pz_methodology_dog_lyme_disease() { ?>
+    <p style="color:#555;margin-bottom:20px">This guidance combines tick exposure level, current symptoms, and prevention status. Shifting-leg lameness — lameness that moves between different legs rather than staying in one — is a classically-recognized Lyme sign on its own, and becomes higher priority when paired with fever, lethargy, and swollen joints. Dogs with no symptoms but high tick exposure and no prevention get concrete, evidence-based prevention steps instead, including the actual attachment-time window that makes daily tick checks effective.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🦵</div>
+        <strong>Shifting-Leg Lameness Is a Named Sign</strong>
+        <p>Lameness that moves between different legs is a classically-recognized Lyme presentation, specific enough to test for rather than just watch.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">⏱️</div>
+        <strong>The 24-48 Hour Attachment Window Is Real</strong>
+        <p>Ticks typically need roughly 24-48 hours attached to transmit Lyme — daily tick checks in that window are a genuinely effective prevention layer.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🧪</div>
+        <strong>Testing Is Simple and Treatment Works</strong>
+        <p>A 4Dx-style snap test checks for Lyme antibodies, and the disease is treatable with antibiotics when caught — reassurance backed by a clear path.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">💉</div>
+        <strong>A Vaccine Exists for High-Exposure Dogs</strong>
+        <p>Worth discussing with your vet specifically for dogs with high exposure in Lyme-endemic regions, alongside tick preventives.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_lyme_disease() {
+    return [
+        ["What are the signs of Lyme disease in dogs?", "Lameness that shifts between different legs is a classically-recognized sign. When it's paired with fever, lethargy, and swollen joints, that combination is even more strongly indicative of Lyme disease and worth testing for right away."],
+        ["Is Lyme disease serious for dogs?", "It's treatable with antibiotics when caught, which is reassuring — but untreated Lyme can rarely lead to kidney complications, so it shouldn't be dismissed as \"just some limping.\" Getting tested rather than waiting is the safer approach."],
+        ["How long does a tick need to be attached to transmit Lyme?", "Roughly 24-48 hours in most cases. This is why daily tick checks after any outdoor time in high-exposure areas are a genuinely effective additional layer of prevention, not just a nice-to-have — catching and removing a tick within that window can prevent transmission."],
+        ["Is there a Lyme disease vaccine for dogs?", "Yes, a Lyme vaccine exists and is worth discussing with your vet, especially for dogs with high tick exposure in Lyme-endemic regions. It's typically used alongside, not instead of, a tick preventive."],
+        ["My dog has lameness that moves between legs but seems otherwise fine — should I worry?", "It's still worth getting tested rather than waiting to see if more symptoms appear. Shifting-leg lameness on its own is suggestive enough of Lyme disease to check with a vet, using a quick antibody snap test."],
+    ];
+}
+
+function pz_what_is_dog_lyme_disease() {
+    ob_start(); ?>
+    <p>The Lyme Disease Guide helps you understand what your dog's tick exposure level, current symptoms, and prevention status mean for their Lyme disease risk, and what to do next — from getting a quick antibody test to closing the gaps in your tick prevention routine.</p>
+    <p>Lyme disease is transmitted through tick bites, and shifting-leg lameness — lameness that moves between different legs — is a classically-recognized sign, especially when paired with fever, lethargy, and swollen joints. It's treatable with antibiotics when caught with a simple 4Dx-style antibody snap test, though untreated cases can rarely lead to kidney complications. Ticks typically need roughly 24-48 hours attached to transmit the disease, which is exactly why daily tick checks are a genuinely effective prevention layer for dogs with high outdoor exposure.</p>
+    <p>Select your dog's tick exposure, symptoms, and current prevention status above for guidance, then scroll down for detail and the FAQ covering the Lyme disease questions dog owners ask most.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_lyme_disease() {
+    ob_start(); ?>
+    <p>Recognizing Lyme's classic sign and understanding the real transmission window changes both how quickly you test and how effectively you prevent it:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🦵</span>
+        <div>
+          <strong>Shifting-Leg Lameness Is Specific Enough to Act On</strong>
+          <p>This classically-recognized pattern is distinct enough to warrant testing rather than a "let's watch it" approach.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">⏱️</span>
+        <div>
+          <strong>The 24-48 Hour Window Makes Tick Checks Effective</strong>
+          <p>Since ticks typically need that long attached to transmit Lyme, daily checks after outdoor time genuinely prevent transmission, not just reduce it slightly.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🧪</span>
+        <div>
+          <strong>Untreated Cases Can Rarely Affect the Kidneys</strong>
+          <p>This is uncommon, but real — it's why Lyme shouldn't be dismissed as "just some limping" even though it's usually very treatable.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">💉</span>
+        <div>
+          <strong>A Vaccine Adds a Layer for High-Exposure Dogs</strong>
+          <p>Worth a specific conversation with your vet for dogs in Lyme-endemic regions with regular high tick exposure.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_lyme_disease() {
+    return [
+        ['title'=>"Assess Your Dog's Tick Exposure Level", 'desc'=>"High (wooded areas, tall grass, hiking), moderate, or low — this shapes how seriously to take prevention."],
+        ['title'=>'Check for Symptoms', 'desc'=>"None, shifting-leg lameness alone, or shifting lameness plus fever, lethargy, and swollen joints — each level calls for a different response."],
+        ['title'=>'Get Tested If Symptoms Are Present', 'desc'=>"A 4Dx-style snap test checks for Lyme antibodies quickly — don't wait to see if more symptoms appear."],
+        ['title'=>'Start or Maintain Tick Prevention', 'desc'=>"A topical or oral tick preventive is the baseline for any dog with regular outdoor exposure."],
+        ['title'=>'Do Daily Tick Checks After Outdoor Time', 'desc'=>"Ticks typically need roughly 24-48 hours attached to transmit Lyme — same-day removal is a genuinely effective extra layer."],
+        ['title'=>'Ask Your Vet About the Lyme Vaccine If High-Exposure', 'desc'=>"Worth discussing specifically for dogs with high tick exposure in Lyme-endemic regions."],
+    ];
+}
+
+function pz_tips_dog_lyme_disease() {
+    return [
+        ['Do Daily Tick Checks After Outdoor Time', "Ticks typically need roughly 24-48 hours attached to transmit Lyme — same-day removal after hiking, tall grass, or wooded areas is a genuinely effective extra layer of prevention."],
+        ["Don't Dismiss Shifting-Leg Lameness", "Lameness that moves between different legs is a classically-recognized Lyme sign — it's worth testing rather than waiting to see if it resolves."],
+        ['Ask About the Lyme Vaccine If Exposure Is High', "A Lyme vaccine exists and is worth discussing with your vet specifically for dogs with high tick exposure in Lyme-endemic regions."],
+        ['Use a Tick Preventive as Your Baseline', "A topical or oral tick preventive should be the standard for any dog with regular outdoor time in wooded areas, tall grass, or on hikes."],
+        ["Get Tested — Don't Assume It's \"Just Limping\"", "A quick 4Dx-style antibody snap test is worth doing when shifting lameness appears, since untreated Lyme can rarely lead to kidney complications."],
+    ];
+}
+
+function pz_mistakes_dog_lyme_disease() {
+    return [
+        ['❌ Assuming Shifting Lameness Will "Just Go Away"', "This is a classically-recognized Lyme sign — testing rather than waiting is the safer approach, especially since it's very treatable when caught."],
+        ["❌ Skipping Daily Tick Checks in High-Exposure Areas", "Since ticks typically need 24-48 hours attached to transmit Lyme, skipping same-day checks after hiking or wooded-area time removes a genuinely effective layer of prevention."],
+        ['❌ Relying on Tick Prevention Alone Without Checks', "A tick preventive helps, but daily physical tick checks catch what prevention alone might miss — the two work best together."],
+        ["❌ Dismissing Lyme as \"Just Some Limping\"", "Untreated Lyme can rarely lead to kidney complications — it's usually very treatable, but that's a reason to test and treat, not a reason to ignore it."],
+        ['❌ Not Asking About the Lyme Vaccine for a High-Exposure Dog', "For dogs with regular high tick exposure in Lyme-endemic regions, the vaccine is a real additional layer worth a specific vet conversation."],
+    ];
+}
+
+function pz_render_guide_dog_lyme_disease( $tool ) {
+    $icon = $tool['icon'] ?? '🦟';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Lyme Disease in Dogs Guide</div>
+          <div class="pz-int-sublabel">Ticks, signs &amp; treatment · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🦟 Exposure-Aware</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Tick Exposure</label>
+          <select id="pz_ld_exposure" class="pz-int-select">
+            <option value="high">High — wooded areas, tall grass, hiking</option>
+            <option value="moderate">Moderate — occasional outdoor time</option>
+            <option value="low">Low — mostly urban/indoor</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Symptoms</label>
+          <select id="pz_ld_symptoms" class="pz-int-select">
+            <option value="none">None — just learning</option>
+            <option value="shifting">Lameness that shifts between different legs</option>
+            <option value="severe">Shifting lameness plus fever, lethargy, and swollen joints</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Current Prevention</label>
+          <select id="pz_ld_prevention" class="pz-int-select">
+            <option value="yes">On tick prevention</option>
+            <option value="no">Not currently on tick prevention</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenLymeDisease()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Lyme Disease Guidance
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Cushing's Disease in Dogs: Symptoms & Management (dog_cushing_disease) ══ */
+
+function pz_hero_quickanswer_dog_cushing_disease() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Cushing's disease (hyperadrenocorticism) most commonly develops in middle-aged to senior dogs. Multiple signs together — especially in a typical-onset-age dog — are worth a vet visit for proper testing, which involves more than a routine blood panel (typically an ACTH stimulation test or low-dose dexamethasone suppression test). It's manageable with daily medication (commonly trilostane) once diagnosed, though it needs careful ongoing vet monitoring. Increased thirst, urination, and appetite alone is a common early sign, but it's also seen in diabetes and kidney disease, so it needs a proper workup rather than assuming. A pot-bellied appearance with thinning hair or skin changes is more classic and often later-stage — worth a vet visit on its own. Select your dog's symptoms and age above for guidance.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_cushing_disease() { ?>
+      <span>🏥 Age-pattern aware</span>
+      <span>🧪 Proper-testing framing</span>
+      <span>💊 Manageable-condition focus</span>
+<?php }
+
+function pz_methodology_heading_dog_cushing_disease() { return "How This Cushing's Disease Guidance Is Built"; }
+
+function pz_methodology_dog_cushing_disease() { ?>
+    <p style="color:#555;margin-bottom:20px">Cushing's disease (hyperadrenocorticism) most commonly develops in middle-aged to senior dogs — a real epidemiological pattern woven throughout this guidance alongside symptoms noticed. Multiple signs together in a typical-onset-age dog point most strongly toward proper testing, while single early signs are treated more cautiously, since they overlap with other conditions like diabetes and kidney disease.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">📅</div>
+        <strong>Middle-Aged to Senior Is the Typical Onset</strong>
+        <p>This is the age range Cushing's most commonly develops in — relevant context even for a single sign.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🧩</div>
+        <strong>Early Signs Overlap With Other Conditions</strong>
+        <p>Increased thirst, urination, and appetite are also seen in diabetes and kidney disease — a proper workup distinguishes them, not assumption.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🧪</div>
+        <strong>Testing Goes Beyond Routine Bloodwork</strong>
+        <p>An ACTH stimulation test or low-dose dexamethasone suppression test is typically needed — more involved than a standard blood panel.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">💊</div>
+        <strong>Manageable With Careful Ongoing Monitoring</strong>
+        <p>Daily medication, commonly trilostane, manages Cushing's well once diagnosed, though it needs consistent vet-guided monitoring.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_cushing_disease() {
+    return [
+        ["What is Cushing's disease in dogs?", "Cushing's disease, medically called hyperadrenocorticism, happens when the body produces too much cortisol. It most commonly develops in middle-aged to senior dogs and causes a recognizable set of signs, from increased thirst and appetite to more classic physical changes like a pot-bellied appearance."],
+        ["What are the early signs of Cushing's disease?", "Increased thirst, urination, and appetite are common early signs. On their own, though, they're also seen in diabetes and kidney disease, so a proper vet workup is needed to tell them apart rather than assuming it's Cushing's specifically."],
+        ["What does testing for Cushing's disease actually involve?", "More than a routine blood panel — typically an ACTH stimulation test or a low-dose dexamethasone suppression test, both performed by a vet. These are the standard ways to confirm a Cushing's diagnosis."],
+        ["Is Cushing's disease treatable?", "Yes — it's manageable with daily medication, commonly trilostane, once properly diagnosed. It does need careful, ongoing vet monitoring to keep dosing right, but most dogs do well on treatment."],
+        ["My dog has a pot-bellied appearance and thinning hair — is that Cushing's?", "These are more classic, often later-stage physical signs of Cushing's disease, and worth a vet visit. Your vet will confirm with proper testing rather than diagnosing from appearance alone."],
+    ];
+}
+
+function pz_what_is_dog_cushing_disease() {
+    ob_start(); ?>
+    <p>The Cushing's Disease Guide helps you understand what your dog's symptoms and age mean for their likelihood of having this hormonal condition, and what proper testing and management actually look like once it's suspected.</p>
+    <p>Cushing's disease (hyperadrenocorticism) most commonly develops in middle-aged to senior dogs. Increased thirst, urination, and appetite are common early signs, though they overlap with diabetes and kidney disease, so they need a proper workup rather than an assumption. A pot-bellied appearance, thinning hair, and skin changes are more classic, often later-stage physical signs. Multiple signs together, especially in a typical-onset-age dog, point most strongly toward getting tested — which involves more than routine bloodwork, typically an ACTH stimulation test or low-dose dexamethasone suppression test. The good news: it's manageable with daily medication, commonly trilostane, once diagnosed, though it needs careful ongoing vet monitoring.</p>
+    <p>Select your dog's symptoms and age above for guidance, then scroll down for detail and the FAQ covering the Cushing's disease questions dog owners ask most.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_cushing_disease() {
+    ob_start(); ?>
+    <p>Recognizing Cushing's typical onset age and its overlapping early signs means getting the right test done instead of guessing or dismissing symptoms:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">📅</span>
+        <div>
+          <strong>Age Pattern Matters</strong>
+          <p>Cushing's most commonly develops in middle-aged to senior dogs — useful context for weighing any single sign.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🧩</span>
+        <div>
+          <strong>Early Signs Look Like Other Conditions</strong>
+          <p>Increased thirst, urination, and appetite also point to diabetes and kidney disease — a proper workup tells them apart.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🧪</span>
+        <div>
+          <strong>Confirming It Takes More Than Routine Bloodwork</strong>
+          <p>An ACTH stimulation test or low-dose dexamethasone suppression test is the real path to a diagnosis, not a standard panel.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">💊</span>
+        <div>
+          <strong>It's Manageable Once Diagnosed</strong>
+          <p>Daily medication, commonly trilostane, controls Cushing's well with careful, consistent vet monitoring.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_cushing_disease() {
+    return [
+        ['title'=>"Note Your Dog's Age", 'desc'=>"Middle-aged or senior is the typical onset range for Cushing's disease; young dogs can develop it too, but it's less typical."],
+        ['title'=>'Check Current Symptoms', 'desc'=>"None, increased thirst/urination/appetite, pot-bellied appearance and coat changes, or multiple signs together — each calls for a different response."],
+        ['title'=>'Rule Out Overlapping Conditions for Early Signs', 'desc'=>"Increased thirst, urination, and appetite alone also point to diabetes and kidney disease — a proper vet workup distinguishes them."],
+        ['title'=>'See a Vet for Proper Testing If Indicated', 'desc'=>"An ACTH stimulation test or low-dose dexamethasone suppression test — more involved than routine bloodwork — confirms the diagnosis."],
+        ['title'=>'Review Your Personalized Guidance', 'desc'=>"Read the recommendation matched to your dog's specific symptom and age combination."],
+        ['title'=>'Start Daily Medication and Ongoing Monitoring If Diagnosed', 'desc'=>"Commonly trilostane — manageable long-term with careful, consistent vet-guided monitoring."],
+    ];
+}
+
+function pz_tips_dog_cushing_disease() {
+    return [
+        ["Know the Typical Onset Age", "Cushing's disease most commonly develops in middle-aged to senior dogs — worth knowing as your dog ages, even before signs appear."],
+        ["Don't Assume Increased Thirst Means Cushing's Specifically", "It's a common early sign, but diabetes and kidney disease cause the same thing — a proper vet workup is needed to tell them apart."],
+        ['Take Physical Changes Seriously', "A pot-bellied appearance, thinning hair, and skin changes are more classic, often later-stage signs — worth a vet visit rather than waiting further."],
+        ['Expect More Than a Routine Blood Panel for Diagnosis', "An ACTH stimulation test or low-dose dexamethasone suppression test is the actual path to confirming Cushing's — ask your vet about these specifically."],
+        ['Expect a Manageable Path With Careful Monitoring', "Daily medication, commonly trilostane, controls Cushing's well once diagnosed, though it needs consistent vet-guided monitoring to keep dosing right."],
+    ];
+}
+
+function pz_mistakes_dog_cushing_disease() {
+    return [
+        ["❌ Assuming Increased Thirst Is Just Normal Aging", "It's a common early sign of several conditions, including Cushing's, diabetes, and kidney disease — worth a proper vet workup rather than assuming any one of them, or none at all."],
+        ['❌ Waiting for Physical Signs Before Testing', "Pot-bellied appearance and coat changes are more classic but often later-stage — earlier signs like increased thirst and appetite are worth investigating sooner."],
+        ["❌ Expecting a Routine Blood Panel to Diagnose It", "Confirming Cushing's typically needs an ACTH stimulation test or low-dose dexamethasone suppression test — a standard panel alone usually isn't enough."],
+        ["❌ Thinking Cushing's Is Untreatable", "It's actually manageable with daily medication, commonly trilostane, once properly diagnosed — most dogs do well with consistent monitoring."],
+        ["❌ Skipping Ongoing Monitoring Once on Medication", "Cushing's treatment needs careful, ongoing vet monitoring to keep dosing right — it isn't a one-and-done prescription."],
+    ];
+}
+
+function pz_render_guide_dog_cushing_disease( $tool ) {
+    $icon = $tool['icon'] ?? '🏥';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Cushing's Disease in Dogs Guide</div>
+          <div class="pz-int-sublabel">Symptoms &amp; management · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🏥 Age-Pattern Aware</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Symptoms</label>
+          <select id="pz_cd_symptoms" class="pz-int-select">
+            <option value="none">None — just learning</option>
+            <option value="early">Increased thirst, urination, and appetite</option>
+            <option value="physical">Pot-bellied appearance, thinning hair, skin changes</option>
+            <option value="multiple">Multiple signs together</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Age</label>
+          <select id="pz_cd_age" class="pz-int-select">
+            <option value="typical">Middle-aged or senior (typical onset)</option>
+            <option value="atypical">Young (less typical for this condition)</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenCushingDisease()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Cushing's Disease Guidance
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
 }
 
 function pz_get_checker_questions($tool) {
