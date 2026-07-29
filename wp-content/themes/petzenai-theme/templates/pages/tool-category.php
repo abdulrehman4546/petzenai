@@ -90,6 +90,8 @@ get_header();
 
 /* Type buttons */
 .pzc-type-btn{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.pzc-type-icon{font-size:13px;line-height:1;flex-shrink:0}
+.pzc-type-label{display:inline-block;color:inherit;font-size:12px;font-weight:600;white-space:nowrap;visibility:visible;opacity:1}
 
 .pzc-back{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:50px;color:rgba(255,255,255,.7);font-size:13px;font-weight:600;text-decoration:none;transition:all .2s;margin-bottom:28px}
 .pzc-back:hover{border-color:var(--orange,#FF6B1A);color:var(--orange,#FF6B1A)}
@@ -178,11 +180,11 @@ get_header();
              placeholder="Search tools by name or keyword…" autocomplete="off">
     </div>
     <div class="pzc-type-filter">
-      <button class="pzc-type-btn active" data-type="all">All Types</button>
-      <button class="pzc-type-btn" data-type="calculator"><span>🔢</span> Calculators</button>
-      <button class="pzc-type-btn" data-type="guide"><span>📖</span> Guides</button>
-      <button class="pzc-type-btn" data-type="checker"><span>✅</span> Checkers</button>
-      <button class="pzc-type-btn" data-type="tracker"><span>📊</span> Trackers</button>
+      <button class="pzc-type-btn active" data-type="all"><span class="pzc-type-label">All Types</span></button>
+      <button class="pzc-type-btn" data-type="calculator"><span class="pzc-type-icon">🔢</span><span class="pzc-type-label">Calculators</span></button>
+      <button class="pzc-type-btn" data-type="guide"><span class="pzc-type-icon">📖</span><span class="pzc-type-label">Guides</span></button>
+      <button class="pzc-type-btn" data-type="checker"><span class="pzc-type-icon">✅</span><span class="pzc-type-label">Checkers</span></button>
+      <button class="pzc-type-btn" data-type="tracker"><span class="pzc-type-icon">📊</span><span class="pzc-type-label">Trackers</span></button>
     </div>
     <div class="pzc-count">
       Showing <strong id="pzc-visible-count"><?php echo count($tools_in_cat); ?></strong> tools
