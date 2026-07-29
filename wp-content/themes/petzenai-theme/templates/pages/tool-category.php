@@ -106,6 +106,8 @@ get_header();
 @media(max-width:400px){.pzc-grid{grid-template-columns:1fr}}
 </style>
 
+<div style="height:64px;background:#1A1A2E"></div>
+
 <!-- ── Breadcrumb ── -->
 <nav class="pzc-breadcrumb" aria-label="Breadcrumb">
   <ul>
