@@ -1039,8 +1039,10 @@ ul { list-style: none; }
 .pz-breadcrumb-list {
   display: flex; flex-wrap: wrap; align-items: center;
   gap: 6px; font-size: 13px;
+  list-style: none; margin: 0; padding: 0;
 }
-.pz-breadcrumb-list a { color: rgba(255,255,255,0.6); transition: color 0.2s; }
+.pz-breadcrumb-list li { display: inline-flex; align-items: center; list-style: none; }
+.pz-breadcrumb-list a { color: rgba(255,255,255,0.6); transition: color 0.2s; text-decoration: none; }
 .pz-breadcrumb-list a:hover { color: var(--orange); }
 .pz-breadcrumb-list span { color: rgba(255,255,255,0.4); }
 .pz-bc-sep { color: rgba(255,255,255,0.25); }

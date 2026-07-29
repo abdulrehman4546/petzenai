@@ -63,7 +63,7 @@ add_filter( 'pre_get_document_title', function( $title ) {
    ENQUEUE
    ============================================================ */
 function petzenai_enqueue() {
-    $v = '2.0';
+    $v = '2.1';
     // Google Fonts loaded non-blocking (avoid render-blocking penalty)
     add_action('wp_head', function(){
         echo '<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>' . "\n";
