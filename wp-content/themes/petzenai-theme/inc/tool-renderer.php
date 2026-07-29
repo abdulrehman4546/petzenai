@@ -432,7 +432,7 @@ function pz_render_interactive( $tool ) {
             <option value="healthy">✅ Healthy</option>
             <option value="overweight">⚖️ Overweight</option>
             <option value="underweight">📉 Underweight</option>
-            <option value="pregnant">🤰 Pregnant / Nursing</option>
+            <option value="pregnant">🐾 Pregnant / Nursing</option>
             <option value="medical">💊 Medical Condition</option>
           </select>
         </div>
@@ -4538,7 +4538,7 @@ function pz_faq_dog_pregnancy_calc() {
 }
 
 function pz_render_calc_dog_pregnancy_calc( $tool ) {
-    $icon = $tool['icon'] ?? '🤰';
+    $icon = $tool['icon'] ?? '🐕';
     ?>
     <div class="pz-int-header">
       <div class="pz-int-header-left">
@@ -4560,7 +4560,7 @@ function pz_render_calc_dog_pregnancy_calc( $tool ) {
           <input type="date" id="pz_preg_date" class="pz-int-input" required>
         </div>
         <div class="pz-int-field">
-          <label class="pz-int-label-txt">Breed Size <span class="pz-int-optional">(for typical litter size reference)</span></label>
+          <label class="pz-int-label-txt">Breed Size <span class="pz-int-optional">(litter size ref.)</span></label>
           <select id="pz_preg_size" class="pz-int-select">
             <option value="toy">Toy (adult target 4–10 lbs)</option>
             <option value="small">Small (adult target 10–25 lbs)</option>
@@ -6067,7 +6067,7 @@ function pz_mistakes_senior_dog_health() {
 }
 
 function pz_render_guide_senior_dog_health( $tool ) {
-    $icon = $tool['icon'] ?? '👴';
+    $icon = $tool['icon'] ?? '🐕';
     ?>
     <div class="pz-int-header">
       <div class="pz-int-header-left">
@@ -6077,7 +6077,7 @@ function pz_render_guide_senior_dog_health( $tool ) {
           <div class="pz-int-sublabel">Size-adjusted senior age · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">👴 Age-Stage Specific</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🐕 Age-Stage Specific</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -9635,7 +9635,7 @@ function pz_section_vet_advice($tool) {
       <li>🔍 <strong>New symptoms</strong> — any new behavior change, physical change, or health concern</li>
       <li>💊 <strong>Before starting supplements or new diet</strong> — some supplements interact with medications</li>
       <li>🐣 <strong>Life stage transitions</strong> — puppy/kitten to adult, adult to senior</li>
-      <li>🤰 <strong>Pregnancy or breeding</strong> — specialized care is essential</li>
+      <li>🐾 <strong>Pregnancy or breeding</strong> — specialized care is essential</li>
       <li>⚕️ <strong>Chronic conditions</strong> — pets with diabetes, kidney disease, or heart conditions need customized plans</li>
     </ul>
     <p>Your veterinarian is your most valuable partner in your <?php echo strtolower($a); ?>'s health journey. Regular check-ups allow early detection of issues that can't be spotted at home.</p>

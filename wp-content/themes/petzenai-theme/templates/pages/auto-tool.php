@@ -1904,14 +1904,14 @@ function pzCalcDogPregnancy() {
   var dEnd = new Date(dueMin); dEnd.setDate(dEnd.getDate()+1);
   var y2 = dEnd.getFullYear(), m2 = ('0'+(dEnd.getMonth()+1)).slice(-2), d2 = ('0'+dEnd.getDate()).slice(-2);
   var calendarLink = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text='
-    + encodeURIComponent('🤰 Dog due-date window begins')
+    + encodeURIComponent('🐕 Dog due-date window begins')
     + '&dates=' + y+m+day + '/' + y2+m2+d2
     + '&details=' + encodeURIComponent('Reminder from PetZenAI Pregnancy Calculator — due window runs through ' + dueMaxStr);
 
   result.innerHTML =
     '<div class="pz-result-success" style="border-radius:16px;overflow:hidden">'
     + '<div class="pz-result-hero" style="background:linear-gradient(135deg,#1B5E20,#2E7D32);color:#fff;padding:28px">'
-    + '<div style="font-size:13px;font-weight:700;opacity:.7;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">🤰 Estimated Due-Date Window</div>'
+    + '<div style="font-size:13px;font-weight:700;opacity:.7;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">🐕 Estimated Due-Date Window</div>'
     + '<div style="font-size:20px;font-weight:900">' + dueMinStr + ' – ' + dueMaxStr + '</div>'
     + '</div>'
     + '<div class="pz-result-grid">'
