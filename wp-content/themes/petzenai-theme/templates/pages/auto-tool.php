@@ -4066,7 +4066,7 @@ function pzCalcGroomingSchedule() {
     + (ear === 'floppy' ? '<li>Floppy ears trap moisture and reduce airflow — check weekly for odor or redness, both early signs of infection.</li>' : '')
     + (coat === 'double' ? '<li>Never shave a double coat — it disrupts insulation and can cause permanent coat damage.</li>' : '')
     + '</ul></div>'
-    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0" onclick="pzPrintResult()">📥 Download This Result as PDF</button></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download This Result as PDF</button></div>'
     + '</div>';
   }, 650);
 }
