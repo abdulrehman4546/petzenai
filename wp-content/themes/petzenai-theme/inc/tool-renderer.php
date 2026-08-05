@@ -9019,6 +9019,3433 @@ function pz_render_guide_dog_cushing_disease( $tool ) {
     <?php
 }
 
+/* ══════════════════════════════════════════════════════════
+   DOG NUTRITION CALCULATORS (5 tools)
+   Each block: hero quickanswer/trust, methodology, FAQ, what-is,
+   why-important, steps, tips, mistakes, render function.
+   Real veterinary-nutrition formulas (RER/WSAVA/AAFCO based).
+══════════════════════════════════════════════════════════ */
+
+/* ══ 1. Dog Daily Calorie Calculator (dog_calorie_calc) ══ */
+
+function pz_hero_quickanswer_dog_calorie_calc() { ?>
+    <div class="pz-hero-quickanswer"><strong>Quick answer:</strong> Most adult dogs need roughly 1.4–2.2× their Resting Energy Requirement (RER) per day, depending on activity level and spay/neuter status — puppies and seniors use different multipliers. Enter your dog's weight, life stage, neuter status, and activity level above for a personalized daily calorie target.</div>
+<?php }
+
+function pz_hero_trust_dog_calorie_calc() { ?>
+      <span>✅ WSAVA/Purina RER formula</span>
+      <span>✅ Life stage &amp; activity aware</span>
+      <span>✅ Free instant result</span>
+<?php }
+
+function pz_methodology_heading_dog_calorie_calc() { return "How Your Dog's Calorie Target Is Calculated"; }
+
+function pz_methodology_dog_calorie_calc() { ?>
+    <p style="color:#555;margin-bottom:20px">This calculator uses the same Resting Energy Requirement (RER) formula taught in veterinary nutrition, then applies a life-stage, neuter-status, and activity multiplier to arrive at a personalized daily calorie target.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🔥</div>
+        <strong>Resting Energy Requirement (RER)</strong>
+        <p>RER = 70 × (body weight in kg)<sup>0.75</sup> — this is the baseline number of calories your dog would burn at complete rest, and the foundation every other adjustment builds on.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🎂</div>
+        <strong>Life Stage Multiplier</strong>
+        <p>Puppies burn calories fast to fuel growth (roughly 2–3× RER), while seniors typically settle lower (around 1.2–1.4× RER) as metabolism and activity naturally decrease.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">✂️</div>
+        <strong>Neuter Status</strong>
+        <p>Spayed and neutered dogs generally need somewhat fewer calories than intact dogs of the same size, since altering tends to lower resting metabolic rate slightly.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🏃</div>
+        <strong>Activity Level</strong>
+        <p>A working or very active dog can need upward of 2× RER, while a mostly sedentary dog needs closer to 1.4× — matching this honestly to your dog's real routine matters more than any other input.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_calorie_calc() {
+    return [
+        ["How many calories does my dog need per day?", "It depends on weight, life stage, neuter status, and activity level. As a rough anchor, a 40 lb moderately active neutered adult dog needs somewhere around 700–850 calories per day, but the calculator above gives you a number built specifically from your dog's own profile."],
+        ["What is RER (Resting Energy Requirement)?", "RER is the number of calories a dog burns at complete rest — the veterinary starting point for every calorie calculation. It's calculated as 70 × (weight in kg)^0.75, then multiplied by a factor for life stage, activity, and neuter status to get the actual daily target."],
+        ["Does spaying or neutering really change how much my dog should eat?", "Yes, modestly. Altered dogs tend to have a somewhat lower resting metabolic rate than intact dogs of the same size, which is why this calculator applies a lower multiplier for spayed/neutered adult dogs at the same activity level."],
+        ["How many calories can come from treats?", "A widely cited veterinary guideline caps treats at about 10% of total daily calories, with the other 90% coming from a complete-and-balanced main diet. Try our Dog Daily Treat Limit Calculator to translate that percentage into an actual number of treats."],
+        ["How often should I recalculate?", "Recalculate every 3 months for adult dogs, monthly for puppies, and any time your dog's weight, activity level, or spay/neuter status changes — those are exactly the inputs this calculator uses."],
+    ];
+}
+
+function pz_what_is_dog_calorie_calc() {
+    ob_start(); ?>
+    <p>The Dog Daily Calorie Calculator estimates how many calories your dog needs each day using the same Resting Energy Requirement (RER) formula veterinary nutritionists rely on — 70 × (weight in kg)^0.75 — then adjusts it for your dog's life stage, spay/neuter status, and activity level.</p>
+    <p>Getting daily calories right matters more than most owners realize: overfeeding is one of the single most common — and most preventable — health issues in dogs, while underfeeding can leave growing puppies or active dogs short on the energy they need. A formula-based estimate gives you a much better starting point than eyeballing a bag's feeding chart.</p>
+    <p>Enter your dog's weight, life stage, neuter status, and activity level above to get a personalized daily target, then scroll down for the reasoning behind the formula and answers to the questions dog owners ask most about calories and feeding.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_calorie_calc() {
+    ob_start(); ?>
+    <p>A calorie target isn't just a number — it's the foundation every feeding decision builds on, from portion sizes to treat budgets to weight management.</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">⚖️</span>
+        <div>
+          <strong>Obesity Prevention</strong>
+          <p>Obesity is one of the most common and most preventable health problems in dogs, and it almost always starts with calories that quietly run higher than what the dog actually needs.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🐶</span>
+        <div>
+          <strong>Life-Stage Accuracy</strong>
+          <p>Puppies, adults, and seniors have genuinely different energy needs — using one flat number for every life stage either shortchanges a growing puppy or overfeeds a slowing senior.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🏃</span>
+        <div>
+          <strong>Activity-Matched</strong>
+          <p>A working dog and a mostly-sedentary couch companion of the same weight can need close to double the calories apart — activity level is one of the biggest levers in the whole calculation.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🩺</span>
+        <div>
+          <strong>Aligned With Veterinary Formulas</strong>
+          <p>This calculator uses the same RER-based method taught in veterinary nutrition — so the number you get is one your vet will recognize and can build on.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_calorie_calc() {
+    return [
+        ['title'=>'Weigh Your Dog Accurately', 'desc'=>"Use a reliable pet scale, or weigh yourself holding your dog and subtract your own weight. An accurate weight is the single biggest factor in getting this calculation right."],
+        ['title'=>'Choose the Correct Life Stage', 'desc'=>"Puppies, adults, and seniors use very different multipliers — selecting the wrong one can throw the whole estimate off by a large margin."],
+        ['title'=>'Confirm Spay/Neuter Status', 'desc'=>"Altered and intact dogs of the same size have somewhat different calorie needs — this small detail meaningfully changes the multiplier applied."],
+        ['title'=>'Be Honest About Activity Level', 'desc'=>"It's tempting to round up, but an accurate activity level — low, moderate, or high — keeps the result realistic rather than optimistic."],
+        ['title'=>'Review Your Daily Target and RER Baseline', 'desc'=>"Note both numbers: the daily calorie range you'll feed to, and the RER baseline shown for transparency about how the math works."],
+        ['title'=>'Recalculate Every Few Months', 'desc'=>"Weight, activity, and life stage all shift over time — recheck this calculator quarterly, or any time you notice a change in your dog's body condition."],
+    ];
+}
+
+function pz_tips_dog_calorie_calc() {
+    return [
+        ['Split Calories Into 2–3 Meals', "Dividing your dog's daily total into two or three smaller meals supports better digestion and steadier energy than one large meal."],
+        ["Weigh Food, Don't Eyeball It", "A kitchen scale gives far more consistent portions than a scoop — cups and scoops vary a surprising amount between brands and even bag to bag."],
+        ['Recheck Body Condition Monthly', "Calories are an estimate, not a guarantee — a monthly hands-on body condition check tells you whether the number is actually working for your dog."],
+        ['Keep Treats Under 10%', "Reserve roughly 10% of the daily total for treats and training rewards, and count that toward the day's total rather than adding it on top."],
+        ['Adjust Gradually After Life Changes', "After spaying/neutering, a move to a new life stage, or an activity change, shift the calorie target gradually over a couple of weeks rather than all at once."],
+    ];
+}
+
+function pz_mistakes_dog_calorie_calc() {
+    return [
+        ["❌ Following the Bag's Feeding Chart Exactly", "Feeding charts on dog food bags are set by the manufacturer and tend to run generous — most dogs need meaningfully less than the chart suggests, especially if they're spayed or neutered."],
+        ['❌ Ignoring Activity Level', "Treating a working dog and a couch companion the same way ignores one of the biggest factors in the whole formula — activity level alone can shift the multiplier by more than 50%."],
+        ['❌ Not Recalculating After Neutering', "Spaying or neutering lowers resting metabolic rate somewhat — sticking with a pre-surgery calorie target is a common, quiet cause of post-surgery weight gain."],
+        ["❌ Counting Treats as 'Extra'", "Treats have real calories that count toward the daily total — treating them as free extras is one of the most common ways owners accidentally overfeed."],
+        ['❌ Guessing Weight Instead of Weighing', "A guessed weight throws off every downstream number — a quick trip to a vet scale (many clinics allow walk-in weigh-ins for free) is worth it."],
+    ];
+}
+
+function pz_render_calc_dog_calorie_calc( $tool ) {
+    $icon = $tool['icon'] ?? '🔢';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Daily Calorie Calculator</div>
+          <div class="pz-int-sublabel">RER-based daily calorie target, adjusted for life stage, neuter status &amp; activity</div>
+        </div>
+      </div>
+      <div class="pz-int-badges">
+        <span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span>
+        <span class="pz-int-badge pz-int-badge--blue">🔬 RER Formula</span>
+      </div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Weight
+            <span class="pz-int-unit-toggle">
+              <button type="button" class="pz-unit-btn active" onclick="pzSetUnit('lbs',this)">lbs</button>
+              <button type="button" class="pz-unit-btn" onclick="pzSetUnit('kg',this)">kg</button>
+            </span>
+          </label>
+          <div class="pz-int-input-wrap">
+            <input type="number" id="pz_cal_weight" class="pz-int-input" placeholder="e.g. 40" min="0.5" max="250" step="0.1">
+            <span class="pz-int-input-suffix" id="pz-unit-label">lbs</span>
+          </div>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Life Stage</label>
+          <select id="pz_cal_stage" class="pz-int-select">
+            <option value="puppy">Puppy (under 1 year)</option>
+            <option value="adult" selected>Adult (1-7 years)</option>
+            <option value="senior">Senior (7+ years)</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Neuter Status</label>
+          <select id="pz_cal_neuter" class="pz-int-select">
+            <option value="neutered" selected>Spayed/Neutered</option>
+            <option value="intact">Intact</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Activity Level</label>
+          <select id="pz_cal_activity" class="pz-int-select">
+            <option value="low">Low / Mostly Sedentary</option>
+            <option value="moderate" selected>Moderate / Daily Walks</option>
+            <option value="high">High / Very Active or Working Dog</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzCalcDogCalorie()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Calculate My Dog's Calories
+      </button>
+      <div id="pz-calc-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ 2. Dog Weight Loss Plan Calculator (dog_weight_loss_plan) ══ */
+
+function pz_hero_quickanswer_dog_weight_loss_plan() { ?>
+    <div class="pz-hero-quickanswer"><strong>Quick answer:</strong> A safe rate of weight loss for dogs is about 1–2% of body weight per week — faster loss raises the risk of muscle loss and other complications. Enter your dog's current and target weight above for an estimated timeline and a daily calorie target calculated specifically for safe weight loss.</div>
+<?php }
+
+function pz_hero_trust_dog_weight_loss_plan() { ?>
+      <span>✅ 1–2% body weight/week pace</span>
+      <span>✅ Calculated from current weight</span>
+      <span>✅ Re-weigh &amp; adjust built in</span>
+<?php }
+
+function pz_methodology_heading_dog_weight_loss_plan() { return 'How the Weight Loss Timeline Is Calculated'; }
+
+function pz_methodology_dog_weight_loss_plan() { ?>
+    <p style="color:#555;margin-bottom:20px">Safe, sustainable weight loss in dogs follows the same principle as in humans — a moderate, steady calorie deficit beats a drastic one. This calculator uses the veterinary-recommended 1–2% of body weight per week pace.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">📉</div>
+        <strong>1–2% Weekly Pace</strong>
+        <p>Losing more than 2% of body weight per week raises the risk of muscle loss and nutritional shortfalls — 1–2% is the range vets generally recommend.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🔥</div>
+        <strong>RER From Current Weight</strong>
+        <p>The daily calorie target is calculated from your dog's current weight, not their goal weight, using RER × 1.0 — the standard veterinary weight-loss multiplier.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">📅</div>
+        <strong>Estimated Weeks to Goal</strong>
+        <p>Weeks needed = (current weight − target weight) ÷ (current weight × 1.5%), giving a realistic timeline rather than an open-ended goal.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🔁</div>
+        <strong>Built-In Recheck Points</strong>
+        <p>Weight loss isn't perfectly linear — rechecking every 2 weeks and adjusting lets the plan respond to how your dog's body actually responds.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_weight_loss_plan() {
+    return [
+        ['How fast should a dog safely lose weight?', "Most vets recommend about 1–2% of body weight per week. For a 60 lb dog, that's roughly 0.6–1.2 lbs per week — faster than that raises the risk of muscle loss and other complications."],
+        ["Why is the calorie target based on my dog's current weight, not their goal weight?", "Calculating from goal weight would produce an overly aggressive restriction, especially early in the plan. Using current weight with a dedicated weight-loss multiplier (RER × 1.0) gives a more moderate, sustainable starting calorie target."],
+        ["What if my dog's weight loss stalls?", "Plateaus are common. Re-weigh every 2 weeks — if weight hasn't moved after 2 consecutive checks, that's the signal to check in with your vet rather than cutting calories further on your own."],
+        ['Should I change my dog\'s food entirely, or just feed less of the same food?', "Either can work. Some owners simply reduce portions of the current food; others switch to a lower-calorie or weight-management formula so the dog still gets a reasonably full bowl. Ask your vet which fits your dog best."],
+        ['What if my dog is already at a healthy weight?', "This tool is specifically for dogs who need to lose weight. If your target is at or above your dog's current weight, use our Dog Daily Calorie Calculator instead for a maintenance target."],
+    ];
+}
+
+function pz_what_is_dog_weight_loss_plan() {
+    ob_start(); ?>
+    <p>The Dog Weight Loss Plan Calculator builds a safe, realistic weight-loss timeline for your dog using the vet-recommended pace of 1–2% of body weight lost per week, along with a daily calorie target calculated specifically for weight loss — not just a scaled-down maintenance number.</p>
+    <p>Weight loss that happens too fast carries real risk — muscle loss, nutritional gaps, and a plan that's hard to sustain. Going too slow, on the other hand, can mean months of extra strain on joints and organs. Finding the right pace, and a calorie target that supports it without being overly aggressive, is the whole point of this tool.</p>
+    <p>Enter your dog's current weight, target weight, and activity level above to get your estimated timeline and daily calorie target, then read on for the reasoning behind the numbers and how to keep the plan on track when progress slows down.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_weight_loss_plan() {
+    ob_start(); ?>
+    <p>A structured weight-loss plan — rather than just "feeding less" — is what actually gets dogs to a healthy weight safely and keeps it off.</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🐾</span>
+        <div>
+          <strong>Joint Relief Starts Immediately</strong>
+          <p>Even modest weight loss meaningfully reduces the mechanical load on joints — dogs often move more comfortably well before reaching their final target weight.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🛡️</span>
+        <div>
+          <strong>Avoids Overly Aggressive Cuts</strong>
+          <p>Calculating from current weight rather than target weight prevents the common mistake of restricting calories too hard, too fast, which can backfire with muscle loss or a dog that's constantly hungry.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">📊</span>
+        <div>
+          <strong>A Real Timeline, Not Just a Direction</strong>
+          <p>Knowing roughly how many weeks the plan will take turns "lose weight" from a vague goal into something trackable, with clear checkpoints along the way.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🩺</span>
+        <div>
+          <strong>Built for Vet Collaboration</strong>
+          <p>A specific weekly rate and calorie number gives your vet something concrete to work from, rather than a general "my dog needs to lose weight" conversation.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_weight_loss_plan() {
+    return [
+        ['title'=>"Confirm Your Dog's Current Weight", 'desc'=>"Use a reliable scale for an accurate starting point — this number anchors both the calorie target and the timeline estimate."],
+        ['title'=>'Set a Realistic Target Weight', 'desc'=>"Ask your vet for a target if you're unsure, or use a healthy weight-range tool for your dog's breed size as a starting reference."],
+        ['title'=>'Select Current Activity Level', 'desc'=>"Activity level affects the calorie target — be honest about your dog's actual routine rather than the routine you're hoping to build."],
+        ['title'=>'Review Your Timeline and Daily Target', 'desc'=>"Note the estimated weeks to goal and the daily calorie number — both are built specifically for safe weight loss, not just a smaller version of maintenance."],
+        ['title'=>'Re-weigh Every 2 Weeks', 'desc'=>"Track progress every 2 weeks rather than daily — day-to-day weight naturally fluctuates and isn't a useful signal on its own."],
+        ['title'=>'Adjust With Your Vet If Progress Stalls', 'desc'=>"If weight hasn't moved after 2 consecutive rechecks, loop in your vet rather than cutting calories further without guidance."],
+    ];
+}
+
+function pz_tips_dog_weight_loss_plan() {
+    return [
+        ['Weigh at the Same Time Each Check', "For the most consistent tracking, re-weigh at roughly the same time of day and in the same conditions each time."],
+        ["Log Weight, Don't Just Remember It", "A simple written or app-based log makes trends obvious in a way memory alone can't — you'll spot a stall or a good week much faster."],
+        ['Increase Activity Gradually', "Adding a bit more daily activity supports the calorie deficit without cutting food further — but build it up gradually, especially for dogs coming from a sedentary routine."],
+        ['Measure Every Meal Precisely', "Small daily overages add up fast over a multi-week plan — a kitchen scale keeps portions consistent even as the recommended amount changes."],
+        ["Don't Skip the Re-weigh Just Because Things Feel Fine", "Plateaus aren't always obvious day to day — the scheduled 2-week recheck is what actually catches a stall early."],
+    ];
+}
+
+function pz_mistakes_dog_weight_loss_plan() {
+    return [
+        ['❌ Cutting Calories Too Aggressively', "A drastic cut feels faster but raises the risk of muscle loss, nutrient gaps, and a dog that's constantly hungry — the 1–2% weekly pace exists specifically to avoid this."],
+        ['❌ Calculating Calories From the Goal Weight', "Using target weight instead of current weight for the calorie formula produces an unrealistically low number — this calculator deliberately uses current weight to avoid that trap."],
+        ['❌ Weighing Daily and Reacting to Every Fluctuation', "Daily weight bounces around from water intake, food in the gut, and other normal factors — the 2-week recheck window is what actually reflects real progress."],
+        ["❌ Increasing Treats to 'Make Up For' Smaller Meals", "Extra treats undo the calorie deficit the whole plan is built on — keep treats within the same 10% rule that applies at any weight."],
+        ['❌ Giving Up After One Slow Week', "Weight loss isn't perfectly linear — one flat week isn't a failed plan. Give it two full rechecks before deciding an adjustment is needed."],
+    ];
+}
+
+function pz_render_calc_dog_weight_loss_plan( $tool ) {
+    $icon = $tool['icon'] ?? '📉';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Weight Loss Plan Calculator</div>
+          <div class="pz-int-sublabel">A safe 1–2% weekly pace, with a calorie target built for weight loss</div>
+        </div>
+      </div>
+      <div class="pz-int-badges">
+        <span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span>
+        <span class="pz-int-badge pz-int-badge--blue">📉 Safe Pace</span>
+      </div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Current Weight</label>
+          <div class="pz-int-input-wrap">
+            <input type="number" id="pz_wl_current" class="pz-int-input" placeholder="e.g. 65" min="1" max="250" step="0.1">
+            <span class="pz-int-input-suffix">lbs</span>
+          </div>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Target / Ideal Weight</label>
+          <div class="pz-int-input-wrap">
+            <input type="number" id="pz_wl_target" class="pz-int-input" placeholder="e.g. 55" min="1" max="250" step="0.1">
+            <span class="pz-int-input-suffix">lbs</span>
+          </div>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Current Activity Level</label>
+          <select id="pz_wl_activity" class="pz-int-select">
+            <option value="low">Low / Mostly Sedentary</option>
+            <option value="moderate" selected>Moderate / Daily Walks</option>
+            <option value="high">High / Very Active or Working Dog</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzCalcDogWeightLoss()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Build My Weight Loss Plan
+      </button>
+      <div id="pz-calc-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ 3. Dog Protein Requirements Calculator & Guide (dog_protein_requirements) ══ */
+
+function pz_hero_quickanswer_dog_protein_requirements() { ?>
+    <div class="pz-hero-quickanswer"><strong>Quick answer:</strong> AAFCO sets minimum protein at 22.5% (dry matter) for growth/puppies and 18% for adult maintenance — legal minimums, not necessarily optimal targets. Active/working dogs typically benefit from more, often 25–30%+. Enter your dog's weight, life stage, and diet type above for an approximate daily gram target.</div>
+<?php }
+
+function pz_hero_trust_dog_protein_requirements() { ?>
+      <span>✅ AAFCO-based guidance</span>
+      <span>✅ Life-stage specific</span>
+      <span>✅ Homemade &amp; label-check friendly</span>
+<?php }
+
+function pz_methodology_heading_dog_protein_requirements() { return 'How the Protein Target Is Estimated'; }
+
+function pz_methodology_dog_protein_requirements() { ?>
+    <p style="color:#555;margin-bottom:20px">This calculator scales AAFCO's established minimum protein guidelines to your dog's actual body weight, giving you an approximate daily gram target rather than just a percentage on a label.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">📋</div>
+        <strong>AAFCO Minimums</strong>
+        <p>AAFCO sets 22.5% (dry matter) as the minimum for growth and reproduction, and 18% for adult maintenance — legal floors that most reputable commercial foods meet or exceed.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🏋️</div>
+        <strong>Higher Needs for Active Dogs</strong>
+        <p>Working and highly active dogs typically do better with noticeably more protein than the maintenance minimum, commonly cited in the 25–30%+ range, to support muscle repair and sustained energy.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🐕‍🦺</div>
+        <strong>Seniors Don't Need Automatic Restriction</strong>
+        <p>Current veterinary consensus has moved away from routinely restricting protein in healthy senior dogs — most seniors do fine at or slightly above adult maintenance levels unless a specific medical condition says otherwise.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">⚠️</div>
+        <strong>Kidney Disease Is a Special Case</strong>
+        <p>Dogs with vet-diagnosed kidney disease need individualized, often lower, protein guidance — that's a distinct topic from general healthy-dog protein planning and is covered in a separate guide.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_protein_requirements() {
+    return [
+        ['What is the minimum protein my dog needs?', "AAFCO sets 22.5% (dry matter basis) as the minimum for growth and reproduction, and 18% for adult maintenance. These are legal minimums that most quality commercial foods meet comfortably — they're a floor, not necessarily an optimal target."],
+        ['Do senior dogs need less protein?', "Not automatically. Current veterinary consensus has moved away from routinely restricting protein in healthy seniors — most do fine at or slightly above adult maintenance levels. Protein restriction is specifically for dogs with a vet-diagnosed condition like kidney disease, not a routine part of aging."],
+        ['Do working or very active dogs need more protein?', "Yes, typically. Active and working dogs commonly benefit from higher protein — often in the 25–30%+ range — to support muscle repair, recovery, and sustained energy output beyond what the maintenance minimum covers."],
+        ['Is this calculator useful if I feed commercial dog food?', "It can be, mainly as a sanity check — complete-and-balanced commercial foods are already formulated to meet these needs, so this tool is most useful for double-checking a label's guaranteed analysis or for homemade/raw feeders building their own recipes."],
+        ['My dog has kidney disease — does this apply?', "No — kidney disease changes protein needs significantly and requires individualized veterinary guidance, not general healthy-dog protein math. See our Dog Kidney Disease Diet Guide instead, and work directly with your vet."],
+    ];
+}
+
+function pz_what_is_dog_protein_requirements() {
+    ob_start(); ?>
+    <p>The Dog Protein Requirements Calculator gives you an approximate daily protein gram target based on AAFCO's established minimum guidelines, scaled to your dog's actual body weight and life stage — growth, adult maintenance, senior, or active/working.</p>
+    <p>Protein questions come up most for homemade and raw feeders building their own recipes, and for owners trying to make sense of a commercial food's guaranteed analysis percentage. Rather than leaving you with just a percentage, this tool translates AAFCO's guidelines into an approximate gram number you can actually plan meals around.</p>
+    <p>Enter your dog's weight, life stage, and current diet type above for your estimate, then scroll down for the reasoning behind the AAFCO figures and answers to the protein questions dog owners ask most — including the senior-dog protein question that trips up a lot of well-meaning owners.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_protein_requirements() {
+    ob_start(); ?>
+    <p>Protein is one of the most talked-about — and most misunderstood — parts of dog nutrition, especially the outdated idea that senior dogs need it cut back.</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">💪</span>
+        <div>
+          <strong>Muscle Maintenance at Every Age</strong>
+          <p>Adequate protein supports lean muscle mass throughout a dog's life, including into the senior years, when preserving muscle becomes especially valuable for mobility.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🧬</span>
+        <div>
+          <strong>Growth Depends On It</strong>
+          <p>Puppies need meaningfully more protein than adults to fuel rapid growth and development — shortchanging this stage has lasting effects.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">📖</span>
+        <div>
+          <strong>Useful for Reading Labels</strong>
+          <p>Translating a percentage-based AAFCO minimum into an actual gram target makes it much easier to evaluate whether a specific food or homemade recipe is actually meeting your dog's needs.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🏥</span>
+        <div>
+          <strong>Knowing When This Doesn't Apply</strong>
+          <p>Recognizing that vet-diagnosed kidney disease is a different situation — one needing individualized guidance — prevents dog owners from either over-restricting a healthy dog or under-restricting a dog who genuinely needs a different plan.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_protein_requirements() {
+    return [
+        ['title'=>'Weigh Your Dog', 'desc'=>"An accurate current weight is the base number every gram target is scaled from."],
+        ['title'=>'Select the Right Life Stage', 'desc'=>"Puppy, adult, senior, and active/working each use a different protein factor — choosing the closest match keeps the estimate meaningful."],
+        ['title'=>'Note Your Current Diet Type', 'desc'=>"Commercial or homemade/raw changes how you'll use the result — commercial feeders are mainly label-checking, homemade feeders are recipe-planning."],
+        ['title'=>'Review Your Gram Range', 'desc'=>"Read the approximate daily protein gram range, along with the AAFCO percentage reference it's built from."],
+        ['title'=>"Compare Against Your Food's Label or Recipe", 'desc'=>"For commercial food, check the guaranteed analysis; for homemade, tally the protein content of your recipe's ingredients."],
+        ['title'=>'Confirm With Your Vet, Especially for Homemade Diets', 'desc'=>"A vet or veterinary nutritionist can confirm a homemade recipe is complete and balanced — protein is only one piece of the full nutritional picture."],
+    ];
+}
+
+function pz_tips_dog_protein_requirements() {
+    return [
+        ['Homemade Feeders: Get a Recipe Reviewed', "A board-certified veterinary nutritionist can confirm your homemade recipe is complete and balanced, not just adequate in protein alone."],
+        ['Check the Guaranteed Analysis, Not Just Marketing', "A food's guaranteed analysis panel gives the actual minimum percentages — that's the number to compare against AAFCO minimums, not front-of-bag marketing claims."],
+        ["Don't Assume More Protein Is Always Better", "More protein isn't automatically better for every dog — matching intake to life stage and activity level is more useful than simply maximizing the number."],
+        ['Recalculate After Weight or Life Stage Changes', "As your dog moves from puppy to adult, or gains or loses meaningful weight, the gram target shifts too — recheck periodically."],
+        ["Don't Restrict Protein for a Healthy Senior Without Cause", "Unless your vet has diagnosed a specific condition, routinely cutting protein for an aging dog isn't current best practice — most healthy seniors do fine at typical adult levels."],
+    ];
+}
+
+function pz_mistakes_dog_protein_requirements() {
+    return [
+        ['❌ Automatically Restricting Protein for Senior Dogs', "This outdated habit isn't supported by current veterinary consensus for healthy seniors — protein restriction is specifically for dogs with a diagnosed condition like kidney disease."],
+        ["❌ Confusing 'As-Fed' and 'Dry Matter Basis' Percentages", "AAFCO minimums are stated on a dry matter basis, which differs from the 'as-fed' percentage on a label because of moisture content — wet food percentages look lower than they actually are until converted."],
+        ['❌ Assuming All Commercial Foods Need Double-Checking', "Reputable complete-and-balanced commercial foods are already formulated to meet AAFCO minimums — this calculator is a sanity check, not a sign that most commercial food is inadequate."],
+        ['❌ Building a Homemade Diet Around Protein Alone', "Protein is one nutrient among many — a homemade recipe also needs the right fat, calcium-to-phosphorus ratio, and micronutrients, which is why a nutritionist review matters."],
+        ['❌ Using This Tool for a Dog With Kidney Disease', "Kidney disease requires individualized, vet-guided protein management — this general calculator isn't built for that situation. See the dedicated kidney disease diet guide instead."],
+    ];
+}
+
+function pz_render_calc_dog_protein_requirements( $tool ) {
+    $icon = $tool['icon'] ?? '💪';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Protein Requirements Calculator &amp; Guide</div>
+          <div class="pz-int-sublabel">AAFCO-based daily protein gram target by life stage</div>
+        </div>
+      </div>
+      <div class="pz-int-badges">
+        <span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span>
+        <span class="pz-int-badge pz-int-badge--blue">📋 AAFCO-Based</span>
+      </div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Weight</label>
+          <div class="pz-int-input-wrap">
+            <input type="number" id="pz_pr_weight" class="pz-int-input" placeholder="e.g. 40" min="0.5" max="250" step="0.1">
+            <span class="pz-int-input-suffix">lbs</span>
+          </div>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Life Stage</label>
+          <select id="pz_pr_stage" class="pz-int-select">
+            <option value="puppy">Puppy (Growth)</option>
+            <option value="adult" selected>Adult (Maintenance)</option>
+            <option value="senior">Senior</option>
+            <option value="active">Active/Working Dog</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Current Diet Type</label>
+          <select id="pz_pr_diet" class="pz-int-select">
+            <option value="commercial" selected>Commercial Dog Food</option>
+            <option value="homemade">Homemade/Raw</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzCalcDogProtein()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Calculate Protein Needs
+      </button>
+      <div id="pz-calc-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ 4. Dog Water Intake Calculator (dog_hydration_calc) ══ */
+
+function pz_hero_quickanswer_dog_hydration_calc() { ?>
+    <div class="pz-hero-quickanswer"><strong>Quick answer:</strong> A general guideline is about 1 fluid ounce (roughly 30 ml) of water per pound of body weight per day. Dogs on wet or mixed food need less from the bowl since they get hydration from their meals, and hot weather or high activity increases needs. Enter your dog's weight, diet type, and conditions above for a personalized range.</div>
+<?php }
+
+function pz_hero_trust_dog_hydration_calc() { ?>
+      <span>✅ ~1 oz per lb baseline</span>
+      <span>✅ Diet &amp; climate adjusted</span>
+      <span>✅ Dehydration signs included</span>
+<?php }
+
+function pz_methodology_heading_dog_hydration_calc() { return 'How the Water Intake Range Is Estimated'; }
+
+function pz_methodology_dog_hydration_calc() { ?>
+    <p style="color:#555;margin-bottom:20px">This calculator starts from the standard veterinary baseline of about 1 fluid ounce of water per pound of body weight per day, then adjusts for two of the biggest real-world factors: diet moisture and conditions.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">💧</div>
+        <strong>1 oz Per Lb Baseline</strong>
+        <p>Roughly 1 fluid ounce (about 30 ml) of water per pound of body weight per day is the standard starting estimate vets use for total daily hydration, including water from food.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🥫</div>
+        <strong>Wet Food Lowers Bowl Drinking</strong>
+        <p>Canned or wet food is typically 70–80% moisture, so dogs eating it get meaningful hydration from meals and usually drink noticeably less from the bowl than dogs on dry kibble.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">☀️</div>
+        <strong>Heat &amp; Activity Raise Needs</strong>
+        <p>Hot weather and high activity both increase water loss through panting and exertion, pushing total needs up by roughly 20–30% above baseline.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🚨</div>
+        <strong>Warning Signs Worth Watching</strong>
+        <p>Dry or tacky gums, skin that stays "tented" after a gentle pinch, and unusual lethargy are dehydration signs that are worth a same-day call to your vet.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_hydration_calc() {
+    return [
+        ['How much water should my dog drink per day?', "A common veterinary guideline is about 1 fluid ounce (roughly 30 ml) per pound of body weight per day — so a 40 lb dog would drink somewhere around 40 oz (about 1.2 liters) under normal conditions, adjusted up or down for diet and climate."],
+        ['Why does my dog seem to drink less on wet food?', "Canned or wet food is typically 70–80% moisture, so dogs eating it get meaningful hydration straight from their meals. Drinking noticeably less from the bowl on a wet-food diet is expected, not a red flag."],
+        ['Does hot weather really increase how much water my dog needs?', "Yes — heat and high activity both increase water loss through panting and exertion. Expect water needs to rise by roughly 20–30% above baseline during hot weather or after strenuous exercise."],
+        ['What are the warning signs of dehydration in dogs?', "Dry or tacky gums, skin that stays \"tented\" rather than snapping back after a gentle pinch, and unusual lethargy are the classic warning signs — any of these is worth a same-day call to your vet."],
+        ['Do pregnant or nursing dogs need more water?', "Yes, meaningfully more — nursing in particular significantly increases fluid needs to support milk production. This calculator's baseline doesn't build in a specific pregnancy/nursing adjustment, so check with your vet for a tailored estimate."],
+    ];
+}
+
+function pz_what_is_dog_hydration_calc() {
+    ob_start(); ?>
+    <p>The Dog Water Intake Calculator estimates roughly how much water your dog should be drinking (and getting from food) each day, starting from the standard veterinary baseline of about 1 fluid ounce per pound of body weight, then adjusting for diet type and climate/activity conditions.</p>
+    <p>Water intake is an easy thing to overlook compared to food, but it's just as important — both too little and unexplained too much can signal a problem. Knowing roughly what "normal" looks like for your specific dog makes it much easier to notice when something's actually off.</p>
+    <p>Enter your dog's weight, diet type, and typical conditions above to get your personalized range, then scroll down for the reasoning behind the adjustments and the dehydration warning signs worth knowing.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_hydration_calc() {
+    ob_start(); ?>
+    <p>Water needs vary more than most owners expect — diet, weather, and activity can shift a dog's needs by 30% or more in either direction.</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🥣</span>
+        <div>
+          <strong>Diet Changes the Math</strong>
+          <p>A dog switched from dry kibble to wet food can look like they're "drinking less" when really they're getting the same hydration from their meals — knowing this prevents unnecessary worry.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🌡️</span>
+        <div>
+          <strong>Heat Raises Real Risk</strong>
+          <p>Increased water loss from panting during hot weather or exercise, without a matching increase in intake, is a common contributor to heat-related illness in dogs.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🚩</span>
+        <div>
+          <strong>Early Warning System</strong>
+          <p>A dog drinking noticeably more or less than their normal range, especially with no diet or weather change to explain it, can be an early sign worth mentioning to your vet.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🍼</span>
+        <div>
+          <strong>Life Stage Matters Too</strong>
+          <p>Pregnant and nursing dogs need meaningfully more water than baseline — recognizing that this factor exists helps owners avoid under-hydrating during those higher-demand periods.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_hydration_calc() {
+    return [
+        ['title'=>'Weigh Your Dog', 'desc'=>"Body weight is the base number the whole daily water range is calculated from."],
+        ['title'=>"Identify Your Dog's Diet Type", 'desc'=>"Dry, wet, or mixed feeding changes how much additional bowl water your dog actually needs — check your food's packaging if you're unsure of moisture content."],
+        ['title'=>'Note Typical Weather and Activity', 'desc'=>"Select hot weather/high activity if that reflects your dog's normal conditions, not just an occasional hot day."],
+        ['title'=>'Review Your Daily Range', 'desc'=>"Read the estimated range in ounces and liters — treat it as a normal range to expect, not an exact number to hit precisely."],
+        ['title'=>'Watch Actual Bowl Consumption for a Few Days', 'desc'=>"Compare what your dog actually drinks to the estimated range — consistent bowl refills make this easy to track."],
+        ['title'=>'Know the Warning Signs', 'desc'=>"Familiarize yourself with dehydration signs — dry gums, skin tenting, lethargy — so you'd recognize them immediately if they appeared."],
+    ];
+}
+
+function pz_tips_dog_hydration_calc() {
+    return [
+        ['Keep Water Fresh and Accessible', "Change water at least once daily and keep bowls in more than one location for multi-level homes or larger properties — easy access encourages normal drinking."],
+        ['Track Roughly, Not Obsessively', "You don't need to measure to the milliliter — a general sense of your dog's normal bowl consumption is enough to notice a meaningful change."],
+        ['Increase Access Before and After Exercise', "Offer water before and after (not immediately during intense) exercise sessions, especially in warm weather, to support fluid replacement."],
+        ['Consider a Pet Fountain for Picky Drinkers', "Some dogs drink more readily from moving water — a pet fountain can help dogs who seem to under-drink from a still bowl."],
+        ['Note Any Sudden Change', "A sudden increase or decrease in drinking, without an obvious cause like weather or diet change, is worth mentioning at your next vet visit."],
+    ];
+}
+
+function pz_mistakes_dog_hydration_calc() {
+    return [
+        ['❌ Panicking Over Reduced Drinking After a Diet Switch', "Moving to wet or mixed food naturally reduces bowl drinking since the food itself provides hydration — this is expected, not a warning sign on its own."],
+        ['❌ Not Adjusting for Hot Weather', "Keeping the same water availability routine through a heat wave as during mild weather can leave a dog under-hydrated when they need more the most."],
+        ['❌ Ignoring a Sudden Increase in Drinking', "A dog suddenly drinking noticeably more than normal, with no clear explanation like heat or exercise, can be an early sign worth mentioning to your vet rather than dismissing."],
+        ['❌ Overlooking Pregnancy/Nursing Water Needs', "Nursing significantly increases fluid needs to support milk production — using a standard baseline without accounting for this can under-hydrate a nursing mother."],
+        ['❌ Missing Early Dehydration Signs', "Dry gums, skin tenting, and lethargy are catchable early warning signs — waiting for more dramatic symptoms means missing the easiest window to intervene."],
+    ];
+}
+
+function pz_render_calc_dog_hydration_calc( $tool ) {
+    $icon = $tool['icon'] ?? '💧';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Water Intake Calculator</div>
+          <div class="pz-int-sublabel">A daily hydration range adjusted for diet type and weather/activity</div>
+        </div>
+      </div>
+      <div class="pz-int-badges">
+        <span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span>
+        <span class="pz-int-badge pz-int-badge--blue">💧 Hydration Baseline</span>
+      </div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Weight</label>
+          <div class="pz-int-input-wrap">
+            <input type="number" id="pz_hy_weight" class="pz-int-input" placeholder="e.g. 40" min="0.5" max="250" step="0.1">
+            <span class="pz-int-input-suffix">lbs</span>
+          </div>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Diet Type</label>
+          <select id="pz_hy_diet" class="pz-int-select">
+            <option value="dry" selected>Dry Kibble</option>
+            <option value="wet">Wet/Canned Food</option>
+            <option value="mixed">Mixed Dry &amp; Wet</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Activity / Climate</label>
+          <select id="pz_hy_climate" class="pz-int-select">
+            <option value="normal" selected>Normal Activity, Mild Climate</option>
+            <option value="hot_active">Hot Weather or High Activity</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzCalcDogHydration()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Calculate Water Needs
+      </button>
+      <div id="pz-calc-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ 5. Dog Daily Treat Limit Calculator (dog_treat_calc) ══ */
+
+function pz_hero_quickanswer_dog_treat_calc() { ?>
+    <div class="pz-hero-quickanswer"><strong>Quick answer:</strong> Treats should make up no more than about 10% of a dog's total daily calories, with the remaining 90% from a complete-and-balanced main diet. Enter your dog's weight, activity level, and treat size above for your daily treat calorie budget and an approximate max treat count.</div>
+<?php }
+
+function pz_hero_trust_dog_treat_calc() { ?>
+      <span>✅ Vet-cited 10% rule</span>
+      <span>✅ RER-based calorie need</span>
+      <span>✅ Treat-size specific</span>
+<?php }
+
+function pz_methodology_heading_dog_treat_calc() { return 'How the Treat Budget Is Calculated'; }
+
+function pz_methodology_dog_treat_calc() { ?>
+    <p style="color:#555;margin-bottom:20px">This calculator starts from the same RER-based daily calorie formula used in veterinary nutrition, then applies the widely-cited "10% rule" for treats.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🔥</div>
+        <strong>Daily Calorie Need (RER × Activity)</strong>
+        <p>Daily calories are estimated as 70 × (weight in kg)<sup>0.75</sup>, multiplied by an activity factor — the same starting formula used across our nutrition calculators.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🔟</div>
+        <strong>The 10% Rule</strong>
+        <p>Vets widely cite keeping treats to roughly 10% or less of total daily calories, with the remaining 90% coming from a complete-and-balanced main diet.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🦴</div>
+        <strong>Calories Per Treat, By Size</strong>
+        <p>Small training treats, medium biscuits, and large treats/chews carry very different calorie counts — the max-treat-count estimate uses a representative midpoint for each size category.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🎯</div>
+        <strong>A Max Count, Not a Minimum</strong>
+        <p>The resulting number is a ceiling for that treat type alone — mixing treat sizes or types means doing the math again, since larger treats eat into the budget much faster.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_treat_calc() {
+    return [
+        ['How many treats can I give my dog per day?', "It depends on your dog's size, activity level, and the treats' calorie count. As a rule of thumb, keep total treat calories under about 10% of your dog's daily intake — the calculator above converts that into an actual number for your specific treat size."],
+        ['Why is there a 10% limit on treats?', "Treats usually aren't nutritionally complete on their own — capping them at roughly 10% of daily calories keeps the other 90% coming from a complete-and-balanced main diet, so your dog's overall nutrition stays on track."],
+        ['Do training treats count toward this limit?', "Yes. Training sessions with lots of repetitions can add up fast — many trainers recommend breaking treats into smaller pieces, or using a portion of your dog's regular kibble as training rewards, to stay within budget."],
+        ['Does treat size really make that much difference?', "Yes, significantly. A small training treat (~3–5 calories) versus a large chew (~50–100+ calories) can be a 20x difference — the same dog might have room for 15 small treats or only 1–2 large ones in the same calorie budget."],
+        ['What if I give my dog table scraps too?', "Table scraps count toward the same treat/extra calorie budget — and are often higher in calories than owners expect. If table scraps are a regular thing, factor them into the same 10% ceiling rather than treating them as separate."],
+    ];
+}
+
+function pz_what_is_dog_treat_calc() {
+    ob_start(); ?>
+    <p>The Dog Daily Treat Limit Calculator estimates how many treats your dog can have each day without going over the vet-recommended limit of roughly 10% of total daily calories — using the same RER-based calorie formula behind our other nutrition calculators.</p>
+    <p>Treats are an easy place for extra calories to sneak in unnoticed, especially during training or with multiple family members each giving "just one." Knowing an actual number — not just a vague sense of moderation — makes it much easier to stay consistent.</p>
+    <p>Enter your dog's weight, activity level, and typical treat size above to get your daily treat calorie budget and an approximate max count, then scroll down for tips on stretching that budget further during training.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_treat_calc() {
+    ob_start(); ?>
+    <p>Treats are one of the sneakiest sources of extra calories in a dog's day — small, frequent, and easy to lose track of.</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">⚖️</span>
+        <div>
+          <strong>Prevents Quiet Overfeeding</strong>
+          <p>A handful of treats spread through the day can add up to a meaningful share of daily calories without anyone noticing — a clear budget makes that visible.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🍽️</span>
+        <div>
+          <strong>Protects Overall Nutrition</strong>
+          <p>Keeping treats to roughly 10% of daily calories ensures the other 90% — the complete-and-balanced nutrition — still comes from the main diet.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🎓</span>
+        <div>
+          <strong>Keeps Training Sustainable</strong>
+          <p>Frequent-repetition training can burn through a treat budget fast — knowing the number upfront helps you plan smaller pieces instead of cutting training short.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🐕</span>
+        <div>
+          <strong>Especially Useful for Multi-Person Households</strong>
+          <p>When more than one family member gives treats, an actual number is much easier to coordinate around than a vague "don't overdo it."</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_treat_calc() {
+    return [
+        ['title'=>'Weigh Your Dog', 'desc'=>"Body weight anchors the daily calorie estimate the treat budget is calculated from."],
+        ['title'=>'Select Activity Level', 'desc'=>"Activity level shifts total daily calories meaningfully — choose the option that matches your dog's real routine."],
+        ['title'=>'Choose Your Typical Treat Size', 'desc'=>"Small, medium, or large — pick whichever category matches what you actually give most often."],
+        ['title'=>'Review Your Daily Treat Budget', 'desc'=>"Note both the calorie budget and the approximate max count for your selected treat size."],
+        ['title'=>'Plan Training Sessions Around the Budget', 'desc'=>"For high-repetition training, break treats into smaller pieces so more repetitions fit inside the same calorie budget."],
+        ['title'=>'Recalculate After Weight or Activity Changes', 'desc'=>"As your dog's weight or activity level shifts, so does their calorie need — and their treat budget along with it."],
+    ];
+}
+
+function pz_tips_dog_treat_calc() {
+    return [
+        ['Break Treats Into Smaller Pieces for Training', "A single treat broken into 3–4 pieces still works as a reward for many dogs, stretching your budget across far more repetitions."],
+        ['Use Kibble From the Regular Meal as Training Treats', "Setting aside a portion of your dog's regular kibble to use during training sessions rewards behavior without adding extra calories on top of the day's total."],
+        ['Coordinate With Everyone in the Household', "If more than one person gives treats, a shared daily count (even a sticky note on the treat jar) prevents accidental doubling up."],
+        ['Check the Label for Actual Calories Per Treat', "Calorie counts vary a lot even within a size category — checking the actual package number gives a more precise budget than the general estimate here."],
+        ['Choose Lower-Calorie Treats for Frequent Training', "For dogs in frequent training, a smaller or lower-calorie treat type stretches the same budget across more rewards than fewer large ones."],
+    ];
+}
+
+function pz_mistakes_dog_treat_calc() {
+    return [
+        ["❌ Not Counting Treats Toward Daily Calories", "Treating treat calories as 'extra' rather than part of the daily total is one of the most common, quietest causes of gradual weight gain."],
+        ['❌ Using Large Treats for High-Repetition Training', "A large treat's calories add up fast across dozens of repetitions — smaller, lower-calorie treats keep long training sessions within budget."],
+        ["❌ Letting Multiple Household Members Each Give 'Just One'", "Several 'just one treat' moments from different family members can quietly add up to well over the daily budget by the end of the day."],
+        ['❌ Ignoring Table Scraps', "Table scraps count toward the same calorie budget as treats and are often higher-calorie than they look — factor them in rather than treating them as separate."],
+        ["❌ Not Adjusting the Budget After Weight Changes", "As a dog gains or loses weight, their total calorie need — and therefore their treat budget — shifts too. Recheck this periodically rather than using one fixed number indefinitely."],
+    ];
+}
+
+function pz_render_calc_dog_treat_calc( $tool ) {
+    $icon = $tool['icon'] ?? '🦴';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Daily Treat Limit Calculator</div>
+          <div class="pz-int-sublabel">The vet-cited 10% rule, turned into an actual daily treat count</div>
+        </div>
+      </div>
+      <div class="pz-int-badges">
+        <span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span>
+        <span class="pz-int-badge pz-int-badge--blue">🔟 10% Rule</span>
+      </div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Weight</label>
+          <div class="pz-int-input-wrap">
+            <input type="number" id="pz_tr_weight" class="pz-int-input" placeholder="e.g. 40" min="0.5" max="250" step="0.1">
+            <span class="pz-int-input-suffix">lbs</span>
+          </div>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Life Stage / Activity</label>
+          <select id="pz_tr_activity" class="pz-int-select">
+            <option value="low">Low / Mostly Sedentary</option>
+            <option value="moderate" selected>Moderate / Daily Walks</option>
+            <option value="high">High / Very Active or Working Dog</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Treat Size</label>
+          <select id="pz_tr_size" class="pz-int-select">
+            <option value="small">Small training treats (~3-5 cal each)</option>
+            <option value="medium" selected>Medium biscuits (~20-30 cal each)</option>
+            <option value="large">Large treats/chews (~50-100+ cal each)</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzCalcDogTreat()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Calculate My Dog's Treat Limit
+      </button>
+      <div id="pz-calc-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+
+/* ══ Puppy Feeding Guide: How Much & How Often (puppy_feeding) ══ */
+
+function pz_hero_quickanswer_puppy_feeding() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Puppies eat more often than adult dogs because their small stomachs and fast metabolisms can't handle large meals: 4 meals/day at 8–12 weeks, 3 meals/day at 3–6 months, and 2 meals/day from 6 months on. Small and medium breeds can often drop to 1–2 meals/day around 12 months; large and giant breeds usually stay on puppy food and 2 meals/day well past that, since their growth plates close later. Select your puppy's age and expected adult size above for a specific schedule.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_puppy_feeding() { ?>
+      <span>🍼 Age-specific meal schedule</span>
+      <span>📊 Breed-size aware</span>
+      <span>🩺 Vet-check reminders</span>
+<?php }
+
+function pz_methodology_heading_puppy_feeding() { return "How This Puppy Feeding Guidance Is Built"; }
+
+function pz_methodology_puppy_feeding() { ?>
+    <p style="color:#555;margin-bottom:20px">Puppy feeding frequency follows a well-established pattern tied to age, not breed — young puppies need more, smaller meals for digestion and blood sugar stability, and that frequency naturally tapers as they grow. Portion size is intentionally left to your puppy food's own calorie guidance, since calorie density varies significantly between brands and a generic number here could easily over- or under-feed your specific puppy.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🕐</div>
+        <strong>Age-Based Meal Frequency</strong>
+        <p>4 meals at 8–12 weeks, tapering to 2 meals by 6 months — this schedule matches how puppy digestion and energy needs change with age.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🐕</div>
+        <strong>Adult-Size-Aware Transition</strong>
+        <p>Small/medium and large/giant breeds transition to fewer meals and adult food on different timelines, based on when their growth actually finishes.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🏷️</div>
+        <strong>Bag-Specific Portioning</strong>
+        <p>Portion amount always follows your specific puppy food's calorie guidance for current weight — not a generic number, since calorie density varies by brand.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🩺</div>
+        <strong>Vet Body Condition Checks</strong>
+        <p>Your vet checks body condition at every puppy visit — the earliest and most reliable way to catch over- or under-feeding before it becomes a habit.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_puppy_feeding() {
+    return [
+        ["How many times a day should I feed my puppy?", "It depends on age: 4 meals a day from 8–12 weeks, 3 meals a day from 3–6 months, and 2 meals a day from 6 months onward. Most small and medium breeds can move to 1–2 meals a day around 12 months, while large and giant breeds often stay on 2 meals a day longer."],
+        ["When can I switch my puppy to adult food?", "Small and medium breeds are often ready to transition around 12 months. Large and giant breeds usually stay on puppy food until closer to 18–24 months, since their growth plates close later and rapid early growth is itself a joint-health risk factor — there's no benefit to rushing the switch."],
+        ["How much should I feed my puppy?", "Follow the calorie guidance on your specific puppy food's bag for your puppy's current weight, not a generic number — calorie density varies a lot between brands and formulas. Your vet can help fine-tune the amount based on body condition."],
+        ["Why do large breed puppies stay on puppy food longer?", "Large and giant breeds grow for longer, and their growth plates stay open later than small breeds'. Rapid growth is itself a joint-health risk factor in these breeds, so vets generally recommend a slower, more controlled growth curve rather than switching to adult food early."],
+        ["How do I know if I'm overfeeding or underfeeding my puppy?", "Body condition — being able to feel but not see the ribs, with a visible waist from above — is the best home check. Your vet also assesses body condition at every puppy visit, which is the most reliable way to catch over- or under-feeding early, before it becomes an established pattern."],
+    ];
+}
+
+function pz_what_is_puppy_feeding() {
+    ob_start(); ?>
+    <p>The Puppy Feeding Guide gives you an age- and size-specific meal schedule for your puppy — how many times a day to feed them, and how that schedule changes as they grow from an 8-week-old puppy into an adult dog.</p>
+    <p>Meal frequency is driven mainly by age: young puppies need small, frequent meals to support their fast metabolism and limited stomach capacity, tapering down to 1–2 meals a day as they mature. Adult size matters too — small and medium breeds typically finish growing and can move to adult food and fewer meals earlier than large and giant breeds, whose growth plates stay open longer and who benefit from a slower, more controlled growth curve. This guide intentionally doesn't give you a generic calorie number, since calorie density varies significantly by brand — your puppy food's own bag guidance for current weight is the right source for that.</p>
+    <p>Select your puppy's current age and estimated adult size above for your schedule, then scroll down for feeding tips, common mistakes to avoid, and the FAQ covering the puppy feeding questions owners ask most.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_puppy_feeding() {
+    ob_start(); ?>
+    <p>Getting puppy feeding frequency and timing right supports healthy, steady growth — getting it wrong has consequences that are genuinely breed-size-dependent:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🕐</span>
+        <div>
+          <strong>Meal Frequency Changes as Puppies Grow</strong>
+          <p>A schedule that's right at 8 weeks is too frequent by 6 months — following the age-based taper keeps digestion and energy levels steady.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🏷️</span>
+        <div>
+          <strong>Portion Size Isn't One-Size-Fits-All</strong>
+          <p>Calorie density varies by brand, so a generic portion number can easily over- or under-feed — your specific food's bag guidance for current weight is the accurate source.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🦴</span>
+        <div>
+          <strong>Giant Breeds Need Extra Patience</strong>
+          <p>Rapid growth is itself a joint-health risk factor in large and giant breeds — staying on puppy food and a controlled feeding schedule longer isn't a delay, it's protective.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🩺</span>
+        <div>
+          <strong>Vet Checks Catch Problems Early</strong>
+          <p>Body condition scoring at every puppy visit catches over- or under-feeding long before it becomes an established, harder-to-correct pattern.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_puppy_feeding() {
+    return [
+        ['title'=>"Confirm Your Puppy's Current Age Bracket", 'desc'=>"8–12 weeks, 3–6 months, 6–12 months, or 12+ months — meal frequency is driven mainly by age."],
+        ['title'=>"Estimate Your Puppy's Adult Size", 'desc'=>"Small, medium, large, or giant — this determines how long they'll stay on puppy food and when meal frequency drops further."],
+        ['title'=>'Review Your Personalized Meal Schedule', 'desc'=>"Read the recommended number of meals per day for your puppy's current age and size combination."],
+        ['title'=>"Portion Using Your Food Bag's Calorie Guidance", 'desc'=>"Look up your specific puppy food's recommended amount for your puppy's current weight — calorie density varies by brand, so skip generic numbers."],
+        ['title'=>"Track Body Condition Between Vet Visits", 'desc'=>"Feel for ribs (should be easy to feel but not see) and check for a visible waist from above every couple of weeks."],
+        ['title'=>'Bring Growth Questions to Every Puppy Visit', 'desc'=>"Your vet checks body condition and growth trajectory at each visit — the most reliable way to catch feeding issues early."],
+    ];
+}
+
+function pz_tips_puppy_feeding() {
+    return [
+        ['Feed on a Consistent Schedule', "Regular meal timing supports digestion and makes housetraining more predictable — puppies tend to need to go out shortly after eating."],
+        ["Reweigh Regularly, Not Just at Vet Visits", "Puppies gain weight fast — checking weight every couple of weeks lets you adjust portions between vet visits rather than waiting for the next appointment."],
+        ["Don't Rush the Adult Food Switch for Large Breeds", "Staying on a large/giant-breed puppy formula longer supports a slower, more joint-friendly growth curve — it isn't a delay, it's the current recommendation."],
+        ['Use Bag Guidance as a Starting Point, Not Gospel', "Bag calorie guidance is a reasonable starting point, but individual puppies vary — adjust gradually based on body condition, not just the label."],
+        ['Keep Treats to a Small Share of Daily Calories', "Training treats add up fast in a small puppy — keep them to a modest share of total daily calories so they don't crowd out balanced puppy food."],
+    ];
+}
+
+function pz_mistakes_puppy_feeding() {
+    return [
+        ['❌ Using One Meal Schedule for Every Age', "A schedule right for an 8-week-old puppy is too frequent by 6 months — meal frequency needs to taper as your puppy grows."],
+        ["❌ Switching Large Breeds to Adult Food Too Early", "Large and giant breed puppies benefit from staying on puppy food longer — early switching skips the slower, joint-protective growth curve their formula supports."],
+        ['❌ Guessing at Portion Size', "Calorie density varies significantly between brands — always check your specific food's bag guidance for your puppy's current weight rather than estimating."],
+        ["❌ Not Adjusting Portions as Weight Changes", "A puppy's calorie needs change fast — portions set for an 8-week-old puppy are outdated within weeks and need regular reassessment."],
+        ['❌ Skipping Body Condition Checks Between Vet Visits', "Waiting for the next scheduled vet visit to notice over- or under-feeding means the pattern has more time to become established."],
+    ];
+}
+
+function pz_render_guide_puppy_feeding( $tool ) {
+    $icon = $tool['icon'] ?? '🍼';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Puppy Feeding Guide</div>
+          <div class="pz-int-sublabel">How much &amp; how often · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🍼 Age &amp; Size Matched</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Puppy Age</label>
+          <select id="pz_pf_age" class="pz-int-select">
+            <option value="8to12wk">8–12 weeks</option>
+            <option value="3to6mo">3–6 months</option>
+            <option value="6to12mo">6–12 months</option>
+            <option value="12moplus">12+ months</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Estimated Adult Size</label>
+          <select id="pz_pf_size" class="pz-int-select">
+            <option value="small">Small (under 25 lbs)</option>
+            <option value="medium">Medium (25–60 lbs)</option>
+            <option value="large">Large (60–100 lbs)</option>
+            <option value="giant">Giant (100+ lbs)</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenPuppyFeeding()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Feeding Schedule
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Raw Diet for Dogs: Complete Beginner Guide (dog_raw_diet) ══ */
+
+function pz_hero_quickanswer_dog_raw_diet() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Owners report coat and energy benefits from raw diets, but the veterinary nutrition evidence for these is genuinely mixed, not settled. The real, well-documented risks are bacterial contamination (Salmonella, E. coli, Listeria) and nutritional imbalance if the diet isn't properly formulated. Commercial ready-to-feed raw from a reputable AAFCO-compliant brand is generally the safer starting point; DIY raw needs a properly formulated recipe from a board-certified veterinary nutritionist, not a random online recipe.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_raw_diet() { ?>
+      <span>🔬 Evidence reviewed honestly</span>
+      <span>🦠 Handling &amp; safety covered</span>
+      <span>⚖️ Commercial vs. DIY compared</span>
+<?php }
+
+function pz_methodology_heading_dog_raw_diet() { return "How This Raw Diet Guidance Is Built"; }
+
+function pz_methodology_dog_raw_diet() { ?>
+    <p style="color:#555;margin-bottom:20px">This guide aims to give you a balanced, honest picture rather than either raw-diet advocacy or blanket dismissal. Anecdotal owner-reported benefits are acknowledged as real experiences while being clear that the controlled veterinary evidence behind them is mixed. The genuine risks — bacterial contamination and nutritional imbalance — are covered with the same seriousness as the potential benefits, since both matter to a responsible decision.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🔬</div>
+        <strong>Evidence Reviewed Honestly</strong>
+        <p>Reported benefits like coat and energy exist anecdotally, but the controlled veterinary nutrition evidence behind them is genuinely mixed — this guide says so plainly.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🦠</div>
+        <strong>Handling &amp; Zoonotic Safety</strong>
+        <p>Salmonella, E. coli, and Listeria are real contamination risks with raw meat — especially relevant if anyone in the household is immunocompromised, very young, or elderly.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">⚖️</div>
+        <strong>Nutritional Completeness Check</strong>
+        <p>A raw diet has to be complete-and-balanced just like any other diet — calcium:phosphorus ratio, taurine, and specific vitamins are real deficiency risks in unformulated DIY raw.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🥩</div>
+        <strong>Commercial vs. DIY Guidance</strong>
+        <p>Reputable commercial raw formulated to AAFCO standards and DIY raw from an unformulated recipe carry meaningfully different risk levels — this guide treats them differently.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_raw_diet() {
+    return [
+        ["Is a raw diet better for dogs?", "Some owners report coat and energy benefits, but the controlled veterinary nutrition evidence behind these claims is genuinely mixed, not settled. Raw isn't proven superior to a well-formulated conventional diet — it's an alternative approach with its own real benefits and real risks to weigh."],
+        ["Is raw food safe for my dog?", "The main safety concern is bacterial contamination — Salmonella, E. coli, and Listeria are genuine risks with raw meat handling, both for your dog and for anyone in the household who handles the food, especially if there are immunocompromised people, young children, or elderly household members."],
+        ["What's the difference between commercial and DIY raw?", "Reputable commercial ready-to-feed raw brands formulate to AAFCO nutritional standards, making them generally the safer starting point. DIY raw prepared from scratch without a properly formulated recipe risks real nutritional deficiencies — it needs a recipe from a board-certified veterinary nutritionist, not a random online recipe."],
+        ["Can a raw diet help with my dog's food allergies?", "Raw isn't inherently hypoallergenic just because it's raw. If allergies are the concern, a proper vet-guided elimination diet trial — often using a novel protein or a hydrolyzed prescription diet — is the actual diagnostic gold standard for identifying a food allergy."],
+        ["What nutrients are most at risk in a raw diet?", "Calcium-to-phosphorus ratio, taurine, and specific vitamins are the nutrients most commonly out of balance in unformulated raw diets, particularly DIY \"meat and bones\" approaches. A properly formulated recipe accounts for all of these."],
+    ];
+}
+
+function pz_what_is_dog_raw_diet() {
+    ob_start(); ?>
+    <p>The Raw Diet for Dogs Guide gives you a balanced, evidence-honest look at feeding raw — what owners report, what the veterinary nutrition evidence actually supports, and the real risks (bacterial contamination and nutritional imbalance) that come with the approach.</p>
+    <p>Owner-reported benefits like a shinier coat or more energy are real experiences worth acknowledging, but the controlled evidence behind them is genuinely mixed rather than settled science. On the risk side, raw meat carries a real bacterial contamination risk (Salmonella, E. coli, Listeria) that matters for handling safety in the household, and any raw diet — like any diet — has to be complete-and-balanced to avoid real deficiencies in things like calcium:phosphorus ratio, taurine, and specific vitamins. Commercial ready-to-feed raw from a reputable, AAFCO-compliant brand is generally the safer starting point; DIY raw needs a properly formulated recipe, not a random recipe found online.</p>
+    <p>Select your main reason for considering raw and your preparation approach above for guidance matched to your situation, then scroll down for the full picture and the FAQ covering the raw feeding questions owners ask most.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_raw_diet() {
+    ob_start(); ?>
+    <p>Deciding whether and how to feed raw is a decision worth making with the full picture, not just the parts that support the choice you're already leaning toward:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🔬</span>
+        <div>
+          <strong>Evidence Is Genuinely Mixed</strong>
+          <p>Coat and energy benefits are commonly reported, but the controlled veterinary evidence behind them doesn't settle the question either way — that's worth knowing going in.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🦠</span>
+        <div>
+          <strong>Bacterial Contamination Is a Real Risk</strong>
+          <p>Salmonella, E. coli, and Listeria are genuine handling risks with raw meat — not just for your dog, but for anyone in the household who touches the food or surfaces it's touched.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">⚖️</span>
+        <div>
+          <strong>Nutritional Balance Isn't Automatic</strong>
+          <p>"Meat and bones" isn't automatically complete-and-balanced — calcium:phosphorus ratio, taurine, and specific vitamins are real, well-documented deficiency risks in unformulated raw.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🏠</span>
+        <div>
+          <strong>Household Health Matters Too</strong>
+          <p>If anyone at home is immunocompromised, very young, or elderly, raw meat handling risk is a household consideration, not just a pet-health one.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_raw_diet() {
+    return [
+        ['title'=>'Clarify Your Main Reason for Considering Raw', 'desc'=>"General health/coat, suspected allergies, or a picky eater — your reason changes what guidance actually applies to you."],
+        ['title'=>'Choose Commercial or DIY Preparation', 'desc'=>"Reputable commercial ready-to-feed raw is generally the safer starting point; DIY needs a properly formulated recipe."],
+        ['title'=>'Review the Real Risks Honestly', 'desc'=>"Bacterial contamination and nutritional imbalance are genuine, well-documented risks — weigh them alongside any potential benefits."],
+        ['title'=>'Get a Properly Formulated Recipe for DIY', 'desc'=>"Work with a board-certified veterinary nutritionist rather than following a recipe found online, to avoid real deficiency risks."],
+        ['title'=>'Handle Raw Meat Safely', 'desc'=>"Wash hands and surfaces thoroughly after handling, and be extra cautious if anyone in the household is immunocompromised, very young, or elderly."],
+        ['title'=>'Discuss With Your Vet', 'desc'=>"Bring your specific plan — commercial or DIY, and why you're considering raw — to your vet for input tailored to your dog."],
+    ];
+}
+
+function pz_tips_dog_raw_diet() {
+    return [
+        ['Start With a Reputable Commercial Brand', "Ready-to-feed raw formulated to AAFCO standards from an established brand is a lower-risk way to try raw than starting with DIY."],
+        ["Don't DIY Without a Formulated Recipe", "A board-certified veterinary nutritionist can provide a properly balanced recipe — \"meat and bones\" alone risks real deficiencies in calcium:phosphorus ratio, taurine, and vitamins."],
+        ['Practice Careful Kitchen Hygiene', "Separate cutting boards, thorough handwashing, and sanitizing surfaces after raw meat handling reduce bacterial contamination risk for the whole household."],
+        ["If Allergies Are the Goal, Consider an Elimination Trial Instead", "A vet-guided elimination diet using a novel protein or hydrolyzed diet is the actual diagnostic gold standard — raw isn't inherently hypoallergenic."],
+        ['Freeze and Thaw Raw Meat Safely', "Thaw in the refrigerator rather than at room temperature, and don't refreeze thawed raw meat — both reduce bacterial growth risk."],
+    ];
+}
+
+function pz_mistakes_dog_raw_diet() {
+    return [
+        ['❌ Assuming "Meat and Bones" Is Automatically Balanced', "Unformulated DIY raw commonly falls short on calcium:phosphorus ratio, taurine, and specific vitamins — real, well-documented deficiency risks."],
+        ["❌ Following a Random Online Recipe", "Recipes without professional formulation vary widely in quality — a board-certified veterinary nutritionist is the right source for a DIY recipe."],
+        ['❌ Treating Raw as Automatically Hypoallergenic', "Raw isn't inherently allergy-friendly just because it's raw — a proper elimination diet trial is the actual way to diagnose a food allergy."],
+        ["❌ Underestimating Bacterial Contamination Risk", "Salmonella, E. coli, and Listeria are real risks with raw meat handling, especially in households with immunocompromised, very young, or elderly members."],
+        ['❌ Switching Without Reading Any of the Risk Side', "Chasing reported benefits without weighing contamination and nutritional balance risks means making the decision with only half the picture."],
+    ];
+}
+
+function pz_render_guide_dog_raw_diet( $tool ) {
+    $icon = $tool['icon'] ?? '🥩';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Raw Diet for Dogs Guide</div>
+          <div class="pz-int-sublabel">Complete beginner guide · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🔬 Evidence-Based</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Main Reason Considering Raw</label>
+          <select id="pz_rd_reason" class="pz-int-select">
+            <option value="general_health">General health/coat</option>
+            <option value="allergies">Suspected food allergies</option>
+            <option value="picky_eater">Picky eater</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Preparation Approach</label>
+          <select id="pz_rd_prep" class="pz-int-select">
+            <option value="commercial">Commercial ready-to-feed raw</option>
+            <option value="diy">DIY prep from scratch</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenRawDiet()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Raw Diet Guidance
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Homemade Dog Food Guide: Recipes & Nutrition (dog_homemade_food) ══ */
+
+function pz_hero_quickanswer_dog_homemade_food() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>The single most important rule for homemade dog food: it must be complete-and-balanced, not just "meat and rice" or ingredients that look healthy. Nutrient gaps — especially calcium:phosphorus ratio, taurine, zinc, vitamin D, and essential fatty acids — are a real, well-documented risk in ad-hoc homemade diets. Use a properly formulated recipe from a board-certified veterinary nutritionist (services like balanceit.com are a real example of what that looks like) rather than a general blog recipe.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_homemade_food() { ?>
+      <span>⚖️ Balance-focused guidance</span>
+      <span>🩺 Condition-specific redirects</span>
+      <span>🧊 Batch-cooking friendly</span>
+<?php }
+
+function pz_methodology_heading_dog_homemade_food() { return "How This Homemade Food Guidance Is Built"; }
+
+function pz_methodology_dog_homemade_food() { ?>
+    <p style="color:#555;margin-bottom:20px">This guide centers on the one thing that matters most in homemade feeding: nutritional completeness. A recipe that looks healthy — lean protein, vegetables, a grain — can still be missing key nutrients that only show up as a health problem months or years later. Rather than offering a generic recipe, this guide points you toward properly formulated options and flags exactly when general advice stops applying, like when a specific health condition is involved.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">⚖️</div>
+        <strong>Complete-and-Balanced First</strong>
+        <p>Nutrient gaps — calcium:phosphorus ratio, taurine, zinc, vitamin D, essential fatty acids — are the real, well-documented risk in ad-hoc homemade diets.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🩺</div>
+        <strong>Vet Nutritionist-Formulated Recipes</strong>
+        <p>A board-certified veterinary nutritionist, or a recognized formulation service, is the right source for a recipe — not a general blog post.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🏥</div>
+        <strong>Condition-Specific Redirects</strong>
+        <p>A homemade diet for a specific health condition needs to be designed with your vet for that condition — general homemade advice doesn't transfer.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🧊</div>
+        <strong>Practical Batch-Cooking Tips</strong>
+        <p>For owners with limited time, batch-cooking and freezing portions is the realistic way to sustain homemade feeding without daily cooking.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_homemade_food() {
+    return [
+        ["Is homemade dog food healthy for my dog?", "It can be — but only if it's complete-and-balanced, not just ingredients that look healthy. Ad-hoc recipes commonly fall short on calcium:phosphorus ratio, taurine, zinc, vitamin D, and essential fatty acids. A properly formulated recipe avoids these gaps."],
+        ["What nutrients are dogs most likely to be missing in homemade diets?", "Calcium-to-phosphorus ratio, taurine, zinc, vitamin D, and essential fatty acids are the nutrients most commonly out of balance in homemade diets that weren't professionally formulated — even ones that look reasonable on the surface."],
+        ["Can I use a homemade diet to manage my dog's health condition?", "Not with general homemade advice — a condition-specific homemade diet (for kidney disease, allergies, pancreatitis, and similar) needs to be designed together with your vet for that specific condition. General guidance doesn't apply here."],
+        ["Where can I get a properly balanced homemade recipe?", "A board-certified veterinary nutritionist can formulate a recipe specific to your dog. Services like balanceit.com are a real, recognized example of what a properly formulated recipe process looks like, as opposed to a general blog recipe."],
+        ["How do I make homemade dog food without cooking every day?", "Batch-cook a larger quantity on a set day, then portion and freeze individual meals — this is the practical way most owners sustain homemade feeding without cooking daily."],
+    ];
+}
+
+function pz_what_is_dog_homemade_food() {
+    ob_start(); ?>
+    <p>The Homemade Dog Food Guide covers what actually matters when cooking for your dog: nutritional completeness, where to get a properly formulated recipe, and how to make homemade feeding practical to sustain — not a generic recipe to follow blindly.</p>
+    <p>The single most important principle here is that homemade food has to be complete-and-balanced, the same standard any commercial diet is held to. Nutrient deficiencies — especially calcium:phosphorus ratio, taurine, zinc, vitamin D, and essential fatty acids — are a real, well-documented risk in ad-hoc homemade diets, even ones built from ingredients that look perfectly healthy. The fix isn't avoiding homemade food; it's using a recipe formulated by a board-certified veterinary nutritionist, with services like balanceit.com being a real example of what that looks like, rather than a general blog recipe. If you're managing a specific health condition, general homemade advice doesn't apply — that needs to be designed with your vet.</p>
+    <p>Select your primary goal and available cooking time above for guidance matched to your situation, then scroll down for the full picture and the FAQ covering the homemade feeding questions owners ask most.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_homemade_food() {
+    ob_start(); ?>
+    <p>Homemade feeding gives you control over ingredients — but that control only helps your dog if the underlying nutrition is actually complete:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">⚖️</span>
+        <div>
+          <strong>Nutrient Gaps Are Common, Not Rare</strong>
+          <p>Studies of homemade recipes found online routinely find gaps in calcium:phosphorus ratio, taurine, zinc, vitamin D, and essential fatty acids — this isn't a rare edge case.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🏥</span>
+        <div>
+          <strong>Condition-Specific Diets Need a Vet's Input</strong>
+          <p>Managing kidney disease, allergies, or other conditions through diet requires a plan designed with your vet — general homemade guidance can actively work against a condition-specific need.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">👀</span>
+        <div>
+          <strong>"Looks Healthy" Isn't the Same as Balanced</strong>
+          <p>Lean meat, vegetables, and a grain can look like a perfectly reasonable meal while still missing key nutrients — completeness isn't something you can eyeball.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🧊</span>
+        <div>
+          <strong>Batch-Cooking Makes It Sustainable</strong>
+          <p>Homemade feeding fails most often not from bad intentions but from being too time-consuming — batching and freezing solves the actual barrier.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_homemade_food() {
+    return [
+        ['title'=>'Clarify Your Primary Goal', 'desc'=>"General homemade diet, managing a specific health condition, or addressing appetite issues — your goal determines what guidance actually applies."],
+        ['title'=>'Get a Properly Formulated Recipe', 'desc'=>"Work with a board-certified veterinary nutritionist or a recognized formulation service rather than a general blog recipe."],
+        ['title'=>'Check Every Nutrient, Not Just Protein', 'desc'=>"Confirm the recipe accounts for calcium:phosphorus ratio, taurine, zinc, vitamin D, and essential fatty acids — not just protein and calories."],
+        ['title'=>'Discuss Condition-Specific Needs With Your Vet', 'desc'=>"If you're managing a health condition through diet, that plan needs to be designed with your vet — general advice doesn't transfer."],
+        ['title'=>'Set Up a Batch-Cooking Routine', 'desc'=>"Cook a larger quantity on a set day, then portion and freeze individual meals to make homemade feeding sustainable."],
+        ['title'=>'Reassess Periodically With Your Vet', 'desc'=>"Bring your recipe and your dog's body condition to vet visits to confirm the diet is still working well over time."],
+    ];
+}
+
+function pz_tips_dog_homemade_food() {
+    return [
+        ['Use a Recipe Formulated for Completeness', "A board-certified veterinary nutritionist or a service like balanceit.com accounts for nutrients an intuitive recipe easily misses."],
+        ["Batch-Cook and Freeze in Portions", "Cook a week or two of meals at once, portion them into individual containers, and freeze — this is what makes homemade feeding realistic long-term."],
+        ['Weigh Ingredients, Not Just Portions', "A kitchen scale keeps the nutrient ratios in a formulated recipe accurate — eyeballing amounts can throw off the balance the recipe was designed around."],
+        ["Don't Substitute Ingredients Without Checking", "Swapping one protein or vegetable for another can change the nutrient profile a formulated recipe was built around — check with the recipe's source first."],
+        ['Reintroduce Variety Slowly if Your Dog Is Picky', "For appetite issues, small, gradual ingredient rotations within a still-balanced recipe tend to work better than large sudden changes."],
+    ];
+}
+
+function pz_mistakes_dog_homemade_food() {
+    return [
+        ['❌ Assuming "Looks Healthy" Means Balanced', "Lean meat, vegetables, and a grain can still miss calcium:phosphorus ratio, taurine, zinc, vitamin D, or essential fatty acids — completeness isn't visible."],
+        ["❌ Using a General Recipe for a Health Condition", "A homemade diet for a specific condition needs to be designed with your vet for that condition — general homemade advice doesn't apply here."],
+        ['❌ Skipping a Properly Formulated Recipe', "Following an unformulated blog recipe long-term risks real, well-documented nutrient deficiencies that can take months or years to show up."],
+        ["❌ Estimating Ingredient Amounts Instead of Weighing", "A formulated recipe's nutrient ratios depend on accurate quantities — eyeballing portions can quietly throw the balance off."],
+        ['❌ Giving Up When Cooking Feels Unsustainable', "Homemade feeding often fails from time pressure, not bad intentions — batch-cooking and freezing solves this without abandoning the approach."],
+    ];
+}
+
+function pz_render_guide_dog_homemade_food( $tool ) {
+    $icon = $tool['icon'] ?? '🍲';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Homemade Dog Food Guide</div>
+          <div class="pz-int-sublabel">Recipes &amp; nutrition · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">⚖️ Balance-Focused</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Primary Goal</label>
+          <select id="pz_hf_goal" class="pz-int-select">
+            <option value="general">General homemade diet</option>
+            <option value="condition">Managing a specific health condition</option>
+            <option value="picky">Picky eater/appetite issues</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Cooking Time Available</label>
+          <select id="pz_hf_time" class="pz-int-select">
+            <option value="low">Limited — need simple/batchable</option>
+            <option value="high">Flexible — can prep more involved meals</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenHomemadeFood()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Homemade Food Guidance
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ How to Choose the Best Dog Food: Complete Guide (best_dog_food) ══ */
+
+function pz_hero_quickanswer_best_dog_food() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>The single most important thing to check on any dog food label is the AAFCO "complete and balanced" statement for the correct life stage — that's a legal nutritional adequacy claim, not marketing. Ingredient order matters somewhat, but meat meal is a legitimate, concentrated protein source, not automatically inferior to fresh meat. Be skeptical of marketing terms like "grain-free," "human-grade," or "holistic" without adequacy evidence behind them, and check whether the company ran actual AAFCO feeding trials.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_best_dog_food() { ?>
+      <span>🏷️ AAFCO label check</span>
+      <span>🔬 WSAVA quality guidelines</span>
+      <span>🐕 Size-aware guidance</span>
+<?php }
+
+function pz_methodology_heading_best_dog_food() { return "How This Dog Food Guidance Is Built"; }
+
+function pz_methodology_best_dog_food() { ?>
+    <p style="color:#555;margin-bottom:20px">This guide focuses on the signals that actually indicate nutritional quality rather than marketing language. The AAFCO adequacy statement, ingredient list nuance, feeding trial evidence, and WSAVA's respected company-quality guidelines are the same things a vet nutrition specialist would check — this guide walks you through them in plain language, adjusted for your specific priority and your dog's size.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🏷️</div>
+        <strong>AAFCO Adequacy Statement Is Step One</strong>
+        <p>The "complete and balanced" statement for the correct life stage is a legal nutritional adequacy claim — checking it first cuts through most marketing noise.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🥩</div>
+        <strong>Ingredient List Nuance</strong>
+        <p>Named meat listed first isn't the only valid signal — meat meal is a concentrated, legitimate protein source, not automatically inferior to fresh meat, which is mostly water by weight.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🧪</div>
+        <strong>Feeding Trials vs. Formulation Only</strong>
+        <p>AAFCO feeding trials are stronger evidence of real-world adequacy than nutrient-profile formulation alone, though formulation-only is still compliant.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🔬</div>
+        <strong>WSAVA Company-Quality Guidelines</strong>
+        <p>WSAVA publishes respected guidelines for evaluating pet food companies — qualified nutritionist on staff, owning their manufacturing, publishing nutrient analyses on request.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_best_dog_food() {
+    return [
+        ["What should I actually look for on a dog food label?", "Start with the AAFCO \"complete and balanced\" statement for the correct life stage — this is a legal nutritional adequacy claim, not marketing. Beyond that, check whether the company ran AAFCO feeding trials (stronger evidence) versus only nutrient-profile formulation (weaker, though still compliant)."],
+        ["Does grain-free or \"human-grade\" mean better quality?", "Not by itself. Terms like \"grain-free,\" \"human-grade,\" and \"holistic\" are marketing language without a standardized nutritional adequacy meaning behind them. They can appear on a genuinely good food, but they don't substitute for checking the AAFCO statement and company quality practices."],
+        ["Is meat meal worse than fresh meat as a first ingredient?", "Not automatically. Meat meal is a concentrated, legitimate protein source with the water already removed, while fresh meat is mostly water by weight before processing — ingredient list order alone doesn't tell the whole quality story."],
+        ["Is expensive dog food always better?", "No. A solid, AAFCO-compliant mainstream food from a company with good quality control is nutritionally fine for most dogs — price doesn't reliably track nutritional adequacy or quality control practices."],
+        ["How do I know if a dog food company is trustworthy?", "WSAVA (World Small Animal Veterinary Association) publishes real, respected guidelines for this: does the company employ a qualified nutritionist, do they own their manufacturing facilities, and will they publish full nutrient analyses on request."],
+    ];
+}
+
+function pz_what_is_best_dog_food() {
+    ob_start(); ?>
+    <p>The Best Dog Food Guide walks you through what actually determines nutritional quality — the AAFCO adequacy statement, ingredient list nuance, feeding trial evidence, and how to evaluate a company's quality practices using WSAVA's respected guidelines — cutting through marketing language that doesn't reliably signal quality.</p>
+    <p>The single most important check is the AAFCO "complete and balanced" statement for the correct life stage on the label — a legal nutritional adequacy claim, not a marketing phrase. Ingredient list order matters somewhat, but "named meat listed first" isn't the only valid signal: meat meal is a concentrated, legitimate protein source, not automatically inferior to fresh meat, which is mostly water by weight. Terms like "grain-free," "human-grade," or "holistic" deserve skepticism without nutritional adequacy evidence behind them, and it's worth checking whether a company ran actual AAFCO feeding trials (stronger evidence) or relied only on nutrient-profile formulation (weaker, though still compliant). WSAVA publishes genuine, respected guidelines for evaluating a pet food company's quality practices.</p>
+    <p>Select your top priority and your dog's size above for guidance matched to your situation, then scroll down for the full picture and the FAQ covering the dog food questions owners ask most.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_best_dog_food() {
+    ob_start(); ?>
+    <p>Dog food marketing is designed to catch your eye — the actual signals of nutritional quality are quieter and worth knowing:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🏷️</span>
+        <div>
+          <strong>The AAFCO Statement Is the Real Adequacy Signal</strong>
+          <p>It's a legal claim tied to a specific life stage, not marketing copy — checking it first tells you more than almost anything else on the bag.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">📢</span>
+        <div>
+          <strong>Marketing Claims Aren't Nutritional Evidence</strong>
+          <p>"Grain-free," "human-grade," and "holistic" have no standardized nutritional meaning — they can appear on good food, but don't prove quality by themselves.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🧪</span>
+        <div>
+          <strong>Feeding Trials Are Stronger Evidence</strong>
+          <p>A food tested through actual AAFCO feeding trials has more real-world evidence behind it than one that only meets a nutrient-profile formulation on paper.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🔬</span>
+        <div>
+          <strong>Company Quality Practices Matter</strong>
+          <p>WSAVA's guidelines — a qualified nutritionist on staff, owned manufacturing, published nutrient analyses — separate companies that invest in quality control from those that don't.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_best_dog_food() {
+    return [
+        ['title'=>'Clarify Your Top Priority', 'desc'=>"Budget-friendly, premium ingredients, or a specific health need — your priority changes which signals matter most for your search."],
+        ['title'=>'Check the AAFCO Adequacy Statement First', 'desc'=>"Confirm the food is labeled \"complete and balanced\" for your dog's correct life stage — this is the single most important check."],
+        ['title'=>"Read the Ingredient List With Context", 'desc'=>"Remember that meat meal is a legitimate concentrated protein source — don't rule out a food based on ingredient order alone."],
+        ['title'=>'Check for AAFCO Feeding Trials', 'desc'=>"Feeding trial evidence is stronger than nutrient-profile formulation alone, though both are technically compliant."],
+        ['title'=>"Evaluate the Company Using WSAVA Guidelines", 'desc'=>"Does the company employ a qualified nutritionist, own their manufacturing, and publish nutrient analyses on request?"],
+        ['title'=>'Confirm Fit With Your Vet', 'desc'=>"Bring your shortlist to your vet, especially if you have a specific health need — they can weigh in on suitability for your individual dog."],
+    ];
+}
+
+function pz_tips_best_dog_food() {
+    return [
+        ['Check the Life Stage Match', "The AAFCO statement is tied to a specific life stage — puppy, adult, or all life stages — feeding the wrong life-stage formula can under- or over-deliver key nutrients."],
+        ["Don't Rule Out Meat Meal", "Meat meal is a concentrated protein source with water already removed — it's a legitimate ingredient, not automatically a lower-quality one."],
+        ['Look Past the Marketing Claims on the Front of the Bag', "\"Grain-free,\" \"human-grade,\" and \"holistic\" have no standardized nutritional meaning — check the AAFCO statement and company practices instead."],
+        ["Ask the Company Directly About Feeding Trials", "Reputable companies will tell you whether a specific formula underwent AAFCO feeding trials or was only formulated to meet nutrient profiles."],
+        ['Use WSAVA Guidelines as Your Company Checklist', "A qualified nutritionist on staff, owned manufacturing, and published nutrient analyses on request are all genuine markers of a quality-focused company."],
+    ];
+}
+
+function pz_mistakes_best_dog_food() {
+    return [
+        ['❌ Judging Quality by Marketing Terms Alone', "\"Grain-free,\" \"human-grade,\" and \"holistic\" aren't standardized nutritional claims — they don't substitute for checking the AAFCO statement."],
+        ["❌ Assuming Fresh Meat First Always Beats Meat Meal", "Fresh meat is mostly water by weight before processing — meat meal is a concentrated, legitimate protein source, not automatically inferior."],
+        ['❌ Assuming Expensive Means Better', "A solid, AAFCO-compliant mainstream food from a company with good quality control is nutritionally fine — price doesn't reliably track quality."],
+        ["❌ Skipping the AAFCO Life-Stage Check", "Feeding an all-life-stages or wrong-life-stage formula without checking adequacy for your dog's actual life stage can under- or over-deliver key nutrients."],
+        ['❌ Choosing a Food for a Health Condition Without a Vet', "General food-quality guidance doesn't replace a condition-specific recommendation — a specific health need needs your vet's input."],
+    ];
+}
+
+function pz_render_guide_best_dog_food( $tool ) {
+    $icon = $tool['icon'] ?? '🛒';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Best Dog Food Guide</div>
+          <div class="pz-int-sublabel">How to choose · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🏷️ AAFCO-Informed</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Top Priority</label>
+          <select id="pz_bf_priority" class="pz-int-select">
+            <option value="budget">Budget-friendly</option>
+            <option value="premium">Premium ingredients</option>
+            <option value="health">Specific health need</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Dog Size</label>
+          <select id="pz_bf_size" class="pz-int-select">
+            <option value="small">Small (under 25 lbs)</option>
+            <option value="medium">Medium (25–60 lbs)</option>
+            <option value="large">Large (60–100 lbs)</option>
+            <option value="giant">Giant (100+ lbs)</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenBestDogFood()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Dog Food Guidance
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Foods Toxic to Dogs: Complete Safety List (dog_toxic_foods) — SAFETY-CRITICAL ══ */
+
+function pz_hero_quickanswer_dog_toxic_foods() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Xylitol and grapes/raisins are dangerous in ANY amount — call ASPCA Animal Poison Control or an emergency vet immediately, don't wait for symptoms. Chocolate and onion/garlic risk scales with amount and type. Alcohol and macadamia nuts are dangerous even in small amounts. Select exactly what your dog ate and roughly how much above for guidance matched to your actual situation, not generic content.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_toxic_foods() { ?>
+      <span>☎️ ASPCA Poison Control ready</span>
+      <span>⚡ Per-food urgency guidance</span>
+      <span>🚫 No guesswork on high-risk foods</span>
+<?php }
+
+function pz_methodology_heading_dog_toxic_foods() { return "How This Toxic Foods Safety Guidance Is Built"; }
+
+function pz_methodology_dog_toxic_foods() { ?>
+    <p style="color:#555;margin-bottom:20px">Not every toxic food carries the same urgency, and treating them all identically would be both inaccurate and unhelpful in an actual moment of concern. This guide matches urgency to the specific food's real toxic mechanism and, where it genuinely changes the picture, the amount eaten — while being clear that xylitol and grapes are dangerous regardless of amount, since treating those two as "probably fine in small amounts" would be a genuinely dangerous simplification.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🧬</div>
+        <strong>Food-Specific Toxicity Mechanisms</strong>
+        <p>Xylitol causes insulin release, grapes cause kidney injury, onion/garlic damages red blood cells — each mechanism drives different real urgency.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">⚖️</div>
+        <strong>Amount-Aware Urgency</strong>
+        <p>For foods like chocolate and onion/garlic, amount genuinely changes the risk level — for xylitol and grapes, it deliberately does not.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🚫</div>
+        <strong>No Guessing on High-Risk Foods</strong>
+        <p>Where the evidence says there's no established safe amount, this guide says so plainly instead of softening it into vague reassurance.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">📞</div>
+        <strong>Always a Path to Professional Help</strong>
+        <p>Every result points to ASPCA Animal Poison Control or your vet when indicated — a real, actual 24/7 resource, not a placeholder.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_toxic_foods() {
+    return [
+        ["My dog ate chocolate — how worried should I be?", "It depends on the amount, the type of chocolate, and your dog's size. Dark or baking chocolate is far more dangerous than milk chocolate due to higher theobromine content, and small dogs are at higher risk than large dogs from the same amount. A significant amount, or if you're unsure, warrants an immediate call to poison control or your vet — even a small amount is better checked than waited on."],
+        ["Are grapes really that dangerous for dogs?", "Yes, genuinely. Grapes and raisins can cause acute kidney failure in dogs, and there is no established \"safe amount\" — this is one of the few toxic foods where the amount eaten doesn't change the recommendation. Any ingestion warrants an immediate call to your vet or poison control."],
+        ["What if my dog ate something and I'm not sure if it's toxic?", "Don't guess — call ASPCA Animal Poison Control (a real, actual 24/7 resource) or your vet and give them the specific item name. Having the food's packaging or label on hand helps them assess the situation faster."],
+        ["Is a little bit of onion or garlic actually harmful?", "Onion and garlic damage red blood cells, and the effect is cumulative — a single small taste is lower risk than a large or repeated exposure. For a small amount, monitor for lethargy, pale gums, or vomiting over the next 24–48 hours and call your vet if any appear; a significant amount warrants a more immediate vet call."],
+        ["What number should I call in a pet poisoning emergency?", "ASPCA Animal Poison Control is a real, actual 24/7 resource for exactly this. Your regular vet or a nearby emergency clinic are the other options — call whichever you can reach fastest, and have the food's packaging or label ready if possible."],
+    ];
+}
+
+function pz_what_is_dog_toxic_foods() {
+    ob_start(); ?>
+    <p>The Foods Toxic to Dogs Guide is a real safety checker, not generic pet content — select exactly what your dog ate and roughly how much, and get urgency guidance matched to that specific food's actual toxic mechanism, the way ASPCA Animal Poison Control or your vet would triage the same information.</p>
+    <p>Some foods on this list are dangerous regardless of amount: xylitol (found in sugar-free gum, candy, and some peanut butters) causes a rapid, dangerous insulin release and can cause liver failure, and grapes/raisins can cause acute kidney failure with no established safe amount — for both, any ingestion warrants an immediate call to poison control or your vet, without waiting for symptoms. Others scale with amount and specifics: chocolate risk depends on the type (dark/baking is far more dangerous than milk) and your dog's size; onion and garlic damage red blood cells cumulatively, so a small taste carries lower risk than a large or repeated exposure. Alcohol and macadamia nuts are dangerous even in modest amounts. If you're unsure what your dog ate or whether it's toxic, don't guess — call ASPCA Animal Poison Control or your vet with the specific item name.</p>
+    <p>Select what your dog ate and roughly how much above for guidance matched to your actual situation, then scroll down for the complete toxic foods reference and the FAQ covering the questions owners ask in this exact moment of concern.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_toxic_foods() {
+    ob_start(); ?>
+    <p>Not all toxic foods carry the same urgency, and knowing the difference changes how fast — and how calmly — you can act:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🍇</span>
+        <div>
+          <strong>Xylitol and Grapes Have No "Safe Amount"</strong>
+          <p>Both can cause serious harm regardless of how much was eaten — treating either as "probably fine in a small amount" is a genuinely dangerous assumption.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🍫</span>
+        <div>
+          <strong>Chocolate Risk Scales With Type and Size</strong>
+          <p>Dark/baking chocolate has far more theobromine than milk chocolate, and small dogs are at higher risk than large dogs from the identical amount.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🧅</span>
+        <div>
+          <strong>Onion and Garlic Damage Is Cumulative</strong>
+          <p>The red blood cell damage builds up over repeated or large exposures — a single small taste is a different situation than a significant amount.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">⏱️</span>
+        <div>
+          <strong>Acting Fast Changes Outcomes</strong>
+          <p>For genuine emergencies, the minutes before you call poison control or your vet matter — knowing which foods demand immediate action removes hesitation.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_toxic_foods() {
+    return [
+        ['title'=>'Identify Exactly What Your Dog Ate', 'desc'=>"Be as specific as possible — chocolate type, whether it was grapes vs. raisins, and so on, since the specific food changes the urgency."],
+        ['title'=>'Estimate the Amount Eaten', 'desc'=>"A small lick, a significant amount, or unknown — for some foods this changes the recommendation; for xylitol and grapes, it deliberately does not."],
+        ['title'=>'Check Your Urgency Level Above', 'desc'=>"Select your food and amount for guidance matched to your exact situation rather than generic toxic-food content."],
+        ['title'=>'Call ASPCA Poison Control or Your Vet When Indicated', 'desc'=>"For high-urgency results, call immediately — don't wait to see if symptoms appear."],
+        ['title'=>'Keep the Packaging or Label on Hand', 'desc'=>"Having the specific product or food label ready helps whoever you call assess the situation faster."],
+        ['title'=>'Monitor and Follow Up as Directed', 'desc'=>"For lower-urgency results, watch for the specific signs mentioned over the next 24–48 hours and call your vet if any appear."],
+    ];
+}
+
+function pz_tips_dog_toxic_foods() {
+    return [
+        ['Save ASPCA Animal Poison Control\'s Number Now', "Having it saved before an emergency happens means you're not searching for it in a stressful moment."],
+        ["Keep Packaging From Anything Toxic-Adjacent", "Xylitol products, chocolate wrappers, and similar items with the packaging on hand help poison control or your vet assess the situation faster."],
+        ['Don\'t Wait for Symptoms With High-Risk Foods', "For xylitol, grapes, alcohol, and macadamia nuts, symptoms can lag behind the actual danger — call before symptoms appear, not after."],
+        ["Double-Check Ingredient Lists on Sugar-Free Products", "Xylitol shows up in unexpected places — some peanut butters, gum, and baked goods — checking labels before sharing human food prevents accidental exposure."],
+        ['When Unsure, Call Rather Than Search Online', "A quick call to poison control or your vet with the specific item name gets you an accurate answer faster than searching symptoms yourself."],
+    ];
+}
+
+function pz_mistakes_dog_toxic_foods() {
+    return [
+        ['❌ Assuming a Small Amount Is Always Safe', "For xylitol and grapes specifically, there is no established safe amount — a small amount still warrants an immediate call."],
+        ["❌ Waiting to See If Symptoms Appear", "For high-urgency foods, waiting for symptoms means waiting for damage that's already happening — call first, don't wait."],
+        ['❌ Not Knowing the Chocolate Type', "Dark and baking chocolate contain far more theobromine than milk chocolate — the type genuinely changes how urgent the situation is."],
+        ["❌ Throwing Away the Packaging", "The label helps poison control or your vet identify exact ingredients and concentrations — keep it on hand when you call."],
+        ['❌ Guessing Instead of Calling for Unfamiliar Items', "If you're not sure whether something is toxic, call ASPCA Animal Poison Control or your vet with the specific item name rather than assuming it's fine."],
+    ];
+}
+
+function pz_render_guide_dog_toxic_foods( $tool ) {
+    $icon = $tool['icon'] ?? '☠️';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Foods Toxic to Dogs Guide</div>
+          <div class="pz-int-sublabel">Complete safety list · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--orange">🚨 Safety-Critical</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">What Did Your Dog Eat?</label>
+          <select id="pz_tf_food" class="pz-int-select">
+            <option value="chocolate">Chocolate</option>
+            <option value="grapes">Grapes or Raisins</option>
+            <option value="onion_garlic">Onions or Garlic</option>
+            <option value="xylitol">Xylitol (sugar-free gum/candy/some peanut butters)</option>
+            <option value="alcohol">Alcohol</option>
+            <option value="macadamia">Macadamia Nuts</option>
+            <option value="other">Something else / not sure</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Amount Eaten</label>
+          <select id="pz_tf_amount" class="pz-int-select">
+            <option value="small">A small amount / lick</option>
+            <option value="large">A significant amount</option>
+            <option value="unknown">Not sure how much</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenToxicFoods()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Check My Dog's Risk
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Grain-Free Dog Food: Pros, Cons & Safety (dog_grain_free_diet) ══ */
+
+function pz_hero_quickanswer_dog_grain_free_diet() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>True grain allergies in dogs are actually uncommon — protein sources like beef, chicken, dairy, and egg are far more common canine food allergens than grains. A genuine, current veterinary concern: the FDA has investigated a potential association between certain grain-free diets — particularly legume-heavy ones replacing grains — and DCM, a serious heart condition. If you don't have a vet-diagnosed grain allergy, there's often no nutritional need to avoid grains at all; worth a quick vet conversation before switching either way.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_grain_free_diet() { ?>
+      <span>🌾 Myth vs. fact</span>
+      <span>❤️ DCM awareness included</span>
+      <span>🩺 Vet-check reminders</span>
+<?php }
+
+function pz_methodology_heading_dog_grain_free_diet() { return "How This Grain-Free Guidance Is Built"; }
+
+function pz_methodology_dog_grain_free_diet() { ?>
+    <p style="color:#555;margin-bottom:20px">Grain-free food is heavily marketed but genuinely misunderstood — true grain allergies are uncommon, while the real, current veterinary caution around certain grain-free formulas (the FDA's DCM investigation) doesn't get nearly as much attention. This guide aims to correct that balance: neither dismissing grain-free as pointless nor treating it as a real concern for every dog considering it.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🌾</div>
+        <strong>True Grain Allergies Are Uncommon</strong>
+        <p>Protein sources — beef, chicken, dairy, egg — are far more common canine food allergens than grains, which surprises many owners.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">❤️</div>
+        <strong>The FDA/DCM Investigation Explained</strong>
+        <p>A genuine, current area of veterinary caution around grain-free diets — particularly legume-heavy ones — and dilated cardiomyopathy, in plain language.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🏷️</div>
+        <strong>Ingredient List Still Matters</strong>
+        <p>Not all "grain-free" foods are equal — what replaced the grain (legumes vs. other ingredients) is the detail worth checking.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">✅</div>
+        <strong>When Grain-Free Genuinely Makes Sense</strong>
+        <p>For a vet-diagnosed grain allergy, grain-free is appropriate — this guide is clear about when it does and doesn't apply.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_grain_free_diet() {
+    return [
+        ["Does my dog need to avoid grains?", "Usually not, unless a vet has diagnosed a specific grain allergy. True grain allergies are actually uncommon in dogs — protein sources like beef, chicken, dairy, and egg are far more common canine food allergens than grains."],
+        ["What is the DCM concern with grain-free food?", "The FDA has investigated a potential association between certain grain-free diets — particularly those where legumes, peas, or lentils are primary ingredients replacing grains — and dilated cardiomyopathy (DCM), a serious heart condition, including in breeds not typically genetically predisposed to it. This isn't fully settled science, but it's a genuine, current area of veterinary caution."],
+        ["My dog has a diagnosed grain allergy — is grain-free food automatically safe?", "Grain-free is appropriate for a genuine diagnosed grain allergy, but not all grain-free foods are equal — some replace grains with legume-heavy formulas relevant to the DCM concern. Worth discussing the specific food, not just the \"grain-free\" label, with your vet."],
+        ["What are dogs actually most commonly allergic to?", "Protein sources — beef, chicken, dairy, and egg — are the most common canine food allergens, well ahead of grains. This is why a grain-free switch alone often doesn't resolve suspected food allergy symptoms."],
+        ["Should I switch my dog off grain-free food?", "If you're currently feeding grain-free without a diagnosed need, it's worth mentioning at your next vet visit — especially if you've noticed reduced stamina, coughing, or exercise intolerance, which can be early heart-related signs. This is routine due diligence, not a reason to panic."],
+    ];
+}
+
+function pz_what_is_dog_grain_free_diet() {
+    ob_start(); ?>
+    <p>The Grain-Free Dog Food Guide separates the marketing around grain-free diets from the current veterinary reality — when grain-free genuinely makes sense, when it probably doesn't, and a real, current safety consideration that doesn't get enough attention.</p>
+    <p>True grain allergies in dogs are actually uncommon: protein sources like beef, chicken, dairy, and egg are far more common canine food allergens than grains, so most dogs without a vet-diagnosed grain allergy don't specifically need to avoid them. The genuine current veterinary concern runs the other direction — the FDA has investigated a potential association between certain grain-free diets, particularly those where legumes, peas, or lentils are primary ingredients replacing grains, and dilated cardiomyopathy (DCM), a serious heart condition, including in breeds not typically predisposed to it. This isn't fully settled science, but it's a real area of current veterinary caution worth taking seriously rather than dismissing. If you have a diagnosed grain allergy, grain-free is appropriate, but not all grain-free formulas are equal — the specific ingredients matter.</p>
+    <p>Select your reason for considering grain-free and whether you're currently feeding it above for guidance matched to your situation, then scroll down for the full picture and the FAQ covering the grain-free questions owners ask most.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_grain_free_diet() {
+    ob_start(); ?>
+    <p>Grain-free decisions are often made on marketing instinct rather than the actual current evidence — here's what's genuinely worth knowing:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🌾</span>
+        <div>
+          <strong>Grain Allergies Are Rarer Than Marketing Suggests</strong>
+          <p>Protein sources cause far more canine food allergies than grains do — switching to grain-free alone often doesn't resolve a suspected allergy.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">❤️</span>
+        <div>
+          <strong>Legumes Replacing Grains Is the Real DCM Concern</strong>
+          <p>The FDA's investigation centers on formulas where peas, lentils, or other legumes are primary ingredients — a genuine, current area of veterinary caution.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🏷️</span>
+        <div>
+          <strong>Not All Grain-Free Foods Are Equal</strong>
+          <p>Even with a diagnosed grain allergy, the specific formula's ingredients matter — "grain-free" on the label isn't a single, uniform thing.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">👀</span>
+        <div>
+          <strong>Watch for Early Heart-Related Signs</strong>
+          <p>Reduced stamina, coughing, or exercise intolerance in a dog on grain-free food are worth mentioning to your vet as routine due diligence.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_grain_free_diet() {
+    return [
+        ['title'=>'Clarify Why You\'re Considering Grain-Free', 'desc'=>"A vet-diagnosed allergy, general preference, or something you heard — your reason determines whether grain-free actually applies to your dog."],
+        ['title'=>'Check If You Have a Genuine Diagnosis', 'desc'=>"True grain allergies are uncommon — confirm with your vet rather than assuming based on symptoms alone."],
+        ['title'=>'Review the DCM Consideration', 'desc'=>"Understand the FDA's investigation into legume-heavy grain-free formulas and dilated cardiomyopathy before switching either direction."],
+        ['title'=>'Check the Specific Formula, Not Just the Label', 'desc'=>"If grain-free is appropriate for you, check whether legumes are a primary ingredient rather than assuming all grain-free foods are equivalent."],
+        ['title'=>'Discuss With Your Vet Before Switching', 'desc'=>"Given how uncommon true grain allergies are and the genuine DCM consideration, a quick vet conversation before switching either way is worthwhile."],
+        ['title'=>'Watch for Early Heart-Related Signs if Already Feeding Grain-Free', 'desc'=>"Reduced stamina, coughing, or exercise intolerance are worth flagging to your vet at your next visit."],
+    ];
+}
+
+function pz_tips_dog_grain_free_diet() {
+    return [
+        ['Confirm a Grain Allergy With Your Vet Before Switching', "True grain allergies are uncommon enough that it's worth confirming with your vet rather than assuming based on general symptoms."],
+        ["Check What Replaced the Grain", "If a grain-free formula is legume-heavy (peas, lentils as primary ingredients), that's the specific detail relevant to the DCM investigation — check the ingredient list."],
+        ['Mention Grain-Free Feeding at Your Next Vet Visit', "Simply noting that you feed grain-free gives your vet the chance to flag anything relevant during a routine exam — no need to wait for symptoms."],
+        ["Look at Protein Sources if Allergies Are the Real Concern", "Beef, chicken, dairy, and egg are the more common canine food allergens — a protein-focused elimination approach may be more relevant than grain-free alone."],
+        ['Watch for Reduced Stamina or Coughing', "These can be early signs relevant to heart health — worth a vet mention as routine due diligence if your dog is on a grain-free diet."],
+    ];
+}
+
+function pz_mistakes_dog_grain_free_diet() {
+    return [
+        ['❌ Assuming Grains Are the Likely Allergy Culprit', "Protein sources like beef, chicken, dairy, and egg are far more common canine allergens than grains — grain-free alone often doesn't fix a suspected allergy."],
+        ["❌ Switching to Grain-Free Without a Reason", "Without a diagnosed need, there's often no nutritional benefit to avoiding grains, and it's worth a vet conversation given the DCM consideration."],
+        ['❌ Assuming All Grain-Free Foods Are the Same', "Formulas vary in whether legumes are primary ingredients — the specific formula matters more than the \"grain-free\" label alone."],
+        ["❌ Dismissing the DCM Concern Entirely", "It isn't fully settled science, but it's a genuine, current area of veterinary caution — not something to wave off as internet rumor."],
+        ['❌ Ignoring Reduced Stamina or Coughing in a Grain-Free-Fed Dog', "These can be early heart-related signs worth a vet mention — routine due diligence, not something to assume is unrelated."],
+    ];
+}
+
+function pz_render_guide_dog_grain_free_diet( $tool ) {
+    $icon = $tool['icon'] ?? '🌾';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Grain-Free Dog Food Guide</div>
+          <div class="pz-int-sublabel">Pros, cons &amp; safety · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--purple">❤️ DCM-Aware</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Reason Considering Grain-Free</label>
+          <select id="pz_gf_reason" class="pz-int-select">
+            <option value="diagnosed">Vet-diagnosed grain allergy</option>
+            <option value="preference">General preference</option>
+            <option value="trend">Heard it's healthier</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Currently Feeding Grain-Free?</label>
+          <select id="pz_gf_current" class="pz-int-select">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenGrainFree()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Grain-Free Guidance
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Senior Dog Diet: Best Foods for Aging Dogs (senior_dog_diet) ══ */
+
+function pz_hero_quickanswer_senior_dog_diet() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Current veterinary nutrition guidance has moved <strong>away</strong> from routinely restricting protein in healthy senior dogs — that blanket "senior = low protein" rule is outdated. Protein restriction only makes sense for a vet-diagnosed kidney condition; most healthy seniors need <strong>similar or even slightly higher protein density</strong> to help maintain muscle mass, since age-related muscle loss (sarcopenia) is a real concern. What usually does drop is total calories, since metabolism and activity slow with age. Select your dog's age, weight status, and any known health issues above for guidance matched to your dog's actual situation.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_senior_dog_diet() { ?>
+      <span>🧬 Muscle-mass aware guidance</span>
+      <span>⚖️ Calorie vs. protein clarity</span>
+      <span>🩺 Kidney-safe redirects</span>
+<?php }
+
+function pz_methodology_heading_senior_dog_diet() { return "How This Senior Diet Guidance Is Built"; }
+
+function pz_methodology_senior_dog_diet() { ?>
+    <p style="color:#555;margin-bottom:20px">Senior dog nutrition is one of the most myth-heavy corners of pet care — "senior formula" marketing has trained owners to assume low protein is automatically the right move. Current veterinary nutrition consensus disagrees for healthy seniors, and this guide is built to reflect that correction rather than repeat the outdated version.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🧬</div>
+        <strong>Protein Density, Not Blanket Restriction</strong>
+        <p>Healthy seniors generally need similar or even slightly higher protein density relative to calories — restriction is a kidney-specific intervention, not a default of aging.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🔥</div>
+        <strong>Calories Usually Drop, Protein Doesn't</strong>
+        <p>Slower metabolism and reduced activity typically mean fewer total calories — but that's a different lever than cutting protein.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🦴</div>
+        <strong>Condition-Specific Adjustments</strong>
+        <p>Joint stiffness, dental issues, and kidney disease each call for a different, specific response — not one generic "senior diet."</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🩺</div>
+        <strong>Kidney Diets Are Never Generic</strong>
+        <p>Where kidney disease is vet-diagnosed, this guide redirects to individualized, vet-prescribed guidance rather than guessing at dietary advice.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_senior_dog_diet() {
+    return [
+        ["Should I switch my senior dog to a low-protein \"senior formula\"?", "Not automatically. Current veterinary nutrition guidance has moved away from routinely restricting protein in healthy senior dogs — protein restriction is appropriate for a vet-diagnosed kidney condition, not just because a dog is getting older. Healthy seniors generally need similar, or even slightly higher, protein density to help maintain muscle mass."],
+        ["My senior dog has arthritis — do joint supplements actually help?", "Omega-3 fatty acids and glucosamine/chondroitin are commonly recommended and have reasonably supportive evidence, though the effect size tends to be modest rather than dramatic. Our Dog Supplements guide covers the evidence in more depth and what to look for in a quality product."],
+        ["My vet diagnosed kidney disease — what should I feed my senior dog?", "This is exactly the situation where protein restriction becomes appropriate — but the specifics are individual and vet-prescribed, not something a general guide should attempt. Please see our dedicated Dog Kidney Disease Diet guide and work directly with your vet on the specific formula and protein target for your dog."],
+        ["Why does my senior dog need fewer calories if his protein needs haven't changed?", "Two different things are moving independently: metabolism and activity level typically slow with age, which lowers total calorie needs, while the protein needed per calorie to maintain muscle mass stays similar or even rises. A calorie-appropriate, protein-adequate food threads that needle better than a generic \"senior formula.\""],
+        ["My senior dog is losing weight — is that just normal aging?", "Not necessarily, and it's worth a vet check rather than assuming it's expected. Unexplained weight loss in a senior dog can signal dental pain, an underlying illness, or inadequate calorie intake — it's a different situation than the mild, expected calorie reduction that comes with slower metabolism."],
+    ];
+}
+
+function pz_what_is_senior_dog_diet() {
+    ob_start(); ?>
+    <p>The Senior Dog Diet Guide gives aging dog owners guidance that reflects current veterinary nutrition thinking — not the outdated "senior dogs need low protein" rule that's still printed on a lot of pet food packaging. Select your dog's age bracket, current weight status, and any known health issues above for a plan matched to your dog's actual profile.</p>
+    <p>The core correction this guide makes: protein restriction is a kidney-specific intervention, not a routine part of getting older. Most healthy senior dogs need similar, or even slightly higher, protein density relative to calories to help fight sarcopenia — the age-related muscle loss that's a genuine and common concern in older dogs. What typically does change with age is total calorie need, since metabolism and activity usually slow down — so the more useful question isn't "how do I cut protein" but "how do I keep protein adequate while calories come down." Health conditions change the picture further: joint stiffness often benefits from omega-3s and glucosamine/chondroitin, dental issues may call for smaller kibble or softened food, and a vet-diagnosed kidney condition needs individualized, vet-prescribed dietary management rather than general advice.</p>
+    <p>Select your dog's details above for guidance built around that actual situation, then scroll down for the full picture and the FAQ covering the questions senior-dog owners ask most.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_senior_dog_diet() {
+    ob_start(); ?>
+    <p>Senior dog nutrition carries more outdated myths than almost any other pet care topic — here's what's actually worth knowing:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🧬</span>
+        <div>
+          <strong>Protein Restriction Isn't Automatic</strong>
+          <p>Current guidance reserves protein restriction for vet-diagnosed kidney disease — not for healthy dogs simply because they're aging.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">💪</span>
+        <div>
+          <strong>Muscle Loss Is a Real Risk</strong>
+          <p>Sarcopenia — age-related muscle loss — is a genuine concern in senior dogs, and adequate protein density helps fight it.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🔥</span>
+        <div>
+          <strong>Calories Usually Need to Drop</strong>
+          <p>Slower metabolism and reduced activity mean most seniors need somewhat fewer total calories, even as protein needs hold steady.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🏥</span>
+        <div>
+          <strong>Kidney Diets Require Vet Guidance</strong>
+          <p>A vet-diagnosed kidney condition changes the picture entirely — that diet is prescribed and individual, not a general recommendation.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_senior_dog_diet() {
+    return [
+        ['title'=>"Confirm Your Dog's Senior Life Stage", 'desc'=>"7–10 years or 10+ generally marks the senior transition, though it varies by breed size — larger breeds tend to enter it earlier."],
+        ['title'=>'Get a Current Body Condition Score', 'desc'=>"Feel for ribs and check for a visible waist, or ask your vet at the next visit — this tells you whether calories need adjusting up or down."],
+        ['title'=>'Rule Out (or Confirm) Kidney Disease With Bloodwork', 'desc'=>"This is the one condition that genuinely changes the protein recommendation — don't assume it based on age alone."],
+        ['title'=>'Match Protein and Calorie Density to Actual Needs', 'desc'=>"Look for a food that's calorie-appropriate for a slower metabolism while keeping protein adequate — not simply labeled \"senior.\""],
+        ['title'=>'Add Condition-Specific Support if Needed', 'desc'=>"Omega-3s and glucosamine/chondroitin for joint stiffness, or smaller/softened kibble for dental issues, layered onto the base diet."],
+        ['title'=>'Recheck Weight and Body Condition Every Few Months', 'desc'=>"Senior dogs' needs shift faster than younger adults' — a quarterly check catches drift before it becomes a bigger problem."],
+    ];
+}
+
+function pz_tips_senior_dog_diet() {
+    return [
+        ["Don't Assume \"Senior Formula\" Means Right for Your Dog", "Check the actual protein and calorie density on the label rather than trusting the word \"senior\" alone — formulas vary widely between brands."],
+        ["Weigh Your Dog Monthly, Not Just at Vet Visits", "Senior dogs' weight and body condition can shift faster than younger adults' — monthly checks catch changes while they're still easy to correct."],
+        ["Ask About Kidney Bloodwork at the Next Annual Exam", "A simple blood panel confirms whether protein restriction is actually relevant to your dog, rather than guessing based on age."],
+        ["Pair Joint Support With, Not Instead of, Good Nutrition", "Omega-3s and glucosamine/chondroitin are additive support — they work best layered onto an already calorie- and protein-appropriate diet."],
+        ["Soften or Downsize Kibble Before Assuming Appetite Loss Is Serious", "If a senior dog seems reluctant to eat, dental discomfort with hard kibble is a common and fixable cause — worth ruling out before assuming a bigger problem."],
+    ];
+}
+
+function pz_mistakes_senior_dog_diet() {
+    return [
+        ["❌ Assuming Every Senior Dog Needs Low Protein", "This outdated rule is specific to kidney disease, not aging in general — restricting protein in a healthy senior can actually work against maintaining muscle mass."],
+        ["❌ Feeding a \"Senior Formula\" Without Checking Calorie Density", "The word \"senior\" on the label doesn't guarantee the calorie count matches your dog's slower metabolism — check the actual numbers."],
+        ["❌ Writing Off Weight Loss as Normal Aging", "Unexplained weight loss in a senior dog is worth a vet visit, not an assumption — it can signal dental pain, illness, or inadequate calories."],
+        ["❌ Skipping Kidney Bloodwork Because \"He Seems Fine\"", "Early kidney disease often has no obvious symptoms — bloodwork is what actually confirms whether protein restriction applies to your dog."],
+        ["❌ Adding Supplements Without Checking for Medication Interactions", "Senior dogs are more likely to be on medications — always run new supplements past your vet first, especially joint or general-wellness products."],
+    ];
+}
+
+function pz_render_guide_senior_dog_diet( $tool ) {
+    $icon = $tool['icon'] ?? '🐕';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Senior Dog Diet Guide</div>
+          <div class="pz-int-sublabel">Best foods for aging dogs · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--purple">🧬 Muscle-Mass Aware</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Age</label>
+          <select id="pz_sd_age" class="pz-int-select">
+            <option value="7to10">7–10 years</option>
+            <option value="10plus">10+ years</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Weight Status</label>
+          <select id="pz_sd_weight" class="pz-int-select">
+            <option value="ideal">At ideal weight</option>
+            <option value="overweight">Overweight</option>
+            <option value="underweight">Underweight</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Known Health Issues</label>
+          <select id="pz_sd_health" class="pz-int-select">
+            <option value="none">None known</option>
+            <option value="joint">Joint stiffness/arthritis</option>
+            <option value="kidney">Kidney disease (vet-diagnosed)</option>
+            <option value="dental">Dental issues</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenSeniorDiet()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Senior Dog's Diet Plan
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Dog Food Allergies: Signs & Elimination Diet (dog_food_allergies) ══ */
+
+function pz_hero_quickanswer_dog_food_allergies() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>True food allergies in dogs are most commonly triggered by specific <strong>protein sources</strong> — beef, dairy, chicken, egg, and lamb are the most frequently cited culprits — not grains. Symptoms are often skin-focused (itching, recurrent ear infections, paw licking) even more than GI upset in many cases. The diagnostic gold standard is an 8–12 week vet-guided elimination diet trial — commercial at-home "food allergy" blood or saliva tests are not well-validated and shouldn't be relied on for diagnosis. Select your dog's symptoms and timeframe above for guidance matched to your situation.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_food_allergies() { ?>
+      <span>🥩 Protein-focused accuracy</span>
+      <span>🔬 Elimination-diet standard</span>
+      <span>🚫 No unvalidated tests</span>
+<?php }
+
+function pz_methodology_heading_dog_food_allergies() { return "How This Food Allergy Guidance Is Built"; }
+
+function pz_methodology_dog_food_allergies() { ?>
+    <p style="color:#555;margin-bottom:20px">Food allergy marketing leans heavily on grain-free positioning, but the actual evidence points somewhere else — specific proteins. This guide is built around what genuinely diagnoses and manages a food allergy, and is equally direct about what doesn't, since popular at-home tests can send owners down the wrong path entirely.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🥩</div>
+        <strong>Proteins Are the Real Trigger</strong>
+        <p>Beef, dairy, chicken, egg, and lamb are the most frequently cited canine food allergens — well ahead of grains.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🐾</div>
+        <strong>Skin Signs Are Common — Often Leading</strong>
+        <p>Itching, recurrent ear infections, and paw licking show up as often as, or more than, GI symptoms in documented cases.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🔬</div>
+        <strong>Elimination Diet Is the Real Gold Standard</strong>
+        <p>An 8–12 week trial with a single novel protein or hydrolyzed diet, done under vet guidance, is what actually diagnoses a food allergy.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🚫</div>
+        <strong>Commercial Tests Aren't Validated</strong>
+        <p>At-home blood or saliva "allergy tests" marketed to owners lack solid scientific support — this guide says so plainly rather than implying otherwise.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_food_allergies() {
+    return [
+        ["What foods are dogs actually most commonly allergic to?", "Specific protein sources — beef, dairy, chicken, egg, and lamb are the most frequently cited culprits in documented canine food allergies. This surprises many owners, since \"grain-free\" marketing implies grains are the main concern, when true grain allergies are comparatively uncommon."],
+        ["Are food allergies more of a skin problem or a stomach problem?", "Often more skin than stomach. Itching, recurrent ear infections, and paw licking or chewing are frequently the leading signs in documented cases, though GI symptoms like vomiting or diarrhea occur too — sometimes alongside skin signs, sometimes on their own."],
+        ["Are those at-home dog food allergy tests (blood or saliva) accurate?", "Not reliably. Commercial food allergy tests marketed directly to pet owners are not well-validated scientifically and shouldn't be used to diagnose a food allergy or to decide what to feed. The gold standard remains a vet-guided elimination diet trial."],
+        ["My dog's symptoms started right after a new treat or food — is that the cause?", "It's a strong lead worth acting on. If symptoms began shortly after introducing a new food or treat, reverting to the prior diet and watching for improvement is a reasonable first step — though a true diagnosis still requires a proper elimination trial if symptoms persist."],
+        ["How long does a proper elimination diet trial actually take?", "8–12 weeks, using a single novel protein source or a hydrolyzed prescription diet, done under veterinary guidance — with no other treats, table scraps, or flavored medications during the trial. Shorter trials or partial compliance are a common reason elimination diets fail to give a clear answer."],
+    ];
+}
+
+function pz_what_is_dog_food_allergies() {
+    ob_start(); ?>
+    <p>The Dog Food Allergies Guide walks through what actually causes food allergies in dogs, what the symptoms typically look like, and — importantly — how they're genuinely diagnosed, since a lot of popular advice in this space doesn't hold up. Select your dog's symptoms and how long they've been going on above for guidance matched to your situation.</p>
+    <p>True food allergies are most commonly triggered by specific protein sources — beef, dairy, chicken, egg, and lamb are the most frequently cited culprits — not grains, despite what "grain-free" marketing often implies. Symptoms are often skin-focused: itching, recurrent ear infections, and paw licking or chewing show up as often as, or more than, GI upset like vomiting or diarrhea in many documented cases, though GI signs do occur too. The genuine diagnostic gold standard is an 8–12 week elimination diet trial using a single novel protein source or a hydrolyzed prescription diet, done under veterinary guidance — not a commercial blood or saliva test marketed directly to owners, which are not well-validated scientifically and shouldn't be relied on for diagnosis.</p>
+    <p>Select your dog's symptoms and timeframe above for guidance matched to your actual situation, then scroll down for the full picture and the FAQ covering the questions owners ask most about suspected food allergies.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_food_allergies() {
+    ob_start(); ?>
+    <p>Food allergy myths are common enough that owners often chase the wrong fix — here's what's actually worth knowing:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🥩</span>
+        <div>
+          <strong>Proteins Are the Real Culprit, Not Grains</strong>
+          <p>Beef, dairy, chicken, egg, and lamb are the most frequently cited canine food allergens — a grain-free switch alone often misses the actual trigger.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🐾</span>
+        <div>
+          <strong>Skin Signs Often Lead</strong>
+          <p>Itching, recurrent ear infections, and paw licking are frequently the most prominent signs — even more than GI upset in many documented cases.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🔬</span>
+        <div>
+          <strong>Elimination Diet Is the Only Reliable Diagnosis</strong>
+          <p>An 8–12 week vet-guided trial with a single novel or hydrolyzed protein is what actually confirms a food allergy — nothing shortcuts this.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🚫</span>
+        <div>
+          <strong>Commercial Allergy Tests Aren't Validated</strong>
+          <p>At-home blood or saliva tests are widely marketed but not well-supported scientifically — relying on them can delay an accurate diagnosis.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_food_allergies() {
+    return [
+        ['title'=>'Track the Symptom Pattern', 'desc'=>"Note whether signs are skin-focused (itching, ear infections, paw licking), GI-focused (vomiting, diarrhea), or both — this shapes the conversation with your vet."],
+        ['title'=>'Note When Symptoms Started', 'desc'=>"A recent diet or treat change is a strong lead; symptoms that have been chronic for months point toward needing a structured elimination trial."],
+        ['title'=>'Rule Out the Obvious Recent Change First', 'desc'=>"If something new was introduced recently, reverting to the prior diet and observing is a reasonable, low-effort first step."],
+        ['title'=>"Skip the At-Home Allergy Tests", 'desc'=>"Commercial blood or saliva tests marketed to owners aren't well-validated — save your money and go straight to a vet-guided approach."],
+        ['title'=>'Commit to a Proper Elimination Diet Trial', 'desc'=>"Work with your vet on an 8–12 week trial using a single novel protein or hydrolyzed diet — with zero treats or table scraps during the trial."],
+        ['title'=>'Reintroduce Ingredients Methodically', 'desc'=>"Once symptoms resolve, your vet will guide a careful reintroduction process to identify the specific trigger, if you want that level of certainty."],
+    ];
+}
+
+function pz_tips_dog_food_allergies() {
+    return [
+        ["Suspect Protein Before Grain", "If you're troubleshooting a suspected allergy, beef, dairy, chicken, egg, and lamb are the more likely triggers to investigate first — not the grain content."],
+        ["Skip the At-Home Test Kits", "Commercial food allergy blood or saliva tests aren't well-validated scientifically — that money is better spent on a proper vet-guided elimination trial."],
+        ["Keep a Symptom and Ingredient Log", "Writing down what your dog ate and when symptoms appeared gives your vet real data to work with, rather than relying on memory."],
+        ["Don't Sneak in Treats During an Elimination Trial", "Even small treats or flavored medications can reintroduce the trigger protein and invalidate weeks of trial progress — full compliance matters."],
+        ["Give the Trial the Full 8–12 Weeks", "Skin and GI symptoms can take time to fully resolve — stopping early because of slow improvement is a common reason trials don't give a clear answer."],
+    ];
+}
+
+function pz_mistakes_dog_food_allergies() {
+    return [
+        ["❌ Assuming Grain-Free Will Fix It", "Protein sources cause far more documented canine food allergies than grains do — a grain-free switch alone often misses the real trigger."],
+        ["❌ Trusting At-Home Allergy Test Kits", "These commercial tests aren't well-validated scientifically — relying on them can send you chasing the wrong ingredient for months."],
+        ["❌ Cutting the Elimination Trial Short", "Symptom improvement can take weeks — stopping at 3–4 weeks because nothing's changed yet often means quitting right before results would show."],
+        ["❌ Allowing \"Just One\" Treat During the Trial", "Any exposure to the suspected trigger protein — even a small amount — can reset the trial and undo weeks of progress."],
+        ["❌ Guessing at a New Protein Without Vet Input", "A truly novel protein your dog hasn't eaten before is important for the trial to work — your vet can help confirm what actually qualifies as novel for your dog."],
+    ];
+}
+
+function pz_render_guide_dog_food_allergies( $tool ) {
+    $icon = $tool['icon'] ?? '🤧';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Food Allergies Guide</div>
+          <div class="pz-int-sublabel">Signs &amp; elimination diet · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🔬 Evidence-Based</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Symptoms</label>
+          <select id="pz_fa_symptoms" class="pz-int-select">
+            <option value="skin">Skin itching, ear infections, or paw licking</option>
+            <option value="gi">GI upset (vomiting/diarrhea)</option>
+            <option value="both">Both skin and GI symptoms</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Suspected Timeframe</label>
+          <select id="pz_fa_timeframe" class="pz-int-select">
+            <option value="recent">Started after a recent diet/treat change</option>
+            <option value="chronic">Chronic, ongoing for months</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenFoodAllergies()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Food Allergy Guidance
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Dog Supplements Guide: What Actually Works (dog_supplements) ══ */
+
+function pz_hero_quickanswer_dog_supplements() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Evidence for dog supplements varies genuinely by product and purpose: glucosamine/chondroitin has reasonably supportive evidence for joints (modest effect), omega-3 fatty acids have good evidence for skin/coat and joint inflammation, and probiotics have growing evidence for digestive health. Supplements aren't FDA-regulated for quality/purity the way drugs are — look for the <strong>NASC quality seal</strong> as a real, meaningful signal. Supplements are additive, not a substitute for a complete and balanced diet, and should always be discussed with your vet first, especially if your dog takes other medications.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_supplements() { ?>
+      <span>🔬 Evidence graded by concern</span>
+      <span>🏷️ NASC seal guidance</span>
+      <span>🩺 Interaction-aware advice</span>
+<?php }
+
+function pz_methodology_heading_dog_supplements() { return "How This Supplement Guidance Is Built"; }
+
+function pz_methodology_dog_supplements() { ?>
+    <p style="color:#555;margin-bottom:20px">The supplement aisle treats every product as equally proven, when the actual evidence varies a lot by ingredient and purpose. This guide matches the recommendation to your specific concern and is equally direct about the real, underappreciated quality-control gap in this industry.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🦴</div>
+        <strong>Concern-Specific Evidence</strong>
+        <p>Joint, skin/coat, digestive, and general wellness concerns each have different supporting evidence — this guide doesn't treat them as interchangeable.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🏷️</div>
+        <strong>NASC Seal as a Real Quality Signal</strong>
+        <p>Pet supplements aren't FDA-regulated for quality the way drugs are — the National Animal Supplement Council seal is a genuine, meaningful third-party check.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">➕</div>
+        <strong>Additive, Not Foundational</strong>
+        <p>A complete and balanced diet already covers most nutritional needs — supplements add to that base rather than replacing it.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">💊</div>
+        <strong>Interaction Awareness</strong>
+        <p>Supplements can genuinely interact with medications — this guide flags that risk rather than treating supplements as automatically harmless.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_supplements() {
+    return [
+        ["Do glucosamine and chondroitin actually help dogs with joint issues?", "The evidence is reasonably supportive, though the effect size tends to be modest rather than dramatic — it's a genuine, reasonable option for joint support, not a miracle fix. Omega-3 fatty acids also have anti-inflammatory benefit relevant to joint health."],
+        ["Are fish oil / omega-3 supplements worth it for skin and coat?", "Yes — this is one of the areas with the best supporting evidence specifically. Omega-3 fatty acids (EPA/DHA from fish oil) are genuinely well-supported for skin and coat health in dogs."],
+        ["Do probiotics really help a dog's digestion?", "There's growing supportive evidence for probiotics helping digestive health in dogs, though research is still developing compared to some other supplement categories. It's a reasonable, evidence-informed choice for digestive concerns."],
+        ["Does my healthy dog need a general multivitamin?", "Often not. If your dog is eating a complete and balanced diet, most nutritional needs are already covered — general \"multivitamin\" type products are additive at best for a healthy dog, not something every dog needs by default."],
+        ["What is the NASC seal, and why does it matter?", "The National Animal Supplement Council (NASC) seal is a real, meaningful third-party quality signal, since pet supplements aren't FDA-regulated for quality and purity the way drugs are. Looking for it is a genuinely useful way to choose a more trustworthy brand."],
+    ];
+}
+
+function pz_what_is_dog_supplements() {
+    ob_start(); ?>
+    <p>The Dog Supplements Guide separates the supplements with genuine supporting evidence from the ones riding on marketing alone, matched to your dog's specific concern. Select what you're addressing — joint health, skin &amp; coat, digestive health, or general wellness — for guidance built around that.</p>
+    <p>Evidence genuinely varies by category: glucosamine/chondroitin has reasonably supportive evidence for joint health, though the effect size is typically modest rather than dramatic, and omega-3 fatty acids add anti-inflammatory benefit relevant to joints too. Omega-3s (fish oil, EPA/DHA) specifically have good supporting evidence for skin and coat health. Probiotics have growing supportive evidence for digestive health. For general wellness, it's worth knowing that a complete and balanced diet already covers most nutritional needs — supplements are additive, not foundational, and a healthy dog on a good diet often doesn't need a general "multivitamin" type product. One universal point across every category: pet supplements aren't FDA-regulated for quality and purity the way drugs are, so looking for the NASC (National Animal Supplement Council) seal is a real, meaningful way to choose a more trustworthy brand — and any supplement should be discussed with your vet first, especially if your dog takes other medications, since interaction risk is real.</p>
+    <p>Select your dog's primary concern above for guidance matched to that, then scroll down for the full picture and the FAQ covering the supplement questions owners ask most.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_supplements() {
+    ob_start(); ?>
+    <p>Not all supplements are backed equally, and the industry's lack of quality regulation makes the details matter more than usual:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🦴</span>
+        <div>
+          <strong>Evidence Varies Genuinely by Concern</strong>
+          <p>Joint, skin/coat, and digestive supplements each have different levels of supporting evidence — matching the product to the concern matters.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🏷️</span>
+        <div>
+          <strong>Quality Isn't Guaranteed by Default</strong>
+          <p>Pet supplements aren't FDA-regulated for quality and purity the way drugs are — the NASC seal is a real way to close that gap.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">➕</span>
+        <div>
+          <strong>Supplements Are Additive, Not Foundational</strong>
+          <p>A complete, balanced diet already covers most nutritional needs — supplements build on that base rather than replacing it.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">💊</span>
+        <div>
+          <strong>Interaction Risk Is Real</strong>
+          <p>Supplements can genuinely interact with medications — always check with your vet first, especially for dogs already on other treatments.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_supplements() {
+    return [
+        ['title'=>'Identify Your Dog\'s Primary Concern', 'desc'=>"Joint health, skin/coat, digestive health, or general wellness — the right supplement genuinely depends on which one applies."],
+        ['title'=>'Check the Evidence for That Specific Concern', 'desc'=>"Some categories (omega-3s for skin/coat) have stronger evidence than others — know what you're actually working with."],
+        ['title'=>'Look for the NASC Seal When Choosing a Brand', 'desc'=>"Since supplements aren't FDA-regulated for quality the way drugs are, this third-party seal is a genuine, meaningful quality signal."],
+        ['title'=>"Confirm Your Dog's Base Diet Is Already Complete and Balanced", 'desc'=>"Supplements add to a good diet — they don't fix an inadequate one, so this is worth checking first."],
+        ['title'=>'Ask Your Vet About Medication Interactions', 'desc'=>"This step matters more than owners expect — some supplements genuinely interact with common medications."],
+        ['title'=>"Monitor and Reassess After a Few Weeks", 'desc'=>"Give the supplement a reasonable trial period and watch for real changes rather than assuming it's working."],
+    ];
+}
+
+function pz_tips_dog_supplements() {
+    return [
+        ["Match the Supplement to the Actual Concern", "Don't buy a general \"joint and skin and digestive\" combo product hoping it covers everything — targeted products with concern-specific evidence tend to be the better bet."],
+        ["Look for the NASC Seal on the Label", "This third-party quality seal is a genuine signal in an otherwise loosely regulated space — worth actively checking for before you buy."],
+        ["Give Omega-3s Priority for Skin and Coat Concerns", "This is one of the better-evidenced supplement categories specifically for skin and coat health — a reasonable first choice there."],
+        ["Set Realistic Expectations for Joint Supplements", "Glucosamine/chondroitin has real but modest supporting evidence — helpful, but not a dramatic fix on its own."],
+        ["Always Loop In Your Vet Before Starting Anything New", "This matters most if your dog is on other medications — interaction risk is real and easy to check with one quick conversation."],
+    ];
+}
+
+function pz_mistakes_dog_supplements() {
+    return [
+        ["❌ Assuming All Supplements Are Equally Backed", "Evidence varies a lot by category — omega-3s for skin/coat and probiotics for digestion are better supported than many general wellness products."],
+        ["❌ Skipping the NASC Seal Check", "Without it, you're relying entirely on marketing claims in a space that isn't FDA-regulated for quality — a real and avoidable gap."],
+        ["❌ Treating Supplements as a Diet Substitute", "Supplements are additive to a complete, balanced diet, not a fix for an inadequate one — the base diet still matters most."],
+        ["❌ Not Mentioning Supplements to Your Vet", "Interaction risk with other medications is real — your vet needs the full picture, including anything you're giving beyond prescribed treatment."],
+        ["❌ Expecting Dramatic Results From Joint Supplements", "The evidence supports a modest benefit, not a cure — expecting too much can mean giving up on a genuinely helpful product too soon."],
+    ];
+}
+
+function pz_render_guide_dog_supplements( $tool ) {
+    $icon = $tool['icon'] ?? '💊';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Supplements Guide</div>
+          <div class="pz-int-sublabel">What actually works · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🔬 Evidence-Graded</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Primary Concern</label>
+          <select id="pz_sup_concern" class="pz-int-select">
+            <option value="joint">Joint health</option>
+            <option value="skin_coat">Skin &amp; coat</option>
+            <option value="digestive">Digestive health</option>
+            <option value="general">General wellness</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenSupplements()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Supplement Guidance
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Pregnant Dog Nutrition & Feeding Guide (pregnant_dog_nutrition) ══ */
+
+function pz_hero_quickanswer_pregnant_dog_nutrition() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Contrary to the popular "eating for the litter" idea, calorie needs stay <strong>close to normal during early pregnancy</strong> (weeks 1–4). Needs increase more meaningfully from week 5 onward, and <strong>peak dramatically during nursing</strong> — often the highest-demand period of the whole cycle, requiring roughly 2–4x normal maintenance calories depending on litter size. Transitioning to a calorie-dense puppy/growth-formula food during pregnancy is the standard recommendation, since a distinct "pregnancy formula" category generally doesn't exist. Select your dog's stage and litter size above for guidance matched to where she actually is.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_pregnant_dog_nutrition() { ?>
+      <span>🐕 Stage-specific calorie guidance</span>
+      <span>🍼 Nursing-peak awareness</span>
+      <span>📈 Litter-size adjusted</span>
+<?php }
+
+function pz_methodology_heading_pregnant_dog_nutrition() { return "How This Pregnancy Nutrition Guidance Is Built"; }
+
+function pz_methodology_pregnant_dog_nutrition() { ?>
+    <p style="color:#555;margin-bottom:20px">"Eating for the litter" is a genuinely common misconception about when calorie needs actually rise during canine pregnancy. This guide follows the real timeline — close to normal early on, rising meaningfully mid-to-late, and peaking hardest during nursing — rather than the flatter, earlier-starting version most owners expect.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">📅</div>
+        <strong>Calorie Needs Follow a Real Timeline</strong>
+        <p>Close to normal in weeks 1–4, rising from week 5, and peaking during nursing — not a flat increase from day one.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🍼</div>
+        <strong>Nursing Is the Real Peak</strong>
+        <p>Lactation is often the single highest-demand period of the whole cycle — higher than even late pregnancy itself.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🥘</div>
+        <strong>Puppy Formula, Not a "Pregnancy" Product</strong>
+        <p>A calorie-dense puppy/growth formula is the standard recommendation, since a distinct pregnancy-specific category usually doesn't exist.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">📈</div>
+        <strong>Litter Size Genuinely Changes the Math</strong>
+        <p>A large litter drives noticeably higher demand, especially during nursing — this guide adjusts for that rather than treating every litter the same.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_pregnant_dog_nutrition() {
+    return [
+        ["Should I increase my dog's food as soon as I know she's pregnant?", "Not dramatically. Calorie needs stay close to normal during early pregnancy (weeks 1–4) — contrary to the popular \"eating for the litter\" idea. It's a good time to plan the transition to puppy-formula food for week 5 onward, but no major diet change is needed yet."],
+        ["When do calorie needs actually go up during pregnancy?", "More meaningfully from week 5 onward (mid-to-late pregnancy), and they peak dramatically during nursing — lactation is often the highest-demand period of the entire cycle, sometimes higher than even late pregnancy."],
+        ["What should I feed a pregnant or nursing dog?", "A calorie-dense puppy/growth-formula food is the standard recommendation, appropriately balanced for calcium, phosphorus, and calorie density for the demands of pregnancy and nursing — a distinct \"pregnancy-specific\" product category generally doesn't exist."],
+        ["My dog has a large litter and is nursing — how much more should she eat?", "Nursing can require roughly 2–4x normal maintenance calories depending on litter size, and a large litter pushes toward the higher end. Free-feeding (constant food access) is often recommended during peak nursing with a large litter, since scheduled meals may not keep pace with her appetite."],
+        ["Is there a special \"pregnancy dog food\" I should buy?", "Not usually as a distinct category — a calorie-dense puppy/growth formula is the standard recommendation instead, since it's already balanced for the higher calorie and nutrient density that pregnancy and nursing require."],
+    ];
+}
+
+function pz_what_is_pregnant_dog_nutrition() {
+    ob_start(); ?>
+    <p>The Pregnant Dog Nutrition Guide walks through what a pregnant or nursing dog's calorie and nutrient needs actually look like at each stage — correcting a genuinely common misconception about when those needs rise. Select your dog's current stage and litter size above for guidance matched to where she actually is right now.</p>
+    <p>Contrary to the popular "eating for the litter" idea, calorie needs stay close to normal during early pregnancy (weeks 1–4) — there's no need for a dramatic diet change yet. Needs increase more meaningfully from week 5 onward, through mid-to-late pregnancy, and then peak dramatically during nursing/lactation — genuinely the highest-demand period of the whole cycle, often higher than even late pregnancy itself, and it can require roughly 2–4x normal maintenance calories depending on litter size. The standard recommendation is transitioning to a calorie-dense puppy/growth-formula food during pregnancy, appropriately balanced for the calcium, phosphorus, and calorie density these stages require — rather than a distinct "pregnancy-specific" product, which usually doesn't exist as its own category. A larger litter during peak nursing is especially demanding, and free-feeding (constant food access) is often recommended in that situation since scheduled meals may not keep pace with appetite.</p>
+    <p>Select your dog's stage and litter size above for guidance matched to her actual situation, then scroll down for the full picture and the FAQ covering the questions owners ask most at each stage.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_pregnant_dog_nutrition() {
+    ob_start(); ?>
+    <p>Getting the timing right on a pregnant or nursing dog's calorie needs matters more than most owners expect:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">📅</span>
+        <div>
+          <strong>Early Pregnancy Doesn't Need a Diet Overhaul</strong>
+          <p>Calorie needs stay close to normal in weeks 1–4 — overfeeding this early can lead to unnecessary weight gain before it's actually needed.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🍼</span>
+        <div>
+          <strong>Nursing Is the Real Peak Demand</strong>
+          <p>Lactation often exceeds even late pregnancy in calorie demand — underfeeding here can affect both the mother's condition and puppy growth.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🥘</span>
+        <div>
+          <strong>Puppy Formula Fits the Nutrient Profile</strong>
+          <p>A calorie-dense growth formula is already balanced for the demands of pregnancy and nursing — no separate specialty product is typically needed.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">📈</span>
+        <div>
+          <strong>Litter Size Changes the Math</strong>
+          <p>A large litter during peak nursing can push demand toward 4x maintenance — feeding approach genuinely needs to scale with litter size.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_pregnant_dog_nutrition() {
+    return [
+        ['title'=>"Confirm Your Dog's Current Stage", 'desc'=>"Early, mid, late pregnancy, or nursing — the calorie recommendation depends heavily on which stage she's actually in."],
+        ['title'=>'Hold Off on Major Diet Changes in Early Pregnancy', 'desc'=>"Weeks 1–4 need close to normal calories — use this time to plan the puppy-formula transition rather than overfeeding now."],
+        ['title'=>'Transition to a Calorie-Dense Puppy/Growth Formula', 'desc'=>"Start this around week 5, since it's already balanced for the calcium, phosphorus, and calorie density pregnancy and nursing require."],
+        ['title'=>'Estimate Litter Size if Possible', 'desc'=>"A vet ultrasound or X-ray gives a litter estimate that meaningfully changes how much extra food to plan for, especially for nursing."],
+        ['title'=>'Increase Feeding Access During Peak Nursing', 'desc'=>"For large litters especially, free-feeding (constant food access) often keeps pace with demand better than scheduled meals."],
+        ['title'=>"Monitor Body Condition Throughout", 'desc'=>"Check that she's not losing condition during nursing — this is when demand is highest and easiest to underestimate."],
+    ];
+}
+
+function pz_tips_pregnant_dog_nutrition() {
+    return [
+        ["Don't Overfeed in Early Pregnancy", "Calorie needs stay close to normal in weeks 1–4 — resist the urge to \"feed for two\" right away, since it's not yet necessary."],
+        ["Plan the Puppy Formula Transition Ahead of Week 5", "Having the food ready before calorie needs actually rise avoids a last-minute scramble during mid-pregnancy."],
+        ["Expect Nursing to Be the Biggest Jump", "Nursing can require roughly 2–4x normal maintenance calories — plan for this being the highest-demand stretch, not late pregnancy."],
+        ["Free-Feed During Peak Nursing With a Large Litter", "Constant food access is often recommended here since scheduled meals may not keep pace with a nursing mother's appetite and demand."],
+        ["Keep Fresh Water Constantly Available", "Nursing dramatically increases fluid needs alongside calorie needs — water access matters just as much as food during this stage."],
+    ];
+}
+
+function pz_mistakes_pregnant_dog_nutrition() {
+    return [
+        ["❌ Increasing Food Dramatically as Soon as Pregnancy Is Confirmed", "Calorie needs stay close to normal through week 4 — early overfeeding leads to unnecessary weight gain rather than helping the litter."],
+        ["❌ Underestimating Nursing Demand", "Nursing is often the highest-calorie-demand period of the whole cycle — treating it the same as late pregnancy risks underfeeding."],
+        ["❌ Searching for a Dedicated \"Pregnancy Dog Food\"", "This usually isn't a distinct product category — a calorie-dense puppy/growth formula already covers the nutrient profile needed."],
+        ["❌ Sticking to Scheduled Meals During Peak Nursing With a Large Litter", "Scheduled feeding may not keep pace with demand here — free-feeding is often the more practical approach in this specific situation."],
+        ["❌ Not Adjusting for Litter Size at All", "A litter of 7+ genuinely changes caloric demand compared to a litter of 1–3 — the same feeding plan doesn't fit both situations."],
+    ];
+}
+
+function pz_render_guide_pregnant_dog_nutrition( $tool ) {
+    $icon = $tool['icon'] ?? '🐕';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Pregnant Dog Nutrition Guide</div>
+          <div class="pz-int-sublabel">Stage-by-stage feeding · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--purple">🍼 Nursing-Peak Aware</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Pregnancy Stage</label>
+          <select id="pz_pn_stage" class="pz-int-select">
+            <option value="early">Early (weeks 1–4)</option>
+            <option value="mid">Mid (weeks 5–6)</option>
+            <option value="late">Late (weeks 7–9)</option>
+            <option value="nursing">Nursing/Lactating</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Litter Size if Known</label>
+          <select id="pz_pn_litter" class="pz-int-select">
+            <option value="unknown">Not sure yet</option>
+            <option value="few">Small litter (1–3)</option>
+            <option value="average">Average litter (4–6)</option>
+            <option value="many">Large litter (7+)</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenPregnantNutrition()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Feeding Plan
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Working Dog Nutrition & High-Energy Diet Guide (working_dog_nutrition) ══ */
+
+function pz_hero_quickanswer_working_dog_nutrition() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Working and high-performance dogs have substantially elevated caloric, protein, and fat needs — performance-formula foods commonly run 30%+ protein and 20%+ fat, notably higher than standard adult maintenance food. Endurance-type work (sled dogs are the classic research case) relies heavily on <strong>fat as the primary fuel source</strong>, genuinely different from the human "carb-loading" model. Heavy, daily-intensive training can mean 2–3x+ typical maintenance calories at peak season. Select your dog's work type and training intensity above for guidance matched to your dog's actual output.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_working_dog_nutrition() { ?>
+      <span>🔥 Fat-as-fuel science</span>
+      <span>📊 Intensity-scaled calories</span>
+      <span>🩺 Vet-nutritionist aware</span>
+<?php }
+
+function pz_methodology_heading_working_dog_nutrition() { return "How This Working Dog Nutrition Guidance Is Built"; }
+
+function pz_methodology_working_dog_nutrition() { ?>
+    <p style="color:#555;margin-bottom:20px">Generic pet calorie calculators meaningfully underestimate what genuinely high-performance dogs need. This guide is built around actual veterinary performance-nutrition research — including the well-studied sled dog model for endurance fueling — rather than scaling up a standard maintenance formula.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🔥</div>
+        <strong>Fat as the Primary Endurance Fuel</strong>
+        <p>Sustained endurance work relies heavily on fat, not carbohydrate — a genuinely different model from human endurance "carb-loading."</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">📊</div>
+        <strong>Elevated Protein and Fat Targets</strong>
+        <p>Performance formulas commonly run 30%+ protein and 20%+ fat — notably above standard adult maintenance food.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">⚡</div>
+        <strong>Intensity Scales Calories Dramatically</strong>
+        <p>Heavy, daily-intensive training can push calorie needs to 2–3x+ typical maintenance during peak season.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🩺</div>
+        <strong>Vet Nutritionist Input for Real Performance Dogs</strong>
+        <p>Generic calculators underestimate true working-dog needs — genuinely high-output dogs benefit from individualized professional guidance.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_working_dog_nutrition() {
+    return [
+        ["Why do working dogs need so much more food than pet dogs?", "Performance-formula foods commonly run 30%+ protein and 20%+ fat — notably higher than standard adult maintenance food — because sustained high-output work demands substantially more calories and fuel than typical companion-dog activity."],
+        ["Is it true that working dogs run on fat instead of carbs?", "For endurance-type work specifically, yes — sled dogs are the classic veterinary nutrition research case, and they rely heavily on fat as the primary fuel source for sustained effort. This is genuinely different from the \"carb-loading\" model often associated with human endurance athletes."],
+        ["Does a hunting dog or active companion need the same diet as a sled dog?", "Not quite as extreme. Moderate work (hunting, active companion activity) has elevated needs compared to a typical pet, but less dramatic than true endurance or heavy daily-intensive training — intensity is the bigger driver than work type alone at this level."],
+        ["How much more should a heavily-worked dog eat during peak season?", "Some heavily-worked sled dogs eat 2–3x+ typical maintenance calories during peak season — hydration and electrolyte considerations matter more at this level too, not just raw calorie count."],
+        ["Should I just estimate my working dog's calories with a standard calculator?", "For light-to-moderate work, a calculator gives a reasonable starting point. For genuinely high-performance dogs, generic calculators meaningfully underestimate real needs — working directly with a vet or veterinary nutritionist is the better move."],
+    ];
+}
+
+function pz_what_is_working_dog_nutrition() {
+    ob_start(); ?>
+    <p>The Working Dog Nutrition Guide covers what genuinely changes for dogs doing sustained high-output work — sledding, herding, protection or detection work, hunting, and similarly active roles — compared to a typical companion dog's diet. Select your dog's work type and training intensity above for guidance scaled to actual output.</p>
+    <p>Working and high-performance dogs have substantially elevated caloric, protein, and fat needs compared to typical pet dogs — performance-formula foods commonly run 30%+ protein and 20%+ fat, notably higher than standard adult maintenance food. Endurance-type work relies heavily on fat as the primary fuel source for sustained effort — sled dogs are the classic veterinary nutrition research case study for this — which is a genuinely different model from the "carb-loading" approach often associated with human endurance athletes. Power/short-burst work (protection, detection) has somewhat different demands: still elevated, but the fat-as-primary-fuel emphasis is less central than for true endurance work. Training intensity matters as much as work type: caloric needs can be dramatically elevated at heavy, daily-intensive levels — some heavily-worked sled dogs eat 2–3x+ typical maintenance calories during peak season — and hydration and electrolyte considerations become more important too. Genuinely high-performance working dogs benefit from working directly with a vet or veterinary nutritionist, since generic pet calculators meaningfully underestimate their actual needs.</p>
+    <p>Select your dog's work type and intensity above for guidance matched to your dog's actual output, then scroll down for the full picture and the FAQ covering the questions working-dog owners ask most.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_working_dog_nutrition() {
+    ob_start(); ?>
+    <p>Working dog nutrition genuinely diverges from typical pet-dog feeding — here's what's worth knowing:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🔥</span>
+        <div>
+          <strong>Fat Fuels Endurance, Not Carbs</strong>
+          <p>Sustained endurance work relies heavily on fat as the primary fuel source — a genuinely different model from human athlete "carb-loading."</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">📊</span>
+        <div>
+          <strong>Protein and Fat Needs Run Well Above Maintenance</strong>
+          <p>Performance formulas commonly hit 30%+ protein and 20%+ fat — standard adult maintenance food falls short of that for real working dogs.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">⚡</span>
+        <div>
+          <strong>Intensity Changes the Math Dramatically</strong>
+          <p>Heavy, daily-intensive training can push calorie needs to 2–3x+ maintenance — a huge gap from light or moderate work levels.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🩺</span>
+        <div>
+          <strong>Generic Calculators Fall Short</strong>
+          <p>Genuinely high-performance dogs need individualized guidance from a vet or veterinary nutritionist — standard calculators underestimate real demand.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_working_dog_nutrition() {
+    return [
+        ['title'=>"Classify Your Dog's Work Type", 'desc'=>"Endurance, power/short-burst, or moderate work — the fueling strategy (especially fat emphasis) genuinely differs between these."],
+        ['title'=>'Assess Actual Training Intensity', 'desc'=>"Light, moderate, or heavy/daily-intensive — this drives calorie needs even more than work type alone."],
+        ['title'=>'Choose a Genuine Performance-Formula Food', 'desc'=>"Look for 30%+ protein and 20%+ fat as a baseline for real working-dog demands, not a standard adult maintenance formula."],
+        ['title'=>'Scale Calories to the Season', 'desc'=>"Peak-season training can mean 2–3x+ typical maintenance calories for heavily-worked dogs — plan food budget and quantity accordingly."],
+        ['title'=>'Prioritize Hydration and Electrolytes at Heavy Intensity', 'desc'=>"These matter more, not less, as work intensity climbs — don't focus on calories alone at the heavy end."],
+        ['title'=>'Loop In a Vet or Veterinary Nutritionist for True Performance Dogs', 'desc'=>"Generic calculators meaningfully underestimate real needs — individualized guidance is worth it for genuinely high-output dogs."],
+    ];
+}
+
+function pz_tips_working_dog_nutrition() {
+    return [
+        ["Don't Default to a Standard Adult Maintenance Food", "Performance formulas running 30%+ protein and 20%+ fat are built for genuine working-dog demands — maintenance food falls short."],
+        ["Lean Into Fat for True Endurance Work", "For sustained endurance activity, fat is the primary fuel source — this is a real, research-backed difference from carb-focused fueling models."],
+        ["Reassess Calories Seasonally, Not Just Once", "Training intensity often shifts by season — a working dog's calorie needs should scale up and down with actual current output."],
+        ["Watch Hydration and Electrolytes at Heavy Intensity", "These become genuinely important alongside calories once training moves into heavy, daily-intensive territory."],
+        ["Get a Veterinary Nutritionist Involved for True Performance Dogs", "For genuinely high-output working dogs, this individualized input catches what generic calculators miss."],
+    ];
+}
+
+function pz_mistakes_working_dog_nutrition() {
+    return [
+        ["❌ Feeding a Working Dog Like a Typical Pet", "Standard maintenance food doesn't come close to the protein, fat, and calorie density genuine working dogs need."],
+        ["❌ Assuming All Work Types Fuel the Same Way", "Endurance work leans heavily on fat as fuel — power/short-burst work has different, less fat-centric demands."],
+        ["❌ Underestimating Heavy-Intensity Calorie Needs", "Some heavily-worked dogs need 2–3x+ typical maintenance calories at peak season — underfeeding here shows up as poor performance and weight loss."],
+        ["❌ Ignoring Hydration and Electrolytes", "These matter more, not less, as intensity increases — focusing on calories alone misses a real piece of heavy-intensity nutrition."],
+        ["❌ Relying Only on a Generic Online Calculator", "Genuinely high-performance dogs' needs are meaningfully underestimated by generic tools — a vet or veterinary nutritionist gives a more accurate picture."],
+    ];
+}
+
+function pz_render_guide_working_dog_nutrition( $tool ) {
+    $icon = $tool['icon'] ?? '🏋️';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Working Dog Nutrition Guide</div>
+          <div class="pz-int-sublabel">High-energy diet planning · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--orange">🔥 Performance-Tuned</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Work Type</label>
+          <select id="pz_wn_type" class="pz-int-select">
+            <option value="endurance">Endurance (sledding, herding, long-distance)</option>
+            <option value="power">Power/short-burst (protection, detection)</option>
+            <option value="moderate">Moderate (hunting, active companion)</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Training Intensity</label>
+          <select id="pz_wn_intensity" class="pz-int-select">
+            <option value="light">Light</option>
+            <option value="moderate">Moderate</option>
+            <option value="heavy">Heavy/Daily intensive</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenWorkingDogNutrition()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Working Dog's Nutrition Plan
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Dog Digestive Health Diet & Foods Guide (dog_digestive_health) ══ */
+
+function pz_hero_quickanswer_dog_digestive_health() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Dietary fiber (soluble and insoluble) supports healthy digestion generally, and probiotics/prebiotics have growing supportive evidence for gut health. A commonly overlooked cause of digestive upset: sudden diet changes — always transition foods gradually over 7–10 days. Occasional mild upset often resolves with a short-term bland diet (plain boiled chicken and white rice, the classic vet-recommended option), but chronic loose stool warrants an actual vet visit rather than continued trial-and-error. Select your current issue above for guidance matched to your dog's situation.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_digestive_health() { ?>
+      <span>🌾 Fiber &amp; probiotic evidence</span>
+      <span>🔄 Gradual-transition guidance</span>
+      <span>🩺 Chronic-issue vet redirect</span>
+<?php }
+
+function pz_methodology_heading_dog_digestive_health() { return "How This Digestive Health Guidance Is Built"; }
+
+function pz_methodology_dog_digestive_health() { ?>
+    <p style="color:#555;margin-bottom:20px">Digestive upset gets treated as one generic problem, when the actual cause and right response differ by situation — occasional upset, chronic issues, gas, or pure prevention each call for something different. This guide also surfaces a genuinely underappreciated point: sudden diet changes are a common cause owners often don't connect to the actual trigger.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🌾</div>
+        <strong>Fiber Supports Healthy Digestion</strong>
+        <p>Both soluble and insoluble dietary fiber genuinely support stool quality and digestive function.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🦠</div>
+        <strong>Probiotics and Prebiotics: Growing Evidence</strong>
+        <p>Supportive research for gut health continues to build, making these a reasonable, evidence-informed addition.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🔄</div>
+        <strong>Sudden Diet Changes Are an Overlooked Cause</strong>
+        <p>Owners often don't connect a recent food switch to new digestive upset — gradual 7–10 day transitions are genuinely preventive.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🩺</div>
+        <strong>Chronic Issues Need a Vet, Not More Guessing</strong>
+        <p>Ongoing loose stool warrants ruling out parasites, intolerance, or IBD — not indefinite trial-and-error diet adjustments.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_digestive_health() {
+    return [
+        ["What can I feed my dog for occasional mild digestive upset?", "A short-term bland diet is the classic, genuinely standard vet recommendation — plain boiled chicken and white rice, fed for a few days. If it doesn't resolve within a few days, or symptoms worsen, that's a signal to see your vet rather than continuing the bland diet indefinitely."],
+        ["My dog has had loose stool for weeks — is diet the fix?", "Not on its own. Chronic, ongoing loose stool warrants an actual vet visit to rule out underlying causes like parasites, food intolerance, or inflammatory bowel disease — this shouldn't be managed by trial-and-error diet adjustments alone."],
+        ["Why does my dog get gassy or bloated?", "This is often diet-related — low-quality fillers, an underlying food intolerance, or simply eating too fast. If eating speed seems to be the cause, a slow-feeder bowl is a genuinely practical, specific fix worth trying."],
+        ["Do probiotics actually help with digestive health?", "There's growing supportive evidence for probiotics and prebiotics helping digestive health in dogs. Dietary fiber — both soluble and insoluble — also genuinely supports healthy digestion and stool quality."],
+        ["What's the best way to switch my dog's food without upsetting their stomach?", "Transition gradually over 7–10 days, mixing increasing proportions of the new food with the old rather than switching all at once. Sudden diet changes are a common cause of digestive upset that owners often don't connect to the actual cause."],
+    ];
+}
+
+function pz_what_is_dog_digestive_health() {
+    ob_start(); ?>
+    <p>The Dog Digestive Health Guide covers what genuinely supports good digestion, and what to do when something's currently off — whether that's occasional upset, chronic issues, gas, or you're just here for preventive good practice. Select your current issue above for guidance matched to your situation.</p>
+    <p>Dietary fiber — both soluble and insoluble — supports healthy digestion and stool quality generally, and probiotics and prebiotics have growing supportive evidence for gut health specifically. A genuinely underappreciated point: sudden diet changes are a common cause of digestive upset that owners often don't connect to the actual cause — transitioning foods gradually over 7–10 days, mixing increasing proportions of new food with old, is a real, actionable way to prevent this whenever you switch foods. Occasional mild upset usually resolves with a short-term bland diet — plain boiled chicken and white rice is the classic, genuinely standard vet recommendation — but persistent issues beyond a few days need vet evaluation rather than continuing the bland diet indefinitely. Chronic, ongoing loose stool is a different situation entirely and warrants an actual vet visit to rule out parasites, food intolerance, or inflammatory bowel disease, rather than continuing to adjust diet indefinitely on your own. Gas or bloating is often diet-related — low-quality fillers, an underlying food intolerance, or eating too fast, for which a slow-feeder bowl is a genuinely practical fix.</p>
+    <p>Select your current issue above for guidance matched to your dog's actual situation, then scroll down for the full picture and the FAQ covering the digestive health questions owners ask most.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_digestive_health() {
+    ob_start(); ?>
+    <p>Digestive health issues get lumped together, but the right response genuinely depends on which situation you're actually in:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🌾</span>
+        <div>
+          <strong>Fiber and Probiotics Genuinely Help</strong>
+          <p>Both soluble/insoluble fiber and probiotics/prebiotics have real supporting evidence for digestive and gut health.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🔄</span>
+        <div>
+          <strong>Sudden Diet Changes Are an Overlooked Trigger</strong>
+          <p>A recent food switch is a common cause of upset owners don't always connect — gradual 7–10 day transitions genuinely prevent this.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🍚</span>
+        <div>
+          <strong>Bland Diet Works for Short-Term Upset Only</strong>
+          <p>Boiled chicken and rice is standard for occasional mild upset — but it's not meant to be a long-term or repeated fix.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🩺</span>
+        <div>
+          <strong>Chronic Issues Need Real Diagnosis</strong>
+          <p>Ongoing loose stool deserves a vet visit to rule out parasites, intolerance, or IBD — not indefinite diet guessing.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_digestive_health() {
+    return [
+        ['title'=>'Identify What You\'re Actually Dealing With', 'desc'=>"Occasional upset, chronic loose stool, gas/bloating, or pure prevention — the right response genuinely differs by situation."],
+        ['title'=>'Try a Short-Term Bland Diet for Mild, Occasional Upset', 'desc'=>"Plain boiled chicken and white rice for a few days is the classic, standard vet-recommended approach."],
+        ['title'=>'Book a Vet Visit for Anything Chronic', 'desc'=>"Ongoing loose stool over weeks needs an actual diagnosis — parasites, intolerance, and IBD are all real possibilities worth ruling out."],
+        ['title'=>'Check if Eating Speed Is Behind Gas or Bloating', 'desc'=>"If your dog eats fast, a slow-feeder bowl is a genuinely practical, specific fix worth trying before assuming it's purely diet-related."],
+        ['title'=>'Add Fiber and Probiotics Thoughtfully', 'desc'=>"Both have real supporting evidence for digestive health — a reasonable addition to an already complete, balanced diet."],
+        ['title'=>'Transition Any Future Food Change Over 7–10 Days', 'desc'=>"Mix increasing proportions of new food with old rather than switching all at once — this alone prevents a lot of avoidable upset."],
+    ];
+}
+
+function pz_tips_dog_digestive_health() {
+    return [
+        ["Always Transition Foods Over 7–10 Days", "Mixing increasing proportions of new food with old prevents the sudden-change upset that owners often don't connect to the real cause."],
+        ["Keep a Bland Diet in Your Back Pocket", "Plain boiled chicken and white rice is the classic, standard short-term fix for occasional mild upset — good to know before you need it."],
+        ["Try a Slow-Feeder Bowl for Fast Eaters", "If gas or bloating seems tied to how quickly your dog eats, this is a genuinely practical, specific fix worth trying first."],
+        ["Don't Manage Chronic Issues With Diet Tweaks Alone", "Ongoing loose stool over weeks deserves an actual vet visit to rule out underlying causes, not continued guessing."],
+        ["Keep Feeding Times and Routine Consistent", "A predictable feeding schedule supports digestion just as much as what's actually in the bowl."],
+    ];
+}
+
+function pz_mistakes_dog_digestive_health() {
+    return [
+        ["❌ Switching Foods All at Once", "Sudden diet changes are a common, underappreciated cause of digestive upset — always transition gradually over 7–10 days instead."],
+        ["❌ Continuing a Bland Diet Indefinitely", "Boiled chicken and rice is a short-term fix — persistent issues beyond a few days need vet evaluation, not an extended bland diet."],
+        ["❌ Managing Chronic Loose Stool With Trial-and-Error Alone", "Ongoing issues warrant an actual vet visit to rule out parasites, intolerance, or IBD rather than continuing to guess at diet changes."],
+        ["❌ Assuming Gas Is Always Just \"Something They Ate\"", "Eating too fast is a common, fixable cause — a slow-feeder bowl addresses this directly when diet alone isn't the issue."],
+        ["❌ Skipping Fiber and Probiotics Entirely", "Both have real supporting evidence for digestive health — leaving them out ignores a genuinely useful, low-risk addition."],
+    ];
+}
+
+function pz_render_guide_dog_digestive_health( $tool ) {
+    $icon = $tool['icon'] ?? '🫀';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Digestive Health Guide</div>
+          <div class="pz-int-sublabel">Diet &amp; foods for a healthy gut · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🔬 Evidence-Based</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Current Issue</label>
+          <select id="pz_dh_issue" class="pz-int-select">
+            <option value="occasional">Occasional mild upset</option>
+            <option value="chronic">Chronic loose stool</option>
+            <option value="gas">Gas or bloating</option>
+            <option value="none">None — preventive interest</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenDigestiveHealth()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Digestive Health Guidance
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Dog Kidney Disease Diet Guide (dog_kidney_disease_diet) ══ */
+
+function pz_hero_quickanswer_dog_kidney_disease_diet() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Kidney-friendly diets center on two things: <strong>restricting phosphorus</strong> (the single most evidence-backed intervention for slowing CKD progression) and <strong>moderate, high-quality protein</strong> — not zero protein, since too little causes muscle wasting. Prescription renal diets are formulated to hit this balance precisely, which is why this is one of the clearest "see your vet, don't DIY" situations in pet nutrition. Select your dog's stage and current diet above for guidance matched to where you are.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_kidney_disease_diet() { ?>
+      <span>🏥 Vet-prescribed diet aware</span>
+      <span>🧂 Phosphorus-focused</span>
+      <span>💧 Hydration guidance included</span>
+<?php }
+
+function pz_methodology_heading_dog_kidney_disease_diet() { return "How Kidney-Friendly Diet Guidance Is Built"; }
+
+function pz_methodology_dog_kidney_disease_diet() { ?>
+    <p style="color:#555;margin-bottom:20px">Chronic kidney disease (CKD) diet management is one of the more precise corners of veterinary nutrition — the phosphorus and protein targets are specific enough that a prescription renal diet, not a home recipe, is genuinely the right tool for the job.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🧂</div>
+        <strong>Phosphorus Restriction</strong>
+        <p>The single most evidence-backed dietary lever for slowing CKD progression — prescription renal diets are formulated around hitting this precisely.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🥩</div>
+        <strong>Moderate, Quality Protein</strong>
+        <p>The goal is reduced quantity with high bioavailability — not zero protein, which causes its own problems like muscle wasting.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🐟</div>
+        <strong>Added Omega-3s</strong>
+        <p>Renal formulas commonly include extra omega-3 fatty acids for their anti-inflammatory effect and potential support for kidney blood flow.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">💧</div>
+        <strong>Hydration Matters More Here</strong>
+        <p>CKD dogs often drink and urinate more, raising real dehydration risk — fresh water access is a genuine part of the management plan.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_kidney_disease_diet() {
+    return [
+        ["Can I make a homemade kidney diet for my dog?", "It's genuinely risky to try without professional formulation. The phosphorus and protein targets for CKD are precise, and getting them wrong in either direction can do real harm — too much phosphorus accelerates kidney damage, too little protein causes muscle wasting. This is one of the clearest cases in pet nutrition where a vet-prescribed prescription renal diet outperforms a home recipe."],
+        ["Why is phosphorus restriction so important for kidney disease?", "Phosphorus restriction is the single most evidence-backed dietary intervention for slowing CKD progression in dogs. Damaged kidneys struggle to clear phosphorus normally, and elevated phosphorus levels are directly linked to faster disease progression — which is why prescription renal diets are formulated specifically around keeping it low."],
+        ["Won't restricting protein make my dog weak?", "Protein restriction for CKD means moderate, high-quality protein — not zero. The goal is reducing the total quantity while keeping bioavailability high, which eases the kidneys' workload without causing the muscle wasting that comes from protein that's too low. This balance is exactly what prescription renal diets are formulated to hit."],
+        ["My dog was just diagnosed — what should I feed him right now?", "Talk to your vet about a prescription renal diet as soon as possible rather than adjusting his current food on your own. In the meantime, make sure he always has access to fresh water, since CKD dogs are prone to dehydration from increased urination."],
+        ["Do kidney-support supplements actually help alongside a renal diet?", "Omega-3 fatty acids are commonly included in renal formulas and have a reasonable evidence base for their anti-inflammatory benefit. Beyond what's already in a proper prescription diet, always check any additional supplement with your vet first — some can interact with kidney medications or add to the phosphorus load you're trying to reduce."],
+    ];
+}
+
+function pz_what_is_dog_kidney_disease_diet() {
+    ob_start(); ?>
+    <p>The Dog Kidney Disease Diet Guide helps owners of a dog with chronic kidney disease (CKD) understand what the diet is actually trying to achieve, so conversations with the vet and the transition to a prescription renal diet make more sense. Select your dog's CKD stage, if known, and current diet above for guidance matched to where you are right now.</p>
+    <p>The two pillars that matter most: restricting phosphorus, which is the most evidence-backed lever for slowing CKD progression, and moderate — not eliminated — high-quality protein, which eases the kidneys' workload without causing muscle wasting. Prescription renal diets (formulated by major veterinary diet brands) are built specifically to hit both targets precisely, which is why this is one of the clearest situations in pet nutrition where a prescription diet genuinely outperforms a home recipe. Fresh water access matters more here too, since CKD dogs often drink and urinate more and carry a real dehydration risk.</p>
+    <p>Select your dog's details above for guidance built around that, then scroll down for the full picture and the FAQ covering the questions dog owners managing CKD ask most.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_kidney_disease_diet() {
+    ob_start(); ?>
+    <p>Kidney disease diet management is precise enough that getting the basics right — or wrong — genuinely changes outcomes:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🧂</span>
+        <div>
+          <strong>Phosphorus Drives Progression</strong>
+          <p>Restricting phosphorus is the most evidence-backed dietary intervention for slowing CKD — it's not a minor detail.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">⚖️</span>
+        <div>
+          <strong>Protein Needs a Precise Balance</strong>
+          <p>Too much adds to kidney workload; too little causes muscle wasting — the target is moderate and high-quality, not zero.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🏥</span>
+        <div>
+          <strong>Prescription Diets Exist for a Reason</strong>
+          <p>Renal formulas are built to hit these precise targets — this is one of the clearest "leave it to the vet" situations in pet nutrition.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">💧</span>
+        <div>
+          <strong>Dehydration Risk Is Real</strong>
+          <p>Increased thirst and urination are common with CKD, making consistent fresh water access a genuine part of management.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_kidney_disease_diet() {
+    return [
+        ['title'=>'Confirm the CKD Stage With Your Vet', 'desc'=>"IRIS staging (a standard veterinary system) helps determine how aggressively diet needs to shift — don't guess at this part."],
+        ['title'=>'Get a Prescription Renal Diet, Not a Home Recipe', 'desc'=>"This is the single highest-impact step — renal formulas are built to hit precise phosphorus and protein targets that are hard to replicate at home."],
+        ['title'=>'Transition Gradually', 'desc'=>"Mix increasing proportions of the new renal food with the old over 7–10 days to avoid GI upset and improve acceptance."],
+        ['title'=>'Keep Fresh Water Always Available', 'desc'=>"CKD dogs often drink and urinate more — consistent access to water reduces real dehydration risk."],
+        ['title'=>'Ask About Omega-3 Support', 'desc'=>"Many renal diets already include added omega-3s; check with your vet before adding any separate supplement to avoid overlap or interactions."],
+        ['title'=>'Recheck Bloodwork on Your Vet\'s Schedule', 'desc'=>"Kidney values guide whether the current diet and stage assessment still fit — this isn't a one-time decision."],
+    ];
+}
+
+function pz_tips_dog_kidney_disease_diet() {
+    return [
+        ["Don't Mix Regular Food Into the Renal Diet Long-Term", "Even small regular amounts can meaningfully raise phosphorus intake — if palatability is a struggle, ask your vet about warming the food or trying a different renal formula rather than blending in regular food."],
+        ["Always Have Fresh Water Available, Even Overnight", "CKD dogs' increased thirst doesn't pause at night — consistent access matters as much as the diet itself."],
+        ["Track Appetite and Weight Between Vet Visits", "Loss of appetite or weight loss on a renal diet is worth flagging early, not waiting for the next scheduled appointment."],
+        ["Ask Before Adding Any Supplement", "Some common supplements can interact with kidney medications or add unwanted phosphorus — check with your vet, even for products marketed as \"kidney support.\""],
+        ["Keep a Simple Log of Bloodwork Results Over Time", "Trends in kidney values matter more than any single reading — a simple log makes it easier to see whether the current plan is working."],
+    ];
+}
+
+function pz_mistakes_dog_kidney_disease_diet() {
+    return [
+        ["❌ Trying to Formulate a Home Renal Diet Without Guidance", "The phosphorus and protein targets are precise enough that getting them wrong in either direction can do real harm — this is a case where DIY genuinely underperforms a prescription diet."],
+        ["❌ Assuming \"Low Protein\" Alone Is the Whole Solution", "Phosphorus restriction matters just as much, if not more, for slowing progression — protein alone isn't the full picture."],
+        ["❌ Restricting Protein to Zero or Near-Zero", "Too little protein causes muscle wasting, which is its own serious problem — the goal is moderate, high-quality protein, not elimination."],
+        ["❌ Skipping Water Access Checks", "Dehydration risk is genuinely elevated with CKD — treating water access as an afterthought misses a real part of management."],
+        ["❌ Switching Foods Abruptly", "A sudden switch to a renal diet risks GI upset and poor acceptance — a gradual 7–10 day transition works far better."],
+    ];
+}
+
+function pz_render_guide_dog_kidney_disease_diet( $tool ) {
+    $icon = $tool['icon'] ?? '🏥';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Kidney Disease Diet Guide</div>
+          <div class="pz-int-sublabel">Phosphorus &amp; protein guidance · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--purple">🧂 Phosphorus-Focused</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">CKD Stage if Known</label>
+          <select id="pz_kd_stage" class="pz-int-select">
+            <option value="early">Early (IRIS Stage 1–2)</option>
+            <option value="advanced">Advanced (IRIS Stage 3–4)</option>
+            <option value="unsure" selected>Not sure / recently diagnosed</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Current Diet</label>
+          <select id="pz_kd_diet" class="pz-int-select">
+            <option value="prescription">Already on a prescription renal diet</option>
+            <option value="regular" selected>Still on regular food</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenKidneyDiseaseDiet()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Kidney Diet Guidance
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Best Joint Supplements for Dogs Guide (dog_joint_supplement) ══ */
+
+function pz_hero_quickanswer_dog_joint_supplement() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Glucosamine/chondroitin has the most research behind it among joint supplements, though the effect is typically modest rather than dramatic. Omega-3 fatty acids have good evidence for reducing joint inflammation. But the single most impactful "joint intervention" for most dogs isn't a supplement at all — it's <strong>keeping your dog at an ideal weight</strong>, since excess weight adds real, direct joint stress. Select your purpose and weight status above for guidance matched to your situation.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_joint_supplement() { ?>
+      <span>🔬 Evidence-graded</span>
+      <span>⚖️ Weight-aware</span>
+      <span>🏷️ NASC seal guidance</span>
+<?php }
+
+function pz_methodology_heading_dog_joint_supplement() { return "How This Joint Supplement Guidance Is Built"; }
+
+function pz_methodology_dog_joint_supplement() { ?>
+    <p style="color:#555;margin-bottom:20px">Joint supplements are heavily marketed, and the evidence behind different products varies a lot. This guide is built to be honest about what has real support, what's modest, and what matters more than any supplement.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🔬</div>
+        <strong>Glucosamine/Chondroitin</strong>
+        <p>The most-researched joint supplement combination — reasonably supportive evidence, though effect sizes are modest, not dramatic.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🐟</div>
+        <strong>Omega-3 Fatty Acids</strong>
+        <p>Good evidence for reducing inflammation relevant to joint comfort, alongside their skin and coat benefits.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">⚖️</div>
+        <strong>Weight Matters More Than Any Supplement</strong>
+        <p>Excess weight adds direct, mechanical joint stress — for an overweight dog, this is usually the highest-impact lever available.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🏥</div>
+        <strong>Supplements Support, Don't Replace, Treatment</strong>
+        <p>For diagnosed arthritis, supplements are complementary to vet-prescribed pain management, not a substitute for it.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_joint_supplement() {
+    return [
+        ["Do joint supplements actually work for dogs?", "Glucosamine/chondroitin has the most research behind it among joint supplements, with reasonably supportive evidence — though the effect is typically modest, not dramatic. Omega-3 fatty acids also have good evidence for reducing joint-relevant inflammation. Manage expectations: these are genuine support, not a cure."],
+        ["What matters more than supplements for my dog's joints?", "Weight management. Excess weight adds direct, mechanical stress to joints, and for an overweight dog, reaching an ideal weight is usually the single highest-impact thing you can do — often more impactful than any supplement choice."],
+        ["My dog was just diagnosed with arthritis — are supplements enough?", "No — supplements are complementary to, not a replacement for, vet-prescribed pain management once arthritis is actually diagnosed. Don't let a supplement routine substitute for proper veterinary treatment; use both together."],
+        ["How do I know if a joint supplement is good quality?", "Pet supplements aren't FDA-regulated for quality and purity the way drugs are, so look for the NASC (National Animal Supplement Council) quality seal — it's a real, meaningful third-party signal that the manufacturer follows quality control standards."],
+        ["Should I start joint supplements early for a large-breed puppy?", "It can be reasonable for genetically predisposed large or giant breeds, but avoiding excessive high-impact exercise — repeated jumping, hard surfaces — during the growth period matters at least as much as any supplement choice."],
+    ];
+}
+
+function pz_what_is_dog_joint_supplement() {
+    ob_start(); ?>
+    <p>The Best Joint Supplements for Dogs Guide gives you an honest, evidence-graded look at what actually helps canine joint health — not just what's heavily marketed. Select your purpose and your dog's current weight status above for guidance matched to your situation.</p>
+    <p>The short version: glucosamine/chondroitin has the most research behind it, though the effect is modest rather than dramatic; omega-3 fatty acids have good evidence for reducing joint-relevant inflammation; and for an overweight dog, weight management itself is usually the single highest-impact intervention available, often outweighing any supplement choice. For a dog with diagnosed arthritis, supplements are complementary to vet-prescribed treatment, not a substitute for it.</p>
+    <p>Select your details above for guidance built around your dog's actual situation, then scroll down for the full picture and the FAQ covering the questions dog owners ask most about joint supplements.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_joint_supplement() {
+    ob_start(); ?>
+    <p>Joint supplements are a crowded, heavily-marketed category — here's what's actually worth knowing:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🔬</span>
+        <div>
+          <strong>Evidence Varies by Ingredient</strong>
+          <p>Glucosamine/chondroitin and omega-3s have real supporting evidence — many other marketed ingredients don't have nearly as much behind them.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">⚖️</span>
+        <div>
+          <strong>Weight Beats Supplements</strong>
+          <p>For an overweight dog, reaching an ideal weight typically has more impact on joint comfort than any supplement.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🏥</span>
+        <div>
+          <strong>Not a Substitute for Treatment</strong>
+          <p>Diagnosed arthritis needs vet-prescribed management — supplements support that plan, they don't replace it.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🏷️</span>
+        <div>
+          <strong>Quality Isn't Guaranteed</strong>
+          <p>Supplements aren't FDA-regulated like drugs — the NASC seal is a genuine way to check for real quality control.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_joint_supplement() {
+    return [
+        ['title'=>'Identify Your Actual Goal', 'desc'=>"Prevention, managing diagnosed arthritis, and general senior support call for slightly different priorities — start by being clear on which applies."],
+        ['title'=>'Check Your Dog\'s Weight Status First', 'desc'=>"If your dog is overweight, this is likely your highest-impact lever — bigger than any supplement decision."],
+        ['title'=>'Choose an Evidence-Supported Ingredient', 'desc'=>"Glucosamine/chondroitin and omega-3 fatty acids have the most research behind them — start there rather than newer, less-studied ingredients."],
+        ['title'=>'Look for the NASC Quality Seal', 'desc'=>"Since supplements aren't FDA-regulated for quality, this third-party seal is a real signal of manufacturing standards."],
+        ['title'=>'Set Realistic Expectations', 'desc'=>"Effect sizes for joint supplements are typically modest — expect gradual support, not a dramatic transformation."],
+        ['title'=>'Loop In Your Vet, Especially for Diagnosed Arthritis', 'desc'=>"Supplements work best as part of a full plan that includes vet-prescribed treatment where a diagnosis exists."],
+    ];
+}
+
+function pz_tips_dog_joint_supplement() {
+    return [
+        ["Prioritize Weight Management Alongside Any Supplement", "If your dog carries extra weight, addressing that will likely do more for joint comfort than the supplement itself — pursue both together."],
+        ["Give Supplements Time to Show an Effect", "Glucosamine/chondroitin and omega-3s typically take several weeks of consistent use before any benefit becomes noticeable — don't judge them after a few days."],
+        ["Check for the NASC Seal Before Buying", "It's a genuine, meaningful quality signal in a category that isn't otherwise FDA-regulated for purity and manufacturing standards."],
+        ["Don't Stack Supplements Without Checking Overlap", "Some joint formulas already combine glucosamine, chondroitin, and omega-3s — adding separate products on top can lead to unnecessary duplication or excess dosing."],
+        ["Always Check With Your Vet if Your Dog Takes Other Medications", "Interactions are possible, and your vet can also confirm the supplement fits appropriately alongside any diagnosed condition's treatment plan."],
+    ];
+}
+
+function pz_mistakes_dog_joint_supplement() {
+    return [
+        ["❌ Expecting a Dramatic Transformation", "Joint supplement effects are typically modest — treating them as a miracle fix sets up disappointment and can mask the need for actual veterinary treatment."],
+        ["❌ Ignoring Weight as the Bigger Lever", "For an overweight dog, skipping weight management while focusing only on supplements misses the highest-impact intervention available."],
+        ["❌ Letting Supplements Replace Vet-Prescribed Treatment", "For diagnosed arthritis, supplements are complementary — relying on them alone instead of proper pain management undertreats a real condition."],
+        ["❌ Buying Based on Marketing Alone", "Not every ingredient on a flashy label has real evidence behind it — stick to glucosamine/chondroitin and omega-3s as the best-supported starting points."],
+        ["❌ Skipping the NASC Seal Check", "Since pet supplements aren't FDA-regulated for quality, buying from a brand without any third-party quality signal is a real, avoidable risk."],
+    ];
+}
+
+function pz_render_guide_dog_joint_supplement( $tool ) {
+    $icon = $tool['icon'] ?? '💊';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Joint Supplements Guide</div>
+          <div class="pz-int-sublabel">Evidence-graded picks · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🔬 Evidence-Graded</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Purpose</label>
+          <select id="pz_js_purpose" class="pz-int-select">
+            <option value="prevention">Prevention (young large/giant breed)</option>
+            <option value="arthritis">Managing diagnosed arthritis</option>
+            <option value="senior" selected>General senior joint support</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Current Weight Status</label>
+          <select id="pz_js_weight" class="pz-int-select">
+            <option value="ideal" selected>At ideal weight</option>
+            <option value="overweight">Overweight</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenJointSupplement()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Joint Supplement Guidance
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ When to Switch Puppy to Adult Dog Food (puppy_adult_transition) ══ */
+
+function pz_hero_quickanswer_puppy_adult_transition() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Transition timing depends on adult size: small breeds around <strong>9–12 months</strong>, medium around <strong>12 months</strong>, large around <strong>12–18 months</strong>, and giant breeds latest at <strong>18–24 months</strong>, since their growth plates close later. A visible growth plateau is an equally valid signal as hitting the typical age window. Enter your dog's current age and estimated adult size above for a specific answer.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_puppy_adult_transition() { ?>
+      <span>📏 Size-specific timing</span>
+      <span>📈 Growth-plateau aware</span>
+      <span>🔄 Gradual-switch guidance</span>
+<?php }
+
+function pz_methodology_heading_puppy_adult_transition() { return "How This Transition Timing Is Built"; }
+
+function pz_methodology_puppy_adult_transition() { ?>
+    <p style="color:#555;margin-bottom:20px">The right time to switch from puppy to adult food isn't one universal age — it tracks how long a breed size actually takes to finish growing, since puppy food's higher calorie and calcium density is meant to support growth that's still happening.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">📏</div>
+        <strong>Size Determines Timing</strong>
+        <p>Small breeds mature fastest; giant breeds take the longest, since their growth plates close much later.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">📈</div>
+        <strong>Growth Plateau Is a Valid Signal Too</strong>
+        <p>Age is a helpful default, but a visibly stabilized weight and height is an equally legitimate trigger to switch.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🔄</div>
+        <strong>The Switch Itself Should Be Gradual</strong>
+        <p>A 7–10 day transition mixing increasing adult food proportions avoids the GI upset a sudden switch can cause.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🩺</div>
+        <strong>Your Vet Confirms It</strong>
+        <p>Routine checkups are where growth completion actually gets confirmed — this guide gives you a starting estimate, not a substitute for that.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_puppy_adult_transition() {
+    return [
+        ["When should I switch my puppy to adult food?", "It depends on your dog's estimated adult size: small breeds around 9–12 months, medium breeds around 12 months, large breeds around 12–18 months, and giant breeds latest at 18–24 months. Larger breeds take longer because their growth plates close later, and there's no benefit to switching before growth is substantially complete."],
+        ["What happens if I switch too early?", "Switching to lower-calorie, lower-calcium adult food before growth is complete can shortchange a still-growing puppy's needs, especially for larger breeds with a longer growth window. When in doubt, it's generally safer to wait a bit longer than to switch too soon."],
+        ["What happens if I switch too late?", "Continuing puppy food well past when growth has actually finished risks excess calorie intake and unwanted weight gain, since puppy formulas are calorie-dense to support growth that's no longer happening."],
+        ["How do I know if my dog's growth has actually plateaued?", "Watch for weight and height stabilizing over a few consecutive weigh-ins, and ask your vet to confirm at a routine checkup — a visible plateau is just as valid a signal as hitting the typical age window for your dog's size."],
+        ["How should I actually make the switch?", "Gradually, over 7–10 days — mix in increasing proportions of the adult food while decreasing the puppy food, the same principle as any dog food transition. This avoids the GI upset a sudden switch can cause."],
+    ];
+}
+
+function pz_what_is_puppy_adult_transition() {
+    ob_start(); ?>
+    <p>The Puppy to Adult Food Transition Guide tells you roughly when to make the switch based on your dog's estimated adult size, since timing varies more than most owners expect. Enter your dog's current age in months and estimated adult size above for a specific answer.</p>
+    <p>Small breeds mature fastest and can often transition around 9–12 months; medium breeds around 12 months; large breeds around 12–18 months; and giant breeds latest, often 18–24 months, since their growth plates close much later. There's no benefit to rushing the switch before growth is substantially complete, but there's also no benefit to delaying it well past that point, since puppy food's higher calorie density can lead to excess weight gain once growth has actually finished. A visible growth plateau — weight and height stabilizing — is just as valid a signal as hitting the typical age window, and your vet can confirm it at a routine checkup.</p>
+    <p>Enter your dog's details above for a specific estimate, then scroll down for the full picture and the FAQ covering the questions owners ask most about this transition.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_puppy_adult_transition() {
+    ob_start(); ?>
+    <p>Getting the timing right in either direction genuinely matters:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">📏</span>
+        <div>
+          <strong>One Age Doesn't Fit All Sizes</strong>
+          <p>A giant breed puppy is nowhere near done growing at the age a small breed puppy already has finished.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">⚠️</span>
+        <div>
+          <strong>Too Early Shortchanges Growth</strong>
+          <p>Adult food's lower calorie and calcium density is meant for a dog that's done growing — not one still in progress.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">⚖️</span>
+        <div>
+          <strong>Too Late Risks Excess Weight</strong>
+          <p>Puppy food's calorie density becomes a liability, not a benefit, once actual growth has finished.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🔄</span>
+        <div>
+          <strong>The Switch Itself Needs Care</strong>
+          <p>A gradual transition avoids GI upset — this matters regardless of exactly when you make the switch.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_puppy_adult_transition() {
+    return [
+        ['title'=>'Estimate Your Dog\'s Adult Size', 'desc'=>"Breed and parent size (if known) are the best guide — your vet can help estimate this if you're unsure."],
+        ['title'=>'Compare Current Age to the Size-Appropriate Window', 'desc'=>"Small breeds transition earliest, giant breeds latest — use the typical range for your dog's size as your starting point."],
+        ['title'=>'Watch for a Growth Plateau', 'desc'=>"Stabilizing weight and height over a few consecutive check-ins is just as valid a trigger as hitting the typical age."],
+        ['title'=>'Confirm With Your Vet at a Routine Visit', 'desc'=>"They can assess growth completion directly rather than relying on age estimates alone."],
+        ['title'=>'Choose an Appropriate Adult Formula', 'desc'=>"Match it to your dog's size and activity level, not just any adult food on the shelf."],
+        ['title'=>'Transition Gradually Over 7–10 Days', 'desc'=>"Mix in increasing proportions of the new adult food to avoid GI upset from a sudden switch."],
+    ];
+}
+
+function pz_tips_puppy_adult_transition() {
+    return [
+        ["When in Doubt, Lean Slightly Later Rather Than Earlier", "There's more downside to switching before growth is substantially complete than to waiting a bit longer, especially for larger breeds."],
+        ["Track Weight Monthly During the Likely Transition Window", "This makes a genuine growth plateau easy to spot rather than guessing based on age alone."],
+        ["Match the Adult Formula to Your Dog's Size", "Large and giant breed adult formulas are often calibrated differently than small breed ones — don't just grab any adult bag."],
+        ["Keep the Transition Gradual Even If You're Running Low on Puppy Food", "A rushed switch risks GI upset — it's worth buying a small bag of puppy food to bridge the gap rather than switching abruptly."],
+        ["Ask Your Vet at Every Routine Visit During the Growth Period", "It's an easy, no-extra-cost way to get a direct assessment rather than relying on general age ranges alone."],
+    ];
+}
+
+function pz_mistakes_puppy_adult_transition() {
+    return [
+        ["❌ Switching Based on a Generic \"12 Months\" Rule for Every Dog", "This ignores real size-based differences — a giant breed at 12 months is often still well into its growth period."],
+        ["❌ Switching Abruptly", "A sudden food change risks GI upset regardless of timing — always transition gradually over 7–10 days."],
+        ["❌ Continuing Puppy Food Well Past Growth Completion", "This risks excess calorie intake and unwanted weight gain once the higher calorie density is no longer needed."],
+        ["❌ Ignoring a Clear Growth Plateau Because \"They're Not Old Enough Yet\"", "A genuine plateau is a valid signal on its own — it doesn't need to wait for a specific age to count."],
+        ["❌ Guessing Adult Size Without Any Real Basis", "If you're unsure about your dog's likely adult size, ask your vet rather than guessing — it directly affects the timing estimate."],
+    ];
+}
+
+function pz_render_guide_puppy_adult_transition( $tool ) {
+    $icon = $tool['icon'] ?? '🔄';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Puppy to Adult Food Transition Guide</div>
+          <div class="pz-int-sublabel">Size-specific timing · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">📏 Size-Specific</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Current Age (months)</label>
+          <input type="number" id="pz_pat_age" class="pz-int-input" placeholder="e.g. 10" min="1" max="36" step="1">
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Estimated Adult Size</label>
+          <select id="pz_pat_size" class="pz-int-select">
+            <option value="small">Small (under 25 lbs)</option>
+            <option value="medium" selected>Medium (25–60 lbs)</option>
+            <option value="large">Large (60–100 lbs)</option>
+            <option value="giant">Giant (100+ lbs)</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenPuppyAdultTransition()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Transition Timing
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
 function pz_get_checker_questions($tool) {
     $a = $tool['animal'] ?? 'pet';
 

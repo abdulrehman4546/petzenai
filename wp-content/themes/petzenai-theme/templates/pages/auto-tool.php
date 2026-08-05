@@ -3837,6 +3837,1294 @@ function pzGenCushingDisease() {
   }, 650);
 }
 
+// ── Dog Daily Calorie Calculator
+function pzCalcDogCalorie() {
+  var weightRaw = parseFloat(document.getElementById('pz_cal_weight')?.value) || 0;
+  var stage = document.getElementById('pz_cal_stage')?.value || 'adult';
+  var neuter = document.getElementById('pz_cal_neuter')?.value || 'neutered';
+  var activity = document.getElementById('pz_cal_activity')?.value || 'moderate';
+  var result = document.getElementById('pz-calc-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-calc-result', "Calculating your dog's daily calorie target…");
+  setTimeout(function() {
+
+  if (!weightRaw || weightRaw <= 0) {
+    result.style.display = 'block';
+    result.innerHTML = '<div class="pz-result-warning" style="border-radius:12px;padding:16px;text-align:center"><strong>⚠️ Please enter your dog\'s weight.</strong></div>';
+    return;
+  }
+
+  var weightKg = pzUnit === 'kg' ? weightRaw : weightRaw * 0.453592;
+  var rer = 70 * Math.pow(weightKg, 0.75);
+
+  var mult, stageLabel;
+  if (stage === 'puppy') {
+    stageLabel = 'Puppy';
+    mult = activity === 'low' ? 2.2 : (activity === 'high' ? 2.8 : 2.5);
+  } else if (stage === 'senior') {
+    stageLabel = 'Senior';
+    mult = activity === 'low' ? 1.2 : (activity === 'high' ? 1.4 : 1.3);
+  } else {
+    stageLabel = 'Adult';
+    if (activity === 'high') {
+      mult = 2.2;
+    } else if (neuter === 'intact') {
+      mult = 1.8;
+    } else {
+      mult = activity === 'low' ? 1.4 : 1.6;
+    }
+  }
+
+  var daily = rer * mult;
+  var low = Math.round(daily * 0.9);
+  var high = Math.round(daily * 1.1);
+  var mid = Math.round(daily);
+  var treatBudget = Math.round(daily * 0.1);
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="pz-result-success" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:linear-gradient(135deg,#1B5E20,#2E7D32);color:#fff;padding:28px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.7;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">✅ Daily Calorie Target</div>'
+    + '<div class="pz-result-number">' + low + '–' + high + '</div>'
+    + '<div class="pz-result-unit">calories per day (kcal)</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Base RER</div><div class="pz-result-cell-val">' + Math.round(rer) + ' kcal</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Life Stage</div><div class="pz-result-cell-val" style="font-size:15px">' + stageLabel + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Point Estimate</div><div class="pz-result-cell-val">~' + mid + ' kcal</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>📋 What This Means</h4><ul>'
+    + "<li>This target is built from your dog's Resting Energy Requirement (RER = 70 × weight in kg^0.75), shown above, then multiplied by a life-stage and activity factor.</li>"
+    + '<li>Treats should stay under about 10% of this total — roughly <strong>' + treatBudget + ' kcal/day</strong>. Try our Dog Daily Treat Limit Calculator to turn that into an actual treat count.</li>'
+    + "<li>Recheck this calculator every few months or after any change in your dog's weight, activity, or spay/neuter status.</li>"
+    + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+  }, 650);
+}
+
+// ── Dog Weight Loss Plan Calculator
+function pzCalcDogWeightLoss() {
+  var current = parseFloat(document.getElementById('pz_wl_current')?.value) || 0;
+  var target = parseFloat(document.getElementById('pz_wl_target')?.value) || 0;
+  var activity = document.getElementById('pz_wl_activity')?.value || 'moderate';
+  var result = document.getElementById('pz-calc-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-calc-result', "Building your dog's weight loss plan…");
+  setTimeout(function() {
+
+  if (!current || current <= 0 || !target || target <= 0) {
+    result.style.display = 'block';
+    result.innerHTML = '<div class="pz-result-warning" style="border-radius:12px;padding:16px;text-align:center"><strong>⚠️ Please enter both your dog\'s current and target weight.</strong></div>';
+    return;
+  }
+
+  if (target >= current) {
+    result.style.display = 'block';
+    result.innerHTML =
+      '<div class="pz-result-warning" style="border-radius:16px;overflow:hidden">'
+      + '<div class="pz-result-hero" style="background:linear-gradient(135deg,#E65100,#FF9800);color:#fff;padding:28px">'
+      + '<div style="font-size:13px;font-weight:700;opacity:.7;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">ℹ️ No Weight Loss Needed</div>'
+      + '<div style="font-size:20px;font-weight:900">Target Is At or Above Current Weight</div>'
+      + '</div>'
+      + '<div class="pz-result-tips"><h4>📋 What To Do Instead</h4><ul>'
+      + "<li>This tool is built specifically for dogs who need to lose weight — your target should be below your dog's current weight.</li>"
+      + '<li>If you\'re looking for a daily maintenance calorie target instead, try our Dog Daily Calorie Calculator.</li>'
+      + '</ul></div>'
+      + '</div>';
+    return;
+  }
+
+  var toLose = current - target;
+  var weeksFast = Math.ceil(toLose / (current * 0.02));
+  var weeksPoint = Math.ceil(toLose / (current * 0.015));
+  var weeksSlow = Math.ceil(toLose / (current * 0.01));
+  var weeklyLossLbs = Math.round(current * 0.015 * 100) / 100;
+
+  var weightKg = current * 0.453592;
+  var rer = 70 * Math.pow(weightKg, 0.75);
+  var dailyCal = Math.round(rer * 1.0);
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="pz-result-success" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:linear-gradient(135deg,#1B5E20,#2E7D32);color:#fff;padding:28px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.7;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">🎯 Estimated Time to Goal</div>'
+    + '<div class="pz-result-number">~' + weeksPoint + '</div>'
+    + '<div class="pz-result-unit">weeks (range ' + weeksFast + '–' + weeksSlow + ' weeks depending on pace)</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Daily Calorie Target</div><div class="pz-result-cell-val">' + dailyCal + ' kcal</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Weekly Loss Rate</div><div class="pz-result-cell-val">~' + weeklyLossLbs + ' lbs/wk</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Total To Lose</div><div class="pz-result-cell-val">' + (Math.round(toLose * 10) / 10) + ' lbs</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>📋 Notes On This Plan</h4><ul>'
+    + "<li>The daily calorie target is calculated from your dog's <strong>current</strong> weight (not the target), deliberately, to avoid an overly aggressive calorie cut.</li>"
+    + '<li>A safe weight-loss pace is roughly 1–2% of body weight per week — this plan uses 1.5% as the point estimate.</li>'
+    + '<li>Re-weigh your dog every 2 weeks. If progress stalls for 2+ rechecks in a row, check in with your vet to adjust the plan.</li>'
+    + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+  }, 650);
+}
+
+// ── Dog Protein Requirements Calculator
+function pzCalcDogProtein() {
+  var weightRaw = parseFloat(document.getElementById('pz_pr_weight')?.value) || 0;
+  var stage = document.getElementById('pz_pr_stage')?.value || 'adult';
+  var diet = document.getElementById('pz_pr_diet')?.value || 'commercial';
+  var result = document.getElementById('pz-calc-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-calc-result', "Estimating your dog's daily protein needs…");
+  setTimeout(function() {
+
+  if (!weightRaw || weightRaw <= 0) {
+    result.style.display = 'block';
+    result.innerHTML = '<div class="pz-result-warning" style="border-radius:12px;padding:16px;text-align:center"><strong>⚠️ Please enter your dog\'s weight.</strong></div>';
+    return;
+  }
+
+  var weightKg = weightRaw * 0.453592;
+  var factors = {puppy:5.2, adult:4.5, senior:4.8, active:6.0};
+  var aafco = {puppy:'22.5% (AAFCO growth minimum)', adult:'18% (AAFCO adult maintenance minimum)', senior:'18%+ (no routine restriction advised)', active:'25–30%+ (typical for working dogs)'};
+  var stageLabels = {puppy:'Puppy (Growth)', adult:'Adult (Maintenance)', senior:'Senior', active:'Active/Working Dog'};
+  var factor = factors[stage] || factors.adult;
+  var grams = weightKg * factor;
+  var low = Math.round(grams * 0.9);
+  var high = Math.round(grams * 1.15);
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="pz-result-success" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:linear-gradient(135deg,#1B5E20,#2E7D32);color:#fff;padding:28px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.7;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">💪 Approximate Daily Protein Target</div>'
+    + '<div class="pz-result-number">' + low + '–' + high + '</div>'
+    + '<div class="pz-result-unit">grams of protein per day</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">AAFCO Reference</div><div class="pz-result-cell-val" style="font-size:13px">' + aafco[stage] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Life Stage</div><div class="pz-result-cell-val" style="font-size:15px">' + stageLabels[stage] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Body Weight</div><div class="pz-result-cell-val">' + weightRaw + ' lbs</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>📋 What This Means</h4><ul>'
+    + (diet === 'homemade'
+        ? "<li>Since you're feeding homemade or raw, hitting this gram target consistently matters — consider running your recipe past a board-certified veterinary nutritionist to confirm it's complete and balanced.</li>"
+        : "<li>Complete-and-balanced commercial dog foods are already formulated to meet these needs — this estimate is mainly useful for double-checking a food label's guaranteed analysis against your dog's size.</li>")
+    + "<li>These figures scale AAFCO's minimum protein guidelines to your dog's body weight — they're a reasonable baseline, not a hard ceiling.</li>"
+    + '<li>If your vet has diagnosed kidney disease, protein needs change significantly — see our Dog Kidney Disease Diet Guide instead of using this general calculator.</li>'
+    + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+  }, 650);
+}
+
+// ── Dog Water Intake Calculator
+function pzCalcDogHydration() {
+  var weightRaw = parseFloat(document.getElementById('pz_hy_weight')?.value) || 0;
+  var diet = document.getElementById('pz_hy_diet')?.value || 'dry';
+  var climate = document.getElementById('pz_hy_climate')?.value || 'normal';
+  var result = document.getElementById('pz-calc-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-calc-result', "Estimating your dog's daily water needs…");
+  setTimeout(function() {
+
+  if (!weightRaw || weightRaw <= 0) {
+    result.style.display = 'block';
+    result.innerHTML = '<div class="pz-result-warning" style="border-radius:12px;padding:16px;text-align:center"><strong>⚠️ Please enter your dog\'s weight.</strong></div>';
+    return;
+  }
+
+  var dietFactor = {dry:1.0, wet:0.75, mixed:0.875}[diet];
+  if (!dietFactor) dietFactor = 1.0;
+  var climateFactor = {normal:1.0, hot_active:1.25}[climate];
+  if (!climateFactor) climateFactor = 1.0;
+  var dietLabels = {dry:'Dry Kibble', wet:'Wet/Canned Food', mixed:'Mixed Dry & Wet'};
+  var climateLabels = {normal:'Normal Activity, Mild Climate', hot_active:'Hot Weather / High Activity'};
+
+  var ozPerLb = 1.0 * dietFactor * climateFactor;
+  var totalOz = weightRaw * ozPerLb;
+  var ozLow = Math.round(totalOz * 0.9 * 10) / 10;
+  var ozHigh = Math.round(totalOz * 1.1 * 10) / 10;
+  var mlLow = Math.round(ozLow * 29.5735);
+  var mlHigh = Math.round(ozHigh * 29.5735);
+  var lLow = Math.round((mlLow / 1000) * 10) / 10;
+  var lHigh = Math.round((mlHigh / 1000) * 10) / 10;
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="pz-result-success" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:linear-gradient(135deg,#0277BD,#0288D1);color:#fff;padding:28px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.7;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">💧 Daily Water Intake</div>'
+    + '<div class="pz-result-number">' + ozLow + '–' + ozHigh + '</div>'
+    + '<div class="pz-result-unit">fluid oz per day (roughly ' + lLow + '–' + lHigh + ' L / ' + mlLow + '–' + mlHigh + ' ml)</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Diet Type</div><div class="pz-result-cell-val" style="font-size:14px">' + dietLabels[diet] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Conditions</div><div class="pz-result-cell-val" style="font-size:13px">' + climateLabels[climate] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Body Weight</div><div class="pz-result-cell-val">' + weightRaw + ' lbs</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>📋 Notes &amp; Warning Signs</h4><ul>'
+    + "<li>This is roughly how much water bowl consumption to expect — dogs on wet or mixed food get meaningful hydration from their meals, so they'll drink less from the bowl.</li>"
+    + '<li>Pregnant or nursing dogs need meaningfully more water than this baseline — check with your vet for a nursing-specific estimate.</li>'
+    + "<li>Dehydration warning signs worth a vet call: dry or tacky gums, skin that stays 'tented' when gently pinched, and unusual lethargy.</li>"
+    + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+  }, 650);
+}
+
+// ── Dog Daily Treat Limit Calculator
+function pzCalcDogTreat() {
+  var weightRaw = parseFloat(document.getElementById('pz_tr_weight')?.value) || 0;
+  var activity = document.getElementById('pz_tr_activity')?.value || 'moderate';
+  var size = document.getElementById('pz_tr_size')?.value || 'medium';
+  var result = document.getElementById('pz-calc-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-calc-result', "Working out your dog's daily treat budget…");
+  setTimeout(function() {
+
+  if (!weightRaw || weightRaw <= 0) {
+    result.style.display = 'block';
+    result.innerHTML = '<div class="pz-result-warning" style="border-radius:12px;padding:16px;text-align:center"><strong>⚠️ Please enter your dog\'s weight.</strong></div>';
+    return;
+  }
+
+  var weightKg = weightRaw * 0.453592;
+  var rer = 70 * Math.pow(weightKg, 0.75);
+  var mults = {low:1.4, moderate:1.6, high:2.2};
+  var dailyCal = rer * (mults[activity] || 1.6);
+  var treatBudget = Math.round(dailyCal * 0.10);
+  var calPerTreat = {small:4, medium:25, large:75}[size];
+  if (!calPerTreat) calPerTreat = 25;
+  var sizeLabels = {small:'Small training treats (~3–5 cal each)', medium:'Medium biscuits (~20–30 cal each)', large:'Large treats/chews (~50–100+ cal each)'};
+  var maxTreats = Math.floor(treatBudget / calPerTreat);
+  if (maxTreats < 1) maxTreats = 1;
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="pz-result-success" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:linear-gradient(135deg,#6D4C41,#8D6E63);color:#fff;padding:28px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.7;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">🦴 Daily Treat Budget</div>'
+    + '<div class="pz-result-number">' + treatBudget + '</div>'
+    + '<div class="pz-result-unit">calories/day (about 10% of daily intake)</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Max Treats/Day</div><div class="pz-result-cell-val">~' + maxTreats + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Est. Daily Calories</div><div class="pz-result-cell-val">' + Math.round(dailyCal) + ' kcal</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Treat Size</div><div class="pz-result-cell-val" style="font-size:12px">' + sizeLabels[size] + '</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>📋 Notes</h4><ul>'
+    + "<li>Vets widely recommend keeping treats under 10% of a dog's total daily calories, with the remaining 90% coming from a complete-and-balanced main diet.</li>"
+    + '<li>Training with lots of repetitions? Break treats into smaller pieces, or use a portion of your dog\'s regular kibble as training rewards to stay within budget.</li>'
+    + "<li>This max-treat count is approximate — bigger treats within a size category will use up the budget faster, so check the calorie count on the package when you can.</li>"
+    + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+  }, 650);
+}
+
+
+// ── Puppy Feeding Guide
+function pzGenPuppyFeeding() {
+  var age = document.getElementById('pz_pf_age')?.value || '8to12wk';
+  var size = document.getElementById('pz_pf_size')?.value || 'medium';
+  var result = document.getElementById('pz-guide-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-guide-result', "Building your puppy's feeding schedule…");
+  setTimeout(function() {
+
+  var ageLabels = {'8to12wk': '8–12 weeks', '3to6mo': '3–6 months', '6to12mo': '6–12 months', '12moplus': '12+ months'};
+  var sizeLabels = {small: 'Small (under 25 lbs)', medium: 'Medium (25–60 lbs)', large: 'Large (60–100 lbs)', giant: 'Giant (100+ lbs)'};
+  var isBig = (size === 'large' || size === 'giant');
+
+  var meals, heroTitle, tips = [];
+
+  if (age === '8to12wk') {
+    meals = 4;
+    heroTitle = '4 Meals a Day';
+    tips.push('At 8–12 weeks, 4 meals a day supports your puppy\'s fast metabolism and small stomach capacity.');
+  } else if (age === '3to6mo') {
+    meals = 3;
+    heroTitle = '3 Meals a Day';
+    tips.push('At 3–6 months, most puppies are ready to drop from 4 meals a day to 3.');
+  } else if (age === '6to12mo') {
+    meals = 2;
+    heroTitle = '2 Meals a Day';
+    tips.push('At 6–12 months, 2 meals a day is the standard recommendation for nearly all puppies, regardless of eventual size.');
+  } else {
+    if (isBig) {
+      meals = 2;
+      heroTitle = '2 Meals a Day — Stay on Puppy Food';
+      tips.push('Large and giant breeds often stay on puppy food and 2 meals a day well past 12 months.');
+      tips.push('Plan to transition to adult food around 18–24 months, not before — growth plates close later in large and giant breeds, and rapid early growth is itself a joint-health risk factor, so there is no benefit to rushing the switch.');
+    } else {
+      meals = '1–2';
+      heroTitle = '1–2 Meals a Day';
+      tips.push('Small and medium breeds can typically transition to 1–2 meals a day around now, along with moving toward adult food.');
+    }
+  }
+
+  tips.push("Portion amount should follow your specific puppy food bag's calorie guidance for your puppy's current weight — not a generic number, since calorie density varies a lot by brand.");
+  tips.push('Your vet checks body condition at every puppy visit — this is the earliest and most reliable way to catch over- or under-feeding before it becomes a pattern.');
+
+  var wrapClass = 'pz-result-success';
+  var heroColor = 'linear-gradient(135deg,#1B5E20,#2E7D32)';
+  var heroIcon = '🍼';
+
+  var listHtml = '';
+  tips.forEach(function(t){ listHtml += '<li>' + t + '</li>'; });
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="' + wrapClass + '" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:' + heroColor + ';color:#fff;padding:28px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.7;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">' + heroIcon + ' Recommended Meal Frequency</div>'
+    + '<div class="pz-result-number">' + meals + '</div>'
+    + '<div class="pz-result-unit">meals per day</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Age</div><div class="pz-result-cell-val" style="font-size:13px">' + ageLabels[age] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Est. Adult Size</div><div class="pz-result-cell-val" style="font-size:13px">' + sizeLabels[size] + '</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>🍼 ' + heroTitle + '</h4><ul>' + listHtml + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+
+  }, 650);
+}
+
+// ── Raw Diet for Dogs Guide
+function pzGenRawDiet() {
+  var reason = document.getElementById('pz_rd_reason')?.value || 'general_health';
+  var prep = document.getElementById('pz_rd_prep')?.value || 'commercial';
+  var result = document.getElementById('pz-guide-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-guide-result', 'Weighing the raw diet evidence for your situation…');
+  setTimeout(function() {
+
+  var reasonLabels = {general_health: 'General health/coat', allergies: 'Suspected food allergies', picky_eater: 'Picky eater'};
+  var prepLabels = {commercial: 'Commercial ready-to-feed raw', diy: 'DIY prep from scratch'};
+
+  var tips = [];
+  tips.push('Owner-reported benefits like coat and energy exist anecdotally, but the controlled veterinary nutrition evidence behind them is genuinely mixed, not settled.');
+  tips.push('Bacterial contamination — Salmonella, E. coli, Listeria — is a real handling and zoonotic risk with raw meat, especially relevant if anyone in the household is immunocompromised, very young, or elderly.');
+  tips.push('Any raw diet has to be complete-and-balanced just like any other diet — calcium:phosphorus ratio, taurine, and specific vitamins are real deficiency risks if it is not properly formulated.');
+
+  if (prep === 'commercial') {
+    tips.push('Reputable commercial ready-to-feed raw brands formulate to AAFCO standards, which makes this generally the safer starting point compared to DIY.');
+  } else {
+    tips.push("DIY \"meat and bones\" without a properly formulated recipe risks real deficiencies — work with a board-certified veterinary nutritionist for a properly formulated recipe rather than following a random recipe found online.");
+  }
+
+  if (reason === 'allergies') {
+    tips.push('Raw is not inherently hypoallergenic just because it is raw. A proper elimination diet trial — ideally vet-guided, often using a novel protein or a hydrolyzed prescription diet — is the actual diagnostic gold standard for food allergies.');
+  }
+
+  var wrapClass = (prep === 'diy') ? 'pz-result-warning' : 'pz-result-success';
+  var heroColor = (prep === 'diy') ? 'linear-gradient(135deg,#E65100,#FF9800)' : 'linear-gradient(135deg,#1B5E20,#2E7D32)';
+  var heroIcon = (prep === 'diy') ? '⚠️' : '🥩';
+  var heroTitle = (prep === 'diy') ? 'DIY Raw Needs a Formulated Recipe' : 'Commercial Raw: A Reasonable Starting Point';
+
+  var listHtml = '';
+  tips.forEach(function(t){ listHtml += '<li>' + t + '</li>'; });
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="' + wrapClass + '" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:' + heroColor + ';color:#fff;padding:24px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">' + heroIcon + ' ' + heroTitle + '</div>'
+    + '<div style="font-size:15px;opacity:.9">' + reasonLabels[reason] + ' · ' + prepLabels[prep] + '</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Reason</div><div class="pz-result-cell-val" style="font-size:12px">' + reasonLabels[reason] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Preparation</div><div class="pz-result-cell-val" style="font-size:12px">' + prepLabels[prep] + '</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>🥩 What Matters for Your Situation</h4><ul>' + listHtml + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+
+  }, 650);
+}
+
+// ── Homemade Dog Food Guide
+function pzGenHomemadeFood() {
+  var goal = document.getElementById('pz_hf_goal')?.value || 'general';
+  var time = document.getElementById('pz_hf_time')?.value || 'low';
+  var result = document.getElementById('pz-guide-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-guide-result', 'Building your homemade food guidance…');
+  setTimeout(function() {
+
+  var goalLabels = {general: 'General homemade diet', condition: 'Managing a specific health condition', picky: 'Picky eater/appetite issues'};
+  var timeLabels = {low: 'Limited — need simple/batchable', high: 'Flexible — can prep more involved meals'};
+
+  var tips = [];
+
+  if (goal === 'condition') {
+    tips.push("A condition-specific homemade diet needs to be designed with your vet for that specific condition — general homemade advice does not apply here, since the right nutrient balance depends entirely on the condition being managed.");
+  } else {
+    tips.push('The single most important principle: homemade diets must be complete-and-balanced, not just "meat and rice" or whatever looks healthy.');
+    tips.push('Nutrient deficiencies — especially calcium:phosphorus ratio, taurine, zinc, vitamin D, and essential fatty acids — are a real, well-documented risk in ad-hoc homemade diets, even ones that look reasonable.');
+  }
+
+  tips.push('Use a properly formulated recipe from a board-certified veterinary nutritionist — services like balanceit.com are a real example of what "properly formulated" looks like, not a random blog recipe.');
+
+  if (time === 'low') {
+    tips.push('With limited cooking time, batch-cook a larger quantity on one day, then portion and freeze meals — the practical way to sustain a homemade diet without cooking daily.');
+  } else {
+    tips.push('With more flexible time, you can still batch a portion of your cooking to build in a buffer for busier weeks.');
+  }
+
+  if (goal === 'picky') {
+    tips.push('For appetite issues, work any recipe changes into a diet that is still complete-and-balanced — introducing variety within a formulated recipe, rather than ad-hoc additions, keeps nutrition on track.');
+  }
+
+  var wrapClass = (goal === 'condition') ? 'pz-result-warning' : 'pz-result-success';
+  var heroColor = (goal === 'condition') ? 'linear-gradient(135deg,#E65100,#FF9800)' : 'linear-gradient(135deg,#1B5E20,#2E7D32)';
+  var heroIcon = (goal === 'condition') ? '🩺' : '🍲';
+  var heroTitle = (goal === 'condition') ? 'Talk to Your Vet First' : 'Complete-and-Balanced Is the Goal';
+
+  var listHtml = '';
+  tips.forEach(function(t){ listHtml += '<li>' + t + '</li>'; });
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="' + wrapClass + '" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:' + heroColor + ';color:#fff;padding:24px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">' + heroIcon + ' ' + heroTitle + '</div>'
+    + '<div style="font-size:15px;opacity:.9">' + goalLabels[goal] + ' · ' + timeLabels[time] + '</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Goal</div><div class="pz-result-cell-val" style="font-size:12px">' + goalLabels[goal] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Cooking Time</div><div class="pz-result-cell-val" style="font-size:12px">' + timeLabels[time] + '</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>🍲 Your Homemade Food Guidance</h4><ul>' + listHtml + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+
+  }, 650);
+}
+
+// ── Best Dog Food Guide
+function pzGenBestDogFood() {
+  var priority = document.getElementById('pz_bf_priority')?.value || 'budget';
+  var size = document.getElementById('pz_bf_size')?.value || 'medium';
+  var result = document.getElementById('pz-guide-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-guide-result', 'Evaluating what matters most for your dog food search…');
+  setTimeout(function() {
+
+  var priorityLabels = {budget: 'Budget-friendly', premium: 'Premium ingredients', health: 'Specific health need'};
+  var sizeLabels = {small: 'Small (under 25 lbs)', medium: 'Medium (25–60 lbs)', large: 'Large (60–100 lbs)', giant: 'Giant (100+ lbs)'};
+
+  var tips = [];
+  tips.push('Check the AAFCO "complete and balanced" statement for the correct life stage first — it is a legal nutritional adequacy claim, not marketing.');
+  tips.push('Ingredient order matters somewhat, but named meat listed first is not the only valid signal — meat meal is a concentrated, legitimate protein source, not automatically inferior to fresh meat, which is mostly water by weight.');
+  tips.push('Be skeptical of marketing terms like "grain-free," "human-grade," or "holistic" without nutritional adequacy evidence behind them.');
+  tips.push('Check whether the company ran actual AAFCO feeding trials (stronger evidence) or relied only on nutrient-profile formulation (weaker, though still compliant).');
+  tips.push('WSAVA (World Small Animal Veterinary Association) publishes real, respected guidelines for evaluating pet food companies — a qualified nutritionist on staff, owned manufacturing, and published nutrient analyses on request.');
+
+  if (priority === 'budget') {
+    tips.push('A solid, AAFCO-compliant mainstream food from a company with good quality control is nutritionally fine — expensive is not automatically better.');
+  } else if (priority === 'health') {
+    tips.push('For a specific health need, general food-quality guidance is not enough — talk to your vet for a condition-specific recommendation rather than choosing based on general guidance alone.');
+  }
+
+  if (size === 'large' || size === 'giant') {
+    tips.push('For large and giant breeds, also confirm the food is labeled for your dog\'s correct life stage — large breed puppy formulas in particular are calcium-controlled to support slower, joint-friendly growth.');
+  }
+
+  var wrapClass = (priority === 'health') ? 'pz-result-warning' : 'pz-result-success';
+  var heroColor = (priority === 'health') ? 'linear-gradient(135deg,#E65100,#FF9800)' : 'linear-gradient(135deg,#1B5E20,#2E7D32)';
+  var heroIcon = (priority === 'health') ? '🩺' : '🛒';
+  var heroTitle = (priority === 'health') ? 'Talk to Your Vet for This One' : 'What to Check First';
+
+  var listHtml = '';
+  tips.forEach(function(t){ listHtml += '<li>' + t + '</li>'; });
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="' + wrapClass + '" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:' + heroColor + ';color:#fff;padding:24px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">' + heroIcon + ' ' + heroTitle + '</div>'
+    + '<div style="font-size:15px;opacity:.9">' + priorityLabels[priority] + ' · ' + sizeLabels[size] + '</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Priority</div><div class="pz-result-cell-val" style="font-size:12px">' + priorityLabels[priority] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Dog Size</div><div class="pz-result-cell-val" style="font-size:12px">' + sizeLabels[size] + '</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>🛒 Your Dog Food Checklist</h4><ul>' + listHtml + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+
+  }, 650);
+}
+
+// ── Foods Toxic to Dogs Guide (safety-critical: per-food, per-amount urgency)
+function pzGenToxicFoods() {
+  var food = document.getElementById('pz_tf_food')?.value || 'other';
+  var amount = document.getElementById('pz_tf_amount')?.value || 'unknown';
+  var result = document.getElementById('pz-guide-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-guide-result', "Checking your dog's specific risk level…");
+  setTimeout(function() {
+
+  var foodLabels = {
+    chocolate: 'Chocolate',
+    grapes: 'Grapes or Raisins',
+    onion_garlic: 'Onions or Garlic',
+    xylitol: 'Xylitol (sugar-free gum/candy/some peanut butters)',
+    alcohol: 'Alcohol',
+    macadamia: 'Macadamia Nuts',
+    other: 'Something else / not sure'
+  };
+  var amountLabels = {small: 'A small amount / lick', large: 'A significant amount', unknown: 'Not sure how much'};
+
+  var tips = [];
+  var urgencyLabel, wrapClass, heroColor, heroIcon, heroTitle;
+
+  if (food === 'xylitol') {
+    urgencyLabel = 'HIGH — Call Now';
+    wrapClass = 'pz-result-warning';
+    heroColor = 'linear-gradient(135deg,#B71C1C,#E65100)';
+    heroIcon = '🚨';
+    heroTitle = 'Call Poison Control or an Emergency Vet Now';
+    tips.push('Xylitol is extremely dangerous even in small amounts — this does not change based on how much was eaten.');
+    tips.push('It causes a rapid release of insulin, leading to dangerous hypoglycemia (low blood sugar), and can cause liver failure.');
+    tips.push('Call ASPCA Animal Poison Control or an emergency vet immediately — do not wait for symptoms to appear.');
+  } else if (food === 'grapes') {
+    urgencyLabel = 'HIGH — Call Now';
+    wrapClass = 'pz-result-warning';
+    heroColor = 'linear-gradient(135deg,#B71C1C,#E65100)';
+    heroIcon = '🚨';
+    heroTitle = 'Call Poison Control or Your Vet Now — Any Amount';
+    tips.push('Grapes and raisins can cause acute kidney failure in dogs.');
+    tips.push('There is no established "safe amount" — this is one of the few toxic foods where the amount eaten does not change the recommendation.');
+    tips.push('Any ingestion warrants an immediate call to your vet or ASPCA Animal Poison Control.');
+  } else if (food === 'chocolate') {
+    if (amount === 'large' || amount === 'unknown') {
+      urgencyLabel = 'HIGH — Call Now';
+      wrapClass = 'pz-result-warning';
+      heroColor = 'linear-gradient(135deg,#B71C1C,#E65100)';
+      heroIcon = '🚨';
+      heroTitle = 'Call Poison Control or Your Vet Now';
+      tips.push('A significant or uncertain amount of chocolate warrants an immediate call to poison control or your vet.');
+    } else {
+      urgencyLabel = 'CHECK — Better Safe Than Sorry';
+      wrapClass = 'pz-result-warning';
+      heroColor = 'linear-gradient(135deg,#E65100,#FF9800)';
+      heroIcon = '⚠️';
+      heroTitle = 'Better to Check Than Wait';
+      tips.push('Even a small amount is worth a quick call to check, based on the exact chocolate type and your dog\'s size.');
+    }
+    tips.push('Dark or baking chocolate is far more dangerous than milk chocolate, because it contains much more theobromine.');
+    tips.push('Small dogs are at higher risk than large dogs from the exact same amount of chocolate.');
+  } else if (food === 'onion_garlic') {
+    tips.push('Onion and garlic damage red blood cells, and the effect is cumulative — a single small taste is lower risk than a repeated or large exposure.');
+    if (amount === 'large' || amount === 'unknown') {
+      urgencyLabel = 'ELEVATED — Vet Call Recommended';
+      wrapClass = 'pz-result-warning';
+      heroColor = 'linear-gradient(135deg,#E65100,#FF9800)';
+      heroIcon = '⚠️';
+      heroTitle = 'Vet Call Recommended';
+      tips.push('A significant or uncertain amount is worth a call to your vet rather than just monitoring.');
+    } else {
+      urgencyLabel = 'MONITOR — Watch for 24–48 Hours';
+      wrapClass = 'pz-result-success';
+      heroColor = 'linear-gradient(135deg,#1B5E20,#2E7D32)';
+      heroIcon = '👀';
+      heroTitle = 'Monitor Over the Next 24–48 Hours';
+      tips.push('For a small amount, monitor for lethargy, pale gums, or vomiting over the next 24–48 hours, and call your vet if any of these appear.');
+    }
+  } else if (food === 'alcohol') {
+    urgencyLabel = 'HIGH — Call Now';
+    wrapClass = 'pz-result-warning';
+    heroColor = 'linear-gradient(135deg,#B71C1C,#E65100)';
+    heroIcon = '🚨';
+    heroTitle = 'Call Your Vet Now';
+    tips.push('Dogs are much more sensitive to alcohol than humans by body weight — even a small amount can be dangerous.');
+    tips.push('Call your vet or ASPCA Animal Poison Control now rather than waiting to see if symptoms develop.');
+  } else if (food === 'macadamia') {
+    urgencyLabel = 'HIGH — Call Now';
+    wrapClass = 'pz-result-warning';
+    heroColor = 'linear-gradient(135deg,#B71C1C,#E65100)';
+    heroIcon = '🚨';
+    heroTitle = 'Call Your Vet Now';
+    tips.push('Macadamia nuts can cause weakness, tremors, and hyperthermia in dogs — the exact toxic mechanism is not fully understood, but the effect is well-documented.');
+    tips.push('Call your vet for guidance for any real amount eaten.');
+  } else {
+    urgencyLabel = 'CHECK — Don\'t Guess';
+    wrapClass = 'pz-result-warning';
+    heroColor = 'linear-gradient(135deg,#E65100,#FF9800)';
+    heroIcon = '📞';
+    heroTitle = "When You're Not Sure, Call to Check";
+    tips.push("If you're unsure whether something is toxic, call ASPCA Animal Poison Control (a real, actual 24/7 resource) or your vet with the specific item name — do not guess.");
+  }
+
+  tips.push("Having the food's packaging or label on hand helps whoever you call assess the situation faster.");
+
+  var listHtml = '';
+  tips.forEach(function(t){ listHtml += '<li>' + t + '</li>'; });
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="' + wrapClass + '" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:' + heroColor + ';color:#fff;padding:24px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">' + heroIcon + ' ' + heroTitle + '</div>'
+    + '<div style="font-size:15px;opacity:.9">' + foodLabels[food] + ' · ' + amountLabels[amount] + '</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Food Eaten</div><div class="pz-result-cell-val" style="font-size:12px">' + foodLabels[food] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Urgency</div><div class="pz-result-cell-val" style="font-size:12px">' + urgencyLabel + '</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>☠️ What to Do Now</h4><ul>' + listHtml + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+
+  }, 650);
+}
+
+// ── Grain-Free Dog Food Guide
+function pzGenGrainFree() {
+  var reason = document.getElementById('pz_gf_reason')?.value || 'preference';
+  var current = document.getElementById('pz_gf_current')?.value || 'no';
+  var result = document.getElementById('pz-guide-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-guide-result', 'Reviewing the current grain-free evidence for your dog…');
+  setTimeout(function() {
+
+  var reasonLabels = {diagnosed: 'Vet-diagnosed grain allergy', preference: 'General preference', trend: "Heard it's healthier"};
+  var currentLabels = {yes: 'Yes', no: 'No'};
+
+  var tips = [];
+  tips.push('True grain allergies in dogs are actually uncommon — protein sources like beef, chicken, dairy, and egg are far more common canine food allergens than grains.');
+  tips.push('The FDA has investigated a potential association between certain grain-free diets — particularly those where legumes, peas, or lentils are primary ingredients replacing grains — and DCM (dilated cardiomyopathy, a serious heart condition), including in breeds not typically predisposed to it. This is not fully settled science, but it is a genuine, current area of veterinary caution.');
+
+  if (reason === 'diagnosed') {
+    tips.push('Grain-free is appropriate for a genuine diagnosed grain allergy — but not all "grain-free" foods are equal. Some replace grains with legume-heavy formulas relevant to the DCM concern above, so it is worth discussing the specific food with your vet.');
+  } else {
+    tips.push('Without a diagnosed need, it is worth discussing with your vet before switching — a genuine grain allergy is uncommon, and there is often no nutritional need to avoid grains at all.');
+  }
+
+  if (current === 'yes') {
+    tips.push("Since you're currently feeding grain-free, mention it to your vet at your next visit — especially worth flagging if you've noticed any reduced stamina, coughing, or exercise intolerance, as routine due diligence rather than an alarm.");
+  }
+
+  var needsCare = (reason !== 'diagnosed') || (current === 'yes');
+  var wrapClass = needsCare ? 'pz-result-warning' : 'pz-result-success';
+  var heroColor = needsCare ? 'linear-gradient(135deg,#E65100,#FF9800)' : 'linear-gradient(135deg,#1B5E20,#2E7D32)';
+  var heroIcon = needsCare ? '❤️' : '🌾';
+  var heroTitle = needsCare ? 'Worth a Vet Conversation' : 'Grain-Free Fits Your Situation';
+
+  var listHtml = '';
+  tips.forEach(function(t){ listHtml += '<li>' + t + '</li>'; });
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="' + wrapClass + '" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:' + heroColor + ';color:#fff;padding:24px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">' + heroIcon + ' ' + heroTitle + '</div>'
+    + '<div style="font-size:15px;opacity:.9">' + reasonLabels[reason] + ' · Currently grain-free: ' + currentLabels[current] + '</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Reason</div><div class="pz-result-cell-val" style="font-size:12px">' + reasonLabels[reason] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Currently Grain-Free</div><div class="pz-result-cell-val" style="font-size:13px">' + currentLabels[current] + '</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>🌾 Your Grain-Free Guidance</h4><ul>' + listHtml + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+
+  }, 650);
+}
+
+// ── Senior Dog Diet Guide
+function pzGenSeniorDiet() {
+  var age = document.getElementById('pz_sd_age')?.value || '7to10';
+  var weight = document.getElementById('pz_sd_weight')?.value || 'ideal';
+  var health = document.getElementById('pz_sd_health')?.value || 'none';
+  var result = document.getElementById('pz-guide-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-guide-result', "Building your senior dog's diet plan…");
+  setTimeout(function() {
+
+  var ageLabels = {'7to10': '7–10 years', '10plus': '10+ years'};
+  var weightLabels = {ideal: 'At ideal weight', overweight: 'Overweight', underweight: 'Underweight'};
+  var healthLabels = {none: 'None known', joint: 'Joint stiffness/arthritis', kidney: 'Kidney disease (vet-diagnosed)', dental: 'Dental issues'};
+
+  var tips = [];
+  tips.push("Current veterinary guidance has moved away from routinely restricting protein in healthy senior dogs — that's appropriate only for a vet-diagnosed kidney condition, not just because a dog is getting older.");
+  tips.push('Healthy seniors generally need similar, or even slightly higher, protein density relative to calories to help maintain muscle mass, since age-related muscle loss (sarcopenia) is a real concern.');
+
+  if (age === '10plus') {
+    tips.push("At 10+ years, muscle maintenance and slower metabolism both matter more — a calorie-appropriate, protein-adequate food is worth prioritizing over a generic \"senior formula.\"");
+  } else {
+    tips.push("At 7–10 years, this is the early senior stage — total calorie needs typically start easing down while protein needs stay steady.");
+  }
+
+  var wrapClass = 'pz-result-success';
+  var heroColor = 'linear-gradient(135deg,#1B5E20,#2E7D32)';
+  var heroIcon = '🐕';
+  var heroTitle = "Your Senior Diet Game Plan";
+
+  if (health === 'kidney') {
+    wrapClass = 'pz-result-warning';
+    heroColor = 'linear-gradient(135deg,#E65100,#FF9800)';
+    heroIcon = '🏥';
+    heroTitle = 'Kidney-Specific Diet Needed — See Your Vet';
+    tips.push("A vet-diagnosed kidney condition is exactly the situation where protein restriction becomes appropriate — but the specifics are individual and vet-prescribed, not something general guidance should attempt.");
+    tips.push('Please see our dedicated Dog Kidney Disease Diet guide and work directly with your vet on the right formula and protein target for your dog.');
+  } else if (health === 'joint') {
+    tips.push('Omega-3 fatty acids and glucosamine/chondroitin are commonly beneficial for joint stiffness — the evidence is reasonably supportive, though the effect is typically modest rather than dramatic.');
+    tips.push('See our Dog Supplements guide for more on what evidence supports and what to look for in a quality product.');
+  } else if (health === 'dental') {
+    tips.push('Smaller kibble or softened food can genuinely help if dental discomfort is making eating harder.');
+    tips.push("Dental issues are worth a vet check regardless of diet changes — discomfort while eating often has a fixable underlying cause.");
+  }
+
+  if (weight === 'overweight') {
+    wrapClass = 'pz-result-warning';
+    heroColor = 'linear-gradient(135deg,#E65100,#FF9800)';
+    heroIcon = '⚖️';
+    heroTitle = 'Calorie-Aware Senior Feeding Plan';
+    tips.push('Seniors typically need somewhat fewer total calories as metabolism and activity slow — for a dog already overweight, see our Dog Weight Loss Plan calculator for a structured approach.');
+  } else if (weight === 'underweight') {
+    if (health !== 'kidney') {
+      wrapClass = 'pz-result-warning';
+      heroColor = 'linear-gradient(135deg,#E65100,#FF9800)';
+      heroIcon = '📈';
+      heroTitle = 'Extra Calories &amp; a Vet Check Recommended';
+    }
+    tips.push("Unexplained weight loss in a senior dog is worth a vet check rather than assuming it's normal aging — it can signal dental pain, inadequate calories, or an underlying illness.");
+  } else {
+    tips.push("At an ideal weight, keep portions steady and recheck body condition every few months, since senior calorie needs can drift gradually.");
+  }
+
+  tips.push('Bring this result to your next vet visit — it gives you a concrete starting point for the conversation.');
+
+  var listHtml = '';
+  tips.forEach(function(t){ listHtml += '<li>' + t + '</li>'; });
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="' + wrapClass + '" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:' + heroColor + ';color:#fff;padding:24px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">' + heroIcon + ' ' + heroTitle + '</div>'
+    + '<div style="font-size:15px;opacity:.9">' + ageLabels[age] + ' · ' + weightLabels[weight] + '</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Age</div><div class="pz-result-cell-val" style="font-size:13px">' + ageLabels[age] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Weight Status</div><div class="pz-result-cell-val" style="font-size:13px">' + weightLabels[weight] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Health Issues</div><div class="pz-result-cell-val" style="font-size:11px">' + healthLabels[health] + '</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>🐕 Your Senior Diet Guidance</h4><ul>' + listHtml + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+
+  }, 650);
+}
+
+// ── Dog Food Allergies Guide
+function pzGenFoodAllergies() {
+  var symptoms = document.getElementById('pz_fa_symptoms')?.value || 'skin';
+  var timeframe = document.getElementById('pz_fa_timeframe')?.value || 'recent';
+  var result = document.getElementById('pz-guide-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-guide-result', "Reviewing your dog's symptom pattern…");
+  setTimeout(function() {
+
+  var symptomLabels = {skin: 'Skin itching, ear infections, or paw licking', gi: 'GI upset (vomiting/diarrhea)', both: 'Both skin and GI symptoms'};
+  var timeframeLabels = {recent: 'Started after a recent diet/treat change', chronic: 'Chronic, ongoing for months'};
+
+  var tips = [];
+  tips.push('True food allergies are most commonly triggered by specific protein sources — beef, dairy, chicken, egg, and lamb are the most frequently cited culprits — not grains.');
+
+  if (symptoms === 'skin' || symptoms === 'both') {
+    tips.push('Skin-focused signs like itching, recurrent ear infections, and paw licking or chewing are frequently the leading symptoms in documented food allergy cases — even more than GI upset.');
+  }
+  if (symptoms === 'gi' || symptoms === 'both') {
+    tips.push('GI signs like vomiting or diarrhea occur too, sometimes alongside skin symptoms and sometimes on their own.');
+  }
+
+  var wrapClass, heroColor, heroIcon, heroTitle;
+
+  if (timeframe === 'recent') {
+    wrapClass = 'pz-result-success';
+    heroColor = 'linear-gradient(135deg,#1B5E20,#2E7D32)';
+    heroIcon = '🔎';
+    heroTitle = 'The Recent Change Is Your Prime Suspect';
+    tips.push('Since symptoms started after a recent diet or treat change, that new ingredient is the prime suspect — reverting to the prior diet and observing is a reasonable first step.');
+    tips.push("If symptoms don't clear up after reverting, or they return, that's a sign to move on to a proper vet-guided elimination trial.");
+  } else {
+    wrapClass = 'pz-result-warning';
+    heroColor = 'linear-gradient(135deg,#E65100,#FF9800)';
+    heroIcon = '🩺';
+    heroTitle = 'This Needs a Proper Elimination Trial';
+    tips.push("Chronic, ongoing symptoms need a proper vet-guided elimination diet trial, not more guessing — that means an 8–12 week trial using a single novel protein source or a hydrolyzed prescription diet.");
+  }
+
+  tips.push("Skip the at-home blood or saliva \"food allergy\" test kits — they're not well-validated scientifically and shouldn't be relied on for diagnosis.");
+  tips.push('The genuine diagnostic gold standard remains an 8–12 week elimination diet trial done under veterinary guidance.');
+
+  var listHtml = '';
+  tips.forEach(function(t){ listHtml += '<li>' + t + '</li>'; });
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="' + wrapClass + '" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:' + heroColor + ';color:#fff;padding:24px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">' + heroIcon + ' ' + heroTitle + '</div>'
+    + '<div style="font-size:15px;opacity:.9">' + symptomLabels[symptoms] + ' · ' + timeframeLabels[timeframe] + '</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Symptoms</div><div class="pz-result-cell-val" style="font-size:12px">' + symptomLabels[symptoms] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Timeframe</div><div class="pz-result-cell-val" style="font-size:12px">' + timeframeLabels[timeframe] + '</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>🤧 Your Food Allergy Guidance</h4><ul>' + listHtml + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+
+  }, 650);
+}
+
+// ── Dog Supplements Guide
+function pzGenSupplements() {
+  var concern = document.getElementById('pz_sup_concern')?.value || 'general';
+  var result = document.getElementById('pz-guide-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-guide-result', "Checking the evidence for your dog's supplement needs…");
+  setTimeout(function() {
+
+  var concernLabels = {joint: 'Joint health', skin_coat: 'Skin & coat', digestive: 'Digestive health', general: 'General wellness'};
+
+  var tips = [];
+  var heroIcon, heroTitle, heroColor;
+
+  if (concern === 'joint') {
+    heroIcon = '🦴'; heroTitle = 'Joint Support: Real but Modest Evidence'; heroColor = 'linear-gradient(135deg,#1B5E20,#2E7D32)';
+    tips.push('Glucosamine/chondroitin has reasonably supportive evidence for joint health, though the effect size tends to be modest rather than dramatic.');
+    tips.push("Omega-3 fatty acids also have anti-inflammatory benefit that's relevant to joint health, alongside their other benefits.");
+  } else if (concern === 'skin_coat') {
+    heroIcon = '✨'; heroTitle = 'Skin & Coat: Strong Supporting Evidence'; heroColor = 'linear-gradient(135deg,#1B5E20,#2E7D32)';
+    tips.push('Omega-3 fatty acids (fish oil, EPA/DHA) have good supporting evidence specifically for skin and coat health — one of the better-evidenced supplement categories overall.');
+  } else if (concern === 'digestive') {
+    heroIcon = '🦠'; heroTitle = 'Digestive Health: Growing Evidence'; heroColor = 'linear-gradient(135deg,#1B5E20,#2E7D32)';
+    tips.push('Probiotics have growing supportive evidence for digestive health in dogs — a reasonable, evidence-informed choice for this concern.');
+  } else {
+    heroIcon = '➕'; heroTitle = 'Diet First, Supplements Additive'; heroColor = 'linear-gradient(135deg,#E65100,#FF9800)';
+    tips.push('A complete and balanced diet already covers most nutritional needs — supplements are additive, not foundational.');
+    tips.push("A healthy dog already eating a good, complete diet often doesn't need a general \"multivitamin\" type product.");
+  }
+
+  tips.push('Pet supplements are not FDA-regulated for quality and purity the way drugs are — look for the NASC (National Animal Supplement Council) seal as a real, meaningful third-party quality signal.');
+  tips.push('Supplements are not a substitute for a complete and balanced diet.');
+  tips.push('Always discuss any supplement with your vet first, especially if your dog takes other medications — interaction risk is real.');
+
+  var listHtml = '';
+  tips.forEach(function(t){ listHtml += '<li>' + t + '</li>'; });
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="pz-result-success" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:' + heroColor + ';color:#fff;padding:24px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">' + heroIcon + ' ' + heroTitle + '</div>'
+    + '<div style="font-size:15px;opacity:.9">Primary Concern: ' + concernLabels[concern] + '</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Concern</div><div class="pz-result-cell-val" style="font-size:13px">' + concernLabels[concern] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Quality Signal</div><div class="pz-result-cell-val" style="font-size:13px">NASC Seal</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>💊 Your Supplement Guidance</h4><ul>' + listHtml + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+
+  }, 650);
+}
+
+// ── Pregnant Dog Nutrition Guide
+function pzGenPregnantNutrition() {
+  var stage = document.getElementById('pz_pn_stage')?.value || 'early';
+  var litter = document.getElementById('pz_pn_litter')?.value || 'unknown';
+  var result = document.getElementById('pz-guide-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-guide-result', "Building your pregnant dog's feeding plan…");
+  setTimeout(function() {
+
+  var stageLabels = {early: 'Early (weeks 1–4)', mid: 'Mid (weeks 5–6)', late: 'Late (weeks 7–9)', nursing: 'Nursing/Lactating'};
+  var litterLabels = {unknown: 'Not sure yet', few: 'Small litter (1–3)', average: 'Average litter (4–6)', many: 'Large litter (7+)'};
+
+  var tips = [];
+  var wrapClass = 'pz-result-success';
+  var heroColor = 'linear-gradient(135deg,#1B5E20,#2E7D32)';
+  var heroIcon = '🐕';
+  var heroTitle = 'Your Feeding Plan for This Stage';
+
+  if (stage === 'early') {
+    tips.push("Calorie needs stay close to normal during early pregnancy (weeks 1–4) — contrary to the popular \"eating for the litter\" idea, no dramatic diet change is needed yet.");
+    tips.push('This is a good time to plan the transition to a calorie-dense puppy/growth-formula food for week 5 onward.');
+  } else if (stage === 'mid') {
+    wrapClass = 'pz-result-warning'; heroColor = 'linear-gradient(135deg,#E65100,#FF9800)'; heroIcon = '📈'; heroTitle = 'Calorie Needs Are Rising Now';
+    tips.push('From week 5 onward, calorie needs increase more meaningfully — this is the point to be feeding a calorie-dense puppy/growth-formula food.');
+  } else if (stage === 'late') {
+    wrapClass = 'pz-result-warning'; heroColor = 'linear-gradient(135deg,#E65100,#FF9800)'; heroIcon = '📈'; heroTitle = 'Late Pregnancy: Elevated Needs Continue';
+    tips.push('Late pregnancy keeps calorie needs elevated on a calorie-dense puppy/growth formula — but nursing, just ahead, will demand even more.');
+  } else {
+    wrapClass = 'pz-result-warning'; heroColor = 'linear-gradient(135deg,#B71C1C,#E65100)'; heroIcon = '🍼'; heroTitle = 'Nursing: The Peak-Demand Stage';
+    tips.push('Nursing is often the highest-demand period of the entire cycle — sometimes higher than even late pregnancy — and can require roughly 2–4x normal maintenance calories depending on litter size.');
+  }
+
+  tips.push("A calorie-dense puppy/growth-formula food is the standard recommendation, appropriately balanced for the calcium, phosphorus, and calorie density these stages require — a distinct \"pregnancy-specific\" product usually doesn't exist as its own category.");
+
+  if (litter === 'many' && stage === 'nursing') {
+    tips.push('With a large litter during peak nursing, demand is especially high — free-feeding (constant food access) is often recommended here, since scheduled meals may not keep pace with her appetite.');
+  } else if (litter === 'many') {
+    tips.push('A large litter (7+) will push calorie demand toward the higher end once nursing begins — worth planning food quantity ahead of time.');
+  } else if (litter === 'unknown') {
+    tips.push('A vet ultrasound or X-ray can give a litter size estimate that helps plan food quantity more precisely, especially heading into nursing.');
+  }
+
+  tips.push('Keep fresh water constantly available — fluid needs rise alongside calorie needs, especially during nursing.');
+
+  var listHtml = '';
+  tips.forEach(function(t){ listHtml += '<li>' + t + '</li>'; });
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="' + wrapClass + '" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:' + heroColor + ';color:#fff;padding:24px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">' + heroIcon + ' ' + heroTitle + '</div>'
+    + '<div style="font-size:15px;opacity:.9">' + stageLabels[stage] + ' · ' + litterLabels[litter] + '</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Stage</div><div class="pz-result-cell-val" style="font-size:13px">' + stageLabels[stage] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Litter Size</div><div class="pz-result-cell-val" style="font-size:12px">' + litterLabels[litter] + '</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>🐕 Your Pregnancy Feeding Guidance</h4><ul>' + listHtml + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+
+  }, 650);
+}
+
+// ── Working Dog Nutrition Guide
+function pzGenWorkingDogNutrition() {
+  var type = document.getElementById('pz_wn_type')?.value || 'moderate';
+  var intensity = document.getElementById('pz_wn_intensity')?.value || 'moderate';
+  var result = document.getElementById('pz-guide-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-guide-result', "Calculating your working dog's nutrition needs…");
+  setTimeout(function() {
+
+  var typeLabels = {endurance: 'Endurance (sledding, herding, long-distance)', power: 'Power/short-burst (protection, detection)', moderate: 'Moderate (hunting, active companion)'};
+  var intensityLabels = {light: 'Light', moderate: 'Moderate', heavy: 'Heavy/Daily intensive'};
+
+  var tips = [];
+  tips.push('Working and high-performance dogs have substantially elevated caloric, protein, and fat needs compared to typical pet dogs — performance-formula foods commonly run 30%+ protein and 20%+ fat.');
+
+  if (type === 'endurance') {
+    tips.push("For endurance-type work, fat is the primary fuel source for sustained effort — sled dogs are the classic veterinary nutrition research case study for this. It's a genuinely different model from the \"carb-loading\" approach often associated with human endurance athletes.");
+  } else if (type === 'power') {
+    tips.push('Power/short-burst work has elevated demands too, but the fat-as-primary-fuel emphasis is less central here than for true endurance work.');
+  } else {
+    tips.push('Moderate work still calls for a performance-oriented diet above standard maintenance, though the demands are less extreme than true endurance or heavy power work.');
+  }
+
+  var wrapClass = 'pz-result-success';
+  var heroColor = 'linear-gradient(135deg,#1B5E20,#2E7D32)';
+  var heroIcon = '🏋️';
+  var heroTitle = 'Your Working Dog Nutrition Plan';
+
+  if (intensity === 'heavy') {
+    wrapClass = 'pz-result-warning'; heroColor = 'linear-gradient(135deg,#E65100,#FF9800)'; heroIcon = '⚡'; heroTitle = 'Heavy Intensity: Needs Are Dramatically Elevated';
+    tips.push('At heavy, daily-intensive training, caloric needs can be dramatically elevated — some heavily-worked sled dogs eat 2–3x+ typical maintenance calories during peak season.');
+    tips.push('Hydration and electrolyte considerations matter more at this level too, not just raw calorie count.');
+  } else if (intensity === 'moderate') {
+    tips.push("At moderate training intensity, calorie needs are meaningfully above a typical pet dog's, though not yet at the dramatic heavy-intensity level.");
+  } else {
+    tips.push("At light training intensity, needs are elevated above a sedentary pet dog's but don't yet require true performance-level feeding.");
+  }
+
+  tips.push('Genuinely high-performance working dogs benefit from working directly with a vet or veterinary nutritionist, since generic pet calculators meaningfully underestimate their actual needs.');
+
+  var listHtml = '';
+  tips.forEach(function(t){ listHtml += '<li>' + t + '</li>'; });
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="' + wrapClass + '" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:' + heroColor + ';color:#fff;padding:24px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">' + heroIcon + ' ' + heroTitle + '</div>'
+    + '<div style="font-size:15px;opacity:.9">' + typeLabels[type] + ' · ' + intensityLabels[intensity] + '</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Work Type</div><div class="pz-result-cell-val" style="font-size:12px">' + typeLabels[type] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Intensity</div><div class="pz-result-cell-val" style="font-size:13px">' + intensityLabels[intensity] + '</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>🏋️ Your Working Dog Nutrition Guidance</h4><ul>' + listHtml + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+
+  }, 650);
+}
+
+// ── Dog Digestive Health Guide
+function pzGenDigestiveHealth() {
+  var issue = document.getElementById('pz_dh_issue')?.value || 'none';
+  var result = document.getElementById('pz-guide-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-guide-result', "Reviewing your dog's digestive health needs…");
+  setTimeout(function() {
+
+  var issueLabels = {occasional: 'Occasional mild upset', chronic: 'Chronic loose stool', gas: 'Gas or bloating', none: 'None — preventive interest'};
+
+  var tips = [];
+  var wrapClass, heroColor, heroIcon, heroTitle;
+
+  if (issue === 'occasional') {
+    wrapClass = 'pz-result-success'; heroColor = 'linear-gradient(135deg,#1B5E20,#2E7D32)'; heroIcon = '🍚'; heroTitle = 'A Short-Term Bland Diet Usually Helps';
+    tips.push('Occasional mild upset usually resolves with a short-term bland diet — plain boiled chicken and white rice is the classic, standard vet-recommended option.');
+    tips.push("If it doesn't resolve within a few days, or symptoms worsen, that's a signal to see your vet rather than continuing the bland diet indefinitely.");
+  } else if (issue === 'chronic') {
+    wrapClass = 'pz-result-warning'; heroColor = 'linear-gradient(135deg,#E65100,#FF9800)'; heroIcon = '🩺'; heroTitle = 'This Warrants an Actual Vet Visit';
+    tips.push("Chronic, ongoing loose stool warrants an actual vet visit to rule out underlying causes — parasites, food intolerance, or inflammatory bowel disease — rather than continuing to adjust diet indefinitely on your own.");
+    tips.push("Chronic issues shouldn't be managed by trial-and-error diet changes alone.");
+  } else if (issue === 'gas') {
+    wrapClass = 'pz-result-warning'; heroColor = 'linear-gradient(135deg,#E65100,#FF9800)'; heroIcon = '💨'; heroTitle = "Often Diet-Related — Here's What to Check";
+    tips.push('Gas or bloating is often diet-related — low-quality fillers, an underlying food intolerance, or eating too fast are the common causes.');
+    tips.push('If eating too fast seems to be the cause, a slow-feeder bowl is a genuinely practical, specific fix worth trying.');
+  } else {
+    wrapClass = 'pz-result-success'; heroColor = 'linear-gradient(135deg,#1B5E20,#2E7D32)'; heroIcon = '✅'; heroTitle = 'Good Preventive Practices to Keep Up';
+    tips.push('A consistent feeding schedule, gradual food transitions, and quality fiber sources are the core of ongoing good digestive practice.');
+  }
+
+  tips.push('Dietary fiber — both soluble and insoluble — supports healthy digestion and stool quality generally.');
+  tips.push('Probiotics and prebiotics have growing supportive evidence for gut health.');
+  tips.push('Whenever you switch foods, transition gradually over 7–10 days, mixing increasing proportions of new food with the old — sudden diet changes are a common, often-overlooked cause of digestive upset.');
+
+  var listHtml = '';
+  tips.forEach(function(t){ listHtml += '<li>' + t + '</li>'; });
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="' + wrapClass + '" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:' + heroColor + ';color:#fff;padding:24px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">' + heroIcon + ' ' + heroTitle + '</div>'
+    + '<div style="font-size:15px;opacity:.9">Current Issue: ' + issueLabels[issue] + '</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Issue</div><div class="pz-result-cell-val" style="font-size:13px">' + issueLabels[issue] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Transition Rule</div><div class="pz-result-cell-val" style="font-size:13px">7–10 Days</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>🫀 Your Digestive Health Guidance</h4><ul>' + listHtml + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+
+  }, 650);
+}
+
+// ── Dog Kidney Disease Diet Guide
+function pzGenKidneyDiseaseDiet() {
+  var stage = document.getElementById('pz_kd_stage')?.value || 'unsure';
+  var diet = document.getElementById('pz_kd_diet')?.value || 'regular';
+  var result = document.getElementById('pz-guide-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-guide-result', "Building your dog's kidney diet guidance…");
+  setTimeout(function() {
+
+  var stageLabels = {early: 'Early (IRIS Stage 1–2)', advanced: 'Advanced (IRIS Stage 3–4)', unsure: 'Not sure / recently diagnosed'};
+  var dietLabels = {prescription: 'On a prescription renal diet', regular: 'Still on regular food'};
+
+  var tips = [];
+  tips.push('Two things matter most for a kidney-friendly diet: restricting phosphorus, the single most evidence-backed lever for slowing CKD progression, and moderate — not eliminated — high-quality protein.');
+
+  var wrapClass = 'pz-result-warning';
+  var heroColor = 'linear-gradient(135deg,#E65100,#FF9800)';
+  var heroIcon = '🏥';
+  var heroTitle = 'Talk to Your Vet About a Prescription Renal Diet';
+
+  if (diet === 'prescription') {
+    wrapClass = 'pz-result-success';
+    heroColor = 'linear-gradient(135deg,#1B5E20,#2E7D32)';
+    heroIcon = '✅';
+    heroTitle = "You're on the Right Track";
+    tips.push('Prescription renal diets are formulated to hit precise phosphorus and protein targets — staying consistent with it is one of the most impactful things you can do.');
+    tips.push("Avoid mixing in regular food, even small amounts — it can meaningfully raise phosphorus intake and work against the diet's purpose.");
+  } else {
+    tips.push('A prescription renal diet is genuinely the right tool here — trying to formulate a home kidney diet without professional guidance risks getting the phosphorus/protein balance wrong in either direction.');
+    tips.push('Ask your vet about a prescription renal diet as soon as possible, and transition gradually over 7–10 days once you have one to avoid GI upset.');
+  }
+
+  if (stage === 'advanced') {
+    tips.push('At an advanced stage, closer vet monitoring and strict diet adherence matter even more — small deviations have more impact now than they would earlier on.');
+  } else if (stage === 'early') {
+    tips.push('At an early stage, getting diet management right now can meaningfully help slow further progression.');
+  } else {
+    tips.push('If staging is unclear, ask your vet about IRIS staging at your next visit — it helps calibrate exactly how much dietary change is needed.');
+  }
+
+  tips.push('Keep fresh water always available — CKD dogs often drink and urinate more, and consistent hydration is a real part of management, not an afterthought.');
+  tips.push('Bring this result to your next vet visit as a starting point for the conversation.');
+
+  var listHtml = '';
+  tips.forEach(function(t){ listHtml += '<li>' + t + '</li>'; });
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="' + wrapClass + '" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:' + heroColor + ';color:#fff;padding:24px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">' + heroIcon + ' ' + heroTitle + '</div>'
+    + '<div style="font-size:15px;opacity:.9">' + stageLabels[stage] + ' · ' + dietLabels[diet] + '</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">CKD Stage</div><div class="pz-result-cell-val" style="font-size:12px">' + stageLabels[stage] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Current Diet</div><div class="pz-result-cell-val" style="font-size:12px">' + dietLabels[diet] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Key Focus</div><div class="pz-result-cell-val" style="font-size:12px">Phosphorus &amp; Protein</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>🏥 Your Kidney Diet Guidance</h4><ul>' + listHtml + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+
+  }, 650);
+}
+
+// ── Best Joint Supplements for Dogs Guide
+function pzGenJointSupplement() {
+  var purpose = document.getElementById('pz_js_purpose')?.value || 'senior';
+  var weight = document.getElementById('pz_js_weight')?.value || 'ideal';
+  var result = document.getElementById('pz-guide-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-guide-result', "Matching joint supplement guidance to your dog…");
+  setTimeout(function() {
+
+  var purposeLabels = {prevention: 'Prevention (young large/giant breed)', arthritis: 'Managing diagnosed arthritis', senior: 'General senior joint support'};
+  var weightLabels = {ideal: 'At ideal weight', overweight: 'Overweight'};
+
+  var tips = [];
+  tips.push('Glucosamine/chondroitin has the most research behind it among joint supplements, though the effect is typically modest, not dramatic.');
+  tips.push('Omega-3 fatty acids have good evidence for reducing joint-relevant inflammation, alongside skin and coat benefits.');
+
+  var wrapClass = 'pz-result-success';
+  var heroColor = 'linear-gradient(135deg,#1B5E20,#2E7D32)';
+  var heroIcon = '💊';
+  var heroTitle = 'Your Joint Supplement Game Plan';
+
+  if (purpose === 'arthritis') {
+    wrapClass = 'pz-result-warning';
+    heroColor = 'linear-gradient(135deg,#E65100,#FF9800)';
+    heroIcon = '🏥';
+    heroTitle = 'Supplements + Vet Treatment, Not Supplements Alone';
+    tips.push('For diagnosed arthritis, supplements are complementary to vet-prescribed pain management, not a replacement for it — use both together.');
+  } else if (purpose === 'prevention') {
+    tips.push('For a young large or giant breed, avoiding excessive high-impact exercise — repeated jumping, hard surfaces — during the growth period matters at least as much as any supplement.');
+  } else {
+    tips.push('For general senior support, consistent use over time matters more than any single product choice.');
+  }
+
+  if (weight === 'overweight') {
+    wrapClass = 'pz-result-warning';
+    heroColor = 'linear-gradient(135deg,#E65100,#FF9800)';
+    heroIcon = '⚖️';
+    heroTitle = 'Weight Loss Is Your Highest-Impact Step';
+    tips.push('Excess weight adds direct, mechanical joint stress — for an overweight dog, reaching an ideal weight typically has more impact on joint comfort than any supplement. See our Dog Weight Loss Plan calculator for a structured approach.');
+  } else {
+    tips.push('At an ideal weight, you\'re already ahead on the biggest joint-health lever there is — supplements can add genuine additional support from here.');
+  }
+
+  tips.push('Look for the NASC (National Animal Supplement Council) quality seal when choosing a brand — pet supplements aren\'t FDA-regulated for purity the way drugs are, so this is a real, meaningful quality signal.');
+  tips.push('Check with your vet before starting, especially if your dog takes other medications.');
+
+  var listHtml = '';
+  tips.forEach(function(t){ listHtml += '<li>' + t + '</li>'; });
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="' + wrapClass + '" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:' + heroColor + ';color:#fff;padding:24px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">' + heroIcon + ' ' + heroTitle + '</div>'
+    + '<div style="font-size:15px;opacity:.9">' + purposeLabels[purpose] + '</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Purpose</div><div class="pz-result-cell-val" style="font-size:12px">' + purposeLabels[purpose] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Weight Status</div><div class="pz-result-cell-val" style="font-size:13px">' + weightLabels[weight] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Top Evidence</div><div class="pz-result-cell-val" style="font-size:12px">Glucosamine + Omega-3</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>💊 Your Joint Supplement Guidance</h4><ul>' + listHtml + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+
+  }, 650);
+}
+
+// ── Puppy to Adult Food Transition Guide
+function pzGenPuppyAdultTransition() {
+  var age = parseFloat(document.getElementById('pz_pat_age')?.value) || 0;
+  var size = document.getElementById('pz_pat_size')?.value || 'medium';
+  var result = document.getElementById('pz-guide-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-guide-result', "Calculating your puppy's transition window…");
+  setTimeout(function() {
+
+  var sizeLabels = {small: 'Small (under 25 lbs)', medium: 'Medium (25–60 lbs)', large: 'Large (60–100 lbs)', giant: 'Giant (100+ lbs)'};
+  var windows = {small: [9, 12], medium: [11, 13], large: [12, 18], giant: [18, 24]};
+  var w = windows[size];
+
+  var status, wrapClass, heroColor, heroIcon, heroTitle;
+  if (age <= 0) {
+    status = "Enter your puppy's current age above to get a specific estimate.";
+    wrapClass = 'pz-result-success';
+    heroColor = 'linear-gradient(135deg,#1B5E20,#2E7D32)';
+    heroIcon = '🔄';
+    heroTitle = 'Enter Your Puppy\'s Age';
+  } else if (age < w[0]) {
+    var monthsLeft = Math.round(w[0] - age);
+    status = 'Not yet — based on typical timing for a ' + sizeLabels[size].toLowerCase() + ' dog, you have roughly ' + monthsLeft + ' more month' + (monthsLeft === 1 ? '' : 's') + ' of puppy food ahead before the usual transition window opens.';
+    wrapClass = 'pz-result-success';
+    heroColor = 'linear-gradient(135deg,#1B5E20,#2E7D32)';
+    heroIcon = '🐶';
+    heroTitle = 'Still in the Puppy Food Stage';
+  } else if (age <= w[1]) {
+    status = "You're in the typical transition window right now for a " + sizeLabels[size].toLowerCase() + ' dog — a good time to start a gradual switch if your puppy\'s growth is on track.';
+    wrapClass = 'pz-result-success';
+    heroColor = 'linear-gradient(135deg,#1B5E20,#2E7D32)';
+    heroIcon = '✅';
+    heroTitle = 'In the Typical Transition Window';
+  } else {
+    status = "You're past the typical window for a " + sizeLabels[size].toLowerCase() + ' dog. If growth has clearly plateaued, it\'s fine to switch now (or already have) — if you haven\'t yet, check with your vet to confirm growth is actually complete.';
+    wrapClass = 'pz-result-warning';
+    heroColor = 'linear-gradient(135deg,#E65100,#FF9800)';
+    heroIcon = '📈';
+    heroTitle = 'Past the Typical Window — Check Growth Status';
+  }
+
+  var tips = [];
+  tips.push(status);
+  tips.push('Small breeds transition earliest (around 9–12 months); giant breeds latest (18–24 months), since their growth plates close much later.');
+  tips.push('A visible growth plateau — weight and height stabilizing — is just as valid a signal as hitting the typical age window.');
+  tips.push('Whenever you make the switch, do it gradually over 7–10 days, mixing in increasing proportions of adult food to avoid GI upset.');
+  tips.push('Ask your vet to confirm growth completion at your next routine visit if you\'re unsure.');
+
+  var listHtml = '';
+  tips.forEach(function(t){ listHtml += '<li>' + t + '</li>'; });
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="' + wrapClass + '" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:' + heroColor + ';color:#fff;padding:24px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">' + heroIcon + ' ' + heroTitle + '</div>'
+    + '<div style="font-size:15px;opacity:.9">' + (age > 0 ? age + ' months old · ' : '') + sizeLabels[size] + '</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Current Age</div><div class="pz-result-cell-val">' + (age > 0 ? age + ' mo' : '—') + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Adult Size</div><div class="pz-result-cell-val" style="font-size:12px">' + sizeLabels[size] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Typical Window</div><div class="pz-result-cell-val" style="font-size:13px">' + w[0] + '–' + w[1] + ' mo</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>🔄 Your Transition Guidance</h4><ul>' + listHtml + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+
+  }, 650);
+}
+
 // ── Bathing Wizard: step navigation
 var pzWizCurrentStep = 0;
 var pzWizTotalSteps = 4;
