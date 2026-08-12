@@ -5125,6 +5125,1151 @@ function pzGenPuppyAdultTransition() {
   }, 650);
 }
 
+// ── Dog Separation Anxiety Training Guide
+function pzGenSepAnxiety() {
+  var severity = document.getElementById('pz_tf_severity')?.value || 'mild';
+  var stage = document.getElementById('pz_tf_stage')?.value || 'new';
+  var result = document.getElementById('pz-guide-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-guide-result', 'Building your desensitization plan…');
+  setTimeout(function() {
+
+  var severityLabels = {mild: 'Mild — some whining/pacing', moderate: 'Moderate — destruction or accidents when alone', severe: "Severe — self-injury, non-stop panic, can't leave at all"};
+  var stageLabels = {new: 'Just noticed the problem', tried: 'Already tried some training'};
+
+  var tips = [];
+  var wrapClass = 'pz-result-success';
+  var heroColor = 'linear-gradient(135deg,#1B5E20,#2E7D32)';
+  var heroIcon = '🐾';
+  var heroTitle = 'Your Graduated Desensitization Plan';
+
+  if (severity === 'severe') {
+    wrapClass = 'pz-result-warning';
+    heroColor = 'linear-gradient(135deg,#B71C1C,#E65100)';
+    heroIcon = '🚨';
+    heroTitle = 'Get a Veterinary Behaviorist or Certified Trainer Involved';
+    tips.push('Self-injury, non-stop panic, or being unable to leave at all are signs that DIY training alone is unlikely to be enough right now.');
+    tips.push('A veterinary behaviorist or certified separation-anxiety trainer can build a structured plan and evaluate whether anti-anxiety medication alongside training makes sense — this is a legitimate, common approach for severe cases, not a last resort.');
+    tips.push('You can still start fake-departure practice while you arrange professional support, but avoid real absences that push your dog into full panic in the meantime.');
+  } else if (severity === 'moderate') {
+    wrapClass = 'pz-result-warning';
+    heroColor = 'linear-gradient(135deg,#E65100,#FF9800)';
+    heroIcon = '⚠️';
+    heroTitle = 'Structured Plan, With Extra Support Worth Considering';
+    tips.push('Practice "fake departures" — picking up your keys or putting on your shoes without actually leaving — repeated until those cues stop predicting you\'ll disappear.');
+    tips.push('Start real absences at just a few seconds, increasing duration only once your dog stays calm at the current length.');
+    tips.push('Never punish the destruction or accidents — your dog is panicking, not misbehaving, and punishment makes the anxiety worse.');
+    tips.push('If you don\'t see steady improvement within a few weeks of consistent practice, a certified separation-anxiety trainer or veterinary behaviorist is worth bringing in.');
+  } else {
+    tips.push('Practice "fake departures" — picking up your keys or putting on your shoes without actually leaving — repeated until those cues stop predicting you\'ll disappear.');
+    tips.push('Start real absences at just a few seconds, increasing duration gradually only once your dog stays calm at the current length.');
+    tips.push('Tire your dog out with exercise and mental stimulation before you leave — a tired dog copes better with alone time.');
+    tips.push('Keep departures and returns low-key, not dramatic, to avoid amplifying the emotional contrast.');
+  }
+
+  if (stage === 'new') {
+    tips.push("Since you're just starting, begin with the fake-departure step before attempting any real absences — skipping it undermines the rest of the plan.");
+  } else {
+    tips.push('Since you\'ve already tried some training, double-check you haven\'t increased absence duration faster than your dog could handle — rushing duration is the most common reason DIY training stalls.');
+  }
+
+  var listHtml = '';
+  tips.forEach(function(t){ listHtml += '<li>' + t + '</li>'; });
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="' + wrapClass + '" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:' + heroColor + ';color:#fff;padding:24px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">' + heroIcon + ' ' + heroTitle + '</div>'
+    + '<div style="font-size:15px;opacity:.9">' + severityLabels[severity] + ' · ' + stageLabels[stage] + '</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Severity</div><div class="pz-result-cell-val" style="font-size:12px">' + severityLabels[severity] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Stage</div><div class="pz-result-cell-val" style="font-size:13px">' + stageLabels[stage] + '</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>😟 Your Training Plan</h4><ul>' + listHtml + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+
+  }, 650);
+}
+
+// ── How to Stop Dog Barking Guide
+function pzGenBarkTraining() {
+  var trigger = document.getElementById('pz_tf_trigger')?.value || 'door';
+  var frequency = document.getElementById('pz_tf_frequency')?.value || 'few';
+  var result = document.getElementById('pz-guide-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-guide-result', "Matching a method to your dog's barking…");
+  setTimeout(function() {
+
+  var triggerLabels = {door: 'At the door/window (people or dogs passing)', attention: 'Wants attention or food from me', bored: 'Seems bored or under-exercised', reactive: 'Barks at other dogs/people, seems scared or reactive'};
+  var frequencyLabels = {few: 'A few times a day', constant: 'Constant / most of the day'};
+
+  var tips = [];
+  var wrapClass = 'pz-result-success';
+  var heroColor = 'linear-gradient(135deg,#1B5E20,#2E7D32)';
+  var heroIcon = '🔇';
+  var heroTitle = 'Your Bark Training Method';
+
+  if (trigger === 'door') {
+    heroTitle = 'Manage the Trigger, Then Teach Quiet';
+    tips.push('Block the view of common triggers — frosted window film, closing blinds, or moving furniture — or use white noise to reduce how often the trigger occurs.');
+    tips.push('Teach a "quiet" cue by rewarding silence after a few acknowledgment barks, rather than expecting instant silence.');
+  } else if (trigger === 'attention') {
+    heroTitle = 'Stop Rewarding the Barking, Reward the Quiet';
+    tips.push('Consistently withhold attention — even negative attention like saying "no" — for demand barking, and reward calm, quiet moments instead.');
+    tips.push('Expect the barking to get briefly worse before it improves — this is a normal "extinction burst," not a sign the plan is failing. Staying consistent through it is what makes the fix stick.');
+  } else if (trigger === 'bored') {
+    heroTitle = 'Add Exercise and Mental Stimulation';
+    tips.push('Repetitive barking from under-stimulation responds to more physical and mental exercise, not more correction.');
+    tips.push('Puzzle feeders, sniff walks, and structured play sessions give your dog an outlet that reduces the boredom driving the barking.');
+  } else {
+    wrapClass = 'pz-result-warning';
+    heroColor = 'linear-gradient(135deg,#E65100,#FF9800)';
+    heroIcon = '⚠️';
+    heroTitle = 'Go Gradual — Punishment Can Backfire Here';
+    tips.push('Fear or reactive barking needs distance-based counter-conditioning — reward calm behavior at a distance your dog can handle, then slowly decrease that distance over time.');
+    tips.push('Avoid correcting the reaction directly — punishment can strengthen the association between the trigger and fear, making the reaction worse rather than better.');
+    tips.push('For a strong or frequent reaction, a trainer experienced in reactivity is worth involving rather than working through this alone.');
+  }
+
+  if (frequency === 'constant') {
+    tips.push('Since this is happening most of the day, managing the environment (blocking triggers, more structured exercise) while you train will reduce practice opportunities for the unwanted behavior and make faster progress possible.');
+  } else {
+    tips.push('At a few times a day, consistent short training reps around each occurrence should show progress within a couple of weeks.');
+  }
+
+  tips.push('Bark collars (shock, spray, or ultrasonic) are generally discouraged as a first approach — they suppress the symptom without addressing the actual cause, and can increase anxiety-linked barking.');
+  tips.push('Get everyone in the household responding the same way — inconsistent reactions to barking make it harder to change for everyone.');
+
+  var listHtml = '';
+  tips.forEach(function(t){ listHtml += '<li>' + t + '</li>'; });
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="' + wrapClass + '" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:' + heroColor + ';color:#fff;padding:24px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">' + heroIcon + ' ' + heroTitle + '</div>'
+    + '<div style="font-size:15px;opacity:.9">' + triggerLabels[trigger] + ' · ' + frequencyLabels[frequency] + '</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Trigger</div><div class="pz-result-cell-val" style="font-size:12px">' + triggerLabels[trigger] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Frequency</div><div class="pz-result-cell-val" style="font-size:13px">' + frequencyLabels[frequency] + '</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>🔇 Your Bark Training Method</h4><ul>' + listHtml + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+
+  }, 650);
+}
+
+// ── Dog Bite Prevention Training Guide
+function pzGenBitePrevention() {
+  var agegroup = document.getElementById('pz_tf_agegroup')?.value || 'puppy';
+  var context = document.getElementById('pz_tf_context')?.value || 'general';
+  var result = document.getElementById('pz-guide-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-guide-result', 'Matching guidance to your situation…');
+  setTimeout(function() {
+
+  var agegroupLabels = {puppy: 'Puppy under 6 months (normal mouthing)', adolescent: 'Adolescent/adult dog, mild nipping', bitten: 'Adult dog, has actually bitten or growled seriously'};
+  var contextLabels = {general: 'General handling/play', children: 'Around children', guarding: 'Resource guarding (food/toys/space)'};
+
+  var tips = [];
+  var needsWarning = (agegroup === 'bitten') || (context === 'children' && agegroup !== 'puppy');
+  var wrapClass = needsWarning ? 'pz-result-warning' : 'pz-result-success';
+  var heroColor = needsWarning ? 'linear-gradient(135deg,#B71C1C,#E65100)' : 'linear-gradient(135deg,#1B5E20,#2E7D32)';
+  var heroIcon = needsWarning ? '🚨' : '🛡️';
+  var heroTitle = needsWarning ? 'Get Professional Evaluation, Not Just Home Training' : 'Your Bite Prevention Guidance';
+
+  if (agegroup === 'puppy') {
+    tips.push('Puppy mouthing is normal development — puppies explore with their mouths and haven\'t learned bite inhibition yet, this isn\'t aggression.');
+    tips.push('The instant teeth touch skin, yelp and briefly withdraw attention, then immediately redirect to an appropriate chew toy — this mimics how littermates teach bite inhibition.');
+    tips.push('Never physically punish mouthing (no hitting or tapping the nose) — it doesn\'t teach bite inhibition and can increase fear-based biting later.');
+    tips.push('Most puppies improve significantly by around 6 months with consistent redirection and yelping.');
+    if (context === 'children') {
+      tips.push('Even with normal puppy mouthing, actively supervise interactions with children and teach kids not to approach the puppy while it eats, sleeps, or guards something — good habits started early prevent problems later.');
+    }
+  } else if (agegroup === 'bitten') {
+    tips.push('A dog that has actually bitten or growled seriously needs evaluation from a certified professional (CPDT-KA) or veterinary behaviorist — this is genuinely not a DIY-only situation.');
+    tips.push('If this is out-of-character for a previously reliable adult dog, a vet check to rule out pain or a medical cause is a sensible first step before behavioral work.');
+    tips.push('Never punish growling — it\'s a warning, and punishing it removes that warning signal while the underlying discomfort remains, making a bite without warning more likely.');
+    if (context === 'children') {
+      tips.push('Because this involves a child, treat it as an immediate safety priority — arrange professional evaluation right away and keep the dog and child separated with active supervision in the meantime.');
+    }
+  } else {
+    tips.push('Mild nipping in an adolescent or adult dog often responds to the same redirection principles as puppy mouthing, but pay closer attention to warning signals — stiffening, whale eye, lip licking, turning away, growling — since these matter more in an older dog.');
+    tips.push('Never punish growling — address what\'s causing the discomfort instead, since punishing the growl removes your early warning system.');
+    if (context === 'children') {
+      tips.push('Because this involves children, supervise every interaction actively regardless of bite history, and teach kids not to approach the dog while it eats, sleeps, or guards something. If nipping continues or escalates around kids, get a certified trainer involved promptly.');
+    }
+  }
+
+  if (context === 'guarding') {
+    tips.push('For resource guarding specifically, use a structured trade-up approach — offering something better in exchange rather than taking items away — ideally guided by a certified trainer, since mismanaged resource guarding can escalate.');
+  }
+
+  var listHtml = '';
+  tips.forEach(function(t){ listHtml += '<li>' + t + '</li>'; });
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="' + wrapClass + '" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:' + heroColor + ';color:#fff;padding:24px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">' + heroIcon + ' ' + heroTitle + '</div>'
+    + '<div style="font-size:15px;opacity:.9">' + agegroupLabels[agegroup] + ' · ' + contextLabels[context] + '</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Age/Situation</div><div class="pz-result-cell-val" style="font-size:12px">' + agegroupLabels[agegroup] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Context</div><div class="pz-result-cell-val" style="font-size:12px">' + contextLabels[context] + '</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>🛡️ Your Bite Prevention Guidance</h4><ul>' + listHtml + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+
+  }, 650);
+}
+
+// ── 10 Basic Dog Commands Guide
+function pzGenBasicCommands() {
+  var experience = document.getElementById('pz_tf_experience')?.value || 'none';
+  var priority = document.getElementById('pz_tf_priority')?.value || 'allround';
+  var result = document.getElementById('pz-guide-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-guide-result', 'Building your suggested command order…');
+  setTimeout(function() {
+
+  var experienceLabels = {none: 'Never trained before (start from scratch)', some: 'Knows a few basics, want to add more', distraction: 'Knows basics, want reliability around distractions'};
+  var priorityLabels = {safety: 'Safety commands first (come, leave it, wait)', manners: 'Everyday manners (sit, down, off)', allround: 'All-around foundation'};
+
+  var tips = [];
+
+  if (experience === 'none') {
+    tips.push('Start with attention/name recognition, then Sit (lure with a treat up and back over the head, marking the instant the rear touches the ground).');
+    tips.push('Keep sessions to 5-10 minutes, a few times a day, and always end on a success.');
+  } else if (experience === 'some') {
+    tips.push('Build on what your dog already knows by adding Stay (duration first, then distance — not both at once) and Down using the same lure-and-mark method.');
+    tips.push('Mark the exact right moment with a clicker or a consistent word like "yes," then reward — timing matters more than most owners expect.');
+  } else {
+    tips.push('Since the basics are solid, focus on proofing them against distraction: practice in the yard, then a quiet outdoor spot, then busier environments, raising treat value as distraction increases.');
+    tips.push('A command that\'s reliable at home hasn\'t automatically generalized outside — that reliability needs its own deliberate practice.');
+  }
+
+  if (priority === 'safety') {
+    tips.push('Prioritize Come, Leave It, and Wait — these carry real safety value. Practice recall in low-distraction settings first, use a long line outdoors before trusting it off-leash, and never call your dog to something unpleasant like a bath, which poisons the cue.');
+  } else if (priority === 'manners') {
+    tips.push('Focus on Sit, Down, and Off for everyday manners — these make daily life smoother and are typically quicker to teach than the safety-critical commands.');
+  } else {
+    tips.push('Aim for a balanced rotation across sessions — a safety command, a manners command, and reinforcement of something already known — so no single skill lags behind the others.');
+  }
+
+  tips.push('Say each cue once, then help your dog succeed rather than repeating the word — repeating teaches your dog the first instance doesn\'t count.');
+  tips.push('Match treat value to difficulty: save high-value treats for harder commands or distracting environments, everyday treats for easy home practice.');
+
+  var listHtml = '';
+  tips.forEach(function(t){ listHtml += '<li>' + t + '</li>'; });
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="pz-result-success" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:linear-gradient(135deg,#1B5E20,#2E7D32);color:#fff;padding:24px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">✋ Your Suggested Training Order</div>'
+    + '<div style="font-size:15px;opacity:.9">' + experienceLabels[experience] + ' · ' + priorityLabels[priority] + '</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Experience</div><div class="pz-result-cell-val" style="font-size:12px">' + experienceLabels[experience] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Priority</div><div class="pz-result-cell-val" style="font-size:12px">' + priorityLabels[priority] + '</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>✋ Your Command Training Plan</h4><ul>' + listHtml + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+
+  }, 650);
+}
+
+// ── Clicker Training for Dogs Guide
+function pzGenClickerTraining() {
+  var experience = document.getElementById('pz_tf_experience')?.value || 'new';
+  var dogtype = document.getElementById('pz_tf_dogtype')?.value || 'adult_new';
+  var result = document.getElementById('pz-guide-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-guide-result', 'Building your clicker training next steps…');
+  setTimeout(function() {
+
+  var experienceLabels = {new: 'Brand new to clicker training', charged: 'Have charged the clicker, ready to teach behaviors', tricks: 'Want to use it for tricks/advanced training'};
+  var dogtypeLabels = {puppy: 'Puppy', adult_new: 'Adult dog, new to clicker', adult_knows: 'Adult dog, already knows basic commands'};
+
+  var tips = [];
+  var heroTitle = 'Your Clicker Training Next Steps';
+
+  if (experience === 'new') {
+    heroTitle = 'Start by Charging the Clicker';
+    tips.push('Click once, immediately give a treat, and repeat 10-15 times in a session — no behavior expected yet, just building the click-equals-reward association.');
+    tips.push('Keep charging sessions short and always treat after every click — skipping the treat even occasionally weakens the association you\'re building.');
+    tips.push('Once your dog perks up or looks for a treat right after hearing the click, the clicker is charged and you\'re ready to mark an actual behavior.');
+  } else if (experience === 'charged') {
+    heroTitle = 'Start Marking and Shaping a Behavior';
+    tips.push('Choose a simple first behavior — Sit or a hand touch are easy starting points.');
+    tips.push('Click the exact instant the behavior happens, not a beat before or after — timing precision is the whole point of the method — then treat.');
+    tips.push('Once your dog reliably offers the behavior, add a verbal cue by saying it just before the behavior starts, so the word attaches to a dependable action.');
+  } else {
+    heroTitle = 'Shaping Tricks and Advanced Behaviors';
+    tips.push('The same precise timing that teaches Sit makes clicker training well-suited to shaping complex behaviors in small increments — break tricks or agility foundations into small steps and click each successive approximation.');
+    tips.push('Keep clicking for genuinely new or refining criteria, but avoid clicking every rep of something already fluent — save the precision for what\'s still being taught.');
+    tips.push('Chain simple shaped behaviors together gradually once each piece is solid on its own.');
+  }
+
+  if (dogtype === 'puppy') {
+    tips.push('For a puppy, keep charging and shaping sessions especially short — a few minutes at a time — since attention spans are shorter at this age.');
+  } else if (dogtype === 'adult_new') {
+    tips.push('An adult dog new to the clicker charges just as easily as a puppy — the mechanics don\'t change with age, only your dog\'s existing habits might need a little patience to work around.');
+  } else {
+    tips.push('Since your dog already knows basic commands, you can use the clicker to sharpen precision on existing behaviors or introduce it fresh for new tricks — either way, expect faster progress since your dog already understands rewarded training.');
+  }
+
+  tips.push('Avoid clicking without treating — it breaks the click-equals-reward association and can "poison" the marker, making it less effective going forward.');
+
+  var listHtml = '';
+  tips.forEach(function(t){ listHtml += '<li>' + t + '</li>'; });
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="pz-result-success" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:linear-gradient(135deg,#1B5E20,#2E7D32);color:#fff;padding:24px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">🎯 ' + heroTitle + '</div>'
+    + '<div style="font-size:15px;opacity:.9">' + experienceLabels[experience] + ' · ' + dogtypeLabels[dogtype] + '</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Experience</div><div class="pz-result-cell-val" style="font-size:12px">' + experienceLabels[experience] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Dog Type</div><div class="pz-result-cell-val" style="font-size:12px">' + dogtypeLabels[dogtype] + '</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>🎯 Your Clicker Training Steps</h4><ul>' + listHtml + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+
+  }, 650);
+}
+
+// ── Puppy Training Schedule Guide
+function pzGenPuppySchedule() {
+  var age = document.getElementById('pz_tf_age')?.value || '3_4mo';
+  var focus = document.getElementById('pz_tf_focus')?.value || 'allaround';
+  var result = document.getElementById('pz-guide-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-guide-result', 'Building your puppy\'s age-matched training checklist…');
+  setTimeout(function() {
+
+  var ageLabels = {
+    '8_10wk': '8–10 weeks',
+    '10_12wk': '10–12 weeks',
+    '3_4mo': '3–4 months (12–16 weeks)',
+    '4_6mo': '4–6 months',
+    '6_12mo': '6–12 months',
+    '12_24mo': '12–24 months'
+  };
+  var focusLabels = {
+    potty: 'Potty training',
+    commands: 'Basic commands',
+    socialization: 'Socialization',
+    allaround: 'All-around training'
+  };
+
+  var tips = [];
+  var wrapClass = 'pz-result-success';
+  var heroColor = 'linear-gradient(135deg,#1B5E20,#2E7D32)';
+  var heroIcon = '📋';
+  var heroTitle = 'Your Age-Matched Training Checklist';
+
+  if (age === '8_10wk') {
+    tips.push('Start with name recognition and gentle handling exposure — short, positive sessions build trust before anything else.');
+    tips.push('Begin a potty schedule now: out every 1–2 hours plus immediately after waking, eating, and play.');
+    tips.push('Introduce the crate gradually with short, positive sessions — this is the age to build a good association, not force long stays.');
+    tips.push('Hold off on public leash walks until your vet clears your puppy on vaccines, and avoid areas with unvaccinated or unknown-status dogs until then.');
+  } else if (age === '10_12wk') {
+    tips.push('Layer in sit and come basics using a food lure, in short sessions throughout the day.');
+    tips.push('Keep the potty schedule consistent — this is still the stage where consistency matters more than speed.');
+    tips.push('Begin controlled socialization: calm, healthy, vaccinated dogs you know, varied people, and household sounds like the vacuum or doorbell.');
+  } else if (age === '3_4mo') {
+    tips.push('This is peak critical socialization window — it narrows sharply and effectively closes around 14 weeks, so prioritize varied positive exposures now over anything else on this list.');
+    tips.push('Start leash introduction indoors, and layer in sit, down, come, and name response in 5-minute sessions spread across the day.');
+    tips.push('Teething often begins here — keep appropriate chew items on hand and redirect rather than punish.');
+  } else if (age === '4_6mo') {
+    tips.push('Adolescence is beginning — your puppy may seem to "forget" training temporarily. This is normal; stay consistent rather than starting over.');
+    tips.push('Move loose-leash walking practice outdoors, and extend training sessions gradually as focus improves.');
+    tips.push('Once fully vaccinated per your vet, public leash walks can begin — pair them with impulse-control games.');
+  } else if (age === '6_12mo') {
+    tips.push('This is peak adolescence — expect distractibility spikes, especially between 6–9 months, and boundary-testing even on commands that were solid before.');
+    tips.push('Reinforce every basic command specifically around distractions, not just at home — this is where reliability actually gets built.');
+    tips.push('A group class is worth considering here if you want structured practice around other dogs and people.');
+  } else {
+    tips.push('Most behaviors should be reliable by now with consistent training — this stage is about refinement, not starting new fundamentals.');
+    tips.push('Small breeds are often fully mature around 12 months; large and giant breeds can take until 18–24 months for full behavioral maturity — adjust expectations to your dog\'s size.');
+    tips.push('Advanced commands and off-leash reliability are optional next steps once the basics are solid.');
+  }
+
+  if (focus === 'potty') {
+    tips.unshift('Potty training priority: keep the schedule tight (every 1–2 hours for young puppies) and reward within seconds of eliminating outside — timing is what makes it stick.');
+  } else if (focus === 'commands') {
+    tips.unshift('Basic commands priority: keep sessions short (5 minutes, several times a day) and always end on a success, even a small one.');
+  } else if (focus === 'socialization') {
+    tips.unshift('Socialization priority: aim for quality over quantity — calm, positive exposures your puppy chooses to approach beat overwhelming them with too much at once.');
+  }
+
+  var underFourMonths = (age === '8_10wk' || age === '10_12wk' || age === '3_4mo');
+  if (underFourMonths) {
+    wrapClass = 'pz-result-warning';
+    heroColor = 'linear-gradient(135deg,#E65100,#FF9800)';
+    heroIcon = '⏳';
+    heroTitle = 'Time-Sensitive: Socialization Window Closing';
+    tips.push('Reminder: the critical socialization window is roughly 3–14 weeks and narrows sharply after 12 weeks — exposures now have an outsized, lasting effect on adult temperament that gets harder to replicate later.');
+  }
+
+  var listHtml = '';
+  tips.forEach(function(t){ listHtml += '<li>' + t + '</li>'; });
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="' + wrapClass + '" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:' + heroColor + ';color:#fff;padding:24px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">' + heroIcon + ' ' + heroTitle + '</div>'
+    + '<div style="font-size:15px;opacity:.9">' + ageLabels[age] + ' · Focus: ' + focusLabels[focus] + '</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Age Stage</div><div class="pz-result-cell-val" style="font-size:12px">' + ageLabels[age] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Focus</div><div class="pz-result-cell-val" style="font-size:12px">' + focusLabels[focus] + '</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>📋 Your Priorities Right Now</h4><ul>' + listHtml + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+
+  }, 650);
+}
+
+// ── Dog Potty Training Guide
+function pzGenPottyTraining() {
+  var age = document.getElementById('pz_tf_age')?.value || 'puppy_8_16wk';
+  var stage = document.getElementById('pz_tf_stage')?.value || 'starting';
+  var result = document.getElementById('pz-guide-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-guide-result', 'Building your dog\'s potty training plan…');
+  setTimeout(function() {
+
+  var ageLabels = {
+    puppy_8_16wk: '8–16 week puppy',
+    puppy_4_6mo: '4–6 month puppy',
+    adult_new: 'Adult dog (new to household)',
+    adult_regressing: 'Previously trained adult, now regressing'
+  };
+  var stageLabels = {
+    starting: 'Just starting',
+    occasional: 'Occasional accidents',
+    refining: 'Mostly reliable, refining'
+  };
+
+  var tips = [];
+  var wrapClass = 'pz-result-success';
+  var heroColor = 'linear-gradient(135deg,#1B5E20,#2E7D32)';
+  var heroIcon = '🚽';
+  var heroTitle = 'Your Potty Training Plan';
+  var timeline = '';
+
+  if (age === 'adult_regressing') {
+    wrapClass = 'pz-result-warning';
+    heroColor = 'linear-gradient(135deg,#E65100,#FF9800)';
+    heroIcon = '🩺';
+    heroTitle = 'Rule Out a Medical Cause First';
+    timeline = 'Check with your vet before retraining';
+    tips.push('Sudden accidents in a previously reliable adult dog are often medical, not behavioral — a UTI is a common, easily missed cause. A vet check is the right first step, especially if the regression came on suddenly.');
+    tips.push('If your vet rules out a medical cause, look at recent changes: a new schedule, a move, a new pet or person in the household, or stress can all trigger temporary regression.');
+    tips.push('Once medical causes are ruled out, go back to basics briefly: tighten the schedule and reward timing for a couple of weeks rather than assuming your dog needs to relearn everything from scratch.');
+  } else {
+    if (age === 'puppy_8_16wk') {
+      timeline = 'Typical full house-training: 4–6 months, with young puppies needing the tightest schedule right now';
+      tips.push('Take your puppy out every 1–2 hours, plus immediately after waking, eating, and play — this age needs the tightest schedule on the whole timeline.');
+      tips.push('Use crate or confinement between outings — sized so your puppy can stand, turn, and lie down, but not so large they can use one end as a bathroom.');
+    } else if (age === 'puppy_4_6mo') {
+      timeline = 'Typical full house-training: 4–6 months — bladder control is improving, so intervals can start stretching';
+      tips.push('Bladder control is improving now — you can start stretching intervals between outings, but keep the after-waking/eating/play triggers non-negotiable.');
+      tips.push('This is a good stage to start recognizing your dog\'s specific signals (circling, sniffing, heading to the door) rather than relying purely on the clock.');
+    } else {
+      timeline = 'Adult dogs new to a household often adjust within a few weeks with a consistent schedule, faster than a puppy learning from scratch';
+      tips.push('An adult dog new to your household may already understand the general concept — focus on teaching your specific schedule and cues rather than starting from zero.');
+      tips.push('Use confinement or close supervision for the first couple of weeks while you learn each other\'s signals.');
+    }
+
+    if (stage === 'starting') {
+      tips.push('Reward within seconds of elimination outside, every single time right now — consistent immediate reward is what builds the habit fastest at this stage.');
+    } else if (stage === 'occasional') {
+      tips.push('Occasional accidents at this stage usually mean the schedule needs tightening slightly, not that training has failed — look for a pattern (time of day, after specific activities) and adjust the schedule around it.');
+    } else {
+      tips.push('At the refining stage, start stretching intervals gradually and reducing reliance on the schedule clock in favor of watching for your dog\'s own signals.');
+    }
+
+    tips.push('Never punish an accident you find after the fact — clean it with an enzymatic cleaner (not ammonia-based) and just tighten the schedule going forward.');
+  }
+
+  var listHtml = '';
+  tips.forEach(function(t){ listHtml += '<li>' + t + '</li>'; });
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="' + wrapClass + '" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:' + heroColor + ';color:#fff;padding:24px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">' + heroIcon + ' ' + heroTitle + '</div>'
+    + '<div style="font-size:15px;opacity:.9">' + ageLabels[age] + ' · ' + stageLabels[stage] + '</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Estimated Timeline</div><div class="pz-result-cell-val" style="font-size:12px">' + timeline + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Current Stage</div><div class="pz-result-cell-val" style="font-size:12px">' + stageLabels[stage] + '</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>🚽 Your Top Priorities</h4><ul>' + listHtml + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+
+  }, 650);
+}
+
+// ── Dog Crate Training Guide
+function pzGenCrateTraining() {
+  var reaction = document.getElementById('pz_tf_reaction')?.value || 'never_used';
+  var agegroup = document.getElementById('pz_tf_agegroup')?.value || 'puppy';
+  var result = document.getElementById('pz-guide-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-guide-result', 'Matching crate guidance to your dog\'s reaction…');
+  setTimeout(function() {
+
+  var reactionLabels = {
+    never_used: 'Never used a crate before',
+    resists: 'Resists entering / avoids it',
+    whines_barks: 'Whines or barks when placed in it',
+    calm_longer: 'Enters calmly, needs longer duration'
+  };
+  var agegroupLabels = { puppy: 'Puppy', adult: 'Adult dog' };
+
+  var tips = [];
+  var wrapClass = 'pz-result-success';
+  var heroColor = 'linear-gradient(135deg,#1B5E20,#2E7D32)';
+  var heroIcon = '🏠';
+  var heroTitle = 'Your Crate Training Plan';
+
+  if (reaction === 'never_used') {
+    tips.push('Start with the door open — toss treats or feed meals inside so your dog enters on their own, with zero pressure to stay.');
+    tips.push('Only close the door for short periods once your dog is calm and comfortable entering voluntarily, and build duration gradually from there.');
+    tips.push('Remember the one rule that matters most: the crate is never punishment — a single use as a consequence can undo this whole process.');
+  } else if (reaction === 'resists') {
+    tips.push('Go back a step: leave the door open with no expectation of entering, and let treats and meals do the work of building a positive association before trying to close the door again.');
+    tips.push('Resistance often means the process moved faster than your dog was ready for, or the crate got linked to something negative at some point — patience now saves time later.');
+    tips.push('Never physically force your dog into the crate — this reinforces exactly the resistance you\'re trying to overcome.');
+  } else if (reaction === 'whines_barks') {
+    wrapClass = 'pz-result-warning';
+    heroColor = 'linear-gradient(135deg,#E65100,#FF9800)';
+    heroIcon = '🩺';
+    heroTitle = 'Check Which Kind of Whining This Is';
+    tips.push('Ordinary adjustment whining in the early days is normal — the key is never releasing your dog while they\'re actively whining or barking, since that reinforces the behavior. Wait for a pause, even a brief one, before opening the door.');
+    tips.push('But if what you\'re seeing includes drooling, your dog injuring themselves trying to escape, or non-stop distress well beyond the first few nights, that\'s genuine crate anxiety, not normal adjustment — it needs a slower, different approach (or a professional trainer), not "crying it out."');
+    tips.push('If you\'re unsure which one this is, err toward the slower approach: shorter closed-door periods, more positive association time with the door open, and reassess in a few days.');
+  } else {
+    tips.push('Since your dog already enters calmly, extend duration in small increments rather than jumping straight to a long stretch — this keeps the positive association intact.');
+    tips.push('Continue confirming the crate is still sized correctly as your dog grows or if their weight has changed — comfortable sizing supports longer comfortable stays.');
+  }
+
+  if (agegroup === 'puppy') {
+    tips.push('As a rule of thumb, puppies shouldn\'t be crated much longer than their age in months plus one hour during the day — check that your current routine fits within that.');
+  } else {
+    tips.push('Adult dogs generally shouldn\'t be crated more than 6–8 hours — if your routine regularly exceeds that, look at a midday break or a dog walker.');
+  }
+
+  var listHtml = '';
+  tips.forEach(function(t){ listHtml += '<li>' + t + '</li>'; });
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="' + wrapClass + '" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:' + heroColor + ';color:#fff;padding:24px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">' + heroIcon + ' ' + heroTitle + '</div>'
+    + '<div style="font-size:15px;opacity:.9">' + reactionLabels[reaction] + ' · ' + agegroupLabels[agegroup] + '</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Current Reaction</div><div class="pz-result-cell-val" style="font-size:12px">' + reactionLabels[reaction] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Age Group</div><div class="pz-result-cell-val" style="font-size:12px">' + agegroupLabels[agegroup] + '</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>🏠 Your Next Steps</h4><ul>' + listHtml + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+
+  }, 650);
+}
+
+// ── Dog Leash Training Guide
+function pzGenLeashTraining() {
+  var severity = document.getElementById('pz_tf_severity')?.value || 'mild';
+  var size = document.getElementById('pz_tf_size')?.value || 'medium';
+  var result = document.getElementById('pz-guide-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-guide-result', 'Matching a leash training plan to your dog…');
+  setTimeout(function() {
+
+  var severityLabels = {
+    mild: 'Mild — occasional pulling',
+    moderate: 'Moderate — pulls regularly',
+    severe: 'Severe — hard to control, lunges/drags'
+  };
+  var sizeLabels = {
+    small: 'Small dog (under 25 lbs)',
+    medium: 'Medium dog (25–60 lbs)',
+    large: 'Large/strong dog (60+ lbs)'
+  };
+
+  var tips = [];
+  var wrapClass = 'pz-result-success';
+  var heroColor = 'linear-gradient(135deg,#1B5E20,#2E7D32)';
+  var heroIcon = '🐕';
+  var heroTitle = 'Your Leash Training Plan';
+  var timeline = '';
+
+  tips.push('Use the "stop and go" method: the instant the leash goes tight, stop walking completely and wait for slack before continuing.');
+  tips.push('Skip the retractable leash during training — it rewards pulling with more leash, the opposite of the lesson you want.');
+
+  if (severity === 'mild') {
+    timeline = 'Often improves in 1–2 weeks of daily practice';
+    tips.push('Mild, occasional pulling usually responds quickly to consistent stop-and-go practice — daily short sessions should show progress within a couple of weeks.');
+  } else if (severity === 'moderate') {
+    timeline = 'Typically several weeks of consistent daily practice';
+    tips.push('Regular pulling benefits from starting practice in a low-distraction space (house or yard) before testing it on busy streets, to build the habit before it\'s challenged.');
+  } else {
+    timeline = 'Longer timeline — often benefits from professional guidance alongside daily practice';
+    tips.push('Severe pulling that\'s hard to control is worth pairing with professional trainer guidance alongside daily practice, both for faster progress and for safety on walks.');
+  }
+
+  var equipmentNote = '';
+  if (size === 'large' || severity === 'severe') {
+    equipmentNote = 'A front-clip harness is strongly recommended here — it redirects a strong puller\'s forward motion and gives you meaningfully more control than a flat collar or back-clip harness alone.';
+  } else if (size === 'medium') {
+    equipmentNote = 'A front-clip harness is a solid choice for extra control, though a well-fitted back-clip harness can also work for lighter pulling.';
+  } else {
+    equipmentNote = 'A standard harness generally works well for a small dog, though a front-clip style can still help if pulling is more than occasional.';
+  }
+  tips.push(equipmentNote);
+
+  var severeAndLarge = (severity === 'severe' && size === 'large');
+  if (severeAndLarge) {
+    wrapClass = 'pz-result-warning';
+    heroColor = 'linear-gradient(135deg,#E65100,#FF9800)';
+    heroIcon = '⚠️';
+    heroTitle = 'Prioritize a Front-Clip Harness and Professional Help';
+    tips.push('This combination — a large, strong dog that\'s hard to control on leash — is worth treating as a safety priority, not just a training inconvenience. A front-clip harness plus a session or two with a professional trainer can make walks safe again much faster than DIY practice alone.');
+  }
+
+  var listHtml = '';
+  tips.forEach(function(t){ listHtml += '<li>' + t + '</li>'; });
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="' + wrapClass + '" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:' + heroColor + ';color:#fff;padding:24px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">' + heroIcon + ' ' + heroTitle + '</div>'
+    + '<div style="font-size:15px;opacity:.9">' + severityLabels[severity] + ' · ' + sizeLabels[size] + '</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Estimated Timeline</div><div class="pz-result-cell-val" style="font-size:12px">' + timeline + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Dog Size</div><div class="pz-result-cell-val" style="font-size:12px">' + sizeLabels[size] + '</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>🐕 Your Method &amp; Equipment</h4><ul>' + listHtml + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+
+  }, 650);
+}
+
+// ── Dog Socialization Guide
+function pzGenSocialization() {
+  var agegroup = document.getElementById('pz_tf_agegroup')?.value || 'puppy_under14';
+  var level = document.getElementById('pz_tf_level')?.value || 'not_started';
+  var result = document.getElementById('pz-guide-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-guide-result', 'Building your dog\'s socialization plan…');
+  setTimeout(function() {
+
+  var agegroupLabels = {
+    puppy_under14: 'Puppy under 14 weeks',
+    puppy_14wk_6mo: 'Puppy 14 weeks – 6 months',
+    adult_well: 'Adult dog, well-adjusted',
+    adult_fearful: 'Adult dog, fearful/reactive/under-socialized'
+  };
+  var levelLabels = {
+    not_started: 'Not started yet',
+    some: 'Some exposure so far',
+    well_socialized: 'Well socialized, want to maintain/expand'
+  };
+
+  var tips = [];
+  var wrapClass = 'pz-result-success';
+  var heroColor = 'linear-gradient(135deg,#1B5E20,#2E7D32)';
+  var heroIcon = '🤝';
+  var heroTitle = 'Your Socialization Plan';
+
+  if (agegroup === 'puppy_under14') {
+    wrapClass = 'pz-result-warning';
+    heroColor = 'linear-gradient(135deg,#E65100,#FF9800)';
+    heroIcon = '⏳';
+    heroTitle = 'Time-Sensitive: Window Closing Around 14 Weeks';
+    tips.push('The critical socialization window is roughly 3–14 weeks and narrows sharply after 12 weeks — exposures right now have an outsized, lasting effect on adult temperament that gets harder to replicate later.');
+    tips.push('Full vaccine series often aren\'t complete until around 16 weeks, after the window narrows — ask your vet specifically about controlled, lower-risk socialization now (vet-approved puppy classes, healthy vaccinated adult dogs, carrying your puppy in public to see and hear the world) rather than waiting until fully vaccinated.');
+    tips.push('This is a time-sensitive opportunity, not a medical danger — the urgency is about not missing the window, not about any immediate risk to your puppy.');
+  } else if (agegroup === 'puppy_14wk_6mo') {
+    tips.push('The sharpest part of the window has passed, but socialization still matters a great deal through this stage — keep exposures varied: people, dogs, sounds, surfaces, and gentle handling.');
+    tips.push('Your puppy should be further along on vaccines now — check with your vet about expanding to more public settings and dog-friendly spaces if not already doing so.');
+  } else if (agegroup === 'adult_well') {
+    tips.push('A well-adjusted adult mostly needs maintenance, not new foundational work — keep exposing them to some variety (new places, new dogs, new people) so social skills don\'t get rusty from routine.');
+    tips.push('This is also a good stage to help socialize other dogs or puppies, since a calm, well-socialized adult can be a great example for a puppy during their own window.');
+  } else {
+    wrapClass = 'pz-result-warning';
+    heroColor = 'linear-gradient(135deg,#E65100,#FF9800)';
+    heroIcon = '🩺';
+    heroTitle = 'Go Slower — Counter-Conditioning, Not Exposure';
+    tips.push('This is a different, slower process than puppy socialization: pair novel things with high-value treats from a distance your dog is actually comfortable at, then gradually decrease that distance over time — this is counter-conditioning, not just exposure.');
+    tips.push('Pushing too fast can worsen fear-based reactivity — progress here is measured in your dog staying calm enough to notice a treat and engage, not in how much new stuff you can expose them to in one session.');
+    tips.push('Many fearful or reactive adult dogs benefit significantly from a certified force-free trainer or veterinary behaviorist rather than DIY exposure — worth considering if progress stalls or you\'re unsure how to read your dog\'s signals.');
+  }
+
+  if (level === 'not_started') {
+    tips.push('Starting from scratch, begin with the lowest-pressure exposures first (quiet spaces, one calm dog or person at a time) and build from there rather than jumping into busy environments.');
+  } else if (level === 'some') {
+    tips.push('With some exposure already, look at which categories you\'ve covered (people, dogs, sounds, surfaces, handling) and prioritize the ones you\'ve missed rather than repeating the same easy wins.');
+  } else {
+    tips.push('To maintain and expand from a well-socialized baseline, rotate in new environments and mild novelty regularly so skills stay sharp rather than fading from routine.');
+  }
+
+  var listHtml = '';
+  tips.forEach(function(t){ listHtml += '<li>' + t + '</li>'; });
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="' + wrapClass + '" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:' + heroColor + ';color:#fff;padding:24px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">' + heroIcon + ' ' + heroTitle + '</div>'
+    + '<div style="font-size:15px;opacity:.9">' + agegroupLabels[agegroup] + ' · ' + levelLabels[level] + '</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Age Group</div><div class="pz-result-cell-val" style="font-size:12px">' + agegroupLabels[agegroup] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Current Level</div><div class="pz-result-cell-val" style="font-size:12px">' + levelLabels[level] + '</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>🤝 Your Socialization Priorities</h4><ul>' + listHtml + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+
+  }, 650);
+}
+
+// ── Dog Aggression Training Guide
+function pzGenAggression() {
+  var trigger = document.getElementById('pz_tf_trigger')?.value || 'strangers';
+  var severity = document.getElementById('pz_tf_severity')?.value || 'warning';
+  var result = document.getElementById('pz-guide-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-guide-result', 'Matching guidance to your situation…');
+  setTimeout(function() {
+
+  var triggerLabels = {
+    strangers: 'Strangers approaching home or owner',
+    dogs: 'Other dogs',
+    guarding: 'Resource guarding (food/toys/space)',
+    sudden: 'Sudden onset, previously not aggressive',
+    leash: 'Only happens on leash'
+  };
+  var severityLabels = {
+    warning: 'Growling/stiffening, no contact',
+    snapped: 'Snapped but did not make contact',
+    bitten: 'Has bitten'
+  };
+
+  var tips = [];
+  // This entire guide defaults to warning-state — aggression is safety-critical regardless of branch.
+  var wrapClass = 'pz-result-warning';
+  var heroColor = 'linear-gradient(135deg,#E65100,#FF9800)';
+  var heroIcon = '⚠️';
+  var heroTitle = 'Cause-Matched Aggression Guidance';
+
+  if (trigger === 'sudden') {
+    heroColor = 'linear-gradient(135deg,#B71C1C,#E65100)';
+    heroIcon = '🩺';
+    heroTitle = 'Get a Vet Check Before Assuming It\'s Behavioral';
+    tips.push('A previously non-aggressive dog suddenly acting aggressively, especially when touched in a specific area, strongly warrants an immediate vet check to rule out pain or illness before assuming this is purely a training issue.');
+    tips.push('Once a medical cause is ruled out or treated, the underlying behavioral pattern (fear, guarding, etc.) can be addressed on its own terms.');
+  } else if (trigger === 'strangers') {
+    heroTitle = 'Territorial/Protective Aggression Guidance';
+    tips.push('Aggression toward strangers approaching your home or you specifically often has a territorial or protective root — management (distance, barriers, a leash indoors when guests arrive) reduces risk while you work on the underlying response.');
+    tips.push('Avoid forcing greetings or "getting it over with" introductions — this tends to escalate rather than resolve the behavior.');
+  } else if (trigger === 'dogs') {
+    heroTitle = 'Dog-Directed Aggression Guidance';
+    tips.push('Reactions to other dogs can stem from fear, poor early socialization, frustration, or genuine dog-dog incompatibility — the right approach depends on which of these is actually driving it.');
+    tips.push('Distance is your main safety tool in the meantime — keep enough space from other dogs that your dog can stay under threshold while you get a professional assessment.');
+  } else if (trigger === 'guarding') {
+    heroTitle = 'Resource Guarding Guidance';
+    tips.push('Resource guarding over food, toys, or space is a distinct, well-understood pattern with its own trade-up and counter-conditioning protocols — it is not the same as general aggression.');
+    tips.push('Mild resource guarding is one of the more approachable forms to work on with careful, gradual counter-conditioning, but it escalates quickly if mishandled, so go slowly and avoid taking items away by force.');
+  } else {
+    heroTitle = 'Leash Reactivity Guidance';
+    tips.push('Aggression-like behavior that only happens on leash is often frustration-based rather than true aggression, and behaves differently from how the same dog acts off-leash.');
+    tips.push('Distance-based counter-conditioning — rewarding calm behavior at a distance your dog can handle, then gradually decreasing that distance — is the standard approach here.');
+  }
+
+  tips.push('Never punish growling or stiffening — it is your dog\'s warning system, and punishing it removes the warning without addressing the underlying issue, which can make a bite without notice more likely, not less.');
+
+  if (severity === 'bitten') {
+    heroColor = 'linear-gradient(135deg,#B71C1C,#E65100)';
+    heroIcon = '🚨';
+    heroTitle = 'Get a Veterinary Behaviorist Involved Now';
+    tips.push('A bite is a serious safety event regardless of the trigger — get a veterinary behaviorist or a CAAB/CPDT-KA trainer with real aggression experience involved now rather than continuing with DIY approaches alone.');
+    tips.push('In the meantime, manage the environment closely: muzzle training (done gradually and positively), a secure leash, and distance from known triggers reduce risk while you arrange professional support.');
+  } else if (severity === 'snapped') {
+    tips.push('A snap without contact is still a real escalation from a warning signal — this is a strong signal to bring in a certified professional now rather than waiting to see if it happens again.');
+    tips.push('Increase your management in the meantime: more distance from the trigger, and consider starting muzzle training as a proactive safety step.');
+  } else {
+    tips.push('Growling or stiffening without contact is still your dog communicating real discomfort — this is the ideal, earliest point to bring in a professional, since it\'s far easier to work with before any escalation happens.');
+  }
+
+  tips.push('Beyond mild resource guarding or these earliest fear signals, this genuinely warrants a certified professional rather than DIY training alone — a veterinary behaviorist or CAAB/CPDT-KA trainer with aggression experience can build a plan matched to your dog\'s specific cause and severity.');
+
+  var listHtml = '';
+  tips.forEach(function(t){ listHtml += '<li>' + t + '</li>'; });
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="' + wrapClass + '" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:' + heroColor + ';color:#fff;padding:24px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">' + heroIcon + ' ' + heroTitle + '</div>'
+    + '<div style="font-size:15px;opacity:.9">' + triggerLabels[trigger] + ' · ' + severityLabels[severity] + '</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Trigger</div><div class="pz-result-cell-val" style="font-size:12px">' + triggerLabels[trigger] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Severity</div><div class="pz-result-cell-val" style="font-size:12px">' + severityLabels[severity] + '</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>⚠️ Your Guidance</h4><ul>' + listHtml + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+
+  }, 650);
+}
+
+// ── Fun Dog Tricks Training Guide
+function pzGenTrickTraining() {
+  var level = document.getElementById('pz_tf_level')?.value || 'starting';
+  var trick = document.getElementById('pz_tf_trick')?.value || 'shake';
+  var result = document.getElementById('pz-guide-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-guide-result', 'Building your trick training steps…');
+  setTimeout(function() {
+
+  var levelLabels = {
+    starting: 'Just starting — knows sit/down',
+    some: 'Some tricks already, ready for more',
+    advanced: 'Advanced, wants a challenge'
+  };
+  var trickLabels = {
+    shake: 'Shake/paw',
+    spin: 'Spin',
+    rollover: 'Roll over',
+    playdead: 'Play dead',
+    notsure: 'Not sure — suggest one'
+  };
+
+  var tips = [];
+  var wrapClass = 'pz-result-success';
+  var heroColor = 'linear-gradient(135deg,#1B5E20,#2E7D32)';
+  var heroIcon = '🎪';
+  var heroTitle = 'Your Trick Training Steps';
+
+  var effectiveTrick = trick;
+  if (trick === 'notsure') {
+    effectiveTrick = (level === 'advanced') ? 'rollover' : 'shake';
+    tips.push('Since you\'re not sure which to try, ' + (effectiveTrick === 'rollover' ? 'roll over is a good next challenge' : 'shake/paw is a great starting trick') + ' based on your dog\'s current level.');
+  }
+
+  if (effectiveTrick === 'shake') {
+    heroTitle = 'Teaching Shake/Paw';
+    tips.push('From a sit, gently touch or tap your dog\'s paw while saying "shake," and the instant the paw lifts even slightly, mark and treat.');
+    tips.push('Alternatively, wait for your dog to naturally lift a paw (many dogs do this out of frustration when a treat is held in a closed fist) and mark that moment — this is shaping rather than luring.');
+    tips.push('Once reliable, "high five" is a natural next step — just raise your target hand a little higher and reward the higher paw lift.');
+  } else if (effectiveTrick === 'spin') {
+    heroTitle = 'Teaching Spin';
+    tips.push('Lure with a treat held right at nose height, tracing a circle in the air so your dog\'s whole body follows — mark and treat as soon as the circle completes.');
+    tips.push('Break it into quarter-turns at first if your dog loses the treat trail, then gradually ask for more of the circle before marking.');
+    tips.push('Once solid, teach the opposite direction with a distinctly different cue so your dog learns to tell the two apart.');
+  } else if (effectiveTrick === 'rollover') {
+    heroTitle = 'Teaching Roll Over — Takes More Patience';
+    tips.push('Build from a solid "down" first, then break the roll into small steps: lure your dog to lie flat on one side, mark and treat that step alone before asking for more.');
+    tips.push('Next, lure the head and shoulder around slightly further each rep, rewarding every small bit of progress rather than expecting the full roll right away.');
+    tips.push('This is one of the harder beginner tricks precisely because it\'s several small steps chained together — expect it to take more sessions than shake or spin.');
+    tips.push('If your dog has any joint or back sensitivity, go extra gently or consider skipping this trick — a vet check first is reasonable if you\'re unsure.');
+  } else {
+    heroTitle = 'Teaching Play Dead';
+    tips.push('Start from "down," then lure your dog onto their side with a treat traced from nose toward their shoulder, pairing it with a "bang" cue.');
+    tips.push('Mark and treat the instant your dog\'s side touches the ground, then gradually ask them to hold the position a beat longer before rewarding.');
+    tips.push('This builds naturally on the same down-to-side motion used for roll over, so dogs that know one often pick up the other faster.');
+  }
+
+  if (level === 'starting') {
+    tips.push('Since you\'re just starting out, keep sessions to just a few minutes and stick with one trick at a time until it\'s solid before adding another.');
+  } else if (level === 'some') {
+    tips.push('With some tricks already under your dog\'s belt, you can layer this new one in alongside a quick warm-up of a trick they already know well.');
+  } else {
+    tips.push('For an extra challenge, try chaining this trick with one your dog already knows, or adding it to a short sequence cued one after another.');
+  }
+
+  tips.push('Across every trick: mark the instant of correct behavior, treat immediately, keep sessions short, and end on a success rather than pushing until your dog loses interest.');
+  tips.push('Very young puppies should skip high-impact or jumping-heavy tricks until their growth plates close, to protect developing joints.');
+
+  var listHtml = '';
+  tips.forEach(function(t){ listHtml += '<li>' + t + '</li>'; });
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="' + wrapClass + '" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:' + heroColor + ';color:#fff;padding:24px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">' + heroIcon + ' ' + heroTitle + '</div>'
+    + '<div style="font-size:15px;opacity:.9">' + levelLabels[level] + ' · ' + trickLabels[trick] + '</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Level</div><div class="pz-result-cell-val" style="font-size:12px">' + levelLabels[level] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Trick</div><div class="pz-result-cell-val" style="font-size:12px">' + trickLabels[trick] + '</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>🎪 Your Step-by-Step Approach</h4><ul>' + listHtml + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+
+  }, 650);
+}
+
+// ── Rescue Dog Training: First 30 Days Guide
+function pzGenRescueDog() {
+  var daysowned = document.getElementById('pz_tf_daysowned')?.value || 'days';
+  var concern = document.getElementById('pz_tf_concern')?.value || 'routine';
+  var result = document.getElementById('pz-guide-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-guide-result', 'Building your first-30-days plan…');
+  setTimeout(function() {
+
+  var daysownedLabels = {
+    days: 'Just brought them home (days 1-3)',
+    weeks: 'First few weeks (up to 3 weeks)',
+    months: '1-3 months in'
+  };
+  var concernLabels = {
+    routine: 'Just building routine, no major issues',
+    fearful: 'Very fearful/hiding/shut down',
+    guarding: 'Showing guarding or aggression signs',
+    escape: 'Escape risk / flight-prone when scared'
+  };
+
+  var tips = [];
+  var wrapClass = 'pz-result-success';
+  var heroColor = 'linear-gradient(135deg,#1B5E20,#2E7D32)';
+  var heroIcon = '🏠';
+  var heroTitle = 'Your First 30 Days Plan';
+
+  if (daysowned === 'days') {
+    tips.push('You\'re in the decompression window — this is normal, not a sign of a bigger problem. Your dog may not eat normally or may hide, so keep things calm, predictable, and low-stimulation rather than starting heavy training or lots of new introductions.');
+  } else if (daysowned === 'weeks') {
+    tips.push('You\'re in the settling-in window — your dog is likely learning your household routine, testing boundaries a little, and showing more of its real personality now. This is a good time to begin gentle basic training and routine-building.');
+  } else {
+    tips.push('You\'re moving into the true-bonding window — training can progress more like it would with any dog, and the deeper routine and trust built over the past couple months should be paying off.');
+  }
+
+  if (concern === 'fearful') {
+    wrapClass = 'pz-result-warning';
+    heroColor = 'linear-gradient(135deg,#E65100,#FF9800)';
+    heroIcon = '🩺';
+    heroTitle = 'Patience First — Don\'t Force It';
+    tips.push('Don\'t force interaction or affection — let your dog approach you on its own timeline. Forcing closeness before a fearful dog is ready usually backfires and slows the process down.');
+    tips.push('This is normal for many rescue dogs, especially with an unknown history, and isn\'t a sign you\'re doing something wrong — expect the timeline to be longer than a 3-3-3 guideline might suggest, and that\'s okay.');
+  } else if (concern === 'guarding') {
+    wrapClass = 'pz-result-warning';
+    heroColor = 'linear-gradient(135deg,#E65100,#FF9800)';
+    heroIcon = '⚠️';
+    heroTitle = 'Get a Rescue-Experienced Trainer Involved Early';
+    tips.push('Resource guarding or aggression signs in a new rescue, especially with an unknown history, are worth involving a rescue-experienced trainer for earlier rather than waiting to see if it resolves on its own.');
+    tips.push('In the meantime, manage the environment — give space around food and high-value items, and avoid taking things away by force.');
+  } else if (concern === 'escape') {
+    wrapClass = 'pz-result-warning';
+    heroColor = 'linear-gradient(135deg,#E65100,#FF9800)';
+    heroIcon = '🦺';
+    heroTitle = 'Secure Your Equipment — Real Flight Risk';
+    tips.push('A well-fitted collar and harness with ID, plus a slip-lead backup, is worth the extra caution — scared rescue dogs are a genuine flight risk in an unfamiliar place, especially in these early weeks.');
+    tips.push('Double-check gates, doors, and vehicle exits during this period, and avoid off-leash time in unfenced areas until your dog is more settled and reliably responsive.');
+  } else {
+    tips.push('Keep a consistent routine — feeding times and walk times at similar times each day help reduce stress for a dog still adjusting to a new environment.');
+  }
+
+  tips.push('If your dog came with a known or suspected history of neglect, abuse, or limited socialization, expect training to take longer, and consider consulting a trainer experienced with rescue or fearful dogs early on rather than waiting for problems to develop.');
+
+  var listHtml = '';
+  tips.forEach(function(t){ listHtml += '<li>' + t + '</li>'; });
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="' + wrapClass + '" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:' + heroColor + ';color:#fff;padding:24px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">' + heroIcon + ' ' + heroTitle + '</div>'
+    + '<div style="font-size:15px;opacity:.9">' + daysownedLabels[daysowned] + ' · ' + concernLabels[concern] + '</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Time Since Adoption</div><div class="pz-result-cell-val" style="font-size:12px">' + daysownedLabels[daysowned] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Main Concern</div><div class="pz-result-cell-val" style="font-size:12px">' + concernLabels[concern] + '</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>🏠 Your Plan</h4><ul>' + listHtml + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+
+  }, 650);
+}
+
+// ── Dog Obedience Training Schedule
+function pzGenObedienceSchedule() {
+  var agegroup = document.getElementById('pz_tf_agegroup')?.value || 'puppy';
+  var goal = document.getElementById('pz_tf_goal')?.value || 'foundation';
+  var result = document.getElementById('pz-guide-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-guide-result', 'Building your training schedule…');
+  setTimeout(function() {
+
+  var agegroupLabels = {
+    puppy: 'Puppy (8 weeks - 6 months)',
+    adult: 'Adult dog, new to training',
+    senior: 'Senior dog'
+  };
+  var goalLabels = {
+    foundation: 'Building a first-time foundation',
+    distractions: 'Adding reliability around distractions',
+    maintenance: 'General refresher/maintenance'
+  };
+
+  var tips = [];
+  var wrapClass = 'pz-result-success';
+  var heroColor = 'linear-gradient(135deg,#1B5E20,#2E7D32)';
+  var heroIcon = '📅';
+  var heroTitle = 'Your Weekly Training Schedule';
+
+  if (agegroup === 'puppy') {
+    tips.push('Puppies do well starting as young as 8 weeks with very short, food-motivated sessions — aim for 3-5 minutes, 3-4 times a day, since attention spans are short at this age.');
+  } else if (agegroup === 'adult') {
+    tips.push('Adult dogs learn perfectly well on the same structure as a puppy — "old dogs can\'t learn new tricks" is a myth. Aim for 5-10 minute sessions, 2-3 times a day.');
+  } else {
+    tips.push('Senior dogs can absolutely still learn — age isn\'t the limiting factor here. Keep sessions a bit shorter (5-7 minutes) and be mindful of positions like sit or down if joint stiffness makes them uncomfortable; standing-based cues or a raised surface can help.');
+  }
+
+  if (goal === 'foundation') {
+    heroTitle = 'Weeks 1-2: Foundation Phase';
+    tips.push('Focus on core commands (sit, stay, come, down) in a low-distraction environment like home or the yard, using high-value treats for every rep.');
+    tips.push('Once those are solid, move into weeks 3-4: add duration and a little distance to each command, and start practicing in mildly more distracting settings like the front yard or a quiet street.');
+  } else if (goal === 'distractions') {
+    heroTitle = 'Weeks 5-8: Generalization Phase';
+    tips.push('This is the step most owners skip — deliberately practice known commands in new locations and around real distractions. A dog that "knows sit" at home may act like it\'s never heard the word at a busy park, and that\'s incomplete generalization, not defiance.');
+    tips.push('Increase distraction gradually: a quiet street, then a park with some activity, then somewhere busier — advancing only once your dog is reliable at the current level.');
+    tips.push('A structured, force-free group obedience class is a great way to add real-world distraction practice with professional guidance built in.');
+  } else {
+    heroTitle = 'Ongoing Maintenance Schedule';
+    tips.push('Skills can fade without use, especially around distractions — a couple of short practice sessions a week, rotating through different commands and locations, keeps everything sharp.');
+    tips.push('Use maintenance sessions to spot-check generalization too — try a known command somewhere you haven\'t practiced in a while.');
+  }
+
+  tips.push('Across every phase, short daily sessions consistently outperform occasional long ones for both learning speed and retention.');
+
+  var listHtml = '';
+  tips.forEach(function(t){ listHtml += '<li>' + t + '</li>'; });
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="' + wrapClass + '" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:' + heroColor + ';color:#fff;padding:24px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">' + heroIcon + ' ' + heroTitle + '</div>'
+    + '<div style="font-size:15px;opacity:.9">' + agegroupLabels[agegroup] + ' · ' + goalLabels[goal] + '</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Age Group</div><div class="pz-result-cell-val" style="font-size:12px">' + agegroupLabels[agegroup] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Goal</div><div class="pz-result-cell-val" style="font-size:12px">' + goalLabels[goal] + '</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>📅 Your Schedule</h4><ul>' + listHtml + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+
+  }, 650);
+}
+
+// ── Dog Sleep Training Guide
+function pzGenSleepTraining() {
+  var agegroup = document.getElementById('pz_tf_agegroup')?.value || 'puppy';
+  var preference = document.getElementById('pz_tf_preference')?.value || 'tradeoffs';
+  var result = document.getElementById('pz-guide-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-guide-result', 'Weighing the tradeoffs for your dog…');
+  setTimeout(function() {
+
+  var agegroupLabels = {
+    puppy: 'New puppy, still house-training',
+    adult: 'Adult dog, well-adjusted',
+    sensitive: 'Dog with anxiety or guarding tendencies'
+  };
+  var preferenceLabels = {
+    room: 'Want them in my room',
+    ownspace: 'Want them in their own space',
+    tradeoffs: 'Not sure — want the tradeoffs'
+  };
+
+  var tips = [];
+  var wrapClass = 'pz-result-success';
+  var heroColor = 'linear-gradient(135deg,#1B5E20,#2E7D32)';
+  var heroIcon = '😴';
+  var heroTitle = 'Your Sleep Setup Guidance';
+
+  if (agegroup === 'puppy') {
+    heroTitle = 'Crate Near Your Bed Is the Common Starting Point';
+    tips.push('Many trainers suggest a crate near your bed for the first weeks or months — the proximity reduces whining, and since puppies typically need one or more nighttime bathroom breaks, being nearby to hear those cues matters during house-training.');
+    tips.push('Dogs generally avoid soiling their own sleep space, so a properly sized crate genuinely supports the house-training process.');
+    tips.push('Once your puppy is reliably house-trained and settled, you can gradually transition to whichever long-term setup you prefer — there\'s no fixed timeline for this.');
+  } else if (agegroup === 'sensitive') {
+    wrapClass = 'pz-result-warning';
+    heroColor = 'linear-gradient(135deg,#E65100,#FF9800)';
+    heroIcon = '⚠️';
+    heroTitle = 'Worth Knowing Before You Decide';
+    tips.push('If your dog already shows guarding tendencies, sharing your bed can reinforce bed-guarding specifically — worth being aware of, not a reason to panic, just something to factor in.');
+    tips.push('For a dog with genuine separation anxiety, always sleeping pressed against you can mean they never get to practice being calm without physical contact, which can make solo alone-time harder rather than easier.');
+    tips.push('A dog bed in your room but not on the bed itself is often a good middle ground here — proximity comfort without reinforcing either issue as directly.');
+  } else {
+    heroTitle = 'Any Common Setup Works Well for You';
+    tips.push('For a well-adjusted adult dog with no behavioral concerns, bed-sharing, a dog bed in your room, or a separate space are all genuinely fine choices — this comes down to preference, not a right or wrong answer.');
+  }
+
+  if (preference === 'room') {
+    tips.push('Keeping your dog in your room — whether on the bed or on a dog bed nearby — is a popular choice that most well-adjusted dogs do fine with.');
+  } else if (preference === 'ownspace') {
+    tips.push('A separate room or dog bed elsewhere in the house works well for secure, well-trained adult dogs, though it\'s less ideal for a new puppy or an anxious dog still settling in.');
+  } else {
+    tips.push('There\'s no single universally "correct" answer here — crate, bedroom, bed, or separate space are all legitimate, and the right choice depends on your dog\'s age, temperament, and what actually works for your household.');
+  }
+
+  var listHtml = '';
+  tips.forEach(function(t){ listHtml += '<li>' + t + '</li>'; });
+
+  result.style.display = 'block';
+  result.innerHTML =
+    '<div class="' + wrapClass + '" style="border-radius:16px;overflow:hidden">'
+    + '<div class="pz-result-hero" style="background:' + heroColor + ';color:#fff;padding:24px">'
+    + '<div style="font-size:13px;font-weight:700;opacity:.75;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">' + heroIcon + ' ' + heroTitle + '</div>'
+    + '<div style="font-size:15px;opacity:.9">' + agegroupLabels[agegroup] + ' · ' + preferenceLabels[preference] + '</div>'
+    + '</div>'
+    + '<div class="pz-result-grid">'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Situation</div><div class="pz-result-cell-val" style="font-size:12px">' + agegroupLabels[agegroup] + '</div></div>'
+    + '<div class="pz-result-cell"><div class="pz-result-cell-label">Preference</div><div class="pz-result-cell-val" style="font-size:12px">' + preferenceLabels[preference] + '</div></div>'
+    + '</div>'
+    + '<div class="pz-result-tips"><h4>😴 Your Guidance</h4><ul>' + listHtml + '</ul></div>'
+    + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+    + '</div>';
+
+  }, 650);
+}
+
 // ── Bathing Wizard: step navigation
 var pzWizCurrentStep = 0;
 var pzWizTotalSteps = 4;

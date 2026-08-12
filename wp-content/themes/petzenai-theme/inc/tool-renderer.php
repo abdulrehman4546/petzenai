@@ -12446,7 +12446,858 @@ function pz_render_guide_puppy_adult_transition( $tool ) {
     <?php
 }
 
+/* ═══════════════════════════════════════════════════════════
+   GUIDE-TYPE INTERACTIVE TOOLS — dog-training category
+═══════════════════════════════════════════════════════════ */
+
+/* ══ Puppy Training Schedule by Age (puppy_training_schedule) ══ */
+
+function pz_hero_quickanswer_puppy_training_schedule() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Puppy training needs change fast — what a 9-week-old needs (potty schedule, gentle handling, name recognition) is completely different from what a 5-month-old needs (loose-leash walking, impulse control, adolescence management). The single most time-sensitive window is roughly 3-14 weeks for socialization — it narrows and effectively closes around 14 weeks, so the highest-impact exposures happen before most owners even think to prioritize them. Select your puppy's current age and training focus above for a checklist matched to exactly where your puppy is right now, not a generic one-size-fits-all list.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_puppy_training_schedule() { ?>
+      <span>📋 Age-by-age breakdown</span>
+      <span>⏳ 14-week window flagged</span>
+      <span>🎯 Focus-matched checklist</span>
+<?php }
+
+function pz_methodology_heading_puppy_training_schedule() { return "How This Puppy Training Schedule Is Built"; }
+
+function pz_methodology_puppy_training_schedule() { ?>
+    <p style="color:#555;margin-bottom:20px">Puppy development isn't linear, and neither is what a puppy is developmentally ready to learn — training a 9-week-old like a 5-month-old (or the reverse) sets both of you up for frustration. This schedule breaks training into the age stages that actually matter developmentally, with the time-sensitive socialization window flagged specifically because it's the one stage where waiting genuinely costs you something you can't get back.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🧠</div>
+        <strong>Built Around Developmental Stages</strong>
+        <p>Each age band reflects what a puppy is actually neurologically and physically ready to learn — not an arbitrary calendar split.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">⏳</div>
+        <strong>The 14-Week Window Is Flagged, Not Buried</strong>
+        <p>Critical socialization narrows around 12-14 weeks — this schedule calls it out explicitly instead of letting it slide past unnoticed.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🎯</div>
+        <strong>Focus-Matched to What You Select</strong>
+        <p>Whether you're prioritizing potty training, commands, socialization, or all-around progress, the guidance above weights toward what you actually chose.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🔁</div>
+        <strong>Consistency Over Cramming</strong>
+        <p>Short, frequent sessions across every stage outperform occasional long ones — the schedule reflects that at every age.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_puppy_training_schedule() {
+    return [
+        ['What should I be training at 8 weeks old?', 'At 8-10 weeks, focus is gentle handling exposure, name recognition, starting a potty schedule (out every 1-2 hours plus after eating, waking, and play), and beginning short, positive crate introductions. Formal leash walks outside should wait until your vet clears your puppy on vaccines, and it\'s best to avoid areas with unknown-vaccination dogs until then.'],
+        ['When does the socialization window actually close?', 'The critical socialization window is roughly 3-14 weeks, and it narrows sharply around 12-14 weeks — after that, a puppy\'s brain becomes more cautious about novelty rather than open to it. This doesn\'t mean socialization stops mattering after 14 weeks, but the outsized, lasting effect on adult temperament is concentrated in this earlier window.'],
+        ['My 6-month-old suddenly seems to have forgotten training — is that normal?', 'Yes, this is a very common adolescent phase, typically peaking around 6-9 months, where dogs test boundaries and get more distractible even on things they knew solidly. Stay consistent rather than assuming training failed — most dogs come out the other side with reinforcement, not by starting over.'],
+        ['Can I start leash walks before my puppy is fully vaccinated?', 'You can introduce a leash and harness indoors or in your own yard before full vaccination, but public walks in areas with unknown dogs should generally wait until your vet confirms your puppy is cleared — timing varies by vaccine protocol, so confirm with your vet directly.'],
+        ['By what age should basic commands be reliable?', 'Most dogs have reliable basics (sit, down, come, name response) by 6-12 months with consistent practice, though small breeds often mature a bit faster (around 12 months) and large/giant breeds can take until 18-24 months for full behavioral maturity. Reliability also depends on distraction level — a command solid at home may need separate practice around distractions.'],
+    ];
+}
+
+function pz_what_is_puppy_training_schedule() {
+    ob_start(); ?>
+    <p>The Puppy Training Schedule by Age breaks down exactly what to prioritize training-wise at each developmental stage, from 8-week-old name recognition through 12-24 month adult refinement — because what a puppy is ready to learn changes fast, and training a 9-week-old like a 5-month-old (or the reverse) usually backfires.</p>
+    <p>Some stages carry more urgency than others. The 8-16 week range covers the critical socialization window (roughly 3-14 weeks, narrowing sharply after 12 weeks), a genuinely time-sensitive opportunity that closes whether or not you used it, which is why it gets flagged explicitly rather than treated as just another item on a list. The 6-9 month stretch is the other stage worth knowing about in advance — dogs commonly get more distractible and test boundaries here, and it's normal, not a sign that earlier training failed.</p>
+    <p>Select your puppy's current age and your training focus above for a checklist weighted to exactly where your puppy is right now, then scroll down for the full stage-by-stage breakdown, common mistakes, and the FAQ covering what owners ask most at each age.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_puppy_training_schedule() {
+    ob_start(); ?>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">⏳</span>
+        <div>
+          <strong>Some Windows Don't Wait</strong>
+          <p>The critical socialization period narrows around 12-14 weeks regardless of when you get started — training out of sequence with your puppy's age genuinely costs opportunities you can't fully recover later.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🧠</span>
+        <div>
+          <strong>Puppies Learn Differently at Each Stage</strong>
+          <p>An 8-week-old and a 5-month-old have different attention spans, fear thresholds, and physical readiness — matching training to the stage makes it click faster.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">📈</span>
+        <div>
+          <strong>Adolescence Is a Real, Predictable Dip</strong>
+          <p>Knowing that 6-9 months commonly brings a distraction and boundary-testing phase means you won't mistake a normal stage for training that's failed.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🧩</span>
+        <div>
+          <strong>Consistency Compounds Across Stages</strong>
+          <p>What you build in the potty-training and socialization stages becomes the foundation adolescence tests — skipping early stages makes the harder stage harder.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_puppy_training_schedule() {
+    return [
+        ['title'=>'Identify Your Puppy\'s Current Age Stage', 'desc'=>'Select the closest age band above — even a couple of weeks can shift what\'s developmentally appropriate to prioritize.'],
+        ['title'=>'Choose Your Training Focus', 'desc'=>'Potty training, basic commands, socialization, or all-around progress — the checklist above weights its priorities toward what you pick.'],
+        ['title'=>'Prioritize Time-Sensitive Items First', 'desc'=>'If your puppy is under 4 months, treat socialization exposures as the priority — this window narrows around 12-14 weeks and won\'t wait for the rest of the schedule.'],
+        ['title'=>'Run Short, Frequent Sessions', 'desc'=>'5-minute sessions multiple times a day beat one long session, especially before 6 months when attention spans are short.'],
+        ['title'=>'Expect (and Plan for) the Adolescent Dip', 'desc'=>'Around 6-9 months, stay consistent through the distraction and boundary-testing phase rather than assuming earlier training didn\'t work.'],
+        ['title'=>'Reassess as Your Puppy Grows', 'desc'=>'Come back and re-select your puppy\'s new age stage every few weeks — the priorities genuinely shift that fast in the first year.'],
+    ];
+}
+
+function pz_tips_puppy_training_schedule() {
+    return [
+        ['Match Session Length to Age', 'Five-minute sessions for young puppies, gradually longer as focus improves — pushing past attention span teaches frustration, not the command.'],
+        ['Don\'t Skip Socialization for "Later"', 'The window that matters most closes around 12-14 weeks — waiting until after vaccines are fully complete often means missing the highest-impact stretch entirely; ask your vet about vaccine-safe ways to socialize sooner.'],
+        ['Use Positive Reinforcement at Every Stage', 'Food lures and praise work at every age band on this schedule — consistency in method matters as much as consistency in timing.'],
+        ['Track Progress, Not Just Age', 'Age bands are a guide, not a strict rule — a puppy that\'s ahead or behind the typical schedule should be met where they actually are.'],
+        ['Stay Consistent Through Adolescence', 'The 6-9 month dip is temporary for dogs that keep getting reinforcement — this is the stage most owners are tempted to give up on, and exactly when consistency pays off most.'],
+    ];
+}
+
+function pz_mistakes_puppy_training_schedule() {
+    return [
+        ['❌ Starting Leash Walks Too Early', 'Public walks before vet-cleared vaccination expose puppies to risk in unknown-status dog areas — introduce leash and harness indoors first.'],
+        ['❌ Waiting Until Fully Vaccinated to Socialize at All', 'The critical socialization window closes around 12-14 weeks, often before the full vaccine series is finished — ask your vet about safe ways to socialize during this window rather than skipping it entirely.'],
+        ['❌ Assuming Adolescent Regression Means Training Failed', 'The 6-9 month distraction phase is developmental, not a sign to start over — consistency gets you through it.'],
+        ['❌ Using the Same Session Length at Every Age', 'An 8-week-old and an 8-month-old have very different attention spans — sessions that are too long for a young puppy teach frustration.'],
+        ['❌ Treating All Focus Areas as Equally Urgent', 'Potty training and socialization are more time-sensitive early on; advanced commands can wait — training everything at once dilutes progress on what matters most right now.'],
+    ];
+}
+
+function pz_render_guide_puppy_training_schedule( $tool ) {
+    $icon = $tool['icon'] ?? '📋';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Puppy Training Schedule Guide</div>
+          <div class="pz-int-sublabel">Age-by-age priorities · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Age-Specific</span><span class="pz-int-badge pz-int-badge--blue">⏳ 14-Week Window Flagged</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Puppy's Current Age</label>
+          <select id="pz_tf_age" class="pz-int-select">
+            <option value="8_10wk">8-10 weeks</option>
+            <option value="10_12wk">10-12 weeks</option>
+            <option value="3_4mo">3-4 months (12-16 weeks)</option>
+            <option value="4_6mo">4-6 months</option>
+            <option value="6_12mo">6-12 months</option>
+            <option value="12_24mo">12-24 months</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Training Focus</label>
+          <select id="pz_tf_focus" class="pz-int-select">
+            <option value="potty">Potty training</option>
+            <option value="commands">Basic commands</option>
+            <option value="socialization">Socialization</option>
+            <option value="allaround">All-around training</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenPuppySchedule()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Training Checklist
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Dog Potty Training Guide: Step by Step (dog_potty_training) ══ */
+
+function pz_hero_quickanswer_dog_potty_training() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Consistency beats everything else in potty training: take your dog out every 1-2 hours plus immediately after waking, eating, and play, and reward within seconds of them going outside — timing is what makes the connection stick. Never punish accidents after the fact; your dog can't connect scolding to something that already happened, and it just teaches them to hide when they go. Most dogs are reliably house-trained within 4-6 months, though small breeds often take longer due to smaller bladders. Select your dog's age and current training stage above for a realistic timeline and your top priorities right now.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_potty_training() { ?>
+      <span>🕐 Realistic timelines</span>
+      <span>🚫 No-punishment method</span>
+      <span>🩺 Regression red flags covered</span>
+<?php }
+
+function pz_methodology_heading_dog_potty_training() { return "How This Potty Training Timeline Is Built"; }
+
+function pz_methodology_dog_potty_training() { ?>
+    <p style="color:#555;margin-bottom:20px">Potty training advice often either overpromises ("trained in a week!") or stays vague. This guide sets expectations by age and current stage, uses the schedule-plus-reward method that actually has evidence behind it, and calls out when a sudden regression is more likely medical than behavioral.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🕐</div>
+        <strong>Schedule-Based, Not Guesswork</strong>
+        <p>Take-out timing is the core method — young puppies need shorter intervals than older ones, and the schedule matches your dog's actual age.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🎯</div>
+        <strong>Reward Timing Is Everything</strong>
+        <p>Praise or a treat within seconds of eliminating outside is what actually builds the association — delayed rewards teach much more slowly.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🚫</div>
+        <strong>No Punishment, By Design</strong>
+        <p>Punishing accidents after the fact doesn't connect in a dog's mind and tends to make training slower, not faster — this guide is explicit about that.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🩺</div>
+        <strong>Regression Gets a Medical Flag</strong>
+        <p>A previously trained adult dog suddenly having accidents is treated differently here — sudden regression is often worth a vet check, not just more repetition.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_potty_training() {
+    return [
+        ['How long does potty training actually take?', 'Most dogs are reliably house-trained within 4-6 months, though this varies a lot by breed and size — small breeds are notoriously harder due to smaller bladders and often take longer than large breeds. Consistency in schedule and reward timing shortens this more than any single trick.'],
+        ['Should I rub my dog\'s nose in an accident?', 'No — this doesn\'t work and can make training harder. Dogs don\'t connect punishment after the fact to something they did minutes earlier; they just learn to fear you or to hide when eliminating, which makes accidents harder to catch and correct.'],
+        ['What cleaner should I use for accidents?', 'An enzymatic cleaner, not an ammonia-based one. Ammonia can smell similar to urine to a dog\'s nose and may actually encourage them to remark the same spot, undoing your progress.'],
+        ['My adult dog was potty trained for years and suddenly started having accidents — why?', 'Sudden regression in a previously reliable adult dog is often worth a vet visit before assuming it\'s behavioral — a UTI or other medical issue is a common cause and needs to be ruled out first. Stress or a schedule change can also cause temporary regression, but sudden onset in an adult deserves a medical check.'],
+        ['What are the signs my dog needs to go out?', 'Circling, sniffing the floor, whining, or heading toward the door are the classic signals — catching these early and getting outside quickly is what prevents the accident in the first place.'],
+    ];
+}
+
+function pz_what_is_dog_potty_training() {
+    ob_start(); ?>
+    <p>The Dog Potty Training Guide walks through the schedule-based, reward-timed method that actually works, matched to your dog's specific age and where they currently are in training — because a brand-new 8-week-old puppy and a regressing previously-trained adult need genuinely different guidance, not the same generic checklist.</p>
+    <p>The core method is simple but the details matter: take young puppies out every 1-2 hours plus immediately after waking, eating, and playing; reward within seconds of them eliminating outside, since timing is what builds the association; and use crate or confinement between outings, since dogs instinctively avoid soiling their sleep space (as long as the crate is sized correctly and doesn't allow a "bathroom corner"). Never punish accidents after the fact — a dog can't connect scolding to something that already happened, and it typically just teaches them to hide when they eliminate, making accidents harder to catch, not easier to prevent.</p>
+    <p>Select your dog's age and current training stage above for a realistic timeline and your top priorities right now, then scroll down for the full step-by-step method, common mistakes, and the FAQ covering the questions owners ask most — including what to do about sudden regression in a previously trained adult dog.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_potty_training() {
+    ob_start(); ?>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">⏱️</span>
+        <div>
+          <strong>Timing Makes the Reward Work</strong>
+          <p>Praise or a treat within seconds of eliminating outside is what builds the connection — waiting even a minute or two teaches much more slowly.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🏠</span>
+        <div>
+          <strong>The Crate Works With Instinct, Not Against It</strong>
+          <p>Dogs naturally avoid soiling their sleep space — a correctly sized crate uses that instinct instead of fighting it.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🚫</span>
+        <div>
+          <strong>Punishment After the Fact Doesn't Connect</strong>
+          <p>Scolding or rubbing a dog's nose in an accident doesn't teach what you intend — it just adds fear, which makes training slower.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🩺</span>
+        <div>
+          <strong>Sudden Regression Can Be Medical</strong>
+          <p>A previously reliable adult dog having sudden accidents deserves a vet check for a UTI or similar issue before assuming it's purely behavioral.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_potty_training() {
+    return [
+        ['title'=>'Set a Take-Out Schedule Matched to Age', 'desc'=>'Every 1-2 hours for young puppies, longer intervals as bladder control improves with age.'],
+        ['title'=>'Add the Non-Negotiable Triggers', 'desc'=>'Always take your dog out immediately after waking, eating, and active play — these are the highest-probability moments regardless of the clock.'],
+        ['title'=>'Reward Within Seconds, Every Time', 'desc'=>'Praise or a treat the moment elimination happens outside — the fast timing is what actually builds the habit.'],
+        ['title'=>'Use Confinement Between Outings', 'desc'=>'A correctly sized crate or a small confined area between scheduled outings leans on your dog\'s instinct not to soil their own sleep space.'],
+        ['title'=>'Clean Accidents With an Enzymatic Cleaner', 'desc'=>'Avoid ammonia-based cleaners, which can smell like urine to a dog and encourage remarking the same spot.'],
+        ['title'=>'Watch for Regression Triggers', 'desc'=>'Stress, schedule changes, or a medical issue like a UTI can all cause setbacks — rule out medical causes first if regression is sudden in a previously trained adult.'],
+    ];
+}
+
+function pz_tips_dog_potty_training() {
+    return [
+        ['Reward the Instant, Not the Walk Back Inside', 'Praise or treat right where it happens, outside — waiting until you\'re back inside teaches your dog the wrong moment mattered.'],
+        ['Pick a Consistent Potty Spot Early', 'The scent cues from repeated use of one spot can help speed up the association, especially early on.'],
+        ['Never Punish an Accident You Didn\'t Catch in the Act', 'If you find it after the fact, just clean it up — there\'s no way to connect punishment to something that already happened.'],
+        ['Use an Enzymatic Cleaner, Not Ammonia-Based', 'Enzymatic cleaners actually break down the scent markers; ammonia-based ones can smell like urine to a dog\'s nose and backfire.'],
+        ['Track Patterns, Not Just Incidents', 'If accidents cluster around a specific time or trigger, adjust the schedule around that pattern rather than treating each accident as random.'],
+    ];
+}
+
+function pz_mistakes_dog_potty_training() {
+    return [
+        ['❌ Punishing Accidents After the Fact', 'Dogs can\'t connect a scolding to something that happened minutes ago — this just teaches them to hide when eliminating, making training harder.'],
+        ['❌ Using an Ammonia-Based Cleaner', 'It can smell similar to urine and may encourage your dog to remark the same spot — use an enzymatic cleaner instead.'],
+        ['❌ Assuming Sudden Adult Regression Is Purely Behavioral', 'A previously reliable adult dog with sudden accidents should see a vet first — a UTI is a common, easily missed cause.'],
+        ['❌ Rewarding Too Late', 'Praise more than a few seconds after elimination doesn\'t build the same connection — reward immediately, in the moment.'],
+        ['❌ Using a Crate That\'s Too Large', 'An oversized crate lets a puppy use one end as a bathroom, which defeats the instinct the crate is supposed to be leaning on.'],
+    ];
+}
+
+function pz_render_guide_dog_potty_training( $tool ) {
+    $icon = $tool['icon'] ?? '🚽';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Potty Training Guide</div>
+          <div class="pz-int-sublabel">Step-by-step method · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Proven Method</span><span class="pz-int-badge pz-int-badge--blue">🕐 Realistic Timelines</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Dog's Age &amp; Situation</label>
+          <select id="pz_tf_age" class="pz-int-select">
+            <option value="puppy_8_16wk">8-16 week puppy</option>
+            <option value="puppy_4_6mo">4-6 month puppy</option>
+            <option value="adult_new">Adult dog (new to household)</option>
+            <option value="adult_regressing">Previously trained adult, now regressing</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Current Training Stage</label>
+          <select id="pz_tf_stage" class="pz-int-select">
+            <option value="starting">Just starting</option>
+            <option value="occasional">Occasional accidents</option>
+            <option value="refining">Mostly reliable, refining</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenPottyTraining()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Potty Training Plan
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Dog Crate Training Guide for Beginners (dog_crate_training) ══ */
+
+function pz_hero_quickanswer_dog_crate_training() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>The single most important rule of crate training: never use the crate as punishment — a dog crated as a consequence will resist and fear it going forward. Introduce it as a safe den using treats and meals inside with the door open, then build up closed-door duration gradually while your dog is calm. Puppies shouldn't be crated much longer than their age in months plus one hour during the day; adults generally cap around 6-8 hours. Select how your dog currently reacts to the crate and their age group above for guidance matched to exactly where you are.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_crate_training() { ?>
+      <span>🚫 Never used as punishment</span>
+      <span>📏 Correct sizing explained</span>
+      <span>🩺 Anxiety signs flagged</span>
+<?php }
+
+function pz_methodology_heading_dog_crate_training() { return "How This Crate Training Guidance Is Built"; }
+
+function pz_methodology_dog_crate_training() { ?>
+    <p style="color:#555;margin-bottom:20px">Crate training advice often skips the one rule that actually determines success: the crate must never be punishment. This guide builds every recommendation around the gradual, voluntary-entry method, correct sizing, and a clear distinction between normal adjustment whining and genuine crate anxiety that needs a different approach.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🚫</div>
+        <strong>Never Punishment — By Design</strong>
+        <p>A dog crated as a consequence learns to resist and fear the crate — every recommendation here assumes voluntary, positive association instead.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">📏</div>
+        <strong>Correct Sizing, Not Just "Bigger Is Kinder"</strong>
+        <p>Stand, turn around, lie down comfortably — but not much larger, since an oversized crate can undercut housetraining.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">⏱️</div>
+        <strong>Duration Limits by Age</strong>
+        <p>Puppies and adults have very different maximum crate times, and this guide is specific about both rather than giving one generic number.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🩺</div>
+        <strong>Real Anxiety vs. Normal Whining</strong>
+        <p>Genuine crate panic (drooling, self-injury, non-stop distress) gets flagged as different from ordinary adjustment whining, which needs a different, slower approach.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_crate_training() {
+    return [
+        ['Is it ever okay to use the crate as punishment?', 'No — this is the single most important rule of crate training. A dog placed in the crate as a consequence for bad behavior learns to associate it with punishment and will resist or fear entering it going forward, undoing all your positive-association work.'],
+        ['What size crate does my dog actually need?', 'Your dog should be able to stand up, turn around, and lie down comfortably, but the crate shouldn\'t be much larger than that. An oversized crate lets a puppy use one end as a bathroom corner, which defeats the housetraining benefit — use a divider panel to size it correctly as a growing puppy gets bigger.'],
+        ['How long can I leave my dog in the crate?', 'As a general rule of thumb, puppies can handle roughly their age in months plus one hour during the day; adult dogs generally shouldn\'t be crated more than 6-8 hours. These are maximums, not targets — shorter is generally better, especially early in training.'],
+        ['My dog whines every time I close the crate door — is that a problem?', 'Ordinary adjustment whining in the first few nights is normal and usually fades as your dog builds a positive association — the key is not letting them out while actively whining or barking, since that reinforces the behavior. Wait for a pause, even a brief one, before opening the door. True panic (drooling, injuring themselves trying to escape, non-stop distress well beyond the first few nights) is different and needs a slower approach or professional help, not "crying it out."'],
+        ['How do I get my dog to actually go in the crate voluntarily?', 'Start with the door open, and toss treats or feed meals inside so your dog associates the crate with good things and enters on their own. Only close the door for short periods once your dog is calm and comfortable, and build up duration gradually over days and weeks rather than jumping to long stays.'],
+    ];
+}
+
+function pz_what_is_dog_crate_training() {
+    ob_start(); ?>
+    <p>The Dog Crate Training Guide for Beginners walks through the gradual, positive-association method that actually builds a crate your dog is comfortable in, starting from the single rule that determines whether the rest of it works: the crate is never punishment.</p>
+    <p>The method itself is straightforward: leave the door open at first, toss treats or feed meals inside so your dog enters voluntarily, then gradually close the door for short periods while your dog is calm, building duration over days and weeks. Correct sizing matters too — your dog should be able to stand, turn around, and lie down comfortably, but not much more, since an oversized crate can let a puppy treat one end as a bathroom corner and undercut housetraining. And there are real duration limits: puppies roughly their age in months plus one hour during the day, adults generally no more than 6-8 hours.</p>
+    <p>Select how your dog currently reacts to the crate and their age group above for guidance matched to your exact situation — including a clear flag if what you're describing sounds like genuine crate anxiety rather than normal adjustment whining, which needs a different, slower approach. Then scroll down for the full step-by-step method, common mistakes, and the FAQ covering what beginners ask most.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_crate_training() {
+    ob_start(); ?>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🚫</span>
+        <div>
+          <strong>Punishment Undoes Everything</strong>
+          <p>A single use of the crate as punishment can set back weeks of positive-association work — this rule matters more than any technique.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">📏</span>
+        <div>
+          <strong>Sizing Affects Housetraining Directly</strong>
+          <p>Too large, and a puppy can use one end as a bathroom corner — correct sizing is part of what makes the crate actually work.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">⏳</span>
+        <div>
+          <strong>Duration Limits Protect Your Dog</strong>
+          <p>Leaving a puppy or adult crated too long isn't just uncomfortable — it can create the exact anxiety and resistance you're trying to avoid.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🩺</span>
+        <div>
+          <strong>Real Anxiety Needs a Different Plan</strong>
+          <p>Genuine crate panic doesn't respond to "wait it out" — recognizing the difference early means you can adjust the approach before it gets worse.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_crate_training() {
+    return [
+        ['title'=>'Start With the Door Open', 'desc'=>'Let your dog investigate freely, and toss treats or feed meals inside so entering the crate becomes their own positive choice.'],
+        ['title'=>'Build Up to Short Closed-Door Periods', 'desc'=>'Once your dog enters calmly and comfortably, close the door for a few minutes at a time while they\'re relaxed.'],
+        ['title'=>'Extend Duration Gradually', 'desc'=>'Add time in small increments over days and weeks — jumping straight to long stays is the most common reason crate training stalls.'],
+        ['title'=>'Never Release During Whining or Barking', 'desc'=>'Wait for a pause, even a brief one, before opening the door — releasing during the noise reinforces exactly the behavior you don\'t want.'],
+        ['title'=>'Confirm the Crate Is Sized Correctly', 'desc'=>'Stand, turn around, lie down comfortably — not much more. Use a divider for a growing puppy rather than buying an adult-sized crate too early.'],
+        ['title'=>'Watch for Signs of Genuine Anxiety', 'desc'=>'Drooling, self-injury attempting to escape, or non-stop distress beyond the first few nights need a slower approach or professional help, not more time alone.'],
+    ];
+}
+
+function pz_tips_dog_crate_training() {
+    return [
+        ['Feed Meals Inside the Crate', 'This turns the crate into a positive daily routine without any extra training time required.'],
+        ['Cover Part of the Crate for a Den Feel', 'A partial cover (leaving ventilation clear) can make the space feel more secure for a dog still adjusting.'],
+        ['Practice Short Absences Before Long Ones', 'Step out of the room for a minute before leaving the house for hours — this builds confidence in stages.'],
+        ['Keep a Consistent Cue Word', 'A short, consistent word like "crate" or "bed" paired with a treat every time helps your dog learn the routine faster.'],
+        ['Don\'t Rush Past a Stage Your Dog Isn\'t Ready For', 'If your dog is still hesitant at the open-door stage, more time here beats forcing the door closed early.'],
+    ];
+}
+
+function pz_mistakes_dog_crate_training() {
+    return [
+        ['❌ Using the Crate as Punishment', 'This is the single fastest way to undo crate training — a dog crated as a consequence learns to fear and resist it.'],
+        ['❌ Letting Your Dog Out While Whining or Barking', 'This reinforces the exact behavior you\'re trying to reduce — wait for even a brief pause before opening the door.'],
+        ['❌ Buying a Crate That\'s Too Large', 'An oversized crate lets a puppy use one end as a bathroom corner, undercutting housetraining progress.'],
+        ['❌ Jumping to Long Stays Too Fast', 'Skipping the gradual duration build-up is the most common reason dogs resist the crate — short, successful stays first.'],
+        ['❌ Mistaking Genuine Panic for Normal Whining', 'Drooling, self-injury, or non-stop distress beyond the first few nights is real anxiety needing a different, slower approach — not something to wait out.'],
+    ];
+}
+
+function pz_render_guide_dog_crate_training( $tool ) {
+    $icon = $tool['icon'] ?? '🏠';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Crate Training Guide</div>
+          <div class="pz-int-sublabel">For beginners · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Positive Method</span><span class="pz-int-badge pz-int-badge--orange">🩺 Anxiety-Aware</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Current Reaction to Crate</label>
+          <select id="pz_tf_reaction" class="pz-int-select">
+            <option value="never_used">Never used a crate before</option>
+            <option value="resists">Resists entering / avoids it</option>
+            <option value="whines_barks">Whines or barks when placed in it</option>
+            <option value="calm_longer">Enters calmly, needs longer duration</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Age Group</label>
+          <select id="pz_tf_agegroup" class="pz-int-select">
+            <option value="puppy">Puppy</option>
+            <option value="adult">Adult dog</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenCrateTraining()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Crate Training Plan
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Dog Leash Training Guide: Stop Pulling (dog_leash_training) ══ */
+
+function pz_hero_quickanswer_dog_leash_training() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>The most effective method is "stop and go": the instant the leash goes tight, stop walking completely and wait for slack before continuing — over many repetitions, your dog learns that pulling stops the walk and a loose leash keeps it moving. Reward generously for walking near you, especially early on. A front-clip harness makes a real difference for strong pullers by redirecting their pulling motion, and it's both more effective and more humane than a flat collar alone. Select your dog's current pulling severity and size above for a method and equipment recommendation matched to your actual walks.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_leash_training() { ?>
+      <span>🚫 No correction-based methods</span>
+      <span>🦮 Equipment matched to size</span>
+      <span>⏱️ Realistic timelines</span>
+<?php }
+
+function pz_methodology_heading_dog_leash_training() { return "How This Leash Training Guidance Is Built"; }
+
+function pz_methodology_dog_leash_training() { ?>
+    <p style="color:#555;margin-bottom:20px">Leash pulling advice ranges from ineffective to actively unpleasant for the dog. This guide sticks to the positive-reinforcement "stop and go" method that has real evidence behind it, matches equipment recommendations to your dog's actual size and pulling severity, and is upfront about when a strong or severe puller benefits from professional help for safety.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🛑</div>
+        <strong>Stop-and-Go, Not Correction</strong>
+        <p>Stopping the instant the leash tightens teaches the lesson without any physical correction — the method this guide is built around.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🦮</div>
+        <strong>Equipment Matched to Severity and Size</strong>
+        <p>A front-clip harness matters more for a large, strong puller than a small dog with occasional pulling — recommendations scale accordingly.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🏠</div>
+        <strong>Low-Distraction Practice First</strong>
+        <p>Practicing in the house or yard before busy streets builds the habit before it's tested against real-world distractions.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">👥</div>
+        <strong>Household Consistency</strong>
+        <p>If one walker allows pulling, the dog doesn't generalize the rule — this guide flags that consistency matters as much as the method itself.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_leash_training() {
+    return [
+        ['What\'s the actual best method to stop leash pulling?', 'The "stop and go" (or "be a tree") method: the instant the leash goes tight, stop walking completely and wait for your dog to create slack — by looking back or stepping toward you — before continuing. Repeated consistently, your dog learns that pulling makes the walk stop and a loose leash keeps it moving.'],
+        ['Does a front-clip harness actually help?', 'Yes, genuinely — a front-clip harness redirects a pulling dog\'s forward motion back toward you, which makes pulling physically less effective and gives you more control, especially for a strong or large dog. It\'s both more effective and more humane for training than a back-clip harness or flat collar alone on a determined puller.'],
+        ['Should I use a retractable leash while training?', 'No — avoid retractable leashes during training. They teach the opposite lesson of what you want, since pulling literally gets the dog more leash, and they offer much less control than a standard 4-6 foot leash if you need to stop your dog quickly.'],
+        ['How long does it take to stop a dog from pulling?', 'Mild, occasional pulling can improve in 1-2 weeks of daily practice. Severe pulling, especially in a strong or large breed, typically takes longer and often benefits from a front-clip harness plus some guidance from a professional trainer, particularly if the pulling makes walks hard to control safely.'],
+        ['My dog listens fine with me but pulls with my partner — why?', 'Consistency across everyone who walks the dog matters as much as the method itself. If one person allows pulling — even occasionally — the dog doesn\'t generalize the rule that pulling always stops the walk, so it keeps reappearing with whoever\'s more lenient.'],
+    ];
+}
+
+function pz_what_is_dog_leash_training() {
+    ob_start(); ?>
+    <p>The Dog Leash Training Guide focuses on the positive-reinforcement methods that actually reduce pulling — the "stop and go" technique, generous reward timing, and equipment matched to your dog's size and how hard they currently pull — rather than correction-based approaches.</p>
+    <p>The core method: the instant the leash goes tight, stop walking completely and wait for slack (your dog looking back or the leash loosening) before continuing — repeated consistently, this teaches that pulling stops forward progress and a loose leash keeps it going. Reward generously for walking near you without pulling, especially in the early days. Equipment matters more than people expect: a front-clip harness redirects a strong puller's motion and is both more effective and more humane than a flat collar or back-clip harness alone, while a retractable leash actively works against training by rewarding pulling with more leash. Practicing in a low-distraction environment like your house or yard before busy streets, and keeping the method consistent across everyone who walks the dog, both meaningfully speed up progress.</p>
+    <p>Select your dog's current pulling severity and size above for a method and equipment recommendation matched to your actual walks, then scroll down for the full step-by-step approach, common mistakes, and the FAQ covering what owners ask most about leash training.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_leash_training() {
+    ob_start(); ?>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🛑</span>
+        <div>
+          <strong>The Method Teaches, Correction Just Suppresses</strong>
+          <p>Stop-and-go builds a real understanding of what a loose leash earns — correction-based methods tend to suppress pulling only while the correction is present.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🦮</span>
+        <div>
+          <strong>Equipment Genuinely Changes the Physics</strong>
+          <p>A front-clip harness redirects a strong puller's forward motion — for a large or determined dog, this isn't a minor detail, it changes what's physically possible.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🏠</span>
+        <div>
+          <strong>Environment Affects Difficulty</strong>
+          <p>The same dog that walks nicely in the yard may struggle on a busy street — building the skill in low-distraction settings first sets up real-world success.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">👥</span>
+        <div>
+          <strong>Everyone Who Walks the Dog Needs the Same Rule</strong>
+          <p>A dog that gets away with pulling on even some walks doesn't fully learn the rule — household consistency is part of the method, not optional.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_leash_training() {
+    return [
+        ['title'=>'Choose the Right Equipment First', 'desc'=>'A front-clip harness for a strong or large puller, a standard 4-6 foot leash — skip the retractable leash during training.'],
+        ['title'=>'Practice in a Low-Distraction Space', 'desc'=>'Start in your house or yard before testing the method on a busy street.'],
+        ['title'=>'Stop the Instant the Leash Tightens', 'desc'=>'Stand still and wait — don\'t tug back or keep walking through the tension.'],
+        ['title'=>'Wait for Slack, Then Continue', 'desc'=>'The moment your dog looks back or the leash loosens, resume walking — this is the actual lesson landing.'],
+        ['title'=>'Reward Generously for Loose-Leash Walking', 'desc'=>'Especially in the first couple of weeks, reward your dog often just for walking near you without pulling.'],
+        ['title'=>'Keep Every Walker Consistent', 'desc'=>'Make sure everyone who walks the dog uses the same stop-and-go rule — inconsistency slows the whole process down.'],
+    ];
+}
+
+function pz_tips_dog_leash_training() {
+    return [
+        ['Reward Position, Not Just Behavior', 'Treat your dog specifically when they\'re in the position you want (near your side) — this reinforces where to walk, not just that pulling stopped.'],
+        ['Keep Sessions Short at First', 'A few focused minutes of practice beats a long walk where the lesson gets diluted by fatigue and distraction.'],
+        ['Switch to a Front-Clip Harness Early for Strong Pullers', 'Don\'t wait until frustration sets in — for a large or determined puller, the right equipment from day one makes the training method actually work.'],
+        ['Skip the Retractable Leash During Training', 'It teaches the opposite lesson (pulling equals more leash) and gives you far less control if you need to stop your dog quickly.'],
+        ['Practice the Same Route a Few Times', 'A familiar route has fewer novel distractions, letting your dog focus on the leash lesson instead of everything new around them.'],
+    ];
+}
+
+function pz_mistakes_dog_leash_training() {
+    return [
+        ['❌ Continuing to Walk Through a Tight Leash', 'This directly undoes the stop-and-go method — even a few steps forward while the leash is tight teaches that pulling works.'],
+        ['❌ Using a Retractable Leash During Training', 'It rewards pulling with more leash — the exact opposite of the lesson you\'re trying to teach.'],
+        ['❌ Skipping the Right Equipment for a Strong Puller', 'A flat collar or back-clip harness alone often isn\'t enough for a large, determined puller — a front-clip harness changes what\'s physically possible.'],
+        ['❌ Practicing Only in High-Distraction Environments', 'Jumping straight to a busy street skips the low-distraction practice that actually builds the skill.'],
+        ['❌ Letting Inconsistency Slide Across Walkers', 'If even one household member allows pulling, the dog doesn\'t fully generalize the rule — get everyone on the same method.'],
+    ];
+}
+
+function pz_render_guide_dog_leash_training( $tool ) {
+    $icon = $tool['icon'] ?? '🐕';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Leash Training Guide</div>
+          <div class="pz-int-sublabel">Stop pulling · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Force-Free Method</span><span class="pz-int-badge pz-int-badge--blue">🦮 Equipment-Matched</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Pulling Severity</label>
+          <select id="pz_tf_severity" class="pz-int-select">
+            <option value="mild">Mild — occasional pulling</option>
+            <option value="moderate">Moderate — pulls regularly</option>
+            <option value="severe">Severe — hard to control, lunges/drags</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Dog Size</label>
+          <select id="pz_tf_size" class="pz-int-select">
+            <option value="small">Small dog (under 25 lbs)</option>
+            <option value="medium">Medium dog (25-60 lbs)</option>
+            <option value="large">Large/strong dog (60+ lbs)</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenLeashTraining()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Leash Training Plan
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Dog Socialization Guide: Puppies & Adults (dog_socialization) ══ */
+
+function pz_hero_quickanswer_dog_socialization() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>The critical socialization window for puppies is roughly 3-14 weeks — this is when positive exposures have an outsized, lasting effect on adult temperament, and it narrows sharply after 12 weeks. Because full vaccine series often aren't complete until around 16 weeks, vets generally recommend controlled, lower-risk socialization during this window rather than waiting — worth a specific conversation with your vet, since guidance varies. For adult dogs with socialization gaps or fear, the process is different and slower: counter-conditioning at your dog's own pace, often with a certified trainer, works better than pushing exposure too fast. Select your dog's age group and current socialization level above for guidance matched to your exact situation.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_socialization() { ?>
+      <span>⏳ Vaccine-safe window guidance</span>
+      <span>🐾 Puppy &amp; adult paths</span>
+      <span>🩺 Fear-aware approach</span>
+<?php }
+
+function pz_methodology_heading_dog_socialization() { return "How This Socialization Guidance Is Built"; }
+
+function pz_methodology_dog_socialization() { ?>
+    <p style="color:#555;margin-bottom:20px">Socialization advice often either ignores the real time pressure of the puppy window or pushes fearful adult dogs too fast. This guide is built around the actual critical window (roughly 3-14 weeks), the real reason vets recommend controlled exposure before full vaccination, and a genuinely slower, evidence-based approach for adult dogs with fear or socialization gaps.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">⏳</div>
+        <strong>The Real Critical Window</strong>
+        <p>Roughly 3-14 weeks is when positive exposures have the biggest, most lasting effect on adult temperament — this guide treats that as a fact worth planning around, not a vague suggestion.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">💉</div>
+        <strong>Vaccine Timing vs. Window Timing</strong>
+        <p>Full vaccine series often finish around 16 weeks, after the window narrows — this guide explains the vet-recommended controlled approach that bridges the gap.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">⭐</div>
+        <strong>Quality Over Quantity</strong>
+        <p>Calm, positive exposures the dog chooses to approach matter more than flooding them with overwhelming new experiences.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🐾</div>
+        <strong>A Different Path for Adult Dogs</strong>
+        <p>Fearful or under-socialized adults need slower counter-conditioning, not more exposure faster — this guide treats that as a distinct process, not a smaller version of puppy socialization.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_socialization() {
+    return [
+        ['When exactly does the socialization window close?', 'The critical window is roughly 3-14 weeks of age, and it narrows sharply around 12-14 weeks rather than closing on one exact day. Positive exposures during this window have an outsized, lasting effect on adult temperament that gets harder to replicate afterward — though socialization still matters beyond it.'],
+        ['My puppy isn\'t fully vaccinated yet — is it safe to socialize them?', 'Full vaccine series often aren\'t complete until around 16 weeks, which is after the critical window narrows — because of this, vets generally recommend controlled, lower-risk socialization during the window rather than waiting: puppy classes at vet-approved facilities, exposure to healthy vaccinated adult dogs, and carrying your puppy in public to see and hear the world without paw-to-ground contact with unknown dogs. Guidance varies, so this is genuinely worth a specific conversation with your vet.'],
+        ['How do I socialize an adult dog who\'s fearful or was never socialized as a puppy?', 'This is a different, slower process than puppy socialization: counter-conditioning at your dog\'s own pace, pairing novel things with high-value treats from a distance your dog is comfortable at, and gradually decreasing that distance over time. Pushing an adult dog too fast can worsen fear-based reactivity, so many adult dogs benefit from a certified force-free trainer or veterinary behaviorist rather than DIY exposure.'],
+        ['What counts as good socialization, beyond just meeting other dogs?', 'Varied positive exposure to people of different ages and appearances, other vaccinated and friendly dogs, everyday sounds (vacuum, traffic, doorbell), different surfaces and textures, handling of paws, ears, and mouth (useful for future vet and grooming visits), and new environments generally. Quality matters more than quantity — calm, positive experiences your dog chooses to approach, not overwhelming floods of new stimuli.'],
+        ['Can I overdo socialization?', 'Yes — flooding a fearful puppy or dog with overwhelming exposure can backfire and create fear associations rather than confidence. Quality and pacing matter more than cramming in as many new experiences as possible, especially with a puppy or dog that\'s showing signs of being overwhelmed.'],
+    ];
+}
+
+function pz_what_is_dog_socialization() {
+    ob_start(); ?>
+    <p>The Dog Socialization Guide covers both the time-sensitive puppy window and the genuinely different process adult dogs need, because "socialize your dog" means something very different depending on age and where they're starting from.</p>
+    <p>For puppies, the critical socialization window is roughly 3-14 weeks — positive exposures during this stretch have an outsized, lasting effect on adult temperament, and the window narrows sharply around 12-14 weeks. Because full vaccine series often aren't complete until around 16 weeks, vets generally recommend controlled, lower-risk socialization during the window (vet-approved puppy classes, healthy vaccinated adult dogs, carrying your puppy in public to see and hear the world) rather than waiting until fully vaccinated and missing the window — this is genuinely worth a specific conversation with your vet, since guidance varies. Good socialization means varied positive exposure to people, dogs, sounds, surfaces, and handling, with quality mattering more than quantity — flooding an overwhelmed puppy backfires. For adult dogs with gaps or fear, the process is different and slower: counter-conditioning at the dog's own pace, pairing novel things with high-value treats from a comfortable distance, and gradually decreasing that distance, often best guided by a certified force-free trainer or veterinary behaviorist rather than DIY exposure.</p>
+    <p>Select your dog's age group and current socialization level above for guidance matched to your exact situation, then scroll down for the full breakdown, common mistakes, and the FAQ covering the questions owners ask most about socializing puppies and adult dogs alike.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_socialization() {
+    ob_start(); ?>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">⏳</span>
+        <div>
+          <strong>The Puppy Window Is Genuinely Time-Sensitive</strong>
+          <p>Exposures during roughly 3-14 weeks shape adult temperament in ways that are harder to replicate once the window narrows — this isn't a "nice to have," it's time-limited.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">💉</span>
+        <div>
+          <strong>Vaccine Timing Creates a Real Gap</strong>
+          <p>Full vaccination often finishes after the window narrows — knowing the vet-recommended controlled approach means you don't have to choose between safety and the window.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">⭐</span>
+        <div>
+          <strong>Quality Beats Quantity</strong>
+          <p>A handful of calm, positive exposures the dog chooses to approach builds more confidence than a flood of overwhelming new experiences.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🩺</span>
+        <div>
+          <strong>Adult Fear Needs a Slower Process</strong>
+          <p>Pushing a fearful or under-socialized adult dog too fast can worsen reactivity — recognizing this early prevents doing more harm than good.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_socialization() {
+    return [
+        ['title'=>'Identify Your Dog\'s Age Group and Starting Point', 'desc'=>'A puppy under 14 weeks, a puppy past that window, and an adult with gaps all need a different approach — start by knowing which one you\'re working with.'],
+        ['title'=>'Talk to Your Vet About Vaccine-Safe Socialization', 'desc'=>'If your puppy is under 14 weeks and not fully vaccinated, ask specifically about controlled options rather than waiting until fully vaccinated.'],
+        ['title'=>'Prioritize Variety, Not Just Volume', 'desc'=>'People, dogs, sounds, surfaces, and gentle handling — cover different categories rather than repeating the same type of exposure.'],
+        ['title'=>'Let the Dog Choose to Approach', 'desc'=>'Calm, positive exposures where your dog can approach on their own terms build more confidence than forced proximity.'],
+        ['title'=>'For Adults With Fear or Gaps, Start With Distance', 'desc'=>'Pair novel things with high-value treats from a distance your dog is comfortable at, then decrease that distance gradually over time.'],
+        ['title'=>'Bring in a Professional if Progress Stalls', 'desc'=>'A certified force-free trainer or veterinary behaviorist is worth involving for a fearful or reactive adult dog rather than continuing DIY exposure that isn\'t working.'],
+    ];
+}
+
+function pz_tips_dog_socialization() {
+    return [
+        ['Ask Your Vet About Puppy Classes Specifically', 'Vet-approved puppy classes are a common way to socialize safely before full vaccination is complete — ask at your next visit.'],
+        ['Carry Young Puppies in Public Before They\'re Fully Vaccinated', 'This lets them see and hear the world without paw-to-ground contact with unknown-status dogs — a genuinely useful bridge during the window.'],
+        ['Keep a Simple Exposure Checklist', 'People, dogs, sounds, surfaces, handling, environments — a quick mental checklist helps you notice gaps instead of repeating the same easy exposures.'],
+        ['Read Your Dog\'s Body Language, Not Just the Calendar', 'A relaxed, curious dog is ready for more; a stiff or avoidant one needs more distance and a slower pace, regardless of age.'],
+        ['Don\'t Wait for "Fully Vaccinated" if You Have a Young Puppy', 'By the time full vaccination is complete, the critical window has often already narrowed — ask your vet about safe options now instead.'],
+    ];
+}
+
+function pz_mistakes_dog_socialization() {
+    return [
+        ['❌ Waiting Until Fully Vaccinated to Start Socializing', 'Full vaccination often finishes after the critical window narrows — talk to your vet about safe options during the window instead of waiting.'],
+        ['❌ Flooding an Overwhelmed Puppy With Too Much at Once', 'Cramming in as many new experiences as possible can create fear associations instead of confidence — pace and quality matter more than volume.'],
+        ['❌ Pushing a Fearful Adult Dog Too Fast', 'Forcing proximity to something a fearful dog isn\'t ready for can worsen reactivity — counter-conditioning needs to happen at the dog\'s own pace.'],
+        ['❌ Treating Adult Socialization Like Puppy Socialization', 'An adult dog with fear or gaps needs a slower, more deliberate counter-conditioning process, not a compressed version of the puppy approach.'],
+        ['❌ Skipping Professional Help for a Reactive Dog', 'DIY exposure that isn\'t improving things, or is making them worse, is a sign to bring in a certified force-free trainer or veterinary behaviorist.'],
+    ];
+}
+
+function pz_render_guide_dog_socialization( $tool ) {
+    $icon = $tool['icon'] ?? '🤝';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Socialization Guide</div>
+          <div class="pz-int-sublabel">Puppies &amp; adults · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet-Informed Timing</span><span class="pz-int-badge pz-int-badge--purple">🐾 Puppy &amp; Adult Paths</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Age Group</label>
+          <select id="pz_tf_agegroup" class="pz-int-select">
+            <option value="puppy_under14">Puppy under 14 weeks</option>
+            <option value="puppy_14wk_6mo">Puppy 14 weeks - 6 months</option>
+            <option value="adult_well">Adult dog, well-adjusted</option>
+            <option value="adult_fearful">Adult dog, fearful/reactive/under-socialized</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Current Socialization Level</label>
+          <select id="pz_tf_level" class="pz-int-select">
+            <option value="not_started">Not started yet</option>
+            <option value="some">Some exposure so far</option>
+            <option value="well_socialized">Well socialized, want to maintain/expand</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenSocialization()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Socialization Plan
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
 function pz_get_checker_questions($tool) {
+
     $a = $tool['animal'] ?? 'pet';
 
     $questions = [
@@ -13212,4 +14063,1695 @@ function pz_sidebar_quick_facts($tool) {
     }
     $out .= '</ul>';
     return $out;
+}
+
+/* ══ Dog Separation Anxiety Training Guide (dog_separation_anxiety_training) ══ */
+
+function pz_hero_quickanswer_dog_separation_anxiety_training() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>True separation anxiety shows a specific pattern: destruction concentrated at exit points, house-soiling only when alone, howling that starts right at departure, and pacing or drooling — this is panic, not misbehavior. The core fix is desensitizing your dog to departure cues, starting with absences of seconds, not minutes, and only increasing duration once your dog stays calm at the current one. Select your dog's severity and where you are in training above for a plan matched to your actual situation. Severe cases — self-injury, non-stop panic, can't be left at all — genuinely need a veterinary behaviorist or certified separation-anxiety trainer, not just DIY steps.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_separation_anxiety_training() { ?>
+      <span>🐾 True anxiety vs. boredom explained</span>
+      <span>⏱️ Gradual desensitization plan</span>
+      <span>🩺 Vet behaviorist guidance when needed</span>
+<?php }
+
+function pz_methodology_heading_dog_separation_anxiety_training() { return "How This Separation Anxiety Training Plan Is Built"; }
+
+function pz_methodology_dog_separation_anxiety_training() { ?>
+    <p style="color:#555;margin-bottom:20px">Not every dog left alone struggles for the same reason, and treating boredom-destruction, incomplete house training, and true separation anxiety identically leads owners toward the wrong fix. This guide starts by helping you tell the difference, then builds a desensitization plan scaled to how severe the anxiety actually is — including being direct about when DIY training alone isn't enough.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🔍</div>
+        <strong>Distinguishing True Anxiety From Boredom</strong>
+        <p>Destruction at exit points, house-soiling only when alone, and howling that starts right at departure point to panic, not misbehavior or incomplete training.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">📉</div>
+        <strong>Gradual, Duration-First Desensitization</strong>
+        <p>Practice starts with absences of seconds, not minutes, and duration increases only once your dog stays calm at the current length — rushing causes setbacks.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🚫</div>
+        <strong>No Punishment for Anxiety-Driven Behavior</strong>
+        <p>A dog destroying a door or soiling the house from panic isn't misbehaving — punishment worsens the anxiety and can make future departures more frightening.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🩺</div>
+        <strong>Knowing When DIY Isn't Enough</strong>
+        <p>Moderate-to-severe cases genuinely need a veterinary behaviorist or certified separation-anxiety trainer, and sometimes medication alongside training — this guide says so plainly.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_separation_anxiety_training() {
+    return [
+        ["How do I know if it's actually separation anxiety and not just boredom?", "True separation anxiety shows a specific pattern: destruction concentrated near doors and windows, house-soiling only when alone despite being house-trained, howling or barking that starts right at departure, and pacing, drooling, or panting. Boredom-destruction tends to be more general — chewed items scattered around, not concentrated at exits — and doesn't come with that same departure-triggered panic response."],
+        ["Why can't I just punish the destructive behavior?", "Because the dog isn't misbehaving — it's panicking, and punishment doesn't address panic, it worsens it. Punishing anxiety-driven destruction or accidents can make your dog more afraid of your departures, which makes the underlying anxiety worse, not better."],
+        ["How long does separation anxiety training take?", "It depends on severity and consistency, but it's measured in weeks to months, not days — the process is gradual by design because rushing duration increases causes setbacks. Mild cases with consistent daily practice often improve noticeably within a few weeks; moderate-to-severe cases take longer and often benefit from professional guidance."],
+        ["Should I get another dog so mine isn't alone?", "Not as a fix for separation anxiety specifically — true separation anxiety is usually about panic over being away from a specific person, not simply being alone, so a second dog often doesn't resolve it and can create a second training project. Worth discussing with a trainer or behaviorist before assuming it'll help."],
+        ["Does my dog need medication for this?", "Not always — mild cases often respond well to DIY graduated desensitization alone. But for moderate-to-severe cases (self-injury, non-stop distress, can't be left even briefly), anti-anxiety medication alongside training is a legitimate, common approach that a veterinary behaviorist can evaluate — it's not a last resort or a sign training failed."],
+    ];
+}
+
+function pz_what_is_dog_separation_anxiety_training() {
+    ob_start(); ?>
+    <p>The Dog Separation Anxiety Training Guide helps you tell true separation anxiety apart from boredom-destruction or incomplete house training, then builds a graduated desensitization plan scaled to how severe it actually is — because the fix for a dog that whines for five minutes is genuinely different from the fix for a dog that self-injures trying to escape.</p>
+    <p>True separation anxiety has a recognizable pattern: destructive behavior concentrated near doors and windows rather than scattered around the house, house-soiling only when left alone despite being reliably house-trained otherwise, howling or barking that starts right at the moment of departure, pacing, excessive drooling or panting, and in severe cases self-injury from scratching at doors (broken nails, damaged teeth). The core method is systematic desensitization to departure cues: practice "fake departures" — picking up your keys or putting on your shoes without actually leaving, repeated until those cues stop predicting you'll disappear — then build up absence duration starting from seconds, not minutes, increasing only once your dog stays calm at the current length. A tired dog copes better, so exercise and mental stimulation before you leave genuinely help, and keeping departures and returns low-key (not dramatic greetings or goodbyes) avoids amplifying the contrast between you-here and you-gone.</p>
+    <p>Never punish anxiety-driven destruction or accidents — your dog isn't misbehaving, it's panicking, and punishment worsens anxiety and can make future departures more frightening. Select your dog's severity and where you are in training above for a plan matched to your situation, then scroll down for the complete step-by-step process and the FAQ covering what owners ask most about this exact problem.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_separation_anxiety_training() {
+    ob_start(); ?>
+    <p>Separation anxiety is genuinely misunderstood — here's what changes how effectively you can address it:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🚪</span>
+        <div>
+          <strong>Destruction Concentrated at Exits Is the Tell</strong>
+          <p>Chewing or scratching focused on doors and windows — not scattered randomly — is one of the clearest signs this is panic, not boredom.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">⏱️</span>
+        <div>
+          <strong>Rushing Duration Causes Setbacks</strong>
+          <p>Desensitization only works if it's gradual — jumping from one minute to thirty minutes too soon can undo real progress.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🚫</span>
+        <div>
+          <strong>Punishment Makes Anxiety Worse</strong>
+          <p>A dog destroying a door from panic isn't being defiant — punishing it adds fear to an already frightened response.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🩺</span>
+        <div>
+          <strong>Severe Cases Need Professional Help</strong>
+          <p>Self-injury, non-stop distress, or being unable to leave even briefly are signs DIY alone likely isn't enough — a veterinary behaviorist or certified trainer, sometimes alongside medication, is the appropriate next step.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_separation_anxiety_training() {
+    return [
+        ['title'=>'Confirm It\'s Actually Separation Anxiety', 'desc'=>"Check for the specific pattern — destruction at exits, house-soiling only when alone, departure-triggered howling — to rule out boredom or incomplete house training first."],
+        ['title'=>'Practice Fake Departures', 'desc'=>"Pick up your keys, put on your shoes, or grab your bag without actually leaving, repeated until those cues stop predicting you'll disappear."],
+        ['title'=>'Start With Absences of Seconds', 'desc'=>"Begin true departures at just a few seconds, well below your dog's anxiety threshold, so the practice builds confidence instead of triggering panic."],
+        ['title'=>'Increase Duration Gradually, Only When Calm', 'desc'=>"Extend absence length only after your dog stays relaxed at the current duration — rushing this step is the most common cause of setbacks."],
+        ['title'=>'Keep Departures and Returns Low-Key', 'desc'=>"Skip dramatic goodbyes or excited greetings — a calm departure and a calm return reduce the emotional contrast that fuels anxiety."],
+        ['title'=>'Get Professional Help for Moderate-to-Severe Cases', 'desc'=>"Self-injury, non-stop panic, or being unable to leave at all warrant a veterinary behaviorist or certified separation-anxiety trainer, and possibly medication alongside training."],
+    ];
+}
+
+function pz_tips_dog_separation_anxiety_training() {
+    return [
+        ['Tire Your Dog Out Before You Leave', "A dog that's had physical exercise and mental stimulation copes with alone time better than one that's full of unspent energy."],
+        ["Practice Departures Daily, Even Briefly", "Short, frequent practice sessions build progress faster than occasional long ones — consistency matters more than session length."],
+        ['Track Duration, Not Just Days', "Keep a simple log of how long your dog stayed calm at each session so you increase duration based on actual evidence, not guesswork."],
+        ["Don't Skip the Fake-Departure Step", "If departure cues (keys, shoes) still predict you leaving, real absence practice will be undermined by anticipatory panic before you're even out the door."],
+        ['Ask About Medication Without Guilt If Needed', "For moderate-to-severe cases, anti-anxiety medication alongside training is a legitimate, common approach — not a sign that training failed or that you did something wrong."],
+    ];
+}
+
+function pz_mistakes_dog_separation_anxiety_training() {
+    return [
+        ['❌ Punishing Destruction or Accidents', "Your dog isn't misbehaving, it's panicking — punishment worsens anxiety and can make future departures more frightening rather than less."],
+        ["❌ Jumping to Long Absences Too Soon", "Extending duration before your dog is calm at the current length is the most common cause of training setbacks."],
+        ['❌ Making a Big Deal of Departures and Returns', "Dramatic goodbyes or excited greetings amplify the emotional contrast between you-here and you-gone, working against desensitization."],
+        ["❌ Confusing Boredom-Destruction With True Anxiety", "Treating general chewing or scattered destruction as separation anxiety leads to the wrong fix — check for the exit-focused pattern first."],
+        ['❌ Sticking With DIY-Only for Severe Cases', "Self-injury or non-stop panic are signs that professional help — a veterinary behaviorist or certified trainer, possibly with medication — genuinely changes outcomes faster than DIY alone."],
+    ];
+}
+
+function pz_render_guide_dog_separation_anxiety_training( $tool ) {
+    $icon = $tool['icon'] ?? '😟';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Separation Anxiety Training Guide</div>
+          <div class="pz-int-sublabel">Desensitization plan · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Trainer-Informed</span><span class="pz-int-badge pz-int-badge--orange">🩺 Behaviorist-Aware</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">How Severe Is It?</label>
+          <select id="pz_tf_severity" class="pz-int-select">
+            <option value="mild">Mild — some whining/pacing</option>
+            <option value="moderate">Moderate — destruction or accidents when alone</option>
+            <option value="severe">Severe — self-injury, non-stop panic, can't leave at all</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Where Are You in Training?</label>
+          <select id="pz_tf_stage" class="pz-int-select">
+            <option value="new">Just noticed the problem</option>
+            <option value="tried">Already tried some training</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenSepAnxiety()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Training Plan
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ How to Stop Dog Barking Training Guide (dog_bark_training) ══ */
+
+function pz_hero_quickanswer_dog_bark_training() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Barking has different causes, and the fix depends entirely on which one applies to your dog — alert barking at the door needs a different approach than attention-seeking barking, which needs a different approach than fear-based reactive barking. Treating all barking the same is the single most common mistake owners make. Select what triggers your dog's barking and how often above for a method matched to the actual cause, not generic bark-stopping advice. Bark collars are discouraged as a first approach since they suppress the symptom without addressing why your dog is barking.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_bark_training() { ?>
+      <span>🔎 Cause-specific method</span>
+      <span>🚫 No bark-collar shortcuts</span>
+      <span>👪 Household-consistency tips</span>
+<?php }
+
+function pz_methodology_heading_dog_bark_training() { return "How This Bark Training Method Is Built"; }
+
+function pz_methodology_dog_bark_training() { ?>
+    <p style="color:#555;margin-bottom:20px">The most common mistake in bark training is treating all barking as one problem — a dog barking at the mail carrier, a dog barking for attention, and a dog barking from fear all need genuinely different responses, and using the wrong one can make things worse. This guide starts by identifying the actual trigger, then matches the method to that specific cause.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🚪</div>
+        <strong>Alert/Territorial Barking Gets Managed, Not Just Corrected</strong>
+        <p>Teaching a "quiet" cue after a few acknowledgment barks, plus blocking the trigger view, addresses both the behavior and what's driving it.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🙋</div>
+        <strong>Attention-Seeking Barking Is Fixed by Not Rewarding It</strong>
+        <p>Consistently withholding attention — even negative attention — for demand barking, then rewarding quiet moments, is what actually works, even though it gets harder before it gets easier.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🎾</div>
+        <strong>Boredom Barking Needs More Exercise, Not More Correction</strong>
+        <p>Repetitive barking from under-stimulation responds to added physical and mental activity far better than verbal corrections.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🚫</div>
+        <strong>Punishment-Based Tools Are a Last Resort, Not a First Step</strong>
+        <p>Shock, spray, and ultrasonic bark collars suppress the symptom without addressing the cause, and can increase anxiety-linked barking.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_bark_training() {
+    return [
+        ["Why doesn't yelling 'quiet' or 'no' work on my dog's barking?", "For attention-seeking barking, yelling is often still attention, which can accidentally reinforce the exact behavior you're trying to stop. For alert barking, yelling can even sound to your dog like you're joining in. The fix depends on identifying which type of barking you're dealing with, not just responding louder."],
+        ["My dog barks worse for a few days after I start ignoring it — did I make it worse?", "This is called an extinction burst, and it's actually a normal, expected part of the process — your dog is testing whether the old strategy still works before giving up on it. If you stay consistent through it, the barking typically decreases significantly afterward; giving in during the burst teaches your dog to escalate next time."],
+        ["Are bark collars a good quick fix?", "They're generally discouraged as a first approach because they suppress the symptom without addressing why your dog is barking, and they can actually increase anxiety-linked barking. Addressing the underlying trigger — attention, boredom, fear, alerting — tends to produce more lasting results."],
+        ["How do I stop my dog from barking at every person or dog that passes the window?", "Two parts: manage the trigger by blocking the view (frosted film, closing blinds, moving furniture) or using white noise, and teach a \"quiet\" cue by rewarding silence after a few acknowledgment barks rather than expecting zero barking immediately."],
+        ["My dog barks and lunges at other dogs and seems scared — is this the same as normal barking?", "Not quite — fear/reactive barking needs a different, more gradual approach: distance-based counter-conditioning (rewarding calm behavior at a distance the dog can handle, then slowly decreasing distance) rather than correction, since punishment can increase the fear-aggression association. For a strong reaction, a trainer experienced in reactivity is worth involving."],
+    ];
+}
+
+function pz_what_is_dog_bark_training() {
+    ob_start(); ?>
+    <p>The How to Stop Dog Barking Guide identifies which of the several real causes of barking applies to your dog, then gives you the method that actually matches that cause — because alert barking, attention-seeking barking, boredom barking, and fear-based barking each need a genuinely different response.</p>
+    <p>Alert or territorial barking — triggered by people or dogs passing a door or window — responds to a "quiet" cue taught by rewarding silence after a few acknowledgment barks, combined with managing the trigger itself (blocking the window view, using white noise). Attention-seeking barking is fixed by consistently not rewarding it — even negative attention like saying "no" can reinforce it — and instead rewarding calm, quiet moments; this often gets worse before it gets better as your dog tests whether the old strategy still works (an expected "extinction burst"), so don't give up partway through. Boredom or frustration barking, often repetitive, responds to more physical and mental exercise rather than more correction. Fear or reactive barking at other dogs or people needs distance-based counter-conditioning rather than punishment, since punishment can increase the fear-aggression association instead of reducing it.</p>
+    <p>Bark collars (shock, spray, or ultrasonic) are generally discouraged as a first approach since they suppress the symptom without addressing the actual cause, and can increase anxiety-linked barking. Select your dog's main trigger and how often the barking happens above for guidance matched to your situation, then scroll down for the complete step-by-step method and the FAQ covering what owners ask most.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_bark_training() {
+    ob_start(); ?>
+    <p>Barking is one of the most misunderstood behaviors to train, largely because owners treat it as one problem instead of several:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🎯</span>
+        <div>
+          <strong>The Cause Determines the Fix</strong>
+          <p>Treating alert barking, attention-seeking barking, boredom barking, and fear barking the same way is the most common reason bark training doesn't stick.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">📈</span>
+        <div>
+          <strong>Extinction Bursts Are Normal, Not Failure</strong>
+          <p>Attention-seeking barking often gets briefly worse before it improves as your dog tests the old strategy — knowing this in advance prevents owners from giving up too early.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🚫</span>
+        <div>
+          <strong>Punishment Can Backfire on Fear-Based Barking</strong>
+          <p>Correcting a scared or reactive dog can strengthen the association between the trigger and fear, making the reaction worse rather than better.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">👪</span>
+        <div>
+          <strong>Household Consistency Matters</strong>
+          <p>If one family member gives in to demand barking while another doesn't, the inconsistent reinforcement can make the behavior harder to change for everyone.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_bark_training() {
+    return [
+        ['title'=>'Identify the Actual Trigger', 'desc'=>"Watch for when barking happens — at the door/window, when seeking attention, when under-exercised, or around other dogs/people — since the method depends entirely on the cause."],
+        ['title'=>'Manage the Environment for Alert Barking', 'desc'=>"Block the view of common triggers (frosted film, blinds, furniture placement) or use white noise to reduce how often the trigger occurs in the first place."],
+        ['title'=>'Teach a "Quiet" Cue', 'desc'=>"Reward silence after a few acknowledgment barks rather than expecting instant silence, building up the duration of quiet gradually."],
+        ['title'=>'Stop Rewarding Attention-Seeking Barking', 'desc'=>"Consistently withhold attention — even negative attention — for demand barking, and reward calm, quiet moments instead; expect a temporary increase before it improves."],
+        ['title'=>'Add Exercise for Boredom-Driven Barking', 'desc'=>"Increase physical and mental stimulation rather than relying on corrections for barking that's repetitive or tied to under-stimulation."],
+        ['title'=>'Use Distance-Based Counter-Conditioning for Fear/Reactive Barking', 'desc'=>"Reward calm behavior at a distance your dog can handle, gradually decreasing distance over time, rather than correcting the reaction directly."],
+    ];
+}
+
+function pz_tips_dog_bark_training() {
+    return [
+        ['Get the Whole Household on the Same Page', "If barking is rewarded by one person and ignored by another, the inconsistency makes the behavior harder to change."],
+        ["Reward Silence, Not Just Absence of the Trigger", "Actively rewarding calm, quiet moments teaches your dog what to do instead of barking, not just what not to do."],
+        ['Expect a Temporary Increase With Attention-Seeking Barking', "This extinction burst is a normal part of the process — staying consistent through it is what makes the fix stick."],
+        ["Manage the Trigger While You Train", "Blocking a window view or using white noise reduces practice opportunities for the unwanted behavior while the training takes effect."],
+        ['Skip the Bark Collar as a First Step', "Addressing the actual cause tends to produce more lasting results than suppressing the symptom, and avoids the anxiety risk some bark collars carry."],
+    ];
+}
+
+function pz_mistakes_dog_bark_training() {
+    return [
+        ['❌ Using the Same Method for Every Type of Barking', "Alert, attention-seeking, boredom, and fear-based barking each need a different approach — using one method for all of them is why training often doesn't stick."],
+        ["❌ Giving In During an Extinction Burst", "Rewarding your dog partway through a temporary increase in attention-seeking barking teaches it that escalating eventually works."],
+        ['❌ Reaching for a Bark Collar First', "Suppressing the symptom without addressing the cause often doesn't last, and can increase anxiety-linked barking in some dogs."],
+        ["❌ Punishing Fear-Based or Reactive Barking", "Correcting a scared dog can strengthen the association between the trigger and fear, making the reaction worse over time."],
+        ['❌ Inconsistent Responses Across the Household', "If barking sometimes gets attention and sometimes doesn't, the unpredictable reinforcement schedule can make it more persistent, not less."],
+    ];
+}
+
+function pz_render_guide_dog_bark_training( $tool ) {
+    $icon = $tool['icon'] ?? '🔇';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">How to Stop Dog Barking Guide</div>
+          <div class="pz-int-sublabel">Cause-matched method · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Trainer-Informed</span><span class="pz-int-badge pz-int-badge--blue">🔎 Cause-Specific</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">What Triggers the Barking?</label>
+          <select id="pz_tf_trigger" class="pz-int-select">
+            <option value="door">At the door/window (people or dogs passing)</option>
+            <option value="attention">Wants attention or food from me</option>
+            <option value="bored">Seems bored or under-exercised</option>
+            <option value="reactive">Barks at other dogs/people, seems scared or reactive</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">How Often Does It Happen?</label>
+          <select id="pz_tf_frequency" class="pz-int-select">
+            <option value="few">A few times a day</option>
+            <option value="constant">Constant / most of the day</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenBarkTraining()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Bark Training Method
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Dog Bite Prevention Training Guide (dog_bite_prevention) ══ */
+
+function pz_hero_quickanswer_dog_bite_prevention() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Puppy mouthing is normal development, not aggression — puppies explore with their mouths and haven't learned bite inhibition yet, and the fix is yelping and redirecting to a chew toy, never physical punishment. Adult biting is different: it's almost always preceded by warning signals like stiffening, whale eye, lip licking, or growling, and growling is a warning to heed, not to punish out of your dog. Select your dog's age group and the context above for guidance matched to your actual situation. Any bite involving a child, or a dog that has actually bitten or growled seriously, needs professional evaluation — not just home training.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_bite_prevention() { ?>
+      <span>🐶 Puppy mouthing vs. adult biting</span>
+      <span>⚠️ Warning-sign literacy</span>
+      <span>🩺 Professional-help guidance when it matters</span>
+<?php }
+
+function pz_methodology_heading_dog_bite_prevention() { return "How This Bite Prevention Guidance Is Built"; }
+
+function pz_methodology_dog_bite_prevention() { ?>
+    <p style="color:#555;margin-bottom:20px">Puppy mouthing and adult biting are different problems that call for different responses, and treating them the same either over-punishes a puppy that's simply learning or under-reacts to a genuine adult safety issue. This guidance separates the two, explains the warning signals that precede almost every bite, and is direct about when a situation needs a professional rather than DIY steps.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🐾</div>
+        <strong>Puppy Mouthing Is Normal Development</strong>
+        <p>Puppies explore with their mouths and haven't learned bite inhibition — yelping and redirecting to a toy teaches this the way littermates would, without physical punishment.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">⚠️</div>
+        <strong>Growling Is a Warning to Heed, Not Punish</strong>
+        <p>Growling is communication, not the problem itself — suppressing it removes the warning signal while the underlying discomfort stays, making a bite without warning more likely.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🔍</div>
+        <strong>Warning Signals Precede Nearly Every Bite</strong>
+        <p>Stiffening, whale eye, lip licking, and turning away almost always come before a bite — recognizing them early lets you intervene before it happens.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🧒</div>
+        <strong>Bites Involving Children Are a Real Safety Issue</strong>
+        <p>Any bite incident involving a child needs immediate professional evaluation, not just home training — this guidance is direct about that.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_bite_prevention() {
+    return [
+        ["Is my puppy being aggressive when it bites during play?", "Almost certainly not — puppy mouthing is normal developmental behavior. Puppies explore the world with their mouths and haven't yet learned bite inhibition, which is a skill they develop through feedback, including from you. Most puppies improve significantly by around 6 months with consistent redirection and yelping."],
+        ["Should I punish my dog for growling?", "No — growling is a warning, not the behavior to eliminate. Punishing growling can suppress the warning signal while the underlying discomfort or fear stays the same, which makes a bite without any warning more likely. Instead, take the growl seriously and address whatever's causing the discomfort."],
+        ["My adult dog suddenly started biting or snapping — what should I do?", "Sudden biting in a previously fine adult dog warrants a vet check first to rule out pain or a medical cause, since pain is a common trigger for out-of-character biting. After ruling that out, a certified professional (CPDT-KA or veterinary behaviorist) can help identify the specific trigger — resource guarding, fear, or territorial behavior — since misreading the cause can make things worse."],
+        ["Is it safe to leave my dog alone with my kids if it's never bitten anyone?", "Not unsupervised, regardless of bite history — this is a standard safety practice, not a reflection on your dog specifically. Teach children not to approach dogs while they're eating, sleeping, or guarding something, and any bite incident involving a child needs immediate professional evaluation."],
+        ["What's resource guarding and how is it different from other biting?", "Resource guarding is defensive biting or growling over food, toys, or space the dog feels protective of — it's a specific, identifiable trigger rather than general aggression. It responds well to a structured trade-up approach (offering something better in exchange rather than taking things away), ideally guided by a certified trainer since mismanaged resource guarding can escalate."],
+    ];
+}
+
+function pz_what_is_dog_bite_prevention() {
+    ob_start(); ?>
+    <p>The Dog Bite Prevention Training Guide separates normal puppy mouthing from genuine adult biting concerns, and gives you the warning signs and response that actually match your situation — because treating a mouthy puppy like a safety threat, or treating adult growling like a nuisance, both miss what's actually going on.</p>
+    <p>Puppy mouthing is taught out through yelping and briefly withdrawing attention the instant teeth touch skin, then immediately redirecting to an appropriate chew toy — this mimics how littermates teach bite inhibition, and physical punishment (hitting or tapping the nose) doesn't teach it and can increase fear-based biting later; most puppies improve significantly by 6 months with consistency. Adult biting is a genuine safety issue: bites are communication and are nearly always preceded by warning signals — stiffening, whale eye (whites of the eyes showing), lip licking, turning away, or growling. Growling is a warning to heed, not a behavior to punish out of the dog, since punishing growling removes the warning signal while the underlying discomfort remains, making bites without warning more likely. Identifying the trigger matters too — resource guarding, pain (sudden biting in a previously fine adult dog warrants a vet check first), fear of specific people or situations, or territorial behavior.</p>
+    <p>For biting around children specifically: never leave young children unsupervised with any dog regardless of history, teach children not to approach dogs while eating, sleeping, or guarding, and any bite incident involving a child needs professional evaluation immediately. Select your dog's age group and the context above for guidance matched to your situation, then scroll down for the complete step-by-step guide and the FAQ covering what owners ask most.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_bite_prevention() {
+    ob_start(); ?>
+    <p>Getting bite prevention right means knowing which situation you're actually in, and reading the signals your dog is already giving you:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🐾</span>
+        <div>
+          <strong>Puppy Mouthing Responds to the Right Method</strong>
+          <p>Yelping and redirecting to a toy teaches bite inhibition the way littermates would — physical punishment doesn't teach this and can increase fear-based biting later.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">⚠️</span>
+        <div>
+          <strong>Ignoring Warning Signals Removes Your Best Early Alert</strong>
+          <p>Stiffening, whale eye, lip licking, and growling almost always come before a bite — missing or punishing them out of your dog takes away your warning system.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🩺</span>
+        <div>
+          <strong>Sudden Adult Biting Can Have a Medical Cause</strong>
+          <p>Pain is a common, overlooked trigger for out-of-character biting in a previously fine adult dog — a vet check is a genuine first step, not an overreaction.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🧒</span>
+        <div>
+          <strong>Children and Dogs Need Active Supervision, Always</strong>
+          <p>No amount of good bite history replaces supervision — teaching children not to approach a dog while it's eating, sleeping, or guarding prevents most incidents before they happen.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_bite_prevention() {
+    return [
+        ['title'=>'Identify Puppy Mouthing vs. Adult Biting', 'desc'=>"Confirm which situation you're in — normal developmental mouthing in a young puppy, or a more serious adult biting concern — since the response is genuinely different."],
+        ['title'=>'For Puppy Mouthing: Yelp and Withdraw Attention', 'desc'=>"The instant teeth touch skin, yelp and briefly withdraw attention, mimicking how littermates teach bite inhibition."],
+        ['title'=>'Redirect Immediately to an Appropriate Chew Toy', 'desc'=>"Offer a toy right after withdrawing attention so your puppy has an acceptable outlet instead of just being told no."],
+        ['title'=>'For Adult Dogs: Learn to Read Warning Signals', 'desc'=>"Watch for stiffening, whale eye, lip licking, turning away, and growling — these almost always precede a bite and are your chance to intervene early."],
+        ['title'=>'Never Punish Growling', 'desc'=>"Address what's causing the discomfort instead — punishing the growl removes your warning system while the underlying issue remains."],
+        ['title'=>'Get Professional Help for Bites, Children, or Resource Guarding', 'desc'=>"Any actual bite, any incident involving a child, and resource guarding all benefit strongly from a certified professional rather than DIY alone."],
+    ];
+}
+
+function pz_tips_dog_bite_prevention() {
+    return [
+        ['Never Physically Punish Mouthing or Biting', "Hitting or tapping the nose doesn't teach bite inhibition and can increase fear-based biting later — yelping and redirecting works better and is safer."],
+        ["Keep a Variety of Chew Toys on Hand", "Having an appropriate outlet ready to redirect to makes the yelp-and-redirect method far more effective in the moment."],
+        ['Rule Out Pain for Sudden Adult Biting', "A vet check is a reasonable first step for a previously fine adult dog that suddenly starts biting or snapping — pain is a common, overlooked cause."],
+        ["Teach Children the Basic Rules Early", "Not approaching a dog while it eats, sleeps, or guards something prevents a large share of bite incidents involving kids."],
+        ['Take Growling Seriously, Not Personally', "A growl is useful information about your dog's comfort level — respond to what's causing it rather than reacting to the growl itself."],
+    ];
+}
+
+function pz_mistakes_dog_bite_prevention() {
+    return [
+        ['❌ Physically Punishing a Mouthy Puppy', "Hitting or tapping the nose doesn't teach bite inhibition and can increase fear-based biting as your dog gets older."],
+        ["❌ Punishing Growling", "This removes your dog's warning signal while the underlying discomfort stays, making a bite without warning more likely."],
+        ['❌ Leaving Young Children Unsupervised With Any Dog', "Even a dog with no bite history should be actively supervised around young kids — this is standard safety practice, not distrust of your dog."],
+        ["❌ Assuming Sudden Adult Biting Is 'Just Behavior'", "A vet check to rule out pain is a genuine first step for out-of-character biting in a previously reliable adult dog."],
+        ['❌ Handling a Real Bite Incident With Home Training Alone', "An actual bite, especially involving a child, needs immediate professional evaluation — this isn't a situation to manage solely with DIY steps."],
+    ];
+}
+
+function pz_render_guide_dog_bite_prevention( $tool ) {
+    $icon = $tool['icon'] ?? '🛡️';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Bite Prevention Training Guide</div>
+          <div class="pz-int-sublabel">Puppy mouthing to adult safety · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Trainer-Informed</span><span class="pz-int-badge pz-int-badge--orange">🚨 Safety-Aware</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Dog's Age / Situation</label>
+          <select id="pz_tf_agegroup" class="pz-int-select">
+            <option value="puppy">Puppy under 6 months (normal mouthing)</option>
+            <option value="adolescent">Adolescent/adult dog, mild nipping</option>
+            <option value="bitten">Adult dog, has actually bitten or growled seriously</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Context</label>
+          <select id="pz_tf_context" class="pz-int-select">
+            <option value="general">General handling/play</option>
+            <option value="children">Around children</option>
+            <option value="guarding">Resource guarding (food/toys/space)</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenBitePrevention()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Bite Prevention Guidance
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ 10 Basic Dog Commands Guide (dog_basic_commands) ══ */
+
+function pz_hero_quickanswer_dog_basic_commands() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Start with mark-and-reward mechanics before worrying about which commands to teach first: short 5–10 minute sessions, one clear cue said once, and rewarding the exact right moment beats a single long session every time. If you're starting from scratch, safety commands (come, leave it, wait) are worth prioritizing over party tricks. Select your experience level and priority above for a suggested command order and session structure matched to where you actually are.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_basic_commands() { ?>
+      <span>🎯 Positive-reinforcement method</span>
+      <span>📋 Suggested command order</span>
+      <span>⏱️ Session-length guidance</span>
+<?php }
+
+function pz_methodology_heading_dog_basic_commands() { return "How This Command Training Order Is Built"; }
+
+function pz_methodology_dog_basic_commands() { ?>
+    <p style="color:#555;margin-bottom:20px">Which command to teach first, and how, matters as much as eventually knowing all ten — this guide sequences commands by genuine safety value and teaching difficulty, and pairs each with the specific positive-reinforcement mechanics (marking, timing, reward value) that make it stick.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🎯</div>
+        <strong>Mark the Exact Right Moment</strong>
+        <p>A consistent marker — a clicker or a specific word like "yes" — the instant the correct behavior happens teaches faster than praise given a beat late.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🦴</div>
+        <strong>Reward Value Matches the Difficulty</strong>
+        <p>High-value treats for hard commands or distracting environments, lower-value treats for easy home practice — matching reward to difficulty keeps training effective.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">⏱️</div>
+        <strong>Short Sessions, Multiple Times a Day</strong>
+        <p>Five to ten focused minutes, repeated through the day, beats one long session — attention and motivation hold up better in short bursts.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🛡️</div>
+        <strong>Safety Commands Get Priority When Starting From Scratch</strong>
+        <p>Come, leave it, and wait have real safety value beyond convenience, which is why they're weighted earlier in this guide's suggested order.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_basic_commands() {
+    return [
+        ["What order should I teach commands in?", "There's no single required order, but starting with attention/name recognition, then sit and down, then building toward recall and leave it works well for most dogs, since each builds on the skills before it. If safety is your priority, come, leave it, and wait are worth focusing on earlier even if they're a bit harder."],
+        ["Why does my dog listen at home but not outside?", "This is completely normal and means the behavior needs more practice at increasing distraction levels, not that your dog doesn't \"really\" know the command. Build reliability gradually — home, then yard, then a quiet outdoor spot, then busier environments — using higher-value treats as distraction increases."],
+        ["How long should training sessions be?", "Five to ten focused minutes, several times a day, works better than one long session — attention and motivation hold up much better in short bursts, and ending on a success keeps your dog motivated for next time."],
+        ["Should I say the command word more than once if my dog doesn't respond?", "No — repeating the cue teaches your dog that the first (or second, or third) time doesn't actually count. Say it once, then help your dog succeed (with a lure or gesture) rather than nagging the word, so the first instance of the cue stays meaningful."],
+        ["Why shouldn't I call my dog to me for something unpleasant, like a bath?", "Because it poisons the recall cue — if \"come\" sometimes means \"something unpleasant is about to happen,\" your dog learns to hesitate or avoid coming when called. Always reward coming generously, and go get your dog yourself for anything it won't enjoy."],
+    ];
+}
+
+function pz_what_is_dog_basic_commands() {
+    ob_start(); ?>
+    <p>The 10 Basic Dog Commands Guide teaches the core commands every dog benefits from — sit, stay, come, down, leave it, drop it, heel, off, wait, and name recognition — using the same positive-reinforcement mechanics that make training actually stick, not just a list of commands to attempt.</p>
+    <p>Sit is taught by luring with a treat up and back over the head, marking and rewarding the instant the rear touches the ground. Stay works best when you build duration and distance separately rather than increasing both at once, releasing with a clear word like "okay" so your dog knows when it's over. Come/recall should never be used to call your dog to something unpleasant like a bath or nail trim — that poisons the cue — and is best practiced in low-distraction settings first, with generous rewards and a long line outdoors before trusting it off-leash. Leave It starts with a treat in a closed fist, rewarding your dog for looking away from it, then gradually increasing difficulty. Drop It works by trading up — offering a higher-value item in exchange rather than prying open your dog's jaws, which also helps prevent resource guarding. Heel or loose-leash walking, Off (for jumping), Wait at doors and thresholds (genuinely safety-relevant), and name recognition round out the core set.</p>
+    <p>Across all of these, the mechanics matter as much as the command itself: short sessions of five to ten minutes several times a day beat one long session, always end on a success, use high-value treats for harder commands or distracting environments, mark the exact correct moment with a clicker or consistent word before rewarding, and say the cue once rather than repeating it. Select your experience level and priority above for a suggested command order and session structure, then scroll down for the full step-by-step guide and FAQ.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_basic_commands() {
+    ob_start(); ?>
+    <p>Basic commands aren't just about a well-mannered dog — the way you teach them changes how fast and how reliably they stick:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🛡️</span>
+        <div>
+          <strong>Some Commands Are Genuine Safety Tools</strong>
+          <p>Come, leave it, and wait can prevent your dog from running into traffic or eating something dangerous — these aren't just convenience commands.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">⏱️</span>
+        <div>
+          <strong>Timing Determines How Fast Training Sticks</strong>
+          <p>Marking the exact right moment, rather than a beat late, is often the difference between a command that clicks quickly and one that takes weeks.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🎯</span>
+        <div>
+          <strong>One Cue, Said Once, Builds Reliability</strong>
+          <p>Repeating a command teaches your dog that the first instance doesn't count — saying it once and helping your dog succeed builds a more reliable response.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">📈</span>
+        <div>
+          <strong>Distraction-Proofing Is a Separate Skill</strong>
+          <p>A dog that knows a command at home hasn't automatically generalized it to busier environments — that reliability is built gradually and deliberately.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_basic_commands() {
+    return [
+        ['title'=>'Start With Attention and Name Recognition', 'desc'=>"A reliable response to your dog's name is the foundation everything else builds on."],
+        ['title'=>'Teach Sit With a Lure', 'desc'=>"Guide with a treat up and back over the head, marking and rewarding the instant the rear touches the ground."],
+        ['title'=>'Build Stay in Duration, Then Distance', 'desc'=>"Increase how long your dog holds the position before adding distance from you — doing both at once slows progress."],
+        ['title'=>'Prioritize Safety Commands: Come, Leave It, Wait', 'desc'=>"These carry real safety value — practice recall in low-distraction settings first and never call your dog to something unpleasant."],
+        ['title'=>'Add Down, Drop It, and Off', 'desc'=>"Use a trade-up approach for Drop It (offer something better rather than prying), building each command with the same lure-and-mark method."],
+        ['title'=>'Practice in Increasing Distraction Levels', 'desc'=>"Once a command is solid at home, practice in the yard, then quiet outdoor spots, then busier environments, raising reward value as distraction increases."],
+    ];
+}
+
+function pz_tips_dog_basic_commands() {
+    return [
+        ['Keep Sessions to 5-10 Minutes', "Short, frequent sessions hold attention and motivation better than one long session, and make daily practice easier to fit in."],
+        ["Always End on a Success", "Finishing on a command your dog gets right keeps motivation high for the next session, even if it means ending on something easy."],
+        ['Match Treat Value to Difficulty', "Save high-value treats for hard commands or distracting environments, and use everyday treats for easy home practice."],
+        ["Say the Cue Once", "Repeating the word teaches your dog the first instance doesn't count — say it once, then help your dog succeed instead of nagging."],
+        ['Never Poison the Recall Cue', "Don't call your dog to you for anything unpleasant, like a bath or nail trim — go get your dog instead, and reward every genuine recall generously."],
+    ];
+}
+
+function pz_mistakes_dog_basic_commands() {
+    return [
+        ['❌ Repeating the Command Word Multiple Times', "This teaches your dog that the cue doesn't need a response the first time it's said, undermining reliability."],
+        ["❌ Calling Your Dog for Something Unpleasant", "Using \"come\" before a bath or nail trim poisons the cue, making your dog hesitant to respond to it in the future."],
+        ['❌ Increasing Duration and Distance at the Same Time for Stay', "Building both at once slows progress — increase one at a time for faster, more reliable results."],
+        ["❌ Training Only at Home", "A command that's solid indoors hasn't automatically generalized to distracting environments — that reliability needs its own practice."],
+        ['❌ One Long Session Instead of Several Short Ones', "Attention and motivation hold up better across several 5-10 minute sessions than one extended one."],
+    ];
+}
+
+function pz_render_guide_dog_basic_commands( $tool ) {
+    $icon = $tool['icon'] ?? '✋';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">10 Basic Dog Commands Guide</div>
+          <div class="pz-int-sublabel">Positive-reinforcement method · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Trainer-Informed</span><span class="pz-int-badge pz-int-badge--blue">🎯 Positive Reinforcement</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Training Experience</label>
+          <select id="pz_tf_experience" class="pz-int-select">
+            <option value="none">Never trained before (start from scratch)</option>
+            <option value="some">Knows a few basics, want to add more</option>
+            <option value="distraction">Knows basics, want reliability around distractions</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Priority</label>
+          <select id="pz_tf_priority" class="pz-int-select">
+            <option value="safety">Safety commands first (come, leave it, wait)</option>
+            <option value="manners">Everyday manners (sit, down, off)</option>
+            <option value="allround">All-around foundation</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenBasicCommands()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Training Order
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Clicker Training for Dogs: Complete Guide (clicker_training_dogs) ══ */
+
+function pz_hero_quickanswer_clicker_training_dogs() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>The click is a precise, consistent "yes, that exact behavior" signal your voice can't match, since a spoken word varies in tone and timing while a click sound doesn't. Start by charging the clicker — click, then treat, 10–15 times with no expectation of behavior — before ever asking for anything. Select your experience level and dog type above for the right next step, whether that's charging the clicker, shaping your first behavior, or moving into trick training.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_clicker_training_dogs() { ?>
+      <span>🎯 Precise-timing method</span>
+      <span>📋 Stage-based next steps</span>
+      <span>🐾 Works for puppies and adults</span>
+<?php }
+
+function pz_methodology_heading_clicker_training_dogs() { return "How This Clicker Training Guidance Is Built"; }
+
+function pz_methodology_clicker_training_dogs() { ?>
+    <p style="color:#555;margin-bottom:20px">Clicker training works because of timing precision, not because the click sound itself is magic — this guide walks through the actual mechanics in order: charging the clicker, marking and shaping a behavior, adding a verbal cue, and eventually fading the clicker, matched to where you and your dog already are.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">⏱️</div>
+        <strong>Timing Is the Whole Point</strong>
+        <p>A click marks the exact instant a behavior happens — not a beat before or after — with more consistency than a spoken word's varying tone and timing can match.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🔋</div>
+        <strong>Charging Comes Before Any Behavior</strong>
+        <p>Click-then-treat, repeated with no behavior expected yet, teaches your dog that click always means a reward is coming — the foundation everything else relies on.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🗣️</div>
+        <strong>The Verbal Cue Comes After the Behavior Is Reliable</strong>
+        <p>Adding a word only once your dog reliably offers the behavior avoids attaching the cue to an inconsistent action.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🎪</div>
+        <strong>Built for Shaping Complex Behaviors</strong>
+        <p>Beyond basic obedience, the precise timing makes clicker training genuinely useful for tricks and agility foundations, built in small increments.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_clicker_training_dogs() {
+    return [
+        ["What does it mean to 'charge' the clicker?", "Charging means teaching your dog that a click always predicts a treat, before you ever ask for a behavior. Click once, immediately give a treat, and repeat 10–15 times in a session — no behavior required yet, just building the click-equals-reward association."],
+        ["Why is a clicker better than just saying 'good boy'?", "Timing precision — a click is the same sound every time, delivered at the exact instant of the correct behavior, while a spoken word's tone and timing naturally vary. That consistency is what lets a clicker mark a precise moment that a voice marker can't match as reliably."],
+        ["What if I click but forget to treat?", "Try to avoid it — clicking without treating breaks the click-equals-reward association and can \"poison\" the marker, making it less effective going forward. If it happens occasionally, just make sure to treat promptly next time and keep the ratio strongly in favor of consistent follow-through."],
+        ["Do I need to keep using the clicker forever?", "Not necessarily — many trainers gradually fade the clicker for well-established behaviors, letting real-world reinforcement like praise or life rewards (walks, play, going outside) take over. That said, plenty of trainers keep using it indefinitely for teaching new behaviors or refining existing ones, since the timing precision stays useful."],
+        ["Can I use clicker training for tricks, not just obedience?", "Yes — this is actually one of clicker training's strengths. The precise timing makes it well-suited to shaping complex behaviors in small increments, which is exactly what trick training and agility foundations require."],
+    ];
+}
+
+function pz_what_is_clicker_training_dogs() {
+    ob_start(); ?>
+    <p>The Clicker Training for Dogs Guide walks through the actual mechanics of marker-based training in order — charging the clicker, marking and shaping a first behavior, adding a verbal cue, and eventually fading the clicker — matched to whether you're brand new, ready to teach behaviors, or moving into tricks.</p>
+    <p>Step one is "charging" the clicker: click once, immediately give a treat, and repeat 10–15 times in a session with no expectation of behavior yet, so your dog learns click means a treat is coming before you ever ask for anything. Step two is capturing or luring a simple behavior, like sit, and clicking the exact instant it happens — not after, not before, since timing precision is the whole point of the method — then treating. Step three is adding a verbal cue once your dog reliably offers the behavior, saying the cue just before the behavior starts. Step four is gradually fading the clicker for well-established behaviors, letting real-world reinforcement like praise and life rewards take over, though many trainers keep using it indefinitely for teaching new or refining existing behaviors.</p>
+    <p>Common mistakes include clicking late (marking the wrong moment), clicking without treating (breaking the click-equals-reward association), and overusing the clicker for behaviors that are already fluent. Beyond basic obedience, clicker training is genuinely useful for shaping complex behaviors in small increments — tricks and agility foundations in particular. Select your experience level and dog type above for the right next step, then scroll down for the full guide and the FAQ covering the questions owners ask most.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_clicker_training_dogs() {
+    ob_start(); ?>
+    <p>Clicker training's value comes down to precision — here's what that actually changes in practice:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">⏱️</span>
+        <div>
+          <strong>Precise Timing Speeds Up Learning</strong>
+          <p>Marking the exact right instant, rather than a beat late, is often the difference between a behavior that clicks quickly and one that takes far longer.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🔋</span>
+        <div>
+          <strong>Skipping the Charging Step Undermines Everything After</strong>
+          <p>If the click doesn't reliably mean a treat is coming, the marker loses its power before you've even started teaching behaviors.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🚫</span>
+        <div>
+          <strong>Clicking Without Treating Poisons the Marker</strong>
+          <p>Breaking the click-equals-reward association even occasionally makes the clicker less effective going forward — consistency matters.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🎪</span>
+        <div>
+          <strong>Genuinely Useful Beyond Basic Obedience</strong>
+          <p>The same timing precision that teaches sit also makes clicker training well-suited to tricks and agility foundations, built in small increments.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_clicker_training_dogs() {
+    return [
+        ['title'=>'Charge the Clicker First', 'desc'=>"Click once, immediately treat, and repeat 10-15 times per session with no behavior expected yet — this builds the click-equals-reward association."],
+        ['title'=>'Choose a Simple First Behavior', 'desc'=>"Sit or a hand touch are easy starting points for practicing the click-then-treat mechanics with an actual behavior."],
+        ['title'=>'Click the Exact Instant the Behavior Happens', 'desc'=>"Timing precision is the whole point — click right as it happens, not after, then follow with a treat."],
+        ['title'=>'Add a Verbal Cue Once the Behavior Is Reliable', 'desc'=>"Say the cue just before the behavior starts, once your dog is offering it consistently, so the word attaches to a dependable action."],
+        ['title'=>'Practice in Short, Frequent Sessions', 'desc'=>"A few minutes at a time, several times a day, keeps focus sharp and builds behaviors faster than long sessions."],
+        ['title'=>'Gradually Fade the Clicker for Established Behaviors', 'desc'=>"Let real-world reinforcement — praise, life rewards — take over for well-known behaviors, while keeping the clicker for teaching new ones."],
+    ];
+}
+
+function pz_tips_clicker_training_dogs() {
+    return [
+        ['Always Treat After Every Click', "Skipping the treat even occasionally weakens the click-equals-reward association your entire training relies on."],
+        ["Keep Charging Sessions Short", "10-15 click-and-treat repetitions per session is plenty — the goal is a clean association, not endurance."],
+        ['Click Only Once Per Correct Moment', "A single, well-timed click communicates more clearly than multiple clicks, which can confuse which moment was actually being marked."],
+        ["Have Treats Ready Before You Click", "A delay between click and treat weakens the connection your dog is learning — prep treats in a pouch or nearby dish first."],
+        ["Don't Rush the Verbal Cue", "Adding the word before the behavior is reliable can attach it to an inconsistent action — wait until your dog offers the behavior confidently."],
+    ];
+}
+
+function pz_mistakes_clicker_training_dogs() {
+    return [
+        ['❌ Skipping the Charging Step', "Asking for behaviors before the click reliably means a treat is coming undermines the marker before training even starts."],
+        ["❌ Clicking Without Treating", "This breaks the click-equals-reward association and can \"poison\" the marker, making it less effective over time."],
+        ['❌ Clicking Late', "A click that lands after the behavior — even by a second — risks marking the wrong moment, like the dog standing back up instead of sitting."],
+        ["❌ Adding the Verbal Cue Too Early", "Attaching a word before the behavior is reliably offered can associate the cue with an inconsistent action."],
+        ['❌ Overusing the Clicker for Already-Fluent Behaviors', "Well-established behaviors don't need a click every time — save the precision for teaching new or refining existing behaviors."],
+    ];
+}
+
+function pz_render_guide_clicker_training_dogs( $tool ) {
+    $icon = $tool['icon'] ?? '🎯';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Clicker Training for Dogs Guide</div>
+          <div class="pz-int-sublabel">Complete guide · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Trainer-Informed</span><span class="pz-int-badge pz-int-badge--purple">🎯 Precision Timing</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Your Clicker Experience</label>
+          <select id="pz_tf_experience" class="pz-int-select">
+            <option value="new">Brand new to clicker training</option>
+            <option value="charged">Have charged the clicker, ready to teach behaviors</option>
+            <option value="tricks">Want to use it for tricks/advanced training</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Dog Type</label>
+          <select id="pz_tf_dogtype" class="pz-int-select">
+            <option value="puppy">Puppy</option>
+            <option value="adult_new">Adult dog, new to clicker</option>
+            <option value="adult_knows">Adult dog, already knows basic commands</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenClickerTraining()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Clicker Training Steps
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Dog Aggression Training: Causes & Solutions (dog_aggression_training) — SAFETY-CRITICAL ══ */
+
+function pz_hero_quickanswer_dog_aggression_training() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Aggression isn't one problem — fear, resource guarding, territorial or protective instinct, pain, leash frustration, and redirected arousal all look similar but need genuinely different fixes. The single most important rule: never punish growling or other warning signals — growling is your dog's warning system, and removing it doesn't remove the underlying issue, it just removes the warning before a possible bite. Select your dog's main trigger and current severity above for guidance matched to your situation. Beyond mild resource guarding or the earliest fear signals, this is a genuine case for a certified professional — a veterinary behaviorist or a CAAB/CPDT-KA trainer with real aggression experience — not DIY videos.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_aggression_training() { ?>
+      <span>🩺 Behaviorist-Aware Guidance</span>
+      <span>🚫 Never Punish Warning Signs</span>
+      <span>🛡️ Safety-First Management</span>
+<?php }
+
+function pz_methodology_heading_dog_aggression_training() { return "How This Aggression Guidance Is Built"; }
+
+function pz_methodology_dog_aggression_training() { ?>
+    <p style="color:#555;margin-bottom:20px">Aggression is a symptom, not a diagnosis, and the right response depends entirely on what's actually driving it — treating every case the same is the single biggest mistake owners make. This guide starts by identifying the likely cause, then matches guidance to both the cause and how severe it already is, while being direct about when DIY training isn't the safe or effective path.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🔍</div>
+        <strong>Cause-Specific, Not One-Size-Fits-All</strong>
+        <p>Fear, resource guarding, territorial instinct, pain, and leash frustration all look like "aggression" but need genuinely different responses.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🚫</div>
+        <strong>Never Punish the Warning Signal</strong>
+        <p>Growling and stiffening are information, not defiance — removing the warning doesn't remove the underlying problem, it just removes your advance notice.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🩺</div>
+        <strong>Pain Gets Ruled Out First</strong>
+        <p>Sudden-onset aggression, especially with touch-sensitivity, is treated as a possible medical issue before it's treated as a training problem.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🛡️</div>
+        <strong>Management Alongside Professional Help</strong>
+        <p>Distance, barriers, and muzzle training reduce risk while you work with a professional — safety comes before any exposure-based fix.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_aggression_training() {
+    return [
+        ["Why shouldn't I correct my dog for growling?", "Growling is your dog's warning system telling you it's uncomfortable before it feels it needs to escalate. Punishing the growl doesn't fix the underlying discomfort — it just teaches your dog that warning you leads to punishment, which can produce a dog that bites without any warning at all, a genuinely more dangerous outcome."],
+        ["My dog suddenly became aggressive out of nowhere — what's going on?", "A previously non-aggressive dog suddenly acting aggressively, especially when touched in a specific area, is a strong signal to get a vet check before assuming it's purely behavioral. Pain and illness are common, underrecognized causes of sudden-onset aggression, and ruling that out first changes the whole approach."],
+        ["Can I fix aggression myself with training videos?", "For very mild, early-stage cases — like the earliest fear signals or straightforward resource guarding — some owners make real progress with careful, gradual work. But anything beyond that genuinely warrants a certified professional, since misapplied exposure-based methods can make things worse and carry real safety risk."],
+        ["Is resource guarding the same as general aggression?", "Not exactly — resource guarding is a specific, well-understood pattern over food, toys, or space with its own trade-up and counter-conditioning protocols, distinct from fear-based, territorial, or redirected aggression. It's one of the more DIY-approachable forms in mild cases, but escalates quickly if mishandled."],
+        ["Should I muzzle-train my dog?", "Yes, if there's any real bite risk — muzzle training, done gradually and positively rather than as a punishment, is a legitimate safety tool that lets you manage risk during walks, vet visits, or training sessions while you work with a professional. It protects other people and dogs and buys time for the underlying work to happen safely."],
+    ];
+}
+
+function pz_what_is_dog_aggression_training() {
+    ob_start(); ?>
+    <p>Dog Aggression Training: Causes & Solutions helps you identify which of several genuinely different underlying causes is driving your dog's aggressive behavior, then matches guidance to that specific cause and how severe it already is — because a fearful dog backed into a corner, a dog guarding its food bowl, and a dog in pain from an injury all need different responses, not one uniform "aggression protocol."</p>
+    <p>Fear-based aggression is the most common type — a dog that feels cornered or threatened acts aggressively, usually alongside visible fear signals like pinned-back ears, a tucked tail, or "whale eye" (showing the whites of the eyes). Resource guarding is distinct and has its own trade-up and counter-conditioning approach. Territorial or protective aggression shows up toward strangers approaching the home or the owner. Pain-related aggression deserves special attention: a previously calm dog suddenly becoming aggressive, especially around touch to a specific area, strongly warrants an immediate vet check before assuming it's purely behavioral. Leash reactivity is often frustration-based and behaves differently than off-leash aggression, and redirected aggression happens when a dog aroused by a trigger it can't reach turns on the nearest person or dog instead.</p>
+    <p>The single most important safety principle here: never punish growling or other warning signals. Growling is your dog's early-warning system — punishing it out of the dog doesn't resolve the underlying issue, it just removes the warning, which can make a bite without notice more likely, not less. Select your dog's main trigger and current severity above for guidance matched to your actual situation, then scroll down for the full breakdown and the FAQ covering what owners ask most about this topic.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_aggression_training() {
+    ob_start(); ?>
+    <p>Aggression is genuinely misunderstood — here's what changes how safely and effectively you can address it:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🚨</span>
+        <div>
+          <strong>The Cause Changes Everything</strong>
+          <p>Fear, guarding, territorial instinct, pain, and frustration all look similar on the surface but need genuinely different responses — treating them the same slows progress or makes things worse.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🚫</span>
+        <div>
+          <strong>Punishing Growls Removes the Warning, Not the Problem</strong>
+          <p>A dog that's learned growling gets punished doesn't stop feeling threatened — it just stops telling you before it reacts.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🩺</span>
+        <div>
+          <strong>Sudden Aggression Can Be a Medical Issue</strong>
+          <p>A previously non-aggressive dog suddenly reacting, especially to touch, deserves a vet check before it's treated as purely behavioral.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🛡️</span>
+        <div>
+          <strong>Most Cases Need Professional Help, Not DIY</strong>
+          <p>Beyond mild guarding or early fear signals, a veterinary behaviorist or aggression-experienced certified trainer meaningfully changes outcomes and safety.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_aggression_training() {
+    return [
+        ['title'=>'Identify the Likely Trigger and Pattern', 'desc'=>"Note exactly when it happens — strangers near the home, other dogs, over food/toys, only on leash, or suddenly with no clear trigger — since the pattern points toward the underlying cause."],
+        ['title'=>'Rule Out Pain if the Onset Was Sudden', 'desc'=>"A previously calm dog suddenly becoming aggressive, especially around touch to one area, warrants a vet visit before assuming it's behavioral."],
+        ['title'=>'Stop Rehearsal Through Management', 'desc'=>"Use distance, barriers, or a leash to prevent the triggering situation from happening repeatedly while you work on the underlying issue."],
+        ['title'=>'Never Punish Growling or Stiffening', 'desc'=>"Let the warning signal happen and respond by creating distance, not by correcting your dog for communicating discomfort."],
+        ['title'=>'Consider Muzzle Training for Safety', 'desc'=>"Done gradually and positively, a muzzle lets you manage real risk during walks, vet visits, or training sessions without relying on punishment."],
+        ['title'=>'Bring In a Professional for Anything Beyond Mild Cases', 'desc'=>"A veterinary behaviorist or a CAAB/CPDT-KA trainer with aggression experience should lead anything beyond mild resource guarding or the earliest fear signals."],
+    ];
+}
+
+function pz_tips_dog_aggression_training() {
+    return [
+        ["Log Every Incident", "Note the trigger, distance, body language, and outcome each time — patterns that aren't obvious in the moment often become clear on paper."],
+        ["Muzzle-Train Before You Need It", "Introducing a muzzle gradually and positively, long before an actual risky situation, means it's a ready safety tool rather than something you're fighting with your dog to use."],
+        ["Watch for Fear Signals, Not Just the Aggression", "Pinned ears, a tucked tail, lip-licking, and whale eye often show up before a growl — spotting them early lets you create distance before the situation escalates."],
+        ["Don't Force Interactions to \"Prove\" Progress", "Pushing a dog closer to a trigger before it's ready undermines the gradual, professional-guided process that actually works."],
+        ["Ask About a Veterinary Behaviorist Early, Not as a Last Resort", "Getting a professional involved sooner rather than later, especially beyond mild cases, tends to produce faster, safer progress than waiting for things to get worse."],
+    ];
+}
+
+function pz_mistakes_dog_aggression_training() {
+    return [
+        ["❌ Punishing Growling or Snapping", "This removes your dog's warning system without addressing why it felt the need to warn you — it can make a bite without notice more likely."],
+        ["❌ Assuming Sudden Aggression Is \"Just Behavior\"", "Skipping a vet check on a previously calm dog that suddenly turns aggressive risks missing a real medical cause like pain or illness."],
+        ["❌ Treating All Aggression as One Problem", "Fear, guarding, territorial instinct, and redirected arousal need different responses — a single generic approach won't fix all of them."],
+        ["❌ Relying on DIY Videos for Anything Beyond Mild Cases", "Misapplied exposure-based methods can escalate risk — a certified professional with real aggression experience is worth the investment."],
+        ["❌ Skipping Management While You \"Work On It\"", "Letting the triggering situation keep happening without distance, barriers, or a muzzle lets the behavior keep being rehearsed and reinforced."],
+    ];
+}
+
+function pz_render_guide_dog_aggression_training( $tool ) {
+    $icon = $tool['icon'] ?? '⚠️';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Aggression Causes & Solutions Guide</div>
+          <div class="pz-int-sublabel">Cause-matched guidance · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Trainer-Informed</span><span class="pz-int-badge pz-int-badge--orange">🚨 Safety-Critical</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">What Triggers It?</label>
+          <select id="pz_tf_trigger" class="pz-int-select">
+            <option value="strangers">Strangers approaching home or owner</option>
+            <option value="dogs">Other dogs</option>
+            <option value="guarding">Resource guarding (food/toys/space)</option>
+            <option value="sudden">Sudden onset, previously not aggressive</option>
+            <option value="leash">Only happens on leash</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">How Severe Is It?</label>
+          <select id="pz_tf_severity" class="pz-int-select">
+            <option value="warning">Growling/stiffening, no contact</option>
+            <option value="snapped">Snapped but did not make contact</option>
+            <option value="bitten">Has bitten</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenAggression()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Guidance
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Fun Dog Tricks Training Guide for Beginners (dog_trick_training) ══ */
+
+function pz_hero_quickanswer_dog_trick_training() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Beginner tricks like shake, spin, roll over, and play dead all use the same core method: mark the instant your dog does the right thing, treat immediately, and break the trick into small steps rather than expecting the whole thing at once. Most dogs pick up a first trick within a few short sessions with consistent marking and high-value treats. Select your dog's training level and the trick you want to teach above for a step-by-step approach matched to where you're starting. Beyond fun, trick training builds confidence, strengthens your bond, and provides real mental stimulation.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_trick_training() { ?>
+      <span>🎯 Step-by-Step Shaping</span>
+      <span>🧠 Builds Confidence & Bond</span>
+      <span>🐾 Beginner-Friendly</span>
+<?php }
+
+function pz_methodology_heading_dog_trick_training() { return "How This Trick Training Guide Is Built"; }
+
+function pz_methodology_dog_trick_training() { ?>
+    <p style="color:#555;margin-bottom:20px">Tricks that look impressive are almost always built from small, shapeable steps rather than taught all at once — this guide breaks each trick into the same successive-approximation process professional trainers use, matched to your dog's current level.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🎯</div>
+        <strong>Mark-and-Treat Timing</strong>
+        <p>The instant your dog does the right thing, a marker (clicker or word) followed by an immediate treat tells them exactly what earned the reward.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🪜</div>
+        <strong>Small Steps, Not the Whole Trick at Once</strong>
+        <p>Complex tricks like roll over are broken into shapeable pieces — successive approximation gets you there faster than expecting the full behavior immediately.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">⏱️</div>
+        <strong>Short Sessions, Ending on Success</strong>
+        <p>A few minutes at a time, ending while your dog is still succeeding, builds enthusiasm faster than long sessions that end in frustration.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🩺</div>
+        <strong>Physical Wellbeing Considered</strong>
+        <p>Tricks like roll over are approached with extra care for dogs with joint sensitivity, and high-impact tricks are delayed for very young puppies until growth plates close.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_trick_training() {
+    return [
+        ["What's the easiest trick to start with?", "Shake/paw and spin are usually the easiest first tricks since they build directly on a dog that already knows sit or can follow a treat lure. Most dogs pick up the basic motion within a few short sessions."],
+        ["My dog isn't \"getting\" roll over — what am I doing wrong?", "Roll over is one of the harder beginner tricks because it's really several small steps chained together — down, lying flat on one side, then completing the roll. Breaking it into those pieces and rewarding each one separately, rather than luring the whole roll at once, usually unsticks the progress."],
+        ["How long does it take to teach a trick?", "It varies by trick and dog, but simple tricks like shake or spin often show real progress within a handful of short sessions, while multi-step tricks like roll over or play dead can take longer. Consistency across short daily sessions matters more than the length of any one session."],
+        ["Is trick training actually useful, or just for fun?", "Both — it's genuinely fun, but it also builds your dog's confidence, strengthens your bond through positive shared work, and provides real mental stimulation that can be more tiring than physical exercise alone."],
+        ["Are any tricks not a good idea for my dog?", "Roll over and other tricks involving twisting or pressure on the back can be worth modifying or skipping for dogs with joint or back sensitivity, and high-impact jumping tricks are best delayed for very young puppies until their growth plates close. When in doubt, a quick check with your vet is reasonable."],
+    ];
+}
+
+function pz_what_is_dog_trick_training() {
+    ob_start(); ?>
+    <p>The Fun Dog Tricks Training Guide walks you through teaching beginner and intermediate tricks using the same core method professional trainers rely on: mark the exact instant your dog does the right thing, treat immediately, and build complex tricks from small, shapeable steps rather than expecting the whole behavior at once.</p>
+    <p>Beginner tricks build naturally on basic obedience. Shake/paw starts from a sit, either gently touching the paw while saying the cue or waiting for a natural paw lift to mark and reward. Spin uses a treat lure traced in a circle at nose height. Roll over builds from down, breaking the motion into small steps — lying flat on one side, then completing the roll — since trying to lure the whole roll at once rarely works well. Play dead builds from down by luring onto the side with a "bang" cue, and high five is a natural progression from shake by raising the target hand higher. Once these are solid, intermediate tricks like weaving through legs, distinctly cued spins in both directions, or fetching a specific named object add more challenge.</p>
+    <p>The training principles stay the same across every trick: mark the instant of correct behavior, treat right away, break complex tricks into small steps, keep sessions short, and end on success rather than pushing until your dog gets frustrated. Select your dog's current level and the trick you want to teach above for a matched approach, then scroll down for the complete guide and FAQ.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_trick_training() {
+    ob_start(); ?>
+    <p>Trick training earns its place beyond the fun factor — here's what it actually does for your dog:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🧠</span>
+        <div>
+          <strong>Real Mental Stimulation, Not Just Fun</strong>
+          <p>Trick training is mentally tiring in a way physical exercise alone isn't, and a mentally satisfied dog is often calmer at home.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🤝</span>
+        <div>
+          <strong>Strengthens the Human-Dog Bond</strong>
+          <p>Positive, shared training sessions build trust and communication that carry over into everyday life together.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🪜</span>
+        <div>
+          <strong>Confidence Building Through Small Wins</strong>
+          <p>Breaking tricks into achievable steps gives your dog frequent small successes, which builds confidence for tackling harder skills later.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🩺</span>
+        <div>
+          <strong>Physical Wellbeing Still Matters</strong>
+          <p>Roll over and similar tricks are approached carefully for dogs with joint sensitivity, and high-impact tricks wait until puppies are physically ready.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_trick_training() {
+    return [
+        ['title'=>'Confirm the Foundation Is Solid', 'desc'=>"Most beginner tricks build on sit or down — make sure your dog responds reliably to those before layering a trick on top."],
+        ['title'=>'Choose a Marker and Stay Consistent', 'desc'=>"A clicker or a consistent word (\"yes\") marks the exact instant your dog does the right thing, so treat timing doesn't have to be perfect."],
+        ['title'=>'Break the Trick Into Small Steps', 'desc'=>"Especially for roll over or play dead, reward each small piece of progress rather than waiting for the full trick to happen."],
+        ['title'=>'Keep Sessions Short and End on Success', 'desc'=>"A few minutes at a time, stopping while your dog is still succeeding, builds more enthusiasm than a longer session that ends in frustration."],
+        ['title'=>'Add the Verbal Cue Once the Behavior Is Reliable', 'desc'=>"Say the cue right before your dog performs the trick consistently, so the word becomes associated with the action rather than confusing your dog early on."],
+    ];
+}
+
+function pz_tips_dog_trick_training() {
+    return [
+        ["Use Higher-Value Treats for Harder Tricks", "Save the really good treats (small pieces of chicken or cheese) for tricks that take more effort or patience, like roll over."],
+        ["Practice in a Low-Distraction Space First", "Teaching a new trick at home before trying it at the park sets your dog up to succeed before adding real-world distractions."],
+        ["Don't Rush to Add the Verbal Cue", "Adding the word too early, before the behavior is reliable, can confuse your dog about what the cue actually means."],
+        ["Keep a Few Different Tricks in Rotation", "Switching between a couple of tricks in progress keeps sessions interesting for both of you and prevents any one trick from getting stale."],
+        ["End Every Session on a Win", "Finishing with a trick your dog already knows well, even after a harder new one, ends the session on a confident, successful note."],
+    ];
+}
+
+function pz_mistakes_dog_trick_training() {
+    return [
+        ["❌ Expecting the Whole Trick at Once", "Skipping the small-step shaping process, especially for multi-step tricks like roll over, usually causes more frustration than progress."],
+        ["❌ Sessions That Run Too Long", "Pushing past your dog's attention span turns a fun activity into something that feels like work, slowing progress."],
+        ["❌ Inconsistent Marker Timing", "Marking a moment too late rewards whatever your dog is doing then, not the behavior you actually meant to reinforce."],
+        ["❌ Ignoring Physical Considerations", "Pushing roll over on a dog with joint sensitivity, or high-impact tricks on a very young puppy, risks discomfort or injury for the sake of a trick."],
+        ["❌ Adding the Verbal Cue Too Early", "Saying the word before the behavior is reliable teaches your dog to ignore it rather than respond to it."],
+    ];
+}
+
+function pz_render_guide_dog_trick_training( $tool ) {
+    $icon = $tool['icon'] ?? '🎪';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Fun Dog Tricks Training Guide</div>
+          <div class="pz-int-sublabel">Beginner to intermediate · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Trainer-Informed</span><span class="pz-int-badge pz-int-badge--purple">🎪 Step-by-Step</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Your Dog's Training Level</label>
+          <select id="pz_tf_level" class="pz-int-select">
+            <option value="starting">Just starting — knows sit/down</option>
+            <option value="some">Some tricks already, ready for more</option>
+            <option value="advanced">Advanced, wants a challenge</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Which Trick?</label>
+          <select id="pz_tf_trick" class="pz-int-select">
+            <option value="shake">Shake/paw</option>
+            <option value="spin">Spin</option>
+            <option value="rollover">Roll over</option>
+            <option value="playdead">Play dead</option>
+            <option value="notsure">Not sure — suggest one</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenTrickTraining()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Trick Training Steps
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Rescue Dog Training: First 30 Days Guide (rescue_dog_training) ══ */
+
+function pz_hero_quickanswer_rescue_dog_training() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>The "3-3-3 rule" many shelters use as a general guideline — not a strict timeline, since individual dogs vary — describes the first 3 days as decompression, the first 3 weeks as settling in and learning routine, and the first 3 months as truly bonding into permanent life. In the first days, keep things calm, predictable, and low-stimulation rather than starting heavy training or lots of new introductions. Select where you are in that timeline and your dog's main concern above for guidance matched to your actual situation. Any signs of resource guarding, fear-aggression, or severe anxiety in a new rescue warrant earlier professional help rather than a wait-and-see approach.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_rescue_dog_training() { ?>
+      <span>🐾 3-3-3 Rule Guidance</span>
+      <span>🏡 Decompression-First Approach</span>
+      <span>🩺 Knows When to Get Help</span>
+<?php }
+
+function pz_methodology_heading_rescue_dog_training() { return "How This Rescue Dog Guidance Is Built"; }
+
+function pz_methodology_rescue_dog_training() { ?>
+    <p style="color:#555;margin-bottom:20px">A rescue dog's first 30 days aren't about maximizing training progress — they're about decompression first, then gradually building routine and trust. This guide follows the general "3-3-3" timeline shelters commonly reference while being clear it's a guideline, not a strict rule, since individual dogs and histories vary.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">📅</div>
+        <strong>The 3-3-3 Timeline as a Guide, Not a Rule</strong>
+        <p>3 days to decompress, 3 weeks to settle into routine, 3 months to truly bond — general shelter guidance, adjusted for your specific dog.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🏡</div>
+        <strong>Calm and Predictable Over Fast Progress</strong>
+        <p>A consistent, low-stimulation routine in the earliest days reduces stress more than jumping straight into training or new introductions.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🦺</div>
+        <strong>Practical Safety First</strong>
+        <p>A well-fitted collar and harness with ID plus a slip-lead backup account for the real flight risk of a scared dog in an unfamiliar place.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🩺</div>
+        <strong>Knowing When to Get Help Early</strong>
+        <p>Guarding, fear-aggression, or severe anxiety in a new rescue point toward getting a rescue-experienced trainer involved sooner, not waiting for problems to develop.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_rescue_dog_training() {
+    return [
+        ["What is the 3-3-3 rule for rescue dogs?", "It's a general guideline many shelters reference: the first 3 days are for decompression, the first 3 weeks for settling into routine and starting gentle training, and the first 3 months for the bond and training to really solidify. It's not a strict rule — individual dogs, especially those with a harder history, may move through these stages faster or slower."],
+        ["My new dog isn't eating normally and is hiding — is that normal?", "Yes, this is common in the first few days as a dog decompresses in a totally new environment. Keep things calm and low-stimulation rather than forcing interaction or introducing lots of new people right away — most dogs start eating and engaging more normally within the first week or two."],
+        ["When should I start training?", "Hold off on anything beyond basic routine-building for the first few days while your dog decompresses, then begin gentle training around the first-few-weeks mark as they settle in. Heavy training too early, before your dog feels safe, tends to be less effective anyway."],
+        ["Should I introduce my rescue dog to other pets and visitors right away?", "Go slower than feels necessary — overwhelming a dog with lots of new introductions in the first days adds stress on top of an already major transition. Let your dog approach new people and animals at its own pace rather than forcing interaction."],
+        ["My rescue dog came from a neglect situation — should I expect training to be different?", "Likely slower, and that's normal, not a sign you're doing something wrong. Consider consulting a trainer experienced with rescue or fearful dogs early on rather than waiting for problems to show up — starting with extra support tends to go better than adding it after issues develop."],
+    ];
+}
+
+function pz_what_is_rescue_dog_training() {
+    ob_start(); ?>
+    <p>The Rescue Dog Training: First 30 Days Guide walks you through the general timeline many shelters and rescues reference for a newly adopted dog's first month, and matches practical guidance to where you actually are and what's coming up, rather than pushing generic training advice that ignores the decompression period every rescue dog needs.</p>
+    <p>The well-known "3-3-3 rule" is a helpful general guideline, not a strict timeline — individual dogs vary. The first 3 days are typically decompression: your dog may not eat normally, may hide, and this is normal, not a sign of a bigger problem — it's not the time for heavy training or a flood of new introductions, just a calm, predictable, low-stimulation environment. The first 3 weeks are when a dog usually starts settling in, learning your household routine, testing boundaries a little, and showing more of its real personality, both good and any behavior issues — gentle basic training and routine-building fit well here. The first 3 months are when the bond deepens and training can progress more like it would with any dog.</p>
+    <p>A few practical safety notes matter early on: a well-fitted collar and harness with ID, plus a slip-lead backup, is worth the extra caution since scared rescue dogs are a genuine flight risk in an unfamiliar place during the first weeks. Don't force interaction or affection — let your dog approach on its own timeline. If your dog shows resource guarding, fear-aggression, or severe anxiety, or came with a known history of neglect or limited socialization, getting a rescue-experienced trainer involved early tends to go better than a wait-and-see approach. Select where you are in the timeline and your main concern above for matched guidance, then scroll down for the complete guide and FAQ.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_rescue_dog_training() {
+    ob_start(); ?>
+    <p>The first 30 days shape how your rescue dog settles in long-term — here's what genuinely matters most:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">📅</span>
+        <div>
+          <strong>Decompression Comes Before Training</strong>
+          <p>Pushing training before your dog feels safe is both less effective and adds stress during an already major transition.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🦺</span>
+        <div>
+          <strong>Flight Risk Is a Real Early Safety Concern</strong>
+          <p>A scared dog in an unfamiliar place can slip out of a loose collar or open door — secure equipment in the first weeks genuinely matters.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🐾</span>
+        <div>
+          <strong>Unknown History Means More Patience, Not Less Support</strong>
+          <p>A dog with a harder or unknown past may need more time and support — that's not a sign anything's wrong, it's a reason to plan for it.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🩺</span>
+        <div>
+          <strong>Early Guarding or Fear-Aggression Deserves Early Help</strong>
+          <p>Getting a rescue-experienced trainer involved at the first signs, rather than waiting, tends to produce better outcomes with less risk.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_rescue_dog_training() {
+    return [
+        ['title'=>'Let the First Few Days Be About Decompression', 'desc'=>"Keep the environment calm, predictable, and low-stimulation — skip heavy training and limit new introductions during this window."],
+        ['title'=>'Build a Consistent Daily Routine', 'desc'=>"Set feeding times and walk times early — predictability reduces stress for a dog adjusting to an entirely new environment."],
+        ['title'=>'Secure Your Equipment', 'desc'=>"A well-fitted collar and harness with ID, plus a slip-lead backup, account for the real escape risk of a scared dog in an unfamiliar place."],
+        ['title'=>'Introduce New People and Pets Gradually', 'desc'=>"Go slower than feels necessary and let your dog approach on its own timeline rather than forcing interaction."],
+        ['title'=>'Start Gentle Basic Training Around Week Two or Three', 'desc'=>"As your dog settles in and starts showing its real personality, begin gentle routine-building and basic commands."],
+        ['title'=>'Get Professional Help Early for Guarding, Fear, or Severe Anxiety', 'desc'=>"Don't wait for these to develop into bigger problems — a rescue-experienced trainer involved early tends to produce better outcomes."],
+    ];
+}
+
+function pz_tips_rescue_dog_training() {
+    return [
+        ["Don't Force Affection or Interaction", "Let your dog approach you, other pets, and visitors on its own timeline rather than pushing for closeness before it's ready."],
+        ["Keep a Predictable Daily Schedule", "Consistent feeding and walk times give a dog in a new environment something stable to orient around."],
+        ["Double Up on Escape Prevention Early On", "A properly fitted collar and harness with ID, plus a slip-lead backup, are worth the extra caution during the first uncertain weeks."],
+        ["Don't Judge Progress Against Other Dogs", "Every rescue dog's timeline is different, especially with an unknown or difficult history — comparing slows down your own patience, not your dog's progress."],
+        ["Line Up a Rescue-Experienced Trainer Before You Need One", "If your dog's history suggests it might need extra support, having a trainer already identified means you can act quickly if concerns come up."],
+    ];
+}
+
+function pz_mistakes_rescue_dog_training() {
+    return [
+        ["❌ Starting Heavy Training in the First Few Days", "Pushing training before your dog has decompressed is both less effective and adds unnecessary stress during an already major transition."],
+        ["❌ Overwhelming With Introductions Too Soon", "Flooding a new dog with visitors, other pets, or outings in the first days adds stress rather than building comfort."],
+        ["❌ Loose or Ill-Fitted Equipment Early On", "Scared rescue dogs are a genuine flight risk in an unfamiliar place — secure gear matters more in the first weeks than it will later."],
+        ["❌ Waiting to See If Guarding or Fear-Aggression \"Goes Away\"", "These are signs to get professional help earlier, not later, especially with an unknown history."],
+        ["❌ Treating Slow Progress as a Sign Something's Wrong", "A harder or unknown history often means a longer timeline — that's normal, not evidence you're doing something wrong."],
+    ];
+}
+
+function pz_render_guide_rescue_dog_training( $tool ) {
+    $icon = $tool['icon'] ?? '🏠';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Rescue Dog Training: First 30 Days Guide</div>
+          <div class="pz-int-sublabel">3-3-3 timeline · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Rescue-Informed</span><span class="pz-int-badge pz-int-badge--orange">🩺 Knows When to Get Help</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">How Long Have You Had Them?</label>
+          <select id="pz_tf_daysowned" class="pz-int-select">
+            <option value="days">Just brought them home (days 1-3)</option>
+            <option value="weeks">First few weeks (up to 3 weeks)</option>
+            <option value="months">1-3 months in</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Main Concern Right Now</label>
+          <select id="pz_tf_concern" class="pz-int-select">
+            <option value="routine">Just building routine, no major issues</option>
+            <option value="fearful">Very fearful/hiding/shut down</option>
+            <option value="guarding">Showing guarding or aggression signs</option>
+            <option value="escape">Escape risk / flight-prone when scared</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenRescueDog()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My First 30 Days Plan
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Dog Obedience Training Schedule (dog_obedience_training_schedule) ══ */
+
+function pz_hero_quickanswer_dog_obedience_training_schedule() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>Short daily sessions (5-10 minutes, 2-3 times a day) consistently outperform occasional long sessions for building lasting obedience skills. A typical arc runs from foundation commands in a low-distraction environment, to adding duration and distance, to generalizing commands across new locations and distraction levels — that last step is the one most owners skip, and it's why a dog that "knows sit" at home can act like it's never heard the word at a busy park. Select your dog's age group and current training goal above for a schedule matched to where you actually are.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_obedience_training_schedule() { ?>
+      <span>📅 Structured Weekly Progression</span>
+      <span>🔁 Generalization-Aware</span>
+      <span>🐾 Works for Any Age</span>
+<?php }
+
+function pz_methodology_heading_dog_obedience_training_schedule() { return "How This Training Schedule Is Built"; }
+
+function pz_methodology_dog_obedience_training_schedule() { ?>
+    <p style="color:#555;margin-bottom:20px">Knowing individual commands is different from having a structured schedule that actually builds reliable obedience over time — this guide focuses on the progression and session structure, not on re-teaching the mechanics of sit or down, and matches the schedule to your dog's age and current goal.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">⏱️</div>
+        <strong>Short, Frequent Sessions Over Long, Rare Ones</strong>
+        <p>5-10 minutes, 2-3 times a day, consistently builds and retains skills better than occasional long sessions.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">📈</div>
+        <strong>A Real Progression Arc</strong>
+        <p>Foundation commands, then duration and distance, then generalization across locations and distractions — each stage builds on the last.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🔁</div>
+        <strong>Generalization Is Built In, Not Assumed</strong>
+        <p>The most commonly skipped step — practicing commands in new places and around real distractions — gets deliberate attention here.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🐾</div>
+        <strong>Matched to Age, Not a Single Template</strong>
+        <p>Puppies, adult dogs, and seniors all follow the same underlying structure, adjusted for session length and physical comfort where it matters.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_obedience_training_schedule() {
+    return [
+        ["How often should I actually train each day?", "Short sessions of 5-10 minutes, done 2-3 times a day, consistently outperform one long session for both learning speed and retention. Dogs, like people, learn better in focused short bursts than in a single long block."],
+        ["My dog knows sit at home but ignores me at the park — why?", "This is incomplete generalization, not defiance, and it's the single most skipped step in obedience training. A dog that learned a command in one quiet environment hasn't automatically learned it applies everywhere — deliberate practice in new locations and around real distractions is what closes that gap."],
+        ["Is it true that older dogs can't learn new commands as well as puppies?", "No, that's a myth — adult and even senior dogs can absolutely learn on the same schedule structure as a puppy. Very senior dogs may benefit from shorter sessions and some accommodation for joint stiffness affecting positions like sit or down, but their ability to learn isn't the limiting factor."],
+        ["When should I start training a puppy?", "As early as 8 weeks old, with very short, food-motivated sessions. Puppies have short attention spans, so brief, frequent, high-reward sessions fit their learning style better than longer ones."],
+        ["Are group obedience classes worth it?", "Yes, for most dogs — a structured, force-free/positive-reinforcement class adds real-world distraction practice with professional guidance built in, which is exactly the generalization step that's hardest to replicate training alone at home."],
+    ];
+}
+
+function pz_what_is_dog_obedience_training_schedule() {
+    ob_start(); ?>
+    <p>The Dog Obedience Training Schedule focuses on how to structure a training program over time — session length, frequency, and progression — rather than the mechanics of teaching any individual command. If you need to learn how to actually teach sit or stay, that's a different guide; this one is about building a schedule that turns individual commands into reliable, generalized obedience.</p>
+    <p>Short daily sessions (5-10 minutes, 2-3 times a day) consistently outperform occasional long sessions for skill retention. A typical progression runs in phases: weeks 1-2 focus on foundation commands in a low-distraction environment like home or the yard, using high-value treats; weeks 3-4 add duration and slight distance to those commands, and start practicing in mildly more distracting settings like the front yard or a quiet street; weeks 5-8 generalize commands across multiple locations and increasing distraction levels. That generalization step is the single most skipped part of obedience training — a dog that "knows sit" perfectly at home may act like it's never heard the word at a busy park, and that's incomplete generalization, not defiance, and it needs deliberate practice in new contexts to close the gap. After that, ongoing periodic practice keeps commands sharp, since skills genuinely can fade without use, especially around distractions.</p>
+    <p>This same structure works across ages: puppies can start as young as 8 weeks with very short, food-motivated sessions, and adult dogs — including rescues and older dogs — can absolutely learn on it too, since "old dogs can't learn new tricks" is a myth. Very senior dogs may just need shorter sessions and some accommodation for physical comfort, like joint stiffness affecting sit or down. Structured, force-free group obedience classes are worth considering as a way to add real-world distraction practice with professional guidance built into the schedule. Select your dog's age group and current goal above for a matched weekly structure, then scroll down for the complete guide and FAQ.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_obedience_training_schedule() {
+    ob_start(); ?>
+    <p>The schedule you follow shapes how reliable your dog's obedience actually becomes:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">⏱️</span>
+        <div>
+          <strong>Session Structure Changes Outcomes</strong>
+          <p>Short, frequent sessions build and retain skills faster than occasional long ones — the schedule matters as much as the training itself.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🔁</span>
+        <div>
+          <strong>Generalization Is the Step Most Owners Skip</strong>
+          <p>A command learned only at home isn't reliable anywhere else — deliberate practice in new places and distractions is what makes it stick.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🐾</span>
+        <div>
+          <strong>Age Doesn't Rule Out Training</strong>
+          <p>Puppies, adults, and seniors can all learn on the same underlying schedule — "too old to learn" is a myth, not a real limitation.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">📉</span>
+        <div>
+          <strong>Skills Fade Without Maintenance</strong>
+          <p>Even solid commands can weaken over time without periodic practice, especially around distractions — ongoing maintenance is part of the schedule, not an afterthought.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_obedience_training_schedule() {
+    return [
+        ['title'=>'Start With Foundation Commands, Low Distraction', 'desc'=>"Weeks 1-2: practice core commands at home or in the yard with high-value treats, keeping sessions short and distraction-free."],
+        ['title'=>'Add Duration and Slight Distance', 'desc'=>"Weeks 3-4: extend how long your dog holds a command and begin practicing in mildly more distracting settings like the front yard."],
+        ['title'=>'Generalize Across Locations and Distractions', 'desc'=>"Weeks 5-8: deliberately practice commands in new places and around real distractions — this is the step that turns \"knows it at home\" into genuinely reliable obedience."],
+        ['title'=>'Consider a Group Obedience Class', 'desc'=>"A structured, force-free class adds real-world distraction practice with professional guidance built into the schedule."],
+        ['title'=>'Maintain With Periodic Practice', 'desc'=>"Once commands are solid, keep them sharp with ongoing practice — skills can fade without use, especially around distractions."],
+    ];
+}
+
+function pz_tips_dog_obedience_training_schedule() {
+    return [
+        ["Keep Sessions Short Even When It's Going Well", "Ending a good session early, while your dog is still engaged, builds more enthusiasm for the next one than pushing until attention fades."],
+        ["Practice in a New Location Every Week", "Deliberately rotating environments is what actually builds generalization — a command isn't reliable until it works somewhere new."],
+        ["Use Higher-Value Treats When Adding Distractions", "Competing with a busy park or another dog requires a more compelling reward than what worked in a quiet living room."],
+        ["Track What You Practice, Not Just That You Trained", "Noting which commands, distances, and distraction levels you covered helps you see real progression instead of just repeating the same easy rep."],
+        ["Adjust Session Length for Senior Dogs, Not the Structure Itself", "A shorter session that's comfortable for joint stiffness still fits the same weekly progression — the schedule doesn't need to change, just the session length."],
+    ];
+}
+
+function pz_mistakes_dog_obedience_training_schedule() {
+    return [
+        ["❌ Skipping Generalization Practice", "Assuming a command learned at home will transfer automatically to anywhere else is the most common reason obedience training doesn't stick."],
+        ["❌ Occasional Long Sessions Instead of Short Daily Ones", "One 30-minute session a week builds and retains skills more slowly than several short daily sessions."],
+        ["❌ Assuming an Older Dog Can't Learn", "Adult and senior dogs can absolutely learn on the same schedule as a puppy — age isn't the limiting factor."],
+        ["❌ Stopping Practice Once a Command \"Is Learned\"", "Skills can fade without periodic use, especially around distractions — maintenance is part of the schedule, not optional."],
+        ["❌ Pushing Puppies Into Long or High-Distraction Sessions", "Very short, food-motivated sessions fit a puppy's attention span far better than long or heavily distracting ones."],
+    ];
+}
+
+function pz_render_guide_dog_obedience_training_schedule( $tool ) {
+    $icon = $tool['icon'] ?? '📅';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Obedience Training Schedule</div>
+          <div class="pz-int-sublabel">Structured weekly progression · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Trainer-Informed</span><span class="pz-int-badge pz-int-badge--purple">📅 Age-Matched Schedule</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Age Group</label>
+          <select id="pz_tf_agegroup" class="pz-int-select">
+            <option value="puppy">Puppy (8 weeks - 6 months)</option>
+            <option value="adult">Adult dog, new to training</option>
+            <option value="senior">Senior dog</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Current Goal</label>
+          <select id="pz_tf_goal" class="pz-int-select">
+            <option value="foundation">Building a first-time foundation</option>
+            <option value="distractions">Adding reliability around distractions</option>
+            <option value="maintenance">General refresher/maintenance</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenObedienceSchedule()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Training Schedule
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
+}
+
+/* ══ Dog Sleep Training: Where Should Dogs Sleep? (dog_sleep_training) ══ */
+
+function pz_hero_quickanswer_dog_sleep_training() { ?>
+    <div class="pz-hero-quickanswer">
+      <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+      <p>There's no single universally "correct" place for a dog to sleep — crate, bedroom, on the bed, or a separate space are all legitimate options, and the right one depends on your dog's age, temperament, and your household's preference. Puppies typically do best starting in a crate near your bed for the first weeks, since proximity reduces whining and helps with nighttime potty breaks. Select your dog's situation and your sleeping preference above for an honest breakdown of the real tradeoffs, not a single "right" answer.</p>
+    </div>
+<?php }
+
+function pz_hero_trust_dog_sleep_training() { ?>
+      <span>😴 Honest Tradeoffs, No Single "Right" Answer</span>
+      <span>🏠 Age-Matched Guidance</span>
+      <span>🐾 Real Behavioral Considerations</span>
+<?php }
+
+function pz_methodology_heading_dog_sleep_training() { return "How This Sleep Guidance Is Built"; }
+
+function pz_methodology_dog_sleep_training() { ?>
+    <p style="color:#555;margin-bottom:20px">There's no universally correct answer to where a dog should sleep — this guide's job is to lay out the real tradeoffs of each common setup honestly, matched to your dog's age and any behavioral considerations, rather than pushing one option as objectively best.</p>
+    <div class="pz-methodology-grid">
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🛏️</div>
+        <strong>Every Common Setup Is Legitimate</strong>
+        <p>Crate, bedroom, on the bed, or a separate space are all valid choices — the right one depends on your specific dog and household, not a universal rule.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🐶</div>
+        <strong>Puppies Get Age-Specific Guidance</strong>
+        <p>House-training and nighttime potty needs make a puppy's ideal setup genuinely different from a settled adult dog's.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">⚠️</div>
+        <strong>Real Caveats, Not Just Reassurance</strong>
+        <p>Bed-sharing has two genuine tradeoffs worth knowing about for dogs with guarding tendencies or separation anxiety — this guide names them plainly.</p>
+      </div>
+      <div class="pz-methodology-card">
+        <div class="pz-methodology-icon">🔁</div>
+        <strong>Setups Can Change Over Time</strong>
+        <p>Many dogs start in one setup (like a crate) and transition to another once house-trained and settled — that's normal, not a sign of doing it wrong.</p>
+      </div>
+    </div>
+<?php }
+
+function pz_faq_dog_sleep_training() {
+    return [
+        ["Is it bad to let my dog sleep on my bed?", "Generally, no — for most well-adjusted adult dogs with no behavioral concerns, bed-sharing is common and fine. Two genuine caveats worth knowing: it can reinforce bed-guarding if your dog already shows any guarding tendencies, and for a dog with real separation anxiety, always sleeping pressed against you can make solo sleep harder to practice, not easier."],
+        ["Where should a new puppy sleep?", "Many trainers suggest a crate near your bed for the first weeks or months. The proximity reduces whining, and since puppies typically need one or more nighttime bathroom breaks, being nearby to hear those cues matters during house-training."],
+        ["Does crate sleeping help with house-training?", "Yes, generally — dogs tend to avoid soiling their own sleep space, so a properly sized crate can support house-training by encouraging your puppy to hold it until a bathroom break, rather than an open space where accidents are easier."],
+        ["My dog has separation anxiety — where should they sleep?", "Worth knowing, not alarming: always sleeping pressed against you can mean your dog never practices being calm without physical contact, which can make solo alone-time harder rather than easier. This doesn't mean bed-sharing is forbidden, just something to be aware of alongside your broader anxiety work."],
+        ["When should I transition my puppy out of the crate?", "Once your puppy is reliably house-trained and settled into the household routine, many owners gradually transition to the long-term sleep setup they want — whether that's the bedroom, the bed, or a separate space. There's no fixed timeline; it depends on your individual puppy's progress."],
+    ];
+}
+
+function pz_what_is_dog_sleep_training() {
+    ob_start(); ?>
+    <p>The Dog Sleep Training Guide walks through the common places dogs sleep — crate, bedroom floor, on the bed, or a separate space — and lays out the real, honest tradeoffs of each rather than pushing one option as objectively correct. This is a genuinely preference-driven topic: the right answer depends on your dog's age and any behavioral considerations, and on what your household actually wants.</p>
+    <p>A crate is commonly recommended for puppies and new dogs — it provides a consistent, den-like space and generally aids house-training, since dogs tend to avoid soiling their own sleep space. A dog bed in your room but not on the bed itself is a popular middle ground, offering proximity comfort without some of the downsides of full bed-sharing. Sleeping on the owner's bed is common and generally fine for most well-adjusted adult dogs with no behavioral concerns, but it carries two genuine caveats worth knowing: it can reinforce bed-guarding in a dog that already shows guarding tendencies, and for a dog with real separation anxiety, always sleeping pressed against you can make solo sleep harder to practice rather than easier, since the dog never gets to practice being calm without contact. A separate room or dog bed elsewhere in the house works well for secure, well-trained adult dogs, but is less ideal for a new puppy or an anxious dog still settling in.</p>
+    <p>For puppies specifically, many trainers suggest starting in a crate near your bed for the first weeks or months — proximity reduces whining and helps you hear nighttime bathroom cues, since puppies typically need one or more nighttime breaks — then gradually transitioning to the long-term setup once house-trained and settled. There's no single universally correct answer here. Select your dog's situation and your sleeping preference above for the honest tradeoffs that match your actual scenario, then scroll down for the complete guide and FAQ.</p>
+    <?php return ob_get_clean();
+}
+
+function pz_why_important_dog_sleep_training() {
+    ob_start(); ?>
+    <p>Where a dog sleeps is a genuinely personal choice — here's what's actually worth factoring in:</p>
+    <div class="pz-why-grid">
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🛏️</span>
+        <div>
+          <strong>There's No Universal "Right" Answer</strong>
+          <p>Every common sleep setup is legitimate — the right choice depends on your dog's age, temperament, and your own household preference.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🚽</span>
+        <div>
+          <strong>Crates Genuinely Support House-Training</strong>
+          <p>Dogs tend to avoid soiling their own sleep space, which is part of why crate-sleeping is commonly recommended during the house-training period.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">⚠️</span>
+        <div>
+          <strong>Bed-Sharing Has Two Real Caveats</strong>
+          <p>For dogs with guarding tendencies or genuine separation anxiety, bed-sharing can reinforce those specific issues — worth knowing, not alarming.</p>
+        </div>
+      </div>
+      <div class="pz-why-item">
+        <span class="pz-why-icon">🔁</span>
+        <div>
+          <strong>Setups Can Evolve as Your Dog Settles In</strong>
+          <p>Starting in a crate and transitioning later once house-trained is completely normal, not a sign you started wrong.</p>
+        </div>
+      </div>
+    </div>
+    <?php return ob_get_clean();
+}
+
+function pz_steps_dog_sleep_training() {
+    return [
+        ['title'=>"Consider Your Dog's Age and Stage", 'desc'=>"A new puppy still house-training has different needs than a settled adult dog — start with the setup that matches where your dog actually is."],
+        ['title'=>'Start Puppies in a Crate Near Your Bed', 'desc'=>"Proximity reduces whining and helps you hear nighttime bathroom cues during the house-training period."],
+        ['title'=>'Watch for Guarding or Anxiety Signals Before Bed-Sharing', 'desc'=>"If your dog shows any guarding tendencies or genuine separation anxiety, factor in the real tradeoffs before defaulting to the bed."],
+        ['title'=>'Choose the Setup That Fits Your Household', 'desc'=>"Bedroom, bed, or separate space are all legitimate — pick based on genuine preference and your dog's needs, not an assumed \"right\" answer."],
+        ['title'=>'Transition Gradually as Your Dog Settles In', 'desc'=>"Once house-trained and secure, many dogs move from a crate to their longer-term sleep setup — do this gradually rather than all at once."],
+    ];
+}
+
+function pz_tips_dog_sleep_training() {
+    return [
+        ["Keep the Crate Nearby for New Puppies", "Proximity to you reduces whining and helps you catch nighttime bathroom cues during the house-training period."],
+        ["Notice Guarding Signs Before They Become a Bed-Sharing Habit", "Catching mild guarding tendencies early, before bed-sharing reinforces them, makes any needed adjustment easier."],
+        ["Give an Anxious Dog Some Practice With Solo Sleep", "Even occasional solo sleep can help a dog with separation anxiety build comfort with being calm without contact."],
+        ["Transition Sleep Setups Gradually", "Moving a settled puppy from crate to a new sleep spot works better done gradually than as an abrupt change."],
+        ["Pick What Actually Works for Your Household", "There's no prize for choosing the \"most correct\" setup — the best choice is the one that works for your specific dog and family."],
+    ];
+}
+
+function pz_mistakes_dog_sleep_training() {
+    return [
+        ["❌ Assuming There's One Universally Correct Setup", "Crate, bedroom, bed, and separate space are all legitimate — treating any one as mandatory ignores real individual differences."],
+        ["❌ Bed-Sharing With a Dog That Already Shows Guarding Signs", "This can reinforce the exact behavior you'd want to address, without meaning to."],
+        ["❌ Always Sleeping Pressed Against a Dog With Separation Anxiety", "It can remove the chance to practice being calm without contact, making solo alone-time harder rather than easier."],
+        ["❌ Putting a New Puppy's Crate Too Far Away", "Distance makes it harder to hear nighttime bathroom cues and can increase whining during an already adjustment-heavy period."],
+        ["❌ Forcing an Abrupt Sleep Setup Change", "Switching a settled dog's sleep spot suddenly, rather than gradually, can cause unnecessary stress for no real benefit."],
+    ];
+}
+
+function pz_render_guide_dog_sleep_training( $tool ) {
+    $icon = $tool['icon'] ?? '😴';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div>
+          <div class="pz-int-label">Dog Sleep Training Guide</div>
+          <div class="pz-int-sublabel">Where dogs sleep · Free · Instant</div>
+        </div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Trainer-Informed</span><span class="pz-int-badge pz-int-badge--purple">😴 Honest Tradeoffs</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Your Dog's Situation</label>
+          <select id="pz_tf_agegroup" class="pz-int-select">
+            <option value="puppy">New puppy, still house-training</option>
+            <option value="adult">Adult dog, well-adjusted</option>
+            <option value="sensitive">Dog with anxiety or guarding tendencies</option>
+          </select>
+        </div>
+        <div class="pz-int-field">
+          <label class="pz-int-label-txt">Your Preference</label>
+          <select id="pz_tf_preference" class="pz-int-select">
+            <option value="room">Want them in my room</option>
+            <option value="ownspace">Want them in their own space</option>
+            <option value="tradeoffs">Not sure — want the tradeoffs</option>
+          </select>
+        </div>
+      </div>
+      <button class="pz-int-btn" onclick="pzGenSleepTraining()">
+        <span class="pz-int-btn-icon"><?php echo $icon; ?></span>
+        Get My Sleep Guidance
+      </button>
+      <div id="pz-guide-result" style="display:none" aria-live="polite"></div>
+    </div>
+    <?php
 }

@@ -103,21 +103,21 @@ function pz_get_all_tools() {
         // ═══════════════════════════════════════════
         // DOG TRAINING (15)
         // ═══════════════════════════════════════════
-        ['slug'=>'puppy-training-schedule','title'=>'Puppy Training Schedule by Age','cat'=>'dog-training','animal'=>'dog','type'=>'guide','kw'=>'puppy training schedule by age','icon'=>'📋'],
-        ['slug'=>'dog-potty-training-guide','title'=>'Dog Potty Training Guide: Step by Step','cat'=>'dog-training','animal'=>'dog','type'=>'guide','kw'=>'dog potty training guide','icon'=>'🚽'],
-        ['slug'=>'dog-crate-training-guide','title'=>'Dog Crate Training Guide for Beginners','cat'=>'dog-training','animal'=>'dog','type'=>'guide','kw'=>'dog crate training guide','icon'=>'🏠'],
-        ['slug'=>'dog-leash-training-guide','title'=>'Dog Leash Training Guide: Stop Pulling','cat'=>'dog-training','animal'=>'dog','type'=>'guide','kw'=>'dog leash training guide','icon'=>'🐕'],
-        ['slug'=>'dog-socialization-guide','title'=>'Dog Socialization Guide: Puppies & Adults','cat'=>'dog-training','animal'=>'dog','type'=>'guide','kw'=>'dog socialization guide','icon'=>'🤝'],
-        ['slug'=>'dog-separation-anxiety-training','title'=>'Dog Separation Anxiety Training Guide','cat'=>'dog-training','animal'=>'dog','type'=>'guide','kw'=>'dog separation anxiety training','icon'=>'😟'],
-        ['slug'=>'dog-bark-training-guide','title'=>'How to Stop Dog Barking: Training Guide','cat'=>'dog-training','animal'=>'dog','type'=>'guide','kw'=>'how to stop dog barking','icon'=>'🔇'],
-        ['slug'=>'dog-bite-prevention-guide','title'=>'Dog Bite Prevention Training Guide','cat'=>'dog-training','animal'=>'dog','type'=>'guide','kw'=>'dog bite prevention training','icon'=>'🛡️'],
-        ['slug'=>'dog-basic-commands-guide','title'=>'10 Basic Dog Commands Every Dog Should Know','cat'=>'dog-training','animal'=>'dog','type'=>'guide','kw'=>'basic dog commands guide','icon'=>'✋'],
-        ['slug'=>'clicker-training-dogs-guide','title'=>'Clicker Training for Dogs: Complete Guide','cat'=>'dog-training','animal'=>'dog','type'=>'guide','kw'=>'clicker training dogs guide','icon'=>'🎯'],
-        ['slug'=>'dog-aggression-training-guide','title'=>'Dog Aggression Training: Causes & Solutions','cat'=>'dog-training','animal'=>'dog','type'=>'guide','kw'=>'dog aggression training guide','icon'=>'⚠️'],
-        ['slug'=>'dog-trick-training-guide','title'=>'Fun Dog Tricks Training Guide for Beginners','cat'=>'dog-training','animal'=>'dog','type'=>'guide','kw'=>'dog tricks training guide','icon'=>'🎪'],
-        ['slug'=>'rescue-dog-training-guide','title'=>'Rescue Dog Training: First 30 Days Guide','cat'=>'dog-training','animal'=>'dog','type'=>'guide','kw'=>'rescue dog training guide','icon'=>'🏠'],
-        ['slug'=>'dog-obedience-training-schedule','title'=>'Dog Obedience Training Schedule','cat'=>'dog-training','animal'=>'dog','type'=>'guide','kw'=>'dog obedience training schedule','icon'=>'📅'],
-        ['slug'=>'dog-sleep-training-guide','title'=>'Dog Sleep Training: Where Should Dogs Sleep?','cat'=>'dog-training','animal'=>'dog','type'=>'guide','kw'=>'dog sleep training guide','icon'=>'😴'],
+        ['slug'=>'puppy-training-schedule','title'=>'Puppy Training Schedule by Age','cat'=>'dog-training','animal'=>'dog','type'=>'guide','kw'=>'puppy training schedule by age','icon'=>'📋','calc'=>'puppy_training_schedule'],
+        ['slug'=>'dog-potty-training-guide','title'=>'Dog Potty Training Guide: Step by Step','cat'=>'dog-training','animal'=>'dog','type'=>'guide','kw'=>'dog potty training guide','icon'=>'🚽','calc'=>'dog_potty_training'],
+        ['slug'=>'dog-crate-training-guide','title'=>'Dog Crate Training Guide for Beginners','cat'=>'dog-training','animal'=>'dog','type'=>'guide','kw'=>'dog crate training guide','icon'=>'🏠','calc'=>'dog_crate_training'],
+        ['slug'=>'dog-leash-training-guide','title'=>'Dog Leash Training Guide: Stop Pulling','cat'=>'dog-training','animal'=>'dog','type'=>'guide','kw'=>'dog leash training guide','icon'=>'🐕','calc'=>'dog_leash_training'],
+        ['slug'=>'dog-socialization-guide','title'=>'Dog Socialization Guide: Puppies & Adults','cat'=>'dog-training','animal'=>'dog','type'=>'guide','kw'=>'dog socialization guide','icon'=>'🤝','calc'=>'dog_socialization'],
+        ['slug'=>'dog-separation-anxiety-training','title'=>'Dog Separation Anxiety Training Guide','cat'=>'dog-training','animal'=>'dog','type'=>'guide','kw'=>'dog separation anxiety training','icon'=>'😟','calc'=>'dog_separation_anxiety_training'],
+        ['slug'=>'dog-bark-training-guide','title'=>'How to Stop Dog Barking: Training Guide','cat'=>'dog-training','animal'=>'dog','type'=>'guide','kw'=>'how to stop dog barking','icon'=>'🔇','calc'=>'dog_bark_training'],
+        ['slug'=>'dog-bite-prevention-guide','title'=>'Dog Bite Prevention Training Guide','cat'=>'dog-training','animal'=>'dog','type'=>'guide','kw'=>'dog bite prevention training','icon'=>'🛡️','calc'=>'dog_bite_prevention'],
+        ['slug'=>'dog-basic-commands-guide','title'=>'10 Basic Dog Commands Every Dog Should Know','cat'=>'dog-training','animal'=>'dog','type'=>'guide','kw'=>'basic dog commands guide','icon'=>'✋','calc'=>'dog_basic_commands'],
+        ['slug'=>'clicker-training-dogs-guide','title'=>'Clicker Training for Dogs: Complete Guide','cat'=>'dog-training','animal'=>'dog','type'=>'guide','kw'=>'clicker training dogs guide','icon'=>'🎯','calc'=>'clicker_training_dogs'],
+        ['slug'=>'dog-aggression-training-guide','title'=>'Dog Aggression Training: Causes & Solutions','cat'=>'dog-training','animal'=>'dog','type'=>'guide','kw'=>'dog aggression training guide','icon'=>'⚠️','calc'=>'dog_aggression_training'],
+        ['slug'=>'dog-trick-training-guide','title'=>'Fun Dog Tricks Training Guide for Beginners','cat'=>'dog-training','animal'=>'dog','type'=>'guide','kw'=>'dog tricks training guide','icon'=>'🎪','calc'=>'dog_trick_training'],
+        ['slug'=>'rescue-dog-training-guide','title'=>'Rescue Dog Training: First 30 Days Guide','cat'=>'dog-training','animal'=>'dog','type'=>'guide','kw'=>'rescue dog training guide','icon'=>'🏠','calc'=>'rescue_dog_training'],
+        ['slug'=>'dog-obedience-training-schedule','title'=>'Dog Obedience Training Schedule','cat'=>'dog-training','animal'=>'dog','type'=>'guide','kw'=>'dog obedience training schedule','icon'=>'📅','calc'=>'dog_obedience_training_schedule'],
+        ['slug'=>'dog-sleep-training-guide','title'=>'Dog Sleep Training: Where Should Dogs Sleep?','cat'=>'dog-training','animal'=>'dog','type'=>'guide','kw'=>'dog sleep training guide','icon'=>'😴','calc'=>'dog_sleep_training'],
 
         // ═══════════════════════════════════════════
         // CAT GROOMING (15)
