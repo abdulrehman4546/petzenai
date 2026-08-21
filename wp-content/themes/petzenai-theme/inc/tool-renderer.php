@@ -14,6 +14,71 @@ function pz_get_tool_data( $slug ) {
 }
 
 /* ─────────────────────────────────────────────
+   Admin content overrides — a value saved through the
+   "PetZenAI Tool Content" meta box always wins over both
+   the hardcoded per-tool hook function and the generic
+   fallback, so editors never have to touch code.
+───────────────────────────────────────────── */
+function pz_get_content_override( $meta_key ) {
+    $post_id = get_the_ID();
+    if ( ! $post_id ) return '';
+    $val = get_post_meta( $post_id, $meta_key, true );
+    return is_string($val) ? trim($val) : '';
+}
+
+// "Title | Description" per line -> [['title'=>..,'desc'=>..], ...]
+function pz_parse_override_pairs( $text ) {
+    $out = [];
+    foreach ( preg_split('/\r\n|\r|\n/', $text) as $line ) {
+        $line = trim($line);
+        if ( $line === '' ) continue;
+        $parts = array_map('trim', explode('|', $line, 2));
+        if ( count($parts) === 2 && $parts[0] !== '' ) {
+            $out[] = ['title' => $parts[0], 'desc' => $parts[1]];
+        }
+    }
+    return $out;
+}
+
+// "Question | Answer" per line -> [[q, a], ...]
+function pz_parse_override_qa( $text ) {
+    $out = [];
+    foreach ( preg_split('/\r\n|\r|\n/', $text) as $line ) {
+        $line = trim($line);
+        if ( $line === '' ) continue;
+        $parts = array_map('trim', explode('|', $line, 2));
+        if ( count($parts) === 2 && $parts[0] !== '' ) {
+            $out[] = [$parts[0], $parts[1]];
+        }
+    }
+    return $out;
+}
+
+// Blank-line-separated paragraphs -> HTML <p> tags
+function pz_parse_override_paragraphs( $text ) {
+    $html = '';
+    foreach ( preg_split('/\n\s*\n/', trim($text)) as $para ) {
+        $para = trim($para);
+        if ( $para !== '' ) $html .= '<p>' . esc_html($para) . '</p>';
+    }
+    return $html;
+}
+
+// "Icon | Title | Text" per line -> pz-why-grid HTML
+function pz_parse_override_why_cards( $text ) {
+    $cards = '';
+    foreach ( preg_split('/\r\n|\r|\n/', $text) as $line ) {
+        $line = trim($line);
+        if ( $line === '' ) continue;
+        $parts = array_map('trim', explode('|', $line, 3));
+        if ( count($parts) === 3 ) {
+            $cards .= '<div class="pz-why-item"><span class="pz-why-icon">' . esc_html($parts[0]) . '</span><div><strong>' . esc_html($parts[1]) . '</strong><p>' . esc_html($parts[2]) . '</p></div></div>';
+        }
+    }
+    return $cards ? '<div class="pz-why-grid">' . $cards . '</div>' : '';
+}
+
+/* ─────────────────────────────────────────────
    Related tools (same category, exclude self)
 ───────────────────────────────────────────── */
 function pz_get_related_tools( $slug, $cat, $limit = 4 ) {
@@ -91,7 +156,14 @@ function pz_render_tool_page( $tool ) {
           </div>
           <h1 class="pz-tool-hero-title"><?php echo $icon; ?> <?php echo $title; ?></h1>
           <p class="pz-tool-hero-desc"><?php echo esc_html( pz_tool_intro($tool) ); ?></p>
-          <?php if (!empty($tool['calc']) && function_exists('pz_hero_quickanswer_' . $tool['calc'])): call_user_func('pz_hero_quickanswer_' . $tool['calc']); endif; ?>
+          <?php
+            $pz_qa_override = pz_get_content_override('pz_ov_quickanswer');
+            if ( $pz_qa_override !== '' ): ?>
+            <div class="pz-hero-quickanswer">
+              <div class="pz-hero-quickanswer-label">⚡ Quick Answer</div>
+              <p><?php echo esc_html($pz_qa_override); ?></p>
+            </div>
+          <?php elseif (!empty($tool['calc']) && function_exists('pz_hero_quickanswer_' . $tool['calc'])): call_user_func('pz_hero_quickanswer_' . $tool['calc']); endif; ?>
           <div class="pz-tool-hero-trust">
             <?php if (!empty($tool['calc']) && function_exists('pz_hero_trust_' . $tool['calc'])): call_user_func('pz_hero_trust_' . $tool['calc']); else: ?>
             <span>✅ Vet-Reviewed</span>
@@ -13344,6 +13416,8 @@ function pz_get_checker_questions($tool) {
 }
 
 function pz_section_what_is($tool) {
+    $ov = pz_get_content_override('pz_ov_what_is');
+    if ( $ov !== '' ) return pz_parse_override_paragraphs($ov);
     if (!empty($tool['calc']) && function_exists('pz_what_is_' . $tool['calc'])) {
         return call_user_func('pz_what_is_' . $tool['calc']);
     }
@@ -13483,6 +13557,13 @@ function pz_section_what_is($tool) {
 }
 
 function pz_section_why_important($tool) {
+    $ov_intro = pz_get_content_override('pz_ov_why_intro');
+    $ov_cards = pz_get_content_override('pz_ov_why_cards');
+    if ( $ov_intro !== '' || $ov_cards !== '' ) {
+        $html = $ov_intro !== '' ? '<p>' . esc_html($ov_intro) . '</p>' : '';
+        $html .= pz_parse_override_why_cards($ov_cards);
+        if ( $html !== '' ) return $html;
+    }
     if (!empty($tool['calc']) && function_exists('pz_why_important_' . $tool['calc'])) {
         return call_user_func('pz_why_important_' . $tool['calc']);
     }
@@ -13544,6 +13625,11 @@ function pz_section_steps($tool) {
 }
 
 function pz_get_steps_for_tool($tool) {
+    $ov = pz_get_content_override('pz_ov_steps');
+    if ( $ov !== '' ) {
+        $parsed = pz_parse_override_pairs($ov);
+        if ( ! empty($parsed) ) return $parsed;
+    }
     if (!empty($tool['calc']) && function_exists('pz_steps_' . $tool['calc'])) {
         return call_user_func('pz_steps_' . $tool['calc']);
     }
@@ -13606,8 +13692,10 @@ function pz_inline_related_reading( $tool ) {
 }
 
 function pz_section_tips($tool) {
-    if (!empty($tool['calc']) && function_exists('pz_tips_' . $tool['calc'])) {
-        $items = call_user_func('pz_tips_' . $tool['calc']);
+    $ov = pz_get_content_override('pz_ov_tips');
+    $ov_items = $ov !== '' ? pz_parse_override_pairs($ov) : [];
+    if (!empty($ov_items) || (!empty($tool['calc']) && function_exists('pz_tips_' . $tool['calc']))) {
+        $items = !empty($ov_items) ? array_map(function($p){ return [$p['title'], $p['desc']]; }, $ov_items) : call_user_func('pz_tips_' . $tool['calc']);
         $html  = '<ul class="pz-tips-list">';
         foreach ($items as $tip) {
             $html .= '<li><strong>' . esc_html($tip[0]) . '</strong> — ' . esc_html($tip[1]) . '</li>';
@@ -13665,8 +13753,10 @@ function pz_section_tips($tool) {
 }
 
 function pz_section_mistakes($tool) {
-    if (!empty($tool['calc']) && function_exists('pz_mistakes_' . $tool['calc'])) {
-        $items = call_user_func('pz_mistakes_' . $tool['calc']);
+    $ov = pz_get_content_override('pz_ov_mistakes');
+    $ov_items = $ov !== '' ? pz_parse_override_pairs($ov) : [];
+    if (!empty($ov_items) || (!empty($tool['calc']) && function_exists('pz_mistakes_' . $tool['calc']))) {
+        $items = !empty($ov_items) ? array_map(function($p){ return [$p['title'], $p['desc']]; }, $ov_items) : call_user_func('pz_mistakes_' . $tool['calc']);
         $html  = '<div class="pz-mistakes-grid">';
         foreach ($items as $item) {
             $html .= '<div class="pz-mistake-card">';
@@ -13987,7 +14077,11 @@ function pz_section_faq($tool) {
         ["What should I do if my {$al}'s situation doesn't match what this {$type} describes?", "Every {$al} is an individual. If your {$al}'s situation feels different from what's described here, trust your instincts and consult your vet. This tool covers typical cases — your vet handles the specific."],
     ];
 
-    if (!empty($tool['calc']) && function_exists('pz_faq_' . $tool['calc'])) {
+    $ov = pz_get_content_override('pz_ov_faq');
+    $ov_faqs = $ov !== '' ? pz_parse_override_qa($ov) : [];
+    if ( ! empty($ov_faqs) ) {
+        $faqs = $ov_faqs;
+    } elseif (!empty($tool['calc']) && function_exists('pz_faq_' . $tool['calc'])) {
         $faqs = call_user_func('pz_faq_' . $tool['calc']);
     } else {
         $faqs = isset($faqs_by_animal_type[$lookup_key]) ? $faqs_by_animal_type[$lookup_key] : $default_faqs;

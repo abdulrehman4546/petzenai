@@ -1198,3 +1198,93 @@ function petzenai_save_seo_meta_box( $post_id ) {
         update_post_meta($post_id, 'rank_math_focus_keyword', sanitize_text_field($_POST['pz_seo_kw']));
     }
 }
+
+
+// ── Tool page content editor (Quick Answer, What Is, Why Important, Steps, Tips, Mistakes, FAQ) ──
+// Only shown on pages using the auto-tool.php template. Any field left blank keeps using the
+// site's existing built-in content for that tool — nothing is lost by not filling something in.
+add_action('add_meta_boxes', 'petzenai_add_content_meta_box');
+function petzenai_add_content_meta_box() {
+    global $post;
+    if ( ! $post ) return;
+    $tpl = get_post_meta($post->ID, '_wp_page_template', true);
+    if ( $tpl !== 'templates/pages/auto-tool.php' ) return;
+    add_meta_box(
+        'petzenai_content_box',
+        'PetZenAI Tool Content',
+        'petzenai_render_content_meta_box',
+        'page',
+        'normal',
+        'high'
+    );
+}
+
+function petzenai_render_content_meta_box( $post ) {
+    wp_nonce_field('petzenai_content_box_save', 'petzenai_content_box_nonce');
+    $fields = [
+        'pz_ov_quickanswer' => get_post_meta($post->ID, 'pz_ov_quickanswer', true),
+        'pz_ov_what_is'     => get_post_meta($post->ID, 'pz_ov_what_is', true),
+        'pz_ov_why_intro'   => get_post_meta($post->ID, 'pz_ov_why_intro', true),
+        'pz_ov_why_cards'   => get_post_meta($post->ID, 'pz_ov_why_cards', true),
+        'pz_ov_steps'       => get_post_meta($post->ID, 'pz_ov_steps', true),
+        'pz_ov_tips'        => get_post_meta($post->ID, 'pz_ov_tips', true),
+        'pz_ov_mistakes'    => get_post_meta($post->ID, 'pz_ov_mistakes', true),
+        'pz_ov_faq'         => get_post_meta($post->ID, 'pz_ov_faq', true),
+    ];
+    ?>
+    <p style="margin-top:0;color:#666;font-size:13px">Leave any field blank to keep this tool's existing built-in content — only filled-in fields override what's already there. Changes here do not touch the interactive calculator itself, only the surrounding text sections.</p>
+
+    <p>
+      <label style="font-weight:600;display:block;margin-bottom:4px">Quick Answer (one short paragraph)</label>
+      <textarea name="pz_ov_quickanswer" rows="2" style="width:100%"><?php echo esc_textarea($fields['pz_ov_quickanswer']); ?></textarea>
+    </p>
+
+    <p>
+      <label style="font-weight:600;display:block;margin-bottom:4px">What Is [Tool] (paragraphs — leave a blank line between each)</label>
+      <textarea name="pz_ov_what_is" rows="5" style="width:100%"><?php echo esc_textarea($fields['pz_ov_what_is']); ?></textarea>
+    </p>
+
+    <p>
+      <label style="font-weight:600;display:block;margin-bottom:4px">Why It Matters — intro sentence</label>
+      <textarea name="pz_ov_why_intro" rows="2" style="width:100%"><?php echo esc_textarea($fields['pz_ov_why_intro']); ?></textarea>
+    </p>
+    <p>
+      <label style="font-weight:600;display:block;margin-bottom:4px">Why It Matters — cards (one per line, format: <code>Icon | Title | Text</code>)</label>
+      <textarea name="pz_ov_why_cards" rows="4" style="width:100%;font-family:monospace" placeholder="💰 | Save Money | Prevent costly vet visits by catching issues early."><?php echo esc_textarea($fields['pz_ov_why_cards']); ?></textarea>
+    </p>
+
+    <p>
+      <label style="font-weight:600;display:block;margin-bottom:4px">Step-by-Step Guide (one per line, format: <code>Title | Description</code>)</label>
+      <textarea name="pz_ov_steps" rows="5" style="width:100%;font-family:monospace" placeholder="Gather Your Pet's Information | Have weight, age, and breed ready."><?php echo esc_textarea($fields['pz_ov_steps']); ?></textarea>
+    </p>
+
+    <p>
+      <label style="font-weight:600;display:block;margin-bottom:4px">Expert Tips (one per line, format: <code>Title | Description</code>)</label>
+      <textarea name="pz_ov_tips" rows="5" style="width:100%;font-family:monospace"><?php echo esc_textarea($fields['pz_ov_tips']); ?></textarea>
+    </p>
+
+    <p>
+      <label style="font-weight:600;display:block;margin-bottom:4px">Common Mistakes (one per line, format: <code>❌ Title | Description</code>)</label>
+      <textarea name="pz_ov_mistakes" rows="5" style="width:100%;font-family:monospace"><?php echo esc_textarea($fields['pz_ov_mistakes']); ?></textarea>
+    </p>
+
+    <p>
+      <label style="font-weight:600;display:block;margin-bottom:4px">FAQ (one per line, format: <code>Question | Answer</code>)</label>
+      <textarea name="pz_ov_faq" rows="6" style="width:100%;font-family:monospace"><?php echo esc_textarea($fields['pz_ov_faq']); ?></textarea>
+    </p>
+    <?php
+}
+
+add_action('save_post_page', 'petzenai_save_content_meta_box');
+function petzenai_save_content_meta_box( $post_id ) {
+    if ( ! isset($_POST['petzenai_content_box_nonce']) || ! wp_verify_nonce($_POST['petzenai_content_box_nonce'], 'petzenai_content_box_save') ) return;
+    if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) return;
+    if ( ! current_user_can('edit_page', $post_id) ) return;
+
+    $fields = ['pz_ov_quickanswer','pz_ov_what_is','pz_ov_why_intro','pz_ov_why_cards','pz_ov_steps','pz_ov_tips','pz_ov_mistakes','pz_ov_faq'];
+    foreach ( $fields as $key ) {
+        if ( isset($_POST[$key]) ) {
+            update_post_meta($post_id, $key, sanitize_textarea_field($_POST[$key]));
+        }
+    }
+}
