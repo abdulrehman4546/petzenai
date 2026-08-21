@@ -1126,3 +1126,75 @@ function pz_handle_contact() {
         wp_send_json_error('Failed to send. Please email us directly.');
     }
 }
+
+
+// ── Reliable SEO meta box (independent of the RankMath editor panel) ───────
+// The theme reads rank_math_title / rank_math_description / rank_math_focus_keyword
+// directly for all front-end output (see petzenai_seo_meta), so this box is the
+// guaranteed way to view and edit those exact fields, regardless of whether
+// RankMath's own Gutenberg panel is showing the current saved value.
+add_action('add_meta_boxes', 'petzenai_add_seo_meta_box');
+function petzenai_add_seo_meta_box() {
+    add_meta_box(
+        'petzenai_seo_box',
+        'PetZenAI SEO (Title, Description, Keyword)',
+        'petzenai_render_seo_meta_box',
+        'page',
+        'normal',
+        'high'
+    );
+}
+
+function petzenai_render_seo_meta_box( $post ) {
+    wp_nonce_field('petzenai_seo_box_save', 'petzenai_seo_box_nonce');
+    $title = get_post_meta($post->ID, 'rank_math_title', true);
+    $desc  = get_post_meta($post->ID, 'rank_math_description', true);
+    $kw    = get_post_meta($post->ID, 'rank_math_focus_keyword', true);
+    ?>
+    <p style="margin-top:0;color:#666;font-size:13px">This reads and saves the exact same fields the live site uses for the page &lt;title&gt; and meta description — always accurate, independent of RankMath's own panel above.</p>
+    <p>
+      <label for="pz_seo_title" style="font-weight:600;display:block;margin-bottom:4px">SEO Title</label>
+      <input type="text" id="pz_seo_title" name="pz_seo_title" value="<?php echo esc_attr($title); ?>" style="width:100%" maxlength="70">
+      <span style="font-size:12px;color:#888"><span id="pz_seo_title_count">0</span>/70 characters</span>
+    </p>
+    <p>
+      <label for="pz_seo_desc" style="font-weight:600;display:block;margin-bottom:4px">Meta Description</label>
+      <textarea id="pz_seo_desc" name="pz_seo_desc" rows="3" style="width:100%" maxlength="165"><?php echo esc_textarea($desc); ?></textarea>
+      <span style="font-size:12px;color:#888"><span id="pz_seo_desc_count">0</span>/165 characters</span>
+    </p>
+    <p>
+      <label for="pz_seo_kw" style="font-weight:600;display:block;margin-bottom:4px">Focus Keyword</label>
+      <input type="text" id="pz_seo_kw" name="pz_seo_kw" value="<?php echo esc_attr($kw); ?>" style="width:100%">
+    </p>
+    <script>
+    (function(){
+      function bind(inputId, countId) {
+        var el = document.getElementById(inputId), c = document.getElementById(countId);
+        if (!el || !c) return;
+        var update = function(){ c.textContent = el.value.length; };
+        el.addEventListener('input', update);
+        update();
+      }
+      bind('pz_seo_title', 'pz_seo_title_count');
+      bind('pz_seo_desc', 'pz_seo_desc_count');
+    })();
+    </script>
+    <?php
+}
+
+add_action('save_post_page', 'petzenai_save_seo_meta_box');
+function petzenai_save_seo_meta_box( $post_id ) {
+    if ( ! isset($_POST['petzenai_seo_box_nonce']) || ! wp_verify_nonce($_POST['petzenai_seo_box_nonce'], 'petzenai_seo_box_save') ) return;
+    if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) return;
+    if ( ! current_user_can('edit_page', $post_id) ) return;
+
+    if ( isset($_POST['pz_seo_title']) ) {
+        update_post_meta($post_id, 'rank_math_title', sanitize_text_field($_POST['pz_seo_title']));
+    }
+    if ( isset($_POST['pz_seo_desc']) ) {
+        update_post_meta($post_id, 'rank_math_description', sanitize_textarea_field($_POST['pz_seo_desc']));
+    }
+    if ( isset($_POST['pz_seo_kw']) ) {
+        update_post_meta($post_id, 'rank_math_focus_keyword', sanitize_text_field($_POST['pz_seo_kw']));
+    }
+}
