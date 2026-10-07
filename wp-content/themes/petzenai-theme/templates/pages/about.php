@@ -55,10 +55,10 @@ get_header();
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center">
         <?php
         $stats = [
-          ['50,000+','Pet Owners Helped'],
+          ['30+','Expert Guides'],
           ['300+','Free Tools'],
           ['10,000+','Pet Names'],
-          ['4.9★','Average Rating'],
+          ['6','Pet Species Covered'],
         ];
         foreach($stats as $s): ?>
         <div data-aos>

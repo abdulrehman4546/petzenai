@@ -50,11 +50,11 @@ function petzenai_customizer( $wp_customize ) {
         'title' => '🦸 Hero Section',
         'panel' => 'petzenai_panel',
     ]);
-    $text(    'petzenai_hero_badge',       'Badge Text (top)',       'petzenai_hero', '#1 AI Pet Care Platform in America' );
+    $text(    'petzenai_hero_badge',       'Badge Text (top)',       'petzenai_hero', 'Free, Science-Based Pet Care Tools' );
     $text(    'petzenai_hero_title_1',     'Heading Line 1',         'petzenai_hero', 'Science-Based' );
     $text(    'petzenai_hero_title_2',     'Heading Line 2 (colored)','petzenai_hero', 'Pet Nutrition' );
     $text(    'petzenai_hero_title_3',     'Heading Line 3',         'petzenai_hero', 'Tools & Planners' );
-    $textarea('petzenai_hero_desc',        'Hero Description',       'petzenai_hero', 'Empower your pet\'s health with free, vet-formulated calculators, diet planners, and vaccination trackers — trusted by over 50,000 pet owners across the USA.' );
+    $textarea('petzenai_hero_desc',        'Hero Description',       'petzenai_hero', 'Empower your pet\'s health with free, vet-formulated calculators, diet planners, and vaccination trackers.' );
     $text(    'petzenai_hero_btn1_text',   'Button 1 Text',          'petzenai_hero', 'Explore Tools' );
     $url_ctrl('petzenai_hero_btn1_link',   'Button 1 Link',          'petzenai_hero', '' );
     $text(    'petzenai_hero_btn2_text',   'Button 2 Text',          'petzenai_hero', '🍽️ Food Calculator' );
@@ -99,7 +99,7 @@ function petzenai_customizer( $wp_customize ) {
         'panel' => 'petzenai_panel',
     ]);
     $text(    'petzenai_cta_title',    'CTA Title',       'petzenai_cta', "Your Pet's Health Starts Here 🐾" );
-    $textarea('petzenai_cta_desc',     'CTA Description', 'petzenai_cta', "Join 50,000+ pet owners using PetZenAI's free science-based tools." );
+    $textarea('petzenai_cta_desc',     'CTA Description', 'petzenai_cta', "Use PetZenAI's free, science-based pet care tools." );
     $text(    'petzenai_cta_btn_text', 'Button Text',     'petzenai_cta', '🚀 Get Started — It\'s Free' );
     $url_ctrl('petzenai_cta_btn_link', 'Button Link',     'petzenai_cta', '' );
 

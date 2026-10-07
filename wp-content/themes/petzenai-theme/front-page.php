@@ -32,7 +32,7 @@ $why_img  = pz_url( 'petzenai_why_image'  ) ?: 'https://images.unsplash.com/phot
     <div class="hero-text">
       <div class="hero-badge">
         <span class="badge-dot" aria-hidden="true"></span>
-        <?php echo pz('petzenai_hero_badge','Trusted by 50,000+ Pet Owners Across America'); ?>
+        <?php echo pz('petzenai_hero_badge','Free, Science-Based Pet Care Tools'); ?>
       </div>
 
       <h1 class="hero-title" itemprop="headline">
@@ -42,7 +42,7 @@ $why_img  = pz_url( 'petzenai_why_image'  ) ?: 'https://images.unsplash.com/phot
       </h1>
 
       <p class="hero-desc" itemprop="description">
-        <?php echo esc_html( get_theme_mod('petzenai_hero_desc','Empower your pet\'s health with free, vet-formulated calculators, diet planners, and vaccination trackers — trusted by over 50,000 pet owners across the USA.') ); ?>
+        <?php echo esc_html( get_theme_mod('petzenai_hero_desc','Empower your pet\'s health with free, vet-formulated calculators, diet planners, and vaccination trackers.') ); ?>
       </p>
 
       <div class="hero-btns">
@@ -341,7 +341,7 @@ $why_img  = pz_url( 'petzenai_why_image'  ) ?: 'https://images.unsplash.com/phot
     <div class="testimonials-grid">
       <?php
       $trust_stats = [
-        ['🐾', '50,000+', 'Pet Owners Served', 'Families across America use PetZenAI tools every month for science-based pet care guidance.'],
+        ['📚', '30+', 'Expert Articles', 'In-depth pet care guides covering nutrition, health, grooming, and training.'],
         ['🛠️', '300+',    'Free Tools',         'Calculators, trackers, and guides covering nutrition, health, grooming, training, and more.'],
         ['🐶', '6',       'Pet Species Covered', 'Dogs, cats, birds, rabbits, fish, and reptiles — expert care tools for every companion.'],
         ['✅', '100%',    'Free, Always',        'No subscriptions, no hidden fees, no sign-up required. Every tool on PetZenAI is completely free.'],
@@ -436,7 +436,7 @@ $why_img  = pz_url( 'petzenai_why_image'  ) ?: 'https://images.unsplash.com/phot
         <?php echo esc_html( get_theme_mod('petzenai_cta_title',"Your Pet's Health Starts Here 🐾") ); ?>
       </h2>
       <p class="cta-desc">
-        <?php echo esc_html( get_theme_mod('petzenai_cta_desc',"Join 50,000+ pet owners using PetZenAI's free science-based tools.") ); ?>
+        <?php echo esc_html( get_theme_mod('petzenai_cta_desc',"Use PetZenAI's free, science-based pet care tools.") ); ?>
       </p>
       <a href="<?php echo pz_url('petzenai_cta_btn_link') ?: home_url('/tools/'); ?>" class="btn-white">
         <?php echo pz('petzenai_cta_btn_text',"🚀 Get Started — It's Free"); ?>

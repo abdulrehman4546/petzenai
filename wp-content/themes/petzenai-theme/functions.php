@@ -261,6 +261,10 @@ function petzenai_seo_meta() {
         }
     }
 
+    // Strip unverifiable usage claims and doubled words (e.g. "Free Cat cat ...") from stored descriptions
+    $desc = preg_replace( '/\s*Used by 50,000\+ pet owners\.?/i', '', $desc );
+    $desc = preg_replace( '/\b(\w+)\s+\1\b/i', '$1', $desc );
+
     // ── Basic Meta ──
     echo '<meta name="description" content="'  . esc_attr($desc)      . '">' . "\n";
     echo '<meta name="keywords" content="'     . esc_attr($keywords)  . '">' . "\n";
@@ -1288,3 +1292,19 @@ function petzenai_save_content_meta_box( $post_id ) {
         }
     }
 }
+
+// ── Security headers + REST user enumeration lockdown ──
+add_action( 'send_headers', function() {
+    header( 'X-Content-Type-Options: nosniff' );
+    header( 'Referrer-Policy: strict-origin-when-cross-origin' );
+    header( 'X-Frame-Options: SAMEORIGIN' );
+    header( 'Permissions-Policy: geolocation=(), microphone=(), camera=()' );
+    if ( is_ssl() ) header( 'Strict-Transport-Security: max-age=31536000' );
+} );
+
+add_filter( 'rest_endpoints', function( $endpoints ) {
+    if ( ! is_user_logged_in() ) {
+        unset( $endpoints['/wp/v2/users'], $endpoints['/wp/v2/users/(?P<id>[\d]+)'] );
+    }
+    return $endpoints;
+} );
