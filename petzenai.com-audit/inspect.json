@@ -1,0 +1,1724 @@
+{
+  "property": "https://petzenai.com/",
+  "total": 47,
+  "results": [
+    {
+      "url": "https://petzenai.com/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "PASS",
+        "coverage_state": "Submitted and indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-10-06T20:24:46Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/",
+        "user_canonical": "https://petzenai.com/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": null,
+      "verdict": "PASS",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/about/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "PASS",
+        "coverage_state": "Submitted and indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-08-20T01:03:44Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/",
+          "https://petzenai.com/page-sitemap2.xml"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/about/",
+        "user_canonical": "https://petzenai.com/about/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": null,
+      "verdict": "PASS",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/blog/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "PASS",
+        "coverage_state": "Submitted and indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-09-27T23:33:31Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/",
+          "https://petzenai.com/page-sitemap2.xml"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/blog/",
+        "user_canonical": "https://petzenai.com/blog/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": null,
+      "verdict": "PASS",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/blog/best-pet-names-2025/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "PASS",
+        "coverage_state": "Submitted and indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-08-12T16:17:41Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/post-sitemap.xml",
+          "https://petzenai.com/blog/pet-insurance-guide-worth-it/",
+          "https://petzenai.com/blog/what-pet-should-i-get-guide/"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/blog/best-pet-names-2025/",
+        "user_canonical": "https://petzenai.com/blog/best-pet-names-2025/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": {
+        "verdict": "PASS",
+        "detected_items": [
+          {
+            "type": "Breadcrumbs",
+            "items": [
+              {
+                "name": "Unnamed item",
+                "issues": []
+              }
+            ]
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/blog/budgerigar-care-guide/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "PASS",
+        "coverage_state": "Submitted and indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-08-17T19:26:44Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/author/petzenai/page/3/",
+          "https://petzenai.com/blog/page/3/"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/blog/budgerigar-care-guide/",
+        "user_canonical": "https://petzenai.com/blog/budgerigar-care-guide/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": {
+        "verdict": "PASS",
+        "detected_items": [
+          {
+            "type": "Breadcrumbs",
+            "items": [
+              {
+                "name": "Unnamed item",
+                "issues": []
+              }
+            ]
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/blog/dog-dental-care-guide/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "PASS",
+        "coverage_state": "Submitted and indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-08-12T19:23:27Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/blog/"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/blog/dog-dental-care-guide/",
+        "user_canonical": "https://petzenai.com/blog/dog-dental-care-guide/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": {
+        "verdict": "PASS",
+        "detected_items": [
+          {
+            "type": "Breadcrumbs",
+            "items": [
+              {
+                "name": "Unnamed item",
+                "issues": []
+              }
+            ]
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/blog/dog-grooming-at-home-guide/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "PASS",
+        "coverage_state": "Submitted and indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-08-12T19:15:26Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/post-sitemap.xml",
+          "https://petzenai.com/blog/cat-vaccination-schedule/",
+          "https://petzenai.com/blog/"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/blog/dog-grooming-at-home-guide/",
+        "user_canonical": "https://petzenai.com/blog/dog-grooming-at-home-guide/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": {
+        "verdict": "PASS",
+        "detected_items": [
+          {
+            "type": "Breadcrumbs",
+            "items": [
+              {
+                "name": "Unnamed item",
+                "issues": []
+              }
+            ]
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/blog/dog-vaccination-schedule-guide/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "PASS",
+        "coverage_state": "Submitted and indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-08-17T19:28:45Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/blog/"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/blog/dog-vaccination-schedule-guide/",
+        "user_canonical": "https://petzenai.com/blog/dog-vaccination-schedule-guide/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": {
+        "verdict": "PASS",
+        "detected_items": [
+          {
+            "type": "Breadcrumbs",
+            "items": [
+              {
+                "name": "Unnamed item",
+                "issues": []
+              }
+            ]
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/blog/how-to-potty-train-a-puppy/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "PASS",
+        "coverage_state": "Submitted and indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-09-07T12:02:54Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/blog/category/dog-training/"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/blog/how-to-potty-train-a-puppy/",
+        "user_canonical": "https://petzenai.com/blog/how-to-potty-train-a-puppy/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": {
+        "verdict": "PASS",
+        "detected_items": [
+          {
+            "type": "Breadcrumbs",
+            "items": [
+              {
+                "name": "Unnamed item",
+                "issues": []
+              }
+            ]
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/blog/what-pet-should-i-get-guide/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "NEUTRAL",
+        "coverage_state": "Crawled - currently not indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-07-23T15:28:12Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/blog/"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/blog/what-pet-should-i-get-guide/",
+        "user_canonical": "https://petzenai.com/blog/what-pet-should-i-get-guide/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": null,
+      "verdict": "NEUTRAL",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/contact/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "PASS",
+        "coverage_state": "Submitted and indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-09-14T20:48:24Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/",
+          "https://petzenai.com/tools/cat-ear-cleaning-guide/"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/contact/",
+        "user_canonical": "https://petzenai.com/contact/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": null,
+      "verdict": "PASS",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/privacy-policy/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "NEUTRAL",
+        "coverage_state": "Discovered - currently not indexed",
+        "robots_txt_state": "ROBOTS_TXT_STATE_UNSPECIFIED",
+        "indexing_state": "INDEXING_STATE_UNSPECIFIED",
+        "page_fetch_state": "PAGE_FETCH_STATE_UNSPECIFIED",
+        "last_crawl_time": null,
+        "crawled_as": "CRAWLING_USER_AGENT_UNSPECIFIED",
+        "referring_urls": [
+          "https://petzenai.com/tools/",
+          "https://petzenai.com/"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": null,
+        "user_canonical": null,
+        "match": null
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": null,
+      "verdict": "NEUTRAL",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/terms-of-service/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "NEUTRAL",
+        "coverage_state": "URL is unknown to Google",
+        "robots_txt_state": "ROBOTS_TXT_STATE_UNSPECIFIED",
+        "indexing_state": "INDEXING_STATE_UNSPECIFIED",
+        "page_fetch_state": "PAGE_FETCH_STATE_UNSPECIFIED",
+        "last_crawl_time": null,
+        "crawled_as": null,
+        "referring_urls": []
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": null,
+        "user_canonical": null,
+        "match": null
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": null,
+      "verdict": "NEUTRAL",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/tools/best-cat-food-guide/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "NEUTRAL",
+        "coverage_state": "Crawled - currently not indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-07-15T18:56:17Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/",
+          "https://petzenai.com/page-sitemap1.xml"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/tools/best-cat-food-guide/",
+        "user_canonical": "https://petzenai.com/tools/best-cat-food-guide/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": null,
+      "verdict": "NEUTRAL",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/tools/bird-molting-guide/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "NEUTRAL",
+        "coverage_state": "Crawled - currently not indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-08-19T13:40:52Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/",
+          "https://petzenai.com/page-sitemap1.xml"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/tools/bird-molting-guide/",
+        "user_canonical": "https://petzenai.com/tools/bird-molting-guide/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": null,
+      "verdict": "NEUTRAL",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/tools/cat-calorie-calculator/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "NEUTRAL",
+        "coverage_state": "Crawled - currently not indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-08-16T20:23:38Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/",
+          "https://petzenai.com/page-sitemap1.xml"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/tools/cat-calorie-calculator/",
+        "user_canonical": "https://petzenai.com/tools/cat-calorie-calculator/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": null,
+      "verdict": "NEUTRAL",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/tools/cat-dental-care-guide/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "NEUTRAL",
+        "coverage_state": "Crawled - currently not indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-06-30T09:00:10Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/",
+          "https://petzenai.com/page-sitemap1.xml"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/tools/cat-dental-care-guide/",
+        "user_canonical": "https://petzenai.com/tools/cat-dental-care-guide/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": null,
+      "verdict": "NEUTRAL",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/tools/cat-respiratory-infection-guide/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "NEUTRAL",
+        "coverage_state": "Crawled - currently not indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-06-28T00:53:33Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/",
+          "https://petzenai.com/page-sitemap1.xml"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/tools/cat-respiratory-infection-guide/",
+        "user_canonical": "https://petzenai.com/tools/cat-respiratory-infection-guide/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": null,
+      "verdict": "NEUTRAL",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/tools/cat-ringworm-guide/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "NEUTRAL",
+        "coverage_state": "Crawled - currently not indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-06-30T07:29:39Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/",
+          "https://petzenai.com/page-sitemap2.xml"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/tools/cat-ringworm-guide/",
+        "user_canonical": "https://petzenai.com/tools/cat-ringworm-guide/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": null,
+      "verdict": "NEUTRAL",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/tools/cat-vet-visit-frequency/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "NEUTRAL",
+        "coverage_state": "Crawled - currently not indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-07-15T14:44:41Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/tools/cat-vet-visit-frequency/",
+        "user_canonical": "https://petzenai.com/tools/cat-vet-visit-frequency/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": null,
+      "verdict": "NEUTRAL",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/tools/cockatiel-care-guide/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "NEUTRAL",
+        "coverage_state": "Crawled - currently not indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-07-15T14:20:56Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/",
+          "https://petzenai.com/page-sitemap1.xml"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/tools/cockatiel-care-guide/",
+        "user_canonical": "https://petzenai.com/tools/cockatiel-care-guide/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": null,
+      "verdict": "NEUTRAL",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/tools/dog-cancer-signs-guide/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "PASS",
+        "coverage_state": "Submitted and indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-09-17T13:37:59Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/",
+          "https://petzenai.com/page-sitemap1.xml"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/tools/dog-cancer-signs-guide/",
+        "user_canonical": "https://petzenai.com/tools/dog-cancer-signs-guide/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": {
+        "verdict": "PASS",
+        "detected_items": [
+          {
+            "type": "Breadcrumbs",
+            "items": [
+              {
+                "name": "Unnamed item",
+                "issues": []
+              },
+              {
+                "name": "Unnamed item",
+                "issues": []
+              }
+            ]
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/tools/dog-deshedding-guide/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "NEUTRAL",
+        "coverage_state": "Crawled - currently not indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-08-27T05:31:36Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/",
+          "https://petzenai.com/page-sitemap1.xml"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/tools/dog-deshedding-guide/",
+        "user_canonical": "https://petzenai.com/tools/dog-deshedding-guide/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": null,
+      "verdict": "NEUTRAL",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/tools/dog-dream-guide/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "NEUTRAL",
+        "coverage_state": "Crawled - currently not indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-08-16T02:20:30Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/",
+          "https://petzenai.com/page-sitemap2.xml"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/tools/dog-dream-guide/",
+        "user_canonical": "https://petzenai.com/tools/dog-dream-guide/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": null,
+      "verdict": "NEUTRAL",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/tools/dog-hip-dysplasia-guide/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "NEUTRAL",
+        "coverage_state": "Crawled - currently not indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-09-28T16:36:56Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/",
+          "https://petzenai.com/page-sitemap1.xml"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/tools/dog-hip-dysplasia-guide/",
+        "user_canonical": "https://petzenai.com/tools/dog-hip-dysplasia-guide/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": null,
+      "verdict": "NEUTRAL",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/tools/dog-obedience-training-schedule/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "NEUTRAL",
+        "coverage_state": "Crawled - currently not indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-08-16T00:11:07Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/",
+          "https://petzenai.com/page-sitemap1.xml"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/tools/dog-obedience-training-schedule/",
+        "user_canonical": "https://petzenai.com/tools/dog-obedience-training-schedule/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": null,
+      "verdict": "NEUTRAL",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/tools/dog-protein-requirements/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "NEUTRAL",
+        "coverage_state": "Crawled - currently not indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-08-16T17:30:04Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/tools/dog-protein-requirements/",
+        "user_canonical": "https://petzenai.com/tools/dog-protein-requirements/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": null,
+      "verdict": "NEUTRAL",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/tools/dog-tail-grooming-guide/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "NEUTRAL",
+        "coverage_state": "Crawled - currently not indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-09-13T22:49:00Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/page-sitemap1.xml"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/tools/dog-tail-grooming-guide/",
+        "user_canonical": "https://petzenai.com/tools/dog-tail-grooming-guide/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": null,
+      "verdict": "NEUTRAL",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/tools/dog-teeth-brushing-guide/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "NEUTRAL",
+        "coverage_state": "Crawled - currently not indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-09-05T16:10:50Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/",
+          "https://petzenai.com/page-sitemap1.xml"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/tools/dog-teeth-brushing-guide/",
+        "user_canonical": "https://petzenai.com/tools/dog-teeth-brushing-guide/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": null,
+      "verdict": "NEUTRAL",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/tools/dog-vet-visit-frequency/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "PASS",
+        "coverage_state": "Submitted and indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-08-17T19:56:59Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/",
+          "https://petzenai.com/page-sitemap1.xml"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/tools/dog-vet-visit-frequency/",
+        "user_canonical": "https://petzenai.com/tools/dog-vet-visit-frequency/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": {
+        "verdict": "PASS",
+        "detected_items": [
+          {
+            "type": "Breadcrumbs",
+            "items": [
+              {
+                "name": "Unnamed item",
+                "issues": []
+              },
+              {
+                "name": "Unnamed item",
+                "issues": []
+              }
+            ]
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/tools/fish-disease-checker/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "PASS",
+        "coverage_state": "Submitted and indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-09-23T07:05:59Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/",
+          "https://petzenai.com/page-sitemap1.xml"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/tools/fish-disease-checker/",
+        "user_canonical": "https://petzenai.com/tools/fish-disease-checker/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": {
+        "verdict": "PASS",
+        "detected_items": [
+          {
+            "type": "Breadcrumbs",
+            "items": [
+              {
+                "name": "Unnamed item",
+                "issues": []
+              },
+              {
+                "name": "Unnamed item",
+                "issues": []
+              }
+            ]
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/tools/fish-tank-cleaning-schedule/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "NEUTRAL",
+        "coverage_state": "Crawled - currently not indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-07-08T09:31:59Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/tools/fish-tank-cleaning-schedule/",
+        "user_canonical": "https://petzenai.com/tools/fish-tank-cleaning-schedule/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": null,
+      "verdict": "NEUTRAL",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/tools/hamster-wheel-size-guide/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "PASS",
+        "coverage_state": "Submitted and indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-09-14T03:30:10Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/tools/hamster-wheel-size-guide/",
+        "user_canonical": "https://petzenai.com/tools/hamster-wheel-size-guide/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": {
+        "verdict": "PASS",
+        "detected_items": [
+          {
+            "type": "Breadcrumbs",
+            "items": [
+              {
+                "name": "Unnamed item",
+                "issues": []
+              },
+              {
+                "name": "Unnamed item",
+                "issues": []
+              }
+            ]
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/tools/hedgehog-care-guide/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "PASS",
+        "coverage_state": "Submitted and indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-08-16T17:56:13Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/",
+          "https://petzenai.com/page-sitemap2.xml"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/tools/hedgehog-care-guide/",
+        "user_canonical": "https://petzenai.com/tools/hedgehog-care-guide/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": {
+        "verdict": "PASS",
+        "detected_items": [
+          {
+            "type": "Breadcrumbs",
+            "items": [
+              {
+                "name": "Unnamed item",
+                "issues": []
+              },
+              {
+                "name": "Unnamed item",
+                "issues": []
+              }
+            ]
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/tools/holiday-pet-safety-guide/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "PASS",
+        "coverage_state": "Submitted and indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-09-07T13:07:16Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/",
+          "https://petzenai.com/page-sitemap2.xml"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/tools/holiday-pet-safety-guide/",
+        "user_canonical": "https://petzenai.com/tools/holiday-pet-safety-guide/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": {
+        "verdict": "PASS",
+        "detected_items": [
+          {
+            "type": "Breadcrumbs",
+            "items": [
+              {
+                "name": "Unnamed item",
+                "issues": []
+              },
+              {
+                "name": "Unnamed item",
+                "issues": []
+              }
+            ]
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/tools/indoor-vs-outdoor-cat-grooming/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "NEUTRAL",
+        "coverage_state": "Crawled - currently not indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-08-19T06:20:55Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/",
+          "https://petzenai.com/page-sitemap1.xml"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/tools/indoor-vs-outdoor-cat-grooming/",
+        "user_canonical": "https://petzenai.com/tools/indoor-vs-outdoor-cat-grooming/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": null,
+      "verdict": "NEUTRAL",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/tools/new-baby-pet-safety-guide/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "NEUTRAL",
+        "coverage_state": "Crawled - currently not indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-08-16T02:20:49Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/",
+          "https://petzenai.com/page-sitemap2.xml"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/tools/new-baby-pet-safety-guide/",
+        "user_canonical": "https://petzenai.com/tools/new-baby-pet-safety-guide/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": null,
+      "verdict": "NEUTRAL",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/tools/pet-cost-calculator/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "PASS",
+        "coverage_state": "Submitted and indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-09-25T08:09:24Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/",
+          "https://petzenai.com/page-sitemap2.xml"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/tools/pet-cost-calculator/",
+        "user_canonical": "https://petzenai.com/tools/pet-cost-calculator/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": {
+        "verdict": "PASS",
+        "detected_items": [
+          {
+            "type": "Breadcrumbs",
+            "items": [
+              {
+                "name": "Unnamed item",
+                "issues": []
+              },
+              {
+                "name": "Unnamed item",
+                "issues": []
+              }
+            ]
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/tools/pet-sleep-guide/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "PASS",
+        "coverage_state": "Submitted and indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-09-04T10:47:08Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/",
+          "https://petzenai.com/page-sitemap2.xml"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/tools/pet-sleep-guide/",
+        "user_canonical": "https://petzenai.com/tools/pet-sleep-guide/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": {
+        "verdict": "PASS",
+        "detected_items": [
+          {
+            "type": "Breadcrumbs",
+            "items": [
+              {
+                "name": "Unnamed item",
+                "issues": []
+              },
+              {
+                "name": "Unnamed item",
+                "issues": []
+              }
+            ]
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/tools/pet-stomach-upset-guide/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "NEUTRAL",
+        "coverage_state": "Crawled - currently not indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-07-24T00:02:56Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/",
+          "https://petzenai.com/page-sitemap2.xml"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/tools/pet-stomach-upset-guide/",
+        "user_canonical": "https://petzenai.com/tools/pet-stomach-upset-guide/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": null,
+      "verdict": "NEUTRAL",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/tools/pet-territorial-behavior/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "NEUTRAL",
+        "coverage_state": "Crawled - currently not indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-08-15T22:14:43Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/",
+          "https://petzenai.com/page-sitemap2.xml"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/tools/pet-territorial-behavior/",
+        "user_canonical": "https://petzenai.com/tools/pet-territorial-behavior/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": null,
+      "verdict": "NEUTRAL",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/tools/puppy-to-adult-food-transition/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "PASS",
+        "coverage_state": "Submitted and indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-10-02T17:58:57Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/",
+          "https://petzenai.com/page-sitemap1.xml"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/tools/puppy-to-adult-food-transition/",
+        "user_canonical": "https://petzenai.com/tools/puppy-to-adult-food-transition/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": {
+        "verdict": "PASS",
+        "detected_items": [
+          {
+            "type": "Breadcrumbs",
+            "items": [
+              {
+                "name": "Unnamed item",
+                "issues": []
+              },
+              {
+                "name": "Unnamed item",
+                "issues": []
+              }
+            ]
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/tools/rabbit-dental-health-guide/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "NEUTRAL",
+        "coverage_state": "Crawled - currently not indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-06-30T23:40:56Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/",
+          "https://petzenai.com/page-sitemap1.xml"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/tools/rabbit-dental-health-guide/",
+        "user_canonical": "https://petzenai.com/tools/rabbit-dental-health-guide/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": null,
+      "verdict": "NEUTRAL",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/tools/rabbit-toxic-foods-guide/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "NEUTRAL",
+        "coverage_state": "Crawled - currently not indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-07-17T07:34:42Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/",
+          "https://petzenai.com/page-sitemap1.xml"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/tools/rabbit-toxic-foods-guide/",
+        "user_canonical": "https://petzenai.com/tools/rabbit-toxic-foods-guide/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": null,
+      "verdict": "NEUTRAL",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/tools/reptile-hibernation-guide/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "PASS",
+        "coverage_state": "Submitted and indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-08-09T15:38:06Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/",
+          "https://petzenai.com/page-sitemap2.xml"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/tools/reptile-hibernation-guide/",
+        "user_canonical": "https://petzenai.com/tools/reptile-hibernation-guide/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": {
+        "verdict": "PASS",
+        "detected_items": [
+          {
+            "type": "Breadcrumbs",
+            "items": [
+              {
+                "name": "Unnamed item",
+                "issues": []
+              },
+              {
+                "name": "Unnamed item",
+                "issues": []
+              }
+            ]
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/tools/reptile-temperature-guide/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "PASS",
+        "coverage_state": "Submitted and indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-09-14T15:06:19Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/",
+          "https://petzenai.com/tools/turtle-care-guide/"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/tools/reptile-temperature-guide/",
+        "user_canonical": "https://petzenai.com/tools/reptile-temperature-guide/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": {
+        "verdict": "PASS",
+        "detected_items": [
+          {
+            "type": "Breadcrumbs",
+            "items": [
+              {
+                "name": "Unnamed item",
+                "issues": []
+              },
+              {
+                "name": "Unnamed item",
+                "issues": []
+              }
+            ]
+          }
+        ]
+      },
+      "verdict": "PASS",
+      "error": null
+    },
+    {
+      "url": "https://petzenai.com/tools/why-do-cats-purr-guide/",
+      "property": "https://petzenai.com/",
+      "index_status": {
+        "verdict": "NEUTRAL",
+        "coverage_state": "Crawled - currently not indexed",
+        "robots_txt_state": "ALLOWED",
+        "indexing_state": "INDEXING_ALLOWED",
+        "page_fetch_state": "SUCCESSFUL",
+        "last_crawl_time": "2026-08-16T02:25:44Z",
+        "crawled_as": "MOBILE",
+        "referring_urls": [
+          "https://petzenai.com/tools/",
+          "https://petzenai.com/page-sitemap2.xml"
+        ]
+      },
+      "crawl_info": null,
+      "canonical": {
+        "google_canonical": "https://petzenai.com/tools/why-do-cats-purr-guide/",
+        "user_canonical": "https://petzenai.com/tools/why-do-cats-purr-guide/",
+        "match": true
+      },
+      "mobile_usability": {
+        "deprecated": true,
+        "verdict": "VERDICT_UNSPECIFIED",
+        "issues": []
+      },
+      "rich_results": null,
+      "verdict": "NEUTRAL",
+      "error": null
+    }
+  ],
+  "summary": {
+    "pass": 21,
+    "fail": 0,
+    "neutral": 26,
+    "error": 0
+  },
+  "error": null
+}

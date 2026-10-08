@@ -1,0 +1,2571 @@
+{
+  "property": "https://petzenai.com/",
+  "rows": [
+    {
+      "keys": [
+        "https://petzenai.com/tools/what-pet-should-i-get/"
+      ],
+      "clicks": 10,
+      "impressions": 290,
+      "ctr": 3.45,
+      "position": 29.2,
+      "page": "https://petzenai.com/tools/what-pet-should-i-get/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/"
+      ],
+      "clicks": 6,
+      "impressions": 164,
+      "ctr": 3.66,
+      "position": 15.3,
+      "page": "https://petzenai.com/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/ai-pet-name-generator/"
+      ],
+      "clicks": 5,
+      "impressions": 234,
+      "ctr": 2.14,
+      "position": 19.0,
+      "page": "https://petzenai.com/tools/ai-pet-name-generator/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/bird-food-portion-calculator/"
+      ],
+      "clicks": 3,
+      "impressions": 25,
+      "ctr": 12.0,
+      "position": 9.6,
+      "page": "https://petzenai.com/tools/bird-food-portion-calculator/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/cat-nutrition-guide/"
+      ],
+      "clicks": 2,
+      "impressions": 197,
+      "ctr": 1.02,
+      "position": 21.4,
+      "page": "https://petzenai.com/blog/cat-nutrition-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-bathing-frequency-calculator/"
+      ],
+      "clicks": 2,
+      "impressions": 142,
+      "ctr": 1.41,
+      "position": 26.5,
+      "page": "https://petzenai.com/tools/dog-bathing-frequency-calculator/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/fish-disease-checker/"
+      ],
+      "clicks": 2,
+      "impressions": 22,
+      "ctr": 9.09,
+      "position": 8.7,
+      "page": "https://petzenai.com/tools/fish-disease-checker/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/guinea-pig-food-calculator/"
+      ],
+      "clicks": 2,
+      "impressions": 30,
+      "ctr": 6.67,
+      "position": 8.3,
+      "page": "https://petzenai.com/tools/guinea-pig-food-calculator/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/rabbit-health-checker/"
+      ],
+      "clicks": 2,
+      "impressions": 13,
+      "ctr": 15.38,
+      "position": 5.5,
+      "page": "https://petzenai.com/tools/rabbit-health-checker/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/reptile-health-checker/"
+      ],
+      "clicks": 2,
+      "impressions": 78,
+      "ctr": 2.56,
+      "position": 13.9,
+      "page": "https://petzenai.com/tools/reptile-health-checker/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/cat-litter-box-complete-guide/"
+      ],
+      "clicks": 1,
+      "impressions": 327,
+      "ctr": 0.31,
+      "position": 27.9,
+      "page": "https://petzenai.com/blog/cat-litter-box-complete-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/dog-dental-care-guide/"
+      ],
+      "clicks": 1,
+      "impressions": 15,
+      "ctr": 6.67,
+      "position": 31,
+      "page": "https://petzenai.com/blog/dog-dental-care-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/dog-separation-anxiety-treatment/"
+      ],
+      "clicks": 1,
+      "impressions": 536,
+      "ctr": 0.19,
+      "position": 50.9,
+      "page": "https://petzenai.com/blog/dog-separation-anxiety-treatment/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/senior-dog-care-guide/"
+      ],
+      "clicks": 1,
+      "impressions": 52,
+      "ctr": 1.92,
+      "position": 22.8,
+      "page": "https://petzenai.com/blog/senior-dog-care-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/corn-snake-care-guide/"
+      ],
+      "clicks": 1,
+      "impressions": 11,
+      "ctr": 9.09,
+      "position": 41,
+      "page": "https://petzenai.com/corn-snake-care-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/dog-nail-trimming-guide/"
+      ],
+      "clicks": 1,
+      "impressions": 62,
+      "ctr": 1.61,
+      "position": 8.9,
+      "page": "https://petzenai.com/dog-nail-trimming-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/"
+      ],
+      "clicks": 1,
+      "impressions": 149,
+      "ctr": 0.67,
+      "position": 27.6,
+      "page": "https://petzenai.com/tools/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/cat-calorie-calculator/"
+      ],
+      "clicks": 1,
+      "impressions": 7,
+      "ctr": 14.29,
+      "position": 5.7,
+      "page": "https://petzenai.com/tools/cat-calorie-calculator/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/cat-dental-care-guide/"
+      ],
+      "clicks": 1,
+      "impressions": 4,
+      "ctr": 25.0,
+      "position": 20.5,
+      "page": "https://petzenai.com/tools/cat-dental-care-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/cat-deworming-schedule/"
+      ],
+      "clicks": 1,
+      "impressions": 60,
+      "ctr": 1.67,
+      "position": 8.5,
+      "page": "https://petzenai.com/tools/cat-deworming-schedule/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/cat-grooming-tools-guide/"
+      ],
+      "clicks": 1,
+      "impressions": 39,
+      "ctr": 2.56,
+      "position": 19.1,
+      "page": "https://petzenai.com/tools/cat-grooming-tools-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/cat-nutrition/"
+      ],
+      "clicks": 1,
+      "impressions": 36,
+      "ctr": 2.78,
+      "position": 19.9,
+      "page": "https://petzenai.com/tools/cat-nutrition/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/chameleon-care-guide/"
+      ],
+      "clicks": 1,
+      "impressions": 17,
+      "ctr": 5.88,
+      "position": 14.9,
+      "page": "https://petzenai.com/tools/chameleon-care-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-bmi-calculator/"
+      ],
+      "clicks": 1,
+      "impressions": 53,
+      "ctr": 1.89,
+      "position": 24.8,
+      "page": "https://petzenai.com/tools/dog-bmi-calculator/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-deworming-schedule/"
+      ],
+      "clicks": 1,
+      "impressions": 56,
+      "ctr": 1.79,
+      "position": 13.8,
+      "page": "https://petzenai.com/tools/dog-deworming-schedule/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-grooming-schedule-calculator/"
+      ],
+      "clicks": 1,
+      "impressions": 68,
+      "ctr": 1.47,
+      "position": 15.4,
+      "page": "https://petzenai.com/tools/dog-grooming-schedule-calculator/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-pregnancy-calculator/"
+      ],
+      "clicks": 1,
+      "impressions": 327,
+      "ctr": 0.31,
+      "position": 16.4,
+      "page": "https://petzenai.com/tools/dog-pregnancy-calculator/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/pet-food-portion-calculator/"
+      ],
+      "clicks": 1,
+      "impressions": 70,
+      "ctr": 1.43,
+      "position": 12.0,
+      "page": "https://petzenai.com/tools/pet-food-portion-calculator/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/reptile-feeding-calculator/"
+      ],
+      "clicks": 1,
+      "impressions": 25,
+      "ctr": 4.0,
+      "position": 8.3,
+      "page": "https://petzenai.com/tools/reptile-feeding-calculator/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/about/"
+      ],
+      "clicks": 0,
+      "impressions": 71,
+      "ctr": 0,
+      "position": 5.8,
+      "page": "https://petzenai.com/about/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/aquarium-filter-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 12.2,
+      "page": "https://petzenai.com/aquarium-filter-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/bird-egg-incubation-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 11,
+      "ctr": 0,
+      "position": 15.8,
+      "page": "https://petzenai.com/bird-egg-incubation-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/"
+      ],
+      "clicks": 0,
+      "impressions": 23,
+      "ctr": 0,
+      "position": 5.2,
+      "page": "https://petzenai.com/blog/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/best-pet-names-2025/"
+      ],
+      "clicks": 0,
+      "impressions": 84,
+      "ctr": 0,
+      "position": 14.2,
+      "page": "https://petzenai.com/blog/best-pet-names-2025/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/budgerigar-care-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 550,
+      "ctr": 0,
+      "position": 33.5,
+      "page": "https://petzenai.com/blog/budgerigar-care-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/cat-grooming-at-home-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 270,
+      "ctr": 0,
+      "position": 28.3,
+      "page": "https://petzenai.com/blog/cat-grooming-at-home-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/cat-vaccination-schedule/"
+      ],
+      "clicks": 0,
+      "impressions": 203,
+      "ctr": 0,
+      "position": 17.5,
+      "page": "https://petzenai.com/blog/cat-vaccination-schedule/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/category/cat-care/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 10,
+      "page": "https://petzenai.com/blog/category/cat-care/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/category/cat-health/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 3,
+      "page": "https://petzenai.com/blog/category/cat-health/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/category/dog-care/"
+      ],
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 3.4,
+      "page": "https://petzenai.com/blog/category/dog-care/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/category/dog-health/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 3,
+      "page": "https://petzenai.com/blog/category/dog-health/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/category/pet-health/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 92,
+      "page": "https://petzenai.com/blog/category/pet-health/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/category/pet-tips/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 9,
+      "page": "https://petzenai.com/blog/category/pet-tips/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/category/small-pets/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 1,
+      "page": "https://petzenai.com/blog/category/small-pets/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/dog-age-in-human-years/"
+      ],
+      "clicks": 0,
+      "impressions": 72,
+      "ctr": 0,
+      "position": 16.7,
+      "page": "https://petzenai.com/blog/dog-age-in-human-years/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/dog-anxiety-signs-causes-solutions/"
+      ],
+      "clicks": 0,
+      "impressions": 29,
+      "ctr": 0,
+      "position": 26.8,
+      "page": "https://petzenai.com/blog/dog-anxiety-signs-causes-solutions/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/dog-body-language-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 48,
+      "ctr": 0,
+      "position": 39.1,
+      "page": "https://petzenai.com/blog/dog-body-language-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/dog-flea-tick-prevention-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 15,
+      "ctr": 0,
+      "position": 24.6,
+      "page": "https://petzenai.com/blog/dog-flea-tick-prevention-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/dog-grooming-at-home-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 268,
+      "ctr": 0,
+      "position": 17.9,
+      "page": "https://petzenai.com/blog/dog-grooming-at-home-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/dog-vaccination-schedule-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 271,
+      "ctr": 0,
+      "position": 38.9,
+      "page": "https://petzenai.com/blog/dog-vaccination-schedule-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/freshwater-aquarium-setup-beginners/"
+      ],
+      "clicks": 0,
+      "impressions": 68,
+      "ctr": 0,
+      "position": 20.3,
+      "page": "https://petzenai.com/blog/freshwater-aquarium-setup-beginners/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/guinea-pig-care-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 89,
+      "ctr": 0,
+      "position": 28.4,
+      "page": "https://petzenai.com/blog/guinea-pig-care-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/hamster-care-guide-beginners/"
+      ],
+      "clicks": 0,
+      "impressions": 1093,
+      "ctr": 0,
+      "position": 35.4,
+      "page": "https://petzenai.com/blog/hamster-care-guide-beginners/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/how-much-exercise-does-a-dog-need/"
+      ],
+      "clicks": 0,
+      "impressions": 35,
+      "ctr": 0,
+      "position": 45,
+      "page": "https://petzenai.com/blog/how-much-exercise-does-a-dog-need/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/how-much-to-feed-dog/"
+      ],
+      "clicks": 0,
+      "impressions": 31,
+      "ctr": 0,
+      "position": 14.9,
+      "page": "https://petzenai.com/blog/how-much-to-feed-dog/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/how-to-choose-a-vet-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 17,
+      "ctr": 0,
+      "position": 53.8,
+      "page": "https://petzenai.com/blog/how-to-choose-a-vet-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/how-to-introduce-new-pet-to-home/"
+      ],
+      "clicks": 0,
+      "impressions": 81,
+      "ctr": 0,
+      "position": 47.7,
+      "page": "https://petzenai.com/blog/how-to-introduce-new-pet-to-home/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/how-to-potty-train-a-puppy/"
+      ],
+      "clicks": 0,
+      "impressions": 45,
+      "ctr": 0,
+      "position": 36.4,
+      "page": "https://petzenai.com/blog/how-to-potty-train-a-puppy/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/new-puppy-checklist-everything-you-need/"
+      ],
+      "clicks": 0,
+      "impressions": 20,
+      "ctr": 0,
+      "position": 16.6,
+      "page": "https://petzenai.com/blog/new-puppy-checklist-everything-you-need/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/pet-insurance-guide-worth-it/"
+      ],
+      "clicks": 0,
+      "impressions": 33,
+      "ctr": 0,
+      "position": 16.1,
+      "page": "https://petzenai.com/blog/pet-insurance-guide-worth-it/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/puppy-socialization-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 6.4,
+      "page": "https://petzenai.com/blog/puppy-socialization-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/rabbit-care-guide-beginners/"
+      ],
+      "clicks": 0,
+      "impressions": 17,
+      "ctr": 0,
+      "position": 18.2,
+      "page": "https://petzenai.com/blog/rabbit-care-guide-beginners/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/signs-your-pet-is-sick/"
+      ],
+      "clicks": 0,
+      "impressions": 32,
+      "ctr": 0,
+      "position": 12.2,
+      "page": "https://petzenai.com/blog/signs-your-pet-is-sick/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/traveling-with-pets-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 38,
+      "ctr": 0,
+      "position": 19.2,
+      "page": "https://petzenai.com/blog/traveling-with-pets-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/blog/what-pet-should-i-get-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 27.4,
+      "page": "https://petzenai.com/blog/what-pet-should-i-get-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/budgie-care-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 60,
+      "ctr": 0,
+      "position": 15.6,
+      "page": "https://petzenai.com/budgie-care-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/contact/"
+      ],
+      "clicks": 0,
+      "impressions": 45,
+      "ctr": 0,
+      "position": 4.8,
+      "page": "https://petzenai.com/contact/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/how-much-should-i-feed-my-dog/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 25,
+      "page": "https://petzenai.com/how-much-should-i-feed-my-dog/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/how-to-tame-a-bird/"
+      ],
+      "clicks": 0,
+      "impressions": 7,
+      "ctr": 0,
+      "position": 43.9,
+      "page": "https://petzenai.com/how-to-tame-a-bird/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/pet-name-generator/"
+      ],
+      "clicks": 0,
+      "impressions": 10,
+      "ctr": 0,
+      "position": 47.1,
+      "page": "https://petzenai.com/pet-name-generator/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/puppy-vaccination-schedule/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 87.5,
+      "page": "https://petzenai.com/puppy-vaccination-schedule/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/sample-page/"
+      ],
+      "clicks": 0,
+      "impressions": 44,
+      "ctr": 0,
+      "position": 7.7,
+      "page": "https://petzenai.com/sample-page/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/african-grey-parrot-care/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 14.7,
+      "page": "https://petzenai.com/tools/african-grey-parrot-care/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/apartment-pets-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 21.5,
+      "page": "https://petzenai.com/tools/apartment-pets-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/aquarium-ammonia-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 10.1,
+      "page": "https://petzenai.com/tools/aquarium-ammonia-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/aquarium-live-plants-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 18,
+      "page": "https://petzenai.com/tools/aquarium-live-plants-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/aquarium-size-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 10,
+      "page": "https://petzenai.com/tools/aquarium-size-calculator/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/aquarium-water-temperature-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 18,
+      "page": "https://petzenai.com/tools/aquarium-water-temperature-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/ball-python-care-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 25,
+      "page": "https://petzenai.com/tools/ball-python-care-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/bearded-dragon-care-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 11,
+      "page": "https://petzenai.com/tools/bearded-dragon-care-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/best-dog-food-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 33.5,
+      "page": "https://petzenai.com/tools/best-dog-food-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/betta-fish-care-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 13,
+      "ctr": 0,
+      "position": 13.8,
+      "page": "https://petzenai.com/tools/betta-fish-care-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/bird-cage-size-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 15,
+      "ctr": 0,
+      "position": 11.8,
+      "page": "https://petzenai.com/tools/bird-cage-size-calculator/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/bird-egg-incubation-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 8,
+      "ctr": 0,
+      "position": 15,
+      "page": "https://petzenai.com/tools/bird-egg-incubation-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/bird-feather-plucking-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 23,
+      "ctr": 0,
+      "position": 18.6,
+      "page": "https://petzenai.com/tools/bird-feather-plucking-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/bird-molting-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 19,
+      "ctr": 0,
+      "position": 14.1,
+      "page": "https://petzenai.com/tools/bird-molting-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/bird-sleep-requirements-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 8.5,
+      "page": "https://petzenai.com/tools/bird-sleep-requirements-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/bird-temperature-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 9.5,
+      "page": "https://petzenai.com/tools/bird-temperature-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/bird-toxic-foods-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 19,
+      "ctr": 0,
+      "position": 21.5,
+      "page": "https://petzenai.com/tools/bird-toxic-foods-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/blue-tongue-skink-care/"
+      ],
+      "clicks": 0,
+      "impressions": 93,
+      "ctr": 0,
+      "position": 20.6,
+      "page": "https://petzenai.com/tools/blue-tongue-skink-care/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/budgie-care-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 15,
+      "page": "https://petzenai.com/tools/budgie-care-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/canary-care-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 15.4,
+      "page": "https://petzenai.com/tools/canary-care-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/cat-eye-cleaning-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 25,
+      "ctr": 0,
+      "position": 12.7,
+      "page": "https://petzenai.com/tools/cat-eye-cleaning-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/cat-first-aid-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 11,
+      "page": "https://petzenai.com/tools/cat-first-aid-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/cat-fiv-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 1,
+      "page": "https://petzenai.com/tools/cat-fiv-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/cat-grain-free-diet-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 10,
+      "page": "https://petzenai.com/tools/cat-grain-free-diet-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/cat-health/"
+      ],
+      "clicks": 0,
+      "impressions": 98,
+      "ctr": 0,
+      "position": 43.9,
+      "page": "https://petzenai.com/tools/cat-health/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/cat-kidney-diet-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 5,
+      "page": "https://petzenai.com/tools/cat-kidney-diet-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/cat-kneading-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 7,
+      "ctr": 0,
+      "position": 19.9,
+      "page": "https://petzenai.com/tools/cat-kneading-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/cat-nail-trimming-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 22.2,
+      "page": "https://petzenai.com/tools/cat-nail-trimming-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/cat-not-eating-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 8,
+      "ctr": 0,
+      "position": 20.2,
+      "page": "https://petzenai.com/tools/cat-not-eating-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/cat-shedding-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 14.6,
+      "page": "https://petzenai.com/tools/cat-shedding-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/cat-spay-neuter-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 58,
+      "page": "https://petzenai.com/tools/cat-spay-neuter-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/cat-taurine-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 30.7,
+      "page": "https://petzenai.com/tools/cat-taurine-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/cat-toxic-foods-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 6.5,
+      "page": "https://petzenai.com/tools/cat-toxic-foods-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/cat-vaccination-schedule/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 26.3,
+      "page": "https://petzenai.com/tools/cat-vaccination-schedule/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/cat-vet-visit-frequency/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 30,
+      "page": "https://petzenai.com/tools/cat-vet-visit-frequency/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/cat-vomiting-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 8.7,
+      "page": "https://petzenai.com/tools/cat-vomiting-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/cat-weight-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 11.8,
+      "page": "https://petzenai.com/tools/cat-weight-calculator/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/cat-weight-loss-plan/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 8,
+      "page": "https://petzenai.com/tools/cat-weight-loss-plan/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/chameleon-care-guide/#sec-0"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 2,
+      "page": "https://petzenai.com/tools/chameleon-care-guide/#sec-0"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/chameleon-care-guide/#sec-3"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 2,
+      "page": "https://petzenai.com/tools/chameleon-care-guide/#sec-3"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/chinchilla-care-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 8,
+      "ctr": 0,
+      "position": 25.5,
+      "page": "https://petzenai.com/tools/chinchilla-care-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/chinchilla-dust-bath-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 30,
+      "ctr": 0,
+      "position": 33.0,
+      "page": "https://petzenai.com/tools/chinchilla-dust-bath-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/cockatiel-care-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 39,
+      "ctr": 0,
+      "position": 19.4,
+      "page": "https://petzenai.com/tools/cockatiel-care-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/cockatoo-care-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 37.5,
+      "page": "https://petzenai.com/tools/cockatoo-care-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/corn-snake-care-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 103,
+      "ctr": 0,
+      "position": 23.4,
+      "page": "https://petzenai.com/tools/corn-snake-care-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-allergy-symptoms-checker/"
+      ],
+      "clicks": 0,
+      "impressions": 20,
+      "ctr": 0,
+      "position": 40.7,
+      "page": "https://petzenai.com/tools/dog-allergy-symptoms-checker/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-anal-gland-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 11,
+      "ctr": 0,
+      "position": 19,
+      "page": "https://petzenai.com/tools/dog-anal-gland-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-anxiety-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 93,
+      "page": "https://petzenai.com/tools/dog-anxiety-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-bark-training-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 39,
+      "page": "https://petzenai.com/tools/dog-bark-training-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-basic-commands-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 28,
+      "page": "https://petzenai.com/tools/dog-basic-commands-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-bite-prevention-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 10,
+      "page": "https://petzenai.com/tools/dog-bite-prevention-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-calorie-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 103,
+      "ctr": 0,
+      "position": 22.9,
+      "page": "https://petzenai.com/tools/dog-calorie-calculator/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-cancer-signs-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 7,
+      "page": "https://petzenai.com/tools/dog-cancer-signs-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-crate-training-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 9,
+      "page": "https://petzenai.com/tools/dog-crate-training-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-deshedding-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 15,
+      "ctr": 0,
+      "position": 23.2,
+      "page": "https://petzenai.com/tools/dog-deshedding-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-digestive-health-diet/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 27,
+      "page": "https://petzenai.com/tools/dog-digestive-health-diet/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-dream-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 7,
+      "page": "https://petzenai.com/tools/dog-dream-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-ear-cleaning-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 14,
+      "ctr": 0,
+      "position": 33.2,
+      "page": "https://petzenai.com/tools/dog-ear-cleaning-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-ear-infection-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 1,
+      "page": "https://petzenai.com/tools/dog-ear-infection-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-eye-cleaning-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 12,
+      "page": "https://petzenai.com/tools/dog-eye-cleaning-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-eye-problems-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 62,
+      "page": "https://petzenai.com/tools/dog-eye-problems-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-fever-checker/"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 28.2,
+      "page": "https://petzenai.com/tools/dog-fever-checker/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-first-aid-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 61.7,
+      "page": "https://petzenai.com/tools/dog-first-aid-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-grain-free-diet-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 15,
+      "page": "https://petzenai.com/tools/dog-grain-free-diet-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-grooming-tools-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 18,
+      "ctr": 0,
+      "position": 17.5,
+      "page": "https://petzenai.com/tools/dog-grooming-tools-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-health/"
+      ],
+      "clicks": 0,
+      "impressions": 139,
+      "ctr": 0,
+      "position": 48.9,
+      "page": "https://petzenai.com/tools/dog-health/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-heart-health-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 60.5,
+      "page": "https://petzenai.com/tools/dog-heart-health-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-heat-stroke-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 8,
+      "ctr": 0,
+      "position": 24.1,
+      "page": "https://petzenai.com/tools/dog-heat-stroke-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-hip-dysplasia-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 5,
+      "page": "https://petzenai.com/tools/dog-hip-dysplasia-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-homemade-food-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 8,
+      "page": "https://petzenai.com/tools/dog-homemade-food-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-humping-behavior/"
+      ],
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 11.7,
+      "page": "https://petzenai.com/tools/dog-humping-behavior/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-hydration-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5.5,
+      "page": "https://petzenai.com/tools/dog-hydration-calculator/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-hypothyroidism-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 13.6,
+      "page": "https://petzenai.com/tools/dog-hypothyroidism-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-joint-health-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 85,
+      "page": "https://petzenai.com/tools/dog-joint-health-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-joint-supplement-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 37,
+      "ctr": 0,
+      "position": 30.9,
+      "page": "https://petzenai.com/tools/dog-joint-supplement-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-kennel-cough-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 11.5,
+      "page": "https://petzenai.com/tools/dog-kennel-cough-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-kidney-disease-diet/"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 27.5,
+      "page": "https://petzenai.com/tools/dog-kidney-disease-diet/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-leash-training-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 24,
+      "page": "https://petzenai.com/tools/dog-leash-training-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-lifespan-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 290,
+      "ctr": 0,
+      "position": 27.9,
+      "page": "https://petzenai.com/tools/dog-lifespan-calculator/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-nail-trimming-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 71,
+      "ctr": 0,
+      "position": 35.6,
+      "page": "https://petzenai.com/tools/dog-nail-trimming-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-nutrition/"
+      ],
+      "clicks": 0,
+      "impressions": 20,
+      "ctr": 0,
+      "position": 30.4,
+      "page": "https://petzenai.com/tools/dog-nutrition/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-obedience-training-schedule/"
+      ],
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 10.4,
+      "page": "https://petzenai.com/tools/dog-obedience-training-schedule/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-parasite-prevention-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 49,
+      "page": "https://petzenai.com/tools/dog-parasite-prevention-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-pool-safety-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 28,
+      "page": "https://petzenai.com/tools/dog-pool-safety-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-potty-training-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 8,
+      "ctr": 0,
+      "position": 9,
+      "page": "https://petzenai.com/tools/dog-potty-training-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-raw-diet-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 18.5,
+      "page": "https://petzenai.com/tools/dog-raw-diet-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-separation-anxiety-training/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 45,
+      "page": "https://petzenai.com/tools/dog-separation-anxiety-training/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-shedding-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 63,
+      "ctr": 0,
+      "position": 16.8,
+      "page": "https://petzenai.com/tools/dog-shedding-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-skin-conditions-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 73,
+      "page": "https://petzenai.com/tools/dog-skin-conditions-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-sleep-training-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 7,
+      "page": "https://petzenai.com/tools/dog-sleep-training-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-summer-grooming-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 32,
+      "ctr": 0,
+      "position": 19.9,
+      "page": "https://petzenai.com/tools/dog-summer-grooming-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-tail-grooming-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 17,
+      "ctr": 0,
+      "position": 9.2,
+      "page": "https://petzenai.com/tools/dog-tail-grooming-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-teeth-brushing-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 14,
+      "ctr": 0,
+      "position": 18.7,
+      "page": "https://petzenai.com/tools/dog-teeth-brushing-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-toxic-foods-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 8,
+      "ctr": 0,
+      "position": 15.4,
+      "page": "https://petzenai.com/tools/dog-toxic-foods-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-treat-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 66,
+      "ctr": 0,
+      "position": 5.0,
+      "page": "https://petzenai.com/tools/dog-treat-calculator/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-vet-visit-frequency/"
+      ],
+      "clicks": 0,
+      "impressions": 11,
+      "ctr": 0,
+      "position": 11.2,
+      "page": "https://petzenai.com/tools/dog-vet-visit-frequency/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-weight-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 98,
+      "ctr": 0,
+      "position": 21.9,
+      "page": "https://petzenai.com/tools/dog-weight-calculator/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-weight-loss-plan/"
+      ],
+      "clicks": 0,
+      "impressions": 78,
+      "ctr": 0,
+      "position": 7.8,
+      "page": "https://petzenai.com/tools/dog-weight-loss-plan/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-winter-coat-care/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 54,
+      "page": "https://petzenai.com/tools/dog-winter-coat-care/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dog-zoomies-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 15.5,
+      "page": "https://petzenai.com/tools/dog-zoomies-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/dwarf-rabbit-care-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 21.3,
+      "page": "https://petzenai.com/tools/dwarf-rabbit-care-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/exotic-pet-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 12,
+      "ctr": 0,
+      "position": 21,
+      "page": "https://petzenai.com/tools/exotic-pet-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/ferret-care-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 24,
+      "ctr": 0,
+      "position": 49.0,
+      "page": "https://petzenai.com/tools/ferret-care-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/ferret-diet-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 10,
+      "ctr": 0,
+      "position": 32.8,
+      "page": "https://petzenai.com/tools/ferret-diet-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/finch-care-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 7,
+      "ctr": 0,
+      "position": 21.4,
+      "page": "https://petzenai.com/tools/finch-care-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/fish-compatibility-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 17,
+      "ctr": 0,
+      "position": 14.2,
+      "page": "https://petzenai.com/tools/fish-compatibility-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/fish-quarantine-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 10,
+      "page": "https://petzenai.com/tools/fish-quarantine-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/fish-tank-cleaning-schedule/"
+      ],
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 10.4,
+      "page": "https://petzenai.com/tools/fish-tank-cleaning-schedule/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/fish-tank-cycling-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 20.2,
+      "page": "https://petzenai.com/tools/fish-tank-cycling-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/general-pet/"
+      ],
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 15.2,
+      "page": "https://petzenai.com/tools/general-pet/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/gerbil-care-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 23.2,
+      "page": "https://petzenai.com/tools/gerbil-care-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/guinea-pig-care-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 60.3,
+      "page": "https://petzenai.com/tools/guinea-pig-care-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/guinea-pig-lifespan-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 72,
+      "page": "https://petzenai.com/tools/guinea-pig-lifespan-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/guinea-pig-vitamin-c-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 21,
+      "ctr": 0,
+      "position": 63.1,
+      "page": "https://petzenai.com/tools/guinea-pig-vitamin-c-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/hamster-cage-size-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 44,
+      "ctr": 0,
+      "position": 8.0,
+      "page": "https://petzenai.com/tools/hamster-cage-size-calculator/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/hamster-care-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 34,
+      "ctr": 0,
+      "position": 17.2,
+      "page": "https://petzenai.com/tools/hamster-care-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/hamster-lifespan-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 15,
+      "ctr": 0,
+      "position": 15.3,
+      "page": "https://petzenai.com/tools/hamster-lifespan-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/hamster-wheel-size-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 18,
+      "ctr": 0,
+      "position": 14.2,
+      "page": "https://petzenai.com/tools/hamster-wheel-size-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/hedgehog-care-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 7,
+      "ctr": 0,
+      "position": 11.9,
+      "page": "https://petzenai.com/tools/hedgehog-care-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/hedgehog-hibernation-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 27.2,
+      "page": "https://petzenai.com/tools/hedgehog-hibernation-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/how-to-remove-dog-mats/"
+      ],
+      "clicks": 0,
+      "impressions": 8,
+      "ctr": 0,
+      "position": 24.6,
+      "page": "https://petzenai.com/tools/how-to-remove-dog-mats/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/how-to-tame-a-bird/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 11,
+      "page": "https://petzenai.com/tools/how-to-tame-a-bird/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/iguana-care-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 42,
+      "ctr": 0,
+      "position": 26.5,
+      "page": "https://petzenai.com/tools/iguana-care-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/indoor-vs-outdoor-cat-grooming/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 17,
+      "page": "https://petzenai.com/tools/indoor-vs-outdoor-cat-grooming/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/koi-pond-care-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 22.8,
+      "page": "https://petzenai.com/tools/koi-pond-care-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/long-haired-cat-grooming/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 16.3,
+      "page": "https://petzenai.com/tools/long-haired-cat-grooming/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/lovebird-care-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 25,
+      "ctr": 0,
+      "position": 16.0,
+      "page": "https://petzenai.com/tools/lovebird-care-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/mouse-rat-care-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 7,
+      "ctr": 0,
+      "position": 25.4,
+      "page": "https://petzenai.com/tools/mouse-rat-care-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/multiple-pet-household-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 37.7,
+      "page": "https://petzenai.com/tools/multiple-pet-household-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/new-pet-checklist/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5.5,
+      "page": "https://petzenai.com/tools/new-pet-checklist/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/oscar-fish-care-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 8.3,
+      "page": "https://petzenai.com/tools/oscar-fish-care-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/parrot-feeding-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 15.5,
+      "page": "https://petzenai.com/tools/parrot-feeding-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/pet-adoption-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 81,
+      "page": "https://petzenai.com/tools/pet-adoption-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/pet-age-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 182,
+      "ctr": 0,
+      "position": 26.4,
+      "page": "https://petzenai.com/tools/pet-age-calculator/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/pet-cost-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 38,
+      "ctr": 0,
+      "position": 16.7,
+      "page": "https://petzenai.com/tools/pet-cost-calculator/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/pet-dental-care-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 9.8,
+      "page": "https://petzenai.com/tools/pet-dental-care-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/pet-emergency-kit-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 71,
+      "page": "https://petzenai.com/tools/pet-emergency-kit-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/pet-exercise-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 122,
+      "ctr": 0,
+      "position": 22.5,
+      "page": "https://petzenai.com/tools/pet-exercise-calculator/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/pet-grooming-at-home-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 10,
+      "page": "https://petzenai.com/tools/pet-grooming-at-home-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/pet-loss-grief-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 1,
+      "page": "https://petzenai.com/tools/pet-loss-grief-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/pet-medication-safety/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 42,
+      "page": "https://petzenai.com/tools/pet-medication-safety/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/pet-microchipping-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 86,
+      "page": "https://petzenai.com/tools/pet-microchipping-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/pet-noise-phobia-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 19,
+      "page": "https://petzenai.com/tools/pet-noise-phobia-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/pet-reproduction-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 6,
+      "page": "https://petzenai.com/tools/pet-reproduction-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/pet-sleep-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 19.5,
+      "page": "https://petzenai.com/tools/pet-sleep-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/pet-stomach-upset-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 29,
+      "page": "https://petzenai.com/tools/pet-stomach-upset-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/pet-territorial-behavior/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 15,
+      "page": "https://petzenai.com/tools/pet-territorial-behavior/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/pet-travel-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 10,
+      "page": "https://petzenai.com/tools/pet-travel-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/pet-vaccination-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 11,
+      "page": "https://petzenai.com/tools/pet-vaccination-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/pet-vaccination-schedule/"
+      ],
+      "clicks": 0,
+      "impressions": 27,
+      "ctr": 0,
+      "position": 9.9,
+      "page": "https://petzenai.com/tools/pet-vaccination-schedule/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/pet-water-safety-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 26.5,
+      "page": "https://petzenai.com/tools/pet-water-safety-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/pet-weight-management-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 58,
+      "page": "https://petzenai.com/tools/pet-weight-management-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/pregnant-dog-nutrition-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5.5,
+      "page": "https://petzenai.com/tools/pregnant-dog-nutrition-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/professional-vs-home-dog-grooming/"
+      ],
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 10.6,
+      "page": "https://petzenai.com/tools/professional-vs-home-dog-grooming/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/puppy-feeding-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 9.3,
+      "page": "https://petzenai.com/tools/puppy-feeding-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/puppy-health-checklist/"
+      ],
+      "clicks": 0,
+      "impressions": 13,
+      "ctr": 0,
+      "position": 14.6,
+      "page": "https://petzenai.com/tools/puppy-health-checklist/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/puppy-training-schedule/"
+      ],
+      "clicks": 0,
+      "impressions": 8,
+      "ctr": 0,
+      "position": 29.1,
+      "page": "https://petzenai.com/tools/puppy-training-schedule/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/rabbit-bonding-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 18,
+      "page": "https://petzenai.com/tools/rabbit-bonding-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/rabbit-cage-size-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 7.5,
+      "page": "https://petzenai.com/tools/rabbit-cage-size-calculator/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/rabbit-exercise-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 7,
+      "page": "https://petzenai.com/tools/rabbit-exercise-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/rabbit-feeding-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 6,
+      "ctr": 0,
+      "position": 10,
+      "page": "https://petzenai.com/tools/rabbit-feeding-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/rabbit-food-portion-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 10,
+      "ctr": 0,
+      "position": 8.2,
+      "page": "https://petzenai.com/tools/rabbit-food-portion-calculator/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/rabbit-gi-stasis-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 21.5,
+      "page": "https://petzenai.com/tools/rabbit-gi-stasis-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/rabbit-grooming-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 11,
+      "page": "https://petzenai.com/tools/rabbit-grooming-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/rabbit-lifespan-calculator/"
+      ],
+      "clicks": 0,
+      "impressions": 17,
+      "ctr": 0,
+      "position": 15.3,
+      "page": "https://petzenai.com/tools/rabbit-lifespan-calculator/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/rabbit-litter-training-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 17.5,
+      "page": "https://petzenai.com/tools/rabbit-litter-training-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/rabbit-spay-neuter-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 11,
+      "page": "https://petzenai.com/tools/rabbit-spay-neuter-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/reptile-care/"
+      ],
+      "clicks": 0,
+      "impressions": 43,
+      "ctr": 0,
+      "position": 12.0,
+      "page": "https://petzenai.com/tools/reptile-care/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/reptile-hibernation-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 19,
+      "ctr": 0,
+      "position": 18.1,
+      "page": "https://petzenai.com/tools/reptile-hibernation-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/reptile-shedding-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 14.4,
+      "page": "https://petzenai.com/tools/reptile-shedding-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/reptile-temperature-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 19,
+      "ctr": 0,
+      "position": 27.4,
+      "page": "https://petzenai.com/tools/reptile-temperature-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/senior-cat-diet-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 15.3,
+      "page": "https://petzenai.com/tools/senior-cat-diet-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/senior-cat-grooming-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 22,
+      "page": "https://petzenai.com/tools/senior-cat-grooming-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/senior-dog-health-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 21,
+      "ctr": 0,
+      "position": 45.2,
+      "page": "https://petzenai.com/tools/senior-dog-health-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/senior-pet-care-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 10,
+      "ctr": 0,
+      "position": 20.1,
+      "page": "https://petzenai.com/tools/senior-pet-care-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/small-pet-bonding-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 64,
+      "page": "https://petzenai.com/tools/small-pet-bonding-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/small-pet-cage-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 27.5,
+      "page": "https://petzenai.com/tools/small-pet-cage-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/small-pet-health-checker/"
+      ],
+      "clicks": 0,
+      "impressions": 9,
+      "ctr": 0,
+      "position": 8.9,
+      "page": "https://petzenai.com/tools/small-pet-health-checker/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/sugar-glider-care-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 19,
+      "ctr": 0,
+      "position": 14.2,
+      "page": "https://petzenai.com/tools/sugar-glider-care-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/tortoise-care-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 19,
+      "ctr": 0,
+      "position": 24.5,
+      "page": "https://petzenai.com/tools/tortoise-care-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/why-cats-bring-gifts/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 7,
+      "page": "https://petzenai.com/tools/why-cats-bring-gifts/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/why-do-cats-purr-guide/"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 8,
+      "page": "https://petzenai.com/tools/why-do-cats-purr-guide/"
+    },
+    {
+      "keys": [
+        "https://petzenai.com/tools/working-dog-nutrition/"
+      ],
+      "clicks": 0,
+      "impressions": 7,
+      "ctr": 0,
+      "position": 12.4,
+      "page": "https://petzenai.com/tools/working-dog-nutrition/"
+    }
+  ],
+  "totals": {
+    "clicks": 55,
+    "impressions": 9203,
+    "ctr": 0.6,
+    "position": 27.4
+  },
+  "totals_source": "dimensionless_aggregate",
+  "totals_complete": true,
+  "quick_wins": [],
+  "warnings": [],
+  "row_count": 255,
+  "error": null,
+  "date_range": {
+    "start": "2026-07-09",
+    "end": "2026-10-04"
+  }
+}
