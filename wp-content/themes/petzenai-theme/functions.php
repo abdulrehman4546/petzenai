@@ -64,6 +64,8 @@ add_filter( 'pre_get_document_title', function( $title ) {
    ============================================================ */
 function petzenai_enqueue() {
     $v = '2.1';
+    // Cache-bust each asset by file modification time so CSS/JS edits reach browsers and the CDN.
+    $pz_ver = function ( $rel ) use ( $v ) { $f = get_template_directory() . '/' . $rel; return file_exists( $f ) ? $v . '.' . filemtime( $f ) : $v; };
     // Google Fonts loaded non-blocking (avoid render-blocking penalty)
     add_action('wp_head', function(){
         echo '<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>' . "\n";
@@ -71,10 +73,10 @@ function petzenai_enqueue() {
         echo '<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@700;800;900&display=swap" onload="this.onload=null;this.rel=\'stylesheet\'">' . "\n";
         echo '<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@700;800;900&display=swap"></noscript>' . "\n";
     }, 2);
-    wp_enqueue_style( 'petzenai-style',  get_stylesheet_uri(), [], $v );
-    wp_enqueue_style( 'petzenai-tools',  get_template_directory_uri() . '/assets/css/tools.css', [], $v );
-    wp_enqueue_script( 'petzenai-tools', get_template_directory_uri() . '/assets/js/tools.js',  [], $v, true );
-    wp_enqueue_script( 'petzenai-main',  get_template_directory_uri() . '/assets/js/main.js',   ['petzenai-tools'], $v, true );
+    wp_enqueue_style( 'petzenai-style',  get_stylesheet_uri(), [], $pz_ver('style.css') );
+    wp_enqueue_style( 'petzenai-tools',  get_template_directory_uri() . '/assets/css/tools.css', [], $pz_ver('assets/css/tools.css') );
+    wp_enqueue_script( 'petzenai-tools', get_template_directory_uri() . '/assets/js/tools.js',  [], $pz_ver('assets/js/tools.js'), true );
+    wp_enqueue_script( 'petzenai-main',  get_template_directory_uri() . '/assets/js/main.js',   ['petzenai-tools'], $pz_ver('assets/js/main.js'), true );
 
     // Pass dynamic color to JS
     wp_localize_script( 'petzenai-main', 'petzenaiVars', [
