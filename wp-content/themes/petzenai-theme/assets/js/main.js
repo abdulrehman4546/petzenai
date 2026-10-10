@@ -43,6 +43,22 @@
         document.body.style.overflow = '';
       }
     });
+    menu.querySelectorAll('.nav-sub-toggle').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var li = btn.closest('.nav-item-has-sub');
+        var isOpen = li.classList.toggle('open');
+        btn.setAttribute('aria-expanded', isOpen);
+      });
+    });
+    document.addEventListener('click', function(e) {
+      menu.querySelectorAll('.nav-item-has-sub.open').forEach(function(li) {
+        if (!li.contains(e.target)) {
+          li.classList.remove('open');
+          li.querySelector('.nav-sub-toggle').setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
     menu.querySelectorAll('a').forEach(function(a) {
       a.addEventListener('click', function() {
         menu.classList.remove('open');
