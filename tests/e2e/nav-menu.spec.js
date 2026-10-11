@@ -4,7 +4,7 @@ test.describe('desktop', () => {
   test.use({ viewport: { width: 1280, height: 800 } });
 
   test('Tools dropdown opens on hover and links to categories', async ({ page }) => {
-    await page.goto('');
+    await page.goto('', { waitUntil: 'domcontentloaded' });
     const sub = page.locator('.nav-sub');
     await expect(sub).toBeHidden();
     await page.locator('.nav-item-has-sub > a').hover();
@@ -14,7 +14,7 @@ test.describe('desktop', () => {
   });
 
   test('category link navigates to a working category page', async ({ page }) => {
-    await page.goto('');
+    await page.goto('', { waitUntil: 'domcontentloaded' });
     await page.locator('.nav-item-has-sub > a').hover();
     await page.locator('.nav-sub a', { hasText: 'Dog Health' }).click();
     await expect(page).toHaveURL(/\/tools\/dog-health\/$/);
@@ -22,7 +22,7 @@ test.describe('desktop', () => {
   });
 
   test('top-level items are present', async ({ page }) => {
-    await page.goto('');
+    await page.goto('', { waitUntil: 'domcontentloaded' });
     for (const name of ['Home', 'Tools', 'Blog', 'About Us', 'Contact Us']) {
       await expect(page.locator('#navMenu > li > a', { hasText: name })).toBeAttached();
     }
@@ -33,7 +33,7 @@ test.describe('mobile', () => {
   test.use({ viewport: { width: 390, height: 800 } });
 
   test('hamburger opens menu and caret expands Tools categories', async ({ page }) => {
-    await page.goto('');
+    await page.goto('', { waitUntil: 'domcontentloaded' });
     await page.locator('#navToggle').click();
     await expect(page.locator('#navMenu')).toHaveClass(/open/);
     await expect(page.locator('.nav-sub')).toBeHidden();

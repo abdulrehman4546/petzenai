@@ -12,7 +12,7 @@ async function submit(page) {
 }
 
 test.beforeEach(async ({ page }) => {
-  await page.goto(PATH);
+  await page.goto(PATH, { waitUntil: 'domcontentloaded' });
 });
 
 test('page renders with H1 and wizard on step 1', async ({ page }) => {
@@ -67,7 +67,7 @@ test('weight in lbs and kg maps to the right shampoo dose', async ({ page }) => 
   await submit(page);
   await expect(page.locator('#pz-calc-result')).toContainText('2–4 tbsp');
 
-  await page.goto(PATH);
+  await page.goto(PATH, { waitUntil: 'domcontentloaded' });
   await next(page, 2);
   await page.locator('.pz-unit-btn', { hasText: 'kg' }).click();
   await page.locator('#pz_weight').fill('30'); // ≈ 66 lbs

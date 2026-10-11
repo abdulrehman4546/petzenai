@@ -15,7 +15,7 @@ for (const slug of TOOLS) {
       const errors = [];
       page.on('pageerror', (e) => errors.push(e.message));
 
-      const res = await page.goto(`tools/${slug}/`);
+      const res = await page.goto(`tools/${slug}/`, { waitUntil: 'domcontentloaded' });
       expect(res.status()).toBe(200);
       await expect(page.locator('h1')).toHaveCount(1);
       await expect(page.locator('#pz-tool-interactive, #pz-int-tool').first()).toBeVisible();
@@ -35,7 +35,7 @@ test('unknown tool slug returns 404', async ({ request }) => {
 });
 
 test('tools listing page loads and links to tool categories', async ({ page }) => {
-  const res = await page.goto('tools/');
+  const res = await page.goto('tools/', { waitUntil: 'domcontentloaded' });
   expect(res.status()).toBe(200);
   await expect(page.locator('a[href*="/tools/dog-grooming/"]').first()).toBeAttached();
 });

@@ -3,10 +3,15 @@
   'use strict';
 
   /* ---- Preloader ---- */
-  window.addEventListener('load', function () {
+  // Hide as soon as the DOM is ready (this script is in the footer) instead of waiting for every
+  // image/font to finish, so a slow third-party asset can't keep the overlay over the page.
+  (function () {
     var pre = document.getElementById('preloader');
-    if (pre) setTimeout(function () { pre.classList.add('hide'); }, 500);
-  });
+    if (!pre) return;
+    var hide = function () { pre.classList.add('hide'); };
+    setTimeout(hide, 500);
+    window.addEventListener('load', hide);
+  })();
 
   /* ---- Navbar scroll ---- */
   var navbar = document.getElementById('navbar');
