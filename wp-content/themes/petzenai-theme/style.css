@@ -1427,3 +1427,19 @@ ul { list-style: none; }
   background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); transition: all .2s ease; }
 .footer-cats a em { font-style: normal; opacity: .55; font-size: 11px; margin-left: 4px; }
 .footer-cats a:hover { color: #fff; background: linear-gradient(120deg, #FF6B1A, #FF3D81); border-color: transparent; transform: translateY(-2px); }
+
+/* Category hub: intro + related categories */
+.pzc-about { margin: 48px 0 8px; padding: 28px; border-radius: 20px; background: #fff; border: 1px solid #EEE; box-shadow: 0 8px 30px rgba(26,26,46,.06); }
+.pzc-about h2 { margin: 0 0 10px; font-size: 24px; color: #1A1A2E; }
+.pzc-about p { margin: 0 0 16px; color: #444; line-height: 1.7; }
+.pzc-about-picks { list-style: none; margin: 0 0 22px; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; }
+.pzc-about-picks li { padding: 12px 14px; border-radius: 12px; background: linear-gradient(135deg, #FFF4EC, #F3EEFF); display: flex; flex-direction: column; gap: 4px; }
+.pzc-about-type { font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #FF6B1A; }
+.pzc-about-picks a { color: #1A1A2E; font-weight: 700; text-decoration: none; }
+.pzc-about-picks a:hover { color: #FF6B1A; }
+.pzc-about .pzc-about-h2b { font-size: 18px; margin-top: 8px; }
+.pzc-about-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.pzc-about-chips a { padding: 8px 14px; border-radius: 50px; font-size: 13px; font-weight: 600; text-decoration: none; color: #1A1A2E; background: #F5F5F5; border: 1px solid #E8E8E8; transition: all .2s ease; }
+.pzc-about-chips a em { font-style: normal; opacity: .55; font-size: 11px; margin-left: 4px; }
+.pzc-about-chips a:hover { color: #fff; background: linear-gradient(120deg, #FF6B1A, #FF3D81); border-color: transparent; transform: translateY(-2px); }
+.pzc-about-chips .pzc-about-all { background: transparent; border-style: dashed; }

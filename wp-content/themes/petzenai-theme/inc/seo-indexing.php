@@ -84,3 +84,131 @@ add_action( 'init', function () {
         exit;
     }
 }, 1 );
+
+
+/* ============================================================
+   Category hub SEO — each /tools/<category>/ gets its own title, description, canonical and schema
+   (they are virtual routes on the "tools" page, so Rank Math would otherwise reuse the /tools/ values).
+   ============================================================ */
+
+/** Current category hub info, or null when not on a hub. */
+function pz_current_hub() {
+    static $cache = [];
+    $slug = sanitize_key( (string) get_query_var( 'pz_cat' ) );
+    if ( $slug === '' ) return null;
+    if ( isset( $cache[ $slug ] ) ) return $cache[ $slug ];
+    require_once get_template_directory() . '/inc/tool-registry.php';
+    $cats = pz_get_tool_categories();
+    if ( ! isset( $cats[ $slug ] ) ) return $cache[ $slug ] = null;
+    $tools = array_values( array_filter( pz_get_all_tools(), function ( $t ) use ( $slug ) { return $t['cat'] === $slug; } ) );
+    if ( ! $tools ) return $cache[ $slug ] = null;
+    $types = [];
+    foreach ( $tools as $t ) { $types[ $t['type'] ] = ( $types[ $t['type'] ] ?? 0 ) + 1; }
+    return $cache[ $slug ] = [ 'slug' => $slug, 'label' => $cats[ $slug ]['label'], 'tools' => $tools, 'count' => count( $tools ), 'types' => $types, 'url' => home_url( '/tools/' . $slug . '/' ) ];
+}
+
+/** Shorten to $max chars at a word boundary. */
+function pz_trim_chars( $text, $max ) {
+    $text = trim( preg_replace( '/\s+/', ' ', $text ) );
+    if ( mb_strlen( $text ) <= $max ) return $text;
+    $cut = mb_substr( $text, 0, $max - 1 );
+    return rtrim( mb_substr( $cut, 0, mb_strrpos( $cut, ' ' ) ?: $max - 1 ), " ,;:-—" ) . '…';
+}
+
+add_filter( 'rank_math/frontend/title', function ( $title ) {
+    if ( $hub = pz_current_hub() ) {
+        foreach ( [ ' Free Calculators & Guides', ' Free Guides & Tools', ' Free Tools' ] as $tail ) {
+            $t = $hub['label'] . ' Tools: ' . $hub['count'] . $tail . ' | PetZenAI';
+            if ( mb_strlen( $t ) <= 60 ) return $t;
+        }
+        return $hub['label'] . ' Tools | PetZenAI';
+    }
+    if ( is_front_page() ) return 'PetZenAI — Free Pet Care Tools & Calculators';
+    // Tool pages: "<Title> | <Category> | PetZenAI" is often > 60 chars; drop the category segment first.
+    if ( is_page() && mb_strlen( $title ) > 60 ) {
+        $parts = array_map( 'trim', explode( '|', $title ) );
+        if ( count( $parts ) === 3 ) {
+            $short = $parts[0] . ' | ' . $parts[2];
+            if ( mb_strlen( $short ) <= 60 ) return $short;
+            return pz_trim_chars( $parts[0], 60 );
+        }
+        // "<Title> | PetZenAI" still too long -> keep the (more valuable) title alone.
+        if ( count( $parts ) === 2 && mb_strlen( $parts[0] ) >= 30 ) return $parts[0];
+    }
+    return $title;
+}, 20 );
+
+add_filter( 'rank_math/frontend/description', function ( $desc ) {
+    if ( $hub = pz_current_hub() ) {
+        $sing = [ 'calculator', 'guide', 'checker', 'tracker' ];
+        $bits = [];
+        foreach ( $hub['types'] as $ty => $n ) { $bits[] = $n . ' ' . $ty . ( $n === 1 ? '' : 's' ); }
+        $text = 'Browse ' . $hub['count'] . ' free ' . strtolower( $hub['label'] ) . ' tools: ' . implode( ', ', $bits ) . '. Instant results in your browser, no sign-up needed.';
+        return pz_trim_chars( $text, 158 );
+    }
+    // Tool pages: replace the stored boilerplate ("Comprehensive Dog guide: … vet-reviewed advice …") with a
+    // specific, claim-free description; keep hand-written ones but cap them at SERP length.
+    if ( is_page() && ( $post = get_queried_object() ) && ! empty( $post->post_name ) ) {
+        if ( ! function_exists( 'pz_get_tool_data' ) ) require_once get_template_directory() . '/inc/tool-renderer.php';
+        $tool = function_exists( 'pz_get_tool_data' ) ? pz_get_tool_data( $post->post_name ) : null;
+        if ( $tool ) {
+            $boiler = ( stripos( $desc, 'vet-reviewed' ) !== false || stripos( $desc, 'vet-backed' ) !== false || stripos( $desc, 'vet-informed' ) !== false || stripos( $desc, 'Comprehensive ' ) === 0 || $desc === '' );
+            return pz_trim_chars( $boiler ? pz_tool_description( $tool ) : $desc, 158 );
+        }
+    }
+    if ( is_front_page() && mb_strlen( $desc ) < 110 ) {
+        return 'Free pet care calculators, trackers and guides for dogs, cats, birds, rabbits, fish and more — 300 tools in one place, instant results, no sign-up.';
+    }
+    return $desc;
+}, 20 );
+
+add_filter( 'rank_math/frontend/canonical', function ( $canonical ) {
+    $hub = pz_current_hub();
+    return $hub ? $hub['url'] : $canonical;
+}, 20 );
+
+/** CollectionPage + ItemList + BreadcrumbList for hubs. */
+add_action( 'wp_head', function () {
+    $hub = pz_current_hub();
+    if ( ! $hub ) return;
+    $items = [];
+    foreach ( $hub['tools'] as $i => $t ) {
+        $items[] = [ '@type' => 'ListItem', 'position' => $i + 1, 'url' => home_url( '/tools/' . $t['slug'] . '/' ), 'name' => $t['title'] ];
+    }
+    $graph = [
+        '@context' => 'https://schema.org',
+        '@graph'   => [
+            [
+                '@type' => 'CollectionPage', '@id' => $hub['url'] . '#collection', 'url' => $hub['url'],
+                'name' => $hub['label'] . ' Tools', 'isPartOf' => [ '@id' => home_url( '/#website' ) ],
+                'mainEntity' => [ '@type' => 'ItemList', 'numberOfItems' => $hub['count'], 'itemListElement' => $items ],
+            ],
+            [
+                '@type' => 'BreadcrumbList', '@id' => $hub['url'] . '#breadcrumb',
+                'itemListElement' => [
+                    [ '@type' => 'ListItem', 'position' => 1, 'name' => 'Home', 'item' => home_url( '/' ) ],
+                    [ '@type' => 'ListItem', 'position' => 2, 'name' => 'Tools', 'item' => home_url( '/tools/' ) ],
+                    [ '@type' => 'ListItem', 'position' => 3, 'name' => $hub['label'], 'item' => $hub['url'] ],
+                ],
+            ],
+        ],
+    ];
+    echo '<script type="application/ld+json">' . wp_json_encode( $graph, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
+}, 30 );
+
+
+/** Specific, claim-free meta description for a tool (by type). */
+function pz_tool_description( $tool ) {
+    $title  = trim( preg_replace( '/\s*[:|—-]\s*(Complete|Step[- ]by[- ]Step)?.*$/u', '', $tool['title'] ) ) ?: $tool['title'];
+    $animal = ( $tool['animal'] ?? 'all' ) === 'all' ? 'pet' : str_replace( '-', ' ', $tool['animal'] );
+    switch ( $tool['type'] ?? 'guide' ) {
+        case 'calculator':
+            return $tool['title'] . ' — enter your ' . $animal . '’s details for an instant, personalised result. Free, no sign-up needed.';
+        case 'checker':
+            return $tool['title'] . ' — answer a few questions to see what the signs may mean and when to call the vet. Free and instant.';
+        case 'tracker':
+            return $tool['title'] . ' — keep a simple record, spot changes early and bring clear notes to your vet. Free, no sign-up.';
+        default:
+            return $tool['title'] . ' — practical steps, common mistakes and warning signs for ' . $animal . ' owners. Free to read.';
+    }
+}

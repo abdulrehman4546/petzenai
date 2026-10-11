@@ -22,7 +22,7 @@ $tools_in_cat = $show_all
 $page_title = $show_all ? 'All 300 Pet Care Tools' : $cat_info['label'] . ' Tools';
 $page_desc  = $show_all
     ? 'Browse all 300 free, vet-reviewed pet care tools — calculators, guides, checkers, and trackers for dogs, cats, birds, rabbits, fish, reptiles, and more.'
-    : 'Free vet-reviewed ' . strtolower($cat_info['label']) . ' tools — calculators, guides, checkers, and trackers. 100% free, no sign-up needed.';
+    : 'Free ' . strtolower($cat_info['label']) . ' tools — calculators, guides, checkers, and trackers. 100% free, no sign-up needed.';
 
 $type_icons  = ['calculator'=>'🔢','guide'=>'📖','checker'=>'✅','tracker'=>'📊'];
 $type_labels = ['calculator'=>'Calculator','guide'=>'Guide','checker'=>'Checker','tracker'=>'Tracker'];
@@ -130,7 +130,7 @@ get_header();
     <div class="pzc-hero-stats">
       <div class="pzc-stat"><strong>300</strong><span>Free Tools</span></div>
       <div class="pzc-stat"><strong>15</strong><span>Categories</span></div>
-      <div class="pzc-stat"><strong>50K+</strong><span>Users/Month</span></div>
+      <div class="pzc-stat"><strong>0</strong><span>Sign-Up</span></div>
       <div class="pzc-stat"><strong>100%</strong><span>Free</span></div>
     </div>
   <?php else : ?>
@@ -139,7 +139,7 @@ get_header();
     <p><?php echo esc_html($page_desc); ?></p>
     <div class="pzc-hero-stats">
       <div class="pzc-stat"><strong><?php echo count($tools_in_cat); ?></strong><span>Free Tools</span></div>
-      <div class="pzc-stat"><strong>Vet</strong><span>Reviewed</span></div>
+      <div class="pzc-stat"><strong>Instant</strong><span>Results</span></div>
       <div class="pzc-stat"><strong>100%</strong><span>Free</span></div>
       <div class="pzc-stat"><strong>0</strong><span>Sign-Up</span></div>
     </div>
@@ -239,7 +239,7 @@ get_header();
       </div>
       <div class="pzc-card-top">
         <div class="pzc-card-title"><?php echo esc_html($t['title']); ?></div>
-        <p class="pzc-card-desc"><?php echo esc_html("Free vet-reviewed {$animal_lbl} {$type_label}. Science-based, instant results."); ?></p>
+        <p class="pzc-card-desc"><?php echo esc_html("Free {$animal_lbl} {$type_label}. Instant results, no sign-up."); ?></p>
       </div>
       <div class="pzc-card-bottom">
         <span class="pzc-card-kw"><?php echo esc_html($t['kw']); ?></span>
@@ -254,6 +254,38 @@ get_header();
     <span style="font-size:48px;display:block;margin-bottom:12px">🔍</span>
     No tools found. Try a different search or filter.
   </div>
+
+  <?php if ( ! $show_all ) :
+    $by_type = [];
+    foreach ( $tools_in_cat as $t ) { $by_type[ $t['type'] ][] = $t; }
+    $plural = [ 'calculator' => 'calculators', 'guide' => 'guides', 'checker' => 'checkers', 'tracker' => 'trackers' ];
+    $parts  = [];
+    foreach ( $by_type as $ty => $list ) { $parts[] = count( $list ) . ' ' . ( $plural[ $ty ] ?? $ty . 's' ); }
+    $sibs = [];
+    foreach ( $cats as $k => $c ) {
+        if ( $k === $cat_slug || empty( $cat_counts[ $k ] ) ) continue;
+        if ( $c['animal'] === $cat_info['animal'] || $c['animal'] === 'all' ) $sibs[ $k ] = $c;
+    }
+  ?>
+  <section class="pzc-about" aria-labelledby="pzc-about-h">
+    <h2 id="pzc-about-h">What you’ll find in <?php echo esc_html( $cat_info['label'] ); ?></h2>
+    <p>This collection has <strong><?php echo count( $tools_in_cat ); ?> free tools</strong> — <?php echo esc_html( implode( ', ', array_slice( $parts, 0, -1 ) ) . ( count( $parts ) > 1 ? ' and ' : '' ) . end( $parts ) ); ?> — covering <?php echo esc_html( strtolower( $cat_info['label'] ) ); ?> topics from the basics to the finer details. Every tool runs in your browser and gives an instant result with no account needed.</p>
+    <ul class="pzc-about-picks">
+      <?php foreach ( $by_type as $ty => $list ) : $pick = $list[0]; ?>
+      <li><span class="pzc-about-type"><?php echo esc_html( ucfirst( $ty ) ); ?></span> <a href="<?php echo esc_url( home_url( '/tools/' . $pick['slug'] . '/' ) ); ?>"><?php echo esc_html( $pick['title'] ); ?></a></li>
+      <?php endforeach; ?>
+    </ul>
+    <?php if ( $sibs ) : ?>
+    <h2 class="pzc-about-h2b">Explore related categories</h2>
+    <div class="pzc-about-chips">
+      <?php foreach ( $sibs as $k => $c ) : ?>
+      <a href="<?php echo esc_url( home_url( '/tools/' . $k . '/' ) ); ?>"><?php echo esc_html( $c['icon'] . ' ' . $c['label'] ); ?> <em><?php echo (int) $cat_counts[ $k ]; ?></em></a>
+      <?php endforeach; ?>
+      <a href="<?php echo esc_url( home_url( '/tools/' ) ); ?>" class="pzc-about-all">All tools →</a>
+    </div>
+    <?php endif; ?>
+  </section>
+  <?php endif; ?>
 
 </div>
 
