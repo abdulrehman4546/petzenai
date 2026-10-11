@@ -199,6 +199,11 @@ add_action( 'wp_head', function () {
 
 /** Specific, claim-free meta description for a tool (by type). */
 function pz_tool_description( $tool ) {
+    // Hand-written, keyword-targeted descriptions for pages that have been individually polished.
+    static $custom = [
+        'dog-bathing-frequency-calculator' => 'How often should you bathe your dog? Get a personalized schedule by coat type, breed, activity and season — plus shampoo dosage and a free calendar reminder.',
+    ];
+    if ( isset( $custom[ $tool['slug'] ] ) ) return $custom[ $tool['slug'] ];
     $title  = trim( preg_replace( '/\s*[:|—-]\s*(Complete|Step[- ]by[- ]Step)?.*$/u', '', $tool['title'] ) ) ?: $tool['title'];
     $animal = ( $tool['animal'] ?? 'all' ) === 'all' ? 'pet' : str_replace( '-', ' ', $tool['animal'] );
     switch ( $tool['type'] ?? 'guide' ) {
