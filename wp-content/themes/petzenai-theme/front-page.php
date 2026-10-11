@@ -54,20 +54,28 @@ $why_img  = pz_url( 'petzenai_why_image'  ) ?: 'https://images.unsplash.com/phot
         </a>
       </div>
 
+      <?php
+      // Verifiable site facts, computed from the tool registry (no hand-typed audience claims).
+      require_once get_template_directory() . '/inc/tool-registry.php';
+      $pz_all_tools   = pz_get_all_tools();
+      $pz_stat_tools  = count( $pz_all_tools );
+      $pz_stat_cats   = count( array_unique( array_column( $pz_all_tools, 'cat' ) ) );
+      $pz_stat_pets   = count( array_diff( array_unique( array_column( $pz_all_tools, 'animal' ) ), [ 'all', 'small' ] ) );
+      ?>
       <div class="hero-stats">
         <div class="hero-stat">
-          <span class="hero-stat-num" data-count="<?php echo esc_attr(get_theme_mod('petzenai_hero_stat1_num','50000')); ?>">0</span>
-          <span class="hero-stat-label"><?php echo pz('petzenai_hero_stat1_label','Pet Owners'); ?></span>
+          <span class="hero-stat-num" data-count="<?php echo (int) $pz_stat_tools; ?>">0</span>
+          <span class="hero-stat-label">Free Tools</span>
         </div>
         <div class="hero-stat-divider" aria-hidden="true"></div>
         <div class="hero-stat">
-          <span class="hero-stat-num" data-count="<?php echo esc_attr(get_theme_mod('petzenai_hero_stat2_num','300')); ?>">0</span>
-          <span class="hero-stat-label"><?php echo pz('petzenai_hero_stat2_label','Tools'); ?></span>
+          <span class="hero-stat-num" data-count="<?php echo (int) $pz_stat_cats; ?>">0</span>
+          <span class="hero-stat-label">Categories</span>
         </div>
         <div class="hero-stat-divider" aria-hidden="true"></div>
         <div class="hero-stat">
-          <span class="hero-stat-num" data-count="<?php echo esc_attr(get_theme_mod('petzenai_hero_stat3_num','10000')); ?>">0</span>
-          <span class="hero-stat-label"><?php echo pz('petzenai_hero_stat3_label','Pet Names'); ?></span>
+          <span class="hero-stat-num" data-count="<?php echo (int) $pz_stat_pets; ?>">0</span>
+          <span class="hero-stat-label">Pet Types</span>
         </div>
       </div>
     </div><!-- /hero-text -->
@@ -138,7 +146,7 @@ $why_img  = pz_url( 'petzenai_why_image'  ) ?: 'https://images.unsplash.com/phot
         ['🍽️','Pet Food Portion Calculator','Calculate the perfect daily food portions for dogs, cats, birds, rabbits and more based on weight & activity.','Try Calculator →','/tools/pet-food-portion-calculator/','food'],
         ['🎂','Pet Age Calculator','Convert your pet\'s age to human years with our breed-specific, science-backed formula.','Check Age →','/tools/pet-age-calculator/','age'],
         ['💉','Vaccination Schedule Tracker','Never miss a vaccine. Get a full immunization schedule tailored to your pet\'s age and type.','Track Vaccines →','/tools/pet-vaccination-schedule/','vaccine'],
-        ['✨','AI Pet Name Generator','10,000+ unique AI-generated pet names filtered by gender, breed, and personality traits.','Get Names →','/tools/ai-pet-name-generator/','names'],
+        ['✨','AI Pet Name Generator','AI-generated pet names filtered by gender, breed, and personality traits.','Get Names →','/tools/ai-pet-name-generator/','names'],
         ['🏃','Pet Exercise Calculator','Discover how much daily exercise your pet needs based on breed, age, weight, and health status.','Plan Exercise →','/tools/pet-exercise-calculator/','exercise'],
         ['❓','What Pet Should I Get?','Answer 10 quick questions and our AI recommends your perfect pet match.','Take Quiz →','/tools/what-pet-should-i-get/','quiz'],
       ];

@@ -47,6 +47,19 @@
         </ul>
       </div>
     </div>
+    <?php
+    require_once get_template_directory() . '/inc/tool-registry.php';
+    $pz_f_counts = [];
+    foreach ( pz_get_all_tools() as $pz_ft ) { $pz_f_counts[ $pz_ft['cat'] ] = ( $pz_f_counts[ $pz_ft['cat'] ] ?? 0 ) + 1; }
+    ?>
+    <nav class="footer-cats" aria-label="Browse tools by category">
+      <h4 class="footer-col-title">Browse Tools by Category</h4>
+      <ul>
+        <?php foreach ( pz_get_tool_categories() as $pz_fslug => $pz_fc ) : if ( empty( $pz_f_counts[ $pz_fslug ] ) ) continue; ?>
+        <li><a href="<?php echo esc_url( home_url( '/tools/' . $pz_fslug . '/' ) ); ?>"><?php echo esc_html( $pz_fc['icon'] . ' ' . $pz_fc['label'] ); ?> <em><?php echo (int) $pz_f_counts[ $pz_fslug ]; ?></em></a></li>
+        <?php endforeach; ?>
+      </ul>
+    </nav>
     <div class="footer-bottom">
       <p>© <?php echo date('Y'); ?> PetZenAI. All rights reserved.</p>
       <div class="footer-bottom-links">

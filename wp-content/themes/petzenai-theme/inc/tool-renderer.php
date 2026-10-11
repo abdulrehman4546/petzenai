@@ -81,16 +81,88 @@ function pz_parse_override_why_cards( $text ) {
 /* ─────────────────────────────────────────────
    Related tools (same category, exclude self)
 ───────────────────────────────────────────── */
-function pz_get_related_tools( $slug, $cat, $limit = 4 ) {
-    $related = [];
-    foreach ( pz_get_all_tools() as $t ) {
-        if ( $t['slug'] === $slug ) continue;
-        if ( $t['cat'] === $cat ) {
-            $related[] = $t;
-            if ( count($related) >= $limit ) break;
-        }
+/**
+ * Tokenise a tool's title + keyword into meaningful lowercase words (for topical matching).
+ */
+function pz_tool_tokens( $tool ) {
+    static $stop = [ 'the','a','an','and','or','for','of','to','in','your','my','how','what','is','guide','calculator','checker',
+                     'tracker','complete','best','by','with','vs','pet','dog','cat','often','should','i','do','does','can','schedule' ];
+    $text  = strtolower( ( $tool['title'] ?? '' ) . ' ' . ( $tool['kw'] ?? '' ) );
+    $words = preg_split( '/[^a-z0-9]+/', $text, -1, PREG_SPLIT_NO_EMPTY );
+    $out   = [];
+    foreach ( $words as $w ) {
+        if ( strlen( $w ) < 3 || in_array( $w, $stop, true ) ) continue;
+        $out[ rtrim( $w, 's' ) ] = true; // crude stemming: "nails" == "nail"
     }
-    return $related;
+    return array_keys( $out );
+}
+
+/**
+ * Smart related tools. Scores every other tool by: same category, same animal, shared topic words,
+ * registry-neighbour "ring" links (so every tool gets inbound links), and a stable per-pair hash
+ * tie-break so links spread evenly instead of always pointing at the first tools in a category.
+ *
+ * @param string $slug  Current tool slug.
+ * @param string $cat   Current tool category.
+ * @param int    $limit How many to return.
+ * @param bool   $cross true = only tools from OTHER categories (cross-topic discovery).
+ */
+function pz_get_related_tools( $slug, $cat, $limit = 4, $cross = false ) {
+    static $cache = [];
+    $key = $slug . '|' . $limit . '|' . (int) $cross;
+    if ( isset( $cache[ $key ] ) ) return $cache[ $key ];
+
+    $all  = pz_get_all_tools();
+    $self = null; $self_idx = 0; $cat_pos = []; $n = 0;
+    foreach ( $all as $i => $t ) {
+        if ( $t['cat'] === $cat ) { $cat_pos[ $t['slug'] ] = $n++; }
+        if ( $t['slug'] === $slug ) { $self = $t; $self_idx = $i; }
+    }
+    if ( ! $self ) return [];
+    $self_tokens = pz_tool_tokens( $self );
+    $self_pos    = $cat_pos[ $slug ] ?? 0;
+
+    $scored = [];
+    foreach ( $all as $t ) {
+        if ( $t['slug'] === $slug ) continue;
+        $same_cat = ( $t['cat'] === $cat );
+        if ( $cross === $same_cat ) continue; // cross=true wants other cats; cross=false wants same cat only first
+
+        $score = 0;
+        if ( $t['animal'] === $self['animal'] && $self['animal'] !== 'all' ) $score += 15;
+        $score += 8 * count( array_intersect( $self_tokens, pz_tool_tokens( $t ) ) );
+        if ( ( $t['type'] ?? '' ) !== ( $self['type'] ?? '' ) ) $score += 3; // mix calculators with guides
+        if ( $same_cat && isset( $cat_pos[ $t['slug'] ] ) ) {
+            $dist = ( $cat_pos[ $t['slug'] ] - $self_pos + $n ) % $n;   // forward distance in the category ring
+            if ( $dist >= 1 && $dist <= 2 ) $score += 12;               // next two tools always linked
+        }
+        $score += ( crc32( $slug . '>' . $t['slug'] ) % 100 ) / 20;     // stable 0–5 tie-break
+        $scored[] = [ $score, $t ];
+    }
+    usort( $scored, function ( $a, $b ) { return $b[0] <=> $a[0]; } );
+
+    $out = array_map( function ( $row ) { return $row[1]; }, array_slice( $scored, 0, $limit ) );
+
+    // Same-category pool too small? top up from other categories (and vice-versa never needed).
+    if ( ! $cross && count( $out ) < $limit ) {
+        foreach ( pz_get_related_tools( $slug, $cat, $limit - count( $out ), true ) as $t ) { $out[] = $t; }
+    }
+    return $cache[ $key ] = $out;
+}
+
+/** Categories sharing the current tool's animal (for "explore more" hub links), excluding its own. */
+function pz_get_sibling_categories( $cat ) {
+    $cats = pz_get_tool_categories();
+    if ( ! isset( $cats[ $cat ] ) ) return [];
+    $animal = $cats[ $cat ]['animal'];
+    $counts = [];
+    foreach ( pz_get_all_tools() as $t ) { $counts[ $t['cat'] ] = ( $counts[ $t['cat'] ] ?? 0 ) + 1; }
+    $out = [];
+    foreach ( $cats as $slug => $c ) {
+        if ( $slug === $cat || empty( $counts[ $slug ] ) ) continue;
+        if ( $c['animal'] === $animal || $c['animal'] === 'all' ) { $out[ $slug ] = $c + [ 'count' => $counts[ $slug ] ]; }
+    }
+    return $out;
 }
 
 /* ─────────────────────────────────────────────
@@ -146,7 +218,13 @@ function pz_render_tool_page( $tool ) {
     </nav>
 
     <!-- ══ HERO — tool card embedded, product-first layout ══ -->
-    <section class="pz-tool-hero" aria-label="Tool Header">
+    <?php
+    $pz_next = [];
+    foreach ( array_merge( pz_get_related_tools($slug, $tool['cat'], 2), pz_get_related_tools($slug, $tool['cat'], 1, true) ) as $nt ) {
+        $pz_next[] = [ 'title' => $nt['title'], 'url' => home_url('/tools/'.$nt['slug'].'/'), 'icon' => $nt['icon'] ?? '🐾' ];
+    }
+    ?>
+    <section class="pz-tool-hero" aria-label="Tool Header" data-pz-slug="<?php echo esc_attr($slug); ?>" data-pz-icon="<?php echo esc_attr($icon); ?>" data-pz-next="<?php echo esc_attr( wp_json_encode( $pz_next, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) ); ?>">
       <div class="pz-tool-hero-bg" aria-hidden="true"></div>
       <?php if (!empty($tool['calc']) && function_exists('pz_hero_bg_extra_' . $tool['calc'])): call_user_func('pz_hero_bg_extra_' . $tool['calc']); endif; ?>
       <div class="container pz-tool-hero-grid">
@@ -333,8 +411,14 @@ function pz_render_tool_page( $tool ) {
             <?php echo pz_sidebar_quick_facts($tool); ?>
           </div>
 
+          <!-- Recently viewed (filled client-side from localStorage) -->
+          <div class="pz-sidebar-widget pz-recent-widget" id="pz-recent" hidden style="padding:14px 16px">
+            <h3 class="pz-sidebar-title" style="margin-bottom:10px">🕘 Recently Viewed</h3>
+            <div id="pz-recent-list"></div>
+          </div>
+
           <!-- Related Tools -->
-          <?php $related_tools = pz_get_related_tools($slug, $tool['cat']); ?>
+          <?php $related_tools = pz_get_related_tools($slug, $tool['cat'], 5); ?>
           <div class="pz-sidebar-widget" style="padding:14px 16px">
             <h3 class="pz-sidebar-title" style="margin-bottom:10px">🔗 Related Tools</h3>
             <?php foreach( $related_tools as $rt ): ?>
@@ -391,20 +475,51 @@ function pz_render_tool_page( $tool ) {
           <h2 class="section-title" style="font-size:28px">More <span><?php echo esc_html($cat['label']); ?> Tools</span></h2>
         </div>
         <div class="tools-grid">
-          <?php foreach( pz_get_related_tools($slug, $tool['cat'], 3) as $rt ): ?>
+          <?php foreach( pz_get_related_tools($slug, $tool['cat'], 6) as $rt ): ?>
           <article class="tool-card" style="padding:28px">
             <div class="tool-card-glow" aria-hidden="true"></div>
             <div class="tool-icon-wrap" style="width:60px;height:60px;font-size:28px;margin-bottom:16px">
               <span class="tool-icon"><?php echo $rt['icon'] ?? '🐾'; ?></span>
             </div>
-            <h3 class="tool-title" style="font-size:16px;margin-bottom:8px"><?php echo esc_html($rt['title']); ?></h3>
-            <a href="<?php echo home_url('/tools/'.$rt['slug'].'/'); ?>" class="tool-link" style="font-size:13px">
+            <h3 class="tool-title" style="font-size:16px;margin-bottom:8px"><a href="<?php echo esc_url(home_url('/tools/'.$rt['slug'].'/')); ?>" style="color:inherit;text-decoration:none"><?php echo esc_html($rt['title']); ?></a></h3>
+            <a href="<?php echo esc_url(home_url('/tools/'.$rt['slug'].'/')); ?>" class="tool-link" style="font-size:13px">
               View Guide <span class="tool-link-arrow">→</span>
             </a>
             <div class="tool-card-paw" aria-hidden="true">🐾</div>
           </article>
           <?php endforeach; ?>
         </div>
+
+        <?php
+        $cross_tools = pz_get_related_tools($slug, $tool['cat'], 3, true);
+        $sibling_cats = pz_get_sibling_categories($tool['cat']);
+        if ( $cross_tools || $sibling_cats ) : ?>
+        <div class="pz-explore-more">
+          <h2 class="pz-explore-title">Keep exploring <span>your pet-care journey</span></h2>
+          <?php if ( $cross_tools ) : ?>
+          <ul class="pz-explore-list">
+            <?php foreach ( $cross_tools as $ct ) :
+                $ct_cat = pz_get_tool_categories()[ $ct['cat'] ]['label'] ?? 'Pet Care'; ?>
+            <li>
+              <a href="<?php echo esc_url(home_url('/tools/'.$ct['slug'].'/')); ?>">
+                <span class="pz-explore-icon" aria-hidden="true"><?php echo esc_html($ct['icon'] ?? '🐾'); ?></span>
+                <span class="pz-explore-text"><strong><?php echo esc_html($ct['title']); ?></strong><small><?php echo esc_html($ct_cat); ?></small></span>
+                <span class="pz-explore-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <?php endforeach; ?>
+          </ul>
+          <?php endif; ?>
+          <?php if ( $sibling_cats ) : ?>
+          <div class="pz-hub-chips" aria-label="Browse more categories">
+            <?php foreach ( $sibling_cats as $sc_slug => $sc ) : ?>
+            <a href="<?php echo esc_url(home_url('/tools/'.$sc_slug.'/')); ?>"><?php echo esc_html($sc['icon'].' '.$sc['label']); ?> <em><?php echo (int) $sc['count']; ?></em></a>
+            <?php endforeach; ?>
+            <a href="<?php echo esc_url(home_url('/tools/')); ?>" class="pz-hub-all">All tools →</a>
+          </div>
+          <?php endif; ?>
+        </div>
+        <?php endif; ?>
       </div>
     </section>
 

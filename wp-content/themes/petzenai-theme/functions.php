@@ -76,6 +76,7 @@ function petzenai_enqueue() {
     wp_enqueue_style( 'petzenai-style',  get_stylesheet_uri(), [], $pz_ver('style.css') );
     wp_enqueue_style( 'petzenai-tools',  get_template_directory_uri() . '/assets/css/tools.css', [], $pz_ver('assets/css/tools.css') );
     wp_enqueue_script( 'petzenai-tools', get_template_directory_uri() . '/assets/js/tools.js',  [], $pz_ver('assets/js/tools.js'), true );
+    wp_enqueue_script( 'petzenai-tool-features', get_template_directory_uri() . '/assets/js/tool-features.js', [], $pz_ver('assets/js/tool-features.js'), true );
     wp_enqueue_script( 'petzenai-main',  get_template_directory_uri() . '/assets/js/main.js',   ['petzenai-tools'], $pz_ver('assets/js/main.js'), true );
 
     // Pass dynamic color to JS
@@ -1310,3 +1311,5 @@ add_filter( 'rest_endpoints', function( $endpoints ) {
     }
     return $endpoints;
 } );
+
+require_once get_template_directory() . '/inc/seo-indexing.php';

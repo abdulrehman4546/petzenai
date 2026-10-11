@@ -1419,3 +1419,11 @@ ul { list-style: none; }
 @media (prefers-reduced-motion: reduce) {
   .nav-sub li { opacity: 1 !important; transform: none !important; animation: none !important; }
 }
+
+/* Footer: category hub links */
+.footer-cats { margin: 36px 0 8px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,.1); }
+.footer-cats ul { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 10px; }
+.footer-cats a { display: inline-block; padding: 7px 14px; border-radius: 50px; font-size: 13px; color: rgba(255,255,255,.8);
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); transition: all .2s ease; }
+.footer-cats a em { font-style: normal; opacity: .55; font-size: 11px; margin-left: 4px; }
+.footer-cats a:hover { color: #fff; background: linear-gradient(120deg, #FF6B1A, #FF3D81); border-color: transparent; transform: translateY(-2px); }
