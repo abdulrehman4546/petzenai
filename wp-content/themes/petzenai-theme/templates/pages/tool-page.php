@@ -55,7 +55,7 @@ $parent = wp_get_post_parent_id( get_the_ID() );
         ['🍽️','Pet Food Portion Calculator',  'Calculate perfect daily portions.',        '/pet-food-portion-calculator/'],
         ['🎂','Pet Age Calculator',             'Convert pet age to human years.',          '/pet-age-calculator/'],
         ['💉','Vaccination Schedule Tracker',  'Never miss a vaccine again.',              '/pet-vaccination-schedule/'],
-        ['✨','AI Pet Name Generator',          '10,000+ unique AI-generated names.',       '/ai-pet-name-generator/'],
+        ['✨','AI Pet Name Generator',          'AI-assisted name ideas.',       '/ai-pet-name-generator/'],
         ['🏃','Pet Exercise Calculator',        'Build the perfect exercise plan.',         '/pet-exercise-calculator/'],
         ['❓','What Pet Should I Get?',         'Find your ideal pet in 10 questions.',     '/what-pet-should-i-get/'],
       ];

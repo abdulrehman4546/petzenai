@@ -508,7 +508,7 @@ function pzCalcTool() {
     +'<div class="pz-result-cell"><div class="pz-result-cell-label">Per Meal (3x)</div><div class="pz-result-cell-val">'+perMeal3+' kcal</div></div>'
     +'<div class="pz-result-cell"><div class="pz-result-cell-label">Base RER</div><div class="pz-result-cell-val">'+Math.round(rer)+' kcal</div></div>'
     +'</div>'
-    +'<div class="pz-result-tips"><h4>📋 Vet-Reviewed Recommendations</h4><ul>'
+    +'<div class="pz-result-tips"><h4>📋 Recommendations</h4><ul>'
     +'<li>Divide daily calories into 2–3 meals for best digestion</li>'
     +'<li>Adjust by ±10% based on weight change over 4 weeks</li>'
     +'<li>Treats should not exceed 10% of daily calories</li>'

@@ -14,8 +14,8 @@ get_header();
   <section class="ht-hero" style="background:linear-gradient(135deg,#0D0D1A,#1a2a0a)">
     <span class="ht-hero-icon">🍽️</span>
     <h1>Pet Food Portion <span>Calculator</span></h1>
-    <p>Enter your pet's details for personalized daily feeding amounts — vet-reviewed, instant results.</p>
-    <div class="ht-badges"><span class="ht-badge green">✅ Vet Reviewed</span><span class="ht-badge blue">🔬 Science-Based</span><span class="ht-badge orange">⚡ Instant</span></div>
+    <p>Enter your pet's details for personalized daily feeding amounts — instant results.</p>
+    <div class="ht-badges"><span class="ht-badge green">✅ No Sign-Up</span><span class="ht-badge blue">🔬 Science-Based</span><span class="ht-badge orange">⚡ Instant</span></div>
   </section>
 
   <div class="ht-main">
@@ -79,7 +79,7 @@ get_header();
       </ul></div>
       <div class="ht-info-card"><h3>⚡ How It Works</h3><ol>
         <li>Enter your pet's species, weight & stage</li><li>Select activity level & health goal</li>
-        <li>Get instant vet-reviewed calorie targets</li><li>Download results as PDF</li>
+        <li>Get instant calorie targets</li><li>Download results as PDF</li>
       </ol></div>
       <div class="ht-related"><h3>🔗 Related Tools</h3>
         <a href="<?php echo home_url('/tools/pet-age-calculator/'); ?>" class="ht-rel-link">🎂 Pet Age Calculator →</a>

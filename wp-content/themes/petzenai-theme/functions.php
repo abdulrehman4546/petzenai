@@ -219,7 +219,7 @@ function petzenai_seo_meta() {
 
     $site_name   = get_bloginfo('name');
     $site_url    = home_url('/');
-    $desc        = get_theme_mod('petzenai_seo_description','Free vet-formulated pet care tools — food calculators, vaccine trackers, age calculators & more. Science-based diet planning for healthier pets.');
+    $desc        = get_theme_mod('petzenai_seo_description','Free pet care tools — food calculators, vaccine trackers, age calculators & more. Science-based diet planning for healthier pets.');
     $keywords    = get_theme_mod('petzenai_seo_keywords','pet food calculator, pet age calculator, dog nutrition, cat diet, pet vaccination schedule, AI pet tools');
     $og_image    = get_theme_mod('petzenai_og_image', 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1200&h=630&q=80&auto=format&fit=crop');
     $logo_url    = get_theme_mod('petzenai_logo_image', $og_image);
@@ -461,7 +461,7 @@ function petzenai_seo_meta() {
                 ['@type'=>'Question','name'=>"Is the {$tool_title} free?",
                  'acceptedAnswer'=>['@type'=>'Answer','text'=>"Yes, the {$tool_title} on PetZenAI is 100% free. No sign-up or registration required. All tools are free forever."]],
                 ['@type'=>'Question','name'=>"How accurate is this {$animal} care tool?",
-                 'acceptedAnswer'=>['@type'=>'Answer','text'=>"Our tools are built on peer-reviewed veterinary research and follow AVMA and AAFCO guidelines. Results are vet-reviewed and science-based. Always confirm with your veterinarian for your specific pet."]],
+                 'acceptedAnswer'=>['@type'=>'Answer','text'=>"Our tools use standard, widely published pet-care formulas and general guidance. They are educational only. Always confirm with your veterinarian for your specific pet."]],
                 ['@type'=>'Question','name'=>"Can I download the results as PDF?",
                  'acceptedAnswer'=>['@type'=>'Answer','text'=>"Yes! Use the '📥 Download PDF' button on any tool page to save a printable PDF of your personalized guide. It's free and instant."]],
                 ['@type'=>'Question','name'=>"Is this tool suitable for all breeds?",

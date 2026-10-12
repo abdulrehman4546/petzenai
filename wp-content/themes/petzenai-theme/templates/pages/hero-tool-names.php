@@ -13,8 +13,8 @@
 <section class="ht-hero" style="background:linear-gradient(135deg,#0D0D1A,#1a1a0a)">
   <span class="ht-hero-icon">✨</span>
   <h1>AI Pet Name <span>Generator</span></h1>
-  <p>10,000+ unique names filtered by species, gender, personality & meaning. Find the perfect name instantly.</p>
-  <div class="ht-badges"><span class="ht-badge green">✅ 10,000+ Names</span><span class="ht-badge blue">🎯 Filtered by Personality</span><span class="ht-badge orange">⚡ Instant</span></div>
+  <p>Name ideas filtered by species, gender, personality & meaning. Find the perfect name instantly.</p>
+  <div class="ht-badges"><span class="ht-badge green">✅ Name Ideas</span><span class="ht-badge blue">🎯 Filtered by Personality</span><span class="ht-badge orange">⚡ Instant</span></div>
 </section>
 <div class="ht-main">
   <div class="ht-tool-wrap">

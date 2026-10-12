@@ -6,7 +6,7 @@
   <span class="ht-hero-icon">🎂</span>
   <h1>Pet Age Calculator <span>Human Years</span></h1>
   <p>Convert your dog or cat's age to human years using the science-backed formula — not the old 7× myth.</p>
-  <div class="ht-badges"><span class="ht-badge green">✅ Vet Reviewed</span><span class="ht-badge blue">🔬 DNA-Based Formula</span><span class="ht-badge orange">⚡ Instant</span></div>
+  <div class="ht-badges"><span class="ht-badge green">✅ No Sign-Up</span><span class="ht-badge blue">🔬 DNA-Based Formula</span><span class="ht-badge orange">⚡ Instant</span></div>
 </section>
 <div class="ht-main">
   <div class="ht-tool-wrap">

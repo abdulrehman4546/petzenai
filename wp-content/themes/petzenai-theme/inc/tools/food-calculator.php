@@ -12,7 +12,7 @@ add_shortcode( 'petzenai_food_calc', function () {
   <div class="pz-tool-header">
     <span class="pz-tool-icon" aria-hidden="true">🍽️</span>
     <h1 class="pz-tool-title">Pet Food Portion Calculator</h1>
-    <p class="pz-tool-desc">Calculate the perfect daily food portions for your pet based on weight, age, and activity level. Science-based recommendations used by vets.</p>
+    <p class="pz-tool-desc">Calculate the perfect daily food portions for your pet based on weight, age, and activity level. Science-based recommendations.</p>
   </div>
 
   <div class="pz-tool-body">

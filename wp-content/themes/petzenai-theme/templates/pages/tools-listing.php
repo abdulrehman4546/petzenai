@@ -74,7 +74,7 @@ get_header();
       <h2 class="cta-title" style="font-size:36px">All Tools Are 100% Free 🐾</h2>
       <p class="cta-desc">No sign-up, no credit card, no limit. Use as many times as you need.</p>
       <div class="cta-trust-badges" style="margin-top:16px">
-        <span>✅ No Sign-Up</span><span>✅ Vet-Approved</span>
+        <span>✅ No Sign-Up</span><span>✅ Free</span>
         <span>✅ Science-Based</span><span>✅ Instant Results</span>
       </div>
     </div>

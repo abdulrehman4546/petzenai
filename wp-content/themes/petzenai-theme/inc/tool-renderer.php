@@ -244,7 +244,7 @@ function pz_render_tool_page( $tool ) {
           <?php elseif (!empty($tool['calc']) && function_exists('pz_hero_quickanswer_' . $tool['calc'])): call_user_func('pz_hero_quickanswer_' . $tool['calc']); endif; ?>
           <div class="pz-tool-hero-trust">
             <?php if (!empty($tool['calc']) && function_exists('pz_hero_trust_' . $tool['calc'])): call_user_func('pz_hero_trust_' . $tool['calc']); else: ?>
-            <span>✅ Vet-Reviewed</span>
+            <span>✅ Free &amp; Instant</span>
             <span>✅ Science-Based</span>
             <span>✅ Free Forever</span>
             <span>✅ No Sign-Up</span>
@@ -339,19 +339,23 @@ function pz_render_tool_page( $tool ) {
             <?php echo pz_section_warning_signs($tool); ?>
           </section>
 
-          <!-- SECTION 8: BREED / SIZE VARIATIONS -->
+          <!-- SECTION 8: BREED / SIZE VARIATIONS — only for tools with their own data (the generic table was identical on every page) -->
+          <?php if ( ! empty( $tool['calc'] ) && function_exists( 'pz_breed_rows_' . $tool['calc'] ) ) : ?>
           <section class="pz-tool-section">
             <h2>🐾 Breed & Size Considerations</h2>
             <?php echo pz_section_breed_variations($tool); ?>
           </section>
+          <?php endif; ?>
 
-          <!-- SECTION 9: PRODUCTS & TOOLS GUIDE -->
+          <!-- SECTION 9: PRODUCTS — only for tools with their own product guidance (the generic block was identical on every page) -->
+          <?php if ( ! empty( $tool['calc'] ) && function_exists( 'pz_products_' . $tool['calc'] ) ) : ?>
           <section class="pz-tool-section">
             <h2>🛒 Recommended Products & Supplies</h2>
-            <?php echo pz_section_products($tool); ?>
+            <?php echo call_user_func( 'pz_products_' . $tool['calc'], $tool ); ?>
           </section>
+          <?php endif; ?>
 
-          <!-- SECTION 10: VET ADVICE -->
+          <!-- SECTION 10: VET DISCLAIMER + FURTHER READING -->
           <section class="pz-tool-section pz-vet-section">
             <h2>🏥 When to Consult Your Vet</h2>
             <?php echo pz_section_vet_advice($tool); ?>
@@ -536,7 +540,7 @@ function pz_tool_intro( $tool ) {
     $type_label = $type_labels[$tool['type']] ?? 'guide';
     $kw = !empty($tool['kw']) ? $tool['kw'] : "{$a} care";
     $suffix = (stripos($kw, $type_label) !== false) ? '' : " {$type_label}";
-    return "Free, vet-reviewed {$kw}{$suffix} — science-based, instant results, no sign-up required. Used by thousands of {$a} owners across the USA.";
+    return "Free {$kw}{$suffix} — instant results, no sign-up required.";
 }
 
 function pz_tool_cta_label( $type ) {
@@ -572,11 +576,11 @@ function pz_render_interactive( $tool ) {
         <span class="pz-int-big-icon"><?php echo $icon; ?></span>
         <div>
           <div class="pz-int-label">Free <?php echo $animal; ?> Calculator</div>
-          <div class="pz-int-sublabel">Vet-reviewed · Instant results · 100% free</div>
+          <div class="pz-int-sublabel">Instant results · No sign-up · 100% free</div>
         </div>
       </div>
       <div class="pz-int-badges">
-        <span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span>
+        <span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span>
         <span class="pz-int-badge pz-int-badge--blue">🔬 Science-Based</span>
       </div>
     </div>
@@ -664,7 +668,7 @@ function pz_render_interactive( $tool ) {
         </div>
       </div>
       <div class="pz-int-badges">
-        <span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span>
+        <span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span>
         <span class="pz-int-badge pz-int-badge--orange">⚡ Instant Results</span>
       </div>
     </div>
@@ -717,7 +721,7 @@ function pz_render_interactive( $tool ) {
         </div>
       </div>
       <div class="pz-int-badges">
-        <span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span>
+        <span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span>
         <span class="pz-int-badge pz-int-badge--purple">🎯 Personalized</span>
       </div>
     </div>
@@ -1099,7 +1103,7 @@ function pz_render_calc_dog_grooming_schedule( $tool ) {
         </div>
       </div>
       <div class="pz-int-badges">
-        <span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span>
+        <span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span>
         <span class="pz-int-badge pz-int-badge--purple">🎯 Personalized</span>
       </div>
     </div>
@@ -1189,7 +1193,7 @@ function pz_render_guide_dog_nail_trimming( $tool ) {
         <span class="pz-int-big-icon"><?php echo $icon; ?></span>
         <div><div class="pz-int-label">Nail Trim Frequency Calculator</div><div class="pz-int-sublabel">Surface-aware schedule · Free · Instant</div></div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🔬 Science-Based</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🔬 Science-Based</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -1259,7 +1263,7 @@ function pz_render_guide_dog_shedding( $tool ) {
         <span class="pz-int-big-icon"><?php echo $icon; ?></span>
         <div><div class="pz-int-label">Shedding & Brushing Estimator</div><div class="pz-int-sublabel">Coat-type matched · Free · Instant</div></div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🔬 Science-Based</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🔬 Science-Based</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -1328,7 +1332,7 @@ function pz_render_guide_dog_ear_cleaning( $tool ) {
         <span class="pz-int-big-icon"><?php echo $icon; ?></span>
         <div><div class="pz-int-label">Ear Cleaning Frequency Calculator</div><div class="pz-int-sublabel">Ear-shape matched · Free · Instant</div></div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🔬 Science-Based</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🔬 Science-Based</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -1398,7 +1402,7 @@ function pz_render_guide_dog_teeth_brushing( $tool ) {
         <span class="pz-int-big-icon"><?php echo $icon; ?></span>
         <div><div class="pz-int-label">Dental Care Routine Builder</div><div class="pz-int-sublabel">Personalized ramp-up plan · Free · Instant</div></div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--purple">🎯 Personalized</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--purple">🎯 Personalized</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -1471,7 +1475,7 @@ function pz_render_guide_puppy_first_grooming( $tool ) {
         <span class="pz-int-big-icon"><?php echo $icon; ?></span>
         <div><div class="pz-int-label">Puppy Grooming Readiness Checker</div><div class="pz-int-sublabel">Age-stage matched · Free · Instant</div></div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--purple">🎯 Age-Matched</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--purple">🎯 Age-Matched</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -1546,7 +1550,7 @@ function pz_render_guide_dog_coat_type( $tool ) {
         <span class="pz-int-big-icon"><?php echo $icon; ?></span>
         <div><div class="pz-int-label">Coat Type Identifier &amp; Care Plan</div><div class="pz-int-sublabel">Breed-matched · Free · Instant</div></div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🔬 Science-Based</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🔬 Science-Based</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -1610,7 +1614,7 @@ function pz_render_guide_dog_eye_cleaning( $tool ) {
         <span class="pz-int-big-icon"><?php echo $icon; ?></span>
         <div><div class="pz-int-label">Eye Discharge Cleaning Frequency Guide</div><div class="pz-int-sublabel">Face-shape matched · Free · Instant</div></div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🔬 Science-Based</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🔬 Science-Based</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -1682,7 +1686,7 @@ function pz_render_guide_dog_paw_care( $tool ) {
         <span class="pz-int-big-icon"><?php echo $icon; ?></span>
         <div><div class="pz-int-label">Paw Care Routine Builder</div><div class="pz-int-sublabel">Season &amp; terrain matched · Free · Instant</div></div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🔬 Science-Based</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🔬 Science-Based</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -1754,7 +1758,7 @@ function pz_render_guide_dog_anal_gland( $tool ) {
         <span class="pz-int-big-icon"><?php echo $icon; ?></span>
         <div><div class="pz-int-label">Anal Gland Expression Frequency Estimator</div><div class="pz-int-sublabel">Vet-safe guidance · Free · Instant</div></div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🔬 Science-Based</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🔬 Science-Based</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -1819,7 +1823,7 @@ function pz_render_guide_dog_haircut_styles( $tool ) {
         <span class="pz-int-big-icon"><?php echo $icon; ?></span>
         <div><div class="pz-int-label">Haircut Style Finder</div><div class="pz-int-sublabel">Coat-safe · Climate matched · Free</div></div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--purple">🎯 Personalized</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--purple">🎯 Personalized</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -1893,7 +1897,7 @@ function pz_render_guide_long_haired_dog_grooming( $tool ) {
         <span class="pz-int-big-icon"><?php echo $icon; ?></span>
         <div><div class="pz-int-label">Long Coat Maintenance Planner</div><div class="pz-int-sublabel">Texture-matched · Free · Instant</div></div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🔬 Science-Based</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🔬 Science-Based</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -1958,7 +1962,7 @@ function pz_render_guide_dog_deshedding( $tool ) {
         <span class="pz-int-big-icon"><?php echo $icon; ?></span>
         <div><div class="pz-int-label">Deshedding Tool & Routine Matcher</div><div class="pz-int-sublabel">Coat-matched · Free · Instant</div></div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🔬 Science-Based</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🔬 Science-Based</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -2024,7 +2028,7 @@ function pz_render_guide_dog_grooming_tools( $tool ) {
         <span class="pz-int-big-icon"><?php echo $icon; ?></span>
         <div><div class="pz-int-label">Grooming Kit Builder</div><div class="pz-int-sublabel">Coat &amp; budget matched · Free · Instant</div></div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--purple">🎯 Personalized</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--purple">🎯 Personalized</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -2090,7 +2094,7 @@ function pz_render_guide_dog_winter_coat_care( $tool ) {
         <span class="pz-int-big-icon"><?php echo $icon; ?></span>
         <div><div class="pz-int-label">Winter Coat Care Planner</div><div class="pz-int-sublabel">Season-safe · Free · Instant</div></div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🔬 Science-Based</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🔬 Science-Based</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -2163,7 +2167,7 @@ function pz_render_guide_dog_summer_grooming( $tool ) {
         <span class="pz-int-big-icon"><?php echo $icon; ?></span>
         <div><div class="pz-int-label">Summer Cooling & Grooming Planner</div><div class="pz-int-sublabel">Climate-matched · Free · Instant</div></div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🔬 Science-Based</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🔬 Science-Based</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -2236,7 +2240,7 @@ function pz_render_guide_dog_mat_removal( $tool ) {
         <span class="pz-int-big-icon"><?php echo $icon; ?></span>
         <div><div class="pz-int-label">Mat Severity Assessor</div><div class="pz-int-sublabel">Safety-first · Free · Instant</div></div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🔬 Science-Based</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🔬 Science-Based</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -2310,7 +2314,7 @@ function pz_render_guide_dog_tail_grooming( $tool ) {
         <span class="pz-int-big-icon"><?php echo $icon; ?></span>
         <div><div class="pz-int-label">Tail Coat Care Planner</div><div class="pz-int-sublabel">Density-matched · Free · Instant</div></div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🔬 Science-Based</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🔬 Science-Based</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -2375,7 +2379,7 @@ function pz_render_guide_pro_vs_home_grooming( $tool ) {
         <span class="pz-int-big-icon"><?php echo $icon; ?></span>
         <div><div class="pz-int-label">Professional vs Home: Cost &amp; Time Comparison</div><div class="pz-int-sublabel">Personalized · Free · Instant</div></div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--purple">🎯 Personalized</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--purple">🎯 Personalized</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -4018,7 +4022,7 @@ function pz_render_calc_dog_weight_calc( $tool ) {
         </div>
       </div>
       <div class="pz-int-badges">
-        <span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span>
+        <span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span>
         <span class="pz-int-badge pz-int-badge--blue">📏 Breed-Size Based</span>
       </div>
     </div>
@@ -4196,7 +4200,7 @@ function pz_render_calc_dog_bmi_calc( $tool ) {
         </div>
       </div>
       <div class="pz-int-badges">
-        <span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span>
+        <span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span>
         <span class="pz-int-badge pz-int-badge--blue">🔬 9-Point Scale</span>
       </div>
     </div>
@@ -4377,7 +4381,7 @@ function pz_render_calc_dog_lifespan_calc( $tool ) {
         </div>
       </div>
       <div class="pz-int-badges">
-        <span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span>
+        <span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span>
         <span class="pz-int-badge pz-int-badge--blue">📊 Population Data</span>
       </div>
     </div>
@@ -4562,7 +4566,7 @@ function pz_render_calc_dog_deworming_schedule( $tool ) {
         </div>
       </div>
       <div class="pz-int-badges">
-        <span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span>
+        <span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span>
         <span class="pz-int-badge pz-int-badge--blue">📅 Next-Due Date</span>
       </div>
     </div>
@@ -4736,7 +4740,7 @@ function pz_render_calc_dog_pregnancy_calc( $tool ) {
         </div>
       </div>
       <div class="pz-int-badges">
-        <span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span>
+        <span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span>
         <span class="pz-int-badge pz-int-badge--blue">📅 61–65 Day Window</span>
       </div>
     </div>
@@ -4903,7 +4907,7 @@ function pz_render_calc_dog_vet_visit_frequency( $tool ) {
         </div>
       </div>
       <div class="pz-int-badges">
-        <span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span>
+        <span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span>
         <span class="pz-int-badge pz-int-badge--blue">📅 Next-Visit Date</span>
       </div>
     </div>
@@ -5029,7 +5033,7 @@ function pz_hero_quickanswer_dog_fever_checker() { ?>
 <?php }
 
 function pz_hero_trust_dog_fever_checker() { ?>
-      <span>✅ Vet-informed triage logic</span>
+      <span>✅ Guideline-based triage logic</span>
       <span>⚡ 5 quick questions</span>
       <span>🚨 Flags emergencies first</span>
 <?php }
@@ -5192,7 +5196,7 @@ function pz_render_checker_dog_fever_checker( $tool ) {
         </div>
       </div>
       <div class="pz-int-badges">
-        <span class="pz-int-badge pz-int-badge--green">✅ Vet-Informed Triage</span>
+        <span class="pz-int-badge pz-int-badge--green">✅ Guideline-Based Triage</span>
         <span class="pz-int-badge pz-int-badge--orange">🚨 Flags Emergencies First</span>
       </div>
     </div>
@@ -5396,7 +5400,7 @@ function pz_render_checker_dog_allergy_checker( $tool ) {
         </div>
       </div>
       <div class="pz-int-badges">
-        <span class="pz-int-badge pz-int-badge--green">✅ Vet-Informed Triage</span>
+        <span class="pz-int-badge pz-int-badge--green">✅ Guideline-Based Triage</span>
         <span class="pz-int-badge pz-int-badge--orange">🚨 Flags Emergencies First</span>
       </div>
     </div>
@@ -5439,7 +5443,7 @@ function pz_hero_quickanswer_dog_parasite_prevention() { ?>
 <?php }
 
 function pz_hero_trust_dog_parasite_prevention() { ?>
-      <span>✅ Vet-informed priority order</span>
+      <span>✅ Guideline-based priority order</span>
       <span>🦟 Flea, tick &amp; heartworm covered</span>
       <span>📋 Free personalized plan</span>
 <?php }
@@ -5568,7 +5572,7 @@ function pz_render_guide_dog_parasite_prevention( $tool ) {
           <div class="pz-int-sublabel">Flea, tick &amp; heartworm · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🦟 3-Part Plan</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🦟 3-Part Plan</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -5744,7 +5748,7 @@ function pz_render_guide_puppy_health_checklist( $tool ) {
           <div class="pz-int-sublabel">Age-matched · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">💉 Vaccine-Aware</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">💉 Vaccine-Aware</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -5914,7 +5918,7 @@ function pz_render_guide_dog_spay_neuter( $tool ) {
           <div class="pz-int-sublabel">Size-aware guidance · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🔬 Current Guidance</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🔬 Current Guidance</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -6088,7 +6092,7 @@ function pz_render_guide_dog_joint_health( $tool ) {
           <div class="pz-int-sublabel">Prevention &amp; management · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🦴 Age-Stage Specific</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🦴 Age-Stage Specific</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -6264,7 +6268,7 @@ function pz_render_guide_senior_dog_health( $tool ) {
           <div class="pz-int-sublabel">Size-adjusted senior age · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🐕 Age-Stage Specific</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🐕 Age-Stage Specific</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -6440,7 +6444,7 @@ function pz_render_guide_dog_heat_stroke( $tool ) {
           <div class="pz-int-sublabel">Signs, prevention &amp; first aid · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🚨 Emergency-Aware</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🚨 Emergency-Aware</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -6610,7 +6614,7 @@ function pz_render_guide_dog_heart_health( $tool ) {
           <div class="pz-int-sublabel">Signs &amp; prevention · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">❤️ Symptom-Aware</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">❤️ Symptom-Aware</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -6787,7 +6791,7 @@ function pz_render_guide_dog_skin_conditions( $tool ) {
           <div class="pz-int-sublabel">Symptom-specific · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🔬 Symptom-Specific</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🔬 Symptom-Specific</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -6958,7 +6962,7 @@ function pz_render_guide_dog_eye_problems( $tool ) {
           <div class="pz-int-sublabel">Symptoms &amp; treatment · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">👁️ Urgency-Aware</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">👁️ Urgency-Aware</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -7128,7 +7132,7 @@ function pz_render_guide_dog_ear_infection( $tool ) {
           <div class="pz-int-sublabel">Symptoms, causes &amp; treatment · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">👂 Severity-Aware</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">👂 Severity-Aware</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -7297,7 +7301,7 @@ function pz_render_guide_dog_diabetes( $tool ) {
           <div class="pz-int-sublabel">Signs, management &amp; diet · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">💉 Symptom-Aware</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">💉 Symptom-Aware</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -7465,10 +7469,10 @@ function pz_render_guide_dog_cancer_signs( $tool ) {
         <span class="pz-int-big-icon"><?php echo $icon; ?></span>
         <div>
           <div class="pz-int-label">Dog Cancer Early Warning Signs Guide</div>
-          <div class="pz-int-sublabel">Calm, vet-reviewed guidance · Free · Instant</div>
+          <div class="pz-int-sublabel">Calm, practical guidance · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🔬 Non-Alarming Guidance</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🔬 Non-Alarming Guidance</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -7639,7 +7643,7 @@ function pz_render_guide_dog_anxiety( $tool ) {
           <div class="pz-int-sublabel">Types, triggers &amp; solutions · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">😰 Trigger-Specific</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">😰 Trigger-Specific</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -7809,7 +7813,7 @@ function pz_render_guide_dog_kennel_cough( $tool ) {
           <div class="pz-int-sublabel">Symptoms &amp; treatment · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🤧 Severity-Aware</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🤧 Severity-Aware</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -7977,7 +7981,7 @@ function pz_render_guide_dog_hypothyroidism( $tool ) {
           <div class="pz-int-sublabel">Symptoms &amp; management · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🏥 Risk-Profile Aware</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🏥 Risk-Profile Aware</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -8147,7 +8151,7 @@ function pz_render_guide_dog_first_aid( $tool ) {
           <div class="pz-int-sublabel">Emergency situations · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🚑 Scenario-Specific</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🚑 Scenario-Specific</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -8318,7 +8322,7 @@ function pz_render_guide_dog_hip_dysplasia( $tool ) {
           <div class="pz-int-sublabel">Signs, breeds &amp; management · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🦴 Breed-Risk Aware</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🦴 Breed-Risk Aware</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -8495,7 +8499,7 @@ function pz_render_guide_dog_bloat_gdv( $tool ) {
           <div class="pz-int-sublabel">Signs, prevention &amp; emergency · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🚨 Emergency-Aware</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🚨 Emergency-Aware</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -8656,7 +8660,7 @@ function pz_render_guide_dog_parvovirus( $tool ) {
           <div class="pz-int-sublabel">Symptoms, treatment &amp; prevention · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🦠 Vaccination-Aware</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🦠 Vaccination-Aware</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -8825,7 +8829,7 @@ function pz_render_guide_dog_heartworm_prevention( $tool ) {
           <div class="pz-int-sublabel">Complete guide · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">❤️ Climate-Aware</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">❤️ Climate-Aware</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -9000,7 +9004,7 @@ function pz_render_guide_dog_lyme_disease( $tool ) {
           <div class="pz-int-sublabel">Ticks, signs &amp; treatment · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🦟 Exposure-Aware</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🦟 Exposure-Aware</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -9176,7 +9180,7 @@ function pz_render_guide_dog_cushing_disease( $tool ) {
           <div class="pz-int-sublabel">Symptoms &amp; management · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🏥 Age-Pattern Aware</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🏥 Age-Pattern Aware</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -9350,7 +9354,7 @@ function pz_render_calc_dog_calorie_calc( $tool ) {
         </div>
       </div>
       <div class="pz-int-badges">
-        <span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span>
+        <span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span>
         <span class="pz-int-badge pz-int-badge--blue">🔬 RER Formula</span>
       </div>
     </div>
@@ -9538,7 +9542,7 @@ function pz_render_calc_dog_weight_loss_plan( $tool ) {
         </div>
       </div>
       <div class="pz-int-badges">
-        <span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span>
+        <span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span>
         <span class="pz-int-badge pz-int-badge--blue">📉 Safe Pace</span>
       </div>
     </div>
@@ -9713,7 +9717,7 @@ function pz_render_calc_dog_protein_requirements( $tool ) {
         </div>
       </div>
       <div class="pz-int-badges">
-        <span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span>
+        <span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span>
         <span class="pz-int-badge pz-int-badge--blue">📋 AAFCO-Based</span>
       </div>
     </div>
@@ -9889,7 +9893,7 @@ function pz_render_calc_dog_hydration_calc( $tool ) {
         </div>
       </div>
       <div class="pz-int-badges">
-        <span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span>
+        <span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span>
         <span class="pz-int-badge pz-int-badge--blue">💧 Hydration Baseline</span>
       </div>
     </div>
@@ -10064,7 +10068,7 @@ function pz_render_calc_dog_treat_calc( $tool ) {
         </div>
       </div>
       <div class="pz-int-badges">
-        <span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span>
+        <span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span>
         <span class="pz-int-badge pz-int-badge--blue">🔟 10% Rule</span>
       </div>
     </div>
@@ -10243,7 +10247,7 @@ function pz_render_guide_puppy_feeding( $tool ) {
           <div class="pz-int-sublabel">How much &amp; how often · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🍼 Age &amp; Size Matched</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🍼 Age &amp; Size Matched</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -10414,7 +10418,7 @@ function pz_render_guide_dog_raw_diet( $tool ) {
           <div class="pz-int-sublabel">Complete beginner guide · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🔬 Evidence-Based</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🔬 Evidence-Based</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -10582,7 +10586,7 @@ function pz_render_guide_dog_homemade_food( $tool ) {
           <div class="pz-int-sublabel">Recipes &amp; nutrition · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">⚖️ Balance-Focused</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">⚖️ Balance-Focused</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -10750,7 +10754,7 @@ function pz_render_guide_best_dog_food( $tool ) {
           <div class="pz-int-sublabel">How to choose · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🏷️ AAFCO-Informed</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🏷️ AAFCO-Informed</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -10920,7 +10924,7 @@ function pz_render_guide_dog_toxic_foods( $tool ) {
           <div class="pz-int-sublabel">Complete safety list · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--orange">🚨 Safety-Critical</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--orange">🚨 Safety-Critical</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -11093,7 +11097,7 @@ function pz_render_guide_dog_grain_free_diet( $tool ) {
           <div class="pz-int-sublabel">Pros, cons &amp; safety · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--purple">❤️ DCM-Aware</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--purple">❤️ DCM-Aware</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -11261,7 +11265,7 @@ function pz_render_guide_senior_dog_diet( $tool ) {
           <div class="pz-int-sublabel">Best foods for aging dogs · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--purple">🧬 Muscle-Mass Aware</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--purple">🧬 Muscle-Mass Aware</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -11438,7 +11442,7 @@ function pz_render_guide_dog_food_allergies( $tool ) {
           <div class="pz-int-sublabel">Signs &amp; elimination diet · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🔬 Evidence-Based</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🔬 Evidence-Based</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -11606,7 +11610,7 @@ function pz_render_guide_dog_supplements( $tool ) {
           <div class="pz-int-sublabel">What actually works · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🔬 Evidence-Graded</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🔬 Evidence-Graded</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -11768,7 +11772,7 @@ function pz_render_guide_pregnant_dog_nutrition( $tool ) {
           <div class="pz-int-sublabel">Stage-by-stage feeding · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--purple">🍼 Nursing-Peak Aware</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--purple">🍼 Nursing-Peak Aware</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -11939,7 +11943,7 @@ function pz_render_guide_working_dog_nutrition( $tool ) {
           <div class="pz-int-sublabel">High-energy diet planning · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--orange">🔥 Performance-Tuned</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--orange">🔥 Performance-Tuned</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -12108,7 +12112,7 @@ function pz_render_guide_dog_digestive_health( $tool ) {
           <div class="pz-int-sublabel">Diet &amp; foods for a healthy gut · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🔬 Evidence-Based</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🔬 Evidence-Based</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -12270,7 +12274,7 @@ function pz_render_guide_dog_kidney_disease_diet( $tool ) {
           <div class="pz-int-sublabel">Phosphorus &amp; protein guidance · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--purple">🧂 Phosphorus-Focused</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--purple">🧂 Phosphorus-Focused</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -12438,7 +12442,7 @@ function pz_render_guide_dog_joint_supplement( $tool ) {
           <div class="pz-int-sublabel">Evidence-graded picks · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">🔬 Evidence-Graded</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">🔬 Evidence-Graded</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -12606,7 +12610,7 @@ function pz_render_guide_puppy_adult_transition( $tool ) {
           <div class="pz-int-sublabel">Size-specific timing · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet Reviewed</span><span class="pz-int-badge pz-int-badge--blue">📏 Size-Specific</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span><span class="pz-int-badge pz-int-badge--blue">📏 Size-Specific</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -13452,7 +13456,7 @@ function pz_render_guide_dog_socialization( $tool ) {
           <div class="pz-int-sublabel">Puppies &amp; adults · Free · Instant</div>
         </div>
       </div>
-      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Vet-Informed Timing</span><span class="pz-int-badge pz-int-badge--purple">🐾 Puppy &amp; Adult Paths</span></div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ Guideline-Based Timing</span><span class="pz-int-badge pz-int-badge--purple">🐾 Puppy &amp; Adult Paths</span></div>
     </div>
     <div class="pz-int-body">
       <div class="pz-int-grid">
@@ -13593,9 +13597,9 @@ function pz_section_what_is($tool) {
 
     // Paragraph 1 — define the tool, use focus keyword in first sentence
     $p1_map = [
-        'calculator' => "The <strong>{$t}</strong> helps {$a} owners calculate <em>{$kw}</em> quickly and accurately. Whether you're working this out for the first time or rechecking after a change in your {$a}'s weight, age, or activity level, this tool gives you a vet-informed starting point based on established veterinary formulas.",
-        'checker'    => "The <strong>{$t}</strong> is a structured, vet-informed resource for {$a} owners who want to evaluate <em>{$kw}</em> without guesswork. Instead of searching through unreliable forums, this checker walks you through the key questions vets ask first — giving you a proportionate, level-headed assessment in under two minutes.",
-        'guide'      => "The <strong>{$t}</strong> is a comprehensive, vet-reviewed resource covering every aspect of <em>{$kw}</em> for {$a} owners. Whether you're brand new to owning a {$a} or looking to sharpen your existing care routine, this guide gives you structured, species-appropriate information built on current veterinary best practices.",
+        'calculator' => "The <strong>{$t}</strong> helps {$a} owners calculate <em>{$kw}</em> quickly and accurately. Whether you're working this out for the first time or rechecking after a change in your {$a}'s weight, age, or activity level, this tool gives you a guideline-based starting point based on established veterinary formulas.",
+        'checker'    => "The <strong>{$t}</strong> is a structured resource for {$a} owners who want to evaluate <em>{$kw}</em> without guesswork. Instead of searching through unreliable forums, this checker walks you through the key questions vets ask first — giving you a proportionate, level-headed assessment in under two minutes.",
+        'guide'      => "The <strong>{$t}</strong> is a comprehensive resource covering every aspect of <em>{$kw}</em> for {$a} owners. Whether you're brand new to owning a {$a} or looking to sharpen your existing care routine, this guide gives you structured, species-appropriate information built on current veterinary best practices.",
         'tracker'    => "The <strong>{$t}</strong> helps {$a} owners monitor <em>{$kw}</em> consistently over time. Tracking key health indicators — rather than relying on memory — is one of the most practical things you can do to catch gradual changes before they become serious health concerns.",
     ];
     $p1 = $p1_map[$type] ?? $p1_map['guide'];
@@ -13657,8 +13661,8 @@ function pz_section_what_is($tool) {
 
     // Paragraph 3 — how to use, CTA-style
     $p3_map = [
-        'calculator' => "Use the calculator above to get your personalized result, then scroll down for vet-backed tips specific to {$a} owners, a complete warning signs reference, and answers to the most common questions {$a} owners ask about {$kw}.",
-        'checker'    => "Use the checker above to complete your assessment, then read on for vet-backed guidance on the warning signs that need immediate attention, common mistakes {$a} owners make, and a detailed FAQ written for the questions people actually type into search engines.",
+        'calculator' => "Use the calculator above to get your personalized result, then scroll down for practical tips specific to {$a} owners, a complete warning signs reference, and answers to the most common questions {$a} owners ask about {$kw}.",
+        'checker'    => "Use the checker above to complete your assessment, then read on for practical guidance on the warning signs that need immediate attention, common mistakes {$a} owners make, and a detailed FAQ written for the questions people actually type into search engines.",
         'guide'      => "Work through this guide from top to bottom for the most complete picture, or use the Table of Contents to jump to the section most relevant to you right now. The FAQ at the bottom answers the specific questions {$a} owners ask most often about {$kw}.",
         'tracker'    => "Set up your tracking routine using the tool above, then read through the tips and warning signs sections below — they'll help you know what to track, what changes matter, and when a trend warrants a call to your vet.",
     ];
@@ -13703,8 +13707,8 @@ function pz_section_why_important($tool) {
       <div class="pz-why-item">
         <span class="pz-why-icon">🔬</span>
         <div>
-          <strong>Vet-Approved Methods</strong>
-          <p>All information in this guide is reviewed by licensed veterinary professionals.</p>
+          <strong>Educational Information</strong>
+          <p>This guide is educational and does not replace advice from your veterinarian.</p>
         </div>
       </div>
       <div class="pz-why-item">
@@ -14102,26 +14106,71 @@ function pz_section_products($tool) {
     <?php return ob_get_clean();
 }
 
+/**
+ * Real, public veterinary-organisation resources for further reading, chosen by animal/topic.
+ * These are general reference hubs (not citations for specific claims on the page).
+ */
+function pz_further_reading( $tool ) {
+    $animal = $tool['animal'] ?? 'all';
+    $cat    = $tool['cat'] ?? '';
+    $kw     = strtolower( ( $tool['kw'] ?? '' ) . ' ' . ( $tool['title'] ?? '' ) );
+    $L = [
+        'avma'    => [ 'AVMA — Pet Owner Resources', 'https://www.avma.org/resources-tools/pet-owners', 'American Veterinary Medical Association' ],
+        'mdog'    => [ 'Merck Veterinary Manual — Dog Owners', 'https://www.merckvetmanual.com/dog-owners', 'Clinical reference written for pet owners' ],
+        'mcat'    => [ 'Merck Veterinary Manual — Cat Owners', 'https://www.merckvetmanual.com/cat-owners', 'Clinical reference written for pet owners' ],
+        'mbird'   => [ 'Merck Veterinary Manual — Bird Owners', 'https://www.merckvetmanual.com/bird-owners', 'Clinical reference written for pet owners' ],
+        'adog'    => [ 'ASPCA — Dog Care', 'https://www.aspca.org/pet-care/dog-care', 'Everyday care and behaviour advice' ],
+        'acat'    => [ 'ASPCA — Cat Care', 'https://www.aspca.org/pet-care/cat-care', 'Everyday care and behaviour advice' ],
+        'asmall'  => [ 'ASPCA — Small Pet Care', 'https://www.aspca.org/pet-care/small-pet-care', 'Care basics for small animals' ],
+        'agen'    => [ 'ASPCA — General Pet Care', 'https://www.aspca.org/pet-care/general-pet-care', 'Care basics for many species' ],
+        'apoison' => [ 'ASPCA — Animal Poison Control', 'https://www.aspca.org/pet-care/animal-poison-control', 'Toxic foods, plants and substances' ],
+        'ppoison' => [ 'Pet Poison Helpline', 'https://www.petpoisonhelpline.com/', 'Poison information and emergency contact' ],
+        'cornell' => [ 'Cornell Feline Health Center', 'https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center', 'Cat health articles from a veterinary college' ],
+        'wsava'   => [ 'WSAVA — Global Guidelines', 'https://wsava.org/global-guidelines/', 'Vaccination, nutrition and pain guidelines' ],
+        'wnutr'   => [ 'WSAVA — Global Nutrition Guidelines', 'https://wsava.org/global-guidelines/global-nutrition-guidelines/', 'Choosing and assessing pet foods' ],
+        'vohc'    => [ 'Veterinary Oral Health Council', 'https://vohc.org/', 'Dental products accepted by the VOHC' ],
+        'hrs'     => [ 'House Rabbit Society', 'https://rabbit.org/', 'Rabbit care and rescue organisation' ],
+    ];
+    switch ( $animal ) {
+        case 'dog':    $keys = [ 'avma', 'mdog', 'adog', 'wsava' ]; break;
+        case 'cat':    $keys = [ 'avma', 'mcat', 'cornell', 'acat' ]; break;
+        case 'rabbit': $keys = [ 'avma', 'hrs', 'asmall' ]; break;
+        case 'bird':   $keys = [ 'avma', 'mbird', 'agen' ]; break;
+        case 'small': case 'hamster': case 'guinea-pig': case 'hedgehog': case 'ferret': case 'chinchilla': case 'sugar-glider': case 'rat': case 'gerbil':
+                       $keys = [ 'avma', 'asmall', 'agen' ]; break;
+        default:       $keys = [ 'avma', 'agen' ];
+    }
+    if ( $cat === 'pet-safety' || preg_match( '/toxic|poison|safe to eat|can (dogs|cats) eat/', $kw ) ) { array_unshift( $keys, 'apoison', 'ppoison' ); }
+    if ( preg_match( '/nutrition|food|diet|feeding|calorie/', $cat . ' ' . $kw ) && in_array( $animal, [ 'dog', 'cat' ], true ) ) { $keys[] = 'wnutr'; }
+    if ( preg_match( '/teeth|dental|tooth/', $kw ) && in_array( $animal, [ 'dog', 'cat' ], true ) ) { $keys[] = 'vohc'; }
+    $out = [];
+    foreach ( array_slice( array_unique( $keys ), 0, 5 ) as $k ) { $out[] = $L[ $k ]; }
+    return $out;
+}
+
 function pz_section_vet_advice($tool) {
-    $a = ucfirst($tool['animal'] === 'all' ? 'pet' : $tool['animal']);
+    $a = $tool['animal'] === 'all' ? 'pet' : $tool['animal'];
+    $urgent = ( $tool['type'] ?? '' ) === 'checker'
+        ? 'If symptoms are sudden, severe or getting worse, contact a veterinarian or emergency clinic straight away rather than waiting.'
+        : 'If something does not look right, or your ' . $a . ' has an existing health condition, check with your veterinarian before changing their care.';
+    $links = pz_further_reading( $tool );
     ob_start(); ?>
     <div class="pz-vet-disclaimer">
       <div class="pz-vet-disclaimer-icon">⚕️</div>
       <div>
-        <strong>Important Medical Disclaimer</strong>
-        <p>The information provided in this guide is for educational purposes only and is not a substitute for professional veterinary advice, diagnosis, or treatment. Always consult a licensed veterinarian for your pet's specific health needs.</p>
+        <strong>Educational information only</strong>
+        <p>PetZenAI is an educational resource. This page is not veterinary advice, diagnosis or treatment, and it does not replace an examination by a licensed veterinarian who knows your pet. <?php echo esc_html( $urgent ); ?></p>
       </div>
     </div>
-    <p>While this guide covers general best practices, certain situations always require professional veterinary evaluation:</p>
-    <ul class="pz-vet-list">
-      <li>📅 <strong>Annual wellness exams</strong> — even if your <?php echo strtolower($a); ?> appears healthy</li>
-      <li>🔍 <strong>New symptoms</strong> — any new behavior change, physical change, or health concern</li>
-      <li>💊 <strong>Before starting supplements or new diet</strong> — some supplements interact with medications</li>
-      <li>🐣 <strong>Life stage transitions</strong> — puppy/kitten to adult, adult to senior</li>
-      <li>🐾 <strong>Pregnancy or breeding</strong> — specialized care is essential</li>
-      <li>⚕️ <strong>Chronic conditions</strong> — pets with diabetes, kidney disease, or heart conditions need customized plans</li>
+    <?php if ( $links ) : ?>
+    <h3 class="pz-further-title">Further reading from veterinary organisations</h3>
+    <ul class="pz-further-list">
+      <?php foreach ( $links as $l ) : ?>
+      <li><a href="<?php echo esc_url( $l[1] ); ?>" target="_blank" rel="noopener"><?php echo esc_html( $l[0] ); ?></a> <span><?php echo esc_html( $l[2] ); ?></span></li>
+      <?php endforeach; ?>
     </ul>
-    <p>Your veterinarian is your most valuable partner in your <?php echo strtolower($a); ?>'s health journey. Regular check-ups allow early detection of issues that can't be spotted at home.</p>
+    <p class="pz-further-note">External sites, shown as general reference. PetZenAI is not affiliated with these organisations.</p>
+    <?php endif; ?>
     <?php return ob_get_clean();
 }
 
@@ -14184,7 +14233,7 @@ function pz_section_faq($tool) {
 
     // Default FAQs for animal/type combinations not specifically covered above
     $default_faqs = [
-        ["What is the {$t} and how does it work?", "The {$t} is a free, vet-informed {$type} designed to help {$al} owners make better care decisions. It provides structured guidance based on species-appropriate veterinary knowledge — use it as a starting point, then discuss results with your vet."],
+        ["What is the {$t} and how does it work?", "The {$t} is a free {$type} designed to help {$al} owners make better care decisions. It provides structured guidance based on species-appropriate veterinary knowledge — use it as a starting point, then discuss results with your vet."],
         ["Is the {$t} free to use?", "Yes — completely free. No account, no signup, no subscription required. All PetZenAI tools are free for {$al} owners worldwide."],
         ["How accurate is the information in this {$type}?", "Content is based on established veterinary guidelines and current best practices in {$al} care. It is reviewed for accuracy but is not a substitute for professional veterinary advice. Your vet knows your specific {$al} and should always be the final authority on their care."],
         ["How often should I use the {$t}?", "Use it whenever your {$al}'s situation changes — new symptoms, age milestones, diet changes, or any time you have a new question. Bookmark it for easy access so it's there when you need it."],
@@ -14244,13 +14293,13 @@ function pz_get_meta_description($tool) {
     $type = $tool['type'] ?? 'guide';
 
     $templates = [
-        'calculator' => "Use our free {$kw} to get instant, vet-informed results for your {$a}. No signup required — accurate, science-based {$a} care calculators trusted by owners worldwide.",
-        'checker'    => "Check your {$a}'s symptoms with our free {$kw}. Get vet-backed guidance on when to worry, when to monitor, and when to call the vet immediately.",
-        'guide'      => "Complete {$kw} for {$a} owners. Vet-reviewed tips, warning signs, common mistakes, and step-by-step guidance — all free on PetZenAI.",
+        'calculator' => "Use our free {$kw} to get instant, instant results for your {$a}. No signup required — free, easy-to-use {$a} care calculators.",
+        'checker'    => "Check your {$a}'s symptoms with our free {$kw}. Get practical guidance on when to worry, when to monitor, and when to call the vet immediately.",
+        'guide'      => "Complete {$kw} for {$a} owners. Practical tips, warning signs, common mistakes, and step-by-step guidance — all free on PetZenAI.",
         'tracker'    => "Track your {$a}'s health with our free {$kw}. Log changes, spot trends early, and bring accurate records to your next vet visit.",
     ];
 
-    return $templates[$type] ?? "Free {$kw} for {$a} owners. Vet-reviewed guidance, practical tips, and science-based care advice — all free on PetZenAI.";
+    return $templates[$type] ?? "Free {$kw} for {$a} owners. Practical tips and care advice — all free on PetZenAI.";
 }
 
 function pz_sidebar_quick_facts($tool) {
@@ -14259,7 +14308,7 @@ function pz_sidebar_quick_facts($tool) {
         ['Category', esc_html(pz_get_tool_categories()[$tool['cat']]['label'] ?? 'Pet Care')],
         ['Animal Type', $a],
         ['Tool Type', ucfirst($tool['type'])],
-        ['Vet Reviewed', '✅ Yes'],
+        ['Content Type', 'Educational'],
         ['Last Updated', date('M Y')],
         ['Cost', '100% Free'],
     ];

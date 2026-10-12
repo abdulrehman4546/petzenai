@@ -57,7 +57,7 @@ $read_min = max(1, ceil(str_word_count(strip_tags(get_the_content())) / 200));
       <div class="pz-author-avatar" aria-hidden="true">🐾</div>
       <div>
         <span class="pz-author-name"><?php echo esc_html($author); ?></span>
-        <span class="pz-author-role">PetZenAI Editorial Team · Vet-Reviewed</span>
+        <span class="pz-author-role">PetZenAI Editorial Team</span>
       </div>
     </div>
   </div>
@@ -126,12 +126,12 @@ $read_min = max(1, ceil(str_word_count(strip_tags(get_the_content())) / 200));
         <div class="pz-author-bio-content">
           <div class="pz-author-bio-header">
             <h3 class="pz-author-bio-name">PetZenAI Editorial Team</h3>
-            <span class="pz-author-bio-badge">✅ Vet-Reviewed</span>
+            
           </div>
           <p class="pz-author-bio-text">Our editorial team consists of certified pet care specialists, veterinary consultants, and animal health researchers. Every article is reviewed for accuracy against current veterinary guidelines before publishing. We are committed to providing science-backed, trustworthy pet care information.</p>
           <div class="pz-author-bio-tags">
             <span>🎓 Certified Pet Care Specialists</span>
-            <span>🏥 Vet-Reviewed Content</span>
+            <span>🏥 Educational Content</span>
             <span>🔬 Science-Based Guides</span>
           </div>
         </div>
@@ -164,8 +164,8 @@ $read_min = max(1, ceil(str_word_count(strip_tags(get_the_content())) / 200));
       <div class="pz-sidebar-widget pz-author-box">
         <div class="pz-author-avatar-big" aria-hidden="true">🐾</div>
         <h3 class="pz-author-box-name"><?php echo esc_html($author); ?></h3>
-        <p class="pz-author-box-bio">PetZenAI Editorial Team. All content is reviewed by veterinary nutritionists and animal health specialists.</p>
-        <span class="pz-author-badge">✅ Vet-Reviewed Content</span>
+        <p class="pz-author-box-bio">PetZenAI Editorial Team. Educational pet-care information — not a substitute for professional veterinary advice.</p>
+        <span class="pz-author-badge">✅ Educational Content</span>
       </div>
 
       <!-- Related Tools -->

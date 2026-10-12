@@ -37,10 +37,10 @@ get_header();
             PetZenAI was founded with a simple belief: every pet owner should have access to the same high-quality nutritional and health information that veterinarians use — for free.
           </p>
           <p style="font-size:16px;color:#555;line-height:1.8;margin-bottom:24px">
-            Our team of veterinary nutritionists, data scientists, and passionate pet owners work together to build tools grounded in peer-reviewed science, not generic advice.
+            A small team of pet owners and developers works to turn published pet-care guidance into free, easy-to-use tools.
           </p>
           <div class="cta-trust-badges" style="justify-content:flex-start;margin:0">
-            <span style="background:rgba(255,107,26,0.08);color:var(--orange)">✅ Vet-Reviewed</span>
+            <span style="background:rgba(255,107,26,0.08);color:var(--orange)">✅ Free to Use</span>
             <span style="background:rgba(255,107,26,0.08);color:var(--orange)">✅ Science-Based</span>
             <span style="background:rgba(255,107,26,0.08);color:var(--orange)">✅ 100% Free</span>
           </div>
@@ -55,9 +55,9 @@ get_header();
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center">
         <?php
         $stats = [
-          ['30+','Expert Guides'],
+          ['30+','Blog Guides'],
           ['300+','Free Tools'],
-          ['10,000+','Pet Names'],
+          ['15','Tool Categories'],
           ['6','Pet Species Covered'],
         ];
         foreach($stats as $s): ?>
@@ -93,12 +93,12 @@ get_header();
       <div class="tools-grid">
         <?php
         $values = [
-          ['🔬','Science First','Every recommendation we make is backed by peer-reviewed veterinary research.'],
+          ['🔬','Science First','Our tools use standard, widely published formulas and we link to veterinary organisations so you can read more.'],
           ['💚','Pet Welfare','We put the health and happiness of animals above everything else.'],
           ['🆓','Always Free','Quality pet care information should be accessible to everyone, regardless of budget.'],
           ['🤝','Community','We are building a community of informed, caring pet owners across America.'],
           ['🔒','Privacy','We never sell your data. No accounts required to use any of our tools.'],
-          ['⚡','Accuracy','We update our tools regularly to reflect the latest veterinary guidelines.'],
+          ['⚡','Accuracy','We review and update our tools regularly.'],
         ];
         foreach($values as $i => $v): ?>
         <article class="tool-card" data-aos data-aos-delay="<?php echo $i*80; ?>" style="padding:28px;text-align:center">

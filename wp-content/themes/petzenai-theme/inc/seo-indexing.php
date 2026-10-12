@@ -217,3 +217,28 @@ function pz_tool_description( $tool ) {
             return $tool['title'] . ' — practical steps, common mistakes and warning signs for ' . $animal . ' owners. Free to read.';
     }
 }
+
+
+/**
+ * Customizer values saved in the live database can still contain old, unverifiable claims
+ * ("vet-formulated", "Vet-Approved", "peer-reviewed", "50K+"). Scrub them on read so the theme
+ * defaults and the database agree.
+ */
+function pz_scrub_claims( $value ) {
+    if ( ! is_string( $value ) || $value === '' ) return $value;
+    static $map = [
+        '/Science-based diet planning and vet-formulated tools/i'                         => 'Free diet planning and pet care tools',
+        '/Vet[- ]Approved Tools/i'                                                          => 'Free Pet Care Tools',
+        '/Free,? vet-formulated /'                                                          => 'Free ',
+        '/(free,? )?vet-formulated (calculators|tools|pet care tools)/i'                  => 'free $2',
+        '/\s*[-—]?\s*Vet[- ](Approved|Reviewed|Formulated)( Tools)?/i'                      => '',
+        '/peer-reviewed (nutritional |veterinary )?(research|science)( and veterinary guidelines)?/i' => 'standard, widely published pet-care formulas',
+        '/\bTrusted by 50K\+/i'                                                             => '',
+        '/\s*Used by 50,000\+ pet owners\.?/i'                                              => '',
+    ];
+    foreach ( $map as $pat => $rep ) { $value = preg_replace( $pat, $rep, $value ); }
+    return trim( $value );
+}
+foreach ( [ 'petzenai_hero_desc', 'petzenai_why_badge', 'petzenai_why_feat1_desc', 'petzenai_footer_desc', 'petzenai_seo_description', 'petzenai_hero_seo_title' ] as $pz_mod ) {
+    add_filter( 'theme_mod_' . $pz_mod, 'pz_scrub_claims' );
+}

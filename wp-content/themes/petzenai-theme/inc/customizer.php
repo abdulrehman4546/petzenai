@@ -54,7 +54,7 @@ function petzenai_customizer( $wp_customize ) {
     $text(    'petzenai_hero_title_1',     'Heading Line 1',         'petzenai_hero', 'Science-Based' );
     $text(    'petzenai_hero_title_2',     'Heading Line 2 (colored)','petzenai_hero', 'Pet Nutrition' );
     $text(    'petzenai_hero_title_3',     'Heading Line 3',         'petzenai_hero', 'Tools & Planners' );
-    $textarea('petzenai_hero_desc',        'Hero Description',       'petzenai_hero', 'Empower your pet\'s health with free, vet-formulated calculators, diet planners, and vaccination trackers.' );
+    $textarea('petzenai_hero_desc',        'Hero Description',       'petzenai_hero', 'Empower your pet\'s health with free calculators, diet planners, and vaccination trackers.' );
     $text(    'petzenai_hero_btn1_text',   'Button 1 Text',          'petzenai_hero', 'Explore Tools' );
     $url_ctrl('petzenai_hero_btn1_link',   'Button 1 Link',          'petzenai_hero', '' );
     $text(    'petzenai_hero_btn2_text',   'Button 2 Text',          'petzenai_hero', '🍽️ Food Calculator' );
@@ -83,9 +83,9 @@ function petzenai_customizer( $wp_customize ) {
     ]);
     $text(    'petzenai_why_title',   'Section Title',   'petzenai_why', 'Your Pet Deserves Science, Not Guesswork' );
     $image(   'petzenai_why_image',   'Section Image',   'petzenai_why' );
-    $text(    'petzenai_why_badge',   'Badge Text',      'petzenai_why', '🏆 Vet-Approved Tools' );
+    $text(    'petzenai_why_badge',   'Badge Text',      'petzenai_why', '🏆 Free Pet Care Tools' );
     $text(    'petzenai_why_feat1_title', 'Feature 1 Title', 'petzenai_why', 'Veterinary Science Backed' );
-    $textarea('petzenai_why_feat1_desc',  'Feature 1 Desc',  'petzenai_why', 'All our tools are built on peer-reviewed nutritional research and veterinary guidelines.' );
+    $textarea('petzenai_why_feat1_desc',  'Feature 1 Desc',  'petzenai_why', 'Our tools use standard, widely published pet-care formulas and are for educational use.' );
     $text(    'petzenai_why_feat2_title', 'Feature 2 Title', 'petzenai_why', 'Science-Based Accuracy' );
     $textarea('petzenai_why_feat2_desc',  'Feature 2 Desc',  'petzenai_why', 'Our calculators adapt to your pet\'s breed, weight, age, and activity level for personalized, evidence-based recommendations.' );
     $text(    'petzenai_why_feat3_title', 'Feature 3 Title', 'petzenai_why', '100% Free Forever' );
@@ -108,7 +108,7 @@ function petzenai_customizer( $wp_customize ) {
         'title' => '🦶 Footer',
         'panel' => 'petzenai_panel',
     ]);
-    $textarea('petzenai_footer_about',   'About Text',     'petzenai_footer', 'Science-based diet planning and vet-formulated tools for healthier, happier pets across America.' );
+    $textarea('petzenai_footer_about',   'About Text',     'petzenai_footer', 'Free diet planning and pet care tools for healthier, happier pets across America.' );
     $text(    'petzenai_contact_email',  'Contact Email',  'petzenai_footer', 'support@petzenai.com' );
     $text(    'petzenai_contact_hours1', 'Hours Line 1',   'petzenai_footer', 'Mon–Fri: 9AM–8PM EST' );
     $text(    'petzenai_contact_hours2', 'Hours Line 2',   'petzenai_footer', 'Sat–Sun: 10AM–4PM EST' );
@@ -131,7 +131,7 @@ function petzenai_customizer( $wp_customize ) {
         'panel' => 'petzenai_panel',
     ]);
     $text(    'petzenai_hero_seo_title',   'Homepage SEO Title',       'petzenai_seo', 'PetZenAI — Free Pet Care Tools & Calculators' );
-    $textarea('petzenai_seo_description',  'Meta Description',         'petzenai_seo', 'Free vet-formulated pet care tools — food calculators, vaccine trackers, age calculators & more. Science-based diet planning for healthier pets.' );
+    $textarea('petzenai_seo_description',  'Meta Description',         'petzenai_seo', 'Free pet care tools — food calculators, vaccine trackers, age calculators & more. Science-based diet planning for healthier pets.' );
     $textarea('petzenai_seo_keywords',     'Meta Keywords',            'petzenai_seo', 'pet food calculator, pet age calculator, dog nutrition, cat diet, pet vaccination schedule, AI pet tools' );
     $image(   'petzenai_og_image',         'OG/Social Share Image',    'petzenai_seo' );
     $text(    'petzenai_google_analytics', 'Google Analytics ID (G-)', 'petzenai_seo', '', 'e.g. G-XXXXXXXXXX' );

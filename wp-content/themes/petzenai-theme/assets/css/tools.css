@@ -477,3 +477,12 @@
 .pz-hub-chips .pz-hub-all { background: transparent; border-style: dashed; }
 @media (prefers-reduced-motion: reduce) { .pz-top-btn, .pz-toast, .pz-explore-list a, .pz-next-card, .pz-act-btn { transition: none; } }
 @media print { .pz-progress, .pz-top-btn, .pz-toast, .pz-result-extras, .pz-explore-more { display: none !important; } }
+
+/* Further reading (vet section) */
+.pz-further-title { margin: 22px 0 10px; font-size: 16px; color: #1A1A2E; }
+.pz-further-list { list-style: none; margin: 0 0 8px; padding: 0; display: grid; gap: 8px; }
+.pz-further-list li { padding: 10px 14px; border-radius: 12px; background: #F7F8FA; border: 1px solid #ECEEF2; display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; }
+.pz-further-list a { font-weight: 700; color: #1A5E9A; text-decoration: none; }
+.pz-further-list a:hover { text-decoration: underline; }
+.pz-further-list span { font-size: 13px; color: #666; }
+.pz-further-note { font-size: 12px; color: #888; margin: 6px 0 0; }

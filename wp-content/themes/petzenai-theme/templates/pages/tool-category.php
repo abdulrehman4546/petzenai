@@ -21,7 +21,7 @@ $tools_in_cat = $show_all
 
 $page_title = $show_all ? 'All 300 Pet Care Tools' : $cat_info['label'] . ' Tools';
 $page_desc  = $show_all
-    ? 'Browse all 300 free, vet-reviewed pet care tools — calculators, guides, checkers, and trackers for dogs, cats, birds, rabbits, fish, reptiles, and more.'
+    ? 'Browse all 300 free pet care tools — calculators, guides, checkers, and trackers for dogs, cats, birds, rabbits, fish, reptiles, and more.'
     : 'Free ' . strtolower($cat_info['label']) . ' tools — calculators, guides, checkers, and trackers. 100% free, no sign-up needed.';
 
 $type_icons  = ['calculator'=>'🔢','guide'=>'📖','checker'=>'✅','tracker'=>'📊'];

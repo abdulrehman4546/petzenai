@@ -6,7 +6,7 @@
   <span class="ht-hero-icon">🏃</span>
   <h1>Pet Exercise <span>Calculator</span></h1>
   <p>Discover exactly how much daily exercise your pet needs based on breed, age, weight, and health status.</p>
-  <div class="ht-badges"><span class="ht-badge green">✅ Vet Reviewed</span><span class="ht-badge blue">🐕 Breed-Specific</span><span class="ht-badge orange">⚡ Instant</span></div>
+  <div class="ht-badges"><span class="ht-badge green">✅ No Sign-Up</span><span class="ht-badge blue">🐕 Breed-Specific</span><span class="ht-badge orange">⚡ Instant</span></div>
 </section>
 <div class="ht-main">
   <div class="ht-tool-wrap">

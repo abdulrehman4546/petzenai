@@ -6,7 +6,7 @@
   <span class="ht-hero-icon">💉</span>
   <h1>Pet Vaccination <span>Schedule Tracker</span></h1>
   <p>Never miss a vaccine. Get a complete vet-recommended immunization schedule tailored to your pet's age and type.</p>
-  <div class="ht-badges"><span class="ht-badge green">✅ Vet Reviewed</span><span class="ht-badge blue">📋 Full Schedule</span><span class="ht-badge orange">⚡ Instant</span></div>
+  <div class="ht-badges"><span class="ht-badge green">✅ No Sign-Up</span><span class="ht-badge blue">📋 Full Schedule</span><span class="ht-badge orange">⚡ Instant</span></div>
 </section>
 <div class="ht-main">
   <div class="ht-tool-wrap">
