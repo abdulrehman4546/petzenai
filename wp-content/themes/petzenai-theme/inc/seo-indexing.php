@@ -139,6 +139,7 @@ add_filter( 'rank_math/frontend/title', function ( $title ) {
 }, 20 );
 
 add_filter( 'rank_math/frontend/description', function ( $desc ) {
+    $desc = pz_scrub_claims( (string) $desc ); // stored descriptions can still carry old claims
     if ( $hub = pz_current_hub() ) {
         $sing = [ 'calculator', 'guide', 'checker', 'tracker' ];
         $bits = [];
@@ -228,6 +229,8 @@ function pz_scrub_claims( $value ) {
     if ( ! is_string( $value ) || $value === '' ) return $value;
     static $map = [
         '/Science-based diet planning and vet-formulated tools/i'                         => 'Free diet planning and pet care tools',
+        '/\bFree,? vet-reviewed /'                                                         => 'Free ',
+        '/\bfree,? vet-reviewed /'                                                         => 'free ',
         '/Vet[- ]Approved Tools/i'                                                          => 'Free Pet Care Tools',
         '/Free,? vet-formulated /'                                                          => 'Free ',
         '/(free,? )?vet-formulated (calculators|tools|pet care tools)/i'                  => 'free $2',
@@ -242,3 +245,14 @@ function pz_scrub_claims( $value ) {
 foreach ( [ 'petzenai_hero_desc', 'petzenai_why_badge', 'petzenai_why_feat1_desc', 'petzenai_footer_desc', 'petzenai_seo_description', 'petzenai_hero_seo_title' ] as $pz_mod ) {
     add_filter( 'theme_mod_' . $pz_mod, 'pz_scrub_claims' );
 }
+
+
+/** Same scrub for "description" values inside Rank Math's JSON-LD graph. */
+add_filter( 'rank_math/json_ld', function ( $data ) {
+    if ( is_array( $data ) ) {
+        array_walk_recursive( $data, function ( &$v, $k ) {
+            if ( $k === 'description' && is_string( $v ) ) { $v = pz_scrub_claims( $v ); }
+        } );
+    }
+    return $data;
+}, 99 );
