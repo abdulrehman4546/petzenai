@@ -116,6 +116,7 @@ function pz_trim_chars( $text, $max ) {
 }
 
 add_filter( 'rank_math/frontend/title', function ( $title ) {
+    if ( ( $ov = pz_current_tool_override() ) && $ov['title'] !== '' ) return $ov['title'];
     if ( $hub = pz_current_hub() ) {
         foreach ( [ ' Free Calculators & Guides', ' Free Guides & Tools', ' Free Tools' ] as $tail ) {
             $t = $hub['label'] . ' Tools: ' . $hub['count'] . $tail . ' | PetZenAI';
@@ -140,6 +141,7 @@ add_filter( 'rank_math/frontend/title', function ( $title ) {
 
 add_filter( 'rank_math/frontend/description', function ( $desc ) {
     $desc = pz_scrub_claims( (string) $desc ); // stored descriptions can still carry old claims
+    if ( ( $ov = pz_current_tool_override() ) && $ov['description'] !== '' ) return $ov['description'];
     if ( $hub = pz_current_hub() ) {
         $sing = [ 'calculator', 'guide', 'checker', 'tracker' ];
         $bits = [];
@@ -264,7 +266,8 @@ add_filter( 'rank_math/json_ld', function ( $data ) {
    About 190 tools have no content of their own (no 'calc' hook in the registry), so most of their text is
    identical on many pages. While PZ_NOINDEX_GENERIC is true they send "noindex, follow" and are left out of
    the sitemap. Giving a tool its own content (adding a 'calc' hook) re-indexes it automatically.
-   Default is ON (owner chose to fix content quality before applying to AdSense); set it to false to index them all again.
+   Default is ON (owner chose to fix content quality before applying to AdSense). It can now be switched, and each tool
+   overridden, from WordPress admin > PetZenAI SEO (inc/seo-panel.php); the constant is only the fallback.
    ============================================================ */
 if ( ! defined( 'PZ_NOINDEX_GENERIC' ) ) define( 'PZ_NOINDEX_GENERIC', true );
 
@@ -281,7 +284,18 @@ function pz_is_generic_tool( $post ) {
 }
 
 function pz_is_noindexed_generic_tool( $post ) {
+    // The SEO control panel (inc/seo-logic.php) decides: per-tool override first, then the global switch.
+    if ( function_exists( 'pz_tool_is_noindexed' ) ) return pz_tool_is_noindexed( $post );
     return PZ_NOINDEX_GENERIC && pz_is_generic_tool( $post );
+}
+
+/** Saved override (title / description / keyword / index) for the tool page being viewed, or null. */
+function pz_current_tool_override() {
+    if ( ! function_exists( 'pz_seo_override_for' ) || ! is_page() ) return null;
+    $q = get_queried_object();
+    if ( ! $q || empty( $q->post_name ) ) return null;
+    $tools = pz_seo_tools_by_slug();
+    return isset( $tools[ $q->post_name ] ) ? pz_seo_override_for( $q->post_name ) : null;
 }
 
 add_filter( 'rank_math/frontend/robots', function ( $robots ) {
