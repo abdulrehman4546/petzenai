@@ -3904,6 +3904,88 @@ function pzCalcDogCalorie() {
   }, 650);
 }
 
+function pzCatFoodDefault() {
+  var f = document.getElementById('pz_cat_food') ? document.getElementById('pz_cat_food').value : 'dry';
+  var k = document.getElementById('pz_cat_kcal');
+  if (k) k.value = (f === 'wet') ? 80 : 375;
+}
+
+function pzCalcCatCalorie() {
+  var $ = function(id){ var e = document.getElementById(id); return e ? e.value : ''; };
+  var weightRaw = parseFloat($('pz_cat_weight')) || 0;
+  var stage = $('pz_cat_stage') || 'adult';
+  var neuter = $('pz_cat_neuter') || 'neutered';
+  var activity = $('pz_cat_activity') || 'normal';
+  var goal = $('pz_cat_goal') || 'maintain';
+  var food = $('pz_cat_food') || 'dry';
+  var kcalUnit = parseFloat($('pz_cat_kcal')) || 0;
+  var result = document.getElementById('pz-calc-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-calc-result', "Calculating your cat's daily calories…");
+  setTimeout(function() {
+    var warn = function(msg) {
+      result.style.display = 'block';
+      result.innerHTML = '<div class="pz-result-warning" style="border-radius:12px;padding:16px;text-align:center"><strong>⚠️ ' + msg + '</strong></div>';
+    };
+    if (!weightRaw || weightRaw <= 0) { warn("Please enter your cat's weight."); return; }
+    var kg = pzUnit === 'kg' ? weightRaw : weightRaw * 0.453592;
+    if (kg < 0.2 || kg > 15) { warn('That weight looks unusual for a cat (about 0.5–33 lb or 0.2–15 kg). Please check the number and the unit.'); return; }
+
+    var rer = 70 * Math.pow(kg, 0.75);
+    var mult, stageLabel, meals, notes = [];
+    if (stage === 'kitten4') { mult = 2.5; stageLabel = 'Kitten (under 4 months)'; meals = '4'; }
+    else if (stage === 'kitten12') { mult = 2.0; stageLabel = 'Kitten (4–12 months)'; meals = '3'; }
+    else if (stage === 'senior') { mult = {low:1.0, normal:1.1, high:1.3}[activity] || 1.1; stageLabel = 'Senior'; meals = '2–3'; }
+    else {
+      stageLabel = 'Adult'; meals = '2–3';
+      mult = (neuter === 'intact' ? {low:1.2, normal:1.4, high:1.6} : {low:1.0, normal:1.2, high:1.6})[activity] || 1.2;
+    }
+    var isKitten = (stage === 'kitten4' || stage === 'kitten12');
+    var losing = (goal === 'lose' && !isKitten);
+    if (losing) mult = 0.8;
+    if (goal === 'lose' && isKitten) notes.push("Weight-loss plans are not for growing kittens, so the maintain/growth target is shown. Ask your vet if you are worried about her weight.");
+
+    var daily = rer * mult;
+    var low = Math.round(daily * 0.9), high = Math.round(daily * 1.1), mid = Math.round(daily);
+    var treats = Math.round(daily * 0.1);
+
+    var foodCell = '';
+    if (kcalUnit > 0) {
+      var amt = daily / kcalUnit;
+      var unit = food === 'wet' ? (amt >= 1.5 ? 'cans' : 'can') : (amt >= 1.5 ? 'cups' : 'cup');
+      var per = amt / (parseInt(meals, 10) || 3);
+      foodCell = '<div class="pz-result-cell"><div class="pz-result-cell-label">Food Per Day</div><div class="pz-result-cell-val" style="font-size:15px">~' + amt.toFixed(2) + ' ' + unit + '</div></div>';
+      notes.push('At ' + kcalUnit + ' kcal per ' + (food === 'wet' ? 'can' : 'cup') + ', that is about ' + amt.toFixed(2) + ' ' + unit + ' a day, or roughly ' + per.toFixed(2) + ' per meal across ' + meals + ' meals. Treats count toward this total.');
+    }
+    if (isKitten) notes.push('Kittens grow fast, so weigh her weekly and feed a food made for growth. Her calorie needs per pound fall as she nears one year old.');
+    if (stage === 'senior') notes.push('Many cats over about 12 lose weight and muscle and may need more calories, not fewer. If she is losing weight without a diet, see your vet.');
+    if (losing) notes.push('Aim to lose about 0.5–2% of her body weight a week. Losing weight faster, or going without food, can cause a serious liver problem in cats. Ask your vet to set a target weight, since they often calculate from her ideal weight.');
+    notes.push('Treats should stay under about 10% of her day, roughly <strong>' + treats + ' kcal</strong>. Take them out of her meals instead of adding them on top.');
+    notes.push('Reweigh her in two weeks on the same scale. If she is gaining or losing when she should not be, change the daily amount by about 10% and check again.');
+
+    result.style.display = 'block';
+    result.innerHTML =
+      '<div class="pz-result-success" style="border-radius:16px;overflow:hidden">'
+      + '<div class="pz-result-hero" style="background:linear-gradient(135deg,#1B5E20,#2E7D32);color:#fff;padding:28px">'
+      + '<div style="font-size:13px;font-weight:700;opacity:.7;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">✅ ' + (losing ? 'Weight-Loss Calorie Target' : 'Daily Calorie Target') + '</div>'
+      + '<div class="pz-result-number">' + low + '–' + high + '</div>'
+      + '<div class="pz-result-unit">calories per day (kcal)</div>'
+      + '</div>'
+      + '<div class="pz-result-grid">'
+      + '<div class="pz-result-cell"><div class="pz-result-cell-label">Base RER</div><div class="pz-result-cell-val">' + Math.round(rer) + ' kcal</div></div>'
+      + '<div class="pz-result-cell"><div class="pz-result-cell-label">Life Stage</div><div class="pz-result-cell-val" style="font-size:13px">' + stageLabel + '</div></div>'
+      + '<div class="pz-result-cell"><div class="pz-result-cell-label">Multiplier</div><div class="pz-result-cell-val">' + mult + '× RER</div></div>'
+      + foodCell
+      + '</div>'
+      + '<div class="pz-result-tips"><h4>📋 What This Means</h4><ul>'
+      + '<li>Her Resting Energy Requirement is <strong>' + Math.round(rer) + ' kcal</strong> (70 × weight in kg^0.75). Multiplied by ' + mult + ' that gives about <strong>~' + mid + ' kcal</strong> a day; the range shown is ±10%.</li>'
+      + notes.map(function(n){ return '<li>' + n + '</li>'; }).join('')
+      + '</ul></div>'
+      + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+      + '</div>';
+  }, 650);
+}
+
 // ── Dog Weight Loss Plan Calculator
 function pzCalcDogWeightLoss() {
   var current = parseFloat(document.getElementById('pz_wl_current')?.value) || 0;

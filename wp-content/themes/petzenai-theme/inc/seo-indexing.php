@@ -48,7 +48,7 @@ add_action( 'template_redirect', function () {
 
 /** Keep duplicates out of the Rank Math sitemap. */
 add_filter( 'rank_math/sitemap/entry', function ( $url, $type, $object ) {
-    if ( $type === 'post' && is_object( $object ) && pz_duplicate_target( $object ) ) return false;
+    if ( $type === 'post' && is_object( $object ) && ( pz_duplicate_target( $object ) || pz_is_noindexed_generic_tool( $object ) ) ) return false;
     return $url;
 }, 10, 3 );
 
@@ -256,3 +256,37 @@ add_filter( 'rank_math/json_ld', function ( $data ) {
     }
     return $data;
 }, 99 );
+
+
+/* ============================================================
+   Optional: noindex tools that still run on the shared template
+   ------------------------------------------------------------
+   About 190 tools have no content of their own (no 'calc' hook in the registry), so most of their text is
+   identical on many pages. While PZ_NOINDEX_GENERIC is true they send "noindex, follow" and are left out of
+   the sitemap. Giving a tool its own content (adding a 'calc' hook) re-indexes it automatically.
+   Default is ON (owner chose to fix content quality before applying to AdSense); set it to false to index them all again.
+   ============================================================ */
+if ( ! defined( 'PZ_NOINDEX_GENERIC' ) ) define( 'PZ_NOINDEX_GENERIC', true );
+
+/** True when the page is a registry tool that has no tool-specific content. */
+function pz_is_generic_tool( $post ) {
+    if ( ! $post || empty( $post->post_name ) || $post->post_type !== 'page' ) return false;
+    require_once get_template_directory() . '/inc/tool-registry.php';
+    static $generic = null;
+    if ( $generic === null ) {
+        $generic = [];
+        foreach ( pz_get_all_tools() as $t ) { if ( empty( $t['calc'] ) ) $generic[ $t['slug'] ] = true; }
+    }
+    return isset( $generic[ $post->post_name ] );
+}
+
+function pz_is_noindexed_generic_tool( $post ) {
+    return PZ_NOINDEX_GENERIC && pz_is_generic_tool( $post );
+}
+
+add_filter( 'rank_math/frontend/robots', function ( $robots ) {
+    if ( is_page() && pz_is_noindexed_generic_tool( get_queried_object() ) ) {
+        $robots['index'] = 'noindex';
+    }
+    return $robots;
+}, 20 );

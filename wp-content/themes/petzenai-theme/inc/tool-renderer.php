@@ -16013,3 +16013,5 @@ function pz_render_guide_dog_sleep_training( $tool ) {
     </div>
     <?php
 }
+
+require_once __DIR__ . '/tool-content/cat-calorie.php';

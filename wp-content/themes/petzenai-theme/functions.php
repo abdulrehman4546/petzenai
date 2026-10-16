@@ -1314,3 +1314,5 @@ add_filter( 'rest_endpoints', function( $endpoints ) {
 
 require_once get_template_directory() . '/inc/seo-indexing.php';
 require_once get_template_directory() . '/inc/branding.php';
+require_once get_template_directory() . '/inc/pages.php';
+require_once get_template_directory() . '/inc/adsense.php';

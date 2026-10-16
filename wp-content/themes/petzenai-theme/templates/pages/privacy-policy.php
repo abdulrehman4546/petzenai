@@ -4,10 +4,9 @@
  * Template Post Type: page
  */
 get_header();
-$site_name  = get_bloginfo('name');
-$site_url   = home_url('/');
-$email      = get_theme_mod('petzenai_contact_email', 'support@petzenai.com');
-$today_year = date('Y');
+$site_name = get_bloginfo('name');
+$site_url  = home_url('/');
+$email     = get_theme_mod('petzenai_contact_email', 'support@petzenai.com');
 ?>
 
 <section class="pz-page-hero" aria-label="Privacy Policy Hero">
@@ -15,7 +14,7 @@ $today_year = date('Y');
   <div class="container pz-page-hero-content">
     <span class="section-tag">Legal</span>
     <h1 class="pz-page-hero-title">Privacy Policy</h1>
-    <p class="pz-page-hero-desc">Last updated: June 11, 2026 &nbsp;·&nbsp; Effective: January 1, <?php echo $today_year; ?></p>
+    <p class="pz-page-hero-desc">Last updated: October 15, 2026</p>
   </div>
 </section>
 
@@ -25,117 +24,91 @@ $today_year = date('Y');
       <div class="pz-legal-content">
 
         <div class="pz-legal-intro">
-          <p>Welcome to <strong><?php echo esc_html($site_name); ?></strong> ("<strong>we</strong>," "<strong>us</strong>," or "<strong>our</strong>"). We operate the website located at <a href="<?php echo esc_url($site_url); ?>"><?php echo esc_html($site_url); ?></a> (the "<strong>Site</strong>"). This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our Site. Please read this policy carefully.</p>
-          <p>By accessing or using our Site, you agree to the collection and use of information in accordance with this policy.</p>
+          <p><strong><?php echo esc_html($site_name); ?></strong> (“we,” “us,” or “our”) operates <a href="<?php echo esc_url($site_url); ?>">petzenai.com</a>, a free website offering pet-care calculators, guides and articles. This Privacy Policy explains what information is collected when you use the site, how it is used, and the choices you have.</p>
+          <p>By using this site you agree to the practices described here. If you do not agree, please do not use the site.</p>
         </div>
 
         <h2>1. Information We Collect</h2>
-        <h3>1.1 Information You Provide Voluntarily</h3>
-        <p>We may collect personal information that you voluntarily provide when you:</p>
+        <h3>1.1 Information you provide</h3>
+        <p>If you use our <a href="<?php echo esc_url(home_url('/contact/')); ?>">Contact</a> form, we collect the name, email address, subject and message you submit so that we can reply. You do not need an account or login to use any tool, calculator or article on this site.</p>
+
+        <h3>1.2 Calculator and tool inputs</h3>
+        <p>Our calculators and interactive tools run in your browser. What you type into them (for example your pet’s weight, age or symptoms) is used on your device to produce your result and is not sent to or stored on our servers.</p>
+
+        <h3>1.3 Information collected automatically</h3>
+        <p>As with most websites, technical information is processed when you visit: your IP address (which indicates approximate location), browser and device type, pages viewed, date and time, and the website that referred you. This is recorded in our hosting provider’s server logs and, if enabled, by the analytics and advertising services described below.</p>
+
+        <h3>1.4 Information stored on your device</h3>
+        <p>Some features store small amounts of data in your browser’s local storage, for example a short list of tools you recently viewed and your light/dark display preference. This data stays on your device, is not sent to us, and you can clear it at any time in your browser settings.</p>
+
+        <h2>2. Cookies and Similar Technologies</h2>
+        <p>Cookies are small files placed on your device. We and our partners may use:</p>
         <ul>
-          <li>Fill out our contact form (name, email address, message)</li>
-          <li>Subscribe to our newsletter (email address)</li>
-          <li>Leave a comment on our blog posts</li>
+          <li><strong>Essential cookies</strong> needed for the site to work and stay secure.</li>
+          <li><strong>Analytics cookies</strong> (for example Google Analytics, if enabled) to understand which pages and tools are used so we can improve them.</li>
+          <li><strong>Advertising cookies</strong> used by Google AdSense and its partners to show and measure ads (see Section 3).</li>
         </ul>
+        <p>You can block or delete cookies in your browser settings. Some parts of the site may not work as intended without them.</p>
 
-        <h3>1.2 Information Collected Automatically</h3>
-        <p>When you visit our Site, we automatically collect certain information, including:</p>
+        <h2>3. Advertising (Google AdSense)</h2>
+        <p>We use Google AdSense to display ads on this site. Third-party vendors, including Google, use cookies to serve ads based on a user’s prior visits to this website and other websites. Google’s use of advertising cookies enables it and its partners to serve ads to you based on your visit to this site and/or other sites on the Internet.</p>
         <ul>
-          <li><strong>Log Data:</strong> IP address, browser type and version, pages visited, time and date of visit, time spent on pages, and other diagnostic data.</li>
-          <li><strong>Cookies and Tracking Technologies:</strong> We use cookies, web beacons, and similar tracking technologies to track activity on our Site and hold certain information. See Section 5 for details.</li>
-          <li><strong>Usage Data:</strong> Information about how you use our free pet care tools (e.g., inputs entered into calculators — but we do not store these inputs on our servers).</li>
+          <li>You can opt out of personalized advertising by visiting <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer">Google Ads Settings</a>.</li>
+          <li>You can also opt out of a third-party vendor’s use of cookies for personalized advertising by visiting <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer">www.aboutads.info/choices</a>. Users in Europe can use <a href="https://www.youronlinechoices.com/" target="_blank" rel="noopener noreferrer">www.youronlinechoices.com</a>.</li>
+          <li>To learn how Google uses data from sites that use its services, see <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">How Google uses information from sites or apps that use our services</a>.</li>
         </ul>
+        <p>Ads may be non-personalized if you decline consent or opt out. We do not control the cookies set by advertising partners; please review their privacy policies.</p>
 
-        <h3>1.3 Information from Third Parties</h3>
-        <p>We may receive information about you from third-party services such as Google Analytics and Google AdSense. These services collect data as described in their own privacy policies.</p>
+        <h2>4. Affiliate Links</h2>
+        <p>Some pages may contain affiliate links (for example to products or pet-insurance providers). If you click one and make a purchase, we may earn a commission at no extra cost to you. Affiliate partners may use cookies to track referred purchases.</p>
 
-        <h2>2. How We Use Your Information</h2>
-        <p>We use the information we collect for the following purposes:</p>
+        <h2>5. How We Use Information</h2>
         <ul>
-          <li>To operate and maintain our Site and free pet care tools</li>
-          <li>To respond to your inquiries and customer support requests</li>
-          <li>To send you newsletters and marketing communications (only if you opted in)</li>
-          <li>To analyze usage trends and improve our Site and tools</li>
-          <li>To detect, prevent, and address technical issues or fraudulent activity</li>
-          <li>To display personalized advertisements through Google AdSense</li>
+          <li>To respond to messages sent through our Contact form</li>
+          <li>To operate, secure and maintain the site and to prevent abuse</li>
+          <li>To understand how tools and content are used, and improve them</li>
+          <li>To show advertising that supports keeping the tools free</li>
           <li>To comply with legal obligations</li>
         </ul>
 
-        <h2>3. Google AdSense and Advertising</h2>
-        <p>We use <strong>Google AdSense</strong> to display advertisements on our Site. Google AdSense uses cookies to serve ads based on your prior visits to our Site and other websites on the Internet.</p>
+        <h2>6. Sharing of Information</h2>
+        <p>We do not sell your personal information for money. We share information only with:</p>
         <ul>
-          <li>Google may use the information it collects to personalize the ads you see.</li>
-          <li>You may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer">Google Ads Settings</a>.</li>
-          <li>You can also opt out by visiting the <a href="http://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer">Network Advertising Initiative opt-out page</a>.</li>
-          <li>Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to our website or other websites.</li>
+          <li><strong>Service providers</strong> that help us run the site, such as our web hosting provider and email service, who may process data on our behalf.</li>
+          <li><strong>Advertising and analytics partners</strong> described above, such as Google.</li>
+          <li><strong>Authorities or other parties</strong> where required by law, or to protect our rights, users or the public.</li>
         </ul>
-        <p>For more information on how Google uses data when you use our Site, please visit: <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">How Google uses data from sites that use their services</a>.</p>
-
-        <h2>4. Google Analytics</h2>
-        <p>We use <strong>Google Analytics</strong> to understand how visitors use our Site. Google Analytics collects information such as how often users visit the Site, what pages they visit, and what other sites they used prior to coming to our Site.</p>
-        <p>Google Analytics collects only the IP address assigned to you on the date you visit our Site, not your name or other identifying information. We do not combine the information collected using Google Analytics with personally identifiable information.</p>
-        <p>You may prevent Google Analytics from recognizing you on return visits by disabling cookies in your browser or by using the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">Google Analytics Opt-out Browser Add-on</a>.</p>
-
-        <h2>5. Cookies Policy</h2>
-        <p>Cookies are small data files placed on your device. We use the following types of cookies:</p>
-        <ul>
-          <li><strong>Essential Cookies:</strong> Required for the Site to function properly (e.g., WordPress session cookies).</li>
-          <li><strong>Analytics Cookies:</strong> Help us understand how visitors interact with our Site (Google Analytics).</li>
-          <li><strong>Advertising Cookies:</strong> Used by Google AdSense to serve relevant advertisements.</li>
-          <li><strong>Preference Cookies:</strong> Remember your preferences and settings.</li>
-        </ul>
-        <p>You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, some parts of our Site may not function properly.</p>
-
-        <h2>6. How We Share Your Information</h2>
-        <p>We do not sell, trade, or rent your personal information to third parties. We may share your information in the following circumstances:</p>
-        <ul>
-          <li><strong>Service Providers:</strong> We may share data with trusted third-party service providers who assist us in operating our Site (e.g., hosting providers, email services). These providers are contractually obligated to keep your information confidential.</li>
-          <li><strong>Business Transfers:</strong> If we are involved in a merger, acquisition, or sale of assets, your information may be transferred as part of that transaction.</li>
-          <li><strong>Legal Requirements:</strong> We may disclose your information if required to do so by law or in response to valid requests by public authorities.</li>
-          <li><strong>Protection of Rights:</strong> We may disclose information to protect the rights, property, or safety of <?php echo esc_html($site_name); ?>, our users, or others.</li>
-        </ul>
+        <p>Some partners, including Google, are based in the United States and may process data there.</p>
 
         <h2>7. Data Retention</h2>
-        <p>We retain personal information only for as long as necessary to fulfill the purposes described in this Privacy Policy, unless a longer retention period is required or permitted by law.</p>
-        <ul>
-          <li>Contact form submissions: retained for up to 12 months</li>
-          <li>Newsletter subscriptions: retained until you unsubscribe</li>
-          <li>Analytics data: retained per Google's standard retention policies</li>
-        </ul>
+        <p>We keep Contact form messages for as long as needed to answer you and keep reasonable records, then delete them. Server logs and analytics data are kept by our providers under their own retention schedules.</p>
 
         <h2>8. Your Rights and Choices</h2>
-        <p>Depending on your location, you may have the following rights regarding your personal data:</p>
-        <ul>
-          <li><strong>Access:</strong> You can request a copy of the personal information we hold about you.</li>
-          <li><strong>Correction:</strong> You can request that we correct inaccurate or incomplete information.</li>
-          <li><strong>Deletion:</strong> You can request that we delete your personal information ("right to be forgotten").</li>
-          <li><strong>Opt-Out:</strong> You can opt out of marketing communications at any time by clicking "unsubscribe" in any email or contacting us directly.</li>
-          <li><strong>Data Portability:</strong> You may request your data in a portable format.</li>
-        </ul>
-        <p>To exercise any of these rights, please contact us at <a href="mailto:<?php echo esc_attr($email); ?>"><?php echo esc_html($email); ?></a>. We will respond within 30 days.</p>
+        <p>Depending on where you live, you may have the right to request access to, correction of, or deletion of personal information we hold about you (mainly Contact form messages, since we do not otherwise keep personal data), and to object to or restrict certain processing. To make a request, email <a href="mailto:<?php echo esc_attr($email); ?>"><?php echo esc_html($email); ?></a>. We will respond within 30 days.</p>
 
-        <h2>9. Children's Privacy</h2>
-        <p><?php echo esc_html($site_name); ?> is not directed to children under the age of 13. We do not knowingly collect personally identifiable information from children under 13. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact us immediately so that we can take necessary action.</p>
+        <h3>8.1 European Economic Area, United Kingdom and Switzerland</h3>
+        <p>Where required, we ask for your consent before using cookies or similar technologies for personalized advertising or measurement, through a consent message shown on the site. You can change your choice at any time using the privacy settings link on the site, if shown, or by clearing your cookies. Where we rely on consent, you may withdraw it at any time. You also have the right to lodge a complaint with your local data protection authority.</p>
+
+        <h3>8.2 California and other US states</h3>
+        <p>Residents of some US states, including California, may have rights to know what personal information is collected, to request deletion, and to opt out of the “sale” or “sharing” of personal information for targeted advertising. Advertising partners such as Google may collect information through cookies on this site, which some state laws treat as “sharing” or “selling.” You can opt out using the privacy choices message shown on the site (where available), <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer">Google Ads Settings</a>, or by contacting us. We will not discriminate against you for exercising your rights.</p>
+
+        <h2>9. Children’s Privacy</h2>
+        <p><?php echo esc_html($site_name); ?> is intended for a general audience and is not directed at children under 13. We do not knowingly collect personal information from children under 13. If you believe a child has sent us personal information, contact us and we will delete it.</p>
 
         <h2>10. Third-Party Links</h2>
-        <p>Our Site may contain links to third-party websites. We have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services. We encourage you to review the privacy policy of every site you visit.</p>
+        <p>Our pages link to third-party websites, including veterinary organisations and resources, for further reading. We do not control these sites and are not responsible for their content or privacy practices.</p>
 
-        <h2>11. Security of Your Information</h2>
-        <p>We use commercially reasonable technical and organizational measures to protect your personal information. However, no method of transmission over the Internet or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your information, we cannot guarantee its absolute security.</p>
+        <h2>11. Security</h2>
+        <p>We take reasonable technical and organizational measures to protect information. No method of transmission or storage is completely secure, so we cannot guarantee absolute security.</p>
 
-        <h2>12. California Privacy Rights (CCPA)</h2>
-        <p>If you are a California resident, you have specific rights under the California Consumer Privacy Act (CCPA), including the right to know what personal data is collected, the right to know whether your personal data is sold or disclosed, the right to say no to the sale of personal data, and the right to non-discrimination in terms of price or service for exercising your privacy rights.</p>
-        <p>We do <strong>not sell</strong> your personal information to third parties.</p>
+        <h2>12. Educational Content Notice</h2>
+        <p>The information on this site is educational and is not veterinary advice, diagnosis or treatment. Always consult a licensed veterinarian about your pet’s health.</p>
 
-        <h2>13. GDPR — Rights of EU/EEA Users</h2>
-        <p>If you are located in the European Union or European Economic Area, you have rights under the General Data Protection Regulation (GDPR), including rights of access, rectification, erasure, restriction of processing, data portability, and the right to object. The legal basis for processing your data is typically your consent, our legitimate interests, or compliance with legal obligations.</p>
-        <p>To exercise your GDPR rights, contact us at <a href="mailto:<?php echo esc_attr($email); ?>"><?php echo esc_html($email); ?></a>.</p>
+        <h2>13. Changes to This Policy</h2>
+        <p>We may update this policy from time to time. We will change the “Last updated” date at the top of this page when we do, so please review it periodically.</p>
 
-        <h2>14. Changes to This Privacy Policy</h2>
-        <p>We may update this Privacy Policy from time to time. We will notify you of any changes by updating the "Last updated" date at the top of this page. You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.</p>
-
-        <h2>15. Contact Us</h2>
-        <p>If you have any questions about this Privacy Policy or our data practices, please contact us:</p>
+        <h2>14. Contact Us</h2>
+        <p>If you have questions about this Privacy Policy or how information is handled, contact us:</p>
         <div class="pz-legal-contact-box">
           <strong><?php echo esc_html($site_name); ?></strong><br>
           Email: <a href="mailto:<?php echo esc_attr($email); ?>"><?php echo esc_html($email); ?></a><br>

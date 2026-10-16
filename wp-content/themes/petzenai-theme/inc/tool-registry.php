@@ -165,7 +165,7 @@ function pz_get_all_tools() {
         // ═══════════════════════════════════════════
         // CAT NUTRITION (15)
         // ═══════════════════════════════════════════
-        ['slug'=>'cat-calorie-calculator','title'=>'Cat Daily Calorie Calculator','cat'=>'cat-nutrition','animal'=>'cat','type'=>'calculator','kw'=>'cat daily calorie calculator','icon'=>'🔢'],
+        ['slug'=>'cat-calorie-calculator','title'=>'Cat Daily Calorie Calculator','cat'=>'cat-nutrition','animal'=>'cat','type'=>'calculator','kw'=>'cat daily calorie calculator','icon'=>'🔢','calc'=>'cat_calorie_calc'],
         ['slug'=>'kitten-feeding-guide','title'=>'Kitten Feeding Guide: How Much & How Often','cat'=>'cat-nutrition','animal'=>'cat','type'=>'guide','kw'=>'kitten feeding guide','icon'=>'🍼'],
         ['slug'=>'wet-vs-dry-cat-food-guide','title'=>'Wet vs Dry Cat Food: Which Is Better?','cat'=>'cat-nutrition','animal'=>'cat','type'=>'guide','kw'=>'wet vs dry cat food guide','icon'=>'🥫'],
         ['slug'=>'cat-toxic-foods-guide','title'=>'Foods Toxic to Cats: Complete Safety List','cat'=>'cat-nutrition','animal'=>'cat','type'=>'guide','kw'=>'foods toxic to cats list','icon'=>'☠️'],
