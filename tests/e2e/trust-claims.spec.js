@@ -31,3 +31,12 @@ test('About page makes no credential claims it cannot back up', async ({ page })
   const t = await page.locator('main, body').first().innerText();
   expect(t).not.toMatch(/veterinary nutritionists|peer-reviewed|Vet-Reviewed/i);
 });
+
+test('blog posts make no unverifiable editorial-team credential claims', async ({ page }) => {
+  for (const p of ['blog/dog-body-language-guide/', 'blog/cat-litter-box-complete-guide/']) {
+    await go(page, p);
+    const text = await page.locator('body').innerText();
+    expect(text, p).not.toMatch(/certified pet care specialists|veterinary consultants|animal health researchers|reviewed for accuracy against current veterinary guidelines/i);
+    await expect(page.locator('.pz-author-bio-box')).toContainText('not veterinary advice');
+  }
+});

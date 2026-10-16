@@ -128,11 +128,11 @@ $read_min = max(1, ceil(str_word_count(strip_tags(get_the_content())) / 200));
             <h3 class="pz-author-bio-name">PetZenAI Editorial Team</h3>
             
           </div>
-          <p class="pz-author-bio-text">Our editorial team consists of certified pet care specialists, veterinary consultants, and animal health researchers. Every article is reviewed for accuracy against current veterinary guidelines before publishing. We are committed to providing science-backed, trustworthy pet care information.</p>
+          <p class="pz-author-bio-text">Written by the PetZenAI team from published pet-care information. This article is educational and is not veterinary advice. If your pet is unwell, contact a licensed veterinarian. Spotted a mistake? Email <a href="mailto:support@petzenai.com">support@petzenai.com</a> and we will review it.</p>
           <div class="pz-author-bio-tags">
-            <span>🎓 Certified Pet Care Specialists</span>
+            <span>📚 Published Guidance</span>
             <span>🏥 Educational Content</span>
-            <span>🔬 Science-Based Guides</span>
+            <span>✉️ Corrections Welcome</span>
           </div>
         </div>
       </div>
