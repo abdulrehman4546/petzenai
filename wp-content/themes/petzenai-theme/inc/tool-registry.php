@@ -210,7 +210,7 @@ function pz_get_all_tools() {
         // ═══════════════════════════════════════════
         ['slug'=>'rabbit-feeding-guide','title'=>'Rabbit Feeding Guide: Diet, Hay & Vegetables','cat'=>'rabbit-care','animal'=>'rabbit','type'=>'guide','kw'=>'rabbit feeding guide','icon'=>'🥕'],
         ['slug'=>'rabbit-food-portion-calculator','title'=>'Rabbit Food Portion Calculator','cat'=>'rabbit-care','animal'=>'rabbit','type'=>'calculator','kw'=>'rabbit food portion calculator','icon'=>'🥬'],
-        ['slug'=>'rabbit-cage-size-calculator','title'=>'Rabbit Hutch & Cage Size Calculator','cat'=>'rabbit-care','animal'=>'rabbit','type'=>'calculator','kw'=>'rabbit cage size calculator','icon'=>'🏠'],
+        ['slug'=>'rabbit-cage-size-calculator','title'=>'Rabbit Hutch & Cage Size Calculator','cat'=>'rabbit-care','animal'=>'rabbit','type'=>'calculator','kw'=>'rabbit cage size calculator','icon'=>'🏠','calc'=>'rabbit_cage_calc'],
         ['slug'=>'rabbit-lifespan-calculator','title'=>'Rabbit Lifespan Calculator by Breed','cat'=>'rabbit-care','animal'=>'rabbit','type'=>'calculator','kw'=>'rabbit lifespan calculator','icon'=>'📅'],
         ['slug'=>'rabbit-health-checker','title'=>'Rabbit Health Symptoms Checker','cat'=>'rabbit-care','animal'=>'rabbit','type'=>'checker','kw'=>'rabbit health symptoms checker','icon'=>'🔬'],
         ['slug'=>'rabbit-toxic-foods-guide','title'=>'Foods Toxic to Rabbits: Safety Guide','cat'=>'rabbit-care','animal'=>'rabbit','type'=>'guide','kw'=>'foods toxic to rabbits guide','icon'=>'☠️'],

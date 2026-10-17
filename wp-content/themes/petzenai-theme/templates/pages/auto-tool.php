@@ -3986,6 +3986,77 @@ function pzCalcCatCalorie() {
   }, 650);
 }
 
+function pzCalcRabbitCage() {
+  var $ = function(id){ var e = document.getElementById(id); return e ? e.value : ''; };
+  var size = $('pz_rb_size') || 'medium';
+  var n = parseInt($('pz_rb_count'), 10) || 1;
+  var housing = $('pz_rb_housing') || 'indoor';
+  var lenRaw = parseFloat($('pz_rb_len')) || 0;
+  var lenUnit = $('pz_rb_len_unit') || 'in';
+  var result = document.getElementById('pz-calc-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-calc-result', 'Working out the right size…');
+  setTimeout(function() {
+    // bare minimum enclosure per rabbit size (inches: length, width, height), from published humane-society guidance
+    var MIN = { small:[36,24,18], medium:[48,24,24], large:[60,24,24], giant:[72,30,30] };
+    var LABEL = { small:'Small rabbit', medium:'Medium rabbit', large:'Large rabbit', giant:'Giant rabbit' };
+    var m = MIN[size] || MIN.medium;
+    var notes = [];
+    var lenIn = lenRaw ? (lenUnit === 'cm' ? lenRaw / 2.54 : lenRaw) : 0;
+    if (lenRaw && (lenIn < 6 || lenIn > 36)) {
+      result.style.display = 'block';
+      result.innerHTML = '<div class="pz-result-warning" style="border-radius:12px;padding:16px;text-align:center"><strong>⚠️ That body length looks unusual for a rabbit (about 6–36 inches or 15–90 cm). Please check the number and the unit.</strong></div>';
+      return;
+    }
+    var minL = m[0], minW = m[1], minH = m[2];
+    if (lenIn && lenIn * 4 > minL) {
+      minL = Math.ceil(lenIn * 4);
+      notes.push('Your rabbit is long, so the length is raised to 4 × her body length (' + minL + ' in) to give her room for several hops.');
+    }
+    var floorSingle = minL * minW / 144;                    // sq ft for one rabbit
+    var recSingle = Math.max(12, floorSingle * 1.5);        // comfortable target: at least 12 sq ft, or 1.5 × minimum
+    var minTotal = floorSingle * n;
+    var recTotal = recSingle * n;
+    var recW = minW;
+    var recL = Math.ceil(recTotal * 144 / recW);
+    if (n > 1) { recW = Math.max(minW, 36); recL = Math.ceil(recTotal * 144 / recW); }
+    var cm = function(x){ return Math.round(x * 2.54); };
+    var ft = function(x){ return (x / 12).toFixed(1).replace(/\.0$/, ''); };
+    var fmt1 = function(x){ return (Math.round(x * 10) / 10).toString(); };
+
+    if (n > 1) notes.push('For ' + n + ' rabbits the space is ' + n + ' times the single-rabbit amount, since guidance suggests doubling the space for a pair. A pen can be shaped wider and longer to fit your room.');
+    if (housing === 'outdoor') notes.push('For an outdoor hutch, the hutch itself should still meet the minimum above, with a secure attached run for exercise. It must be predator-proof and give shade, shelter from rain and wind, and protection from heat and cold.');
+    if (housing === 'free') notes.push('A bunny-proofed room gives plenty of space. Still give her a defined resting area of at least the minimum size, with a litter box, water, hay and a hiding place.');
+    notes.push('She also needs a safe exercise area of about 24–32 sq ft (for example 4 × 8 ft) open for several hours every day. A cage alone is never enough.');
+    notes.push('She should be able to stand fully upright (about ' + minH + ' in tall for a ' + size + ' rabbit) and hop at least three or four times in a row. Use solid, soft flooring rather than bare wire.');
+    notes.push('These are guidance figures from published minimums, and groups quote slightly different numbers. Treat them as the least you should provide and go bigger when you can.');
+
+    result.style.display = 'block';
+    result.innerHTML =
+      '<div class="pz-result-success" style="border-radius:16px;overflow:hidden">'
+      + '<div class="pz-result-hero" style="background:linear-gradient(135deg,#1B5E20,#2E7D32);color:#fff;padding:28px">'
+      + '<div style="font-size:13px;font-weight:700;opacity:.7;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">✅ Comfortable Enclosure Size' + (n > 1 ? ' for ' + n + ' Rabbits' : '') + '</div>'
+      + '<div class="pz-result-number">' + fmt1(recTotal) + ' sq ft</div>'
+      + '<div class="pz-result-unit">about ' + ft(recL) + ' × ' + ft(recW) + ' ft (' + recL + ' × ' + recW + ' in)</div>'
+      + '</div>'
+      + '<div class="pz-result-grid">'
+      + '<div class="pz-result-cell"><div class="pz-result-cell-label">Bare Minimum</div><div class="pz-result-cell-val" style="font-size:14px">' + minL + ' × ' + minW + ' × ' + minH + ' in<br><small>' + cm(minL) + ' × ' + cm(minW) + ' × ' + cm(minH) + ' cm</small></div></div>'
+      + '<div class="pz-result-cell"><div class="pz-result-cell-label">Minimum Floor Area</div><div class="pz-result-cell-val" style="font-size:15px">' + fmt1(minTotal) + ' sq ft</div></div>'
+      + '<div class="pz-result-cell"><div class="pz-result-cell-label">Exercise Area</div><div class="pz-result-cell-val" style="font-size:15px">24–32 sq ft</div></div>'
+      + '</div>'
+      + '<div class="pz-result-recap"><h4>📝 Your Details</h4><ul>'
+      + '<li><strong>Rabbit:</strong> ' + LABEL[size] + (n > 1 ? ' × ' + n : '') + '</li>'
+      + (lenIn ? '<li><strong>Body length:</strong> ' + fmt1(lenIn) + ' in (' + cm(lenIn) + ' cm)</li>' : '')
+      + '<li><strong>Housing:</strong> ' + ({indoor:'Indoors', outdoor:'Outdoor hutch with run', free:'Free-roam room'}[housing]) + '</li>'
+      + '</ul></div>'
+      + '<div class="pz-result-tips"><h4>📋 What This Means</h4><ul>'
+      + notes.map(function(x){ return '<li>' + x + '</li>'; }).join('')
+      + '</ul></div>'
+      + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+      + '</div>';
+  }, 650);
+}
+
 // ── Dog Weight Loss Plan Calculator
 function pzCalcDogWeightLoss() {
   var current = parseFloat(document.getElementById('pz_wl_current')?.value) || 0;
