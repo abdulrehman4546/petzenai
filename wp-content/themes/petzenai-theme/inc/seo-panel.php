@@ -41,7 +41,17 @@ add_action( 'admin_post_pz_seo_save', function () {
         }
         update_option( 'pz_seo_overrides', $all, false );
     }
+    if ( function_exists( 'pz_flush_rankmath_sitemap_cache' ) ) pz_flush_rankmath_sitemap_cache();   // index/noindex changes alter the sitemap
     pz_seo_back( 'saved' );
+} );
+
+add_action( 'admin_post_pz_seo_rerun', function () {
+    if ( ! current_user_can( 'manage_options' ) ) wp_die( 'Not allowed.' );
+    check_admin_referer( 'pz_seo_rerun' );
+    delete_option( 'pz_release_done' );          // the next request runs the release tasks again
+    delete_transient( 'pz_release_lock' );
+    pz_run_release_tasks();
+    pz_seo_back( 'rerun' );
 } );
 
 add_action( 'admin_post_pz_seo_import', function () {
@@ -101,6 +111,7 @@ function pz_seo_render_page() {
     }
 
     $messages = [
+        'rerun' => [ 'ok', 'Deployment tasks ran again. See the list below.' ],
         'saved' => [ 'ok', 'Saved. Changes are live; purge your cache so visitors and Google see them.' ],
         'bad_pub' => [ 'err', 'That AdSense publisher id is not valid. Use the form pub-1234567890123456.' ],
         'imported' => [ 'ok', 'Keywords imported. Suggestions now show in the tools table below.' ],
@@ -179,6 +190,17 @@ function pz_seo_render_page() {
         <?php if ( ! empty( $inlast['time'] ) ) : ?>
           <p><b>Last submission:</b> <?php echo esc_html( wp_date( 'j M Y H:i', $inlast['time'] ) ); ?>: <?php echo (int) $inlast['count']; ?> URLs, response <?php echo (int) $inlast['code']; ?>.</p>
         <?php endif; ?>
+      </form>
+
+      <h2>Last deployment tasks</h2>
+      <form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" class="pz-box">
+        <?php wp_nonce_field( 'pz_seo_rerun' ); ?>
+        <input type="hidden" name="action" value="pz_seo_rerun">
+        <?php $rl = get_option( 'pz_release_log', [] ); if ( is_array( $rl ) && $rl ) : ?>
+          <ul style="margin:0 0 10px 18px;list-style:disc"><?php foreach ( $rl as $line ) echo '<li>' . esc_html( $line ) . '</li>'; ?></ul>
+        <?php else : ?><p>No release has run yet.</p><?php endif; ?>
+        <p class="description">After each deploy the site publishes new posts, rebuilds the sitemaps, tidies old files and asks the page cache to clear, once, automatically.</p>
+        <p><button class="button">Run these tasks again</button></p>
       </form>
 
       <h2>4. Tool pages</h2>

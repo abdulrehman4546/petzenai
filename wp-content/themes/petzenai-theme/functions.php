@@ -1319,3 +1319,4 @@ require_once get_template_directory() . '/inc/adsense.php';
 require_once get_template_directory() . '/inc/blog-seed.php';
 require_once get_template_directory() . '/inc/seo-logic.php';
 if ( is_admin() ) { require_once get_template_directory() . '/inc/seo-panel.php'; }
+require_once get_template_directory() . '/inc/post-deploy.php';
