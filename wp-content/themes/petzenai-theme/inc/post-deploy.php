@@ -113,12 +113,14 @@ add_action( 'init', 'pz_run_release_tasks', 30 );
  * Cache lifetime for the pages that change most often.
  * The host's page cache keeps pages for about 2.5 days (s-maxage=216000), so after a deploy the homepage, tools hub and
  * blog index could show old HTML for days. Ask the CDN to keep these specific pages for one hour instead.
- * Visitors who are logged in and admin screens are not affected.
+ * Set as late as possible because the cache plugin writes its own header. Logged-in visitors and admin are not affected.
  */
-add_filter( 'wp_headers', function ( $headers ) {
-    if ( is_admin() || is_user_logged_in() ) return $headers;
+function pz_short_cache_header() {
+    if ( is_admin() || is_user_logged_in() || headers_sent() ) return;
     if ( is_front_page() || is_home() || is_page( 'tools' ) || is_page( 'blog' ) ) {
-        $headers['Cache-Control'] = 'public, max-age=0, s-maxage=3600';
+        if ( function_exists( 'header_remove' ) ) header_remove( 'Cache-Control' );
+        header( 'Cache-Control: public, max-age=0, s-maxage=3600', true );
     }
-    return $headers;
-} );
+}
+add_action( 'send_headers', 'pz_short_cache_header', 9999 );
+add_action( 'template_redirect', 'pz_short_cache_header', 9999 );
