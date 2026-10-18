@@ -151,7 +151,7 @@ function pz_seo_render_page() {
             <p class="description">Recommended until those tools get unique content. Tools you set to “Index” in the table below always stay indexed.</p>
           </td></tr>
           <tr><th scope="row"><label for="pz_adsense_id">AdSense publisher id</label></th><td>
-            <input type="text" id="pz_adsense_id" name="pz_adsense_id" class="regular-text" value="<?php echo esc_attr( 'pub-' === substr( (string) get_theme_mod( 'petzenai_adsense_publisher_id', '' ), 0, 4 ) ? get_theme_mod( 'petzenai_adsense_publisher_id', '' ) : '' ); ?>" placeholder="pub-4379837532366669">
+            <input type="text" id="pz_adsense_id" name="pz_adsense_id" class="regular-text" value="<?php echo esc_attr( 'pub-' === substr( (string) get_theme_mod( 'petzenai_adsense_publisher_id', '' ), 0, 4 ) ? get_theme_mod( 'petzenai_adsense_publisher_id', '' ) : '' ); ?>" placeholder="pub-1736474691234357">
             <p class="description">Leave empty to use the id in <code>ads.txt</code> (<?php echo esc_html( function_exists( 'pz_adsense_client' ) ? pz_adsense_client() : '' ); ?>).</p>
           </td></tr>
         </tbody></table>

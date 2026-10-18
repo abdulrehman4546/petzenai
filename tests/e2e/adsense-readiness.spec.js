@@ -5,6 +5,7 @@ const words = async (page) => (await page.locator('main, body').first().innerTex
 test('AdSense loader and verification meta match the publisher id in ads.txt', async ({ page, request }) => {
   const ads = await (await request.get('ads.txt')).text();
   const pub = ads.match(/pub-\d{10,20}/)[0];
+  expect(pub, 'the publisher id from the owner\'s AdSense account').toBe('pub-1736474691234357');
   await go(page, '');
   await expect(page.locator('meta[name="google-adsense-account"]')).toHaveAttribute('content', 'ca-' + pub);
   const src = await page.locator('script[src*="adsbygoogle.js"]').getAttribute('src');
