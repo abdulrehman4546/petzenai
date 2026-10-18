@@ -50,6 +50,36 @@ function pz_seed_backfill_featured_images() {
     return $out;
 }
 
+
+/**
+ * Apply the 'status' written in a content file ('draft' or 'publish'), once per change.
+ * The last applied value is remembered per post, so something the owner publishes or unpublishes by hand in wp-admin is
+ * never undone; it only acts again when the status in the content file itself is changed.
+ * @return string[] log lines
+ */
+function pz_sync_post_statuses() {
+    $applied = get_option( 'pz_post_status_applied', [] );
+    $applied = is_array( $applied ) ? $applied : [];
+    $log     = [];
+    foreach ( (array) glob( get_template_directory() . '/inc/blog-content/*.php' ) as $file ) {
+        $post = include $file;
+        if ( ! is_array( $post ) || empty( $post['slug'] ) || empty( $post['status'] ) ) continue;
+        $slug = $post['slug']; $want = $post['status'];
+        if ( ( $applied[ $slug ] ?? null ) === $want ) continue;
+        $found = get_page_by_path( $slug, OBJECT, 'post' );
+        if ( $found && $found->post_status !== $want && in_array( $want, [ 'draft', 'publish' ], true ) ) {
+            $had_kses = has_filter( 'content_save_pre', 'wp_filter_post_kses' );
+            if ( $had_kses ) kses_remove_filters();          // status change only: do not re-filter our trusted content
+            $r = wp_update_post( [ 'ID' => $found->ID, 'post_status' => $want ], true );
+            if ( $had_kses ) kses_init_filters();
+            $log[] = $slug . ': ' . $found->post_status . ' -> ' . $want . ( is_wp_error( $r ) ? ' (failed)' : '' );
+        }
+        $applied[ $slug ] = $want;
+    }
+    update_option( 'pz_post_status_applied', $applied, false );
+    return $log;
+}
+
 /** @return int[] ids of posts created by this call */
 function pz_seed_blog_posts( $status = null ) {
     $status  = $status ?: PZ_BLOG_SEED_STATUS;
@@ -82,7 +112,7 @@ function pz_seed_blog_posts( $status = null ) {
             if ( $had_kses ) kses_remove_filters();          // trusted theme content: keep our tables, classes and links intact
             $id = wp_insert_post( [
                 'post_type'     => 'post',
-                'post_status'   => $status,
+                'post_status'   => ! empty( $post['status'] ) ? $post['status'] : $status,
                 'post_title'    => $post['title'],
                 'post_name'     => $post['slug'],
                 'post_content'  => $post['content'],

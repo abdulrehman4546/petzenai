@@ -4,6 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 return [
     'slug'        => 'thanksgiving-foods-for-dogs-and-cats',
     'title'       => 'Thanksgiving Foods Dogs and Cats Can and Can’t Eat',
+    'status'      => 'draft',   // held back: keywords are being checked before this goes live
     'category'    => 'Pet Tips',
     'keyword'     => 'thanksgiving foods dogs can eat',
     'description' => 'Which Thanksgiving foods are safe for dogs and cats, and which are dangerous? See a simple chart for turkey, stuffing, pumpkin, desserts and more.',

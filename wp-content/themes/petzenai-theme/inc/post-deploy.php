@@ -13,7 +13,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( ! defined( 'PZ_RELEASE' ) ) define( 'PZ_RELEASE', '2026-10-18-a' );
+if ( ! defined( 'PZ_RELEASE' ) ) define( 'PZ_RELEASE', '2026-10-18-b' );
 
 /** Delete Rank Math's cached sitemap files and transients. @return int number of cache entries removed */
 function pz_flush_rankmath_sitemap_cache() {
@@ -78,9 +78,14 @@ function pz_run_release_tasks() {
 
     try {
         $ids = function_exists( 'pz_seed_blog_posts' ) ? pz_seed_blog_posts() : [];
-        foreach ( $ids as $id ) { $new_urls[] = get_permalink( $id ); }
+        foreach ( $ids as $id ) { if ( get_post_status( $id ) === 'publish' ) $new_urls[] = get_permalink( $id ); }
         $log[] = 'blog posts created: ' . count( $ids ) . ( $ids ? ' (' . implode( ', ', array_map( 'get_post_status', $ids ) ) . ')' : '' );
     } catch ( \Throwable $e ) { $log[] = 'blog posts failed: ' . $e->getMessage(); }
+
+    try {
+        $st = function_exists( 'pz_sync_post_statuses' ) ? pz_sync_post_statuses() : [];
+        $log[] = 'post status changes: ' . ( $st ? implode( '; ', $st ) : 'none' );
+    } catch ( \Throwable $e ) { $log[] = 'post status sync failed: ' . $e->getMessage(); }
 
     try {
         $bf = function_exists( 'pz_seed_backfill_featured_images' ) ? pz_seed_backfill_featured_images() : [];

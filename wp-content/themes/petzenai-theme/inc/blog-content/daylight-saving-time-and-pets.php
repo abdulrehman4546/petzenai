@@ -4,6 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 return [
     'slug'        => 'daylight-saving-time-and-pets',
     'title'       => 'Daylight Saving Time and Pets: How to Adjust Their Routine',
+    'status'      => 'draft',   // held back: keywords are being checked before this goes live
     'category'    => 'Pet Tips',
     'keyword'     => 'daylight saving time pets',
     'description' => 'When the clocks go back, pets keep their old routine. Learn how to shift meals and walks gradually, what to do for cats, and why medicated pets need extra care.',

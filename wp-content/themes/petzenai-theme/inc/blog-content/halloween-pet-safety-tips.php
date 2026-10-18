@@ -4,6 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 return [
     'slug'        => 'halloween-pet-safety-tips',
     'title'       => 'Halloween Pet Safety: Candy, Costumes and Decorations',
+    'status'      => 'draft',   // held back: keywords are being checked before this goes live
     'category'    => 'Pet Tips',
     'keyword'     => 'halloween pet safety tips',
     'description' => 'Keep dogs and cats safe this Halloween: which candy is dangerous, how to choose a safe costume, and what to do if your pet eats something toxic.',
