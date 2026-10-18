@@ -14,7 +14,7 @@ $email     = get_theme_mod('petzenai_contact_email', 'support@petzenai.com');
   <div class="container pz-page-hero-content">
     <span class="section-tag">Legal</span>
     <h1 class="pz-page-hero-title">Privacy Policy</h1>
-    <p class="pz-page-hero-desc">Last updated: October 15, 2026</p>
+    <p class="pz-page-hero-desc">Last updated: October 18, 2026</p>
   </div>
 </section>
 
@@ -45,7 +45,7 @@ $email     = get_theme_mod('petzenai_contact_email', 'support@petzenai.com');
         <p>Cookies are small files placed on your device. We and our partners may use:</p>
         <ul>
           <li><strong>Essential cookies</strong> needed for the site to work and stay secure.</li>
-          <li><strong>Analytics cookies</strong> (for example Google Analytics, if enabled) to understand which pages and tools are used so we can improve them.</li>
+          <li><strong>Analytics cookies</strong> from Google Analytics 4, to understand which pages and tools are used so we can improve them. In the EEA, the UK and Switzerland these are only set after you give consent. You can also opt out with the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">Google Analytics opt-out browser add-on</a>.</li>
           <li><strong>Advertising cookies</strong> used by Google AdSense and its partners to show and measure ads (see Section 3).</li>
         </ul>
         <p>You can block or delete cookies in your browser settings. Some parts of the site may not work as intended without them.</p>

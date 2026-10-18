@@ -30,6 +30,11 @@ add_action( 'admin_post_pz_seo_save', function () {
     elseif ( preg_match( '/^(ca-)?(pub-\d{10,20})$/', $pub, $m ) ) set_theme_mod( 'petzenai_adsense_publisher_id', $m[2] );
     else pz_seo_back( 'bad_pub' );
 
+    $ga = trim( sanitize_text_field( wp_unslash( $_POST['pz_ga4_id'] ?? '' ) ) );
+    if ( $ga === '' ) delete_option( 'pz_ga4_id' );
+    elseif ( strtolower( $ga ) === 'off' || preg_match( '/^G-[A-Z0-9]{6,14}$/', $ga ) ) update_option( 'pz_ga4_id', strtolower( $ga ) === 'off' ? 'off' : $ga, false );
+    else pz_seo_back( 'bad_ga' );
+
     $changes = json_decode( wp_unslash( $_POST['pz_changes'] ?? '' ), true );
     if ( is_array( $changes ) ) {
         $tools = pz_seo_tools_by_slug();
@@ -113,6 +118,7 @@ function pz_seo_render_page() {
     $messages = [
         'rerun' => [ 'ok', 'Deployment tasks ran again. See the list below.' ],
         'saved' => [ 'ok', 'Saved. Changes are live; purge your cache so visitors and Google see them.' ],
+        'bad_ga' => [ 'err', 'That Google Analytics id is not valid. It looks like G-XXXXXXXXXX (or type off).' ],
         'bad_pub' => [ 'err', 'That AdSense publisher id is not valid. Use the form pub-1234567890123456.' ],
         'imported' => [ 'ok', 'Keywords imported. Suggestions now show in the tools table below.' ],
         'import_file' => [ 'err', 'Please choose a CSV file (up to 5 MB).' ],
@@ -153,6 +159,10 @@ function pz_seo_render_page() {
           <tr><th scope="row"><label for="pz_adsense_id">AdSense publisher id</label></th><td>
             <input type="text" id="pz_adsense_id" name="pz_adsense_id" class="regular-text" value="<?php echo esc_attr( 'pub-' === substr( (string) get_theme_mod( 'petzenai_adsense_publisher_id', '' ), 0, 4 ) ? get_theme_mod( 'petzenai_adsense_publisher_id', '' ) : '' ); ?>" placeholder="pub-1736474691234357">
             <p class="description">Leave empty to use the id in <code>ads.txt</code> (<?php echo esc_html( function_exists( 'pz_adsense_client' ) ? pz_adsense_client() : '' ); ?>).</p>
+          </td></tr>
+          <tr><th scope="row"><label for="pz_ga4_id">Google Analytics 4 id</label></th><td>
+            <input type="text" id="pz_ga4_id" name="pz_ga4_id" class="regular-text" value="<?php echo esc_attr( get_option( 'pz_ga4_id', '' ) ); ?>" placeholder="<?php echo esc_attr( defined( 'PZ_GA4_DEFAULT_ID' ) ? PZ_GA4_DEFAULT_ID : 'G-XXXXXXXXXX' ); ?>">
+            <p class="description">Leave empty to use <code><?php echo esc_html( defined( 'PZ_GA4_DEFAULT_ID' ) ? PZ_GA4_DEFAULT_ID : '' ); ?></code>; type <code>off</code> to switch analytics off. Logged-in admins are never counted. Do not also install the tag from Rank Math (it would count visits twice).</p>
           </td></tr>
         </tbody></table>
         <p><button type="submit" class="button button-primary button-large" id="pz-save-top">Save settings and table changes</button></p>
