@@ -10,6 +10,46 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 if ( ! defined( 'PZ_BLOG_SEED_STATUS' ) ) define( 'PZ_BLOG_SEED_STATUS', 'publish' );
 
+
+/**
+ * Download a stock photo and set it as the post's featured image (used for the blog index card and og:image).
+ * $featured = [ 'url' => ..., 'alt' => ... ]. Does nothing if the post already has a featured image.
+ * @return int attachment id, or 0
+ */
+function pz_seed_set_featured_image( $post_id, $featured, $slug ) {
+    if ( ! $post_id || empty( $featured['url'] ) || has_post_thumbnail( $post_id ) ) return 0;
+    try {
+        require_once ABSPATH . 'wp-admin/includes/file.php';
+        require_once ABSPATH . 'wp-admin/includes/media.php';
+        require_once ABSPATH . 'wp-admin/includes/image.php';
+        $tmp = download_url( $featured['url'], 30 );
+        if ( is_wp_error( $tmp ) ) return 0;
+        $att = media_handle_sideload( [ 'name' => sanitize_file_name( $slug . '.jpg' ), 'tmp_name' => $tmp ], $post_id, $featured['alt'] ?? '' );
+        if ( is_wp_error( $att ) ) { @unlink( $tmp ); return 0; }
+        update_post_meta( $att, '_wp_attachment_image_alt', $featured['alt'] ?? '' );
+        set_post_thumbnail( $post_id, $att );
+        return (int) $att;
+    } catch ( \Throwable $e ) {
+        error_log( 'PetZenAI featured image failed for ' . $slug . ': ' . $e->getMessage() );
+        return 0;
+    }
+}
+
+/** Give already-published seeded posts their featured image if they do not have one yet. @return int[] post ids updated */
+function pz_seed_backfill_featured_images() {
+    $done = get_option( 'pz_seeded_posts', [] );
+    $out  = [];
+    foreach ( (array) glob( get_template_directory() . '/inc/blog-content/*.php' ) as $file ) {
+        $key = basename( $file, '.php' );
+        $post = include $file;
+        if ( ! is_array( $post ) || empty( $post['featured'] ) ) continue;
+        $id = isset( $done[ $key ] ) && is_int( $done[ $key ] ) ? $done[ $key ] : 0;
+        if ( ! $id ) { $found = get_page_by_path( $post['slug'], OBJECT, 'post' ); $id = $found ? (int) $found->ID : 0; }
+        if ( $id && pz_seed_set_featured_image( $id, $post['featured'], $post['slug'] ) ) $out[] = $id;
+    }
+    return $out;
+}
+
 /** @return int[] ids of posts created by this call */
 function pz_seed_blog_posts( $status = null ) {
     $status  = $status ?: PZ_BLOG_SEED_STATUS;
@@ -54,6 +94,7 @@ function pz_seed_blog_posts( $status = null ) {
             if ( is_wp_error( $id ) || ! $id ) continue;
             if ( ! empty( $post['description'] ) ) update_post_meta( $id, 'rank_math_description', $post['description'] );
             if ( ! empty( $post['keyword'] ) )     update_post_meta( $id, 'rank_math_focus_keyword', $post['keyword'] );
+            if ( ! empty( $post['featured'] ) )    pz_seed_set_featured_image( $id, $post['featured'], $post['slug'] );
             $done[ $key ] = (int) $id; $changed = true; $created[] = (int) $id;
         } catch ( \Throwable $e ) {
             if ( ! empty( $had_kses ) ) kses_init_filters();

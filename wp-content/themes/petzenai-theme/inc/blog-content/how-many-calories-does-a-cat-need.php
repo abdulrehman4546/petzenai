@@ -8,6 +8,7 @@ return [
     'keyword'     => 'how many calories does a cat need',
     'description' => 'Most adult cats need about 20–30 calories per pound a day. See a table by weight, how kittens and seniors differ, and how to turn calories into cups or cans.',
     'excerpt'     => 'Most adult cats need about 20–30 calories per pound a day. Here is how to work out the right amount for your cat, with a weight table and what changes for kittens, seniors and weight loss.',
+    'featured'    => [ 'url' => 'https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=1200&h=675&q=80&auto=format&fit=crop', 'alt' => 'An orange tabby cat lying on a wooden table and looking up' ],
     'content'     => <<<'HTML'
 <p>A typical 10 lb (4.5 kg) neutered indoor cat needs roughly <strong>215 to 260 calories a day</strong>. That works out to about 20 to 30 calories per pound of body weight, and where your cat lands in that range depends on her age, whether she is neutered, and how active she is. This guide shows how the number is worked out, gives a table by weight, and explains how to turn calories into cups or cans.</p>
 

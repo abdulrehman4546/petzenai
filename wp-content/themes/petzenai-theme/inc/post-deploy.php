@@ -13,7 +13,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( ! defined( 'PZ_RELEASE' ) ) define( 'PZ_RELEASE', '2026-10-17-a' );
+if ( ! defined( 'PZ_RELEASE' ) ) define( 'PZ_RELEASE', '2026-10-18-a' );
 
 /** Delete Rank Math's cached sitemap files and transients. @return int number of cache entries removed */
 function pz_flush_rankmath_sitemap_cache() {
@@ -82,6 +82,11 @@ function pz_run_release_tasks() {
         $log[] = 'blog posts created: ' . count( $ids ) . ( $ids ? ' (' . implode( ', ', array_map( 'get_post_status', $ids ) ) . ')' : '' );
     } catch ( \Throwable $e ) { $log[] = 'blog posts failed: ' . $e->getMessage(); }
 
+    try {
+        $bf = function_exists( 'pz_seed_backfill_featured_images' ) ? pz_seed_backfill_featured_images() : [];
+        $log[] = 'featured images added to existing posts: ' . count( $bf );
+    } catch ( \Throwable $e ) { $log[] = 'featured image backfill failed: ' . $e->getMessage(); }
+
     try { $log[] = 'sitemap cache entries removed: ' . pz_flush_rankmath_sitemap_cache(); }
     catch ( \Throwable $e ) { $log[] = 'sitemap flush failed: ' . $e->getMessage(); }
 
@@ -93,7 +98,7 @@ function pz_run_release_tasks() {
 
     try {
         if ( defined( 'PZ_INDEXNOW_KEY' ) ) {
-            $urls = array_merge( $new_urls, [ home_url( '/' ), home_url( '/blog/' ), home_url( '/tools/cat-calorie-calculator/' ), home_url( '/tools/rabbit-cage-size-calculator/' ) ] );
+            $urls = array_merge( $new_urls, [ home_url( '/' ), home_url( '/blog/' ) ] );
             wp_remote_post( 'https://api.indexnow.org/indexnow', [
                 'timeout' => 3, 'blocking' => false,
                 'headers' => [ 'Content-Type' => 'application/json; charset=utf-8' ],
