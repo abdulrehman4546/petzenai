@@ -146,9 +146,9 @@ $why_img  = pz_url( 'petzenai_why_image'  ) ?: 'https://images.unsplash.com/phot
         ['🍽️','Pet Food Portion Calculator','Calculate the perfect daily food portions for dogs, cats, birds, rabbits and more based on weight & activity.','Try Calculator →','/tools/pet-food-portion-calculator/','food'],
         ['🎂','Pet Age Calculator','Convert your pet\'s age to human years with our breed-specific, science-backed formula.','Check Age →','/tools/pet-age-calculator/','age'],
         ['💉','Vaccination Schedule Tracker','Never miss a vaccine. Get a full immunization schedule tailored to your pet\'s age and type.','Track Vaccines →','/tools/pet-vaccination-schedule/','vaccine'],
-        ['✨','AI Pet Name Generator','AI-generated pet names filtered by gender, breed, and personality traits.','Get Names →','/tools/ai-pet-name-generator/','names'],
+        ['✨','Pet Name Generator','Name ideas filtered by gender, breed, and personality traits.','Get Names →','/tools/ai-pet-name-generator/','names'],
         ['🏃','Pet Exercise Calculator','Discover how much daily exercise your pet needs based on breed, age, weight, and health status.','Plan Exercise →','/tools/pet-exercise-calculator/','exercise'],
-        ['❓','What Pet Should I Get?','Answer 10 quick questions and our AI recommends your perfect pet match.','Take Quiz →','/tools/what-pet-should-i-get/','quiz'],
+        ['❓','What Pet Should I Get?','Answer 10 quick questions and the quiz suggests the pet that fits your lifestyle.','Take Quiz →','/tools/what-pet-should-i-get/','quiz'],
       ];
       foreach($tools as $i => $t): ?>
       <article class="tool-card" data-aos data-aos-delay="<?php echo $i*80; ?>" itemscope itemtype="https://schema.org/SoftwareApplication" onclick="window.location='<?php echo home_url($t[4]); ?>'" style="cursor:pointer">

@@ -14309,7 +14309,6 @@ function pz_sidebar_quick_facts($tool) {
         ['Animal Type', $a],
         ['Tool Type', ucfirst($tool['type'])],
         ['Content Type', 'Educational'],
-        ['Last Updated', date('M Y')],
         ['Cost', '100% Free'],
     ];
     $out = '<ul style="list-style:none;padding:0;margin:0">';

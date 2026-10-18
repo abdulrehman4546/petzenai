@@ -3,14 +3,14 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 add_shortcode( 'petzenai_name_gen', function () {
     ob_start(); ?>
-<div class="pz-tool" id="tool-names" role="main" aria-label="AI Pet Name Generator"
+<div class="pz-tool" id="tool-names" role="main" aria-label="Pet Name Generator"
      itemscope itemtype="https://schema.org/SoftwareApplication">
-  <meta itemprop="name" content="AI Pet Name Generator">
+  <meta itemprop="name" content="Pet Name Generator">
   <meta itemprop="applicationCategory" content="LifestyleApplication">
 
   <div class="pz-tool-header">
     <span class="pz-tool-icon" aria-hidden="true">✨</span>
-    <h1 class="pz-tool-title">AI Pet Name Generator</h1>
+    <h1 class="pz-tool-title">Pet Name Generator</h1>
     <p class="pz-tool-desc">Find the perfect name for your new companion. Name ideas filtered by pet type, gender, and personality — instantly personalized.</p>
   </div>
 

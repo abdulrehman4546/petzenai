@@ -84,8 +84,8 @@ get_header();
       <div class="ht-related"><h3>🔗 Related Tools</h3>
         <a href="<?php echo home_url('/tools/pet-age-calculator/'); ?>" class="ht-rel-link">🎂 Pet Age Calculator →</a>
         <a href="<?php echo home_url('/tools/pet-exercise-calculator/'); ?>" class="ht-rel-link">🏃 Exercise Calculator →</a>
-        <a href="<?php echo home_url('/dog-calorie-calculator/'); ?>" class="ht-rel-link">🐕 Dog Calorie Calculator →</a>
-        <a href="<?php echo home_url('/cat-calorie-calculator/'); ?>" class="ht-rel-link">🐱 Cat Calorie Calculator →</a>
+        <a href="<?php echo home_url('/tools/dog-calorie-calculator/'); ?>" class="ht-rel-link">🐕 Dog Calorie Calculator →</a>
+        <a href="<?php echo home_url('/tools/cat-calorie-calculator/'); ?>" class="ht-rel-link">🐱 Cat Calorie Calculator →</a>
       </div>
     </div>
   </div>

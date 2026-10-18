@@ -115,7 +115,17 @@ function pz_trim_chars( $text, $max ) {
     return rtrim( mb_substr( $cut, 0, mb_strrpos( $cut, ' ' ) ?: $max - 1 ), " ,;:-—" ) . '…';
 }
 
+/** Pages whose stored SEO title still carries an inaccurate claim ("AI"); the tool is a random name picker, not AI. */
+function pz_static_title_override() {
+    if ( ! is_page() ) return '';
+    $q = get_queried_object();
+    $map = [ 'ai-pet-name-generator' => 'Pet Name Generator: Ideas for Dogs, Cats & More | PetZenAI',
+             'what-pet-should-i-get'  => 'What Pet Should I Get? Free Pet Match Quiz | PetZenAI' ];
+    return ( $q && ! empty( $q->post_name ) && isset( $map[ $q->post_name ] ) ) ? $map[ $q->post_name ] : '';
+}
+
 add_filter( 'rank_math/frontend/title', function ( $title ) {
+    if ( $t = pz_static_title_override() ) return $t;
     if ( ( $ov = pz_current_tool_override() ) && $ov['title'] !== '' ) return $ov['title'];
     if ( $hub = pz_current_hub() ) {
         foreach ( [ ' Free Calculators & Guides', ' Free Guides & Tools', ' Free Tools' ] as $tail ) {

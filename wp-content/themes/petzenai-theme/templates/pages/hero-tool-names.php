@@ -12,7 +12,7 @@
 <?php include get_template_directory().'/templates/pages/hero-tool-breadcrumb.php'; ?>
 <section class="ht-hero" style="background:linear-gradient(135deg,#0D0D1A,#1a1a0a)">
   <span class="ht-hero-icon">✨</span>
-  <h1>AI Pet Name <span>Generator</span></h1>
+  <h1>Pet Name <span>Generator</span></h1>
   <p>Name ideas filtered by species, gender, personality & meaning. Find the perfect name instantly.</p>
   <div class="ht-badges"><span class="ht-badge green">✅ Name Ideas</span><span class="ht-badge blue">🎯 Filtered by Personality</span><span class="ht-badge orange">⚡ Instant</span></div>
 </section>

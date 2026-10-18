@@ -11,7 +11,7 @@ add_shortcode( 'petzenai_pet_quiz', function () {
   <div class="pz-tool-header">
     <span class="pz-tool-icon" aria-hidden="true">❓</span>
     <h1 class="pz-tool-title">What Pet Should I Get?</h1>
-    <p class="pz-tool-desc">Answer 10 quick questions about your lifestyle and our AI will recommend the perfect pet companion for you.</p>
+    <p class="pz-tool-desc">Answer 10 quick questions about your lifestyle and the quiz will suggest a pet that fits you.</p>
   </div>
 
   <div class="pz-quiz-progress" id="quiz-progress" aria-hidden="true">

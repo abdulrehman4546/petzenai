@@ -37,7 +37,7 @@ $today_year = date('Y');
           <li>Pet Food Portion Calculator</li>
           <li>Pet Age Calculator</li>
           <li>Pet Vaccination Schedule Tracker</li>
-          <li>AI Pet Name Generator</li>
+          <li>Pet Name Generator</li>
           <li>Pet Exercise Calculator</li>
           <li>What Pet Should I Get Quiz</li>
           <li>Educational blog articles on pet nutrition and health</li>
