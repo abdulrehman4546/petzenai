@@ -4057,6 +4057,82 @@ function pzCalcRabbitCage() {
   }, 650);
 }
 
+function pzCatHydDiet() {
+  var d = document.getElementById('pz_hy_diet') ? document.getElementById('pz_hy_diet').value : 'dry';
+  var wet = document.getElementById('pz_hy_wet_wrap'), dry = document.getElementById('pz_hy_dry_wrap');
+  if (wet) wet.style.display = (d === 'dry') ? 'none' : '';
+  if (dry) dry.style.display = (d === 'wet') ? 'none' : '';
+}
+
+function pzCalcCatHydration() {
+  var $ = function(id){ var e = document.getElementById(id); return e ? e.value : ''; };
+  var weightRaw = parseFloat($('pz_hy_weight')) || 0;
+  var diet = $('pz_hy_diet') || 'dry';
+  var cans = diet === 'dry' ? 0 : Math.max(0, parseFloat($('pz_hy_cans')) || 0);
+  var canG = parseFloat($('pz_hy_can_size')) || 85;
+  var cups = diet === 'wet' ? 0 : Math.max(0, parseFloat($('pz_hy_cups')) || 0);
+  var cond = $('pz_hy_cond') || 'none';
+  var result = document.getElementById('pz-calc-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-calc-result', "Working out your cat's water needs…");
+  setTimeout(function() {
+    var warn = function(msg) {
+      result.style.display = 'block';
+      result.innerHTML = '<div class="pz-result-warning" style="border-radius:12px;padding:16px;text-align:center"><strong>⚠️ ' + msg + '</strong></div>';
+    };
+    if (!weightRaw || weightRaw <= 0) { warn("Please enter your cat's weight."); return; }
+    var kg = pzUnit === 'kg' ? weightRaw : weightRaw * 0.453592;
+    if (kg < 0.2 || kg > 15) { warn('That weight looks unusual for a cat (about 0.5–33 lb or 0.2–15 kg). Please check the number and the unit.'); return; }
+    if (cans > 8 || cups > 3) { warn('That amount of food looks unusual for one cat. Please check the cans and cups per day.'); return; }
+
+    // ~50 ml/kg/day total water; wet food ~78% water, dry food ~10% (about 10 ml per cup of kibble)
+    var mult = cond === 'hot' ? 1.2 : 1;
+    var total = 50 * kg * mult;
+    var fromWet = cans * canG * 0.78;
+    var fromDry = cups * 10;
+    var fromFood = fromWet + fromDry;
+    var bowl = Math.max(0, total - fromFood);
+    var tooMuch = 100 * kg;
+    var r = function(x){ return Math.round(x); };
+    var oz = function(ml){ return (ml / 29.5735).toFixed(1).replace(/\.0$/, ''); };
+    var cup = function(ml){ return (ml / 236.6).toFixed(2); };
+    var notes = [];
+
+    if (diet === 'wet' && bowl < total * 0.3) notes.push('Her wet food covers most of her water, so it is normal for her to drink very little. Keep fresh water available anyway.');
+    if (diet === 'dry') notes.push('On an all-dry diet she has to drink nearly all of her water. If she drinks much less than the bowl target, adding wet food or a little water to meals can help.');
+    if (fromFood > total * 1.1) notes.push('The food you entered already holds more water than her estimated need, so she may barely drink at all. That is fine if she is eating well and urinating normally.');
+    if (cond === 'hot') notes.push('For hot weather or a very active cat, the estimate is raised by 20%. Make sure she has shade and several water bowls.');
+    if (cond === 'nursing') notes.push('A nursing mother needs far more water than this estimate, often two or three times as much as she feeds her kittens. Give her unlimited fresh water and plenty of wet food, and ask your vet if she seems thirsty or weak.');
+    if (cond !== 'nursing') notes.push('If she regularly drinks more than about <strong>' + r(tooMuch) + ' ml (' + oz(tooMuch) + ' fl oz)</strong> a day from the bowl, that is generally considered excessive thirst. It can be a sign of kidney disease, diabetes or an overactive thyroid, so book a vet check.');
+    notes.push('To check her real intake, fill the bowl with a measured amount and measure what is left after 24 hours. Leave a second bowl out of reach to see how much just evaporates, and repeat for 2–3 days.');
+    notes.push('Signs of dehydration include sticky gums, sunken eyes, lethargy and skin that is slow to fall back at the shoulders. If you see these, contact your vet.');
+
+    result.style.display = 'block';
+    result.innerHTML =
+      '<div class="pz-result-success" style="border-radius:16px;overflow:hidden">'
+      + '<div class="pz-result-hero" style="background:linear-gradient(135deg,#01579B,#0277BD);color:#fff;padding:28px">'
+      + '<div style="font-size:13px;font-weight:700;opacity:.7;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">💧 ' + (cond === 'nursing' ? 'Bare Minimum to Drink' : 'Should Drink About') + '</div>'
+      + '<div class="pz-result-number">' + r(bowl) + ' ml</div>'
+      + '<div class="pz-result-unit">a day from her bowl (' + oz(bowl) + ' fl oz, about ' + cup(bowl) + ' cups)' + (cond === 'nursing' ? '; a nursing mother needs much more' : '') + '</div>'
+      + '</div>'
+      + '<div class="pz-result-grid">'
+      + '<div class="pz-result-cell"><div class="pz-result-cell-label">Total Water Need</div><div class="pz-result-cell-val" style="font-size:15px">' + r(total * 0.9) + '–' + r(total * 1.1) + ' ml</div></div>'
+      + '<div class="pz-result-cell"><div class="pz-result-cell-label">From Food</div><div class="pz-result-cell-val" style="font-size:15px">' + r(fromFood) + ' ml</div></div>'
+      + (cond !== 'nursing' ? '<div class="pz-result-cell"><div class="pz-result-cell-label">Too Much If Over</div><div class="pz-result-cell-val" style="font-size:15px">' + r(tooMuch) + ' ml</div></div>' : '')
+      + '</div>'
+      + '<div class="pz-result-recap"><h4>📝 Your Details</h4><ul>'
+      + '<li><strong>Weight:</strong> ' + (Math.round(kg * 10) / 10) + ' kg (' + (Math.round(kg / 0.453592 * 10) / 10) + ' lb)</li>'
+      + '<li><strong>Diet:</strong> ' + ({dry:'Dry food only', mix:'Wet and dry', wet:'Wet food only'}[diet]) + (cans ? ', ' + cans + ' × ' + (canG === 156 ? '5.5' : '3') + ' oz can' + (cans === 1 ? '' : 's') : '') + (cups ? ', ' + cups + ' cup' + (cups === 1 ? '' : 's') + ' of kibble' : '') + '</li>'
+      + '</ul></div>'
+      + '<div class="pz-result-tips"><h4>📋 What This Means</h4><ul>'
+      + '<li>She needs about <strong>' + r(total) + ' ml</strong> of water a day in total (about 50 ml per kg' + (mult > 1 ? ', plus 20% for heat or activity' : '') + '). Her food provides about <strong>' + r(fromFood) + ' ml</strong>, which leaves about ' + r(bowl) + ' ml to drink.</li>'
+      + notes.map(function(n){ return '<li>' + n + '</li>'; }).join('')
+      + '</ul></div>'
+      + '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>'
+      + '</div>';
+  }, 650);
+}
+
 // ── Dog Weight Loss Plan Calculator
 function pzCalcDogWeightLoss() {
   var current = parseFloat(document.getElementById('pz_wl_current')?.value) || 0;

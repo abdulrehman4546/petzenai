@@ -171,7 +171,7 @@ function pz_get_all_tools() {
         ['slug'=>'cat-toxic-foods-guide','title'=>'Foods Toxic to Cats: Complete Safety List','cat'=>'cat-nutrition','animal'=>'cat','type'=>'guide','kw'=>'foods toxic to cats list','icon'=>'☠️'],
         ['slug'=>'cat-raw-diet-guide','title'=>'Raw Diet for Cats: Benefits, Risks & Guide','cat'=>'cat-nutrition','animal'=>'cat','type'=>'guide','kw'=>'raw diet for cats guide','icon'=>'🥩'],
         ['slug'=>'cat-weight-loss-plan','title'=>'Cat Weight Loss Plan Calculator','cat'=>'cat-nutrition','animal'=>'cat','type'=>'calculator','kw'=>'cat weight loss plan','icon'=>'📉'],
-        ['slug'=>'cat-hydration-guide','title'=>'Cat Hydration: How Much Water Should Cats Drink?','cat'=>'cat-nutrition','animal'=>'cat','type'=>'calculator','kw'=>'how much water should cats drink','icon'=>'💧'],
+        ['slug'=>'cat-hydration-guide','title'=>'Cat Hydration: How Much Water Should Cats Drink?','cat'=>'cat-nutrition','animal'=>'cat','type'=>'calculator','kw'=>'how much water should cats drink','icon'=>'💧','calc'=>'cat_hydration_calc'],
         ['slug'=>'best-cat-food-guide','title'=>'How to Choose the Best Cat Food: Guide','cat'=>'cat-nutrition','animal'=>'cat','type'=>'guide','kw'=>'best cat food guide','icon'=>'🛒'],
         ['slug'=>'cat-food-allergies-guide','title'=>'Cat Food Allergies: Symptoms & Elimination Diet','cat'=>'cat-nutrition','animal'=>'cat','type'=>'guide','kw'=>'cat food allergies guide','icon'=>'🤧'],
         ['slug'=>'senior-cat-diet-guide','title'=>'Senior Cat Diet: Best Foods for Aging Cats','cat'=>'cat-nutrition','animal'=>'cat','type'=>'guide','kw'=>'senior cat diet guide','icon'=>'🐱'],
