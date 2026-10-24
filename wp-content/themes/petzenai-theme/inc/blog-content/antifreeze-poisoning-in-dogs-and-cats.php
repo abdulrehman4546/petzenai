@@ -3,108 +3,175 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 return [
     'slug'        => 'antifreeze-poisoning-in-dogs-and-cats',
-    'title'       => 'Antifreeze Poisoning in Dogs and Cats: Signs and Prevention',
+    'title'       => 'Antifreeze Poisoning in Dogs and Cats: Signs and Treatment',
     'status'      => 'publish',
-    'publish_at'  => '2026-10-30 09:00',   // scheduled (site time zone)
+    'revision'    => 2,   // bump to push edited content to the existing post
+    'publish_at'  => '2026-10-26 09:00',   // scheduled (site time zone)
     'category'    => 'Pet Health',
     'keyword'     => 'antifreeze poisoning in dogs and cats',
-    'description' => 'Antifreeze tastes sweet to pets and can be deadly. Learn the warning signs, what to do straight away, and how to keep dogs and cats safe this winter.',
-    'excerpt'     => 'Antifreeze tastes sweet, a small amount can be deadly, and the signs can be missed. Here is how to spot antifreeze poisoning, what to do right away and how to prevent it.',
+    'description' => 'Antifreeze poisoning in dogs and cats: symptoms, stage-by-stage timeline, vet antidotes, why home remedies and alcohol are unsafe, and how to prevent it.',
+    'excerpt'     => 'Ethylene glycol antifreeze tastes sweet and a small amount can be deadly. Learn the symptoms and timeline in dogs and cats, how vets treat it, and how to prevent it.',
     'featured'    => [ 'url' => 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=1200&h=675&q=80&auto=format&fit=crop', 'alt' => 'A black and white cat looking over a wooden ledge' ],
     'content'     => <<<'HTML'
-<p>Antifreeze is one of the most dangerous things a pet can find in a garage or on a driveway in cold weather. Most antifreeze and engine coolant contains <strong>ethylene glycol</strong>, which is poisonous to dogs and cats. It is often described as tasting sweet, so pets may lick up a spill or drink from a puddle. Even a small amount can cause serious harm, and cats are especially at risk. Antifreeze poisoning is an emergency, and quick action makes the difference.</p>
+<p>Antifreeze poisoning in dogs and cats is a true emergency that is most common in the colder months. Most engine coolant is based on <strong>ethylene glycol</strong>, which is poisonous to pets in small amounts and tastes sweet, so a dog may lap at a driveway puddle or a cat may lick a garage drip. This guide covers symptoms, timeline, treatment and prevention.</p>
 
 <figure class="pz-blog-img">
 <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=1200&amp;h=675&amp;q=80&amp;auto=format&amp;fit=crop" alt="A black and white cat looking over a wooden ledge" width="1200" height="675" loading="lazy">
 <figcaption>Photo: Unsplash</figcaption>
 </figure>
 
-<h2>Why Antifreeze Is So Dangerous</h2>
-<p>Once swallowed, ethylene glycol is broken down in the body into substances that damage the kidneys. The kidneys can stop working, which can be fatal if the pet is not treated in time. There is no safe amount to wait and see about, and published sources give different figures for how much is dangerous, especially for cats. The safe approach is to treat any suspected exposure as serious.</p>
-
-<h2>Where Pets Come Across It</h2>
+<h2>Key Takeaways</h2>
 <ul>
-<li>Leaks and drips under cars, in driveways and in garages</li>
-<li>Spills while topping up the radiator or coolant reservoir</li>
-<li>Puddles in car parks and by the road after a vehicle has leaked</li>
-<li>Open or loosely closed containers on shelves or on the floor</li>
-<li>Used coolant that has been left in a bucket or bottle</li>
+<li>Ethylene glycol is highly toxic, and cats are harmed by smaller amounts than dogs.</li>
+<li>Early signs look like drunkenness; a pet may then seem better while the kidneys are damaged.</li>
+<li>Antidotes (fomepizole or medical ethanol) work only if a vet gives them within hours.</li>
+<li>There are no safe home remedies. Do not give alcohol or make your pet vomit; call a vet or poison line.</li>
+<li>Store coolant securely, clean spills at once and consider propylene glycol products.</li>
 </ul>
-<p>Cats that roam outdoors are at special risk, because their owners often do not see what they drank.</p>
 
-<h2>Warning Signs</h2>
-<p>The signs often appear in stages, and your pet may seem to get better in between. This false recovery is dangerous.</p>
+<h2>What Is Ethylene Glycol and Why Is It Toxic?</h2>
+<p>Ethylene glycol is a sweet-tasting liquid that is the main ingredient in most car antifreeze. The body converts it into acidic by-products. According to the Merck Veterinary Manual, one of these, oxalic acid, forms calcium oxalate crystals in the kidneys, leading to acute kidney failure.</p>
+<p>The ASPCA notes that ethylene glycol affects both the nervous system and the kidneys, so ethylene glycol poisoning in dogs and ethylene glycol poisoning in cats follow the same pattern: early neurological signs, then kidney injury. Our <a href="/tools/cat-kidney-disease-guide/">cat kidney disease guide</a> explains why kidney damage is so serious.</p>
+
+<h3>Where else is ethylene glycol found?</h3>
+<p>Car coolant is the main source. The ASPCA also lists toilet winterising products, some inks, snow globes, the bases of portable basketball hoops and some household paints, and the Merck Veterinary Manual adds some brake and transmission fluids. Our <a href="/tools/pet-household-chemicals-guide/">household chemicals guide</a> covers other garage products to keep out of reach.</p>
+
+<h2>How Much Antifreeze Is Toxic to Dogs and Cats?</h2>
+<p>A small amount can cause serious harm, and cats are more sensitive than dogs. The Merck Veterinary Manual gives the minimum lethal dose of undiluted ethylene glycol as about 1.4 mL per kg of body weight for cats and 4.4 to 6.6 mL per kg for dogs.</p>
+<p>Sources vary: the Pet Poison Helpline says as little as a teaspoon can be fatal for a cat and a tablespoon or two for a dog, depending on size. Never use these figures to decide whether to wait. Any suspected antifreeze ingestion in dogs or cats needs a vet straight away.</p>
+
+<h2>Antifreeze Poisoning Symptoms in Dogs and Cats</h2>
+<p>Early antifreeze poisoning symptoms in dogs and cats look like alcohol intoxication: wobbliness, vomiting, extra drinking and urination, and dullness, starting as soon as 30 minutes after ingestion. Later, as the kidneys fail, a pet may stop eating, produce little urine and collapse. Signs reported by the ASPCA, Pet Poison Helpline and Merck include:</p>
+<ul>
+<li>Stumbling, poor coordination or appearing “drunk”</li>
+<li>Vomiting and drooling</li>
+<li>Increased thirst and urination early on</li>
+<li>Low energy, loss of appetite and dehydration</li>
+<li>Little or no urine as kidney failure develops</li>
+<li>Seizures or coma in severe cases</li>
+</ul>
+<p>These signs have many possible causes (see our <a href="/blog/signs-your-pet-is-sick/">signs your pet is sick</a> guide), but if your pet may have had access to antifreeze, do not wait for them to appear.</p>
+
+<h2>Antifreeze Poisoning in Dogs Timeline and Cats Timeline</h2>
+<p>The antifreeze poisoning symptoms timeline has three broad stages. The Pet Poison Helpline describes stage 1 from about 30 minutes to 12 hours, a deceptive stage 2 around 12 to 24 hours, and stage 3 kidney failure at 12 to 24 hours in cats and 36 to 72 hours in dogs.</p>
 
 <table class="pz-compare-table">
 <thead>
-<tr><th>Stage</th><th>What you might see</th></tr>
+<tr><th>Stage</th><th>Time after ingestion</th><th>What you might see</th></tr>
 </thead>
 <tbody>
-<tr><td>Early (within the first hours)</td><td>Stumbling or acting “drunk”, vomiting, drinking and urinating more than usual, tiredness, twitching</td></tr>
-<tr><td>Seeming to recover</td><td>Your pet may look better, but the poison is still damaging the kidneys</td></tr>
-<tr><td>Later (a day or two on)</td><td>Little or no urine, vomiting, loss of appetite, weakness, seizures, collapse</td></tr>
+<tr><td>Stage 1: drunk-like signs (dogs and cats)</td><td>About 30 minutes to 12 hours</td><td>Stumbling, vomiting, drooling, extra thirst and urination, dullness, sometimes seizures</td></tr>
+<tr><td>Stage 2: apparent improvement (dogs and cats)</td><td>About 12 to 24 hours</td><td>The pet may seem better, but damage inside the body continues</td></tr>
+<tr><td>Stage 3: kidney failure (cats)</td><td>About 12 to 24 hours</td><td>Lethargy, vomiting, not eating, little or no urine, collapse</td></tr>
+<tr><td>Stage 3: kidney failure (dogs)</td><td>About 36 to 72 hours</td><td>Lethargy, vomiting, not eating, little or no urine, collapse</td></tr>
 </tbody>
+<tfoot>
+<tr><td colspan="3">Time ranges as described by the Pet Poison Helpline and the Merck Veterinary Manual. Individual pets vary.</td></tr>
+</tfoot>
 </table>
 
-<p>You may not see any signs at all if you did not see your pet drink the antifreeze. If you smell it on their breath, find a spill that has been licked or see an open container, act right away.</p>
+<p>The antifreeze poisoning in cats timeline is much shorter than in dogs. The stage 2 “recovery” is the trap: the worst may seem over just as the antidote window closes.</p>
 
-<h2>What to Do Right Away</h2>
+<h2>What Should I Do If My Pet Drank Antifreeze?</h2>
+<p>Treat it as an emergency even if your pet seems fine. Call your vet or nearest emergency clinic immediately, contact a pet poison helpline while you travel and bring the product label. Do not try any home treatment.</p>
 <ol>
-<li><strong>Call a veterinarian or emergency animal clinic immediately.</strong> Do not wait for signs. Treatment works best when it starts within the first hours, and an antidote exists but must be given early.</li>
-<li><strong>Take the container</strong> or write down the product name, so the vet knows what was swallowed and the type of antifreeze.</li>
-<li><strong>Prevent more exposure.</strong> Move your pet away from the spill and clean it up safely.</li>
-<li><strong>Do not make your pet vomit</strong> unless a vet tells you to.</li>
-<li><strong>Call a poison helpline for advice</strong> while you travel. In the United States, the ASPCA Animal Poison Control Center is (888) 426-4435 and the Pet Poison Helpline is (855) 764-7661. They are available at all hours, and a consultation fee may apply.</li>
+<li><strong>Call a vet or emergency clinic now.</strong> Say you suspect antifreeze and roughly when.</li>
+<li><strong>Contact a poison helpline.</strong> In the United States, the ASPCA Animal Poison Control Center is (888) 426-4435 and the Pet Poison Helpline is (855) 764-7661. Both operate around the clock, and a consultation fee may apply.</li>
+<li><strong>Take the packaging.</strong> The ASPCA advises this so the vet can check ingredients.</li>
+<li><strong>Do not give food, drinks, alcohol or medicines,</strong> and do not try to make your pet vomit unless a vet or poison line tells you to.</li>
 </ol>
-<p>Our <a href="/tools/pet-poison-emergency-guide/">pet poison emergency guide</a> and <a href="/tools/dog-first-aid-guide/">dog first aid</a> and <a href="/tools/cat-first-aid-guide/">cat first aid</a> guides explain what to keep ready at home.</p>
+<p>Our <a href="/tools/pet-poison-emergency-guide/">pet poison emergency guide</a>, <a href="/tools/dog-first-aid-guide/">dog first aid guide</a> and <a href="/tools/cat-first-aid-guide/">cat first aid guide</a> help you prepare in advance.</p>
 
-<h2>How to Prevent Antifreeze Poisoning</h2>
+<h2>Are There Home Remedies for Antifreeze Poisoning in Dogs?</h2>
+<p>No. There are no safe or effective antifreeze poisoning in dogs home remedies, and the same applies to cats. The antidote and supportive care must come from a veterinarian, usually in hospital. Home remedies such as forcing vomiting can cause harm, for example if a drowsy pet inhales vomit, and they waste the short window in which treatment works.</p>
+
+<h3>Antifreeze poisoning in cats and vodka: should I give my pet alcohol?</h3>
+<p>No. Never give a cat or dog vodka or any other alcohol at home. Vets do use ethanol as an antidote, but it is given into a vein in measured amounts with close monitoring, and the Pet Poison Helpline notes that pets receiving it must be hospitalised. Alcohol given at home can cause alcohol poisoning and inhaled vomit, and it delays real treatment.</p>
+
+<h2>Antifreeze Poisoning in Dogs Treatment: How Do Vets Treat It?</h2>
+<p>Vets test for exposure where possible, then give an antidote, fomepizole or ethanol, to stop the body making toxic by-products, plus intravenous fluids to support the kidneys. Timing is critical: the Pet Poison Helpline says treatment should start within about 8 to 12 hours for dogs and 3 hours for cats.</p>
 <ul>
-<li><strong>Store it safely.</strong> Keep antifreeze and coolant in the original, tightly closed container on a high shelf or in a locked cupboard.</li>
-<li><strong>Clean spills at once.</strong> Soak them up with cat litter or an absorbent material, then dispose of it safely. Rinse the area with water.</li>
-<li><strong>Check your vehicle.</strong> Look for drips under your car and have leaks repaired.</li>
-<li><strong>Dispose of old coolant properly.</strong> Take it to a recycling or hazardous-waste site rather than pouring it away.</li>
-<li><strong>Keep dogs on a leash</strong> in winter so they cannot lap at puddles, and keep cats indoors where possible.</li>
-<li><strong>Consider a pet-safer product.</strong> Some antifreeze is made with propylene glycol, which is less toxic. It is not completely harmless, so it should still be stored out of reach.</li>
+<li><strong>Testing.</strong> In-clinic kits detect ethylene glycol in blood for a limited time after ingestion; Merck notes vets may treat on suspicion if no reliable test is available.</li>
+<li><strong>Decontamination.</strong> Very soon after ingestion, a vet may empty the stomach in the clinic.</li>
+<li><strong>Antidote.</strong> Fomepizole (4-MP) or ethanol blocks the conversion of ethylene glycol into its toxic products.</li>
+<li><strong>Fluids and monitoring.</strong> Intravenous fluids and checks on kidney values and urine output in hospital.</li>
 </ul>
+
+<h3>What is the antifreeze poisoning in cats antidote?</h3>
+<p>Cats are treated with the same two antidotes as dogs: fomepizole or ethanol, given intravenously by a vet. The Merck Veterinary Manual describes a higher-dose fomepizole protocol for cats as extra-label use, and notes ethanol as an option. Either must be started very early, ideally within 3 hours, to work well.</p>
+<p>The Pet Poison Helpline calls fomepizole the preferred antidote, but it can be costly and not every clinic stocks it, so some vets use ethanol.</p>
+
+<h2>What Is the Antifreeze Poisoning in Cats Prognosis?</h2>
+<p>The prognosis depends mostly on how quickly treatment starts. Cats given the antidote before the kidneys are damaged have the best chance. According to the Pet Poison Helpline, a delay beyond about 3 hours in cats (8 hours in dogs) leads to a poor prognosis, and both it and the Merck Veterinary Manual describe the outlook as poor once kidney failure develops.</p>
+
+<h3>Antifreeze poisoning in kittens and puppies</h3>
+<p>The Merck Veterinary Manual notes that younger animals may be more susceptible to ethylene glycol. Kittens and puppies are small and curious, so any possible exposure needs a vet straight away.</p>
+
+<h2>Antifreeze Toxicity in Dogs and Cats: Ethylene Glycol vs Propylene Glycol</h2>
+<p>Propylene glycol is an alternative antifreeze ingredient that is much less toxic to pets than ethylene glycol. The ASPCA says it has a much wider margin of safety, and the Merck Veterinary Manual notes it lacks the sweet taste. It is still not harmless.</p>
 
 <table class="pz-compare-table">
 <thead>
-<tr><th>Product</th><th>Main ingredient</th><th>Risk to pets</th></tr>
+<tr><th>Feature</th><th>Ethylene glycol antifreeze</th><th>Propylene glycol antifreeze</th></tr>
 </thead>
 <tbody>
-<tr><td>Standard antifreeze or coolant</td><td>Ethylene glycol</td><td>Very high. A small amount can be fatal</td></tr>
-<tr><td>“Pet-safer” antifreeze</td><td>Propylene glycol</td><td>Lower, but large amounts can still make pets ill</td></tr>
+<tr><td>Toxicity to pets</td><td>High; small amounts can be fatal</td><td>Much lower, but can still cause illness</td></tr>
+<tr><td>Taste</td><td>Sweet, attractive to pets</td><td>Not sweet, according to Merck</td></tr>
+<tr><td>Main risk</td><td>Acute kidney failure</td><td>A milder poisoning with a usually better outlook</td></tr>
+<tr><td>Antidote treatment needed</td><td>Yes, urgently</td><td>Vet assessment still needed after any exposure</td></tr>
 </tbody>
 </table>
 
-<h2>More Winter Hazards</h2>
-<p>Antifreeze is not the only cold-weather danger. Road salt and de-icers can irritate paws and cause stomach upset if licked off, so wipe paws after walks. Read our <a href="/tools/pet-cold-weather-safety/">cold weather safety guide</a> for more.</p>
+<h3>Does the bittering agent make antifreeze safe?</h3>
+<p>No. A bittering agent may discourage some animals but does not remove the poison. In December 2012, the Humane Society Legislative Fund and the Consumer Specialty Products Association announced that makers would voluntarily add denatonium benzoate to consumer antifreeze across the US; seventeen states already required it by law. The Merck Veterinary Manual notes bittered products may still appeal to some animals.</p>
+
+<h2>How to Prevent Antifreeze Poisoning in Dogs and Cats</h2>
+<ul>
+<li><strong>Store it securely</strong> in the original, closed container, high up or locked away.</li>
+<li><strong>Clean spills at once.</strong> Merck and the Pet Poison Helpline suggest covering spills with cat litter or sawdust, then disposing of it safely.</li>
+<li><strong>Check your vehicle.</strong> Look for drips under your car and have leaks repaired.</li>
+<li><strong>Dispose of old coolant</strong> at a recycling or hazardous-waste site.</li>
+<li><strong>Watch walks and roaming.</strong> Keep dogs on a lead near driveways and keep cats indoors where possible.</li>
+<li><strong>Choose propylene glycol products</strong> where practical.</li>
+</ul>
+<p>For other seasonal risks, see our <a href="/tools/pet-cold-weather-safety/">cold weather safety guide</a>, the <a href="/tools/outdoor-pet-hazards-guide/">outdoor pet hazards guide</a> and our post on <a href="/blog/thanksgiving-foods-for-dogs-and-cats/">Thanksgiving foods for dogs and cats</a>.</p>
 
 <h2>Frequently Asked Questions</h2>
 
-<h3>How much antifreeze is dangerous to a cat or dog?</h3>
-<p>There is no safe amount to rely on. Cats can be harmed by very small amounts, and dogs can be seriously affected too. Treat any suspected exposure as an emergency.</p>
+<h3>How quickly do antifreeze symptoms appear in dogs?</h3>
+<p>Early signs such as wobbliness, vomiting and extra thirst can appear from about 30 minutes to 12 hours after a dog swallows antifreeze. The dog may then seem to improve before kidney failure develops at around 36 to 72 hours, according to the Pet Poison Helpline and the Merck Veterinary Manual.</p>
 
-<h3>Does antifreeze really taste sweet to pets?</h3>
-<p>It is commonly described as sweet, which is why animals may drink it. Never assume a pet will avoid it.</p>
+<h3>Can a dog survive antifreeze poisoning?</h3>
+<p>Yes, many dogs survive when the antidote is given early, before the kidneys are damaged. The Pet Poison Helpline advises treatment within about 8 to 12 hours for dogs. Once kidney failure has set in, the outlook is poor, so contact a vet as soon as you suspect exposure rather than waiting for signs.</p>
 
-<h3>How long does it take for signs to show?</h3>
-<p>Early signs can appear within hours, but kidney damage usually shows up a day or two later. Waiting for symptoms means losing valuable time for treatment.</p>
+<h3>Can a cat survive antifreeze poisoning?</h3>
+<p>Cats can survive, but they have a much shorter treatment window than dogs. The Pet Poison Helpline says treatment should begin within about 3 hours of ingestion to be effective in cats. If your cat may have licked or drunk antifreeze, go to a vet or emergency clinic immediately.</p>
 
-<h3>Is pet-friendly antifreeze completely safe?</h3>
-<p>No. Propylene glycol products are less toxic, but they are not risk-free, so keep them out of reach and call a vet if your pet drinks some.</p>
+<h3>Should I make my dog or cat vomit after drinking antifreeze?</h3>
+<p>Do not try to make your pet vomit at home. It can be dangerous, especially in a drowsy or unsteady pet. A vet may decide to empty the stomach in the clinic if the timing is right. Call your vet or a pet poison helpline for instructions.</p>
 
-<h3>Can my pet recover?</h3>
-<p>Many pets recover when treated early, but the outcome is much worse once the kidneys are badly damaged. This is why you should act immediately.</p>
+<h3>Can pets be poisoned by licking antifreeze off their fur or paws?</h3>
+<p>Yes. Pets can swallow coolant while grooming it off their coat or paws, and the Merck Veterinary Manual reports cats poisoned by skin products containing ethylene glycol. If your pet has walked through or been splashed with coolant, call a vet for advice right away.</p>
+
+<h3>Is propylene glycol antifreeze safe for pets?</h3>
+<p>Propylene glycol antifreeze is much less toxic than ethylene glycol and is a better choice for pet households, but it is not completely safe. The Merck Veterinary Manual notes it can still cause a similar, milder illness. Store it securely and call a vet if your pet swallows any.</p>
+
+<h3>When is antifreeze poisoning most common?</h3>
+<p>Cases tend to cluster in autumn, winter and early spring in cooler climates, according to the Merck Veterinary Manual, because that is when people add antifreeze or flush car cooling systems. Take extra care around driveways and garages during these months.</p>
+
+<h3>Do vets test for antifreeze poisoning?</h3>
+<p>Yes. Vets can use in-clinic blood test kits and laboratory tests to look for ethylene glycol, along with kidney blood values and urine checks. These tests work best within a limited time after ingestion, so vets may start treatment based on suspicion alone rather than wait for results.</p>
 
 <h2>Further Reading</h2>
-<p>General guidance from poison-control and veterinary organisations (external sites, not affiliated with PetZenAI):</p>
+<p>Sources (external sites, not affiliated with PetZenAI):</p>
 <ul>
-<li><a href="https://www.aspca.org/pet-care/animal-poison-control" target="_blank" rel="noopener">ASPCA Animal Poison Control</a></li>
-<li><a href="https://www.petpoisonhelpline.com/" target="_blank" rel="noopener">Pet Poison Helpline</a></li>
-<li><a href="https://www.merckvetmanual.com/cat-owners" target="_blank" rel="noopener">Merck Veterinary Manual: Cat Owners</a></li>
-<li><a href="https://www.merckvetmanual.com/dog-owners" target="_blank" rel="noopener">Merck Veterinary Manual: Dog Owners</a></li>
+<li><a href="https://www.aspca.org/news/digging-deeper-getting-facts-dangers-antifreeze-and-your-pets" target="_blank" rel="noopener">ASPCA: Getting the Facts on the Dangers of Antifreeze and Your Pets</a></li>
+<li><a href="https://www.aspca.org/pet-care/animal-poison-control" target="_blank" rel="noopener">ASPCA Animal Poison Control Center</a></li>
+<li><a href="https://www.petpoisonhelpline.com/pet-safety-tips/antifreeze-poisoning-in-dogs-cats-ethylene-glycol-poisoning/" target="_blank" rel="noopener">Pet Poison Helpline: Antifreeze Poisoning in Dogs and Cats</a></li>
+<li><a href="https://www.petpoisonhelpline.com/blog/antifreeze-poisoning-vodka-antidote/" target="_blank" rel="noopener">Pet Poison Helpline: Antifreeze Poisoning and Vodka as an Antidote</a></li>
+<li><a href="https://www.merckvetmanual.com/toxicology/ethylene-glycol-toxicosis/ethylene-glycol-toxicosis-in-animals" target="_blank" rel="noopener">Merck Veterinary Manual: Ethylene Glycol Toxicosis in Animals</a></li>
+<li><a href="https://www.merckvetmanual.com/special-pet-topics/poisoning/ethylene-glycol-antifreeze-poisoning" target="_blank" rel="noopener">Merck Veterinary Manual (pet owner version): Ethylene Glycol (Antifreeze) Poisoning</a></li>
+<li><a href="https://humaneaction.org/press-release/2012/12/antifreeze-and-engine-coolant-being-bittered-nationwide" target="_blank" rel="noopener">Humane Society Legislative Fund: Antifreeze and Engine Coolant Being Bittered Nationwide</a></li>
 </ul>
 <p><em>This article is educational and is not veterinary advice. If you think your pet has swallowed antifreeze, contact a veterinarian or emergency clinic immediately.</em></p>
 HTML,

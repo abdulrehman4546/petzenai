@@ -89,6 +89,37 @@ function pz_sync_post_statuses() {
     return $log;
 }
 
+/**
+ * Push rewritten content to posts that already exist. A content file opts in with a 'revision' number; when it differs
+ * from the last one applied, the post's title, content, excerpt and SEO meta are updated (status and date are kept).
+ * Files without 'revision' are never re-applied, so manual edits in wp-admin to those posts are safe.
+ * @return string[] log lines
+ */
+function pz_sync_post_content() {
+    $applied = get_option( 'pz_post_revision_applied', [] );
+    $applied = is_array( $applied ) ? $applied : [];
+    $log     = [];
+    foreach ( (array) glob( get_template_directory() . '/inc/blog-content/*.php' ) as $file ) {
+        $post = include $file;
+        if ( ! is_array( $post ) || empty( $post['slug'] ) || empty( $post['revision'] ) || empty( $post['content'] ) ) continue;
+        $slug = $post['slug']; $rev = (string) $post['revision'];
+        if ( ( $applied[ $slug ] ?? null ) === $rev ) continue;
+        $found = get_page_by_path( $slug, OBJECT, 'post' );
+        if ( ! $found ) continue;                            // not created yet: the seeder creates it with this content
+        $had_kses = has_filter( 'content_save_pre', 'wp_filter_post_kses' );
+        if ( $had_kses ) kses_remove_filters();              // trusted theme content
+        $r = wp_update_post( [ 'ID' => $found->ID, 'post_title' => $post['title'], 'post_content' => $post['content'], 'post_excerpt' => $post['excerpt'] ?? '' ], true );
+        if ( $had_kses ) kses_init_filters();
+        if ( is_wp_error( $r ) ) { $log[] = $slug . ': update failed'; continue; }
+        if ( ! empty( $post['description'] ) ) update_post_meta( $found->ID, 'rank_math_description', $post['description'] );
+        if ( ! empty( $post['keyword'] ) )     update_post_meta( $found->ID, 'rank_math_focus_keyword', $post['keyword'] );
+        $applied[ $slug ] = $rev;
+        $log[] = $slug . ': content revision ' . $rev;
+    }
+    update_option( 'pz_post_revision_applied', $applied, false );
+    return $log;
+}
+
 /** 'publish_at' from a content file ('Y-m-d H:i', site time zone) as 'Y-m-d H:i:s', or '' when absent/invalid. */
 function pz_seed_publish_at( $post ) {
     $raw = trim( (string) ( $post['publish_at'] ?? '' ) );

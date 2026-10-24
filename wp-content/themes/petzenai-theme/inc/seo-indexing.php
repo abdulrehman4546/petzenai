@@ -314,3 +314,33 @@ add_filter( 'rank_math/frontend/robots', function ( $robots ) {
     }
     return $robots;
 }, 20 );
+
+
+/**
+ * FAQPage JSON-LD for blog posts, read from the post's own "Frequently Asked Questions" section (h3 question + p answers
+ * up to the next h2). Gives answer engines a clean question/answer list; nothing is output when a post has no FAQ.
+ */
+function pz_post_faq_pairs( $html ) {
+    if ( ! preg_match( '/<h2[^>]*>\s*Frequently Asked Questions\s*<\/h2>(.*?)(?=<h2|\z)/is', (string) $html, $m ) ) return [];
+    preg_match_all( '/<h3[^>]*>(.*?)<\/h3>(.*?)(?=<h3|\z)/is', $m[1], $qs, PREG_SET_ORDER );
+    $out = [];
+    foreach ( $qs as $q ) {
+        $question = trim( html_entity_decode( wp_strip_all_tags( $q[1] ), ENT_QUOTES, 'UTF-8' ) );
+        preg_match_all( '/<p[^>]*>(.*?)<\/p>/is', $q[2], $ps );
+        $answer = trim( html_entity_decode( wp_strip_all_tags( implode( ' ', $ps[1] ) ), ENT_QUOTES, 'UTF-8' ) );
+        if ( $question !== '' && $answer !== '' ) $out[] = [ $question, $answer ];
+    }
+    return $out;
+}
+
+add_action( 'wp_head', function () {
+    if ( ! is_singular( 'post' ) ) return;
+    $pairs = pz_post_faq_pairs( get_post_field( 'post_content', get_queried_object_id() ) );
+    if ( count( $pairs ) < 2 ) return;
+    $items = [];
+    foreach ( $pairs as $p ) {
+        $items[] = [ '@type' => 'Question', 'name' => $p[0], 'acceptedAnswer' => [ '@type' => 'Answer', 'text' => $p[1] ] ];
+    }
+    $data = [ '@context' => 'https://schema.org', '@type' => 'FAQPage', '@id' => get_permalink() . '#faq', 'mainEntity' => $items ];
+    echo '<script type="application/ld+json">' . wp_json_encode( $data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
+}, 31 );
