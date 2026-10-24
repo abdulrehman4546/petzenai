@@ -135,6 +135,38 @@ add_filter( 'rank_math/frontend/title', function ( $title ) {
         return $hub['label'] . ' Tools | PetZenAI';
     }
     if ( is_front_page() ) return 'PetZenAI — Free Pet Care Tools & Calculators';
+    // Blog posts: "<Title> | PetZenAI" (Rank Math's default was "<Title> - petzenai"); drop the brand when it would pass 60 chars.
+    if ( is_singular( 'post' ) ) {
+        // Shorter search titles (<= 60 chars) for older posts whose on-page headline is too long for the results page.
+        static $short = [
+            'cat-litter-box-complete-guide'           => 'Cat Litter Box Guide: Setup, Cleaning, Problems | PetZenAI',
+            'dog-grooming-at-home-guide'              => 'Dog Grooming at Home: Step-by-Step Guide | PetZenAI',
+            'freshwater-aquarium-setup-beginners'     => 'Freshwater Fish Tank Setup for Beginners | PetZenAI',
+            'dog-dental-care-guide'                   => 'Dog Dental Care: How to Clean Your Dog’s Teeth | PetZenAI',
+            'guinea-pig-care-guide'                   => 'Guinea Pig Care Guide for Beginners | PetZenAI',
+            'dog-vaccination-schedule-guide'          => 'Dog Vaccination Schedule for Puppies & Adults | PetZenAI',
+            'what-pet-should-i-get-guide'             => 'What Pet Should I Get? Choosing the Right Pet | PetZenAI',
+            'puppy-socialization-guide'               => 'Puppy Socialization Guide: Raise a Confident Dog',
+            'traveling-with-pets-guide'               => 'Traveling With Pets: A Complete Safety Guide | PetZenAI',
+            'signs-your-pet-is-sick'                  => 'Signs Your Pet Is Sick: 15 Warning Signs | PetZenAI',
+            'how-much-exercise-does-a-dog-need'       => 'How Much Exercise Does a Dog Need? By Breed | PetZenAI',
+            'how-much-to-feed-dog'                    => 'How Much Should I Feed My Dog? By Weight & Age',
+            'new-puppy-checklist-everything-you-need' => 'New Puppy Checklist: Everything You Need | PetZenAI',
+            'how-to-choose-a-vet-guide'               => 'How to Choose a Vet: Finding the Right Clinic | PetZenAI',
+            'dog-separation-anxiety-treatment'        => 'Dog Separation Anxiety: Signs and Treatment | PetZenAI',
+            'cat-nutrition-guide'                     => 'Cat Nutrition Guide: What to Feed Your Cat | PetZenAI',
+            'how-to-introduce-new-pet-to-home'        => 'How to Introduce a New Pet to Your Home | PetZenAI',
+            'hamster-care-guide-beginners'            => 'Hamster Care Guide for Beginners | PetZenAI',
+            'dog-anxiety-signs-causes-solutions'      => 'Dog Anxiety: Signs, Causes and Solutions | PetZenAI',
+            'budgerigar-care-guide'                   => 'Budgie Care Guide: How to Keep Budgerigars | PetZenAI',
+            'how-to-potty-train-a-puppy'              => 'How to Potty Train a Puppy: Step-by-Step | PetZenAI',
+            'dog-flea-tick-prevention-guide'          => 'Dog Flea and Tick Prevention Guide | PetZenAI',
+        ];
+        $slug = get_post_field( 'post_name', get_queried_object_id() );
+        if ( isset( $short[ $slug ] ) ) return $short[ $slug ];
+        $t = trim( wp_strip_all_tags( html_entity_decode( get_the_title( get_queried_object_id() ), ENT_QUOTES, 'UTF-8' ) ) );
+        if ( $t !== '' ) return mb_strlen( $t . ' | PetZenAI' ) <= 60 ? $t . ' | PetZenAI' : $t;
+    }
     // Tool pages: "<Title> | <Category> | PetZenAI" is often > 60 chars; drop the category segment first.
     if ( is_page() && mb_strlen( $title ) > 60 ) {
         $parts = array_map( 'trim', explode( '|', $title ) );
@@ -344,3 +376,11 @@ add_action( 'wp_head', function () {
     $data = [ '@context' => 'https://schema.org', '@type' => 'FAQPage', '@id' => get_permalink() . '#faq', 'mainEntity' => $items ];
     echo '<script type="application/ld+json">' . wp_json_encode( $data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
 }, 31 );
+
+/** Social titles for blog posts: plain post title (no "- petzenai" suffix). */
+add_filter( 'rank_math/opengraph/facebook/og_title', function ( $title ) {
+    return is_singular( 'post' ) ? trim( wp_strip_all_tags( html_entity_decode( get_the_title( get_queried_object_id() ), ENT_QUOTES, 'UTF-8' ) ) ) : $title;
+}, 20 );
+add_filter( 'rank_math/opengraph/twitter/twitter_title', function ( $title ) {
+    return is_singular( 'post' ) ? trim( wp_strip_all_tags( html_entity_decode( get_the_title( get_queried_object_id() ), ENT_QUOTES, 'UTF-8' ) ) ) : $title;
+}, 20 );
