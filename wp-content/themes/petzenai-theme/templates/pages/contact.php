@@ -81,6 +81,7 @@ $hours2 = esc_html( get_theme_mod('petzenai_contact_hours2', 'Sat–Sun: 10AM–
                 <!-- Fallback native form -->
                 <form method="POST" action="" id="pz-contact-form" class="pz-contact-form" onsubmit="pzContactSubmit(event)">
                   <?php wp_nonce_field('pz_contact_nonce', 'pz_contact_nonce_field'); ?>
+                  <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden"><label for="cf-website">Website</label><input type="text" id="cf-website" name="website" tabindex="-1" autocomplete="off"></div>
                   <div class="pz-form-grid pz-form-grid--2" style="margin-bottom:20px">
                     <div class="pz-field">
                       <label for="cf-name">Your Name *</label>
@@ -129,8 +130,14 @@ function pzContactSubmit(e) {
     btn.disabled = true;
     var data = new FormData(form);
     data.append('action', 'pz_contact_form');
-    data.append('nonce', form.querySelector('[name="pz_contact_nonce_field"]').value);
-    fetch(pzAjaxUrl, {method:'POST', body: data})
+    // The page may come from the cache with an expired nonce, so fetch a fresh one first.
+    var nf = new FormData(); nf.append('action', 'pz_contact_nonce');
+    fetch(pzAjaxUrl, {method:'POST', body: nf, credentials:'same-origin'})
+    .then(function(r){ return r.json(); })
+    .then(function(n){
+        data.append('nonce', (n && n.success) ? n.data : form.querySelector('[name="pz_contact_nonce_field"]').value);
+        return fetch(pzAjaxUrl, {method:'POST', body: data, credentials:'same-origin'});
+    })
     .then(function(r){ return r.json(); })
     .then(function(res){
         if(res.success){

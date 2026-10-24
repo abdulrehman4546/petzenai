@@ -1108,9 +1108,42 @@ function pz_admin_tools_bulk() {
 // ── Contact form AJAX handler ──────────────────────────────────────────────
 add_action('wp_ajax_pz_contact_form',        'pz_handle_contact');
 add_action('wp_ajax_nopriv_pz_contact_form', 'pz_handle_contact');
+
+// The contact page is served from the page cache for days, so the nonce printed in its HTML can be expired.
+// The form asks for a fresh one here (admin-ajax is never cached) right before it submits.
+add_action('wp_ajax_pz_contact_nonce',        'pz_contact_fresh_nonce');
+add_action('wp_ajax_nopriv_pz_contact_nonce', 'pz_contact_fresh_nonce');
+function pz_contact_fresh_nonce() {
+    nocache_headers();
+    wp_send_json_success( wp_create_nonce('pz_contact_nonce') );
+}
+
+// Every message is also stored in wp-admin (Messages), so nothing is lost if the email never arrives.
+add_action('init', function () {
+    register_post_type('pz_message', [
+        'labels'          => [ 'name' => 'Messages', 'singular_name' => 'Message', 'menu_name' => 'Messages' ],
+        'public'          => false,
+        'show_ui'         => true,
+        'show_in_menu'    => true,
+        'menu_icon'       => 'dashicons-email-alt',
+        'menu_position'   => 26,
+        'supports'        => [ 'title', 'editor' ],
+        'capability_type' => 'post',
+        'capabilities'    => [ 'create_posts' => 'do_not_allow' ],
+        'map_meta_cap'    => true,
+    ]);
+});
+
 function pz_handle_contact() {
     if ( ! isset($_POST['nonce']) || ! wp_verify_nonce($_POST['nonce'], 'pz_contact_nonce') ) {
-        wp_send_json_error('Invalid request');
+        wp_send_json_error('Your session expired. Please refresh the page and try again.');
+    }
+    if ( ! empty($_POST['website']) ) {                       // honeypot field, hidden from people
+        wp_send_json_success('Message sent successfully');
+    }
+    $ip_key = 'pz_contact_' . md5( $_SERVER['REMOTE_ADDR'] ?? '' );
+    if ( (int) get_transient($ip_key) >= 5 ) {
+        wp_send_json_error('Too many messages from your connection. Please try again in an hour.');
     }
     $name    = sanitize_text_field($_POST['name']    ?? '');
     $email   = sanitize_email($_POST['email']        ?? '');
@@ -1122,16 +1155,20 @@ function pz_handle_contact() {
     if ( ! is_email($email) ) {
         wp_send_json_error('Invalid email address');
     }
-    $to      = 'info@petzenai.com';
-    $subject = '[PetZenAI Contact] ' . $subject . ' — from ' . $name;
-    $body    = "Name: $name\nEmail: $email\n\nMessage:\n$message";
+    set_transient($ip_key, (int) get_transient($ip_key) + 1, HOUR_IN_SECONDS);
+
+    $body  = "Name: $name\nEmail: $email\nSubject: $subject\n\nMessage:\n$message";
+    $saved = wp_insert_post([ 'post_type' => 'pz_message', 'post_status' => 'private', 'post_title' => $subject . ' — ' . $name . ' <' . $email . '>', 'post_content' => $body ]);
+
+    $to      = get_option('pz_contact_to', 'info@petzenai.com');
     $headers = ['Content-Type: text/plain; charset=UTF-8', 'Reply-To: ' . $name . ' <' . $email . '>'];
-    $sent = wp_mail($to, $subject, $body, $headers);
-    if ( $sent ) {
+    $sent    = wp_mail($to, '[PetZenAI Contact] ' . $subject . ' — from ' . $name, $body, $headers);
+    if ( $saved && ! is_wp_error($saved) && ! $sent ) update_post_meta($saved, 'pz_mail_failed', 1);
+
+    if ( $sent || ( $saved && ! is_wp_error($saved) ) ) {
         wp_send_json_success('Message sent successfully');
-    } else {
-        wp_send_json_error('Failed to send. Please email us directly.');
     }
+    wp_send_json_error('Failed to send. Please email us directly at info@petzenai.com.');
 }
 
 
