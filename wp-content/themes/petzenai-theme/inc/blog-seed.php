@@ -65,20 +65,48 @@ function pz_sync_post_statuses() {
         $post = include $file;
         if ( ! is_array( $post ) || empty( $post['slug'] ) || empty( $post['status'] ) ) continue;
         $slug = $post['slug']; $want = $post['status'];
-        if ( ( $applied[ $slug ] ?? null ) === $want ) continue;
+        $when = pz_seed_publish_at( $post );
+        $sig  = $want . ( $want === 'publish' && $when ? '@' . $when : '' );   // a changed publish date applies again
+        if ( ( $applied[ $slug ] ?? null ) === $sig ) continue;
         $found = get_page_by_path( $slug, OBJECT, 'post' );
-        if ( $found && $found->post_status !== $want && in_array( $want, [ 'draft', 'publish' ], true ) ) {
-            $had_kses = has_filter( 'content_save_pre', 'wp_filter_post_kses' );
-            if ( $had_kses ) kses_remove_filters();          // status change only: do not re-filter our trusted content
-            $r = wp_update_post( [ 'ID' => $found->ID, 'post_status' => $want ], true );
-            if ( $had_kses ) kses_init_filters();
-            $log[] = $slug . ': ' . $found->post_status . ' -> ' . $want . ( is_wp_error( $r ) ? ' (failed)' : '' );
+        if ( $found && in_array( $want, [ 'draft', 'publish' ], true ) ) {
+            $args = [ 'ID' => $found->ID, 'post_status' => $want ];
+            if ( $want === 'publish' && $when ) {                               // scheduled: WordPress makes it 'future' until then
+                $args += [ 'post_date' => $when, 'post_date_gmt' => get_gmt_from_date( $when ), 'edit_date' => true ];
+                if ( strtotime( get_gmt_from_date( $when ) . ' UTC' ) > time() ) $args['post_status'] = 'future';
+            }
+            if ( $found->post_status !== $args['post_status'] || isset( $args['post_date'] ) ) {
+                $had_kses = has_filter( 'content_save_pre', 'wp_filter_post_kses' );
+                if ( $had_kses ) kses_remove_filters();      // status change only: do not re-filter our trusted content
+                $r = wp_update_post( $args, true );
+                if ( $had_kses ) kses_init_filters();
+                $log[] = $slug . ': ' . $found->post_status . ' -> ' . $args['post_status'] . ( isset( $args['post_date'] ) ? ' (' . $when . ')' : '' ) . ( is_wp_error( $r ) ? ' (failed)' : '' );
+            }
         }
-        $applied[ $slug ] = $want;
+        $applied[ $slug ] = $sig;
     }
     update_option( 'pz_post_status_applied', $applied, false );
     return $log;
 }
+
+/** 'publish_at' from a content file ('Y-m-d H:i', site time zone) as 'Y-m-d H:i:s', or '' when absent/invalid. */
+function pz_seed_publish_at( $post ) {
+    $raw = trim( (string) ( $post['publish_at'] ?? '' ) );
+    $d   = $raw !== '' ? DateTime::createFromFormat( 'Y-m-d H:i', $raw ) : false;
+    return $d ? $d->format( 'Y-m-d H:i:00' ) : '';
+}
+
+/**
+ * Publish scheduled posts whose time has passed. WordPress relies on WP-Cron, which only runs on uncached
+ * requests, so behind the page cache a post can sit on "Missed schedule". Checked at most every 15 minutes.
+ */
+add_action( 'init', function () {
+    if ( get_transient( 'pz_missed_schedule_check' ) ) return;
+    set_transient( 'pz_missed_schedule_check', 1, 15 * MINUTE_IN_SECONDS );
+    $due = get_posts( [ 'post_type' => 'post', 'post_status' => 'future', 'numberposts' => 20, 'fields' => 'ids',
+                        'date_query' => [ [ 'column' => 'post_date_gmt', 'before' => gmdate( 'Y-m-d H:i:s' ) ] ] ] );
+    foreach ( $due as $id ) { wp_publish_post( $id ); }
+}, 20 );
 
 /** @return int[] ids of posts created by this call */
 function pz_seed_blog_posts( $status = null ) {
@@ -110,7 +138,7 @@ function pz_seed_blog_posts( $status = null ) {
             }
             $had_kses = has_filter( 'content_save_pre', 'wp_filter_post_kses' );
             if ( $had_kses ) kses_remove_filters();          // trusted theme content: keep our tables, classes and links intact
-            $id = wp_insert_post( [
+            $args = [
                 'post_type'     => 'post',
                 'post_status'   => ! empty( $post['status'] ) ? $post['status'] : $status,
                 'post_title'    => $post['title'],
@@ -119,7 +147,12 @@ function pz_seed_blog_posts( $status = null ) {
                 'post_excerpt'  => $post['excerpt'] ?? '',
                 'post_author'   => $author,
                 'post_category' => $cat_id ? [ $cat_id ] : [],
-            ], true );
+            ];
+            if ( $args['post_status'] === 'publish' && ( $when = pz_seed_publish_at( $post ) ) ) {
+                $args['post_date']     = $when;                // a future date makes WordPress schedule it
+                $args['post_date_gmt'] = get_gmt_from_date( $when );
+            }
+            $id = wp_insert_post( $args, true );
             if ( $had_kses ) kses_init_filters();
             if ( is_wp_error( $id ) || ! $id ) continue;
             if ( ! empty( $post['description'] ) ) update_post_meta( $id, 'rank_math_description', $post['description'] );

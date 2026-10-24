@@ -4,7 +4,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 return [
     'slug'        => 'antifreeze-poisoning-in-dogs-and-cats',
     'title'       => 'Antifreeze Poisoning in Dogs and Cats: Signs and Prevention',
-    'status'      => 'draft',   // held back: keywords are being checked before this goes live
+    'status'      => 'publish',
+    'publish_at'  => '2026-10-30 09:00',   // scheduled (site time zone)
     'category'    => 'Pet Health',
     'keyword'     => 'antifreeze poisoning in dogs and cats',
     'description' => 'Antifreeze tastes sweet to pets and can be deadly. Learn the warning signs, what to do straight away, and how to keep dogs and cats safe this winter.',
