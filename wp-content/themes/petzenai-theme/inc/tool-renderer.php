@@ -16016,3 +16016,4 @@ function pz_render_guide_dog_sleep_training( $tool ) {
 require_once __DIR__ . '/tool-content/cat-calorie.php';
 require_once __DIR__ . '/tool-content/rabbit-cage.php';
 require_once __DIR__ . '/tool-content/cat-hydration.php';
+require_once __DIR__ . '/tool-content/kitten-feeding.php';

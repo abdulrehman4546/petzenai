@@ -4133,6 +4133,139 @@ function pzCalcCatHydration() {
   }, 650);
 }
 
+// ── Kitten Feeding Guide (registry key: kitten_feeding). Content and sources: inc/tool-content/kitten-feeding.php
+function pzKittenAge() {
+  var a = document.getElementById('pz_kf_age') ? document.getElementById('pz_kf_age').value : 'm2';
+  var d = document.getElementById('pz_kf_diet_wrap');
+  if (d) d.style.display = (a === 'neo') ? 'none' : '';
+  pzKittenDiet();
+}
+
+function pzKittenDiet() {
+  var a = document.getElementById('pz_kf_age') ? document.getElementById('pz_kf_age').value : 'm2';
+  var d = document.getElementById('pz_kf_diet') ? document.getElementById('pz_kf_diet').value : 'wet';
+  var wet = document.getElementById('pz_kf_wet_wrap'), dry = document.getElementById('pz_kf_dry_wrap');
+  if (wet) wet.style.display = (a === 'neo' || d === 'dry') ? 'none' : '';
+  if (dry) dry.style.display = (a === 'neo' || d === 'wet') ? 'none' : '';
+}
+
+function pzGenKittenFeeding() {
+  var $ = function(id){ var e = document.getElementById(id); return e ? e.value : ''; };
+  var age = $('pz_kf_age') || 'm2';
+  var weightRaw = parseFloat($('pz_kf_weight')) || 0;
+  var diet = $('pz_kf_diet') || 'wet';
+  var canKcal = parseFloat($('pz_kf_can_kcal')) || 0;
+  var cupKcal = parseFloat($('pz_kf_cup_kcal')) || 0;
+  var result = document.getElementById('pz-guide-result');
+  if (!result) return;
+  pzShowAnalyzing('pz-guide-result', "Building your kitten's feeding plan…");
+  setTimeout(function() {
+    var warn = function(msg) {
+      result.style.display = 'block';
+      result.innerHTML = '<div class="pz-result-warning" style="border-radius:12px;padding:16px;text-align:center"><strong>⚠️ ' + msg + '</strong></div>';
+    };
+    // stage: label, plausible weight range in kg (sanity check only), growth factor × RER, meals label and count used to split the day
+    var S = {
+      neo:  { label:'0–4 weeks (milk or bottle)', min:0.05, max:1.2 },
+      wean: { label:'4–8 weeks (weaning)', min:0.15, max:2,   mult:2.5, meals:'4–5', n:4 },
+      m2:   { label:'2–4 months',          min:0.4,  max:4,   mult:2.5, meals:'4',   n:4 },
+      m4:   { label:'4–6 months',          min:0.8,  max:6,   mult:2.0, meals:'3',   n:3 },
+      m6:   { label:'6–12 months',         min:1,    max:9,   mult:2.0, meals:'2–3', n:2 }
+    };
+    var s = S[age] || S.m2;
+    if (!weightRaw || weightRaw <= 0) { warn("Please enter your kitten's weight."); return; }
+    var kg = pzUnit === 'kg' ? weightRaw : weightRaw * 0.453592;
+    var lb = kg / 0.453592;
+    var r1 = function(x){ return Math.round(x * 10) / 10; };
+    if (kg < s.min || kg > s.max) { warn('That weight looks unusual for a kitten aged ' + s.label.replace(/ \(.*\)/, '') + '. Please check the number, the unit (lbs or kg) and the age.'); return; }
+    if (age !== 'neo' && ((diet !== 'dry' && canKcal && (canKcal < 20 || canKcal > 300)) || (diet !== 'wet' && cupKcal && (cupKcal < 150 || cupKcal > 700)))) { warn('Those calories look unusual for kitten food (about 20–300 kcal per 3 oz can, 150–700 kcal per cup). Please check the label.'); return; }
+    var pdf = '<div style="padding:0 20px 20px"><button class="pz-int-btn" style="margin-top:0;background:transparent;border:2px solid #E0E0E0;color:#555" onclick="pzPrintResult()">📥 Download as PDF</button></div>';
+    var recap = '<div class="pz-result-recap"><h4>📝 Your Details</h4><ul>'
+      + '<li><strong>Age:</strong> ' + s.label + '</li>'
+      + '<li><strong>Weight:</strong> ' + r1(lb) + ' lb (' + (kg < 1 ? Math.round(kg * 1000) + ' g' : r1(kg) + ' kg') + ')</li>'
+      + (age !== 'neo' ? '<li><strong>Food:</strong> ' + ({wet:'Wet kitten food', dry:'Dry kitten food', mix:'Half wet, half dry'}[diet]) + '</li>' : '')
+      + '</ul></div>';
+
+    if (age === 'neo') {
+      result.style.display = 'block';
+      result.innerHTML =
+        '<div class="pz-result-success" style="border-radius:16px;overflow:hidden">'
+        + '<div class="pz-result-hero" style="background:linear-gradient(135deg,#4A148C,#6A1B9A);color:#fff;padding:28px">'
+        + '<div style="font-size:13px;font-weight:700;opacity:.7;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">🍼 Milk Only: Feed Around the Clock</div>'
+        + '<div class="pz-result-number">Every 2–3½ h</div>'
+        + '<div class="pz-result-unit">mother’s milk or a kitten milk replacer, day and night</div>'
+        + '</div>'
+        + '<div class="pz-result-grid">'
+        + '<div class="pz-result-cell"><div class="pz-result-cell-label">0–2 Weeks</div><div class="pz-result-cell-val" style="font-size:14px">~10 feeds a day<br><small>every 2–2½ h</small></div></div>'
+        + '<div class="pz-result-cell"><div class="pz-result-cell-label">2–4 Weeks</div><div class="pz-result-cell-val" style="font-size:14px">~7 feeds a day<br><small>every 2½–3½ h</small></div></div>'
+        + '<div class="pz-result-cell"><div class="pz-result-cell-label">Solid Food</div><div class="pz-result-cell-val" style="font-size:14px">Not yet<br><small>from 3–4 weeks</small></div></div>'
+        + '</div>'
+        + recap
+        + '<div class="pz-result-tips"><h4>📋 What This Means</h4><ul>'
+        + '<li>If she is with her mother, let her nurse; the mother sets the schedule. The times above are for kittens being bottle-fed.</li>'
+        + '<li>Use only a <strong>kitten milk replacer</strong> made for kittens, mixed exactly as the label says. <strong>Never give cow’s or goat’s milk</strong>: the protein and fat levels are wrong for kittens.</li>'
+        + '<li>How much formula per feed depends on the product and her weight, so follow the label and ask your vet. Feed her lying on her tummy, never on her back, and do not squeeze the bottle.</li>'
+        + '<li>Keep her warm. Kittens this young cannot control their own temperature. Never feed a kitten that feels cold; warm her gently first.</li>'
+        + '<li>Kittens under about 2 weeks need gentle stimulation of the belly and bottom after each feed to pass urine and stool.</li>'
+        + '<li>Weigh her every day at the same time. A healthy kitten should keep gaining; if she stops gaining, loses weight, will not feed or seems weak, <strong>see a vet the same day</strong>.</li>'
+        + '<li>Weaning onto wet kitten food usually starts at 3–4 weeks. Come back and choose “4–8 weeks” when she is ready.</li>'
+        + '</ul></div>'
+        + pdf + '</div>';
+      return;
+    }
+
+    var rer = 70 * Math.pow(kg, 0.75);
+    var daily = rer * s.mult;
+    var low = Math.round(daily * 0.9), high = Math.round(daily * 1.1), mid = Math.round(daily);
+    var wetShare = diet === 'wet' ? 1 : (diet === 'mix' ? 0.5 : 0);
+    var cells = '', amounts = [];
+    var fmt = function(x){ return String(parseFloat(x.toFixed(x < 1 ? 2 : 1))); };
+    if (wetShare > 0 && canKcal > 0) {
+      var cans = daily * wetShare / canKcal;
+      cells += '<div class="pz-result-cell"><div class="pz-result-cell-label">Wet Food Per Day</div><div class="pz-result-cell-val" style="font-size:15px">~' + fmt(cans) + ' × 3 oz can' + (cans >= 1.5 ? 's' : '') + '</div></div>';
+      amounts.push('about <strong>' + fmt(cans) + ' cans</strong> of wet food a day (' + fmt(cans / s.n) + ' per meal)');
+    }
+    if (wetShare < 1 && cupKcal > 0) {
+      var cups = daily * (1 - wetShare) / cupKcal;
+      cells += '<div class="pz-result-cell"><div class="pz-result-cell-label">Dry Food Per Day</div><div class="pz-result-cell-val" style="font-size:15px">~' + fmt(cups) + ' cup' + (cups >= 1.5 ? 's' : '') + '</div></div>';
+      amounts.push('about <strong>' + fmt(cups) + (cups >= 1.5 ? ' cups' : ' cup') + '</strong> of dry food a day (' + fmt(cups / s.n) + ' per meal)');
+    }
+    var notes = [];
+    if (amounts.length) notes.push('With your food that is ' + amounts.join(' plus ') + ', split across ' + s.n + ' meals.' + (diet === 'mix' ? ' Half the calories come from each food.' : ''));
+    else notes.push('Enter the kcal per can or per cup from your food’s label to see how much that is.');
+    if (age === 'wean') {
+      notes.push('She is still drinking milk, so she will eat less solid food than this at first. Offer wet kitten food, softened with a little warm water or milk replacer, in a shallow dish 4–5 times a day, or leave some available all the time.');
+      notes.push('Weaning usually starts at 3–4 weeks and is finished by about 8 weeks. Go slowly, and once she is weaned give fresh water, not milk.');
+    }
+    if (age === 'm2') notes.push('At this age kittens are growing fast and have small stomachs, so keep to about four small meals a day of a complete kitten food.');
+    if (age === 'm4') notes.push('From about 4 months you can drop to three meals a day. Her calories per pound start to fall as growth slows.');
+    if (age === 'm6') notes.push('From 6 months two meals a day usually works, or three smaller ones if she prefers. After spaying or neutering many cats need fewer calories, so watch her shape.');
+    if (age === 'm6') notes.push('Most kittens move to adult food at about <strong>12 months</strong>. Large, slow-growing breeds such as Maine Coons may need kitten food for longer, so ask your vet. Switch gradually over 3–7 days.');
+    notes.push('Weigh her every week on the same scale. She should keep gaining steadily. If she is not, or is getting round, change the daily amount by about 10% and check again.');
+    notes.push('Keep fresh water available all the time, away from her food. Never give cow’s milk.');
+
+    result.style.display = 'block';
+    result.innerHTML =
+      '<div class="pz-result-success" style="border-radius:16px;overflow:hidden">'
+      + '<div class="pz-result-hero" style="background:linear-gradient(135deg,#1B5E20,#2E7D32);color:#fff;padding:28px">'
+      + '<div style="font-size:13px;font-weight:700;opacity:.7;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">✅ Daily Calories for Growth</div>'
+      + '<div class="pz-result-number">' + low + '–' + high + '</div>'
+      + '<div class="pz-result-unit">calories per day (kcal), over ' + s.meals + ' meals</div>'
+      + '</div>'
+      + '<div class="pz-result-grid">'
+      + '<div class="pz-result-cell"><div class="pz-result-cell-label">Meals Per Day</div><div class="pz-result-cell-val">' + s.meals + '</div></div>'
+      + '<div class="pz-result-cell"><div class="pz-result-cell-label">Per Meal</div><div class="pz-result-cell-val" style="font-size:15px">~' + Math.round(daily / s.n) + ' kcal</div></div>'
+      + cells
+      + '</div>'
+      + recap
+      + '<div class="pz-result-tips"><h4>📋 What This Means</h4><ul>'
+      + '<li>Her Resting Energy Requirement is <strong>' + Math.round(rer) + ' kcal</strong> (70 × weight in kg^0.75). For growth at her age that is multiplied by ' + s.mult + ', giving about <strong>~' + mid + ' kcal</strong> a day; the range shown is ±10%.</li>'
+      + notes.map(function(n){ return '<li>' + n + '</li>'; }).join('')
+      + '</ul></div>'
+      + pdf + '</div>';
+  }, 650);
+}
+
 // ── Dog Weight Loss Plan Calculator
 function pzCalcDogWeightLoss() {
   var current = parseFloat(document.getElementById('pz_wl_current')?.value) || 0;
