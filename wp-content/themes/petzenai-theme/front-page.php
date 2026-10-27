@@ -374,7 +374,7 @@ $why_img  = pz_url( 'petzenai_why_image'  ) ?: 'https://images.unsplash.com/phot
     <div class="section-header" data-aos>
       <span class="section-tag">Pet Health Blog</span>
       <h2 class="section-title">Latest <span>Pet Care Tips</span></h2>
-      <p class="section-desc">Expert-written articles on pet nutrition, health, and wellness — updated weekly.</p>
+      <p class="section-desc">Practical articles on pet nutrition, health and safety, based on published veterinary and poison-control sources.</p>
     </div>
     <div class="blog-grid">
       <?php

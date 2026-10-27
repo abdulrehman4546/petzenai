@@ -125,6 +125,7 @@ function pz_static_title_override() {
 }
 
 add_filter( 'rank_math/frontend/title', function ( $title ) {
+    $title = pz_scrub_claims( (string) $title );
     if ( $t = pz_static_title_override() ) return $t;
     if ( ( $ov = pz_current_tool_override() ) && $ov['title'] !== '' ) return $ov['title'];
     if ( $hub = pz_current_hub() ) {
@@ -282,6 +283,10 @@ function pz_scrub_claims( $value ) {
         '/peer-reviewed (nutritional |veterinary )?(research|science)( and veterinary guidelines)?/i' => 'standard, widely published pet-care formulas',
         '/\bTrusted by 50K\+/i'                                                             => '',
         '/\s*Used by 50,000\+ pet owners\.?/i'                                              => '',
+        '/\bExpert[- ]written (pet care )?(articles|guides)/i'                               => 'Pet care $2',
+        '/\s*Updated weekly by pet care specialists\.?/i'                                   => '',
+        '/\bExpert Guides for\b/'                                                           => 'Guides for',
+        '/\s+from PetZenAI veterinary experts/i'                                             => ' from PetZenAI',
     ];
     foreach ( $map as $pat => $rep ) { $value = preg_replace( $pat, $rep, $value ); }
     return trim( $value );
@@ -376,6 +381,14 @@ add_action( 'wp_head', function () {
     $data = [ '@context' => 'https://schema.org', '@type' => 'FAQPage', '@id' => get_permalink() . '#faq', 'mainEntity' => $items ];
     echo '<script type="application/ld+json">' . wp_json_encode( $data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
 }, 31 );
+
+/** Social descriptions and site name: same claim scrub as the meta description, brand spelled "PetZenAI". */
+foreach ( [ 'rank_math/opengraph/facebook/og_description', 'rank_math/opengraph/twitter/twitter_description', 'rank_math/opengraph/facebook/og_title', 'rank_math/opengraph/twitter/twitter_title' ] as $pz_og ) {
+    add_filter( $pz_og, 'pz_scrub_claims', 30 );
+}
+add_filter( 'rank_math/opengraph/facebook/og_site_name', function ( $name ) {
+    return strtolower( (string) $name ) === 'petzenai' ? 'PetZenAI' : $name;
+} );
 
 /** Social titles for blog posts: plain post title (no "- petzenai" suffix). */
 add_filter( 'rank_math/opengraph/facebook/og_title', function ( $title ) {

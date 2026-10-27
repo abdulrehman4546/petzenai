@@ -14,7 +14,7 @@ $posts = new WP_Query(['posts_per_page' => 9, 'post_status' => 'publish', 'paged
   <div class="container pz-page-hero-content">
     <span class="section-tag">Pet Health Blog</span>
     <h1 class="pz-page-hero-title">Pet Care Articles</h1>
-    <p class="pz-page-hero-desc">Expert-written guides on pet nutrition, health, and wellness — updated weekly.</p>
+    <p class="pz-page-hero-desc">Practical guides on pet nutrition, health and safety, based on published veterinary and poison-control sources.</p>
   </div>
 </section>
 

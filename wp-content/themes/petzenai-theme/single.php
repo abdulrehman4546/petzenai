@@ -50,7 +50,7 @@ $read_min = max(1, ceil(str_word_count(strip_tags(get_the_content())) / 200));
     <h1 class="pz-single-title"><?php the_title(); ?></h1>
 
     <?php if(has_excerpt()): ?>
-    <p class="pz-single-excerpt"><?php the_excerpt(); ?></p>
+    <p class="pz-single-excerpt"><?php echo esc_html( wp_strip_all_tags( get_the_excerpt() ) ); ?></p>
     <?php endif; ?>
 
     <div class="pz-single-author-bar">
@@ -269,7 +269,7 @@ $read_min = max(1, ceil(str_word_count(strip_tags(get_the_content())) / 200));
 .pz-post-cat{background:var(--orange);color:#fff;padding:4px 14px;border-radius:50px;font-size:12px;font-weight:700}
 .pz-post-meta-item{font-size:13px;color:rgba(255,255,255,0.55);font-weight:500}
 .pz-single-title{font-size:clamp(26px,4vw,48px);font-weight:900;color:#fff;line-height:1.15;margin-bottom:16px}
-.pz-single-excerpt{font-size:17px;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:24px;max-width:720px}
+.pz-single-excerpt{font-size:17px;color:rgba(255,255,255,0.88);line-height:1.7;margin-bottom:24px;max-width:720px}
 .pz-single-author-bar{display:flex;align-items:center;gap:12px}
 .pz-author-avatar{width:44px;height:44px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
 .pz-author-name{font-weight:800;font-size:14px;color:#fff;display:block}

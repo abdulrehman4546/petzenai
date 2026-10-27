@@ -9,7 +9,7 @@ if (is_archive() || is_category() || is_tag()) {
         '@type'       => 'CollectionPage',
         'name'        => wp_strip_all_tags(get_the_archive_title()),
         'url'         => get_pagenum_link(get_query_var('paged') ?: 1),
-        'description' => wp_strip_all_tags(get_the_archive_description()) ?: 'Pet care articles, tips and guides from PetZenAI veterinary experts.',
+        'description' => wp_strip_all_tags(get_the_archive_description()) ?: 'Pet care articles, tips and guides from PetZenAI.',
         'isPartOf'    => ['@type'=>'WebSite','@id'=>home_url('/').'#website'],
     ];
     echo '<script type="application/ld+json">' . wp_json_encode($schema, JSON_UNESCAPED_SLASHES) . '</script>' . "\n";
