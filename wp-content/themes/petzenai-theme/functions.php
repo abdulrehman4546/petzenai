@@ -1160,7 +1160,7 @@ function pz_handle_contact() {
     $body  = "Name: $name\nEmail: $email\nSubject: $subject\n\nMessage:\n$message";
     $saved = wp_insert_post([ 'post_type' => 'pz_message', 'post_status' => 'private', 'post_title' => $subject . ' — ' . $name . ' <' . $email . '>', 'post_content' => $body ]);
 
-    $to      = get_option('pz_contact_to', 'info@petzenai.com');
+    $to      = get_theme_mod('petzenai_contact_email', 'support@petzenai.com');
     $headers = ['Content-Type: text/plain; charset=UTF-8', 'Reply-To: ' . $name . ' <' . $email . '>'];
     $sent    = wp_mail($to, '[PetZenAI Contact] ' . $subject . ' — from ' . $name, $body, $headers);
     if ( $saved && ! is_wp_error($saved) && ! $sent ) update_post_meta($saved, 'pz_mail_failed', 1);
@@ -1168,7 +1168,7 @@ function pz_handle_contact() {
     if ( $sent || ( $saved && ! is_wp_error($saved) ) ) {
         wp_send_json_success('Message sent successfully');
     }
-    wp_send_json_error('Failed to send. Please email us directly at info@petzenai.com.');
+    wp_send_json_error('Failed to send. Please email us directly at ' . get_theme_mod('petzenai_contact_email', 'support@petzenai.com') . '.');
 }
 
 
