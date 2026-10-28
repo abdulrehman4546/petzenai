@@ -182,34 +182,33 @@ function pz_render_tool_page( $tool ) {
     $bc_schema = [
         '@context' => 'https://schema.org',
         '@type'    => 'BreadcrumbList',
+        '@id'      => get_permalink() . '#breadcrumb',
         'itemListElement' => [
             ['@type'=>'ListItem','position'=>1,'name'=>'Home','item'=>home_url('/')],
             ['@type'=>'ListItem','position'=>2,'name'=>'Tools','item'=>home_url('/tools/')],
-            ['@type'=>'ListItem','position'=>3,'name'=>esc_html($cat['label']),'item'=>home_url('/tools/'.esc_attr($tool['cat']).'/')],
-            ['@type'=>'ListItem','position'=>4,'name'=>$title,'item'=>get_permalink()],
+            // Raw text: wp_json_encode() escapes safely; esc_html() here leaked "&amp;" into the names.
+            ['@type'=>'ListItem','position'=>3,'name'=>html_entity_decode($cat['label'], ENT_QUOTES, 'UTF-8'),'item'=>home_url('/tools/'.esc_attr($tool['cat']).'/')],
+            ['@type'=>'ListItem','position'=>4,'name'=>html_entity_decode($tool['title'], ENT_QUOTES, 'UTF-8'),'item'=>get_permalink()],
         ],
     ];
-    echo '<script type="application/ld+json">' . wp_json_encode($bc_schema, JSON_UNESCAPED_SLASHES) . '</script>' . "\n";
+    echo '<script type="application/ld+json">' . wp_json_encode($bc_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . '</script>' . "\n";
     ?>
     <div style="height:64px;background:#1A1A2E"></div>
     <nav class="pz-breadcrumb" aria-label="Breadcrumb">
       <div class="container">
-        <ol class="pz-breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
-          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-            <a href="<?php echo home_url('/'); ?>" itemprop="item"><span itemprop="name">Home</span></a>
-            <meta itemprop="position" content="1">
+        <ol class="pz-breadcrumb-list">
+          <li>
+            <a href="<?php echo home_url('/'); ?>"><span>Home</span></a>
           </li>
           <span class="pz-bc-sep" aria-hidden="true">›</span>
-          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-            <a href="<?php echo home_url('/tools/'); ?>" itemprop="item"><span itemprop="name">Tools</span></a>
-            <meta itemprop="position" content="2">
+          <li>
+            <a href="<?php echo home_url('/tools/'); ?>"><span>Tools</span></a>
           </li>
           <span class="pz-bc-sep" aria-hidden="true">›</span>
-          <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-            <a href="<?php echo home_url('/tools/' . esc_attr($tool['cat']) . '/'); ?>" itemprop="item">
-              <span itemprop="name"><?php echo esc_html($cat['label']); ?></span>
+          <li>
+            <a href="<?php echo home_url('/tools/' . esc_attr($tool['cat']) . '/'); ?>">
+              <span><?php echo esc_html($cat['label']); ?></span>
             </a>
-            <meta itemprop="position" content="3">
           </li>
           <span class="pz-bc-sep" aria-hidden="true">›</span>
           <li><span><?php echo $title; ?></span></li>
@@ -264,8 +263,7 @@ function pz_render_tool_page( $tool ) {
     <!-- ══ AD SLOT — TOP ══ -->
     <?php petzenai_ad('petzenai_adsense_ad_tools','tool-top'); ?>
 
-    <article class="pz-auto-tool-article" itemscope itemtype="https://schema.org/HowTo">
-      <meta itemprop="name" content="<?php echo $title; ?>">
+    <article class="pz-auto-tool-article">
 
       <!-- PRINT-ONLY HEADER — branded PDF banner, hidden on screen -->
       <div class="pz-print-header">
@@ -362,7 +360,7 @@ function pz_render_tool_page( $tool ) {
           </section>
 
           <!-- SECTION 11: FAQ -->
-          <section class="pz-tool-section" itemscope itemtype="https://schema.org/FAQPage">
+          <section class="pz-tool-section">
             <h2>❓ Frequently Asked Questions</h2>
             <?php echo pz_section_faq($tool); ?>
           </section>
@@ -13731,11 +13729,11 @@ function pz_section_steps($tool) {
     <p>Follow these vet-recommended steps for the best results with your <?php echo strtolower($a); ?>:</p>
     <ol class="pz-steps-list">
       <?php foreach($steps as $i=>$step): ?>
-      <li itemprop="step" itemscope itemtype="https://schema.org/HowToStep">
+      <li>
         <div class="pz-step-num"><?php echo $i+1; ?></div>
         <div class="pz-step-body">
-          <strong itemprop="name"><?php echo esc_html($step['title']); ?></strong>
-          <p itemprop="text"><?php echo esc_html($step['desc']); ?></p>
+          <strong><?php echo esc_html($step['title']); ?></strong>
+          <p><?php echo esc_html($step['desc']); ?></p>
         </div>
       </li>
       <?php endforeach; ?>
@@ -14263,19 +14261,21 @@ function pz_section_faq($tool) {
     $schema = json_encode([
         '@context'   => 'https://schema.org',
         '@type'      => 'FAQPage',
+        '@id'        => get_permalink() . '#faq',
+        'isPartOf'   => ['@id' => get_permalink() . '#webpage'],
         'mainEntity' => $schema_faqs,
     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
 
     ob_start();
     echo '<script type="application/ld+json">' . $schema . '</script>';
     foreach ($faqs as $faq): ?>
-    <div class="pz-faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <button class="pz-faq-q" onclick="pzToggleFaq(this)" aria-expanded="false" itemprop="name">
+    <div class="pz-faq-item">
+      <button class="pz-faq-q" onclick="pzToggleFaq(this)" aria-expanded="false">
         <?php echo esc_html($faq[0]); ?>
         <span class="pz-faq-arrow" aria-hidden="true">▾</span>
       </button>
-      <div class="pz-faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" hidden>
-        <p itemprop="text"><?php echo esc_html($faq[1]); ?></p>
+      <div class="pz-faq-a" hidden>
+        <p><?php echo esc_html($faq[1]); ?></p>
       </div>
     </div>
     <?php endforeach;

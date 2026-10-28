@@ -22,22 +22,18 @@ $read_min = max(1, ceil(str_word_count(strip_tags(get_the_content())) / 200));
   <?php endif; ?>
   <div class="pz-single-hero-bg" aria-hidden="true"></div>
   <div class="container pz-single-hero-inner">
-    <!-- Breadcrumb -->
-    <nav class="pz-single-breadcrumb" aria-label="Breadcrumb"
-         itemscope itemtype="https://schema.org/BreadcrumbList">
-      <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-        <a href="<?php echo home_url('/'); ?>" itemprop="item"><span itemprop="name">Home</span></a>
-        <meta itemprop="position" content="1">
+    <!-- Breadcrumb (structured data: BreadcrumbList JSON-LD in Rank Math's graph, inc/schema-graph.php) -->
+    <nav class="pz-single-breadcrumb" aria-label="Breadcrumb">
+      <span>
+        <a href="<?php echo home_url('/'); ?>"><span>Home</span></a>
       </span>
       <span aria-hidden="true">›</span>
-      <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-        <a href="<?php echo esc_url($cat_link); ?>" itemprop="item"><span itemprop="name"><?php echo esc_html($cat_name); ?></span></a>
-        <meta itemprop="position" content="2">
+      <span>
+        <a href="<?php echo esc_url($cat_link); ?>"><span><?php echo esc_html($cat_name); ?></span></a>
       </span>
       <span aria-hidden="true">›</span>
-      <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-        <span itemprop="name"><?php the_title(); ?></span>
-        <meta itemprop="position" content="3">
+      <span>
+        <span><?php the_title(); ?></span>
       </span>
     </nav>
 
@@ -61,22 +57,18 @@ $read_min = max(1, ceil(str_word_count(strip_tags(get_the_content())) / 200));
       </div>
     </div>
   </div>
-  <?php if($hero_img_url): // hidden real <img> so it still counts as itemprop=image, alt text, SEO/accessibility ?>
-  <img src="<?php echo esc_url($hero_img_url); ?>" alt="<?php echo esc_attr(get_the_title().' — PetZenAI'); ?>" itemprop="image" style="position:absolute;width:1px;height:1px;overflow:hidden;opacity:0" loading="eager">
+  <?php if($hero_img_url): // hidden real <img> so the hero image still has alt text (SEO/accessibility) ?>
+  <img src="<?php echo esc_url($hero_img_url); ?>" alt="<?php echo esc_attr(get_the_title().' — PetZenAI'); ?>" style="position:absolute;width:1px;height:1px;overflow:hidden;opacity:0" loading="eager">
   <?php endif; ?>
 </div>
 
-<!-- Article Content -->
-<article class="pz-single-article" itemscope itemtype="https://schema.org/Article">
-  <meta itemprop="headline"      content="<?php the_title_attribute(); ?>">
-  <meta itemprop="datePublished" content="<?php echo get_the_date('c'); ?>">
-  <meta itemprop="dateModified"  content="<?php echo get_the_modified_date('c'); ?>">
-  <meta itemprop="author"        content="<?php echo esc_attr($author); ?>">
+<!-- Article Content (structured data: Rank Math's BlogPosting JSON-LD; no microdata, to avoid a second Article entity) -->
+<article class="pz-single-article">
 
   <div class="container pz-single-layout">
 
     <!-- Main Content -->
-    <div class="pz-single-content" itemprop="articleBody">
+    <div class="pz-single-content">
 
       <!-- Ad: Blog Post Top -->
       <?php petzenai_ad( 'petzenai_adsense_ad_blog_top', 'blog-top' ); ?>

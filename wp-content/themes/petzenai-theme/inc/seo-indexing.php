@@ -197,10 +197,7 @@ add_filter( 'rank_math/frontend/description', function ( $desc ) {
     if ( is_page() && ( $post = get_queried_object() ) && ! empty( $post->post_name ) ) {
         if ( ! function_exists( 'pz_get_tool_data' ) ) require_once get_template_directory() . '/inc/tool-renderer.php';
         $tool = function_exists( 'pz_get_tool_data' ) ? pz_get_tool_data( $post->post_name ) : null;
-        if ( $tool ) {
-            $boiler = ( stripos( $desc, 'vet-reviewed' ) !== false || stripos( $desc, 'vet-backed' ) !== false || stripos( $desc, 'vet-informed' ) !== false || stripos( $desc, 'Comprehensive ' ) === 0 || $desc === '' );
-            return pz_trim_chars( $boiler ? pz_tool_description( $tool ) : $desc, 158 );
-        }
+        if ( $tool ) return pz_tool_meta_description( $tool, $desc );
     }
     if ( is_front_page() && mb_strlen( $desc ) < 110 ) {
         return 'Free pet care calculators, trackers and guides for dogs, cats, birds, rabbits, fish and more — 300 tools in one place, instant results, no sign-up.';
@@ -242,6 +239,25 @@ add_action( 'wp_head', function () {
     echo '<script type="application/ld+json">' . wp_json_encode( $graph, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
 }, 30 );
 
+
+/**
+ * Stored tool descriptions that are templated boilerplate rather than written for the page: old claim text
+ * ("vet-reviewed", "Comprehensive Dog guide: …") and the auto-generated "Free Cat cat daily calorie calculator.
+ * calculator with instant personalized results. No sign-up required." pattern.
+ */
+function pz_is_boilerplate_tool_desc( $desc ) {
+    $desc = (string) $desc;
+    return $desc === ''
+        || stripos( $desc, 'vet-reviewed' ) !== false || stripos( $desc, 'vet-backed' ) !== false || stripos( $desc, 'vet-informed' ) !== false
+        || stripos( $desc, 'Comprehensive ' ) === 0
+        || (bool) preg_match( '/^Free .+ with instant personali[sz]ed results\. No sign-up required\.?$/i', trim( $desc ) );
+}
+
+/** Final meta description for a tool page (also reused for the tool's JSON-LD description, inc/schema-graph.php). */
+function pz_tool_meta_description( $tool, $stored ) {
+    if ( ( $ov = pz_current_tool_override() ) && $ov['description'] !== '' ) return $ov['description'];
+    return pz_trim_chars( pz_is_boilerplate_tool_desc( $stored ) ? pz_tool_description( $tool ) : (string) $stored, 158 );
+}
 
 /** Specific, claim-free meta description for a tool (by type). */
 function pz_tool_description( $tool ) {
@@ -378,7 +394,7 @@ add_action( 'wp_head', function () {
     foreach ( $pairs as $p ) {
         $items[] = [ '@type' => 'Question', 'name' => $p[0], 'acceptedAnswer' => [ '@type' => 'Answer', 'text' => $p[1] ] ];
     }
-    $data = [ '@context' => 'https://schema.org', '@type' => 'FAQPage', '@id' => get_permalink() . '#faq', 'mainEntity' => $items ];
+    $data = [ '@context' => 'https://schema.org', '@type' => 'FAQPage', '@id' => get_permalink() . '#faq', 'isPartOf' => [ '@id' => get_permalink() . '#webpage' ], 'mainEntity' => $items ];
     echo '<script type="application/ld+json">' . wp_json_encode( $data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
 }, 31 );
 
