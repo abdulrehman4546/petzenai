@@ -5,7 +5,7 @@ return [
     'slug'        => 'bird-flu-in-cats',
     'title'       => 'Bird Flu in Cats: Symptoms, Raw Food Risk and Prevention',
     'status'      => 'publish',
-    'revision'    => 3,   // bump to push edited content to the existing post
+    'revision'    => 4,   // bump to push edited content to the existing post
     'publish_at'  => '2026-10-25 09:00',   // scheduled (site time zone)
     'category'    => 'Pet Health',
     'keyword'     => 'bird flu in cats',
@@ -16,7 +16,7 @@ return [
 <p>Yes, cats can get bird flu, and bird flu in cats is usually serious. The H5N1 avian influenza virus typically starts with fever, tiredness and loss of appetite, then can cause breathing trouble and neurological signs such as tremors, seizures or blindness. Many infected cats die. Most cases trace back to raw pet food, raw milk, wild birds or infected farms, so controlling what your cat eats and hunts is the best protection. The CDC rates the risk to people as low.</p>
 
 <figure class="pz-blog-img">
-<img src="/wp-content/themes/petzenai-theme/assets/img/blog/cat-resting-indoors-bird-flu.webp" srcset="/wp-content/themes/petzenai-theme/assets/img/blog/cat-resting-indoors-bird-flu-768.webp 768w, /wp-content/themes/petzenai-theme/assets/img/blog/cat-resting-indoors-bird-flu.webp 1200w" sizes="(max-width: 820px) 100vw, 820px" alt="Indoor tabby cat on a windowsill watching birds outside, keeping cats indoors to lower bird flu risk" width="1200" height="675" loading="lazy" decoding="async">
+<img src="/wp-content/themes/petzenai-theme/assets/img/blog/cat-resting-indoors-bird-flu.webp" srcset="/wp-content/themes/petzenai-theme/assets/img/blog/cat-resting-indoors-bird-flu-768.webp 768w, /wp-content/themes/petzenai-theme/assets/img/blog/cat-resting-indoors-bird-flu.webp 1200w" sizes="(max-width: 600px) 100vw, 560px" alt="Indoor tabby cat on a windowsill watching birds outside, keeping cats indoors to lower bird flu risk" width="1200" height="675" loading="lazy" decoding="async">
 <figcaption>Keeping cats indoors limits contact with wild birds. (AI-generated image)</figcaption>
 </figure>
 

@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 return [
     'slug'        => 'how-often-should-you-bathe-a-dog',
     'title'       => 'How Often Should You Bathe a Dog? A Guide by Coat Type',
-    'revision'    => 2,   // bump to push edited content to the existing post
+    'revision'    => 3,   // bump to push edited content to the existing post
     'category'    => 'Dog Care',
     'keyword'     => 'how often should you bathe a dog',
     'description' => 'Most healthy dogs need a bath every 4–8 weeks, but coat, lifestyle and skin change that. See a schedule by coat type and how to bathe your dog safely.',
@@ -16,7 +16,7 @@ return [
 <p>If you want a number for your own dog, our <a href="/tools/dog-bathing-frequency-calculator/">Dog Bathing Frequency Calculator</a> works it out from coat type, lifestyle, season and skin.</p>
 
 <figure class="pz-blog-img">
-<img src="/wp-content/themes/petzenai-theme/assets/img/blog/dog-bath-at-home.webp" srcset="/wp-content/themes/petzenai-theme/assets/img/blog/dog-bath-at-home-768.webp 768w, /wp-content/themes/petzenai-theme/assets/img/blog/dog-bath-at-home.webp 1200w" sizes="(max-width: 820px) 100vw, 820px" alt="Dog being bathed in a bathtub with a handheld shower at home" width="1200" height="675" loading="lazy" decoding="async">
+<img src="/wp-content/themes/petzenai-theme/assets/img/blog/dog-bath-at-home.webp" srcset="/wp-content/themes/petzenai-theme/assets/img/blog/dog-bath-at-home-768.webp 768w, /wp-content/themes/petzenai-theme/assets/img/blog/dog-bath-at-home.webp 1200w" sizes="(max-width: 600px) 100vw, 560px" alt="Dog being bathed in a bathtub with a handheld shower at home" width="1200" height="675" loading="lazy" decoding="async">
 <figcaption>Use lukewarm water and a dog shampoo, and rinse thoroughly. (AI-generated image)</figcaption>
 </figure>
 

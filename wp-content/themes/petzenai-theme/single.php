@@ -278,6 +278,10 @@ $read_min = max(1, ceil(str_word_count(strip_tags(get_the_content())) / 200));
 .pz-single-layout{display:grid;grid-template-columns:1fr 320px;gap:60px;max-width:1100px;align-items:start}
 @media(max-width:900px){.pz-single-layout{grid-template-columns:1fr}}
 .pz-single-content{min-width:0;max-width:720px}
+.pz-single-content img{display:block;max-width:min(100%,560px);height:auto;margin-left:auto;margin-right:auto;border-radius:12px}
+.pz-single-content figure.pz-blog-img{max-width:560px;margin:28px auto}
+.pz-single-content figure.pz-blog-img img{width:100%}
+.pz-single-content figure.pz-blog-img figcaption{font-size:13px;color:#777;text-align:center;margin-top:8px;line-height:1.5}
 .pz-single-content h2{font-size:25px;font-weight:900;color:#0D0D0D;margin:44px 0 18px;padding-top:24px;border-top:2px solid #F0F0F0;letter-spacing:-.01em;position:relative}
 .pz-single-content h2::before{content:"";position:absolute;top:-2px;left:0;width:48px;height:2px;background:var(--orange)}
 .pz-single-content h2:first-child{margin-top:0;padding-top:0;border-top:none}

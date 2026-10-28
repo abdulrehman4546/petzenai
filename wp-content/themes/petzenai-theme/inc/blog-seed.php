@@ -177,7 +177,7 @@ function pz_add_post_images() {
             if ( ! is_wp_error( $r ) ) { $content = $cleaned; $log[] = $slug . ': removed old stock photo'; }
         }
         if ( strpos( $content, $name . '.webp' ) === false ) {
-            $figure = '<figure class="pz-blog-img"><img src="' . esc_attr( $base . $name . '.webp' ) . '" srcset="' . esc_attr( $base . $name . '-768.webp' ) . ' 768w, ' . esc_attr( $base . $name . '.webp' ) . ' 1200w" sizes="(max-width: 820px) 100vw, 820px" alt="' . esc_attr( $alt ) . '" width="1200" height="675" loading="lazy" decoding="async"><figcaption>' . esc_html( $caption ) . ' (AI-generated image)</figcaption></figure>';
+            $figure = '<figure class="pz-blog-img"><img src="' . esc_attr( $base . $name . '.webp' ) . '" srcset="' . esc_attr( $base . $name . '-768.webp' ) . ' 768w, ' . esc_attr( $base . $name . '.webp' ) . ' 1200w" sizes="(max-width: 600px) 100vw, 560px" alt="' . esc_attr( $alt ) . '" width="1200" height="675" loading="lazy" decoding="async"><figcaption>' . esc_html( $caption ) . ' (AI-generated image)</figcaption></figure>';
             // Second H2, or the block comment that opens it in block-editor content; fall back to after the first paragraph.
             $pos = false;
             if ( preg_match_all( '/<h2[\s>]/i', $content, $m, PREG_OFFSET_CAPTURE ) && count( $m[0] ) >= 2 ) {
@@ -201,6 +201,77 @@ function pz_add_post_images() {
         $log[] = $slug . ': ' . $name;
     }
     update_option( 'pz_post_images_applied', $applied, false );
+    return $log;
+}
+
+/**
+ * Older posts hotlinked stock photos from images.unsplash.com, several reused across posts with alt text that did not
+ * describe the photo. Serve them from the theme instead (compressed WebP + 768w), with alt text that matches the image,
+ * a different photo where one was reused on an unrelated post, and no photo where none fits (until our own is added).
+ * Map: post slug => [ unsplash photo id => [ local image name, width, height, alt ] or null to remove ]. Done once per post.
+ * @return string[] log lines
+ */
+function pz_localize_stock_images() {
+    $own = [ 1200, 675 ]; $stock = [ 1200, 800 ];
+    $map = [
+        'best-pet-names-2025'                     => [ '1415369629372' => [ 'stock-1415369629372', $stock, 'Person giving a high five to a tabby cat at home' ] ],
+        'cat-litter-box-complete-guide'           => [ '1757527669809' => [ 'stock-1757527669809', $stock, 'Two cats resting together in a quiet corner' ] ],
+        'cat-vaccination-schedule'                => [ '1415369629372' => [ 'stock-1514888286974', $stock, 'Healthy black and white cat looking over a ledge' ] ],
+        'dog-age-in-human-years'                  => [ '1770836037793' => [ 'stock-1770836037793', $stock, 'Veterinarian checking a dachshund during a health exam' ] ],
+        'dog-body-language-guide'                 => [ '1664730807673' => [ 'stock-1664730807673', $stock, 'Dog seen from behind with its ears raised and alert' ] ],
+        'dog-dental-care-guide'                   => [ '1536318811424' => [ 'stock-1536318811424', $stock, 'Close-up of a dog\'s open mouth showing its teeth and gums' ] ],
+        'dog-grooming-at-home-guide'              => [ '1415369629372' => [ 'dog-bath-at-home', $own, 'Dog being bathed in a bathtub with a handheld shower at home' ] ],
+        'dog-vaccination-schedule-guide'          => [ '1770836037793' => [ 'stock-1770836037275', $stock, 'Veterinarian treating a dachshund\'s leg during a clinic visit' ] ],
+        'freshwater-aquarium-setup-beginners'     => [ '1691387824643' => [ 'stock-1691387824643', $stock, 'Planted freshwater aquarium with lush green plants and driftwood' ] ],
+        'guinea-pig-care-guide'                   => [ '1512087499053' => [ 'stock-1512087499053', $stock, 'Guinea pig sitting on grass next to a carrot' ] ],
+        'how-much-exercise-does-a-dog-need'       => [ '1415369629372' => [ 'stock-1587300003388', $stock, 'Happy border collie standing on a beach during a walk' ] ],
+        'how-much-to-feed-dog'                    => [ '1415369629372' => null ],
+        'how-to-choose-a-vet-guide'               => [ '1770836037275' => [ 'stock-1770836037275', $stock, 'Veterinarian treating a small dog\'s leg during an appointment' ] ],
+        'new-puppy-checklist-everything-you-need' => [ '1777383504078' => [ 'stock-1777383504078', $stock, 'Small dog resting on a blanket inside a wooden kennel' ] ],
+        'pet-insurance-guide-worth-it'            => [ '1770836037275' => [ 'stock-1770836037275', $stock, 'Veterinarian treating a dog\'s leg, the kind of visit pet insurance can help cover' ] ],
+        'puppy-socialization-guide'               => [ '1555988483' => [ 'stock-1555988483', $stock, 'Owner holding a young merle puppy' ] ],
+        'rabbit-care-guide-beginners'             => [ '1551102450' => [ 'stock-1551102450', $stock, 'Brown hare sitting in long grass' ] ],
+        'signs-your-pet-is-sick'                  => [
+            '1770836037793' => [ 'stock-1770836037793', $stock, 'Veterinarian examining a dachshund during a health check' ],
+            '1770836037275' => [ 'stock-1770836037275', $stock, 'Veterinarian treating a dog\'s leg during an urgent visit' ],
+            '1415369629372' => [ 'stock-1415369629372', $stock, 'Owner holding a cat\'s paw while checking it at home' ],
+        ],
+        'traveling-with-pets-guide'               => [ '1774790479490' => [ 'stock-1774790479490', $stock, 'Small dog riding in a sling carrier while its owner walks' ] ],
+        'what-pet-should-i-get-guide'             => [ '1415369629372' => [ 'stock-1415369629372', $stock, 'Person giving a high five to a tabby cat at home' ] ],
+    ];
+    $applied = get_option( 'pz_stock_images_applied', [] );
+    $applied = is_array( $applied ) ? $applied : [];
+    $base    = '/wp-content/themes/' . get_template() . '/assets/img/blog/';
+    $log     = [];
+    foreach ( $map as $slug => $photos ) {
+        if ( ! empty( $applied[ $slug ] ) ) continue;
+        $post = get_page_by_path( $slug, OBJECT, 'post' );
+        if ( ! $post ) continue;
+        $content = (string) $post->post_content;
+        $changed = 0;
+        foreach ( $photos as $id => $img ) {
+            $tag = '<img[^>]*src="https:\/\/images\.unsplash\.com\/photo-' . preg_quote( $id, '/' ) . '[^"]*"[^>]*>';
+            if ( $img === null ) {
+                $new = preg_replace( '/(<!-- wp:image[^>]*-->\s*)?(<figure[^>]*>\s*|<p>\s*)?' . $tag . '(\s*<figcaption>.*?<\/figcaption>)?(\s*<\/figure>|\s*<\/p>)?(\s*<!-- \/wp:image -->)?\s*/is', '', $content, 1, $n );
+            } else {
+                list( $name, $wh, $alt ) = $img;
+                if ( ! is_file( get_template_directory() . '/assets/img/blog/' . $name . '.webp' ) ) continue;
+                $html = '<img src="' . esc_attr( $base . $name . '.webp' ) . '" srcset="' . esc_attr( $base . $name . '-768.webp' ) . ' 768w, ' . esc_attr( $base . $name . '.webp' ) . ' 1200w" sizes="(max-width: 600px) 100vw, 560px" alt="' . esc_attr( $alt ) . '" width="' . $wh[0] . '" height="' . $wh[1] . '" loading="lazy" decoding="async" style="height:auto;border-radius:12px;margin-bottom:24px">';
+                $new = preg_replace_callback( '/' . $tag . '/i', function () use ( $html ) { return $html; }, $content, 1, $n );
+            }
+            if ( is_string( $new ) && $n ) { $content = $new; $changed++; }
+        }
+        if ( $changed ) {
+            $had_kses = has_filter( 'content_save_pre', 'wp_filter_post_kses' );
+            if ( $had_kses ) kses_remove_filters();          // trusted theme markup (srcset, sizes)
+            $r = wp_update_post( [ 'ID' => $post->ID, 'post_content' => $content ], true );
+            if ( $had_kses ) kses_init_filters();
+            if ( is_wp_error( $r ) ) { $log[] = $slug . ': stock image update failed'; continue; }
+        }
+        $applied[ $slug ] = 1;
+        $log[] = $slug . ': ' . $changed . ' stock photo(s) localized';
+    }
+    update_option( 'pz_stock_images_applied', $applied, false );
     return $log;
 }
 

@@ -5,7 +5,7 @@ return [
     'slug'        => 'antifreeze-poisoning-in-dogs-and-cats',
     'title'       => 'Antifreeze Poisoning in Dogs and Cats: Signs and Treatment',
     'status'      => 'publish',
-    'revision'    => 3,   // bump to push edited content to the existing post
+    'revision'    => 4,   // bump to push edited content to the existing post
     'publish_at'  => '2026-10-26 09:00',   // scheduled (site time zone)
     'category'    => 'Pet Health',
     'keyword'     => 'antifreeze poisoning in dogs and cats',
@@ -16,7 +16,7 @@ return [
 <p>Antifreeze poisoning in dogs and cats is a true emergency that is most common in the colder months. Most engine coolant is based on <strong>ethylene glycol</strong>, which is poisonous to pets in small amounts and tastes sweet, so a dog may lap at a driveway puddle or a cat may lick a garage drip. This guide covers symptoms, timeline, treatment and prevention.</p>
 
 <figure class="pz-blog-img">
-<img src="/wp-content/themes/petzenai-theme/assets/img/blog/antifreeze-garage-safety.webp" srcset="/wp-content/themes/petzenai-theme/assets/img/blog/antifreeze-garage-safety-768.webp 768w, /wp-content/themes/petzenai-theme/assets/img/blog/antifreeze-garage-safety.webp 1200w" sizes="(max-width: 820px) 100vw, 820px" alt="Antifreeze jug stored on a high garage shelf, out of reach of a dog" width="1200" height="675" loading="lazy" decoding="async">
+<img src="/wp-content/themes/petzenai-theme/assets/img/blog/antifreeze-garage-safety.webp" srcset="/wp-content/themes/petzenai-theme/assets/img/blog/antifreeze-garage-safety-768.webp 768w, /wp-content/themes/petzenai-theme/assets/img/blog/antifreeze-garage-safety.webp 1200w" sizes="(max-width: 600px) 100vw, 560px" alt="Antifreeze jug stored on a high garage shelf, out of reach of a dog" width="1200" height="675" loading="lazy" decoding="async">
 <figcaption>Store antifreeze sealed and up high, and wipe up any spills straight away. (AI-generated image)</figcaption>
 </figure>
 

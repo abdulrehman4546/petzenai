@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 return [
     'slug'        => 'how-many-calories-does-a-cat-need',
     'title'       => 'How Many Calories Does a Cat Need? A Guide by Weight and Age',
-    'revision'    => 2,   // bump to push edited content to the existing post
+    'revision'    => 3,   // bump to push edited content to the existing post
     'category'    => 'Cat Care',
     'keyword'     => 'how many calories does a cat need',
     'description' => 'Most adult cats need about 20–30 calories per pound a day. See a table by weight, how kittens and seniors differ, and how to turn calories into cups or cans.',
@@ -16,7 +16,7 @@ return [
 <p>If you would rather skip the maths, our <a href="/tools/cat-calorie-calculator/">Cat Daily Calorie Calculator</a> does it for you and shows the amount of dry or wet food as well.</p>
 
 <figure class="pz-blog-img">
-<img src="/wp-content/themes/petzenai-theme/assets/img/blog/cat-calories-food-bowl.webp" srcset="/wp-content/themes/petzenai-theme/assets/img/blog/cat-calories-food-bowl-768.webp 768w, /wp-content/themes/petzenai-theme/assets/img/blog/cat-calories-food-bowl.webp 1200w" sizes="(max-width: 820px) 100vw, 820px" alt="Tabby cat eating a measured portion of cat food next to a kitchen scale" width="1200" height="675" loading="lazy" decoding="async">
+<img src="/wp-content/themes/petzenai-theme/assets/img/blog/cat-calories-food-bowl.webp" srcset="/wp-content/themes/petzenai-theme/assets/img/blog/cat-calories-food-bowl-768.webp 768w, /wp-content/themes/petzenai-theme/assets/img/blog/cat-calories-food-bowl.webp 1200w" sizes="(max-width: 600px) 100vw, 560px" alt="Tabby cat eating a measured portion of cat food next to a kitchen scale" width="1200" height="675" loading="lazy" decoding="async">
 <figcaption>Weighing food is the most accurate way to hit a calorie target. (AI-generated image)</figcaption>
 </figure>
 

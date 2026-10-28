@@ -5,7 +5,7 @@ return [
     'slug'        => 'thanksgiving-foods-for-dogs-and-cats',
     'title'       => 'Thanksgiving Foods Dogs Can Eat, Plus Safe Picks for Cats',
     'status'      => 'publish',
-    'revision'    => 3,   // bump to push edited content to the existing post
+    'revision'    => 4,   // bump to push edited content to the existing post
     'category'    => 'Pet Tips',
     'keyword'     => 'thanksgiving foods dogs can eat',
     'description' => 'See which Thanksgiving foods dogs can eat and which are toxic to dogs and cats, from turkey bones, ham and stuffing to pie, xylitol and raw dough.',
@@ -15,7 +15,7 @@ return [
 <p>Wondering which Thanksgiving foods dogs can eat? A few bites of plain, skinless, boneless turkey, unseasoned sweet potato, green beans or carrots are generally fine for most dogs and cats. Bones, skin, gravy, stuffing, onion, garlic, grapes, raisins, raw dough and sweet desserts are not. Thanksgiving falls on Thursday, November 26 this year. This guide sorts the table into safe, risky and toxic, and explains what to do if your pet gets into something.</p>
 
 <figure class="pz-blog-img">
-<img src="/wp-content/themes/petzenai-theme/assets/img/blog/thanksgiving-dog-table.webp" srcset="/wp-content/themes/petzenai-theme/assets/img/blog/thanksgiving-dog-table-768.webp 768w, /wp-content/themes/petzenai-theme/assets/img/blog/thanksgiving-dog-table.webp 1200w" sizes="(max-width: 820px) 100vw, 820px" alt="Golden retriever sitting beside a Thanksgiving dinner table with roast turkey" width="1200" height="675" loading="lazy" decoding="async">
+<img src="/wp-content/themes/petzenai-theme/assets/img/blog/thanksgiving-dog-table.webp" srcset="/wp-content/themes/petzenai-theme/assets/img/blog/thanksgiving-dog-table-768.webp 768w, /wp-content/themes/petzenai-theme/assets/img/blog/thanksgiving-dog-table.webp 1200w" sizes="(max-width: 600px) 100vw, 560px" alt="Golden retriever sitting beside a Thanksgiving dinner table with roast turkey" width="1200" height="675" loading="lazy" decoding="async">
 <figcaption>Keep pets away from the Thanksgiving table and its leftovers. (AI-generated image)</figcaption>
 </figure>
 
@@ -121,7 +121,7 @@ return [
 <h2>How to Include Your Pet Safely</h2>
 
 <figure class="pz-blog-img">
-<img src="/wp-content/themes/petzenai-theme/assets/img/blog/thanksgiving-safe-treats.webp" srcset="/wp-content/themes/petzenai-theme/assets/img/blog/thanksgiving-safe-treats-768.webp 768w, /wp-content/themes/petzenai-theme/assets/img/blog/thanksgiving-safe-treats.webp 1200w" sizes="(max-width: 820px) 100vw, 820px" alt="Plain cooked turkey without skin or bones and plain pumpkin puree, safe Thanksgiving foods for dogs and cats" width="1200" height="675" loading="lazy" decoding="async">
+<img src="/wp-content/themes/petzenai-theme/assets/img/blog/thanksgiving-safe-treats.webp" srcset="/wp-content/themes/petzenai-theme/assets/img/blog/thanksgiving-safe-treats-768.webp 768w, /wp-content/themes/petzenai-theme/assets/img/blog/thanksgiving-safe-treats.webp 1200w" sizes="(max-width: 600px) 100vw, 560px" alt="Plain cooked turkey without skin or bones and plain pumpkin puree, safe Thanksgiving foods for dogs and cats" width="1200" height="675" loading="lazy" decoding="async">
 <figcaption>Plain, boneless, skinless turkey and plain pumpkin are the safer picks. (AI-generated image)</figcaption>
 </figure>
 
