@@ -162,10 +162,20 @@ function pz_add_post_images() {
     $log     = [];
     foreach ( $images as $slug => $img ) {
         list( $name, $alt, $caption ) = $img;
-        if ( ( $applied[ $slug ] ?? '' ) === $name ) continue;
+        if ( ( $applied[ $slug ] ?? '' ) === $name . '|v2' ) continue;
         $post = get_page_by_path( $slug, OBJECT, 'post' );
         if ( ! $post || ! is_file( get_template_directory() . '/assets/img/blog/' . $name . '.webp' ) ) continue;
         $content = (string) $post->post_content;
+        // The old hotlinked stock photo at the top of these posts did not match its alt text (or no longer loads): remove it.
+        $unsplash = '/(<!-- wp:image[^>]*-->\s*)?(<figure[^>]*>\s*|<p>\s*)?<img[^>]*src="https:\/\/images\.unsplash\.com\/[^"]*"[^>]*>(\s*<figcaption>.*?<\/figcaption>)?(\s*<\/figure>|\s*<\/p>)?(\s*<!-- \/wp:image -->)?\s*/is';
+        $cleaned  = preg_replace( $unsplash, '', $content, 1 );
+        if ( is_string( $cleaned ) && $cleaned !== $content ) {
+            $had_kses = has_filter( 'content_save_pre', 'wp_filter_post_kses' );
+            if ( $had_kses ) kses_remove_filters();
+            $r = wp_update_post( [ 'ID' => $post->ID, 'post_content' => $cleaned ], true );
+            if ( $had_kses ) kses_init_filters();
+            if ( ! is_wp_error( $r ) ) { $content = $cleaned; $log[] = $slug . ': removed old stock photo'; }
+        }
         if ( strpos( $content, $name . '.webp' ) === false ) {
             $figure = '<figure class="pz-blog-img"><img src="' . esc_attr( $base . $name . '.webp' ) . '" srcset="' . esc_attr( $base . $name . '-768.webp' ) . ' 768w, ' . esc_attr( $base . $name . '.webp' ) . ' 1200w" sizes="(max-width: 820px) 100vw, 820px" alt="' . esc_attr( $alt ) . '" width="1200" height="675" loading="lazy" decoding="async"><figcaption>' . esc_html( $caption ) . ' (AI-generated image)</figcaption></figure>';
             // Second H2, or the block comment that opens it in block-editor content; fall back to after the first paragraph.
@@ -187,7 +197,7 @@ function pz_add_post_images() {
             if ( $had_kses ) kses_init_filters();
             if ( is_wp_error( $r ) ) { $log[] = $slug . ': image insert failed'; continue; }
         }
-        $applied[ $slug ] = $name;
+        $applied[ $slug ] = $name . '|v2';
         $log[] = $slug . ': ' . $name;
     }
     update_option( 'pz_post_images_applied', $applied, false );
