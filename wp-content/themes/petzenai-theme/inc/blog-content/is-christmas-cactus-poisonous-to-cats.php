@@ -5,19 +5,19 @@ return [
     'slug'        => 'is-christmas-cactus-poisonous-to-cats',
     'title'       => 'Is Christmas Cactus Poisonous to Cats and Dogs?',
     'status'      => 'publish',
-    'revision'    => 1,
+    'revision'    => 2,
     'publish_at'  => '2026-10-29 09:00',   // scheduled (site time zone)
     'category'    => 'Pet Safety',
     'keyword'     => 'is christmas cactus poisonous to cats',
     'description' => 'Is Christmas cactus poisonous to cats? No. The ASPCA lists it as non-toxic to cats and dogs, but chewing it can upset the stomach. Signs and what to do.',
     'excerpt'     => 'The ASPCA lists Christmas cactus as non-toxic to cats, dogs and horses, so it is one of the safer holiday plants. Here is what happens if your pet chews one, how to tell the three holiday cacti apart, and the real risks to watch for: fertilizer, lookalike plants and lilies.',
-    'featured'    => [ 'url' => 'https://images.unsplash.com/photo-1769005342528-f4df9912038e?w=1200&h=675&q=80&auto=format&fit=crop', 'alt' => 'Potted Christmas cactus in bloom with red and orange flowers' ],
+    'featured'    => [ 'file' => 'assets/img/blog/christmas-cactus-cat.jpg', 'alt' => 'Cat sniffing a blooming Christmas cactus (Schlumbergera) on a windowsill' ],
     'content'     => <<<'HTML'
 <p>Is Christmas cactus poisonous to cats? No. The ASPCA Animal Poison Control Center lists the Christmas cactus (<em>Schlumbergera</em>) as non-toxic to cats, dogs and horses, making it one of the safest holiday plants for pet homes. It is still not a snack: chewing the fleshy stems can cause vomiting or diarrhea, so keep it out of reach.</p>
 
 <figure class="pz-blog-img">
-<img src="https://images.unsplash.com/photo-1769005342528-f4df9912038e?w=1200&amp;h=675&amp;q=80&amp;auto=format&amp;fit=crop" alt="Potted Christmas cactus in bloom with red and orange flowers" width="1200" height="675" loading="lazy">
-<figcaption>Photo: Unsplash</figcaption>
+<img src="/wp-content/themes/petzenai-theme/assets/img/blog/christmas-cactus-cat.webp" srcset="/wp-content/themes/petzenai-theme/assets/img/blog/christmas-cactus-cat-768.webp 768w, /wp-content/themes/petzenai-theme/assets/img/blog/christmas-cactus-cat.webp 1200w" sizes="(max-width: 820px) 100vw, 820px" alt="Cat sniffing a blooming Christmas cactus (Schlumbergera) on a windowsill" width="1200" height="675" loading="lazy" decoding="async">
+<figcaption>The ASPCA lists the Christmas cactus as non-toxic to cats and dogs. (AI-generated image)</figcaption>
 </figure>
 
 <h2>Key Takeaways</h2>
@@ -49,6 +49,11 @@ return [
 
 <h2>Is Christmas Cactus Poisonous to Dogs?</h2>
 <p>Christmas cactus is not poisonous to dogs. The ASPCA lists it as non-toxic for dogs, and serious problems are not expected. A dog that eats a lot may still drool, vomit or have diarrhea from the fibrous plant material, and most recover without treatment.</p>
+
+<figure class="pz-blog-img">
+<img src="/wp-content/themes/petzenai-theme/assets/img/blog/dog-christmas-cactus-shelf.webp" srcset="/wp-content/themes/petzenai-theme/assets/img/blog/dog-christmas-cactus-shelf-768.webp 768w, /wp-content/themes/petzenai-theme/assets/img/blog/dog-christmas-cactus-shelf.webp 1200w" sizes="(max-width: 820px) 100vw, 820px" alt="Golden retriever looking up at a Christmas cactus kept out of reach on a high bookshelf" width="1200" height="675" loading="lazy" decoding="async">
+<figcaption>Keeping the plant on a high shelf stops dogs chewing it. (AI-generated image)</figcaption>
+</figure>
 <p>So can dogs eat Christmas cactus? It will not poison them, but it is not food.</p>
 
 <h3>Are Christmas cactus flowers harmful to dogs?</h3>
@@ -72,8 +77,8 @@ return [
 <p>Yes: all three holiday cactus types are non-toxic to cats and dogs, according to the ASPCA (Christmas cactus, with Easter cactus as an alternative name) and NC State Extension (Thanksgiving and Easter cactus). They look alike but differ in segment shape and bloom time. NC State Extension notes they are often mislabeled in stores, so check the segment edges.</p>
 
 <figure class="pz-blog-img">
-<img src="https://images.unsplash.com/photo-1745688944744-e76a2d492458?w=1200&amp;h=675&amp;q=80&amp;auto=format&amp;fit=crop" alt="Pink Christmas cactus flowers hanging from rounded, scalloped stem segments" width="1200" height="675" loading="lazy">
-<figcaption>Photo: Unsplash</figcaption>
+<img src="/wp-content/themes/petzenai-theme/assets/img/blog/christmas-thanksgiving-easter-cactus.webp" srcset="/wp-content/themes/petzenai-theme/assets/img/blog/christmas-thanksgiving-easter-cactus-768.webp 768w, /wp-content/themes/petzenai-theme/assets/img/blog/christmas-thanksgiving-easter-cactus.webp 1200w" sizes="(max-width: 820px) 100vw, 820px" alt="Christmas cactus, Thanksgiving cactus and Easter cactus compared by leaf shape and flowers" width="1200" height="675" loading="lazy" decoding="async">
+<figcaption>Christmas, Thanksgiving and Easter cacti side by side. (AI-generated image)</figcaption>
 </figure>
 
 <table class="pz-compare-table">

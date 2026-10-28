@@ -14,19 +14,36 @@ if ( ! defined( 'PZ_BLOG_SEED_STATUS' ) ) define( 'PZ_BLOG_SEED_STATUS', 'publis
 /**
  * Download a stock photo and set it as the post's featured image (used for the blog index card and og:image).
  * $featured = [ 'url' => ..., 'alt' => ... ]. Does nothing if the post already has a featured image.
+ * $featured = [ 'file' => 'assets/img/blog/x.jpg', 'alt' => ... ] uses our own image from the theme instead, and replaces
+ * the current featured image once (remembered on the attachment as _pz_featured_src).
  * @return int attachment id, or 0
  */
 function pz_seed_set_featured_image( $post_id, $featured, $slug ) {
-    if ( ! $post_id || empty( $featured['url'] ) || has_post_thumbnail( $post_id ) ) return 0;
+    if ( ! $post_id ) return 0;
+    $file = ! empty( $featured['file'] ) ? get_template_directory() . '/' . ltrim( $featured['file'], '/' ) : '';
+    if ( $file ) {
+        $cur = get_post_thumbnail_id( $post_id );
+        if ( ! is_file( $file ) || ( $cur && get_post_meta( $cur, '_pz_featured_src', true ) === $featured['file'] ) ) return 0;
+    } elseif ( empty( $featured['url'] ) || has_post_thumbnail( $post_id ) ) {
+        return 0;
+    }
     try {
         require_once ABSPATH . 'wp-admin/includes/file.php';
         require_once ABSPATH . 'wp-admin/includes/media.php';
         require_once ABSPATH . 'wp-admin/includes/image.php';
-        $tmp = download_url( $featured['url'], 30 );
-        if ( is_wp_error( $tmp ) ) return 0;
-        $att = media_handle_sideload( [ 'name' => sanitize_file_name( $slug . '.jpg' ), 'tmp_name' => $tmp ], $post_id, $featured['alt'] ?? '' );
+        if ( $file ) {
+            $tmp = wp_tempnam( basename( $file ) );
+            if ( ! $tmp || ! @copy( $file, $tmp ) ) return 0;
+            $name = basename( $file );
+        } else {
+            $tmp = download_url( $featured['url'], 30 );
+            if ( is_wp_error( $tmp ) ) return 0;
+            $name = sanitize_file_name( $slug . '.jpg' );
+        }
+        $att = media_handle_sideload( [ 'name' => $name, 'tmp_name' => $tmp ], $post_id, $featured['alt'] ?? '' );
         if ( is_wp_error( $att ) ) { @unlink( $tmp ); return 0; }
         update_post_meta( $att, '_wp_attachment_image_alt', $featured['alt'] ?? '' );
+        if ( $file ) update_post_meta( $att, '_pz_featured_src', $featured['file'] );
         set_post_thumbnail( $post_id, $att );
         return (int) $att;
     } catch ( \Throwable $e ) {
@@ -117,6 +134,63 @@ function pz_sync_post_content() {
         $log[] = $slug . ': content revision ' . $rev;
     }
     update_option( 'pz_post_revision_applied', $applied, false );
+    return $log;
+}
+
+/**
+ * Add one in-article image (from assets/img/blog/) to older posts that were written in wp-admin and have none.
+ * The figure goes just before the post's second H2 (after the intro and first section). Each post is done once
+ * (option pz_post_images_applied), and a post that already contains the image file is left alone.
+ * @return string[] log lines
+ */
+function pz_add_post_images() {
+    $images = [
+        'budgerigar-care-guide'              => [ 'budgie-pair-cage', 'Green and blue budgerigars perched in a spacious cage with wooden perches and toys', 'A roomy cage with natural perches and toys keeps budgies active.' ],
+        'cat-grooming-at-home-guide'         => [ 'cat-brushing-at-home', 'Owner brushing a relaxed long-haired cat at home with a slicker brush', 'Short, calm brushing sessions help long-haired cats avoid mats.' ],
+        'cat-nutrition-guide'                => [ 'cat-nutrition-wet-dry-food', 'Cat choosing between a bowl of wet cat food and a bowl of dry kibble, with fresh water nearby', 'Wet and dry food can both be part of a complete cat diet.' ],
+        'dog-anxiety-signs-causes-solutions' => [ 'anxious-dog-hiding', 'Anxious dog with ears back hiding under a coffee table', 'Hiding, flattened ears and a tucked tail are common signs of anxiety.' ],
+        'dog-flea-tick-prevention-guide'     => [ 'dog-flea-tick-check', 'Owner parting a dog\'s fur to check the skin for fleas and ticks', 'Check the neck, ears and belly for fleas and ticks after walks.' ],
+        'dog-separation-anxiety-treatment'   => [ 'dog-waiting-at-door', 'Dog waiting alone by the front door for its owner to come home', 'Many dogs with separation anxiety wait by the door when left alone.' ],
+        'hamster-care-guide-beginners'       => [ 'hamster-cage-setup', 'Syrian hamster in a large cage with deep bedding, a solid running wheel and a hideout', 'Deep bedding, a solid wheel and hideouts make a good hamster setup.' ],
+        'how-to-introduce-new-pet-to-home'   => [ 'dog-meets-cat-introduction', 'Dog and cat meeting calmly through a pet gate in a hallway', 'A pet gate lets a new dog and cat see each other safely at first.' ],
+        'how-to-potty-train-a-puppy'         => [ 'puppy-potty-training-grass', 'Owner rewarding a puppy with a treat on the grass during potty training', 'Reward your puppy right after it goes in the right spot.' ],
+        'senior-dog-care-guide'              => [ 'senior-dog-resting', 'Gray-muzzled senior Labrador resting on an orthopedic dog bed by a window', 'A supportive bed helps older dogs with stiff joints rest comfortably.' ],
+    ];
+    $applied = get_option( 'pz_post_images_applied', [] );
+    $applied = is_array( $applied ) ? $applied : [];
+    $base    = '/wp-content/themes/' . get_template() . '/assets/img/blog/';
+    $log     = [];
+    foreach ( $images as $slug => $img ) {
+        list( $name, $alt, $caption ) = $img;
+        if ( ( $applied[ $slug ] ?? '' ) === $name ) continue;
+        $post = get_page_by_path( $slug, OBJECT, 'post' );
+        if ( ! $post || ! is_file( get_template_directory() . '/assets/img/blog/' . $name . '.webp' ) ) continue;
+        $content = (string) $post->post_content;
+        if ( strpos( $content, $name . '.webp' ) === false ) {
+            $figure = '<figure class="pz-blog-img"><img src="' . esc_attr( $base . $name . '.webp' ) . '" srcset="' . esc_attr( $base . $name . '-768.webp' ) . ' 768w, ' . esc_attr( $base . $name . '.webp' ) . ' 1200w" sizes="(max-width: 820px) 100vw, 820px" alt="' . esc_attr( $alt ) . '" width="1200" height="675" loading="lazy" decoding="async"><figcaption>' . esc_html( $caption ) . ' (AI-generated image)</figcaption></figure>';
+            // Second H2, or the block comment that opens it in block-editor content; fall back to after the first paragraph.
+            $pos = false;
+            if ( preg_match_all( '/<h2[\s>]/i', $content, $m, PREG_OFFSET_CAPTURE ) && count( $m[0] ) >= 2 ) {
+                $pos = $m[0][1][1];
+                $before = substr( $content, 0, $pos );
+                $c = strrpos( $before, '<!-- wp:heading' );
+                if ( $c !== false && preg_match( '/^<!-- wp:heading[^>]*-->\s*$/', substr( $before, $c ) ) ) $pos = $c;
+            } elseif ( ( $p = stripos( $content, '</p>' ) ) !== false ) {
+                $pos = $p + 4;
+            }
+            if ( $pos === false ) continue;
+            $block   = strpos( $content, '<!-- wp:' ) !== false ? "<!-- wp:html -->\n" . $figure . "\n<!-- /wp:html -->\n\n" : $figure . "\n\n";
+            $content = substr( $content, 0, $pos ) . $block . substr( $content, $pos );
+            $had_kses = has_filter( 'content_save_pre', 'wp_filter_post_kses' );
+            if ( $had_kses ) kses_remove_filters();          // trusted theme markup (srcset, sizes)
+            $r = wp_update_post( [ 'ID' => $post->ID, 'post_content' => $content ], true );
+            if ( $had_kses ) kses_init_filters();
+            if ( is_wp_error( $r ) ) { $log[] = $slug . ': image insert failed'; continue; }
+        }
+        $applied[ $slug ] = $name;
+        $log[] = $slug . ': ' . $name;
+    }
+    update_option( 'pz_post_images_applied', $applied, false );
     return $log;
 }
 

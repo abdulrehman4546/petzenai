@@ -4,15 +4,21 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 return [
     'slug'        => 'how-many-calories-does-a-cat-need',
     'title'       => 'How Many Calories Does a Cat Need? A Guide by Weight and Age',
+    'revision'    => 2,   // bump to push edited content to the existing post
     'category'    => 'Cat Care',
     'keyword'     => 'how many calories does a cat need',
     'description' => 'Most adult cats need about 20–30 calories per pound a day. See a table by weight, how kittens and seniors differ, and how to turn calories into cups or cans.',
     'excerpt'     => 'Most adult cats need about 20–30 calories per pound a day. Here is how to work out the right amount for your cat, with a weight table and what changes for kittens, seniors and weight loss.',
-    'featured'    => [ 'url' => 'https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=1200&h=675&q=80&auto=format&fit=crop', 'alt' => 'An orange tabby cat lying on a wooden table and looking up' ],
+    'featured'    => [ 'file' => 'assets/img/blog/cat-calories-food-bowl.jpg', 'alt' => 'Tabby cat eating a measured portion of cat food next to a kitchen scale' ],
     'content'     => <<<'HTML'
 <p>A typical 10 lb (4.5 kg) neutered indoor cat needs roughly <strong>215 to 260 calories a day</strong>. That works out to about 20 to 30 calories per pound of body weight, and where your cat lands in that range depends on her age, whether she is neutered, and how active she is. This guide shows how the number is worked out, gives a table by weight, and explains how to turn calories into cups or cans.</p>
 
 <p>If you would rather skip the maths, our <a href="/tools/cat-calorie-calculator/">Cat Daily Calorie Calculator</a> does it for you and shows the amount of dry or wet food as well.</p>
+
+<figure class="pz-blog-img">
+<img src="/wp-content/themes/petzenai-theme/assets/img/blog/cat-calories-food-bowl.webp" srcset="/wp-content/themes/petzenai-theme/assets/img/blog/cat-calories-food-bowl-768.webp 768w, /wp-content/themes/petzenai-theme/assets/img/blog/cat-calories-food-bowl.webp 1200w" sizes="(max-width: 820px) 100vw, 820px" alt="Tabby cat eating a measured portion of cat food next to a kitchen scale" width="1200" height="675" loading="lazy" decoding="async">
+<figcaption>Weighing food is the most accurate way to hit a calorie target. (AI-generated image)</figcaption>
+</figure>
 
 <h2>The Quick Answer by Weight</h2>
 <p>The table below is for a healthy, neutered adult cat. The first column is for a cat that mostly rests indoors, and the second is for a cat with regular daily play. Use it as a starting point, not a rule.</p>

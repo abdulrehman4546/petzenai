@@ -5,19 +5,19 @@ return [
     'slug'        => 'bird-flu-in-cats',
     'title'       => 'Bird Flu in Cats: Symptoms, Raw Food Risk and Prevention',
     'status'      => 'publish',
-    'revision'    => 2,   // bump to push edited content to the existing post
+    'revision'    => 3,   // bump to push edited content to the existing post
     'publish_at'  => '2026-10-25 09:00',   // scheduled (site time zone)
     'category'    => 'Pet Health',
     'keyword'     => 'bird flu in cats',
     'description' => 'Bird flu in cats (H5N1) is often fatal. Learn the symptoms, raw food and dead-bird risks, treatment, mortality rate and how to protect your cat at home.',
     'excerpt'     => 'Cats can catch H5N1 bird flu, and it often makes them very ill. Here are the signs to watch for, how raw food and raw milk fit in, and simple steps to protect your cat.',
-    'featured'    => [ 'url' => 'https://images.unsplash.com/photo-1495360010541-f48722b34f7d?w=1200&h=675&q=80&auto=format&fit=crop', 'alt' => 'A tabby cat wearing a collar and tag sitting on indoor stairs' ],
+    'featured'    => [ 'file' => 'assets/img/blog/cat-resting-indoors-bird-flu.jpg', 'alt' => 'Indoor tabby cat on a windowsill watching birds outside' ],
     'content'     => <<<'HTML'
 <p>Yes, cats can get bird flu, and bird flu in cats is usually serious. The H5N1 avian influenza virus typically starts with fever, tiredness and loss of appetite, then can cause breathing trouble and neurological signs such as tremors, seizures or blindness. Many infected cats die. Most cases trace back to raw pet food, raw milk, wild birds or infected farms, so controlling what your cat eats and hunts is the best protection. The CDC rates the risk to people as low.</p>
 
 <figure class="pz-blog-img">
-<img src="https://images.unsplash.com/photo-1495360010541-f48722b34f7d?w=1200&amp;h=675&amp;q=80&amp;auto=format&amp;fit=crop" alt="A tabby cat wearing a collar and tag sitting on indoor stairs" width="1200" height="675" loading="lazy">
-<figcaption>Photo: Unsplash</figcaption>
+<img src="/wp-content/themes/petzenai-theme/assets/img/blog/cat-resting-indoors-bird-flu.webp" srcset="/wp-content/themes/petzenai-theme/assets/img/blog/cat-resting-indoors-bird-flu-768.webp 768w, /wp-content/themes/petzenai-theme/assets/img/blog/cat-resting-indoors-bird-flu.webp 1200w" sizes="(max-width: 820px) 100vw, 820px" alt="Indoor tabby cat on a windowsill watching birds outside, keeping cats indoors to lower bird flu risk" width="1200" height="675" loading="lazy" decoding="async">
+<figcaption>Keeping cats indoors limits contact with wild birds. (AI-generated image)</figcaption>
 </figure>
 
 <h2>Key Takeaways</h2>

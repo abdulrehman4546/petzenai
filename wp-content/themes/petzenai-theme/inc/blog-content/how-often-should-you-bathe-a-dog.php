@@ -4,15 +4,21 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 return [
     'slug'        => 'how-often-should-you-bathe-a-dog',
     'title'       => 'How Often Should You Bathe a Dog? A Guide by Coat Type',
+    'revision'    => 2,   // bump to push edited content to the existing post
     'category'    => 'Dog Care',
     'keyword'     => 'how often should you bathe a dog',
     'description' => 'Most healthy dogs need a bath every 4–8 weeks, but coat, lifestyle and skin change that. See a schedule by coat type and how to bathe your dog safely.',
     'excerpt'     => 'Most healthy dogs do well with a bath every 4 to 8 weeks, but coat type, lifestyle and skin can move that a lot. Here is a schedule by coat type and how to bathe safely.',
-    'featured'    => [ 'url' => 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1200&h=675&q=80&auto=format&fit=crop', 'alt' => 'A fluffy brown and white dog standing outdoors with its ears blowing in the wind' ],
+    'featured'    => [ 'file' => 'assets/img/blog/dog-bath-at-home.jpg', 'alt' => 'Dog being bathed in a bathtub with a handheld shower' ],
     'content'     => <<<'HTML'
 <p>Most healthy dogs do well with a bath <strong>about every 4 to 8 weeks</strong>. That is a starting point, not a rule. A short-coated indoor dog may be fine at the long end, a curly-coated dog usually needs washing more often, and a dog that rolls in mud every weekend may need a rinse far more often than that. This guide gives a schedule by coat type, shows what moves the number up or down, and walks through how to bathe a dog safely.</p>
 
 <p>If you want a number for your own dog, our <a href="/tools/dog-bathing-frequency-calculator/">Dog Bathing Frequency Calculator</a> works it out from coat type, lifestyle, season and skin.</p>
+
+<figure class="pz-blog-img">
+<img src="/wp-content/themes/petzenai-theme/assets/img/blog/dog-bath-at-home.webp" srcset="/wp-content/themes/petzenai-theme/assets/img/blog/dog-bath-at-home-768.webp 768w, /wp-content/themes/petzenai-theme/assets/img/blog/dog-bath-at-home.webp 1200w" sizes="(max-width: 820px) 100vw, 820px" alt="Dog being bathed in a bathtub with a handheld shower at home" width="1200" height="675" loading="lazy" decoding="async">
+<figcaption>Use lukewarm water and a dog shampoo, and rinse thoroughly. (AI-generated image)</figcaption>
+</figure>
 
 <h2>Bath Frequency by Coat Type</h2>
 <p>Coat type is the biggest factor, because it decides how fast dirt and oil build up and how easily the coat tangles. These are typical starting intervals for a healthy adult dog with normal skin who lives in a mild climate and spends time outdoors.</p>

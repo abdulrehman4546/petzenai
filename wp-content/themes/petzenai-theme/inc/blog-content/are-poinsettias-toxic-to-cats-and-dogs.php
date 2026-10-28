@@ -5,19 +5,19 @@ return [
     'slug'        => 'are-poinsettias-toxic-to-cats-and-dogs',
     'title'       => 'Are Poinsettias Toxic to Cats and Dogs? Signs and What to Do',
     'status'      => 'publish',
-    'revision'    => 2,   // bump to push edited content to the existing post
+    'revision'    => 3,   // bump to push edited content to the existing post
     'publish_at'  => '2026-10-27 09:00',   // scheduled (site time zone)
     'category'    => 'Pet Safety',
     'keyword'     => 'are poinsettias toxic to cats',
     'description' => 'Are poinsettias toxic to cats? Only mildly, for cats and dogs alike. See the signs, what to do if your pet chews one, and pet-safe holiday plants.',
     'excerpt'     => 'Poinsettias are mildly toxic to cats and dogs, not deadly. Here is what to expect if your pet chews one, where the poinsettia myth came from, and which holiday plants, like lilies, are far more dangerous.',
-    'featured'    => [ 'url' => 'https://images.unsplash.com/photo-1576252137965-bfee510aaa6a?w=1200&h=675&q=80&auto=format&fit=crop', 'alt' => 'Close-up of a red poinsettia with its small yellow flowers in the centre' ],
+    'featured'    => [ 'file' => 'assets/img/blog/poinsettia-cat.jpg', 'alt' => 'Cat sniffing a red poinsettia on a side table at Christmas' ],
     'content'     => <<<'HTML'
 <p>Are poinsettias toxic to cats? Yes, but only mildly, and the same is true for dogs. The milky sap irritates the mouth and stomach, so a pet that chews the leaves may drool, lick its lips or vomit. Serious poisoning is rare, and the idea that a poinsettia can kill a cat or dog is a myth. For cats, the holiday plant to really worry about is the lily, not the poinsettia.</p>
 
 <figure class="pz-blog-img">
-<img src="https://images.unsplash.com/photo-1576252137965-bfee510aaa6a?w=1200&amp;h=675&amp;q=80&amp;auto=format&amp;fit=crop" alt="Close-up of a red poinsettia with its small yellow flowers in the centre" width="1200" height="675" loading="lazy">
-<figcaption>Photo: Unsplash</figcaption>
+<img src="/wp-content/themes/petzenai-theme/assets/img/blog/poinsettia-cat.webp" srcset="/wp-content/themes/petzenai-theme/assets/img/blog/poinsettia-cat-768.webp 768w, /wp-content/themes/petzenai-theme/assets/img/blog/poinsettia-cat.webp 1200w" sizes="(max-width: 820px) 100vw, 820px" alt="Calico cat sniffing a red poinsettia on a side table at Christmas" width="1200" height="675" loading="lazy" decoding="async">
+<figcaption>Poinsettias are mildly toxic to cats and dogs, so keep them out of reach. (AI-generated image)</figcaption>
 </figure>
 
 <h2>Key Takeaways</h2>

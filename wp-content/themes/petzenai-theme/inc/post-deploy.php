@@ -13,7 +13,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( ! defined( 'PZ_RELEASE' ) ) define( 'PZ_RELEASE', '2026-10-27-a' );
+if ( ! defined( 'PZ_RELEASE' ) ) define( 'PZ_RELEASE', '2026-10-28-a' );
 
 /** Delete Rank Math's cached sitemap files and transients. @return int number of cache entries removed */
 function pz_flush_rankmath_sitemap_cache() {
@@ -86,6 +86,11 @@ function pz_run_release_tasks() {
         $cs = function_exists( 'pz_sync_post_content' ) ? pz_sync_post_content() : [];
         $log[] = 'post content updates: ' . ( $cs ? implode( '; ', $cs ) : 'none' );
     } catch ( \Throwable $e ) { $log[] = 'post content sync failed: ' . $e->getMessage(); }
+
+    try {
+        $pi = function_exists( 'pz_add_post_images' ) ? pz_add_post_images() : [];
+        $log[] = 'images added to older posts: ' . ( $pi ? implode( '; ', $pi ) : 'none' );
+    } catch ( \Throwable $e ) { $log[] = 'post images failed: ' . $e->getMessage(); }
 
     try {
         $st = function_exists( 'pz_sync_post_statuses' ) ? pz_sync_post_statuses() : [];

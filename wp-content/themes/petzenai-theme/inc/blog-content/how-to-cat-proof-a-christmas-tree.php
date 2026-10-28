@@ -5,19 +5,19 @@ return [
     'slug'        => 'how-to-cat-proof-a-christmas-tree',
     'title'       => 'How to Cat-Proof a Christmas Tree: 7 Practical Steps',
     'status'      => 'publish',
-    'revision'    => 2,   // bump to push edited content to the existing post
+    'revision'    => 3,   // bump to push edited content to the existing post
     'publish_at'  => '2026-10-28 09:00',   // scheduled (site time zone)
     'category'    => 'Pet Safety',
     'keyword'     => 'how to cat-proof a christmas tree',
     'description' => 'How to cat-proof a Christmas tree: anchor it, cover the water, skip tinsel, protect cords and pick safe ornaments, plus which signs mean a trip to the vet.',
     'excerpt'     => 'A Christmas tree is a giant new toy to most cats. Here is how to anchor it, decorate it safely and spot the warning signs that need a vet.',
-    'featured'    => [ 'url' => 'https://images.unsplash.com/photo-1609576931337-4a104686847b?w=1200&h=675&q=80&auto=format&fit=crop', 'alt' => 'A grey and white kitten looking up at glass ornaments and lights on a Christmas tree' ],
+    'featured'    => [ 'file' => 'assets/img/blog/cat-christmas-tree.jpg', 'alt' => 'Cat sitting beside a decorated Christmas tree in a living room' ],
     'content'     => <<<'HTML'
 <p>To most cats, a Christmas tree is a climbing frame covered in shiny toys. If you want to know how to cat-proof a Christmas tree, the short answer is this: <strong>make the tree impossible to tip, keep the risky things out of reach, and give your cat something better to climb</strong>. The biggest dangers are not the tree falling but what a cat can swallow or chew, such as tinsel, ribbon, broken glass and light cords.</p>
 
 <figure class="pz-blog-img">
-<img src="https://images.unsplash.com/photo-1609576931337-4a104686847b?w=1200&amp;h=675&amp;q=80&amp;auto=format&amp;fit=crop" alt="A grey and white kitten looking up at glass ornaments and lights on a Christmas tree" width="1200" height="675" loading="lazy">
-<figcaption>Photo: Unsplash</figcaption>
+<img src="/wp-content/themes/petzenai-theme/assets/img/blog/cat-christmas-tree.webp" srcset="/wp-content/themes/petzenai-theme/assets/img/blog/cat-christmas-tree-768.webp 768w, /wp-content/themes/petzenai-theme/assets/img/blog/cat-christmas-tree.webp 1200w" sizes="(max-width: 820px) 100vw, 820px" alt="Cat sitting beside a decorated Christmas tree in a cozy living room" width="1200" height="675" loading="lazy" decoding="async">
+<figcaption>A stable tree with unbreakable ornaments up high is safer for cats. (AI-generated image)</figcaption>
 </figure>
 
 <h2>Key Takeaways</h2>

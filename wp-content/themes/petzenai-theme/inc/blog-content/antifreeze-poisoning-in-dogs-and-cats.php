@@ -5,19 +5,19 @@ return [
     'slug'        => 'antifreeze-poisoning-in-dogs-and-cats',
     'title'       => 'Antifreeze Poisoning in Dogs and Cats: Signs and Treatment',
     'status'      => 'publish',
-    'revision'    => 2,   // bump to push edited content to the existing post
+    'revision'    => 3,   // bump to push edited content to the existing post
     'publish_at'  => '2026-10-26 09:00',   // scheduled (site time zone)
     'category'    => 'Pet Health',
     'keyword'     => 'antifreeze poisoning in dogs and cats',
     'description' => 'Antifreeze poisoning in dogs and cats: symptoms, stage-by-stage timeline, vet antidotes, why home remedies and alcohol are unsafe, and how to prevent it.',
     'excerpt'     => 'Ethylene glycol antifreeze tastes sweet and a small amount can be deadly. Learn the symptoms and timeline in dogs and cats, how vets treat it, and how to prevent it.',
-    'featured'    => [ 'url' => 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=1200&h=675&q=80&auto=format&fit=crop', 'alt' => 'A black and white cat looking over a wooden ledge' ],
+    'featured'    => [ 'file' => 'assets/img/blog/antifreeze-garage-safety.jpg', 'alt' => 'Antifreeze jug stored on a high garage shelf away from a dog' ],
     'content'     => <<<'HTML'
 <p>Antifreeze poisoning in dogs and cats is a true emergency that is most common in the colder months. Most engine coolant is based on <strong>ethylene glycol</strong>, which is poisonous to pets in small amounts and tastes sweet, so a dog may lap at a driveway puddle or a cat may lick a garage drip. This guide covers symptoms, timeline, treatment and prevention.</p>
 
 <figure class="pz-blog-img">
-<img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=1200&amp;h=675&amp;q=80&amp;auto=format&amp;fit=crop" alt="A black and white cat looking over a wooden ledge" width="1200" height="675" loading="lazy">
-<figcaption>Photo: Unsplash</figcaption>
+<img src="/wp-content/themes/petzenai-theme/assets/img/blog/antifreeze-garage-safety.webp" srcset="/wp-content/themes/petzenai-theme/assets/img/blog/antifreeze-garage-safety-768.webp 768w, /wp-content/themes/petzenai-theme/assets/img/blog/antifreeze-garage-safety.webp 1200w" sizes="(max-width: 820px) 100vw, 820px" alt="Antifreeze jug stored on a high garage shelf, out of reach of a dog" width="1200" height="675" loading="lazy" decoding="async">
+<figcaption>Store antifreeze sealed and up high, and wipe up any spills straight away. (AI-generated image)</figcaption>
 </figure>
 
 <h2>Key Takeaways</h2>
