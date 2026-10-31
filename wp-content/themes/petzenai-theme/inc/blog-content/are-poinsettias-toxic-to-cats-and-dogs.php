@@ -5,7 +5,7 @@ return [
     'slug'        => 'are-poinsettias-toxic-to-cats-and-dogs',
     'title'       => 'Are Poinsettias Toxic to Cats and Dogs? Signs and What to Do',
     'status'      => 'publish',
-    'revision'    => 4,   // bump to push edited content to the existing post
+    'revision'    => 5,   // bump to push edited content to the existing post
     'publish_at'  => '2026-10-27 09:00',   // scheduled (site time zone)
     'category'    => 'Pet Safety',
     'keyword'     => 'are poinsettias toxic to cats',
@@ -125,7 +125,7 @@ return [
 <li><strong>Offer something better to chew</strong>, like a toy or cat grass.</li>
 <li><strong>Know the plant names</strong> in your home, so you can tell a vet exactly what was eaten.</li>
 </ul>
-<p>Our <a href="/tools/holiday-pet-safety-guide/">holiday pet safety guide</a> covers decorations and guests, and our post on <a href="/blog/thanksgiving-foods-for-dogs-and-cats/">Thanksgiving foods dogs and cats can and can’t eat</a>. Antifreeze is a far bigger winter danger than any houseplant; read about <a href="/blog/antifreeze-poisoning-in-dogs-and-cats/">antifreeze poisoning in dogs and cats</a>.</p>
+<p>Our <a href="/tools/holiday-pet-safety-guide/">holiday pet safety guide</a> covers decorations and guests, and our post on <a href="/blog/thanksgiving-foods-for-dogs-and-cats/">Thanksgiving foods dogs and cats can and can’t eat</a>. Antifreeze is a far bigger winter danger than any houseplant; read about <a href="/blog/antifreeze-poisoning-in-dogs-and-cats/">antifreeze poisoning in dogs and cats</a>. If you are weighing a Christmas cactus instead, see <a href="/blog/is-christmas-cactus-poisonous-to-cats/">is Christmas cactus poisonous to cats and dogs</a>, and for wrapping and trimmings read <a href="/blog/dog-ate-tinsel/">what to do if a dog eats tinsel</a> and <a href="/blog/dog-ate-wrapping-paper/">what to do if a dog eats wrapping paper</a>.</p>
 
 <h2>Frequently Asked Questions</h2>
 

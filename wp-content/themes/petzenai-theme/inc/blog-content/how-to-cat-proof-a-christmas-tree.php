@@ -5,7 +5,7 @@ return [
     'slug'        => 'how-to-cat-proof-a-christmas-tree',
     'title'       => 'How to Cat-Proof a Christmas Tree: 7 Practical Steps',
     'status'      => 'publish',
-    'revision'    => 4,   // bump to push edited content to the existing post
+    'revision'    => 5,   // bump to push edited content to the existing post
     'publish_at'  => '2026-10-28 09:00',   // scheduled (site time zone)
     'category'    => 'Pet Safety',
     'keyword'     => 'how to cat-proof a christmas tree',
@@ -122,7 +122,7 @@ return [
 
 <h2>Are Christmas Trees Toxic to Cats?</h2>
 <p>Fir, pine and spruce trees are considered mildly toxic to cats. Pet Poison Helpline notes that eating the needles can cause nausea, vomiting, skin irritation or stomach injury, and that cats are sensitive to pine oils. Needles digest poorly, so irritation or a blockage is the main concern.</p>
-<p>For festive plants, read our guide on <a href="/blog/are-poinsettias-toxic-to-cats-and-dogs/">whether poinsettias are toxic to cats and dogs</a>.</p>
+<p>For festive plants, read our guide on <a href="/blog/are-poinsettias-toxic-to-cats-and-dogs/">whether poinsettias are toxic to cats and dogs</a> and <a href="/blog/is-christmas-cactus-poisonous-to-cats/">whether a Christmas cactus is safe for cats</a>. Gift wrapping brings its own risks too; see <a href="/blog/dog-ate-wrapping-paper/">what to do if a dog eats wrapping paper</a>.</p>
 
 <h2>Warning Signs That Need a Vet</h2>
 <p>Call your vet or an emergency clinic if your cat shows any of these after time near the tree:</p>
@@ -130,7 +130,7 @@ return [
 <li>Repeated vomiting, or trying to vomit without bringing anything up</li>
 <li>Not eating, hiding or being unusually quiet</li>
 <li>Diarrhoea or a swollen, sore belly</li>
-<li>String, ribbon or tinsel visible in the mouth or at the bottom</li>
+<li>String, ribbon or tinsel visible in the mouth or at the bottom (see <a href="/blog/dog-ate-tinsel/">what to do if a dog eats tinsel</a>)</li>
 <li>Drooling, mouth burns, coughing or breathing trouble after chewing a cord</li>
 <li>Bleeding from the mouth or paws after an ornament breaks</li>
 </ul>

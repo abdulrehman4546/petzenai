@@ -5,7 +5,7 @@ return [
     'slug'        => 'thanksgiving-foods-for-dogs-and-cats',
     'title'       => 'Thanksgiving Foods Dogs Can Eat, Plus Safe Picks for Cats',
     'status'      => 'publish',
-    'revision'    => 4,   // bump to push edited content to the existing post
+    'revision'    => 5,   // bump to push edited content to the existing post
     'category'    => 'Pet Tips',
     'keyword'     => 'thanksgiving foods dogs can eat',
     'description' => 'See which Thanksgiving foods dogs can eat and which are toxic to dogs and cats, from turkey bones, ham and stuffing to pie, xylitol and raw dough.',
@@ -132,7 +132,7 @@ return [
 <li><strong>Secure the trash.</strong> Take the carcass, twine and foil to a closed outdoor bin right after the meal.</li>
 <li><strong>Keep bags closed.</strong> The ASPCA advises keeping guests’ medications out of reach, and sugar-free gum may contain xylitol.</li>
 </ul>
-<p>For decorations and travel, see the <a href="/tools/holiday-pet-safety-guide/">holiday pet safety guide</a>.</p>
+<p>For decorations and travel, see the <a href="/tools/holiday-pet-safety-guide/">holiday pet safety guide</a>. Planning ahead for Christmas? See our guides on <a href="/blog/are-poinsettias-toxic-to-cats-and-dogs/">poinsettia safety</a>, <a href="/blog/how-to-cat-proof-a-christmas-tree/">cat-proofing a Christmas tree</a> and <a href="/blog/dog-ate-tinsel/">what to do if a dog eats tinsel</a>.</p>
 
 <h2>What to Do If Your Pet Eats Something They Should Not</h2>
 <p>Call before signs appear: xylitol and grapes can cause harm before a pet looks unwell.</p>
