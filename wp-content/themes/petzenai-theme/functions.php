@@ -1,6 +1,15 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+/**
+ * Hide PHP notices/warnings from on-screen output (admin and front end) without touching
+ * wp-config.php (not deployed via git / holds DB credentials). Errors still go to the log.
+ */
+if ( ! defined( 'WP_DEBUG_DISPLAY' ) || WP_DEBUG_DISPLAY ) {
+    @ini_set( 'display_errors', '0' );
+    error_reporting( E_ALL & ~E_NOTICE & ~E_WARNING & ~E_DEPRECATED );
+}
+
 /* ============================================================
    CLEAN URL: /tools/dog-grooming/ → tools page with pz_cat=dog-grooming
    ============================================================ */
