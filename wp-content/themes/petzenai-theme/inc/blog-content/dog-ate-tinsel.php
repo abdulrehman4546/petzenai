@@ -5,7 +5,7 @@ return [
     'slug'        => 'dog-ate-tinsel',
     'title'       => 'Dog Ate Tinsel? What to Do and Signs to Watch For',
     'status'      => 'publish',
-    'revision'    => 1,
+    'revision'    => 2,
     'publish_at'  => '2026-10-30 09:00',   // scheduled (site time zone)
     'category'    => 'Pet Safety',
     'keyword'     => 'dog ate tinsel',
@@ -119,7 +119,7 @@ return [
 </tbody>
 </table>
 
-<p>Our <a href="/tools/holiday-pet-safety-guide/">holiday pet safety guide</a> covers seasonal foods and plants, and for anything toxic, use our <a href="/tools/pet-poison-emergency-guide/">pet poison emergency guide</a>. For plants, see <a href="/blog/is-christmas-cactus-poisonous-to-cats/">whether Christmas cactus is poisonous to cats and dogs</a>.</p>
+<p>Our <a href="/tools/holiday-pet-safety-guide/">holiday pet safety guide</a> covers seasonal foods and plants, and for anything toxic, use our <a href="/tools/pet-poison-emergency-guide/">pet poison emergency guide</a>. For plants, see <a href="/blog/is-christmas-cactus-poisonous-to-cats/">whether Christmas cactus is poisonous to cats and dogs</a>, and for tree lighting read <a href="/blog/are-christmas-lights-safe-for-cats/">are Christmas lights safe for cats</a>.</p>
 
 <h2>How Do I Stop My Dog Eating Tinsel?</h2>
 <p>The surest way to stop a dog eating tinsel is not to use it. The ASPCA suggests decorating with something other than tinsel, and an AKC holiday article says, “Just say no to tinsel.” If you keep it, make it hard to reach and supervise your dog near the tree.</p>

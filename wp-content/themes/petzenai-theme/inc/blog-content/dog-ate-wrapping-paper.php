@@ -5,7 +5,7 @@ return [
     'slug'        => 'dog-ate-wrapping-paper',
     'title'       => 'Dog Ate Wrapping Paper? What to Do and Watch For',
     'status'      => 'publish',
-    'revision'    => 1,
+    'revision'    => 2,
     'publish_at'  => '2026-11-01 09:00',   // scheduled (site time zone)
     'category'    => 'Pet Safety',
     'keyword'     => 'dog ate wrapping paper',
@@ -98,7 +98,7 @@ return [
 <p>If your cat ate wrapping paper, cellophane or tissue paper, small amounts of plain paper are usually not an emergency, but watch for vomiting, not eating or lethargy. Cat ate ribbon or string deserves faster action: Merck states cats are more prone than dogs to a linear foreign body obstruction, usually from playing with string-like material, and VCA's cat-owner holiday guide calls ribbon and string a hazard "especially for kittens" that can cut through the intestinal wall. Never pull ribbon or string visible at a cat's rear end; see a vet instead. Our <a href="/tools/cat-vomiting-guide/">cat vomiting guide</a> covers other causes of vomiting, and if your cat climbs decorations too, read <a href="/blog/how-to-cat-proof-a-christmas-tree/">how to cat-proof a Christmas tree</a>.</p>
 
 <h2>Other Holiday Wrapping Hazards</h2>
-<p>Gift-opening day brings several risks together: bows chewed into stringy pieces (treat like ribbon), candy eaten still in its wrapper (see our <a href="/blog/thanksgiving-foods-for-dogs-and-cats/">guide to foods unsafe for dogs and cats</a>), and batteries in the debris, covered by our <a href="/tools/pet-poison-emergency-guide/">pet poison emergency guide</a>. Our <a href="/tools/holiday-pet-safety-guide/">holiday pet safety guide</a> rounds up more seasonal hazards.</p>
+<p>Gift-opening day brings several risks together: bows chewed into stringy pieces (treat like ribbon), candy eaten still in its wrapper (see our <a href="/blog/thanksgiving-foods-for-dogs-and-cats/">guide to foods unsafe for dogs and cats</a>), and batteries in the debris, covered by our <a href="/tools/pet-poison-emergency-guide/">pet poison emergency guide</a>. Our <a href="/tools/holiday-pet-safety-guide/">holiday pet safety guide</a> rounds up more seasonal hazards, and if your cat shares the tree, see <a href="/blog/are-christmas-lights-safe-for-cats/">are Christmas lights safe for cats</a>.</p>
 
 <h2>How Do I Stop My Dog Eating Wrapping Paper?</h2>
 <p>Dogs often go for wrapping paper out of curiosity, boredom, or the crinkly texture and food smells clinging to it, rather than hunger. A dog that regularly swallows non-food items, sometimes called pica, may benefit from more enrichment and a vet visit to rule out a cause. The easiest fix is to clean up as you go rather than leaving paper, ribbon and bows in a pile.</p>

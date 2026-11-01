@@ -5,7 +5,7 @@ return [
     'slug'        => 'how-to-cat-proof-a-christmas-tree',
     'title'       => 'How to Cat-Proof a Christmas Tree: 7 Practical Steps',
     'status'      => 'publish',
-    'revision'    => 5,   // bump to push edited content to the existing post
+    'revision'    => 6,   // bump to push edited content to the existing post
     'publish_at'  => '2026-10-28 09:00',   // scheduled (site time zone)
     'category'    => 'Pet Safety',
     'keyword'     => 'how to cat-proof a christmas tree',
@@ -59,7 +59,7 @@ return [
 <p>Cover the stand completely with a tight tree skirt, a fitted stand cover or a ring of cardboard, and use plain water with nothing added. Put a fresh bowl of water elsewhere so the stand is less tempting. According to the ASPCA, standing tree water can grow bacteria that may cause nausea or diarrhoea, and some preservatives can also upset the stomach.</p>
 
 <h3>6. How do you cat-proof Christmas tree lights?</h3>
-<p>Wind the strands close to the trunk rather than on the branch tips, run cords along the wall inside rigid cord covers, and unplug the lights whenever you leave the room or go to bed. A chewed live cord can cause burns or electric shock; Pet Poison Helpline advises a vet visit after any chewed cord. Our <a href="/tools/pet-proof-home-guide/">pet-proof home guide</a> covers cords and other hazards around the house.</p>
+<p>Wind the strands close to the trunk rather than the branch tips, cover cords, and unplug whenever you leave the room. See our full guide, <a href="/blog/are-christmas-lights-safe-for-cats/">are Christmas lights safe for cats</a>, for the electrocution risk, LED vs. battery lights, and what to do if your cat chews a cord.</p>
 
 <h3>7. Give your cat better options</h3>
 <p>A cat with somewhere fun to climb is less likely to choose the tree. Put a cat tree or window perch in the same room, offer a sturdy scratching post close by and play every day. Our <a href="/tools/cat-indoor-enrichment-guide/">cat indoor enrichment guide</a> and <a href="/tools/cat-scratching-behavior-guide/">cat scratching behaviour guide</a> have more ideas.</p>
@@ -154,7 +154,7 @@ return [
 <p>It is best not to. Many essential oils, including citrus and peppermint oils, can be harmful to cats, and your cat may brush the tree and lick the residue from its fur. A tree collar, foil under the skirt or a playpen is safer.</p>
 
 <h3>Is it safe to leave Christmas lights on with a cat in the house?</h3>
-<p>It is safest to unplug tree lights whenever nobody is at home to watch, including overnight and when you go out. A cat that chews a live cord can suffer mouth burns, an electric shock or breathing problems. Keep cords covered and check them for bite marks.</p>
+<p>It is safest to unplug tree lights whenever nobody is at home to watch. See <a href="/blog/are-christmas-lights-safe-for-cats/">are Christmas lights safe for cats</a> for the full breakdown of cord-bite risk, signs to watch for, and how to light a tree safely.</p>
 
 <h3>When should I decorate the tree after putting it up?</h3>
 <p>Many owners leave the bare, undecorated tree standing for a few days first, so the cat can explore and lose interest while there is nothing to break or swallow. Then add lights, upper ornaments and, last, the lower branches.</p>

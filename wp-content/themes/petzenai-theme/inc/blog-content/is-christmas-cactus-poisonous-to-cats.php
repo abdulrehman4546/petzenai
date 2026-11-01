@@ -5,7 +5,7 @@ return [
     'slug'        => 'is-christmas-cactus-poisonous-to-cats',
     'title'       => 'Is Christmas Cactus Poisonous to Cats and Dogs?',
     'status'      => 'publish',
-    'revision'    => 3,
+    'revision'    => 4,
     'publish_at'  => '2026-10-29 09:00',   // scheduled (site time zone)
     'category'    => 'Pet Safety',
     'keyword'     => 'is christmas cactus poisonous to cats',
@@ -133,7 +133,7 @@ return [
 <li><strong>Offer cat grass:</strong> VCA Animal Hospitals notes many cats simply enjoy chewing grass.</li>
 <li><strong>Cover the soil</strong> with large pebbles to stop digging.</li>
 </ul>
-<p>Our <a href="/tools/pet-proof-home-guide/">room-by-room pet-proofing guide</a> has more ideas, and if your cat targets the tree too, see <a href="/blog/how-to-cat-proof-a-christmas-tree/">how to cat-proof a Christmas tree</a>.</p>
+<p>Our <a href="/tools/pet-proof-home-guide/">room-by-room pet-proofing guide</a> has more ideas, and if your cat targets the tree too, see <a href="/blog/how-to-cat-proof-a-christmas-tree/">how to cat-proof a Christmas tree</a> and <a href="/blog/are-christmas-lights-safe-for-cats/">are Christmas lights safe for cats</a>.</p>
 
 <h2>Pet-Safe Christmas Plants vs Toxic Holiday Plants</h2>
 <p>The Christmas cactus is one of the best pet-safe Christmas plants. Other non-toxic Christmas plants for cats and dogs include moth orchids and African violets. Toxic/non-toxic ratings and listed signs: ASPCA plant database. Poinsettia severity: Pet Poison Helpline. Lily kidney risk: FDA.</p>
