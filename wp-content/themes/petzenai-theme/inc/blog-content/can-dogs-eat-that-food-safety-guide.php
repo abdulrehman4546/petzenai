@@ -5,12 +5,13 @@ return [
     'slug'        => 'can-dogs-eat-that-food-safety-guide',
     'title'       => 'Can Dogs Eat That? A Food-by-Food Safety Guide',
     'status'      => 'publish',
-    'revision'    => 1,
+    'revision'    => 2,
     'publish_at'  => '2026-11-04 08:00',   // scheduled (site time zone)
     'category'    => 'Nutrition',
     'keyword'     => 'can dogs eat',
     'description' => 'Can dogs eat pineapple, rice, raw eggs, peanut butter or olive oil? A food-by-food guide to what is safe, what needs caution, and what to avoid.',
     'excerpt'     => 'Dog owners ask this about a different food almost every week: pineapple, rice, raw eggs, peanut butter, olive oil, you name it. This guide answers the ones people actually search for, grouped by how risky they really are.',
+    'featured'    => [ 'file' => 'assets/img/blog/can-dogs-eat-that-featured.jpg', 'alt' => 'Golden retriever dog sitting attentively at a wooden kitchen counter near fresh fruit' ],
     'content'     => <<<'HTML'
 <p>If you have ever stood in the kitchen holding a piece of pineapple or a spoonful of peanut butter while your dog stares at you, you already know how this goes. Most human food is somewhere between "totally fine" and "please don't," and the honest answer depends on the specific food, not a blanket rule. Below is a quick reference for the foods people search for most, followed by a closer look at the ones that cause the most confusion.</p>
 
