@@ -5,7 +5,8 @@ return [
     'slug'        => 'dog-diarrhea-when-to-worry',
     'title'       => 'Dog Has Diarrhea? When to Handle It at Home and When to Call the Vet',
     'status'      => 'publish',
-    'revision'    => 1,
+    'revision'    => 2,
+    'featured'    => [ 'file' => 'assets/img/blog/dog-diarrhea-vet-visit.jpg', 'alt' => 'Veterinarian examining a beagle dog on an exam table' ],
     'publish_at'  => '2026-11-05 08:00',   // scheduled (site time zone)
     'category'    => 'Pet Health',
     'keyword'     => 'dog has diarrhea',

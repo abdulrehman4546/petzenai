@@ -5,7 +5,8 @@ return [
     'slug'        => 'how-many-teeth-dogs-cats-have',
     'title'       => 'How Many Teeth Do Dogs and Cats Really Have?',
     'status'      => 'publish',
-    'revision'    => 1,
+    'revision'    => 2,
+    'featured'    => [ 'file' => 'assets/img/blog/dog-cat-teeth-smile.jpg', 'alt' => 'Dog and cat sitting together indoors with mouths open' ],
     'publish_at'  => '2026-11-06 08:00',   // scheduled (site time zone)
     'category'    => 'Pet Health',
     'keyword'     => 'how many teeth do dogs have',

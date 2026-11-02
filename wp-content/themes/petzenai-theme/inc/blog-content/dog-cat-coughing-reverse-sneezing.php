@@ -5,7 +5,8 @@ return [
     'slug'        => 'dog-cat-coughing-reverse-sneezing',
     'title'       => 'Dog Reverse Sneezing and Coughing: What\'s Normal and What\'s Not',
     'status'      => 'publish',
-    'revision'    => 1,
+    'revision'    => 2,
+    'featured'    => [ 'file' => 'assets/img/blog/dog-coughing-reverse-sneeze.jpg', 'alt' => 'Close-up of a dog mid-sneeze outdoors' ],
     'publish_at'  => '2026-11-05 17:00',   // scheduled (site time zone)
     'category'    => 'Pet Health',
     'keyword'     => 'dog reverse sneezing',

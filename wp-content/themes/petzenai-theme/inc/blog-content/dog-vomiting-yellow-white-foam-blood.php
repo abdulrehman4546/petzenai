@@ -5,7 +5,8 @@ return [
     'slug'        => 'dog-vomiting-yellow-white-foam-blood',
     'title'       => 'Why Is My Dog Throwing Up Yellow or White Foam? What the Color Means',
     'status'      => 'publish',
-    'revision'    => 2,
+    'revision'    => 3,
+    'featured'    => [ 'file' => 'assets/img/blog/dog-vomiting-concerned-owner.jpg', 'alt' => 'Concerned owner checking on a dog lying down at home' ],
     'publish_at'  => '2026-11-04 17:00',   // scheduled (site time zone)
     'category'    => 'Pet Health',
     'keyword'     => 'dog throwing up yellow',

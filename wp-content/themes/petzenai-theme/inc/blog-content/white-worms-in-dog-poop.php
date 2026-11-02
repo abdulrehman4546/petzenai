@@ -5,7 +5,8 @@ return [
     'slug'        => 'white-worms-in-dog-poop',
     'title'       => 'White Worms in Dog Poop: What They Are and What to Do',
     'status'      => 'publish',
-    'revision'    => 1,
+    'revision'    => 2,
+    'featured'    => [ 'file' => 'assets/img/blog/dog-grass-outdoor.jpg', 'alt' => 'Healthy dog walking on green grass in a backyard' ],
     'publish_at'  => '2026-11-07 17:00',   // scheduled (site time zone)
     'category'    => 'Pet Health',
     'keyword'     => 'white worms in dog poop',

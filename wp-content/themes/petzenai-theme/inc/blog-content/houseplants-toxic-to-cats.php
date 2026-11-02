@@ -5,7 +5,8 @@ return [
     'slug'        => 'houseplants-toxic-to-cats',
     'title'       => 'Common Houseplants That Are Toxic to Cats (and Safe Ones to Choose Instead)',
     'status'      => 'publish',
-    'revision'    => 1,
+    'revision'    => 2,
+    'featured'    => [ 'file' => 'assets/img/blog/cat-near-houseplants.jpg', 'alt' => 'Cat sniffing a potted plant on a sunny windowsill' ],
     'publish_at'  => '2026-11-07 08:00',   // scheduled (site time zone)
     'category'    => 'Pet Safety',
     'keyword'     => 'houseplants toxic to cats',

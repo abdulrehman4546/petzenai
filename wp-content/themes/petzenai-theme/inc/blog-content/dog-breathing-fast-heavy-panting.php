@@ -5,7 +5,8 @@ return [
     'slug'        => 'dog-breathing-fast-heavy-panting',
     'title'       => 'Why Is My Dog Breathing Fast or Heavy? Normal Panting vs. Warning Signs',
     'status'      => 'publish',
-    'revision'    => 1,
+    'revision'    => 2,
+    'featured'    => [ 'file' => 'assets/img/blog/dog-panting-resting.jpg', 'alt' => 'Dog lying indoors panting with tongue out' ],
     'publish_at'  => '2026-11-08 17:00',   // scheduled (site time zone)
     'category'    => 'Pet Health',
     'keyword'     => 'why is my dog breathing fast',

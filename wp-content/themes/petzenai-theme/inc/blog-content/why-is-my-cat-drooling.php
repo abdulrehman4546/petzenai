@@ -5,7 +5,8 @@ return [
     'slug'        => 'why-is-my-cat-drooling',
     'title'       => 'Why Is My Cat Drooling? Normal Causes and Red Flags',
     'status'      => 'publish',
-    'revision'    => 1,
+    'revision'    => 2,
+    'featured'    => [ 'file' => 'assets/img/blog/cat-drooling-closeup.jpg', 'alt' => 'Relaxed tabby cat lying on a blanket with mouth slightly open' ],
     'publish_at'  => '2026-11-06 17:00',   // scheduled (site time zone)
     'category'    => 'Pet Health',
     'keyword'     => 'why is my cat drooling',

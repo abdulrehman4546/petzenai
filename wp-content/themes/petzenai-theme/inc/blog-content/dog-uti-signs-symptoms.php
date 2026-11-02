@@ -5,7 +5,8 @@ return [
     'slug'        => 'dog-uti-signs-symptoms',
     'title'       => 'Signs of a UTI in Dogs (and Why Female Dogs Get Them More Often)',
     'status'      => 'publish',
-    'revision'    => 1,
+    'revision'    => 2,
+    'featured'    => [ 'file' => 'assets/img/blog/dog-uti-vet-exam.jpg', 'alt' => "Dog standing calmly on a vet exam table during a checkup" ],
     'publish_at'  => '2026-11-08 08:00',   // scheduled (site time zone)
     'category'    => 'Pet Health',
     'keyword'     => 'signs of uti in dogs',
