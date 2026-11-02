@@ -5,7 +5,7 @@ return [
     'slug'        => 'dog-ate-tinsel',
     'title'       => 'Dog Ate Tinsel? What to Do and Signs to Watch For',
     'status'      => 'publish',
-    'revision'    => 2,
+    'revision'    => 3,
     'publish_at'  => '2026-10-30 09:00',   // scheduled (site time zone)
     'category'    => 'Pet Safety',
     'keyword'     => 'dog ate tinsel',
@@ -83,6 +83,8 @@ return [
 <h3>Will tinsel pass through a dog?</h3>
 <p>Sometimes, but you cannot count on it. The Merck Veterinary Manual says some foreign bodies, especially small, smooth ones, may pass without surgery. Tinsel is neither, and string-like objects carry a higher perforation risk, so only your vet can judge whether waiting is reasonable.</p>
 <p>Our <a href="/tools/pet-stomach-upset-guide/">pet stomach upset guide</a> covers everyday tummy trouble, but after tinsel, treat vomiting as a possible blockage until a vet says otherwise.</p>
+
+<figure class="pz-blog-img"><img src="/wp-content/themes/petzenai-theme/assets/img/blog/dog-christmas-tree-tinsel.jpg" srcset="/wp-content/themes/petzenai-theme/assets/img/blog/dog-christmas-tree-tinsel-768.webp 768w, /wp-content/themes/petzenai-theme/assets/img/blog/dog-christmas-tree-tinsel.webp 1200w" sizes="(max-width: 600px) 100vw, 560px" alt="Dog sniffing silver tinsel hanging from the lower branches of a Christmas tree" width="1200" height="675" loading="lazy" decoding="async"><figcaption>Tinsel hung on low branches is within easy reach of a curious dog (AI-generated image)</figcaption></figure>
 
 <h2>What Will the Vet Do?</h2>
 <p>A vet will usually start with a full exam, including under the tongue, then imaging. Cornell lists X-rays or ultrasound, plus bloodwork. VCA notes X-rays may show a “string-of-pearls” pattern where the intestines have bunched up.</p>

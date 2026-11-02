@@ -11,6 +11,7 @@ return [
     'keyword'     => 'are christmas lights safe for cats',
     'description' => 'Are Christmas lights safe for cats? Here is the real electrocution and choking risk, LED vs. battery lights, cord-bite signs, and how to light a tree safely.',
     'excerpt'     => 'Christmas lights are not automatically dangerous to cats, but a chewed cord can cause burns, shock or breathing trouble, and a cat can tangle in or swallow parts of a strand. Here is the real risk, the signs to watch for, and how to light a tree a curious cat shares safely.',
+    'featured'    => [ 'file' => 'assets/img/blog/christmas-lights-cats-featured.jpg', 'alt' => 'Two cats sitting in front of a lit Christmas tree with warm string lights' ],
     'content'     => <<<'HTML'
 <p>Christmas lights are not automatically dangerous to cats, but a cat that chews a live cord risks mouth burns, an electric shock or fluid in the lungs, and loose strands can tangle a cat or become a choking or swallowing hazard. Battery-operated lights remove the shock risk but add button-battery and bulb-ingestion risks of their own. The fix is not avoiding lights, it is covering cords, unplugging when unsupervised, and choosing the right type of lights for a cat that likes to chew.</p>
 
@@ -57,6 +58,8 @@ return [
 </table>
 <p class="pz-table-caption"><em>Urgency levels are PetZenAI guidance based on the veterinary sources cited in this article, not a substitute for a vet's own judgment. Unplug the cord at the outlet before you check your cat's mouth.</em></p>
 
+<figure class="pz-blog-img"><img src="/wp-content/themes/petzenai-theme/assets/img/blog/cats-near-christmas-tree-lights.jpg" srcset="/wp-content/themes/petzenai-theme/assets/img/blog/cats-near-christmas-tree-lights-768.webp 768w, /wp-content/themes/petzenai-theme/assets/img/blog/cats-near-christmas-tree-lights.webp 1200w" sizes="(max-width: 600px) 100vw, 560px" alt="Two cats resting close to a Christmas tree lit with warm string lights" width="1200" height="675" loading="lazy" decoding="async"><figcaption>Lights wound close to the trunk, away from where a cat naturally settles (AI-generated image)</figcaption></figure>
+
 <h2>Are LED Lights Safer for Cats Than Incandescent?</h2>
 <p>LED and incandescent lights carry the same cord-chewing risk; the bulb type does not change whether a bite through the cord can shock your cat. The practical difference is heat: LED strands run cooler, so they are less likely to burn a curious nose or paw that brushes against a lit bulb, and they are less of a fire risk if knocked into something flammable. Neither type is a safe chew toy, and both need the same cord-covering and unplug-when-unsupervised approach below.</p>
 
@@ -69,6 +72,8 @@ return [
 
 <h2>Cat Tangled in Christmas Lights or Chewed Off a Bulb</h2>
 <p>A cat that gets a paw, leg or the whole body wrapped in a loose strand can panic and pull harder, tightening the tangle or yanking the tree down. Unplug the lights first, then untangle gently rather than pulling against resistance; cut the strand with scissors if it is wound tightly and will not loosen by hand. If your cat chewed off and swallowed a bulb or a piece of broken glass or plastic, treat it as a possible choking and gut-injury risk and call your vet, the same way you would for any swallowed sharp object; our <a href="/blog/dog-ate-tinsel/">dog ate tinsel guide</a> covers the similar linear-material and swallowed-decoration risk in more detail.</p>
+
+<figure class="pz-blog-img"><img src="/wp-content/themes/petzenai-theme/assets/img/blog/christmas-lights-cord-covers.jpg" srcset="/wp-content/themes/petzenai-theme/assets/img/blog/christmas-lights-cord-covers-768.webp 768w, /wp-content/themes/petzenai-theme/assets/img/blog/christmas-lights-cord-covers.webp 1200w" sizes="(max-width: 600px) 100vw, 560px" alt="Coiled string light cord on a table, the kind that needs a cord cover when run along a wall" width="1200" height="675" loading="lazy" decoding="async"><figcaption>Loose cord like this should run through a rigid cover, not across the floor (AI-generated image)</figcaption></figure>
 
 <h2>How to Cat-Proof Christmas Lights</h2>
 <ul>
