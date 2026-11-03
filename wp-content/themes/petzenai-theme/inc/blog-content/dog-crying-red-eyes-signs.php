@@ -5,12 +5,12 @@ return [
     'slug'        => 'dog-crying-red-eyes-signs',
     'title'       => 'Why Is My Dog Crying, Have Red Eyes, or Dandruff?',
     'status'      => 'publish',
-    'revision'    => 2,
+    'revision'    => 3,
     'featured'    => [ 'file' => 'assets/img/blog/dog-closeup-eyes-face.jpg', 'alt' => "Close-up portrait of a dog's expressive face and eyes" ],
     'publish_at'  => '2026-11-10 08:00',
     'category'    => 'Pet Health',
     'keyword'     => 'why is my dog crying',
-    'description' => 'Whining, watery eyes, red eyes, white flakes: what each usually means, which ones can wait, and which red-eye signs need a vet the same day.',
+    'description' => 'Why is my dog crying? Whining, watery eyes, red eyes, and white flakes each mean something different, and some red-eye signs need a vet the same day.',
     'excerpt'     => 'A dog who is "crying" might be making a sound or might have wet eyes, and those are two very different problems. One of them leads straight into the question of red eyes, and red eyes run from dust to emergency. Then there\'s dandruff, the sign nobody expects to find in this company. Here\'s how to read each.',
     'content'     => <<<'HTML'
 <p>People search these one at a time, usually while looking at the dog: why is my dog crying, why are my dog's eyes red, why does my dog have dandruff. They feel like separate problems, and mostly they are. But the first two overlap more than you'd think, because "crying" in a dog can mean a noise or wet eyes, and wet eyes and red eyes often end up being the same vet visit. Dandruff is the odd one out and the least urgent, so it gets a shorter section at the end.</p>

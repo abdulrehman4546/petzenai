@@ -5,12 +5,12 @@ return [
     'slug'        => 'white-worms-in-dog-poop',
     'title'       => 'White Worms in Dog Poop: What They Are and What to Do',
     'status'      => 'publish',
-    'revision'    => 2,
+    'revision'    => 3,
     'featured'    => [ 'file' => 'assets/img/blog/dog-grass-outdoor.jpg', 'alt' => 'Healthy dog walking on green grass in a backyard' ],
     'publish_at'  => '2026-11-07 17:00',   // scheduled (site time zone)
     'category'    => 'Pet Health',
     'keyword'     => 'white worms in dog poop',
-    'description' => 'Small white things in your dog\'s poop that look like rice and move are almost always tapeworm segments from fleas. How to tell tapeworm from roundworm, maggots, and food, and what to do next.',
+    'description' => 'White worms in dog poop that look like rice and move are almost always tapeworm segments from fleas. How to spot roundworm, maggots, or food instead.',
     'excerpt'     => 'If it looked like a grain of rice and it was moving, you have almost certainly met a tapeworm segment. Here is how to tell tapeworm from roundworm, fly larvae, and undigested food, why you will never see whipworms or heartworms this way, and what to do next.',
     'content'     => <<<'HTML'
 <p>It looked like a grain of rice. Then it moved.</p>
@@ -38,7 +38,7 @@ return [
 </tbody>
 </table>
 
-<h2>The Rice-Grain Ones: Tapeworm Segments</h2>
+<h2>White Worms in Dog Poop That Look Like Rice: Tapeworm Segments</h2>
 
 <p>The most common tapeworm in dogs, <em>Dipylidium caninum</em>, lives attached to the wall of the small intestine, and the adult worm can be long. You'll almost never see the whole thing. What you see are its segments, called proglottids, which break off the end of the worm one at a time and pass out with the stool. VCA Animal Hospitals describes them as looking like grains of rice or cucumber seeds, and the Companion Animal Parasite Council (CAPC) puts them at roughly 10 to 12 millimeters, which is why "worms in dog poop that look like rice" is such a common search. CAPC also notes that the segments are motile, meaning they move. They can be seen crawling on fresh feces, near the anus as they exit, or on the dog's bedding.</p>
 

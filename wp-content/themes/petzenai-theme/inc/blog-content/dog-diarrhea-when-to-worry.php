@@ -3,9 +3,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 return [
     'slug'        => 'dog-diarrhea-when-to-worry',
-    'title'       => 'Dog Has Diarrhea? When to Handle It at Home and When to Call the Vet',
+    'title'       => 'Dog Has Diarrhea? When to Help at Home vs. Call the Vet',
     'status'      => 'publish',
-    'revision'    => 2,
+    'revision'    => 3,
     'featured'    => [ 'file' => 'assets/img/blog/dog-diarrhea-vet-visit.jpg', 'alt' => 'Veterinarian examining a beagle dog on an exam table' ],
     'publish_at'  => '2026-11-05 08:00',   // scheduled (site time zone)
     'category'    => 'Pet Health',
@@ -15,7 +15,7 @@ return [
     'content'     => <<<'HTML'
 <p>It usually starts at 3 a.m. A whine at the bedroom door, a frantic dash to the back yard, and then the realization that whatever came out of your dog was not the usual shape. By morning there may have been three more trips, a spot on the rug, and a dog who either looks perfectly cheerful or very sorry for himself.</p>
 
-<p>That last detail matters more than almost anything else. Diarrhea in dogs is extremely common, and most episodes are the gut's way of getting rid of something it didn't like. But the same loose stool can also be the first sign of an infection, a blockage, or a toxin, and the clues that separate the two are usually in how your dog is behaving and what else is going on, not in the stool alone.</p>
+<p>That last detail matters more than almost anything else. When a dog has diarrhea, the loose stool itself is extremely common and usually the gut's way of getting rid of something it didn't like. But the same loose stool can also be the first sign of an infection, a blockage, or a toxin, and the clues that separate the two are usually in how your dog is behaving and what else is going on, not in the stool alone.</p>
 
 <h2>Start by Looking at the Dog, Not the Poop</h2>
 

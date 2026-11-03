@@ -5,7 +5,7 @@ return [
     'slug'        => 'dog-uti-signs-symptoms',
     'title'       => 'Signs of a UTI in Dogs (and Why Female Dogs Get Them More Often)',
     'status'      => 'publish',
-    'revision'    => 2,
+    'revision'    => 3,
     'featured'    => [ 'file' => 'assets/img/blog/dog-uti-vet-exam.jpg', 'alt' => "Dog standing calmly on a vet exam table during a checkup" ],
     'publish_at'  => '2026-11-08 08:00',   // scheduled (site time zone)
     'category'    => 'Pet Health',
@@ -13,11 +13,11 @@ return [
     'description' => 'Straining to pee, accidents in a house-trained dog, blood-tinged urine. Here are the real signs of a UTI in dogs, why females get them more often, and why antibiotics (not home remedies) are the actual fix.',
     'excerpt'     => 'Your dog is suddenly squatting every few minutes, or there are accidents on the floor out of nowhere. Here is what a UTI actually looks like in dogs, why female dogs are more prone to them, and why this is a vet-and-antibiotics problem, not a home-remedy one.',
     'content'     => <<<'HTML'
-<p>A dog who normally holds it for eight hours is suddenly asking to go out every ninety minutes, and when she finally does, barely anything comes out. Or there's a small puddle by the back door from a dog who hasn't had an accident since puppyhood. Both of those are classic opening scenes for a urinary tract infection, and both are worth taking seriously rather than waiting out.</p>
+<p>A dog who normally holds it for eight hours is suddenly asking to go out every ninety minutes, and when she finally does, barely anything comes out. Or there's a small puddle by the back door from a dog who hasn't had an accident since puppyhood. Both of those are classic opening scenes for a urinary tract infection, and both are worth taking seriously rather than waiting out. The signs of a UTI in dogs are usually recognizable once you know what to look for, which is what the next section walks through.</p>
 
 <p>UTIs in dogs are common, treatable, and unpleasant for the dog in the meantime. They're also, unfortunately, a condition where owners are tempted to try something from the pantry before calling the vet. That's the part worth addressing head-on, because a UTI is a bacterial infection, and bacterial infections don't resolve with cranberry powder or apple cider vinegar. Below is what the symptoms actually look like, why your female dog is statistically more likely to get one than your male dog, what the vet visit involves, and when "looks like a UTI" turns out to be something else entirely.</p>
 
-<h2>The Symptoms, in the Order Owners Usually Notice Them</h2>
+<h2>The Signs of a UTI in Dogs, in the Order Owners Usually Notice Them</h2>
 
 <p>Most UTIs announce themselves through changes in bathroom behavior before anything else. The pattern vets and veterinary sources consistently describe includes straining or visible discomfort while urinating, frequent attempts to urinate with only small amounts produced each time, and dogs who are normally reliably house-trained suddenly having accidents indoors. Add to that cloudy or blood-tinged urine, a noticeably strong or foul odor, and excessive licking at the genital area, sometimes accompanied by whimpering or a hunched posture while squatting. Some dogs also dribble urine between normal bathroom trips, and a few run a low fever if the infection is more advanced.</p>
 

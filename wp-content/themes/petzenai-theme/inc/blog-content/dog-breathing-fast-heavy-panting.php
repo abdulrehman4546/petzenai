@@ -3,14 +3,14 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 return [
     'slug'        => 'dog-breathing-fast-heavy-panting',
-    'title'       => 'Why Is My Dog Breathing Fast or Heavy? Normal Panting vs. Warning Signs',
+    'title'       => 'Why Is My Dog Breathing Fast? Panting vs. Warning Signs',
     'status'      => 'publish',
-    'revision'    => 2,
+    'revision'    => 3,
     'featured'    => [ 'file' => 'assets/img/blog/dog-panting-resting.jpg', 'alt' => 'Dog lying indoors panting with tongue out' ],
     'publish_at'  => '2026-11-08 17:00',   // scheduled (site time zone)
     'category'    => 'Pet Health',
     'keyword'     => 'why is my dog breathing fast',
-    'description' => 'Count your sleeping dog\'s breaths first. What a normal resting rate looks like, why fast breathing with a closed mouth differs from panting, and the signs that point to pain, heart trouble, or heatstroke.',
+    'description' => 'Why is my dog breathing fast? Count the breaths while he\'s asleep. What normal looks like, and when fast or labored breathing signals pain or heart trouble.',
     'excerpt'     => 'A dog blowing hard after fetch is fine. The same dog breathing fast while asleep on the couch at midnight is a different story. Here is how to count your dog\'s breaths, tell panting apart from labored breathing, and recognize the patterns that need a vet.',
     'content'     => <<<'HTML'
 <p>Before you read anything else, wait until your dog is lying still, ideally asleep, and count. Watch the side of the chest. One rise and one fall is a single breath. Count for thirty seconds, double it, and write the number down with the date and time.</p>

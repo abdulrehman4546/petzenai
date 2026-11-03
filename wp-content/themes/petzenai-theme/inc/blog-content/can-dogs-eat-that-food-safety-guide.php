@@ -5,7 +5,7 @@ return [
     'slug'        => 'can-dogs-eat-that-food-safety-guide',
     'title'       => 'Can Dogs Eat That? A Food-by-Food Safety Guide',
     'status'      => 'publish',
-    'revision'    => 2,
+    'revision'    => 3,
     'publish_at'  => '2026-11-04 08:00',   // scheduled (site time zone)
     'category'    => 'Nutrition',
     'keyword'     => 'can dogs eat',
@@ -15,7 +15,7 @@ return [
     'content'     => <<<'HTML'
 <p>If you have ever stood in the kitchen holding a piece of pineapple or a spoonful of peanut butter while your dog stares at you, you already know how this goes. Most human food is somewhere between "totally fine" and "please don't," and the honest answer depends on the specific food, not a blanket rule. Below is a quick reference for the foods people search for most, followed by a closer look at the ones that cause the most confusion.</p>
 
-<p>A general rule first: the ASPCA and VCA Animal Hospitals both treat chocolate, grapes and raisins, onions and garlic, xylitol, and alcohol as hard no's regardless of amount. Everything else on this list is more of a judgment call based on quantity, preparation and your dog's size.</p>
+<p>A general rule first: the ASPCA and VCA Animal Hospitals both treat chocolate, grapes and raisins, onions and garlic, xylitol, and alcohol as hard no's regardless of amount. Everything else on this list is more of a judgment call based on quantity, preparation and your dog's size. So when people ask "can dogs eat" a particular food, the honest answer is almost always "it depends which one," which is exactly what the table and sections below walk through.</p>
 
 <table class="pz-compare-table">
 <thead>

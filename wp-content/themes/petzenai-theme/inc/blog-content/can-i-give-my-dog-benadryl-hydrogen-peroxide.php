@@ -5,12 +5,12 @@ return [
     'slug'        => 'can-i-give-my-dog-benadryl-hydrogen-peroxide',
     'title'       => 'Can I Give My Dog Benadryl or Hydrogen Peroxide?',
     'status'      => 'publish',
-    'revision'    => 2,
+    'revision'    => 3,
     'featured'    => [ 'file' => 'assets/img/blog/dog-owner-checking-medicine-cabinet.jpg', 'alt' => 'Person reading a medicine bottle label while a dog waits nearby' ],
     'publish_at'  => '2026-11-12 17:00',   // scheduled (site time zone)
     'category'    => 'Pet Safety',
     'keyword'     => 'can i give my dog benadryl',
-    'description' => 'Benadryl for an allergic reaction, or peroxide to make your dog throw up? When each is used, when it does harm, and why your first move is a call to the vet.',
+    'description' => 'Can I give my dog Benadryl or hydrogen peroxide? When each is actually used, when either does harm, and why your first call should be the vet or poison control.',
     'excerpt'     => 'Benadryl and hydrogen peroxide are the two things owners reach for when a dog swells up or swallows something it shouldn\'t have. Both have a place, but only after a vet or poison control line has said yes for your particular dog.',
     'content'     => <<<'HTML'
 <p>Two searches show up again and again in the middle of the night. The first comes from someone looking at a dog with a puffy muzzle and a scattering of bumps along its belly: <em>can I give my dog Benadryl?</em> The second comes from someone holding an empty chocolate wrapper or a chewed pill bottle: <em>can I give my dog hydrogen peroxide to make him throw up?</em></p>
