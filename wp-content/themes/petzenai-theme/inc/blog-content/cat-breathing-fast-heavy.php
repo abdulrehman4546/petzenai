@@ -5,19 +5,19 @@ return [
     'slug'        => 'cat-breathing-fast-heavy',
     'title'       => 'Why Is My Cat Breathing Fast or Heavy? What to Watch For',
     'status'      => 'publish',
-    'revision'    => 2,
+    'revision'    => 3,
     'featured'    => [ 'file' => 'assets/img/blog/cat-breathing-resting.jpg', 'alt' => 'Cat lying on its side resting calmly' ],
     'publish_at'  => '2026-11-09 17:00',
     'category'    => 'Pet Health',
     'keyword'     => 'cat breathing fast',
-    'description' => 'A resting cat shouldn\'t be panting or breathing hard. Here\'s the actual breaths-per-minute number to check, and why cats hide heart and lung problems until breathing is the only sign left.',
+    'description' => 'Cat breathing fast at rest? A resting cat shouldn\'t be panting or breathing hard. Here\'s the actual breaths-per-minute number to check, and why cats hide heart and lung problems.',
     'excerpt'     => 'Your cat is lying down, maybe even purring, and her sides are moving faster than you think they should. Dogs pant. Cats mostly don\'t, which is exactly why fast resting breathing in a cat deserves more attention than the same thing in a dog. Here\'s what to count, and what it might mean.',
     'content'     => <<<'HTML'
 <p>Start with what makes this different from the dog version of this question: dogs pant. It's normal, constant, and usually not a symptom of anything. Cats don't really do that. A cat sitting in a sunny window or batting a toy for ten minutes might pant briefly afterward, and that's not automatically alarming. But a cat who's just resting, sleeping, or purring on the couch and breathing fast or hard is showing you something dogs don't show nearly as often at rest: a sign that's genuinely more likely to mean something is wrong.</p>
 
 <p>That distinction matters because cats are, famously, bad at looking sick. They hide pain and illness as a survival instinct left over from being both predator and prey, and by the time a cat "looks" obviously unwell, the underlying problem has often been building for a while. Breathing rate is one of the few windows into that process you can check yourself, with no equipment, in under a minute.</p>
 
-<h2>Count Before You Panic</h2>
+<h2>Cat Breathing Fast? Count Before You Panic</h2>
 
 <p>Here's the actual exercise, and it's worth doing now, before anything seems wrong, so you know your own cat's normal: wait until your cat is fully at rest, asleep or just quietly lying down, not purring, not just finished playing or eating, and not stressed by something like a vet visit or a car ride. Watch one side of her chest or belly rise and fall. Count how many full breaths happen in 60 seconds, or count for 30 seconds and double it.</p>
 

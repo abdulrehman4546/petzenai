@@ -5,12 +5,12 @@ return [
     'slug'        => 'can-cats-get-colds',
     'title'       => 'Can Cats Get Colds? Upper Respiratory Infections Explained',
     'status'      => 'publish',
-    'revision'    => 2,
+    'revision'    => 3,
     'featured'    => [ 'file' => 'assets/img/blog/cat-resting-blanket.jpg', 'alt' => 'Cat curled up resting on a soft blanket near a window' ],
     'publish_at'  => '2026-11-09 08:00',
     'category'    => 'Pet Health',
     'keyword'     => 'can cats get colds',
-    'description' => 'Cats don\'t catch your cold, and you can\'t catch theirs. What a "cat cold" really is, why it comes back, and what actually helps a cat through it.',
+    'description' => 'Can cats get colds? Not your cold. What a "cat cold" really is, why it isn\'t contagious to people, why it comes back, and what actually helps a cat through it.',
     'excerpt'     => 'Your cat is sneezing and her eyes are gunky, and it looks exactly like the cold you had last week. It isn\'t the same illness, and the two of you can\'t give it to each other. Here is what feline upper respiratory infection actually is, and what to do about it.',
     'content'     => <<<'HTML'
 <p>Here's the short version, because it's the thing most people searching this actually need to know: a cat cannot catch your cold, and you cannot catch a cat's cold. The viruses are different species of virus entirely. What people call a "cat cold" is almost always feline upper respiratory infection, and the two main culprits, feline herpesvirus-1 and feline calicivirus, are specific to cats. Human rhinoviruses, the ones behind our colds, don't infect cats, and feline herpesvirus and calicivirus don't infect us.</p>
@@ -19,7 +19,7 @@ return [
 
 <p>So if you've been feeling run down and your cat started sneezing a few days later, it's a coincidence, not contagion. And if your cat has gunky eyes and you're worried about catching it, you can relax on that front too, though it's still smart to wash your hands after wiping her face, mostly to protect other cats she might go near.</p>
 
-<h2>So What Is a "Cat Cold," Exactly?</h2>
+<h2>Can Cats Get Colds? What a "Cat Cold" Actually Is</h2>
 
 <p>Veterinarians call it feline upper respiratory infection, or URI, and sometimes feline viral rhinotracheitis when herpesvirus is the specific cause. VCA Animal Hospitals' overview of the condition puts the numbers plainly: feline herpesvirus-1 and feline calicivirus together cause roughly 90% of cases. The rest come from bacteria like Bordetella bronchiseptica and Chlamydophila felis, with mycoplasma and feline reovirus as less common players.</p>
 

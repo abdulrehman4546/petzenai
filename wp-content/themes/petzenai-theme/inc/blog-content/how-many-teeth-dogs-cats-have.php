@@ -5,12 +5,12 @@ return [
     'slug'        => 'how-many-teeth-dogs-cats-have',
     'title'       => 'How Many Teeth Do Dogs and Cats Really Have?',
     'status'      => 'publish',
-    'revision'    => 2,
+    'revision'    => 3,
     'featured'    => [ 'file' => 'assets/img/blog/dog-cat-teeth-smile.jpg', 'alt' => 'Dog and cat sitting together indoors with mouths open' ],
     'publish_at'  => '2026-11-06 08:00',   // scheduled (site time zone)
     'category'    => 'Pet Health',
     'keyword'     => 'how many teeth do dogs have',
-    'description' => 'Adult dogs have 42 teeth and adult cats have 30. Puppies start with 28 baby teeth, kittens with 26. Here\'s the teething timeline, and when an extra or missing tooth is a dental problem.',
+    'description' => 'How many teeth do dogs have? 42, and cats have 30. Puppies start with 28 baby teeth, kittens with 26. Here\'s the teething timeline, and when a tooth problem needs a vet.',
     'excerpt'     => 'The short answer: 42 for adult dogs, 30 for adult cats, 28 and 26 for puppies and kittens. The more useful question is whether your own pet has the right teeth in the right places, and what a leftover baby tooth or an unexplained gap actually means.',
     'content'     => <<<'HTML'
 <p><strong>Adult dogs have 42 teeth. Adult cats have 30.</strong> Puppies start out with 28 baby teeth and kittens with 26, and both swap them for a permanent set by around six or seven months of age.</p>

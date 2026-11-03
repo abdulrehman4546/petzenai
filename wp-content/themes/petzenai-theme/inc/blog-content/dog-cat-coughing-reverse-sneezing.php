@@ -5,15 +5,15 @@ return [
     'slug'        => 'dog-cat-coughing-reverse-sneezing',
     'title'       => 'Dog Reverse Sneezing and Coughing: What\'s Normal and What\'s Not',
     'status'      => 'publish',
-    'revision'    => 2,
+    'revision'    => 3,
     'featured'    => [ 'file' => 'assets/img/blog/dog-coughing-reverse-sneeze.jpg', 'alt' => 'Close-up of a dog mid-sneeze outdoors' ],
     'publish_at'  => '2026-11-05 17:00',   // scheduled (site time zone)
     'category'    => 'Pet Health',
     'keyword'     => 'dog reverse sneezing',
-    'description' => 'Reverse sneezing honks and snorts but is usually harmless. A real cough is different and can mean kennel cough, heart disease or tracheal collapse. Here\'s how to tell them apart in dogs and cats.',
+    'description' => 'Dog reverse sneezing honks and snorts but is usually harmless. A real cough is different and can mean kennel cough, heart disease or tracheal collapse. Here\'s how to tell them apart in dogs and cats.',
     'excerpt'     => 'Is that honking, snorting sound a reverse sneeze or a cough? The two look alarming but mean very different things, and dogs and cats tend to cough for different reasons too. Here\'s how to tell a harmless episode from one that needs a vet.',
     'content'     => <<<'HTML'
-<h2>Is It a Reverse Sneeze or a Cough? They're Not the Same Thing</h2>
+<h2>Dog Reverse Sneezing or a Cough? They're Not the Same Thing</h2>
 
 <p>A dog standing stock-still, neck stretched out, making a loud snorting-honking noise that sounds like he's choking or sucking something up through his nose — that's almost always a reverse sneeze, not a cough. It looks dramatic. It sounds worse than it is. And it's one of the most commonly confused sounds in dog health, probably because nobody who hasn't seen one before would guess that's what a "sneeze" looks like.</p>
 

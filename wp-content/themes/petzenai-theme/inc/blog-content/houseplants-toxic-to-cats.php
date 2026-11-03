@@ -5,15 +5,15 @@ return [
     'slug'        => 'houseplants-toxic-to-cats',
     'title'       => 'Common Houseplants That Are Toxic to Cats (and Safe Ones to Choose Instead)',
     'status'      => 'publish',
-    'revision'    => 2,
+    'revision'    => 3,
     'featured'    => [ 'file' => 'assets/img/blog/cat-near-houseplants.jpg', 'alt' => 'Cat sniffing a potted plant on a sunny windowsill' ],
     'publish_at'  => '2026-11-07 08:00',   // scheduled (site time zone)
     'category'    => 'Pet Safety',
     'keyword'     => 'houseplants toxic to cats',
-    'description' => 'Is spider plant toxic to cats? No, but it still causes upset stomachs. Here is the ASPCA-verified truth on spider plant, lily, pothos, sago palm, and other common houseplants, plus safe alternatives.',
+    'description' => 'Which houseplants are toxic to cats? Spider plant isn\'t, but lily, pothos and sago palm are. The ASPCA-verified truth on each, plus safe alternatives to choose instead.',
     'excerpt'     => 'Spider plant is one of the most-searched "is this toxic to my cat" questions, and the honest answer is no, it is not toxic, though it can still upset a cat\'s stomach. Here is what is actually dangerous in the average living room, verified against the ASPCA\'s own plant database.',
     'content'     => <<<'HTML'
-<p>If you searched for this because your cat just took a bite out of your spider plant, here is the short version: spider plant is not on the ASPCA's toxic list for cats. It is one of the most commonly suspected houseplants, probably because it is also one of the most common houseplants, period, and because cats seem to love chewing on its long, grassy leaves. But "not toxic" is not quite the same as "do whatever you want." A cat who eats a lot of spider plant can still end up with a sour stomach, and there are other plants sitting on windowsills in the same house that are genuinely dangerous, one of them seriously enough to kill a cat within days. This is a plant-by-plant breakdown of what's actually safe, what's actually not, and where the real emergency lives.</p>
+<p>If you searched for this because your cat just took a bite out of your spider plant, here is the short version: spider plant is not on the ASPCA's toxic list for cats. It is one of the most commonly suspected houseplants, probably because it is also one of the most common houseplants, period, and because cats seem to love chewing on its long, grassy leaves. But "not toxic" is not quite the same as "do whatever you want." Sorting out which houseplants are toxic to cats matters, because a cat who eats a lot of spider plant can still end up with a sour stomach, and there are other plants sitting on windowsills in the same house that are genuinely dangerous, one of them seriously enough to kill a cat within days. This is a plant-by-plant breakdown of what's actually safe, what's actually not, and where the real emergency lives.</p>
 
 <h2>Spider Plant: The Myth, Corrected</h2>
 
@@ -29,7 +29,7 @@ return [
 
 <p>This site has a separate deep dive on holiday flowers if lilies are turning up around Christmas or Easter arrangements: see our post on <a href="/blog/are-poinsettias-toxic-to-cats-and-dogs/">whether poinsettias are toxic to cats and dogs</a>, which covers the lily-versus-poinsettia confusion in more detail, and our post on <a href="/blog/is-christmas-cactus-poisonous-to-cats/">whether Christmas cactus is poisonous to cats</a> for a comparison of which holiday plants are actually safe.</p>
 
-<h2>Other Common Houseplants, Checked Against the ASPCA List</h2>
+<h2>Other Common Houseplants Toxic to Cats, Checked Against the ASPCA List</h2>
 
 <p>Below each plant is what the ASPCA's plant database actually says, not a guess.</p>
 

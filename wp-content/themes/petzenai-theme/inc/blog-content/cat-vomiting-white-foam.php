@@ -5,19 +5,19 @@ return [
     'slug'        => 'cat-vomiting-white-foam',
     'title'       => 'Why Is My Cat Throwing Up White Foam?',
     'status'      => 'publish',
-    'revision'    => 2,
+    'revision'    => 3,
     'featured'    => [ 'file' => 'assets/img/blog/cat-resting-unwell.jpg', 'alt' => 'Cat lying quietly on a cushion looking slightly unwell' ],
     'publish_at'  => '2026-11-11 08:00',
     'category'    => 'Pet Health',
     'keyword'     => 'cat throwing up white foam',
-    'description' => 'White foam with nothing solid in it usually means an empty stomach, not food. Here is what causes it in cats specifically, how it differs from a hairball, and when repeat episodes need a vet.',
+    'description' => 'Cat throwing up white foam with nothing solid in it? That usually means an empty stomach, not food. How it differs from a hairball, and when repeat episodes need a vet.',
     'excerpt'     => 'Pure white foam, with no food and nothing solid, almost always means your cat\'s stomach was empty when she vomited. That\'s a different pattern than a hairball, and in cats it\'s worth knowing the difference, because vets say chronic vomiting gets written off as normal more often than it should.',
     'content'     => <<<'HTML'
 <p>White foam is one of the easier vomit patterns to read, once you know what you're looking at. No food. No hair. Just foam, usually a thin layer of it, sometimes tinged faintly yellow. That almost always means one specific thing: your cat's stomach was empty when she threw up.</p>
 
 <p>This is a narrower question than "why is my cat vomiting" in general, which our <a href="/tools/cat-vomiting-guide/">full cat vomiting guide</a> covers in more depth. Here, the focus is just on the foam pattern itself: what it means, how it's different from a hairball even when both look foamy at a glance, and when a pattern that looks harmless on any single morning actually isn't.</p>
 
-<h2>Foam Means Empty, Not Full</h2>
+<h2>Cat Throwing Up White Foam: Foam Means Empty, Not Full</h2>
 
 <p>Vomit built from food looks like food. Foam is what comes up when there's nothing to come up but stomach fluid, air, and mucus, whipped together by the muscle contractions of retching. Gastric fluid and bile are naturally clear to pale yellow, and when they're aerated by vomiting, the result reads as white or off-white foam.</p>
 
