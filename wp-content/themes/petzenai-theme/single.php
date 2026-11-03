@@ -160,24 +160,36 @@ $read_min = max(1, ceil(str_word_count(strip_tags(get_the_content())) / 200));
         <span class="pz-author-badge">✅ Educational Content</span>
       </div>
 
-      <!-- Related Tools -->
+      <!-- Related Tools (matched to this post's topic, falls back to general favorites if nothing scores) -->
       <div class="pz-sidebar-widget">
         <h3 class="pz-sidebar-title">🛠️ Free Pet Tools</h3>
         <?php
-        $tools = [
-          ['🍽️','Food Calculator','/tools/pet-food-portion-calculator/'],
-          ['🎂','Age Calculator',  '/tools/pet-age-calculator/'],
-          ['💉','Vaccine Tracker', '/tools/pet-vaccination-schedule/'],
-          ['✨','Name Generator',  '/tools/ai-pet-name-generator/'],
-          ['🏃','Exercise Planner','/tools/pet-exercise-calculator/'],
-        ];
-        foreach($tools as $t): ?>
-        <a href="<?php echo home_url($t[2]); ?>" class="pz-sidebar-tool">
-          <span class="pz-sidebar-tool-icon" aria-hidden="true"><?php echo $t[0]; ?></span>
-          <span><?php echo $t[1]; ?></span>
-          <span class="pz-sidebar-tool-arrow">→</span>
-        </a>
-        <?php endforeach; ?>
+        $matched = function_exists( 'pz_get_tools_for_post' ) ? pz_get_tools_for_post( get_the_ID(), 5 ) : [];
+        if ( empty( $matched ) ) {
+            $tools = [
+              ['🍽️','Food Calculator','/tools/pet-food-portion-calculator/'],
+              ['🎂','Age Calculator',  '/tools/pet-age-calculator/'],
+              ['💉','Vaccine Tracker', '/tools/pet-vaccination-schedule/'],
+              ['✨','Name Generator',  '/tools/ai-pet-name-generator/'],
+              ['🏃','Exercise Planner','/tools/pet-exercise-calculator/'],
+            ];
+            foreach($tools as $t): ?>
+            <a href="<?php echo home_url($t[2]); ?>" class="pz-sidebar-tool">
+              <span class="pz-sidebar-tool-icon" aria-hidden="true"><?php echo $t[0]; ?></span>
+              <span><?php echo $t[1]; ?></span>
+              <span class="pz-sidebar-tool-arrow">→</span>
+            </a>
+            <?php endforeach;
+        } else {
+            foreach($matched as $t): ?>
+            <a href="<?php echo home_url('/tools/' . $t['slug'] . '/'); ?>" class="pz-sidebar-tool">
+              <span class="pz-sidebar-tool-icon" aria-hidden="true"><?php echo esc_html($t['icon'] ?? '🛠️'); ?></span>
+              <span><?php echo esc_html($t['title']); ?></span>
+              <span class="pz-sidebar-tool-arrow">→</span>
+            </a>
+            <?php endforeach;
+        }
+        ?>
       </div>
 
       <!-- Related Posts -->

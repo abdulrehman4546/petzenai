@@ -435,6 +435,25 @@ function pz_render_tool_page( $tool ) {
               View All <?php echo esc_html(pz_get_tool_categories()[$tool['cat']]['label'] ?? ''); ?> Tools →
             </a>
           </div>
+
+          <!-- Related Articles (blog posts matched to this tool's topic) -->
+          <?php $related_posts = function_exists( 'pz_get_blog_posts_for_tool' ) ? pz_get_blog_posts_for_tool( $tool, 3 ) : []; ?>
+          <?php if ( ! empty( $related_posts ) ): ?>
+          <div class="pz-sidebar-widget" style="padding:14px 16px">
+            <h3 class="pz-sidebar-title" style="margin-bottom:10px">📚 Related Reading</h3>
+            <?php foreach( $related_posts as $rp ): ?>
+            <a href="<?php echo esc_url( $rp['url'] ); ?>" class="pz-related-item">
+              <?php if ( ! empty( $rp['thumb'] ) ): ?>
+              <img src="<?php echo esc_url( $rp['thumb'] ); ?>" class="pz-related-thumb" loading="lazy" alt="<?php echo esc_attr( $rp['title'] . ' — PetZenAI' ); ?>">
+              <?php else: ?>
+              <div class="pz-related-thumb-placeholder" aria-hidden="true">🐾</div>
+              <?php endif; ?>
+              <span><?php echo esc_html( $rp['title'] ); ?></span>
+            </a>
+            <?php endforeach; ?>
+          </div>
+          <?php endif; ?>
+
           <?php if ( ! empty( $related_tools ) ):
             $il_items = [];
             foreach ( $related_tools as $i => $rt ) {
