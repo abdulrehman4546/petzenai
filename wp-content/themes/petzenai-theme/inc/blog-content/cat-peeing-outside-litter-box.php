@@ -5,7 +5,8 @@ return [
     'slug'        => 'cat-peeing-outside-litter-box',
     'title'       => 'Cat Peeing Outside the Litter Box? How to Work Out Why',
     'status'      => 'publish',
-    'revision'    => 1,
+    'revision'    => 2,
+    'featured'    => [ 'file' => 'assets/img/blog/cat-litter-box-closeup.jpg', 'alt' => 'Cat sitting calmly beside a clean covered litter box at home' ],
     'publish_at'  => '2026-11-12 08:00',   // scheduled (site time zone)
     'category'    => 'Pet Health',
     'keyword'     => 'cat peeing outside litter box',

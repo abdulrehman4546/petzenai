@@ -5,7 +5,8 @@ return [
     'slug'        => 'why-is-my-dog-always-hungry',
     'title'       => 'Why Is My Dog Always Hungry? Causes and When to Worry',
     'status'      => 'publish',
-    'revision'    => 1,
+    'revision'    => 2,
+    'featured'    => [ 'file' => 'assets/img/blog/dog-hungry-looking-at-food.jpg', 'alt' => 'Dog sitting attentively looking at its empty food bowl' ],
     'publish_at'  => '2026-11-11 17:00',   // scheduled (site time zone)
     'category'    => 'Pet Health',
     'keyword'     => 'why is my dog always hungry',

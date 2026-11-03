@@ -5,7 +5,8 @@ return [
     'slug'        => 'can-i-give-my-dog-benadryl-hydrogen-peroxide',
     'title'       => 'Can I Give My Dog Benadryl or Hydrogen Peroxide?',
     'status'      => 'publish',
-    'revision'    => 1,
+    'revision'    => 2,
+    'featured'    => [ 'file' => 'assets/img/blog/dog-owner-checking-medicine-cabinet.jpg', 'alt' => 'Person reading a medicine bottle label while a dog waits nearby' ],
     'publish_at'  => '2026-11-12 17:00',   // scheduled (site time zone)
     'category'    => 'Pet Safety',
     'keyword'     => 'can i give my dog benadryl',
