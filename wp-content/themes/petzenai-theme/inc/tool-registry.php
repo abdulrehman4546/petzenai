@@ -157,10 +157,10 @@ function pz_get_all_tools() {
         ['slug'=>'cat-stress-signs-guide','title'=>'Signs of Stress in Cats & How to Help','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'signs of stress in cats','icon'=>'😰'],
         ['slug'=>'cat-respiratory-infection-guide','title'=>'Cat Upper Respiratory Infection Guide','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'cat respiratory infection guide','icon'=>'🤧'],
         ['slug'=>'cat-arthritis-guide','title'=>'Cat Arthritis: Signs, Management & Pain Relief','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'cat arthritis guide','icon'=>'🦴'],
-        ['slug'=>'senior-cat-health-guide','title'=>'Senior Cat Health Guide: 10+ Year Care','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'senior cat health guide','icon'=>'🐱'],
+        ['slug'=>'senior-cat-health-guide','title'=>'Senior Cat Health Guide: 10+ Year Care','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'senior cat health guide','icon'=>'🐱','calc'=>'senior_cat_health_guide'],
         ['slug'=>'cat-indoor-enrichment-guide','title'=>'Indoor Cat Enrichment & Mental Health Guide','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'indoor cat enrichment guide','icon'=>'🏠'],
         ['slug'=>'cat-first-aid-guide','title'=>'Cat First Aid Guide: Emergency Situations','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'cat first aid guide','icon'=>'🚑','calc'=>'cat_first_aid_guide'],
-        ['slug'=>'cat-vet-visit-frequency','title'=>'How Often Should Cats Visit the Vet?','cat'=>'cat-health','animal'=>'cat','type'=>'calculator','kw'=>'how often cat vet visit','icon'=>'📅'],
+        ['slug'=>'cat-vet-visit-frequency','title'=>'How Often Should Cats Visit the Vet?','cat'=>'cat-health','animal'=>'cat','type'=>'calculator','kw'=>'how often cat vet visit','icon'=>'📅','calc'=>'cat_vet_visit_frequency'],
 
         // ═══════════════════════════════════════════
         // CAT NUTRITION (15)
@@ -174,7 +174,7 @@ function pz_get_all_tools() {
         ['slug'=>'cat-hydration-guide','title'=>'Cat Hydration: How Much Water Should Cats Drink?','cat'=>'cat-nutrition','animal'=>'cat','type'=>'calculator','kw'=>'how much water should cats drink','icon'=>'💧','calc'=>'cat_hydration_calc'],
         ['slug'=>'best-cat-food-guide','title'=>'How to Choose the Best Cat Food: Guide','cat'=>'cat-nutrition','animal'=>'cat','type'=>'guide','kw'=>'best cat food guide','icon'=>'🛒'],
         ['slug'=>'cat-food-allergies-guide','title'=>'Cat Food Allergies: Symptoms & Elimination Diet','cat'=>'cat-nutrition','animal'=>'cat','type'=>'guide','kw'=>'cat food allergies guide','icon'=>'🤧'],
-        ['slug'=>'senior-cat-diet-guide','title'=>'Senior Cat Diet: Best Foods for Aging Cats','cat'=>'cat-nutrition','animal'=>'cat','type'=>'guide','kw'=>'senior cat diet guide','icon'=>'🐱'],
+        ['slug'=>'senior-cat-diet-guide','title'=>'Senior Cat Diet: Best Foods for Aging Cats','cat'=>'cat-nutrition','animal'=>'cat','type'=>'guide','kw'=>'senior cat diet guide','icon'=>'🐱','calc'=>'senior_cat_diet_guide'],
         ['slug'=>'cat-supplements-guide','title'=>'Cat Supplements Guide: Omega-3, Probiotics & More','cat'=>'cat-nutrition','animal'=>'cat','type'=>'guide','kw'=>'cat supplements guide','icon'=>'💊'],
         ['slug'=>'cat-kidney-diet-guide','title'=>'Cat Kidney Disease Diet Guide','cat'=>'cat-nutrition','animal'=>'cat','type'=>'guide','kw'=>'cat kidney disease diet guide','icon'=>'🏥'],
         ['slug'=>'homemade-cat-food-guide','title'=>'Homemade Cat Food Guide: Safe Recipes','cat'=>'cat-nutrition','animal'=>'cat','type'=>'guide','kw'=>'homemade cat food guide','icon'=>'🍲'],
@@ -187,11 +187,11 @@ function pz_get_all_tools() {
         ['slug'=>'parrot-feeding-guide','title'=>'Parrot Feeding Guide: Diet & Nutrition','cat'=>'bird-care','animal'=>'bird','type'=>'guide','kw'=>'parrot feeding guide','icon'=>'🦜'],
         ['slug'=>'budgie-care-guide','title'=>'Budgie (Parakeet) Care Guide for Beginners','cat'=>'bird-care','animal'=>'bird','type'=>'guide','kw'=>'budgie care guide','icon'=>'🐦'],
         ['slug'=>'cockatiel-care-guide','title'=>'Cockatiel Care Guide: Diet, Health & Housing','cat'=>'bird-care','animal'=>'bird','type'=>'guide','kw'=>'cockatiel care guide','icon'=>'🐦'],
-        ['slug'=>'bird-cage-size-calculator','title'=>'Bird Cage Size Calculator by Species','cat'=>'bird-care','animal'=>'bird','type'=>'calculator','kw'=>'bird cage size calculator','icon'=>'🏠'],
+        ['slug'=>'bird-cage-size-calculator','title'=>'Bird Cage Size Calculator by Species','cat'=>'bird-care','animal'=>'bird','type'=>'calculator','kw'=>'bird cage size calculator','icon'=>'🏠','calc'=>'bird_cage_size_calculator'],
         ['slug'=>'bird-food-portion-calculator','title'=>'Bird Food Portion Calculator by Species','cat'=>'bird-care','animal'=>'bird','type'=>'calculator','kw'=>'bird food portion calculator','icon'=>'🌾'],
         ['slug'=>'bird-toxic-foods-guide','title'=>'Foods Toxic to Birds: Complete Safety List','cat'=>'bird-care','animal'=>'bird','type'=>'guide','kw'=>'foods toxic to birds list','icon'=>'☠️'],
         ['slug'=>'bird-temperature-guide','title'=>'Ideal Temperature for Pet Birds Guide','cat'=>'bird-care','animal'=>'bird','type'=>'guide','kw'=>'ideal temperature for pet birds','icon'=>'🌡️'],
-        ['slug'=>'bird-illness-signs-checker','title'=>'Bird Illness Signs Checker','cat'=>'bird-care','animal'=>'bird','type'=>'checker','kw'=>'bird illness signs checker','icon'=>'🔬'],
+        ['slug'=>'bird-illness-signs-checker','title'=>'Bird Illness Signs Checker','cat'=>'bird-care','animal'=>'bird','type'=>'checker','kw'=>'bird illness signs checker','icon'=>'🔬','calc'=>'bird_illness_signs_checker'],
         ['slug'=>'how-to-tame-a-bird','title'=>'How to Tame a Pet Bird: Step-by-Step Guide','cat'=>'bird-care','animal'=>'bird','type'=>'guide','kw'=>'how to tame a pet bird','icon'=>'🤝'],
         ['slug'=>'bird-molting-guide','title'=>'Bird Molting: What to Expect & How to Help','cat'=>'bird-care','animal'=>'bird','type'=>'guide','kw'=>'bird molting guide','icon'=>'🪶'],
         ['slug'=>'bird-lifespan-guide','title'=>'Pet Bird Lifespan Guide by Species','cat'=>'bird-care','animal'=>'bird','type'=>'guide','kw'=>'pet bird lifespan guide','icon'=>'📅'],
@@ -273,7 +273,7 @@ function pz_get_all_tools() {
         ['slug'=>'hamster-care-guide','title'=>'Hamster Care Guide: Cage, Diet & Health','cat'=>'small-pets','animal'=>'hamster','type'=>'guide','kw'=>'hamster care guide','icon'=>'🐹'],
         ['slug'=>'guinea-pig-care-guide','title'=>'Guinea Pig Care Guide: Diet, Housing & Health','cat'=>'small-pets','animal'=>'guinea-pig','type'=>'guide','kw'=>'guinea pig care guide','icon'=>'🐾'],
         ['slug'=>'guinea-pig-food-calculator','title'=>'Guinea Pig Food Portion Calculator','cat'=>'small-pets','animal'=>'guinea-pig','type'=>'calculator','kw'=>'guinea pig food portion calculator','icon'=>'🥬'],
-        ['slug'=>'hamster-cage-size-calculator','title'=>'Hamster Cage Size Calculator','cat'=>'small-pets','animal'=>'hamster','type'=>'calculator','kw'=>'hamster cage size calculator','icon'=>'🏠'],
+        ['slug'=>'hamster-cage-size-calculator','title'=>'Hamster Cage Size Calculator','cat'=>'small-pets','animal'=>'hamster','type'=>'calculator','kw'=>'hamster cage size calculator','icon'=>'🏠','calc'=>'hamster_cage_size_calculator'],
         ['slug'=>'ferret-care-guide','title'=>'Ferret Care Guide: Diet, Housing & Training','cat'=>'small-pets','animal'=>'ferret','type'=>'guide','kw'=>'ferret care guide','icon'=>'🐾'],
         ['slug'=>'gerbil-care-guide','title'=>'Gerbil Care Guide for Beginners','cat'=>'small-pets','animal'=>'gerbil','type'=>'guide','kw'=>'gerbil care guide','icon'=>'🐭'],
         ['slug'=>'chinchilla-care-guide','title'=>'Chinchilla Care Guide: Dust Baths, Diet & Health','cat'=>'small-pets','animal'=>'chinchilla','type'=>'guide','kw'=>'chinchilla care guide','icon'=>'🐾'],
@@ -302,7 +302,7 @@ function pz_get_all_tools() {
         ['slug'=>'pet-cost-calculator','title'=>'Annual Pet Cost Calculator','cat'=>'general-pet','animal'=>'all','type'=>'calculator','kw'=>'annual pet cost calculator','icon'=>'💰'],
         ['slug'=>'pet-proof-home-guide','title'=>'How to Pet-Proof Your Home: Room-by-Room Guide','cat'=>'general-pet','animal'=>'all','type'=>'guide','kw'=>'how to pet proof home','icon'=>'🏠'],
         ['slug'=>'indoor-vs-outdoor-pet-guide','title'=>'Indoor vs Outdoor Pets: Pros, Cons & Safety','cat'=>'general-pet','animal'=>'all','type'=>'guide','kw'=>'indoor vs outdoor pet guide','icon'=>'🏡'],
-        ['slug'=>'pet-loss-grief-guide','title'=>'Coping with Pet Loss: Grief Support Guide','cat'=>'general-pet','animal'=>'all','type'=>'guide','kw'=>'coping with pet loss guide','icon'=>'💔'],
+        ['slug'=>'pet-loss-grief-guide','title'=>'Coping with Pet Loss: Grief Support Guide','cat'=>'general-pet','animal'=>'all','type'=>'guide','kw'=>'coping with pet loss guide','icon'=>'💔','calc'=>'pet_loss_grief_guide'],
         ['slug'=>'pet-emergency-kit-guide','title'=>'Pet Emergency Kit: Complete Checklist','cat'=>'general-pet','animal'=>'all','type'=>'guide','kw'=>'pet emergency kit checklist','icon'=>'🚑'],
         ['slug'=>'multiple-pet-household-guide','title'=>'Multiple Pet Household: Introduction & Harmony Guide','cat'=>'general-pet','animal'=>'all','type'=>'guide','kw'=>'multiple pet household guide','icon'=>'🐾','calc'=>'multiple_pet_household_guide'],
         ['slug'=>'pet-vaccination-guide','title'=>'Core Vaccines for Pets: Complete Schedule Guide','cat'=>'general-pet','animal'=>'all','type'=>'guide','kw'=>'core vaccines for pets guide','icon'=>'💉'],
@@ -323,7 +323,7 @@ function pz_get_all_tools() {
         ['slug'=>'pet-reproduction-guide','title'=>'Pet Reproduction Guide: Mating, Pregnancy & Birth','cat'=>'general-pet','animal'=>'all','type'=>'guide','kw'=>'pet reproduction guide','icon'=>'🐾'],
         ['slug'=>'pet-enrichment-guide','title'=>'Pet Enrichment Ideas: Mental Stimulation Guide','cat'=>'general-pet','animal'=>'all','type'=>'guide','kw'=>'pet enrichment ideas guide','icon'=>'🧩'],
         ['slug'=>'seasonal-pet-care-guide','title'=>'Seasonal Pet Care Guide: Summer to Winter','cat'=>'general-pet','animal'=>'all','type'=>'guide','kw'=>'seasonal pet care guide','icon'=>'🍂'],
-        ['slug'=>'pet-anxiety-medications-guide','title'=>'Pet Anxiety Medications & Natural Remedies Guide','cat'=>'general-pet','animal'=>'all','type'=>'guide','kw'=>'pet anxiety medications guide','icon'=>'💊'],
+        ['slug'=>'pet-anxiety-medications-guide','title'=>'Pet Anxiety Medications & Natural Remedies Guide','cat'=>'general-pet','animal'=>'all','type'=>'guide','kw'=>'pet anxiety medications guide','icon'=>'💊','calc'=>'pet_anxiety_medications_guide'],
 
         // ═══════════════════════════════════════════
         // PET BEHAVIOR (15)
