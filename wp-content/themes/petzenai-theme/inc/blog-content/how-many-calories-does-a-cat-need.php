@@ -3,11 +3,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 return [
     'slug'        => 'how-many-calories-does-a-cat-need',
-    'title'       => 'How Many Calories Does a Cat Need? A Guide by Weight and Age',
-    'revision'    => 3,   // bump to push edited content to the existing post
+    'title'       => "How Many Calories Does a Cat Need? Free Calculator + Chart",
+    'revision'    => 4,   // bump to push edited title/meta to the existing post
     'category'    => 'Cat Care',
     'keyword'     => 'how many calories does a cat need',
-    'description' => 'Most adult cats need about 20–30 calories per pound a day. See a table by weight, how kittens and seniors differ, and how to turn calories into cups or cans.',
+    'description' => "Most cats need 20-30 calories per pound a day. Get the exact number for your cat's weight and age, plus a free calculator, feeding chart, and FAQ.",
     'excerpt'     => 'Most adult cats need about 20–30 calories per pound a day. Here is how to work out the right amount for your cat, with a weight table and what changes for kittens, seniors and weight loss.',
     'featured'    => [ 'file' => 'assets/img/blog/cat-calories-food-bowl.jpg', 'alt' => 'Tabby cat eating a measured portion of cat food next to a kitchen scale' ],
     'content'     => <<<'HTML'
