@@ -138,6 +138,41 @@ function pz_sync_post_content() {
 }
 
 /**
+ * Fix internal links that point to a tool slug without the /tools/ prefix (a 404 on this site, since tool pages
+ * only exist under /tools/<slug>/). Found via a site-wide link crawl 2026-11-04: several older posts written
+ * directly in wp-admin link to e.g. href="/dog-first-aid-guide/" instead of href="/tools/dog-first-aid-guide/".
+ * Idempotent and safe to leave in permanently — once a post's links are fixed it has nothing left to change.
+ * @return string[] post slugs that were fixed
+ */
+function pz_fix_broken_tool_links() {
+    require_once get_template_directory() . '/inc/tool-registry.php';
+    $tool_slugs = [];
+    foreach ( pz_get_all_tools() as $t ) { $tool_slugs[ $t['slug'] ] = true; }
+
+    $posts = get_posts( [ 'post_type' => 'post', 'post_status' => 'publish', 'numberposts' => -1, 'fields' => 'ids' ] );
+    $fixed = [];
+    foreach ( $posts as $pid ) {
+        $content = get_post_field( 'post_content', $pid );
+        if ( strpos( $content, 'href="/' ) === false ) continue;
+        $new = preg_replace_callback(
+            '/href="\/([a-z0-9-]+)\/"/',
+            function ( $m ) use ( $tool_slugs ) {
+                return isset( $tool_slugs[ $m[1] ] ) ? 'href="/tools/' . $m[1] . '/"' : $m[0];
+            },
+            $content
+        );
+        if ( $new !== $content ) {
+            $had_kses = has_filter( 'content_save_pre', 'wp_filter_post_kses' );
+            if ( $had_kses ) kses_remove_filters();
+            wp_update_post( [ 'ID' => $pid, 'post_content' => $new ] );
+            if ( $had_kses ) kses_init_filters();
+            $fixed[] = get_post_field( 'post_name', $pid );
+        }
+    }
+    return $fixed;
+}
+
+/**
  * Add one in-article image (from assets/img/blog/) to older posts that were written in wp-admin and have none.
  * The figure goes just before the post's second H2 (after the intro and first section). Each post is done once
  * (option pz_post_images_applied), and a post that already contains the image file is left alone.
