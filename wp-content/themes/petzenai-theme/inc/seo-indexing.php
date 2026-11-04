@@ -13,21 +13,40 @@ function pz_core_page_slugs() {
 }
 
 /**
- * If a top-level page duplicates a tool (e.g. /dog-zoomies-guide-2/ vs /tools/dog-zoomies-guide/),
- * return the canonical /tools/<slug>/ URL; '/' for the default sample page; '' when not a duplicate.
+ * If a page duplicates a tool, return the canonical /tools/<slug>/ URL; '/' for the default sample page;
+ * '' when not a duplicate. Covers two shapes, both seen on this site:
+ *   - a top-level page shadowing a tool (e.g. /dog-zoomies-guide-2/ vs /tools/dog-zoomies-guide/)
+ *   - a stray numbered duplicate INSIDE /tools/ itself (e.g. /tools/dog-separation-anxiety-training-2/
+ *     vs /tools/dog-separation-anxiety-training/ — same parent, so it needs its own check below).
  */
 function pz_duplicate_target( $post ) {
-    if ( ! $post || $post->post_type !== 'page' || (int) $post->post_parent !== 0 ) return '';
+    if ( ! $post || $post->post_type !== 'page' ) return '';
     $slug = $post->post_name;
-    // The default sample page is a duplicate of the homepage unless it IS the static front page (handled below).
-    if ( $slug === 'sample-page' ) return ( (int) $post->ID === (int) get_option( 'page_on_front' ) ) ? '' : home_url( '/' );
-    if ( in_array( $slug, pz_core_page_slugs(), true ) ) return '';
+
+    if ( (int) $post->post_parent === 0 ) {
+        // The default sample page is a duplicate of the homepage unless it IS the static front page.
+        if ( $slug === 'sample-page' ) return ( (int) $post->ID === (int) get_option( 'page_on_front' ) ) ? '' : home_url( '/' );
+        if ( in_array( $slug, pz_core_page_slugs(), true ) ) return '';
+    }
+
     require_once get_template_directory() . '/inc/tool-registry.php';
     static $known = null;
     if ( $known === null ) $known = array_flip( array_column( pz_get_all_tools(), 'slug' ) );
     $base = preg_replace( '/-\d+$/', '', $slug );
-    if ( isset( $known[ $slug ] ) ) return home_url( '/tools/' . $slug . '/' );
-    if ( isset( $known[ $base ] ) ) return home_url( '/tools/' . $base . '/' );
+
+    if ( (int) $post->post_parent === 0 ) {
+        if ( isset( $known[ $slug ] ) ) return home_url( '/tools/' . $slug . '/' );
+        if ( isset( $known[ $base ] ) ) return home_url( '/tools/' . $base . '/' );
+        return '';
+    }
+
+    // Child of /tools/: only a duplicate if ITS OWN slug isn't a real registry tool but the de-numbered
+    // base is (so a genuinely different tool that just happens to end in a number is left alone).
+    static $tools_parent_id = null;
+    if ( $tools_parent_id === null ) { $p = get_page_by_path( 'tools' ); $tools_parent_id = $p ? (int) $p->ID : 0; }
+    if ( $tools_parent_id && (int) $post->post_parent === $tools_parent_id && ! isset( $known[ $slug ] ) && isset( $known[ $base ] ) ) {
+        return home_url( '/tools/' . $base . '/' );
+    }
     return '';
 }
 
