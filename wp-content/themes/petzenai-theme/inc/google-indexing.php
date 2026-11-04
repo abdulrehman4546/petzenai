@@ -3,7 +3,8 @@
  * Google Indexing API: notifies Google the moment a post goes live, the same way inc/blog-seed.php already
  * does for IndexNow (Bing/Yandex). Google does not use IndexNow, so this is the Google-side equivalent.
  *
- * Needs a service-account JSON key at ABSPATH . 'pz-google-service-account.json' (same folder as wp-config.php,
+ * Needs a service-account JSON key one directory ABOVE the web root (dirname(ABSPATH) on this host — never
+ * inside ABSPATH/public_html, since anything there is reachable by URL and would leak the private key),
  * gitignored — upload it to the server by hand, it is never deployed by git on purpose). That service account
  * must be added as an Owner on the petzenai.com Search Console property, and the "Web Search Indexing API"
  * must be enabled on its Google Cloud project. Every call is wrapped so a missing key or a Google-side failure
@@ -11,7 +12,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'PZ_GOOGLE_SA_KEY_PATH', ABSPATH . 'pz-google-service-account.json' );
+define( 'PZ_GOOGLE_SA_KEY_PATH', dirname( ABSPATH ) . '/pz-google-service-account.json' );
 
 /** Base64url-encode (JWT uses this, not plain base64). */
 function pz_google_b64url( $data ) {
