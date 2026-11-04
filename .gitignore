@@ -31,6 +31,9 @@ pz-debug.php
 # Deploy webhook secret — NEVER push
 pz-deploy-secret.php
 
+# Google service account key — NEVER push
+pz-google-service-account.json
+
 # OS files
 desktop.ini
 ehthumbs.db
