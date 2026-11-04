@@ -127,14 +127,14 @@ function pz_get_all_tools() {
         ['slug'=>'cat-bathing-guide','title'=>'How to Bathe a Cat: Step-by-Step Guide','cat'=>'cat-grooming','animal'=>'cat','type'=>'guide','kw'=>'how to bathe a cat','icon'=>'🛁'],
         ['slug'=>'cat-shedding-guide','title'=>'Cat Shedding: Control Guide & Best Tools','cat'=>'cat-grooming','animal'=>'cat','type'=>'guide','kw'=>'cat shedding control guide','icon'=>'🐱'],
         ['slug'=>'long-haired-cat-grooming','title'=>'Long-Haired Cat Grooming: Complete Guide','cat'=>'cat-grooming','animal'=>'cat','type'=>'guide','kw'=>'long haired cat grooming guide','icon'=>'🐈'],
-        ['slug'=>'cat-hairball-prevention-guide','title'=>'Cat Hairball Prevention: Diet & Grooming Guide','cat'=>'cat-grooming','animal'=>'cat','type'=>'guide','kw'=>'cat hairball prevention guide','icon'=>'🍃'],
+        ['slug'=>'cat-hairball-prevention-guide','title'=>'Cat Hairball Prevention: Diet & Grooming Guide','cat'=>'cat-grooming','animal'=>'cat','type'=>'guide','kw'=>'cat hairball prevention guide','icon'=>'🍃','calc'=>'cat_hairball_prevention_guide'],
         ['slug'=>'cat-dental-care-guide','title'=>'Cat Dental Care Guide: Teeth Brushing & Health','cat'=>'cat-grooming','animal'=>'cat','type'=>'guide','kw'=>'cat dental care guide','icon'=>'🦷'],
         ['slug'=>'cat-ear-cleaning-guide','title'=>'Cat Ear Cleaning Guide','cat'=>'cat-grooming','animal'=>'cat','type'=>'guide','kw'=>'cat ear cleaning guide','icon'=>'👂'],
         ['slug'=>'cat-eye-cleaning-guide','title'=>'Cat Eye Discharge Cleaning Guide','cat'=>'cat-grooming','animal'=>'cat','type'=>'guide','kw'=>'clean cat eye discharge','icon'=>'👁️'],
         ['slug'=>'indoor-vs-outdoor-cat-grooming','title'=>'Indoor vs Outdoor Cat Grooming Differences','cat'=>'cat-grooming','animal'=>'cat','type'=>'guide','kw'=>'indoor outdoor cat grooming differences','icon'=>'🏠'],
         ['slug'=>'cat-grooming-tools-guide','title'=>'Best Cat Grooming Tools Guide','cat'=>'cat-grooming','animal'=>'cat','type'=>'guide','kw'=>'best cat grooming tools','icon'=>'🛒'],
-        ['slug'=>'cat-mats-removal-guide','title'=>'How to Remove Cat Mats Safely','cat'=>'cat-grooming','animal'=>'cat','type'=>'guide','kw'=>'how to remove cat mats','icon'=>'✂️'],
-        ['slug'=>'senior-cat-grooming-guide','title'=>'Senior Cat Grooming Guide: 10+ Years','cat'=>'cat-grooming','animal'=>'cat','type'=>'guide','kw'=>'senior cat grooming guide','icon'=>'🐱'],
+        ['slug'=>'cat-mats-removal-guide','title'=>'How to Remove Cat Mats Safely','cat'=>'cat-grooming','animal'=>'cat','type'=>'guide','kw'=>'how to remove cat mats','icon'=>'✂️','calc'=>'cat_mats_removal_guide'],
+        ['slug'=>'senior-cat-grooming-guide','title'=>'Senior Cat Grooming Guide: 10+ Years','cat'=>'cat-grooming','animal'=>'cat','type'=>'guide','kw'=>'senior cat grooming guide','icon'=>'🐱','calc'=>'senior_cat_grooming_guide'],
         ['slug'=>'kitten-first-grooming-guide','title'=>'Kitten First Grooming: Starter Guide','cat'=>'cat-grooming','animal'=>'cat','type'=>'guide','kw'=>'kitten grooming guide','icon'=>'🐱'],
         ['slug'=>'cat-paw-care-guide','title'=>'Cat Paw Care & Health Guide','cat'=>'cat-grooming','animal'=>'cat','type'=>'guide','kw'=>'cat paw care guide','icon'=>'🐾'],
 
@@ -159,7 +159,7 @@ function pz_get_all_tools() {
         ['slug'=>'cat-arthritis-guide','title'=>'Cat Arthritis: Signs, Management & Pain Relief','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'cat arthritis guide','icon'=>'🦴'],
         ['slug'=>'senior-cat-health-guide','title'=>'Senior Cat Health Guide: 10+ Year Care','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'senior cat health guide','icon'=>'🐱'],
         ['slug'=>'cat-indoor-enrichment-guide','title'=>'Indoor Cat Enrichment & Mental Health Guide','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'indoor cat enrichment guide','icon'=>'🏠'],
-        ['slug'=>'cat-first-aid-guide','title'=>'Cat First Aid Guide: Emergency Situations','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'cat first aid guide','icon'=>'🚑'],
+        ['slug'=>'cat-first-aid-guide','title'=>'Cat First Aid Guide: Emergency Situations','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'cat first aid guide','icon'=>'🚑','calc'=>'cat_first_aid_guide'],
         ['slug'=>'cat-vet-visit-frequency','title'=>'How Often Should Cats Visit the Vet?','cat'=>'cat-health','animal'=>'cat','type'=>'calculator','kw'=>'how often cat vet visit','icon'=>'📅'],
 
         // ═══════════════════════════════════════════
@@ -179,7 +179,7 @@ function pz_get_all_tools() {
         ['slug'=>'cat-kidney-diet-guide','title'=>'Cat Kidney Disease Diet Guide','cat'=>'cat-nutrition','animal'=>'cat','type'=>'guide','kw'=>'cat kidney disease diet guide','icon'=>'🏥'],
         ['slug'=>'homemade-cat-food-guide','title'=>'Homemade Cat Food Guide: Safe Recipes','cat'=>'cat-nutrition','animal'=>'cat','type'=>'guide','kw'=>'homemade cat food guide','icon'=>'🍲'],
         ['slug'=>'cat-grain-free-diet-guide','title'=>'Grain-Free Cat Food: Is It Safe?','cat'=>'cat-nutrition','animal'=>'cat','type'=>'guide','kw'=>'grain free cat food guide','icon'=>'🌾'],
-        ['slug'=>'cat-taurine-guide','title'=>'Taurine in Cat Food: Why Cats Need It','cat'=>'cat-nutrition','animal'=>'cat','type'=>'guide','kw'=>'taurine in cat food guide','icon'=>'🔬'],
+        ['slug'=>'cat-taurine-guide','title'=>'Taurine in Cat Food: Why Cats Need It','cat'=>'cat-nutrition','animal'=>'cat','type'=>'guide','kw'=>'taurine in cat food guide','icon'=>'🔬','calc'=>'cat_taurine_guide'],
 
         // ═══════════════════════════════════════════
         // BIRD CARE (20)
@@ -199,7 +199,7 @@ function pz_get_all_tools() {
         ['slug'=>'lovebird-care-guide','title'=>'Lovebird Care Guide: Diet, Housing & Health','cat'=>'bird-care','animal'=>'bird','type'=>'guide','kw'=>'lovebird care guide','icon'=>'❤️'],
         ['slug'=>'cockatoo-care-guide','title'=>'Cockatoo Care Guide: Complete Owner Guide','cat'=>'bird-care','animal'=>'bird','type'=>'guide','kw'=>'cockatoo care guide','icon'=>'🦜'],
         ['slug'=>'canary-care-guide','title'=>'Canary Care Guide: Diet, Singing & Health','cat'=>'bird-care','animal'=>'bird','type'=>'guide','kw'=>'canary care guide','icon'=>'🐦'],
-        ['slug'=>'bird-enrichment-guide','title'=>'Bird Enrichment Ideas & Mental Stimulation Guide','cat'=>'bird-care','animal'=>'bird','type'=>'guide','kw'=>'bird enrichment ideas guide','icon'=>'🎠'],
+        ['slug'=>'bird-enrichment-guide','title'=>'Bird Enrichment Ideas & Mental Stimulation Guide','cat'=>'bird-care','animal'=>'bird','type'=>'guide','kw'=>'bird enrichment ideas guide','icon'=>'🎠','calc'=>'bird_enrichment_guide'],
         ['slug'=>'bird-egg-incubation-guide','title'=>'Bird Egg Incubation Guide & Calculator','cat'=>'bird-care','animal'=>'bird','type'=>'calculator','kw'=>'bird egg incubation guide','icon'=>'🥚'],
         ['slug'=>'bird-sleep-requirements-guide','title'=>'How Much Sleep Do Pet Birds Need?','cat'=>'bird-care','animal'=>'bird','type'=>'guide','kw'=>'how much sleep do pet birds need','icon'=>'😴'],
         ['slug'=>'bird-feather-plucking-guide','title'=>'Bird Feather Plucking: Causes & Solutions','cat'=>'bird-care','animal'=>'bird','type'=>'guide','kw'=>'bird feather plucking causes','icon'=>'🪶'],
@@ -281,7 +281,7 @@ function pz_get_all_tools() {
         ['slug'=>'mouse-rat-care-guide','title'=>'Pet Rat & Mouse Care Guide','cat'=>'small-pets','animal'=>'rat','type'=>'guide','kw'=>'pet rat mouse care guide','icon'=>'🐭'],
         ['slug'=>'sugar-glider-care-guide','title'=>'Sugar Glider Care Guide: Diet & Bonding','cat'=>'small-pets','animal'=>'sugar-glider','type'=>'guide','kw'=>'sugar glider care guide','icon'=>'🦎'],
         ['slug'=>'small-pet-health-checker','title'=>'Small Pet Health Symptoms Checker','cat'=>'small-pets','animal'=>'small','type'=>'checker','kw'=>'small pet health symptoms checker','icon'=>'🔬'],
-        ['slug'=>'hamster-lifespan-guide','title'=>'Hamster Lifespan & Age Guide by Breed','cat'=>'small-pets','animal'=>'hamster','type'=>'guide','kw'=>'hamster lifespan guide','icon'=>'📅'],
+        ['slug'=>'hamster-lifespan-guide','title'=>'Hamster Lifespan & Age Guide by Breed','cat'=>'small-pets','animal'=>'hamster','type'=>'guide','kw'=>'hamster lifespan guide','icon'=>'📅','calc'=>'hamster_lifespan_guide'],
         ['slug'=>'guinea-pig-lifespan-guide','title'=>'Guinea Pig Lifespan & Health Guide','cat'=>'small-pets','animal'=>'guinea-pig','type'=>'guide','kw'=>'guinea pig lifespan guide','icon'=>'📅'],
         ['slug'=>'small-pet-cage-guide','title'=>'Small Pet Cage Setup Guide','cat'=>'small-pets','animal'=>'small','type'=>'guide','kw'=>'small pet cage setup guide','icon'=>'🏠'],
         ['slug'=>'ferret-diet-guide','title'=>'Ferret Diet Guide: What Can Ferrets Eat?','cat'=>'small-pets','animal'=>'ferret','type'=>'guide','kw'=>'ferret diet guide','icon'=>'🍖'],
@@ -298,13 +298,13 @@ function pz_get_all_tools() {
         ['slug'=>'pet-insurance-guide','title'=>'Pet Insurance Guide: Is It Worth It?','cat'=>'general-pet','animal'=>'all','type'=>'guide','kw'=>'pet insurance guide worth it','icon'=>'🛡️'],
         ['slug'=>'pet-microchipping-guide','title'=>'Pet Microchipping Guide: Cost, Process & Benefits','cat'=>'general-pet','animal'=>'all','type'=>'guide','kw'=>'pet microchipping guide','icon'=>'📡'],
         ['slug'=>'pet-travel-guide','title'=>'Traveling with Pets: Complete Safety Guide','cat'=>'general-pet','animal'=>'all','type'=>'guide','kw'=>'traveling with pets guide','icon'=>'✈️'],
-        ['slug'=>'new-pet-checklist','title'=>'New Pet Checklist: Everything You Need','cat'=>'general-pet','animal'=>'all','type'=>'guide','kw'=>'new pet checklist','icon'=>'✅'],
+        ['slug'=>'new-pet-checklist','title'=>'New Pet Checklist: Everything You Need','cat'=>'general-pet','animal'=>'all','type'=>'guide','kw'=>'new pet checklist','icon'=>'✅','calc'=>'new_pet_checklist'],
         ['slug'=>'pet-cost-calculator','title'=>'Annual Pet Cost Calculator','cat'=>'general-pet','animal'=>'all','type'=>'calculator','kw'=>'annual pet cost calculator','icon'=>'💰'],
         ['slug'=>'pet-proof-home-guide','title'=>'How to Pet-Proof Your Home: Room-by-Room Guide','cat'=>'general-pet','animal'=>'all','type'=>'guide','kw'=>'how to pet proof home','icon'=>'🏠'],
         ['slug'=>'indoor-vs-outdoor-pet-guide','title'=>'Indoor vs Outdoor Pets: Pros, Cons & Safety','cat'=>'general-pet','animal'=>'all','type'=>'guide','kw'=>'indoor vs outdoor pet guide','icon'=>'🏡'],
         ['slug'=>'pet-loss-grief-guide','title'=>'Coping with Pet Loss: Grief Support Guide','cat'=>'general-pet','animal'=>'all','type'=>'guide','kw'=>'coping with pet loss guide','icon'=>'💔'],
         ['slug'=>'pet-emergency-kit-guide','title'=>'Pet Emergency Kit: Complete Checklist','cat'=>'general-pet','animal'=>'all','type'=>'guide','kw'=>'pet emergency kit checklist','icon'=>'🚑'],
-        ['slug'=>'multiple-pet-household-guide','title'=>'Multiple Pet Household: Introduction & Harmony Guide','cat'=>'general-pet','animal'=>'all','type'=>'guide','kw'=>'multiple pet household guide','icon'=>'🐾'],
+        ['slug'=>'multiple-pet-household-guide','title'=>'Multiple Pet Household: Introduction & Harmony Guide','cat'=>'general-pet','animal'=>'all','type'=>'guide','kw'=>'multiple pet household guide','icon'=>'🐾','calc'=>'multiple_pet_household_guide'],
         ['slug'=>'pet-vaccination-guide','title'=>'Core Vaccines for Pets: Complete Schedule Guide','cat'=>'general-pet','animal'=>'all','type'=>'guide','kw'=>'core vaccines for pets guide','icon'=>'💉'],
         ['slug'=>'pet-weight-management-guide','title'=>'Pet Obesity: Weight Management & Diet Guide','cat'=>'general-pet','animal'=>'all','type'=>'guide','kw'=>'pet obesity weight management','icon'=>'⚖️'],
         ['slug'=>'zoonotic-diseases-guide','title'=>'Zoonotic Diseases: Diseases Pets Can Give Humans','cat'=>'general-pet','animal'=>'all','type'=>'guide','kw'=>'zoonotic diseases pets guide','icon'=>'🔬'],
@@ -328,8 +328,8 @@ function pz_get_all_tools() {
         // ═══════════════════════════════════════════
         // PET BEHAVIOR (15)
         // ═══════════════════════════════════════════
-        ['slug'=>'dog-body-language-guide','title'=>'Dog Body Language: Complete Guide','cat'=>'pet-behavior','animal'=>'dog','type'=>'guide','kw'=>'dog body language guide','icon'=>'🐕'],
-        ['slug'=>'cat-body-language-guide','title'=>'Cat Body Language & Communication Guide','cat'=>'pet-behavior','animal'=>'cat','type'=>'guide','kw'=>'cat body language guide','icon'=>'🐱'],
+        ['slug'=>'dog-body-language-guide','title'=>'Dog Body Language: Complete Guide','cat'=>'pet-behavior','animal'=>'dog','type'=>'guide','kw'=>'dog body language guide','icon'=>'🐕','calc'=>'dog_body_language_guide'],
+        ['slug'=>'cat-body-language-guide','title'=>'Cat Body Language & Communication Guide','cat'=>'pet-behavior','animal'=>'cat','type'=>'guide','kw'=>'cat body language guide','icon'=>'🐱','calc'=>'cat_body_language_guide'],
         ['slug'=>'why-do-cats-purr-guide','title'=>'Why Do Cats Purr? Meanings & Science Guide','cat'=>'pet-behavior','animal'=>'cat','type'=>'guide','kw'=>'why do cats purr guide','icon'=>'💭'],
         ['slug'=>'dog-tail-wagging-guide','title'=>'Dog Tail Wagging Meanings: What It Tells You','cat'=>'pet-behavior','animal'=>'dog','type'=>'guide','kw'=>'dog tail wagging meanings','icon'=>'🐕'],
         ['slug'=>'cat-kneading-guide','title'=>'Why Do Cats Knead? Behavior Explained','cat'=>'pet-behavior','animal'=>'cat','type'=>'guide','kw'=>'why do cats knead guide','icon'=>'🐱'],
