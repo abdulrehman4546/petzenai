@@ -93,6 +93,33 @@ add_action( 'admin_post_pz_seo_indexnow', function () {
     pz_seo_back( $code >= 200 && $code < 300 ? 'indexnow_ok' : 'indexnow_fail' );
 } );
 
+add_action( 'admin_post_pz_seo_google_indexing', function () {
+    if ( ! current_user_can( 'manage_options' ) ) wp_die( 'Not allowed.' );
+    check_admin_referer( 'pz_seo_google_indexing' );
+    if ( ! function_exists( 'pz_google_indexing_notify' ) || ! is_readable( PZ_GOOGLE_SA_KEY_PATH ) ) pz_seo_back( 'google_indexing_no_key' );
+    if ( get_transient( 'pz_google_indexing_lock' ) ) pz_seo_back( 'google_indexing_wait' );
+    set_transient( 'pz_google_indexing_lock', 1, 10 * MINUTE_IN_SECONDS );
+
+    $urls = array_slice( pz_seo_indexnow_urls(), 0, 200 ); // Google's default Indexing API quota is ~200 URLs/day
+    $token = pz_google_indexing_get_token();
+    $ok = 0; $fail = 0;
+    if ( $token ) {
+        foreach ( $urls as $url ) {
+            $res = wp_remote_post( 'https://indexing.googleapis.com/v3/urlNotifications:publish', [
+                'timeout' => 8,
+                'headers' => [ 'Authorization' => 'Bearer ' . $token, 'Content-Type' => 'application/json' ],
+                'body'    => wp_json_encode( [ 'url' => $url, 'type' => 'URL_UPDATED' ] ),
+            ] );
+            $code = is_wp_error( $res ) ? 0 : (int) wp_remote_retrieve_response_code( $res );
+            ( $code >= 200 && $code < 300 ) ? $ok++ : $fail++;
+        }
+    } else {
+        $fail = count( $urls );
+    }
+    update_option( 'pz_google_indexing_last', [ 'time' => time(), 'count' => count( $urls ), 'ok' => $ok, 'fail' => $fail ], false );
+    pz_seo_back( $ok > 0 ? 'google_indexing_ok' : 'google_indexing_fail' );
+} );
+
 /* ---------------- page ---------------- */
 
 function pz_seo_render_page() {
@@ -126,6 +153,10 @@ function pz_seo_render_page() {
         'indexnow_ok' => [ 'ok', 'Sent to IndexNow (Bing, Yandex and others). Google is not covered; use Search Console for Google.' ],
         'indexnow_fail' => [ 'err', 'IndexNow did not accept the request. Try again later.' ],
         'indexnow_wait' => [ 'err', 'IndexNow was used a moment ago. Please wait about 10 minutes.' ],
+        'google_indexing_ok' => [ 'ok', 'Submitted to Google via the Indexing API.' ],
+        'google_indexing_fail' => [ 'err', 'Google did not accept the request. Check the service account has Owner access in Search Console and the Indexing API is enabled.' ],
+        'google_indexing_wait' => [ 'err', 'Google submission was used a moment ago. Please wait about 10 minutes.' ],
+        'google_indexing_no_key' => [ 'err', 'No Google service-account key found on this server yet.' ],
     ];
     $msg = isset( $_GET['pz_msg'] ) ? sanitize_key( wp_unslash( $_GET['pz_msg'] ) ) : '';
     ?>
@@ -199,6 +230,21 @@ function pz_seo_render_page() {
         <p class="description">Reaches Bing, Yandex and similar engines. <b>Google does not use IndexNow:</b> submit the sitemap and use “Request indexing” in Google Search Console.</p>
         <?php if ( ! empty( $inlast['time'] ) ) : ?>
           <p><b>Last submission:</b> <?php echo esc_html( wp_date( 'j M Y H:i', $inlast['time'] ) ); ?>: <?php echo (int) $inlast['count']; ?> URLs, response <?php echo (int) $inlast['code']; ?>.</p>
+        <?php endif; ?>
+      </form>
+
+      <?php $gi_last = get_option( 'pz_google_indexing_last', [] ); ?>
+      <form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" class="pz-box">
+        <?php wp_nonce_field( 'pz_seo_google_indexing' ); ?>
+        <input type="hidden" name="action" value="pz_seo_google_indexing">
+        <p><button class="button" <?php echo is_readable( PZ_GOOGLE_SA_KEY_PATH ) ? '' : 'disabled'; ?>>Submit all indexable pages to Google (Indexing API)</button></p>
+        <?php if ( ! is_readable( PZ_GOOGLE_SA_KEY_PATH ) ) : ?>
+          <p class="description" style="color:#b32d2e">No service-account key found at <code><?php echo esc_html( PZ_GOOGLE_SA_KEY_PATH ); ?></code> on this server. New posts are already auto-submitted to Google the moment they go live, once the key is uploaded here.</p>
+        <?php else : ?>
+          <p class="description">New posts are already auto-submitted to Google the moment they go live. Use this to (re)submit everything at once — Google limits this to roughly 200 URLs/day per project.</p>
+        <?php endif; ?>
+        <?php if ( ! empty( $gi_last['time'] ) ) : ?>
+          <p><b>Last submission:</b> <?php echo esc_html( wp_date( 'j M Y H:i', $gi_last['time'] ) ); ?>: <?php echo (int) $gi_last['ok']; ?> ok, <?php echo (int) $gi_last['fail']; ?> failed, of <?php echo (int) $gi_last['count']; ?> URLs.</p>
         <?php endif; ?>
       </form>
 
