@@ -90,9 +90,10 @@ function pz_google_indexing_notify( $url, $type = 'URL_UPDATED' ) {
     }
 }
 
-/** Same trigger as the IndexNow hook in blog-seed.php: fires when a post (any status) transitions to publish. */
+/** Same trigger as the IndexNow hook in blog-seed.php: fires when any post or page transitions to publish. */
 add_action( 'transition_post_status', function ( $new, $old, $post ) {
-    if ( $new !== 'publish' || $old === 'publish' || $post->post_type !== 'post' ) return;
+    if ( $new !== 'publish' || $old === 'publish' ) return;
+    if ( ! in_array( $post->post_type, [ 'post', 'page' ], true ) ) return;
     if ( wp_parse_url( home_url(), PHP_URL_HOST ) !== 'petzenai.com' ) return; // never from the local copy
     pz_google_indexing_notify( get_permalink( $post ) );
 }, 10, 3 );

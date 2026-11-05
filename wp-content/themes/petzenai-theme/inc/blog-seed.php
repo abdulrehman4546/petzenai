@@ -408,9 +408,9 @@ add_action( 'admin_notices', function () {
     echo implode( ' · ', $links ) . '. Read them, then press Publish.</p></div>';
 } );
 
-/** Tell IndexNow (Bing, Yandex and others) as soon as a post goes live, including scheduled posts publishing on their own. */
+/** Tell IndexNow (Bing, Yandex and others) as soon as a post or page goes live, including scheduled posts publishing on their own. */
 add_action( 'transition_post_status', function ( $new, $old, $post ) {
-    if ( $new !== 'publish' || $old === 'publish' || $post->post_type !== 'post' || ! defined( 'PZ_INDEXNOW_KEY' ) ) return;
+    if ( $new !== 'publish' || $old === 'publish' || ! in_array( $post->post_type, [ 'post', 'page' ], true ) || ! defined( 'PZ_INDEXNOW_KEY' ) ) return;
     if ( wp_parse_url( home_url(), PHP_URL_HOST ) !== 'petzenai.com' ) return;      // never from the local copy
     wp_remote_post( 'https://api.indexnow.org/indexnow', [
         'timeout'  => 5,
