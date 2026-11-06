@@ -1,16 +1,16 @@
 # PetZenAI
-> Free AI-powered pet care tools and expert guides for dogs, cats, and other pets. Science-backed, vet-reviewed content helping pet owners make informed decisions.
+> Free AI-powered pet care tools and research-based guides for dogs, cats, and other pets, built from sources like ASPCA, Cornell Feline Health Center, AVMA and AAFCO to help pet owners make informed decisions.
 
 ## Free Pet Care Tools
 - [Pet Food Portion Calculator](https://petzenai.com/tools/pet-food-portion-calculator/): Calculate daily food portions for dogs, cats, rabbits, birds based on weight, age and activity level
 - [Pet Age Calculator](https://petzenai.com/tools/pet-age-calculator/): Convert your pet's age to human years using breed-specific, DNA-based scientific formulas
-- [Pet Vaccination Schedule](https://petzenai.com/tools/pet-vaccination-schedule/): Get a complete vet-recommended immunization schedule tailored to your pet's age and type
+- [Pet Vaccination Schedule](https://petzenai.com/tools/pet-vaccination-schedule/): Get a complete immunization schedule tailored to your pet's age and type, based on AVMA/AAHA guidelines
 - [AI Pet Name Generator](https://petzenai.com/tools/ai-pet-name-generator/): Generate unique pet names filtered by species, gender, personality and meaning
 - [Pet Exercise Calculator](https://petzenai.com/tools/pet-exercise-calculator/): Calculate daily exercise needs based on breed energy level, age, weight and health
 - [What Pet Should I Get?](https://petzenai.com/tools/what-pet-should-i-get/): 10-question lifestyle quiz to find your perfect pet match
 
-## Blog — Expert Pet Care Guides
-- [Blog Home](https://petzenai.com/blog/): 30+ expert-written pet care articles updated regularly
+## Blog — Pet Care Guides
+- [Blog Home](https://petzenai.com/blog/): 30+ source-cited pet care articles updated regularly
 - [How Much to Feed a Dog](https://petzenai.com/blog/how-much-to-feed-dog/): Complete dog feeding guide by weight and age
 - [Dog Vaccination Schedule](https://petzenai.com/blog/dog-vaccination-schedule-guide/): Complete puppy and adult dog vaccine guide
 - [Cat Nutrition Guide](https://petzenai.com/blog/cat-nutrition-guide/): What to feed your cat for a long, healthy life
@@ -29,4 +29,4 @@
 - [Terms of Service](https://petzenai.com/terms-of-service/): Usage terms
 
 ## Optional
-- [Sitemap](https://petzenai.com/sitemap-clean.xml): Full XML sitemap index
+- [Sitemap](https://petzenai.com/sitemap_index.xml): Full XML sitemap index

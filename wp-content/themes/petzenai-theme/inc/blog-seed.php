@@ -173,6 +173,41 @@ function pz_fix_broken_tool_links() {
 }
 
 /**
+ * Strip medication/nutrient dosage numbers and vet-authority claims that slipped into a few posts written
+ * directly in wp-admin (never passed through the no-dosage/no-vet-claims review the theme's own content files
+ * get). Found via a content audit 2026-11-06: senior-dog-care-guide had an omega-3 mg/kg dose, guinea-pig-care-guide
+ * had a vitamin C mg/day amount. Idempotent — once replaced, the pattern no longer matches.
+ * @return string[] post slugs that were fixed
+ */
+function pz_fix_banned_dosage_claims() {
+    $patterns = [
+        '/Dose:\s*20[\x{2013}\x{2014}-]50mg\/kg body weight combined EPA\+DHA daily\./u'
+            => 'Ask your vet about an appropriate omega-3 (EPA+DHA) supplement dose for your dog\'s weight and health.',
+        '/\b20[\x{2013}\x{2014}-]25mg of vitamin C per day\b/u'
+            => 'a daily vitamin C amount appropriate for their size',
+        '/,?\s*rising to\s*30[\x{2013}\x{2014}-]40mg for pregnant or nursing[^.<]*/u'
+            => '',
+    ];
+    $posts = get_posts( [ 'post_type' => 'post', 'post_status' => 'publish', 'numberposts' => -1, 'fields' => 'ids' ] );
+    $fixed = [];
+    foreach ( $posts as $pid ) {
+        $content = get_post_field( 'post_content', $pid );
+        $new = $content;
+        foreach ( $patterns as $pattern => $replacement ) {
+            $new = preg_replace( $pattern, $replacement, $new );
+        }
+        if ( $new !== $content ) {
+            $had_kses = has_filter( 'content_save_pre', 'wp_filter_post_kses' );
+            if ( $had_kses ) kses_remove_filters();
+            wp_update_post( [ 'ID' => $pid, 'post_content' => $new ] );
+            if ( $had_kses ) kses_init_filters();
+            $fixed[] = get_post_field( 'post_name', $pid );
+        }
+    }
+    return $fixed;
+}
+
+/**
  * Add one in-article image (from assets/img/blog/) to older posts that were written in wp-admin and have none.
  * The figure goes just before the post's second H2 (after the intro and first section). Each post is done once
  * (option pz_post_images_applied), and a post that already contains the image file is left alone.

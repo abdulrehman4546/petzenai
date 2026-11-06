@@ -13,7 +13,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( ! defined( 'PZ_RELEASE' ) ) define( 'PZ_RELEASE', '2026-11-05-b' );
+if ( ! defined( 'PZ_RELEASE' ) ) define( 'PZ_RELEASE', '2026-11-06-a' );
 
 /** Delete Rank Math's cached sitemap files and transients. @return int number of cache entries removed */
 function pz_flush_rankmath_sitemap_cache() {
@@ -111,6 +111,11 @@ function pz_run_release_tasks() {
         $bl = function_exists( 'pz_fix_broken_tool_links' ) ? pz_fix_broken_tool_links() : [];
         $log[] = 'posts with broken /tools/ links fixed: ' . count( $bl ) . ( $bl ? ' (' . implode( ', ', $bl ) . ')' : '' );
     } catch ( \Throwable $e ) { $log[] = 'broken tool-link fix failed: ' . $e->getMessage(); }
+
+    try {
+        $bd = function_exists( 'pz_fix_banned_dosage_claims' ) ? pz_fix_banned_dosage_claims() : [];
+        $log[] = 'posts with banned dosage/vet-claim text fixed: ' . count( $bd ) . ( $bd ? ' (' . implode( ', ', $bd ) . ')' : '' );
+    } catch ( \Throwable $e ) { $log[] = 'banned dosage claim fix failed: ' . $e->getMessage(); }
 
     try { $log[] = 'sitemap cache entries removed: ' . pz_flush_rankmath_sitemap_cache(); }
     catch ( \Throwable $e ) { $log[] = 'sitemap flush failed: ' . $e->getMessage(); }
