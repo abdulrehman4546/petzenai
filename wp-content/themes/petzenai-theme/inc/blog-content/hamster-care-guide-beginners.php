@@ -5,7 +5,7 @@ return [
     'slug'        => 'hamster-care-guide-beginners',
     'title'       => 'Hamster Care Guide for Beginners: Setup to Vet Signs',
     'status'      => 'publish',
-    'revision'    => 1,
+    'revision'    => 2,   // bumped: added a link to the Hamster Care Guide tool for quick reference
     'category'    => 'Small Pets',
     'keyword'     => 'hamster care guide for beginners',
     'description' => "New to hamsters? This beginner's guide covers true cage and wheel sizing, diet, taming, wet tail warning signs, and an FAQ to help your hamster thrive.",
@@ -13,6 +13,7 @@ return [
     'content'     => <<<'HTML'
 <p>Myth: two hamsters are happier than one because “hamsters like company.” For the most commonly kept pet hamster species, this is not just wrong but genuinely dangerous — housing the wrong combination together can end in a fight to the death. Hamsters are one of the most popular small pets in the world, and unfortunately one of the most commonly mistreated through ignorance rather than intention, precisely because so much conventional wisdom about them is species-specific in ways new owners aren’t told.</p>
 <p>A well-cared-for hamster is a genuinely rewarding pet. They’re clean, relatively odor-free when housed correctly, fascinating to observe, and can become tame enough to interact confidently with their owner. This guide gives you everything you need to provide a high-quality life for your hamster — including the species differences that determine whether housing more than one together is safe or reckless.</p>
+<p>Already past the basics and just need a quick refresher on cage size, diet or health signs? Our <a href="/tools/hamster-care-guide/">Hamster Care Guide</a> is a shorter at-a-glance reference.</p>
 <h2>Hamster Species: Choosing the Right Type</h2>
 <p>There are several hamster species commonly kept as pets, and they differ significantly in temperament, size, and — critically — social needs. Getting this wrong is one of the most common and consequential mistakes new hamster owners make.</p>
 <h3>Syrian Hamster (Golden Hamster)</h3>

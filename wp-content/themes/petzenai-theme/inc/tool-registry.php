@@ -27,8 +27,8 @@ function pz_get_all_tools() {
         // DOG GROOMING (20)
         // ═══════════════════════════════════════════
         ['slug'=>'dog-nail-trimming-guide','title'=>'Dog Nail Trimming Guide & Schedule','cat'=>'dog-grooming','animal'=>'dog','type'=>'guide','kw'=>'dog nail trimming guide','icon'=>'✂️','calc'=>'dog_nail_trimming'],
-        ['slug'=>'dog-bathing-frequency-calculator','title'=>'How Often Should I Bathe My Dog? Calculator','cat'=>'dog-grooming','animal'=>'dog','type'=>'calculator','kw'=>'how often bathe dog','icon'=>'🛁','calc'=>'dog_bathing_frequency'],
-        ['slug'=>'dog-shedding-guide','title'=>'Dog Shedding Guide: Control & Solutions','cat'=>'dog-grooming','animal'=>'dog','type'=>'guide','kw'=>'dog shedding guide','icon'=>'🪮','calc'=>'dog_shedding'],
+        ['slug'=>'dog-bathing-frequency-calculator','title'=>'How Often Should I Bathe My Dog? Calculator','cat'=>'dog-grooming','animal'=>'dog','type'=>'calculator','kw'=>'dog bathing schedule calculator','icon'=>'🛁','calc'=>'dog_bathing_frequency'],
+        ['slug'=>'dog-shedding-guide','title'=>'Dog Shedding Guide: Control & Solutions','cat'=>'dog-grooming','animal'=>'dog','type'=>'guide','kw'=>'why is my dog shedding so much','icon'=>'🪮','calc'=>'dog_shedding'],
         ['slug'=>'dog-ear-cleaning-guide','title'=>'Dog Ear Cleaning Guide & Schedule','cat'=>'dog-grooming','animal'=>'dog','type'=>'guide','kw'=>'dog ear cleaning guide','icon'=>'👂','calc'=>'dog_ear_cleaning'],
         ['slug'=>'dog-teeth-brushing-guide','title'=>'Dog Teeth Brushing Guide for Beginners','cat'=>'dog-grooming','animal'=>'dog','type'=>'guide','kw'=>'how to brush dog teeth','icon'=>'🦷','calc'=>'dog_teeth_brushing'],
         ['slug'=>'dog-grooming-schedule-calculator','title'=>'Dog Grooming Schedule Calculator by Breed','cat'=>'dog-grooming','animal'=>'dog','type'=>'calculator','kw'=>'dog grooming schedule','icon'=>'📅','calc'=>'dog_grooming_schedule'],
@@ -39,7 +39,7 @@ function pz_get_all_tools() {
         ['slug'=>'dog-anal-gland-guide','title'=>'Dog Anal Gland Expression Guide','cat'=>'dog-grooming','animal'=>'dog','type'=>'guide','kw'=>'dog anal gland expression guide','icon'=>'🔬','calc'=>'dog_anal_gland'],
         ['slug'=>'dog-haircut-styles-guide','title'=>'Dog Haircut Styles by Breed Guide','cat'=>'dog-grooming','animal'=>'dog','type'=>'guide','kw'=>'dog haircut styles guide','icon'=>'✂️','calc'=>'dog_haircut_styles'],
         ['slug'=>'long-haired-dog-grooming-guide','title'=>'Long-Haired Dog Grooming: Step by Step','cat'=>'dog-grooming','animal'=>'dog','type'=>'guide','kw'=>'long haired dog grooming','icon'=>'🪮','calc'=>'long_haired_dog_grooming'],
-        ['slug'=>'dog-deshedding-guide','title'=>'Dog Deshedding Tools & Techniques Guide','cat'=>'dog-grooming','animal'=>'dog','type'=>'guide','kw'=>'dog deshedding guide','icon'=>'🐕','calc'=>'dog_deshedding'],
+        ['slug'=>'dog-deshedding-guide','title'=>'Dog Deshedding Tools & Techniques Guide','cat'=>'dog-grooming','animal'=>'dog','type'=>'guide','kw'=>'best deshedding tools for dogs','icon'=>'🐕','calc'=>'dog_deshedding'],
         ['slug'=>'dog-grooming-tools-guide','title'=>'Dog Grooming Tools: Complete Buying Guide','cat'=>'dog-grooming','animal'=>'dog','type'=>'guide','kw'=>'dog grooming tools guide','icon'=>'🛒','calc'=>'dog_grooming_tools'],
         ['slug'=>'dog-winter-coat-care','title'=>'Dog Winter Coat Care Guide','cat'=>'dog-grooming','animal'=>'dog','type'=>'guide','kw'=>'dog winter coat care','icon'=>'❄️','calc'=>'dog_winter_coat_care'],
         ['slug'=>'dog-summer-grooming-guide','title'=>'Dog Summer Grooming & Cooling Guide','cat'=>'dog-grooming','animal'=>'dog','type'=>'guide','kw'=>'dog summer grooming tips','icon'=>'☀️','calc'=>'dog_summer_grooming'],
@@ -270,7 +270,7 @@ function pz_get_all_tools() {
         // ═══════════════════════════════════════════
         // SMALL PETS (20)
         // ═══════════════════════════════════════════
-        ['slug'=>'hamster-care-guide','title'=>'Hamster Care Guide: Cage, Diet & Health','cat'=>'small-pets','animal'=>'hamster','type'=>'guide','kw'=>'hamster care guide','icon'=>'🐹'],
+        ['slug'=>'hamster-care-guide','title'=>'Hamster Care Guide: Cage, Diet & Health','cat'=>'small-pets','animal'=>'hamster','type'=>'guide','kw'=>'hamster cage diet health basics','icon'=>'🐹'],
         ['slug'=>'guinea-pig-care-guide','title'=>'Guinea Pig Care Guide: Diet, Housing & Health','cat'=>'small-pets','animal'=>'guinea-pig','type'=>'guide','kw'=>'guinea pig care guide','icon'=>'🐾'],
         ['slug'=>'guinea-pig-food-calculator','title'=>'Guinea Pig Food Portion Calculator','cat'=>'small-pets','animal'=>'guinea-pig','type'=>'calculator','kw'=>'guinea pig food portion calculator','icon'=>'🥬'],
         ['slug'=>'hamster-cage-size-calculator','title'=>'Hamster Cage Size Calculator','cat'=>'small-pets','animal'=>'hamster','type'=>'calculator','kw'=>'hamster cage size calculator','icon'=>'🏠','calc'=>'hamster_cage_size_calculator'],
