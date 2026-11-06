@@ -14,7 +14,6 @@ $cat_slug  = sanitize_key( get_query_var('pz_cat', $_GET['cat'] ?? '' ) );
 // templated copy when a category has no override registered).
 $pz_cat_content_file = get_template_directory() . '/inc/tool-category-content/' . sanitize_file_name( $cat_slug ) . '.php';
 if ( $cat_slug && file_exists( $pz_cat_content_file ) ) require_once $pz_cat_content_file;
-echo "<!-- PZ_DEBUG cat_slug=" . esc_html($cat_slug) . " file=" . esc_html($pz_cat_content_file) . " exists=" . ( file_exists($pz_cat_content_file) ? 'Y':'N' ) . " fn_exists=" . ( function_exists('pz_category_intro_' . str_replace('-','_',$cat_slug)) ? 'Y':'N' ) . " -->";
 
 $cats      = pz_get_tool_categories();
 $all_tools = pz_get_all_tools();
