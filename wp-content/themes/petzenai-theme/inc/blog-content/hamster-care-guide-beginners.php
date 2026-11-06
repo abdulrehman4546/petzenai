@@ -5,7 +5,8 @@ return [
     'slug'        => 'hamster-care-guide-beginners',
     'title'       => 'Hamster Care Guide for Beginners: Setup to Vet Signs',
     'status'      => 'publish',
-    'revision'    => 2,   // bumped: added a link to the Hamster Care Guide tool for quick reference
+    'revision'    => 3,   // bumped: added featured image (USA GSC weak-position fix)
+    'featured'    => [ 'file' => 'assets/img/blog/hamster-care-guide-beginners.jpg', 'alt' => 'Syrian hamster holding a piece of lettuce in a clean cage' ],
     'category'    => 'Small Pets',
     'keyword'     => 'hamster care guide for beginners',
     'description' => "New to hamsters? This beginner's guide covers true cage and wheel sizing, diet, taming, wet tail warning signs, and an FAQ to help your hamster thrive.",
