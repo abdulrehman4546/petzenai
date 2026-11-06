@@ -8,12 +8,13 @@ if ( ! defined('ABSPATH') ) exit;
 require_once get_template_directory() . '/inc/tool-registry.php';
 require_once get_template_directory() . '/inc/tool-images.php';
 
+$cat_slug  = sanitize_key( get_query_var('pz_cat', $_GET['cat'] ?? '' ) );
+
 // Optional per-category unique intro/guide content (falls back to generic
 // templated copy when a category has no override registered).
-$pz_cat_content_file = get_template_directory() . '/inc/tool-category-content/' . sanitize_file_name( $_GET['cat'] ?? '' ) . '.php';
-if ( file_exists( $pz_cat_content_file ) ) require_once $pz_cat_content_file;
+$pz_cat_content_file = get_template_directory() . '/inc/tool-category-content/' . sanitize_file_name( $cat_slug ) . '.php';
+if ( $cat_slug && file_exists( $pz_cat_content_file ) ) require_once $pz_cat_content_file;
 
-$cat_slug  = sanitize_key( get_query_var('pz_cat', $_GET['cat'] ?? '' ) );
 $cats      = pz_get_tool_categories();
 $all_tools = pz_get_all_tools();
 
