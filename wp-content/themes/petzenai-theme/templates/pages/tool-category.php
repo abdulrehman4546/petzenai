@@ -8,6 +8,11 @@ if ( ! defined('ABSPATH') ) exit;
 require_once get_template_directory() . '/inc/tool-registry.php';
 require_once get_template_directory() . '/inc/tool-images.php';
 
+// Optional per-category unique intro/guide content (falls back to generic
+// templated copy when a category has no override registered).
+$pz_cat_content_file = get_template_directory() . '/inc/tool-category-content/' . sanitize_file_name( $_GET['cat'] ?? '' ) . '.php';
+if ( file_exists( $pz_cat_content_file ) ) require_once $pz_cat_content_file;
+
 $cat_slug  = sanitize_key( get_query_var('pz_cat', $_GET['cat'] ?? '' ) );
 $cats      = pz_get_tool_categories();
 $all_tools = pz_get_all_tools();
@@ -172,6 +177,22 @@ get_header();
 
   <?php if ( ! $show_all ) : ?>
   <a href="<?php echo home_url('/tools/'); ?>" class="pzc-back">← Back to All Tools</a>
+  <?php endif; ?>
+
+  <?php
+  // Per-category unique intro/guide content, when registered (see inc/tool-category-content/).
+  $pz_cat_intro_fn = 'pz_category_intro_' . str_replace( '-', '_', $cat_slug );
+  if ( ! $show_all && function_exists( $pz_cat_intro_fn ) ) : ?>
+  <section class="pzc-intro" style="color:rgba(255,255,255,.75);line-height:1.75;max-width:900px;margin:0 0 36px">
+    <style>
+      .pzc-intro h2{color:#fff;font-size:22px;font-weight:800;margin:28px 0 12px}
+      .pzc-intro h2:first-child{margin-top:0}
+      .pzc-intro p{margin-bottom:14px;font-size:15px}
+      .pzc-intro ul{margin:0 0 14px 20px;padding:0}
+      .pzc-intro li{margin-bottom:8px;font-size:15px}
+    </style>
+    <?php echo call_user_func( $pz_cat_intro_fn ); ?>
+  </section>
   <?php endif; ?>
 
   <div class="pzc-top-bar">

@@ -10,7 +10,7 @@
   <span class="ht-hero-icon">❓</span>
   <h1>What Pet Should <span>I Get?</span></h1>
   <p>Answer 10 quick questions about your lifestyle, home, and personality — we match you to your perfect pet.</p>
-  <div class="ht-badges"><span class="ht-badge green">✅ Science-Based</span><span class="ht-badge purple">🎯 Personalized</span><span class="ht-badge orange">10 Questions</span></div>
+  <div class="ht-badges"><span class="ht-badge purple">🎯 Personalized</span><span class="ht-badge orange">10 Questions</span></div>
 </section>
 <div class="ht-main">
   <div class="ht-tool-wrap">
@@ -71,6 +71,46 @@
     </div>
   </div>
 </div>
+
+<div style="max-width:1200px;margin:0 auto;padding:0 24px 80px">
+  <section style="max-width:900px;margin:0 auto;color:#333">
+    <h2>Best Pets By Lifestyle</h2>
+    <p>The quiz above matches you to a pet using your answers, but here's the short version of how lifestyle maps to pet type — useful if you want to compare options yourself before (or after) you take it.</p>
+    <ul style="margin:0 0 16px 20px;line-height:1.8">
+      <li><strong>Apartment or small-space living:</strong> Cats, rabbits, birds and fish all do well without a yard. Cats are the most independent of the group; rabbits and birds need daily attention even in a small footprint.</li>
+      <li><strong>First-time pet owners:</strong> Cats and small pets (hamsters, guinea pigs) are generally the most forgiving to learn on. Dogs take more consistent daily training and exercise; rabbits and birds have specialized care needs that surprise a lot of new owners.</li>
+      <li><strong>Kids in the house:</strong> Dogs and guinea pigs are usually the most resilient to handling and noise. Rabbits are more fragile and often don't enjoy being picked up, despite their reputation as a "kid's starter pet."</li>
+      <li><strong>Allergies in the household:</strong> Fish and reptiles produce no fur or dander at all. If a furry pet is non-negotiable, some individual cats and dogs (not breeds as a whole) produce fewer allergens, but there's no guaranteed hypoallergenic pet.</li>
+      <li><strong>Low time or frequent travel:</strong> Fish and some small pets need the least daily hands-on time. Cats can tolerate a longer workday alone than dogs, but no pet should be left completely unattended for more than a day without a sitter.</li>
+      <li><strong>Want an active, outdoorsy companion:</strong> Dogs are the clear match here — they're the only common pet that benefits from and needs regular outdoor exercise alongside you.</li>
+    </ul>
+    <p>These are general tendencies, not guarantees — individual animals and breeds vary. The quiz factors in more of your specific answers (budget, time, experience, allergies) to narrow this down to one recommendation rather than a broad category.</p>
+  </section>
+
+  <section style="max-width:900px;margin:32px auto 0;color:#333">
+    <h2>Frequently Asked Questions</h2>
+    <?php
+    $pz_wpsig_faqs = [
+      ['How accurate is this pet-matching quiz?', 'The quiz scores your answers across six common pet types (dog, cat, rabbit, bird, fish, small pet) based on lifestyle factors like activity level, living space, time, budget and allergies. It\'s a starting point for narrowing down options, not a guarantee — spend time with a shelter animal or do breed-specific research before committing.'],
+      ['What if the quiz suggests a pet I wasn\'t expecting?', 'That usually means your answers (time available, living space, allergy concerns, etc.) line up better with that pet than you realized. Read the reasoning given with your result, and weigh it against your own preferences — the quiz is a suggestion, not a decision for you.'],
+      ['Can I retake the quiz?', 'Yes, refresh the page and answer again. Try answering more conservatively on time and budget questions if your first result felt too optimistic about what you can realistically commit to.'],
+      ['Is a dog or cat better for a first-time owner?', 'Cats generally require less daily hands-on care (no walks, more independent), making them a common recommendation for first-timers with limited time. Dogs need consistent daily exercise and training but offer a different kind of companionship — the right answer depends on your schedule and activity level, both of which the quiz accounts for.'],
+      ['What pet is best for someone with allergies?', 'Fish and reptiles are allergen-free since they have no fur or dander. If you want a furry pet despite allergies, talk to an allergist first and consider spending time around the specific individual animal, since allergen levels vary a lot between individuals, not just species or breed.'],
+      ['Should I adopt from a shelter instead of buying?', 'Shelters and rescues have dogs, cats, rabbits, and sometimes birds and small pets of all ages and temperaments, often already assessed for behavior around kids or other pets. It\'s worth checking local shelters first regardless of what the quiz recommends.'],
+    ];
+    $pz_wpsig_schema = ['@context'=>'https://schema.org','@type'=>'FAQPage','@id'=>get_permalink().'#faq','mainEntity'=>array_map(function($f){
+      return ['@type'=>'Question','name'=>$f[0],'acceptedAnswer'=>['@type'=>'Answer','text'=>$f[1]]];
+    }, $pz_wpsig_faqs)];
+    echo '<script type="application/ld+json">' . wp_json_encode( $pz_wpsig_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>';
+    foreach ( $pz_wpsig_faqs as $f ) : ?>
+    <div style="margin-bottom:16px">
+      <h3 style="font-size:16px;font-weight:700;margin-bottom:6px"><?php echo esc_html( $f[0] ); ?></h3>
+      <p style="color:#555;line-height:1.7;margin:0"><?php echo esc_html( $f[1] ); ?></p>
+    </div>
+    <?php endforeach; ?>
+  </section>
+</div>
+
 <script>
 function htQuizNext(cur, total, inp){
   var cards=document.querySelectorAll('#ht-step-'+cur+' .ht-answer-card');
