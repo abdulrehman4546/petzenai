@@ -149,16 +149,16 @@ function pz_get_all_tools() {
         ['slug'=>'cat-spay-neuter-guide','title'=>'Cat Spay & Neuter Guide: When & Benefits','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'when to spay neuter cat','icon'=>'🏥','calc'=>'cat_spay_neuter_guide'],
         ['slug'=>'cat-uti-symptoms-guide','title'=>'Cat UTI: Symptoms, Causes & Treatment Guide','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'cat uti symptoms guide','icon'=>'🔬','calc'=>'cat_uti_symptoms_guide'],
         ['slug'=>'cat-kidney-disease-guide','title'=>'Cat Kidney Disease: Early Signs & Management','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'cat kidney disease guide','icon'=>'🏥','calc'=>'cat_kidney_disease_guide'],
-        ['slug'=>'cat-diabetes-guide','title'=>'Cat Diabetes: Symptoms, Diet & Management','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'cat diabetes guide','icon'=>'💉'],
-        ['slug'=>'cat-hyperthyroidism-guide','title'=>'Cat Hyperthyroidism: Symptoms & Treatment','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'cat hyperthyroidism guide','icon'=>'🏥'],
-        ['slug'=>'cat-flea-treatment-guide','title'=>'Cat Flea Treatment & Prevention Guide','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'cat flea treatment guide','icon'=>'🦟'],
-        ['slug'=>'cat-vomiting-guide','title'=>'Why Is My Cat Vomiting? Causes & When to Worry','cat'=>'cat-health','animal'=>'cat','type'=>'checker','kw'=>'cat vomiting causes guide','icon'=>'🤢'],
-        ['slug'=>'cat-not-eating-guide','title'=>'Cat Not Eating: Causes & Solutions Guide','cat'=>'cat-health','animal'=>'cat','type'=>'checker','kw'=>'cat not eating causes guide','icon'=>'🍽️'],
-        ['slug'=>'cat-stress-signs-guide','title'=>'Signs of Stress in Cats & How to Help','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'signs of stress in cats','icon'=>'😰'],
-        ['slug'=>'cat-respiratory-infection-guide','title'=>'Cat Upper Respiratory Infection Guide','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'cat respiratory infection guide','icon'=>'🤧'],
-        ['slug'=>'cat-arthritis-guide','title'=>'Cat Arthritis: Signs, Management & Pain Relief','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'cat arthritis guide','icon'=>'🦴'],
+        ['slug'=>'cat-diabetes-guide','title'=>'Cat Diabetes: Symptoms, Diet & Management','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'cat diabetes guide','icon'=>'💉','calc'=>'cat_diabetes_guide'],
+        ['slug'=>'cat-hyperthyroidism-guide','title'=>'Cat Hyperthyroidism: Symptoms & Treatment','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'cat hyperthyroidism guide','icon'=>'🏥','calc'=>'cat_hyperthyroidism_guide'],
+        ['slug'=>'cat-flea-treatment-guide','title'=>'Cat Flea Treatment & Prevention Guide','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'cat flea treatment guide','icon'=>'🦟','calc'=>'cat_flea_treatment_guide'],
+        ['slug'=>'cat-vomiting-guide','title'=>'Why Is My Cat Vomiting? Causes & When to Worry','cat'=>'cat-health','animal'=>'cat','type'=>'checker','kw'=>'cat vomiting causes guide','icon'=>'🤢','calc'=>'cat_vomiting_guide'],
+        ['slug'=>'cat-not-eating-guide','title'=>'Cat Not Eating: Causes & Solutions Guide','cat'=>'cat-health','animal'=>'cat','type'=>'checker','kw'=>'cat not eating causes guide','icon'=>'🍽️','calc'=>'cat_not_eating_guide'],
+        ['slug'=>'cat-stress-signs-guide','title'=>'Signs of Stress in Cats & How to Help','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'signs of stress in cats','icon'=>'😰','calc'=>'cat_stress_signs_guide'],
+        ['slug'=>'cat-respiratory-infection-guide','title'=>'Cat Upper Respiratory Infection Guide','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'cat respiratory infection guide','icon'=>'🤧','calc'=>'cat_respiratory_infection_guide'],
+        ['slug'=>'cat-arthritis-guide','title'=>'Cat Arthritis: Signs, Management & Pain Relief','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'cat arthritis guide','icon'=>'🦴','calc'=>'cat_arthritis_guide'],
         ['slug'=>'senior-cat-health-guide','title'=>'Senior Cat Health Guide: 10+ Year Care','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'senior cat health guide','icon'=>'🐱','calc'=>'senior_cat_health_guide'],
-        ['slug'=>'cat-indoor-enrichment-guide','title'=>'Indoor Cat Enrichment & Mental Health Guide','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'indoor cat enrichment guide','icon'=>'🏠'],
+        ['slug'=>'cat-indoor-enrichment-guide','title'=>'Indoor Cat Enrichment & Mental Health Guide','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'indoor cat enrichment guide','icon'=>'🏠','calc'=>'cat_indoor_enrichment_guide'],
         ['slug'=>'cat-first-aid-guide','title'=>'Cat First Aid Guide: Emergency Situations','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'cat first aid guide','icon'=>'🚑','calc'=>'cat_first_aid_guide'],
         ['slug'=>'cat-vet-visit-frequency','title'=>'How Often Should Cats Visit the Vet?','cat'=>'cat-health','animal'=>'cat','type'=>'calculator','kw'=>'how often cat vet visit','icon'=>'📅','calc'=>'cat_vet_visit_frequency'],
 
@@ -375,11 +375,11 @@ function pz_get_all_tools() {
         // ═══════════════════════════════════════════
         // BONUS — CAT HEALTH EXTRA (5)
         // ═══════════════════════════════════════════
-        ['slug'=>'feline-leukemia-guide','title'=>'Feline Leukemia Virus (FeLV): Guide for Cat Owners','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'feline leukemia virus guide','icon'=>'🦠'],
-        ['slug'=>'cat-fiv-guide','title'=>'FIV in Cats: Symptoms, Management & Life Expectancy','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'FIV in cats guide','icon'=>'🏥'],
-        ['slug'=>'cat-pancreatitis-guide','title'=>'Cat Pancreatitis: Signs, Causes & Diet','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'cat pancreatitis guide','icon'=>'🔬'],
-        ['slug'=>'cat-ringworm-guide','title'=>'Ringworm in Cats: Treatment & Prevention Guide','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'ringworm in cats guide','icon'=>'🩹'],
-        ['slug'=>'cat-heartworm-guide','title'=>'Heartworm in Cats: Prevention & Symptoms','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'heartworm in cats guide','icon'=>'❤️'],
+        ['slug'=>'feline-leukemia-guide','title'=>'Feline Leukemia Virus (FeLV): Guide for Cat Owners','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'feline leukemia virus guide','icon'=>'🦠','calc'=>'feline_leukemia_guide'],
+        ['slug'=>'cat-fiv-guide','title'=>'FIV in Cats: Symptoms, Management & Life Expectancy','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'FIV in cats guide','icon'=>'🏥','calc'=>'cat_fiv_guide'],
+        ['slug'=>'cat-pancreatitis-guide','title'=>'Cat Pancreatitis: Signs, Causes & Diet','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'cat pancreatitis guide','icon'=>'🔬','calc'=>'cat_pancreatitis_guide'],
+        ['slug'=>'cat-ringworm-guide','title'=>'Ringworm in Cats: Treatment & Prevention Guide','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'ringworm in cats guide','icon'=>'🩹','calc'=>'cat_ringworm_guide'],
+        ['slug'=>'cat-heartworm-guide','title'=>'Heartworm in Cats: Prevention & Symptoms','cat'=>'cat-health','animal'=>'cat','type'=>'guide','kw'=>'heartworm in cats guide','icon'=>'❤️','calc'=>'cat_heartworm_guide'],
 
         // ═══════════════════════════════════════════
         // BONUS — GENERAL PET EXTRA (5)
