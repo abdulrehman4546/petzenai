@@ -5,6 +5,7 @@ return [
     'slug'        => 'how-often-should-you-bathe-a-dog',
     'title'       => 'How Often Should You Bathe a Dog? A Guide by Coat Type',
     'revision'    => 3,   // bump to push edited content to the existing post
+    'status'      => 'publish',
     'category'    => 'Dog Care',
     'keyword'     => 'how often should you bathe a dog',
     'description' => 'Most healthy dogs need a bath every 4–8 weeks, but coat, lifestyle and skin change that. See a schedule by coat type and how to bathe your dog safely.',

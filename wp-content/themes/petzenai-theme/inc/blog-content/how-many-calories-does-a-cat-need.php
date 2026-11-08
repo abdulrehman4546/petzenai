@@ -5,6 +5,7 @@ return [
     'slug'        => 'how-many-calories-does-a-cat-need',
     'title'       => "How Many Calories Does a Cat Need? Free Calculator + Chart",
     'revision'    => 4,   // bump to push edited title/meta to the existing post
+    'status'      => 'publish',
     'category'    => 'Cat Care',
     'keyword'     => 'how many calories does a cat need',
     'description' => "Most cats need 20-30 calories per pound a day. Get the exact number for your cat's weight and age, plus a free calculator, feeding chart, and FAQ.",
