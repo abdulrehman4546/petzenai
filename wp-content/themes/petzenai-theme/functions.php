@@ -1362,8 +1362,6 @@ require_once get_template_directory() . '/inc/seo-indexing.php';
 require_once get_template_directory() . '/inc/schema-graph.php';
 require_once get_template_directory() . '/inc/branding.php';
 require_once get_template_directory() . '/inc/pages.php';
-// AdSense script/meta tag disabled on 2026-11-13 at owner's request; ads.txt stays untouched.
-if ( ! defined( 'PZ_DISABLE_ADSENSE' ) ) define( 'PZ_DISABLE_ADSENSE', true );
 require_once get_template_directory() . '/inc/adsense.php';
 require_once get_template_directory() . '/inc/blog-seed.php';
 require_once get_template_directory() . '/inc/cross-linking.php';

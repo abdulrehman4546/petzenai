@@ -13,9 +13,9 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /** The site's AdSense publisher id (the same one published in /ads.txt). */
-if ( ! defined( 'PZ_ADSENSE_DEFAULT_PUB' ) ) define( 'PZ_ADSENSE_DEFAULT_PUB', 'pub-1736474691234357' );
-/** An id that was used by mistake earlier; never use it even if it is still saved in the database. */
-if ( ! defined( 'PZ_ADSENSE_WRONG_PUBS' ) ) define( 'PZ_ADSENSE_WRONG_PUBS', 'pub-4379837532366669' );
+if ( ! defined( 'PZ_ADSENSE_DEFAULT_PUB' ) ) define( 'PZ_ADSENSE_DEFAULT_PUB', 'pub-4975350284184584' );
+/** Ids that were used by mistake earlier; never use them even if still saved in the database. */
+if ( ! defined( 'PZ_ADSENSE_WRONG_PUBS' ) ) define( 'PZ_ADSENSE_WRONG_PUBS', 'pub-4379837532366669,pub-1736474691234357' );
 
 function pz_adsense_client() {
     $id = preg_replace( '/^ca-/', '', trim( (string) get_theme_mod( 'petzenai_adsense_publisher_id', '' ) ) );
