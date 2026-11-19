@@ -91,6 +91,11 @@ function pz_sync_post_statuses() {
             if ( $want === 'publish' && $when ) {                               // scheduled: WordPress makes it 'future' until then
                 $args += [ 'post_date' => $when, 'post_date_gmt' => get_gmt_from_date( $when ), 'edit_date' => true ];
                 if ( strtotime( get_gmt_from_date( $when ) . ' UTC' ) > time() ) $args['post_status'] = 'future';
+            } elseif ( $want === 'publish' && $found->post_status === 'future' ) {
+                // a schedule was removed from the content file but the post's stored date is still in the future:
+                // WordPress would otherwise silently force it back to 'future' on save, so bring the date forward too.
+                $now = current_time( 'mysql' );
+                $args += [ 'post_date' => $now, 'post_date_gmt' => get_gmt_from_date( $now ), 'edit_date' => true ];
             }
             if ( $found->post_status !== $args['post_status'] || isset( $args['post_date'] ) ) {
                 $had_kses = has_filter( 'content_save_pre', 'wp_filter_post_kses' );
