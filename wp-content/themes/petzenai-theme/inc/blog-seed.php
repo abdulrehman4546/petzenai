@@ -84,8 +84,9 @@ function pz_sync_post_statuses() {
         $slug = $post['slug']; $want = $post['status'];
         $when = pz_seed_publish_at( $post );
         $sig  = $want . ( $want === 'publish' && $when ? '@' . $when : '' );   // a changed publish date applies again
-        if ( ( $applied[ $slug ] ?? null ) === $sig ) continue;
         $found = get_page_by_path( $slug, OBJECT, 'post' );
+        $stuck_future = $found && $want === 'publish' && ! $when && $found->post_status === 'future'; // schedule removed, but WP never actually flipped it live
+        if ( ! $stuck_future && ( $applied[ $slug ] ?? null ) === $sig ) continue;
         if ( $found && in_array( $want, [ 'draft', 'publish' ], true ) ) {
             $args = [ 'ID' => $found->ID, 'post_status' => $want ];
             if ( $want === 'publish' && $when ) {                               // scheduled: WordPress makes it 'future' until then
