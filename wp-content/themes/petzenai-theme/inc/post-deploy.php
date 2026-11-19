@@ -13,7 +13,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( ! defined( 'PZ_RELEASE' ) ) define( 'PZ_RELEASE', '2026-11-19-e' );
+if ( ! defined( 'PZ_RELEASE' ) ) define( 'PZ_RELEASE', '2026-11-19-f' );
 
 /** Delete Rank Math's cached sitemap files and transients. @return int number of cache entries removed */
 function pz_flush_rankmath_sitemap_cache() {
@@ -116,6 +116,13 @@ function pz_run_release_tasks() {
         $bd = function_exists( 'pz_fix_banned_dosage_claims' ) ? pz_fix_banned_dosage_claims() : [];
         $log[] = 'posts with banned dosage/vet-claim text fixed: ' . count( $bd ) . ( $bd ? ' (' . implode( ', ', $bd ) . ')' : '' );
     } catch ( \Throwable $e ) { $log[] = 'banned dosage claim fix failed: ' . $e->getMessage(); }
+
+    try {
+        if ( ! get_theme_mod( 'petzenai_social_instagram', '' ) ) {
+            set_theme_mod( 'petzenai_social_instagram', 'https://www.instagram.com/petzenai0/' );
+            $log[] = 'instagram social link set';
+        }
+    } catch ( \Throwable $e ) { $log[] = 'instagram social link failed: ' . $e->getMessage(); }
 
     try { $log[] = 'sitemap cache entries removed: ' . pz_flush_rankmath_sitemap_cache(); }
     catch ( \Throwable $e ) { $log[] = 'sitemap flush failed: ' . $e->getMessage(); }
