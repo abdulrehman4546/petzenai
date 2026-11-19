@@ -6,7 +6,6 @@ return [
     'title'       => 'Hamster Torpor vs. Dead: How to Tell (and Warm It Safely)',
     'status'      => 'publish',
     'revision'    => 1,
-    'publish_at'  => '2026-11-19 10:00',   // scheduled (site time zone)
     'category'    => 'Pet Health',
     'keyword'     => 'hamster torpor vs dead',
     'description' => 'Hamster torpor vs dead: how to tell a cold, still hamster is in torpor and not gone, plus the slow, safe way to warm it without shock.',

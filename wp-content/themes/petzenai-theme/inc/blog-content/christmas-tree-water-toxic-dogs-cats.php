@@ -6,7 +6,6 @@ return [
     'title'       => 'Can Dogs or Cats Drink Christmas Tree Water? Is It Toxic?',
     'status'      => 'publish',
     'revision'    => 1,
-    'publish_at'  => '2026-11-19 09:00',   // scheduled (site time zone)
     'category'    => 'Pet Safety',
     'keyword'     => 'is christmas tree water toxic to dogs and cats',
     'description' => 'Is Christmas tree water toxic to dogs and cats? Plain water is usually fine, but preservative packets, stagnant bacteria and additives can make a pet sick.',
