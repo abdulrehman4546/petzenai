@@ -5,12 +5,12 @@ return [
     'slug'        => 'hamster-torpor-vs-dead',
     'title'       => 'Hamster Torpor vs. Dead: How to Tell (and Warm It Safely)',
     'status'      => 'publish',
-    'revision'    => 1,
+    'revision'    => 2,
     'category'    => 'Pet Health',
     'keyword'     => 'hamster torpor vs dead',
     'description' => 'Hamster torpor vs dead: how to tell a cold, still hamster is in torpor and not gone, plus the slow, safe way to warm it without shock.',
     'excerpt'     => 'A hamster that goes cold and motionless in a chilly room can look dead but be in torpor, a short-term energy-saving state. Here is a clear way to tell the difference, the gradual warming method that avoids fatal shock, and the comfortable room-temperature range that stops it from happening again.',
-    'featured'    => [ 'file' => 'assets/img/blog/hamster-care-guide-beginners.jpg', 'alt' => 'Hamster curled up and still in its cage bedding' ],
+    'featured'    => [ 'file' => 'assets/img/blog/hamster-torpor-vs-dead.jpg', 'alt' => 'Syrian hamster curled up asleep in soft bedding, still and quiet' ],
     'content'     => <<<'HTML'
 <p>A hamster that's gone cold, stiff and unresponsive in a cold room looks exactly like a hamster that has died &mdash; but it may instead be in torpor, a short-term, low-energy state that pet hamsters can slip into when their environment gets too cold. Telling the two apart matters because the wrong first move (dropping a torpid hamster straight onto a heating pad or into warm water) can cause fatal shock. Here is how to tell torpor from death, and the slow, careful way to warm a hamster back up if it's still alive.</p>
 

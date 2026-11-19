@@ -5,12 +5,12 @@ return [
     'slug'        => 'christmas-tree-water-toxic-dogs-cats',
     'title'       => 'Can Dogs or Cats Drink Christmas Tree Water? Is It Toxic?',
     'status'      => 'publish',
-    'revision'    => 1,
+    'revision'    => 2,
     'category'    => 'Pet Safety',
     'keyword'     => 'is christmas tree water toxic to dogs and cats',
     'description' => 'Is Christmas tree water toxic to dogs and cats? Plain water is usually fine, but preservative packets, stagnant bacteria and additives can make a pet sick.',
     'excerpt'     => 'Plain tree-stand water is rarely a real problem, but the fertilizer-and-aspirin-style preservative packets, days-old stagnant water, and anything added later (bleach, sugar) are the actual risks. Here is the symptom timeline to watch and the easiest ways to block access to the stand.',
-    'featured'    => [ 'file' => 'assets/img/blog/cat-christmas-tree.jpg', 'alt' => 'Dog and cat near a Christmas tree stand at the base of the tree' ],
+    'featured'    => [ 'file' => 'assets/img/blog/christmas-tree-water-toxic-dogs-cats.jpg', 'alt' => 'Golden retriever puppy sniffing near a Christmas tree stand with lights in the background' ],
     'content'     => <<<'HTML'
 <p>Can dogs or cats drink Christmas tree water? Plain water sitting in a tree stand is usually not toxic on its own &mdash; but the water in most stands is no longer "plain" for long. Commercial tree preservative packets, days of stagnant standing water growing bacteria, and anything an owner adds later (aspirin, sugar, bleach) are where the real risk comes from. Here is what is actually in that water, what signs to watch for, and how to keep pets away from the stand without fighting your pet all season.</p>
 
