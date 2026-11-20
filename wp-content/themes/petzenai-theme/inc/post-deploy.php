@@ -13,7 +13,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( ! defined( 'PZ_RELEASE' ) ) define( 'PZ_RELEASE', '2026-11-19-f' );
+if ( ! defined( 'PZ_RELEASE' ) ) define( 'PZ_RELEASE', '2026-11-20-a' );
 
 /** Delete Rank Math's cached sitemap files and transients. @return int number of cache entries removed */
 function pz_flush_rankmath_sitemap_cache() {
@@ -118,11 +118,18 @@ function pz_run_release_tasks() {
     } catch ( \Throwable $e ) { $log[] = 'banned dosage claim fix failed: ' . $e->getMessage(); }
 
     try {
-        if ( ! get_theme_mod( 'petzenai_social_instagram', '' ) ) {
-            set_theme_mod( 'petzenai_social_instagram', 'https://www.instagram.com/petzenai0/' );
-            $log[] = 'instagram social link set';
+        $socials = [
+            'petzenai_social_instagram' => 'https://www.instagram.com/petzenai0/',
+            'petzenai_social_facebook'  => 'https://www.facebook.com/petzenai/',
+            'petzenai_social_youtube'   => 'https://www.youtube.com/@PetzenAi',
+            'petzenai_social_twitter'   => 'https://x.com/Petzen_AI',
+        ];
+        $set = [];
+        foreach ( $socials as $mod => $url ) {
+            if ( ! get_theme_mod( $mod, '' ) ) { set_theme_mod( $mod, $url ); $set[] = $mod; }
         }
-    } catch ( \Throwable $e ) { $log[] = 'instagram social link failed: ' . $e->getMessage(); }
+        $log[] = 'social links set: ' . ( $set ? implode( ', ', $set ) : 'none (already set)' );
+    } catch ( \Throwable $e ) { $log[] = 'social links failed: ' . $e->getMessage(); }
 
     try { $log[] = 'sitemap cache entries removed: ' . pz_flush_rankmath_sitemap_cache(); }
     catch ( \Throwable $e ) { $log[] = 'sitemap flush failed: ' . $e->getMessage(); }
