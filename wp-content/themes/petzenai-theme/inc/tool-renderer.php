@@ -16044,6 +16044,7 @@ require_once __DIR__ . '/tool-content/cat-mats-removal-guide.php';
 require_once __DIR__ . '/tool-content/cat-taurine-guide.php';
 require_once __DIR__ . '/tool-content/dog-body-language-guide.php';
 require_once __DIR__ . '/tool-content/hamster-lifespan-guide.php';
+require_once __DIR__ . '/tool-content/hamster-wheel-size-guide.php';
 require_once __DIR__ . '/tool-content/multiple-pet-household-guide.php';
 require_once __DIR__ . '/tool-content/new-pet-checklist.php';
 require_once __DIR__ . '/tool-content/bird-cage-size-calculator.php';

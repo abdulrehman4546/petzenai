@@ -5,7 +5,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 function pz_hero_quickanswer_cat_dental_care_guide() { ?>
-    <div class="pz-hero-quickanswer"><strong>Quick answer:</strong> Periodontal disease is the single most common illness found in cats, with research cited by veterinary hospitals suggesting that up to 70% of cats show signs of dental disease by age three without proper dental care. Daily tooth brushing with a cat-specific toothpaste is the single most effective thing you can do at home, started gradually so your cat tolerates it.</div>
+    <div class="pz-hero-quickanswer"><strong>Quick answer:</strong> Dental disease is one of the most common health problems seen in adult cats, and it often develops silently because cats hide mouth pain well. Daily tooth brushing with a cat-specific toothpaste is the single most effective thing you can do at home, started gradually so your cat tolerates it.</div>
 <?php }
 
 function pz_what_is_cat_dental_care_guide() {
@@ -22,7 +22,7 @@ function pz_why_important_cat_dental_care_guide() {
     <div class="pz-why-grid">
       <div class="pz-why-item">
         <span class="pz-why-icon">🦷</span>
-        <div><strong>It is the most common illness in cats</strong><p>Periodontal disease is frequently cited as the single most common health problem seen in cats, with research suggesting the majority of cats show some sign of it by early adulthood without consistent dental care.</p></div>
+        <div><strong>It is one of the most common health problems in cats</strong><p>Periodontal disease is widely recognized by veterinary professionals as one of the most common conditions seen in adult cats without consistent dental care.</p></div>
       </div>
       <div class="pz-why-item">
         <span class="pz-why-icon">🤐</span>
@@ -34,7 +34,7 @@ function pz_why_important_cat_dental_care_guide() {
       </div>
       <div class="pz-why-item">
         <span class="pz-why-icon">🩺</span>
-        <div><strong>Advanced dental disease can affect more than the mouth</strong><p>Chronic oral infection has been linked in veterinary research to broader health concerns, which is part of why professional cleanings under anesthesia are sometimes needed for cats with established disease.</p></div>
+        <div><strong>Advanced dental disease can affect more than the mouth</strong><p>Chronic oral infection and inflammation left untreated can contribute to broader discomfort and health decline, which is part of why professional cleanings under anesthesia are sometimes needed for cats with established disease.</p></div>
       </div>
     </div>
     <?php return ob_get_clean();
@@ -78,7 +78,7 @@ function pz_faq_cat_dental_care_guide() {
         ['How often should I brush my cat\'s teeth?', 'Daily brushing is the gold standard for preventing plaque from hardening into tartar. If daily is not realistic at first, several times a week is still meaningfully better than none, while you build up the habit.'],
         ['What toothpaste is safe for cats?', 'Only use toothpaste made specifically for cats or labeled pet-safe. Human toothpaste can contain xylitol or fluoride at levels that are harmful if swallowed, which a cat will do.'],
         ['My cat will not let me near her mouth. What else can I do?', 'Dental-specific diets, water additives, and dental chews can offer some benefit for cats that will not tolerate brushing, though none works as well as actual brushing. Gradual taste training with a flavored cat toothpaste is worth trying again slowly before giving up on brushing entirely.'],
-        ['How common is dental disease in cats?', 'Very common. Periodontal disease is frequently described by veterinary hospitals as the single most common illness in cats, with studies suggesting a large proportion of cats show signs of it by young adulthood without regular dental care.'],
+        ['How common is dental disease in cats?', 'Very common. Periodontal disease is one of the most frequently diagnosed health issues in adult cats, especially without a consistent home dental care routine.'],
         ['What are the signs of dental disease in a cat?', 'Bad breath, red or swollen gums, drooling, reluctance to eat hard food, pawing at the mouth, and visible tartar (a yellow-brown buildup near the gumline) are common signs. Any of these are worth a vet visit.'],
         ['Does my cat need professional teeth cleaning under anesthesia?', 'Many cats eventually do, especially once tartar has built up below the gumline where a toothbrush cannot reach. A vet can tell you whether your cat\'s current dental condition calls for a professional cleaning.'],
         ['Can a cat with dental disease still eat normally?', 'Often yes, at least for a while, which is part of why dental disease can go unnoticed. Cats are known for hiding pain well, so normal eating does not guarantee healthy teeth and gums.'],

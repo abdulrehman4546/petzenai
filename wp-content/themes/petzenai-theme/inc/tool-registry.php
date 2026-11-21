@@ -286,7 +286,7 @@ function pz_get_all_tools() {
         ['slug'=>'small-pet-cage-guide','title'=>'Small Pet Cage Setup Guide','cat'=>'small-pets','animal'=>'small','type'=>'guide','kw'=>'small pet cage setup guide','icon'=>'🏠'],
         ['slug'=>'ferret-diet-guide','title'=>'Ferret Diet Guide: What Can Ferrets Eat?','cat'=>'small-pets','animal'=>'ferret','type'=>'guide','kw'=>'ferret diet guide','icon'=>'🍖'],
         ['slug'=>'chinchilla-dust-bath-guide','title'=>'Chinchilla Dust Bath Guide: How Often & Which Dust','cat'=>'small-pets','animal'=>'chinchilla','type'=>'guide','kw'=>'chinchilla dust bath guide','icon'=>'🧹'],
-        ['slug'=>'hamster-wheel-size-guide','title'=>'Hamster Wheel Size Guide by Breed','cat'=>'small-pets','animal'=>'hamster','type'=>'guide','kw'=>'hamster wheel size guide','icon'=>'⚙️'],
+        ['slug'=>'hamster-wheel-size-guide','title'=>'Hamster Wheel Size Guide by Breed','cat'=>'small-pets','animal'=>'hamster','type'=>'guide','kw'=>'hamster wheel size guide','icon'=>'⚙️','calc'=>'hamster_wheel_size_guide'],
         ['slug'=>'guinea-pig-vitamin-c-guide','title'=>'Guinea Pig Vitamin C: Sources & Requirements','cat'=>'small-pets','animal'=>'guinea-pig','type'=>'guide','kw'=>'guinea pig vitamin c guide','icon'=>'🍊'],
         ['slug'=>'hedgehog-hibernation-guide','title'=>'Hedgehog Hibernation Dangers & Prevention','cat'=>'small-pets','animal'=>'hedgehog','type'=>'guide','kw'=>'hedgehog hibernation dangers','icon'=>'❄️'],
         ['slug'=>'small-pet-bonding-guide','title'=>'How to Bond with Your Small Pet Guide','cat'=>'small-pets','animal'=>'small','type'=>'guide','kw'=>'how to bond with small pet','icon'=>'❤️'],

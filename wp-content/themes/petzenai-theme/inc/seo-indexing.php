@@ -283,6 +283,11 @@ function pz_tool_description( $tool ) {
     // Hand-written, keyword-targeted descriptions for pages that have been individually polished.
     static $custom = [
         'dog-bathing-frequency-calculator' => 'How often should you bathe your dog? Get a personalized schedule by coat type, breed, activity and season — plus shampoo dosage and a free calendar reminder.',
+        'cat-dental-care-guide' => 'Cat dental care guide: how to introduce brushing, pick a safe cat toothpaste, and spot early signs of dental disease at home.',
+        'hamster-wheel-size-guide' => 'Hamster wheel size guide: the right diameter for Syrian vs. dwarf hamsters, plus how to tell if your current wheel is too small.',
+        'cat-nail-trimming-guide' => 'Cat nail trimming guide: how often to trim, where to cut safely, and what to do if you nick the quick.',
+        'how-often-brush-cat' => 'How often should you brush your cat? A coat-type and season-based schedule for shorthaired and longhaired cats.',
+        'cat-bathing-guide' => 'How to bathe a cat step by step: when a bath is actually needed, safe shampoo, and how to keep the process calm.',
     ];
     if ( isset( $custom[ $tool['slug'] ] ) ) return $custom[ $tool['slug'] ];
     $title  = trim( preg_replace( '/\s*[:|—-]\s*(Complete|Step[- ]by[- ]Step)?.*$/u', '', $tool['title'] ) ) ?: $tool['title'];

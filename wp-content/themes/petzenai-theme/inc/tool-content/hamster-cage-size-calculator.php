@@ -46,7 +46,7 @@ function pz_steps_hamster_cage_size_calculator() {
         ['title' => 'Aim for at least 450 square inches minimum', 'desc' => 'This is a common baseline recommendation for a single Syrian or dwarf hamster, roughly equivalent to a 24×12 inch footprint, though more is better.'],
         ['title' => 'Plan for several inches of substrate depth', 'desc' => 'Hamsters need enough bedding depth, generally at least 6 inches, to dig and burrow, which is a core natural behavior, not just a comfort feature.'],
         ['title' => 'Choose a solid-floor cage over wire-bottom designs', 'desc' => 'Wire flooring can injure small feet and does not hold the substrate depth hamsters need, so a bin-style or solid-floor cage is usually a better fit.'],
-        ['title' => 'Add a wheel sized for your hamster\'s species', 'desc' => 'Syrian hamsters need a wheel at least 8 to 10 inches in diameter, and dwarf species need one similarly sized, since a too-small wheel can curve their spine over time.'],
+        ['title' => 'Add a wheel sized for your hamster\'s species', 'desc' => 'Syrian hamsters need a wheel at least 11 inches (28 cm) in diameter, and dwarf species need at least 8 inches (20 cm), since a too-small wheel can curve their spine over time.'],
         ['title' => 'House hamsters alone unless you have verified dwarf species that tolerate company', 'desc' => 'Syrian hamsters are strictly solitary and will fight if housed together; some dwarf species can sometimes cohabit but this needs careful, informed management.'],
     ];
 }
@@ -78,7 +78,7 @@ function pz_faq_hamster_cage_size_calculator() {
         ['Why do pet store cages often seem too small?', 'Many cages are designed and marketed primarily for retail convenience and shelf space rather than to meet the floor space and substrate depth hamsters actually need.'],
         ['How deep should hamster bedding be?', 'A common recommendation is at least 6 inches of substrate depth, since hamsters are natural burrowers and need enough material to dig proper tunnels.'],
         ['Can two hamsters live in the same cage?', 'Syrian hamsters should always be housed alone past weaning age, since they are solitary and will often fight. Some dwarf species can occasionally cohabit, but this requires careful monitoring and is not guaranteed to work.'],
-        ['What size wheel does a hamster need?', 'The wheel should be at least as long as the hamster\'s body when stretched out, generally around 8 to 10 inches for Syrian hamsters, to avoid forcing an arched, unnatural running posture.'],
+        ['What size wheel does a hamster need?', 'The wheel should be at least as long as the hamster\'s body when stretched out, generally at least 11 inches (28 cm) for Syrian hamsters and at least 8 inches (20 cm) for dwarf species, to avoid forcing an arched, unnatural running posture.'],
         ['Is a bigger cage always better for a hamster?', 'Generally yes, as long as the hamster can still easily find food, water, and a nest area without excessive searching. More floor space supports natural running, digging, and foraging behaviors.'],
     ];
 }
