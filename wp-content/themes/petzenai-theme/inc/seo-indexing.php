@@ -290,6 +290,11 @@ function pz_tool_description( $tool ) {
         'cat-bathing-guide' => 'How to bathe a cat step by step: when a bath is actually needed, safe shampoo, and how to keep the process calm.',
         'parrot-feeding-guide' => 'Parrot feeding guide: why pellets and fresh vegetables should anchor the diet, why seed should stay a treat, and foods parrots should never eat.',
         'budgie-care-guide' => 'Budgie care guide: cage size, flock needs, and daily diet basics for keeping a happy, healthy pet budgie or parakeet.',
+        'cockatiel-care-guide' => 'Cockatiel care guide: cage size, daily diet, and reading crest and behavior cues for a calmer, healthier pet cockatiel.',
+        'bird-food-portion-calculator' => 'Bird food portion calculator: get a personalized daily calorie estimate by life stage, weight, and activity level.',
+        'bird-toxic-foods-guide' => 'Foods toxic to birds: avocado, chocolate, caffeine, alcohol, and onion or garlic — what to keep away from your pet bird.',
+        'bird-temperature-guide' => 'Ideal temperature for pet birds: the general comfort range, why stability matters, and how to avoid drafts and swings.',
+        'how-to-tame-a-bird' => 'How to tame a pet bird step by step: building trust from hand-feeding treats through the bars to a reliable step-up.',
     ];
     if ( isset( $custom[ $tool['slug'] ] ) ) return $custom[ $tool['slug'] ];
     $title  = trim( preg_replace( '/\s*[:|—-]\s*(Complete|Step[- ]by[- ]Step)?.*$/u', '', $tool['title'] ) ) ?: $tool['title'];
