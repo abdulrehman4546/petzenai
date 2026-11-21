@@ -16049,6 +16049,8 @@ require_once __DIR__ . '/tool-content/multiple-pet-household-guide.php';
 require_once __DIR__ . '/tool-content/new-pet-checklist.php';
 require_once __DIR__ . '/tool-content/bird-cage-size-calculator.php';
 require_once __DIR__ . '/tool-content/bird-illness-signs-checker.php';
+require_once __DIR__ . '/tool-content/parrot-feeding-guide.php';
+require_once __DIR__ . '/tool-content/budgie-care-guide.php';
 require_once __DIR__ . '/tool-content/cat-vet-visit-frequency.php';
 require_once __DIR__ . '/tool-content/hamster-cage-size-calculator.php';
 require_once __DIR__ . '/tool-content/pet-anxiety-medications-guide.php';

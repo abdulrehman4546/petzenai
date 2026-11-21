@@ -184,8 +184,8 @@ function pz_get_all_tools() {
         // ═══════════════════════════════════════════
         // BIRD CARE (20)
         // ═══════════════════════════════════════════
-        ['slug'=>'parrot-feeding-guide','title'=>'Parrot Feeding Guide: Diet & Nutrition','cat'=>'bird-care','animal'=>'bird','type'=>'guide','kw'=>'parrot feeding guide','icon'=>'🦜'],
-        ['slug'=>'budgie-care-guide','title'=>'Budgie (Parakeet) Care Guide for Beginners','cat'=>'bird-care','animal'=>'bird','type'=>'guide','kw'=>'budgie care guide','icon'=>'🐦'],
+        ['slug'=>'parrot-feeding-guide','title'=>'Parrot Feeding Guide: Diet & Nutrition','cat'=>'bird-care','animal'=>'bird','type'=>'guide','kw'=>'parrot feeding guide','icon'=>'🦜','calc'=>'parrot_feeding_guide'],
+        ['slug'=>'budgie-care-guide','title'=>'Budgie (Parakeet) Care Guide for Beginners','cat'=>'bird-care','animal'=>'bird','type'=>'guide','kw'=>'budgie care guide','icon'=>'🐦','calc'=>'budgie_care_guide'],
         ['slug'=>'cockatiel-care-guide','title'=>'Cockatiel Care Guide: Diet, Health & Housing','cat'=>'bird-care','animal'=>'bird','type'=>'guide','kw'=>'cockatiel care guide','icon'=>'🐦'],
         ['slug'=>'bird-cage-size-calculator','title'=>'Bird Cage Size Calculator by Species','cat'=>'bird-care','animal'=>'bird','type'=>'calculator','kw'=>'bird cage size calculator','icon'=>'🏠','calc'=>'bird_cage_size_calculator'],
         ['slug'=>'bird-food-portion-calculator','title'=>'Bird Food Portion Calculator by Species','cat'=>'bird-care','animal'=>'bird','type'=>'calculator','kw'=>'bird food portion calculator','icon'=>'🌾'],

@@ -288,6 +288,8 @@ function pz_tool_description( $tool ) {
         'cat-nail-trimming-guide' => 'Cat nail trimming guide: how often to trim, where to cut safely, and what to do if you nick the quick.',
         'how-often-brush-cat' => 'How often should you brush your cat? A coat-type and season-based schedule for shorthaired and longhaired cats.',
         'cat-bathing-guide' => 'How to bathe a cat step by step: when a bath is actually needed, safe shampoo, and how to keep the process calm.',
+        'parrot-feeding-guide' => 'Parrot feeding guide: why pellets and fresh vegetables should anchor the diet, why seed should stay a treat, and foods parrots should never eat.',
+        'budgie-care-guide' => 'Budgie care guide: cage size, flock needs, and daily diet basics for keeping a happy, healthy pet budgie or parakeet.',
     ];
     if ( isset( $custom[ $tool['slug'] ] ) ) return $custom[ $tool['slug'] ];
     $title  = trim( preg_replace( '/\s*[:|—-]\s*(Complete|Step[- ]by[- ]Step)?.*$/u', '', $tool['title'] ) ) ?: $tool['title'];
