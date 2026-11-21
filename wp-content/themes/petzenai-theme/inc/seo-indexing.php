@@ -295,6 +295,11 @@ function pz_tool_description( $tool ) {
         'bird-toxic-foods-guide' => 'Foods toxic to birds: avocado, chocolate, caffeine, alcohol, and onion or garlic — what to keep away from your pet bird.',
         'bird-temperature-guide' => 'Ideal temperature for pet birds: the general comfort range, why stability matters, and how to avoid drafts and swings.',
         'how-to-tame-a-bird' => 'How to tame a pet bird step by step: building trust from hand-feeding treats through the bars to a reliable step-up.',
+        'bird-molting-guide' => 'Bird molting guide: what a normal molt looks like, why blood feathers can bleed, and when feather loss needs a vet visit.',
+        'bird-lifespan-guide' => 'Pet bird lifespan by species: how long budgies, cockatiels, lovebirds, and large parrots like African greys typically live.',
+        'african-grey-parrot-care' => 'African grey parrot care: meeting their above-average intelligence with enrichment, plus diet, cage, and bonding basics.',
+        'lovebird-care-guide' => 'Lovebird care guide: their intense pair-bonding instinct, cage size, daily diet, and handling a nippy, bold temperament.',
+        'cockatoo-care-guide' => 'Cockatoo care guide: their constant need for physical contact, high volume, and avoiding feather-destructive behavior.',
     ];
     if ( isset( $custom[ $tool['slug'] ] ) ) return $custom[ $tool['slug'] ];
     $title  = trim( preg_replace( '/\s*[:|—-]\s*(Complete|Step[- ]by[- ]Step)?.*$/u', '', $tool['title'] ) ) ?: $tool['title'];
