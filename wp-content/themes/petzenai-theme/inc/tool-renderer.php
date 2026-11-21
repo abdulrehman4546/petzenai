@@ -16122,3 +16122,8 @@ require_once __DIR__ . '/tool-content/rabbit-food-portion-calculator.php';
 require_once __DIR__ . '/tool-content/rabbit-lifespan-calculator.php';
 require_once __DIR__ . '/tool-content/rabbit-health-checker.php';
 require_once __DIR__ . '/tool-content/rabbit-toxic-foods-guide.php';
+require_once __DIR__ . '/tool-content/rabbit-litter-training-guide.php';
+require_once __DIR__ . '/tool-content/rabbit-spay-neuter-guide.php';
+require_once __DIR__ . '/tool-content/rabbit-grooming-guide.php';
+require_once __DIR__ . '/tool-content/rabbit-bonding-guide.php';
+require_once __DIR__ . '/tool-content/rabbit-exercise-guide.php';
