@@ -16137,6 +16137,11 @@ require_once __DIR__ . '/tool-content/aquarium-water-temperature-guide.php';
 require_once __DIR__ . '/tool-content/aquarium-ph-guide.php';
 require_once __DIR__ . '/tool-content/fish-tank-cycling-guide.php';
 require_once __DIR__ . '/tool-content/fish-tank-cleaning-schedule.php';
+require_once __DIR__ . '/tool-content/betta-fish-care-guide.php';
+require_once __DIR__ . '/tool-content/goldfish-care-guide.php';
+require_once __DIR__ . '/tool-content/tropical-fish-care-guide.php';
+require_once __DIR__ . '/tool-content/saltwater-aquarium-guide.php';
+require_once __DIR__ . '/tool-content/fish-disease-checker.php';
 
 /** Static reference widget for the fish tank size guide — no JS/calculator logic, just a quick-reference card, so the page doesn't fall back to the generic mammal pet-profile form. */
 function pz_render_guide_aquarium_size_calculator( $tool ) {
@@ -16288,6 +16293,110 @@ function pz_render_guide_fish_tank_cycling_guide( $tool ) {
         <div class="pz-int-field" style="grid-column:1/-1">
           <label class="pz-int-label-txt">How long it takes</label>
           <p style="margin:8px 0 0;color:#333">Commonly cited as several weeks — test kit readings, not a fixed day count, are what actually confirm a tank is ready for fish.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for betta fish care — no JS/calculator logic, just the solitary/heating/labyrinth-organ points. */
+function pz_render_guide_betta_fish_care_guide( $tool ) {
+    $icon = $tool['icon'] ?? '🐟';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Betta Fish Quick Reference</div><div class="pz-int-sublabel">Housing & heating basics · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Housing — one betta at a time</label>
+          <p style="margin:8px 0 0;color:#333">Bettas, especially males, are territorial and typically need to live alone. The labyrinth organ lets them gulp air at the surface, but that's about oxygen, not a reason to skip a heater.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Heating is still required</label>
+          <p style="margin:8px 0 0;color:#333">Bettas are tropical fish and need a heater for a warm, stable temperature — small unheated bowls are an outdated and risky approach linked to fin damage.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for goldfish care — no JS/calculator logic, just the coldwater/bioload/lifespan points. */
+function pz_render_guide_goldfish_care_guide( $tool ) {
+    $icon = $tool['icon'] ?? '🐠';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Goldfish Quick Reference</div><div class="pz-int-sublabel">Tank size & bioload basics · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Coldwater species, higher bioload than expected</label>
+          <p style="margin:8px 0 0;color:#333">Goldfish are commonly kept around 65-72°F, generally without a heater, but they produce more waste relative to their size than many keepers expect — plan tank size and filtration accordingly.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Long potential lifespan</label>
+          <p style="margin:8px 0 0;color:#333">Well-cared-for goldfish are often cited as living 10-15+ years or more, a lifespan frequently cut short by undersized bowl-style keeping.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for the tropical fish category overview — no JS/calculator logic, just the category-definition points. */
+function pz_render_guide_tropical_fish_care_guide( $tool ) {
+    $icon = $tool['icon'] ?? '🐡';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Tropical Fish Quick Reference</div><div class="pz-int-sublabel">Category overview · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">What "tropical" means</label>
+          <p style="margin:8px 0 0;color:#333">A broad category of species needing warm, heated water commonly cited around 75-80°F — not a single fish or care routine.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Compatibility still needs its own research</label>
+          <p style="margin:8px 0 0;color:#333">Sharing a temperature range doesn't guarantee two tropical species will get along — check temperament and size before building a community tank.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for saltwater/marine setup — no JS/calculator logic, just the salinity/live-rock/sensitivity points that differ from the already-live freshwater guides. */
+function pz_render_guide_saltwater_aquarium_guide( $tool ) {
+    $icon = $tool['icon'] ?? '🌊';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Saltwater Setup Quick Reference</div><div class="pz-int-sublabel">What's different from freshwater · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Salinity (specific gravity)</label>
+          <p style="margin:8px 0 0;color:#333">A new measurement freshwater tanks don't need — regular testing alongside standard water quality checks is part of basic marine maintenance.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Live rock curing & higher sensitivity</label>
+          <p style="margin:8px 0 0;color:#333">Live rock typically needs a curing period before fish go in, and marine species generally tolerate less parameter swing than many freshwater community fish.</p>
         </div>
       </div>
     </div>
