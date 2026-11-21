@@ -198,12 +198,12 @@ function pz_get_all_tools() {
         ['slug'=>'african-grey-parrot-care','title'=>'African Grey Parrot Care Guide','cat'=>'bird-care','animal'=>'bird','type'=>'guide','kw'=>'african grey parrot care guide','icon'=>'🦜','calc'=>'african_grey_parrot_care'],
         ['slug'=>'lovebird-care-guide','title'=>'Lovebird Care Guide: Diet, Housing & Health','cat'=>'bird-care','animal'=>'bird','type'=>'guide','kw'=>'lovebird care guide','icon'=>'❤️','calc'=>'lovebird_care_guide'],
         ['slug'=>'cockatoo-care-guide','title'=>'Cockatoo Care Guide: Complete Owner Guide','cat'=>'bird-care','animal'=>'bird','type'=>'guide','kw'=>'cockatoo care guide','icon'=>'🦜','calc'=>'cockatoo_care_guide'],
-        ['slug'=>'canary-care-guide','title'=>'Canary Care Guide: Diet, Singing & Health','cat'=>'bird-care','animal'=>'bird','type'=>'guide','kw'=>'canary care guide','icon'=>'🐦'],
+        ['slug'=>'canary-care-guide','title'=>'Canary Care Guide: Diet, Singing & Health','cat'=>'bird-care','animal'=>'bird','type'=>'guide','kw'=>'canary care guide','icon'=>'🐦','calc'=>'canary_care_guide'],
         ['slug'=>'bird-enrichment-guide','title'=>'Bird Enrichment Ideas & Mental Stimulation Guide','cat'=>'bird-care','animal'=>'bird','type'=>'guide','kw'=>'bird enrichment ideas guide','icon'=>'🎠','calc'=>'bird_enrichment_guide'],
-        ['slug'=>'bird-egg-incubation-guide','title'=>'Bird Egg Incubation Guide & Calculator','cat'=>'bird-care','animal'=>'bird','type'=>'calculator','kw'=>'bird egg incubation guide','icon'=>'🥚'],
-        ['slug'=>'bird-sleep-requirements-guide','title'=>'How Much Sleep Do Pet Birds Need?','cat'=>'bird-care','animal'=>'bird','type'=>'guide','kw'=>'how much sleep do pet birds need','icon'=>'😴'],
-        ['slug'=>'bird-feather-plucking-guide','title'=>'Bird Feather Plucking: Causes & Solutions','cat'=>'bird-care','animal'=>'bird','type'=>'guide','kw'=>'bird feather plucking causes','icon'=>'🪶'],
-        ['slug'=>'finch-care-guide','title'=>'Finch Care Guide: Diet, Cage & Health','cat'=>'bird-care','animal'=>'bird','type'=>'guide','kw'=>'finch care guide','icon'=>'🐦'],
+        ['slug'=>'bird-egg-incubation-guide','title'=>'Bird Egg Incubation Guide & Calculator','cat'=>'bird-care','animal'=>'bird','type'=>'calculator','kw'=>'bird egg incubation guide','icon'=>'🥚','calc'=>'bird_egg_incubation_guide'],
+        ['slug'=>'bird-sleep-requirements-guide','title'=>'How Much Sleep Do Pet Birds Need?','cat'=>'bird-care','animal'=>'bird','type'=>'guide','kw'=>'how much sleep do pet birds need','icon'=>'😴','calc'=>'bird_sleep_requirements_guide'],
+        ['slug'=>'bird-feather-plucking-guide','title'=>'Bird Feather Plucking: Causes & Solutions','cat'=>'bird-care','animal'=>'bird','type'=>'guide','kw'=>'bird feather plucking causes','icon'=>'🪶','calc'=>'bird_feather_plucking_guide'],
+        ['slug'=>'finch-care-guide','title'=>'Finch Care Guide: Diet, Cage & Health','cat'=>'bird-care','animal'=>'bird','type'=>'guide','kw'=>'finch care guide','icon'=>'🐦','calc'=>'finch_care_guide'],
 
         // ═══════════════════════════════════════════
         // RABBIT CARE (15)

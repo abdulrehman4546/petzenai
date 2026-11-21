@@ -300,6 +300,11 @@ function pz_tool_description( $tool ) {
         'african-grey-parrot-care' => 'African grey parrot care: meeting their above-average intelligence with enrichment, plus diet, cage, and bonding basics.',
         'lovebird-care-guide' => 'Lovebird care guide: their intense pair-bonding instinct, cage size, daily diet, and handling a nippy, bold temperament.',
         'cockatoo-care-guide' => 'Cockatoo care guide: their constant need for physical contact, high volume, and avoiding feather-destructive behavior.',
+        'canary-care-guide' => 'Canary care guide: why males sing and females mostly don\'t, solo housing, simple diet, and realistic lifespan.',
+        'bird-egg-incubation-guide' => 'Bird egg incubation guide: temperature, humidity, turning eggs, and checking fertility by candling.',
+        'bird-sleep-requirements-guide' => 'How much sleep pet birds need, why 10-12 hours of darkness matters, and signs of sleep deprivation.',
+        'bird-feather-plucking-guide' => 'Bird feather plucking causes: behavioral, medical, and environmental triggers, and when to see an avian vet.',
+        'finch-care-guide' => 'Finch care guide: why finches need their own flock, aren\'t a handling pet, diet, cage size, and lifespan.',
     ];
     if ( isset( $custom[ $tool['slug'] ] ) ) return $custom[ $tool['slug'] ];
     $title  = trim( preg_replace( '/\s*[:|—-]\s*(Complete|Step[- ]by[- ]Step)?.*$/u', '', $tool['title'] ) ) ?: $tool['title'];
