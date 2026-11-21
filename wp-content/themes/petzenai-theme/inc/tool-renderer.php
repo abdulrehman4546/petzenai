@@ -16117,3 +16117,8 @@ require_once __DIR__ . '/tool-content/cat-fiv-guide.php';
 require_once __DIR__ . '/tool-content/cat-pancreatitis-guide.php';
 require_once __DIR__ . '/tool-content/cat-ringworm-guide.php';
 require_once __DIR__ . '/tool-content/cat-heartworm-guide.php';
+require_once __DIR__ . '/tool-content/rabbit-feeding-guide.php';
+require_once __DIR__ . '/tool-content/rabbit-food-portion-calculator.php';
+require_once __DIR__ . '/tool-content/rabbit-lifespan-calculator.php';
+require_once __DIR__ . '/tool-content/rabbit-health-checker.php';
+require_once __DIR__ . '/tool-content/rabbit-toxic-foods-guide.php';
