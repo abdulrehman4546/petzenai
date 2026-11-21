@@ -16132,6 +16132,11 @@ require_once __DIR__ . '/tool-content/rabbit-gi-stasis-guide.php';
 require_once __DIR__ . '/tool-content/dwarf-rabbit-care-guide.php';
 require_once __DIR__ . '/tool-content/rabbit-dental-health-guide.php';
 require_once __DIR__ . '/tool-content/aquarium-size-calculator.php';
+require_once __DIR__ . '/tool-content/fish-feeding-guide.php';
+require_once __DIR__ . '/tool-content/aquarium-water-temperature-guide.php';
+require_once __DIR__ . '/tool-content/aquarium-ph-guide.php';
+require_once __DIR__ . '/tool-content/fish-tank-cycling-guide.php';
+require_once __DIR__ . '/tool-content/fish-tank-cleaning-schedule.php';
 
 /** Static reference widget for the fish tank size guide — no JS/calculator logic, just a quick-reference card, so the page doesn't fall back to the generic mammal pet-profile form. */
 function pz_render_guide_aquarium_size_calculator( $tool ) {
@@ -16153,6 +16158,136 @@ function pz_render_guide_aquarium_size_calculator( $tool ) {
         <div class="pz-int-field" style="grid-column:1/-1">
           <label class="pz-int-label-txt">Why the rule alone isn't enough</label>
           <p style="margin:8px 0 0;color:#333">Schooling fish, heavy waste producers, and fish that grow much larger than their juvenile size all need more room than the simple ratio suggests — always check a species' adult size and care needs before buying the tank.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for the fish feeding guide — no JS/calculator logic, since fish feeding amounts are a general behavior-based guideline, not a weight-based formula. */
+function pz_render_guide_fish_feeding_guide( $tool ) {
+    $icon = $tool['icon'] ?? '🐡';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Fish Feeding Quick Reference</div><div class="pz-int-sublabel">Portion & frequency guideline · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Portion size rule of thumb</label>
+          <p style="margin:8px 0 0;color:#333">Offer only as much food as fish can finish within a couple of minutes, rather than measuring an exact amount — this applies to most community fish and avoids guesswork around precise weights.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Frequency and the most common mistake</label>
+          <p style="margin:8px 0 0;color:#333">Once or twice daily works for most community fish. Overfeeding — not underfeeding — is the most common issue, since leftover food breaks down and adds to the tank's waste load.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for the fish tank cleaning schedule — no JS/calculator logic, since maintenance tasks are a recurring checklist, not a weight-based calculation. */
+function pz_render_guide_fish_tank_cleaning_schedule( $tool ) {
+    $icon = $tool['icon'] ?? '🧹';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Tank Cleaning Quick Reference</div><div class="pz-int-sublabel">Routine maintenance checklist · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Water changes</label>
+          <p style="margin:8px 0 0;color:#333">A commonly cited routine is roughly 10-25% of tank volume changed weekly or biweekly — never a full 100% change, which removes too much of the tank's established bacterial balance at once.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Gravel vacuuming & filter media</label>
+          <p style="margin:8px 0 0;color:#333">Vacuum the substrate during water changes to remove settled debris, and rinse filter media in removed tank water — never tap water — to preserve the beneficial bacteria it hosts.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for aquarium water temperature — no JS/calculator logic, just species-type temperature ranges. */
+function pz_render_guide_aquarium_water_temperature_guide( $tool ) {
+    $icon = $tool['icon'] ?? '🌡️';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Water Temperature Quick Reference</div><div class="pz-int-sublabel">Species-type ranges · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Tropical species</label>
+          <p style="margin:8px 0 0;color:#333">A commonly cited range is about 75-80°F (24-27°C) for most tropical community fish — check your specific species, since needs vary.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Coldwater species (e.g. goldfish)</label>
+          <p style="margin:8px 0 0;color:#333">A commonly cited range is about 65-72°F (18-22°C) — a heater built for tropical ranges is usually unnecessary and can run too warm for these species.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for aquarium pH — no JS/calculator logic, just a general range and the stability-over-precision point. */
+function pz_render_guide_aquarium_ph_guide( $tool ) {
+    $icon = $tool['icon'] ?? '🧪';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">pH Quick Reference</div><div class="pz-int-sublabel">General range · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">General community range</label>
+          <p style="margin:8px 0 0;color:#333">Roughly 6.5-7.5 suits many community fish, but species vary a lot — African cichlids often want higher pH, many South American species want lower, softer water.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Stability matters more than the exact number</label>
+          <p style="margin:8px 0 0;color:#333">A steady pH that sits slightly off the textbook target is generally easier on fish than one that swings around while chasing a perfect reading.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for the nitrogen cycle — no JS/calculator logic, just the concept and a qualitative timeframe. */
+function pz_render_guide_fish_tank_cycling_guide( $tool ) {
+    $icon = $tool['icon'] ?? '🔄';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Tank Cycling Quick Reference</div><div class="pz-int-sublabel">The nitrogen cycle · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">What cycling means</label>
+          <p style="margin:8px 0 0;color:#333">Beneficial bacteria build up to convert ammonia into nitrite and then into less-harmful nitrate — a new tank needs this bacteria colony established before it can safely hold fish.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">How long it takes</label>
+          <p style="margin:8px 0 0;color:#333">Commonly cited as several weeks — test kit readings, not a fixed day count, are what actually confirm a tank is ready for fish.</p>
         </div>
       </div>
     </div>

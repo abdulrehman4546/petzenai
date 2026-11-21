@@ -228,11 +228,11 @@ function pz_get_all_tools() {
         // FISH & AQUARIUM (20)
         // ═══════════════════════════════════════════
         ['slug'=>'aquarium-size-calculator','title'=>'Fish Tank Size Calculator: Gallons Per Fish','cat'=>'fish-aquarium','animal'=>'fish','type'=>'guide','kw'=>'fish tank size calculator','icon'=>'🐠','calc'=>'aquarium_size_calculator'],
-        ['slug'=>'fish-feeding-guide','title'=>'How Much to Feed Fish: Feeding Guide & Calculator','cat'=>'fish-aquarium','animal'=>'fish','type'=>'calculator','kw'=>'how much to feed fish','icon'=>'🐡'],
-        ['slug'=>'aquarium-water-temperature-guide','title'=>'Aquarium Water Temperature Guide by Fish Type','cat'=>'fish-aquarium','animal'=>'fish','type'=>'guide','kw'=>'aquarium water temperature guide','icon'=>'🌡️'],
-        ['slug'=>'aquarium-ph-guide','title'=>'Aquarium pH Levels: Complete Guide','cat'=>'fish-aquarium','animal'=>'fish','type'=>'guide','kw'=>'aquarium ph guide','icon'=>'🧪'],
-        ['slug'=>'fish-tank-cycling-guide','title'=>'Fish Tank Nitrogen Cycle Guide for Beginners','cat'=>'fish-aquarium','animal'=>'fish','type'=>'guide','kw'=>'fish tank cycling guide','icon'=>'🔄'],
-        ['slug'=>'fish-tank-cleaning-schedule','title'=>'Fish Tank Cleaning Schedule Calculator','cat'=>'fish-aquarium','animal'=>'fish','type'=>'calculator','kw'=>'fish tank cleaning schedule','icon'=>'🧹'],
+        ['slug'=>'fish-feeding-guide','title'=>'How Much to Feed Fish: Feeding Guide','cat'=>'fish-aquarium','animal'=>'fish','type'=>'guide','kw'=>'how much to feed fish','icon'=>'🐡','calc'=>'fish_feeding_guide'],
+        ['slug'=>'aquarium-water-temperature-guide','title'=>'Aquarium Water Temperature Guide by Fish Type','cat'=>'fish-aquarium','animal'=>'fish','type'=>'guide','kw'=>'aquarium water temperature guide','icon'=>'🌡️','calc'=>'aquarium_water_temperature_guide'],
+        ['slug'=>'aquarium-ph-guide','title'=>'Aquarium pH Levels: Complete Guide','cat'=>'fish-aquarium','animal'=>'fish','type'=>'guide','kw'=>'aquarium ph guide','icon'=>'🧪','calc'=>'aquarium_ph_guide'],
+        ['slug'=>'fish-tank-cycling-guide','title'=>'Fish Tank Nitrogen Cycle Guide for Beginners','cat'=>'fish-aquarium','animal'=>'fish','type'=>'guide','kw'=>'fish tank cycling guide','icon'=>'🔄','calc'=>'fish_tank_cycling_guide'],
+        ['slug'=>'fish-tank-cleaning-schedule','title'=>'Fish Tank Cleaning Schedule Guide','cat'=>'fish-aquarium','animal'=>'fish','type'=>'guide','kw'=>'fish tank cleaning schedule','icon'=>'🧹','calc'=>'fish_tank_cleaning_schedule'],
         ['slug'=>'betta-fish-care-guide','title'=>'Betta Fish Care Guide: Tank, Diet & Health','cat'=>'fish-aquarium','animal'=>'fish','type'=>'guide','kw'=>'betta fish care guide','icon'=>'🐟'],
         ['slug'=>'goldfish-care-guide','title'=>'Goldfish Care Guide: Tank Setup & Feeding','cat'=>'fish-aquarium','animal'=>'fish','type'=>'guide','kw'=>'goldfish care guide','icon'=>'🐠'],
         ['slug'=>'tropical-fish-care-guide','title'=>'Tropical Fish Care Guide for Beginners','cat'=>'fish-aquarium','animal'=>'fish','type'=>'guide','kw'=>'tropical fish care guide','icon'=>'🐡'],
