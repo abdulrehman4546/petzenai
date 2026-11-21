@@ -529,11 +529,25 @@ function pzRunChecker() {
   questions.forEach(function(q) {
     if (q.checked) {
       answered.add(q.name);
-      if (['no','severe','frequent','very_low'].indexOf(q.value)>-1) score += 3;
-      else if (['less','once','lower','mild','more'].indexOf(q.value)>-1) score += 1;
+      // Severity weight is rendered per-option by pz_get_checker_questions()
+      // (inc/tool-renderer.php), so this works correctly for every animal's own
+      // answer wording (fish/bird/reptile/rabbit/dog/cat), not just dog/cat terms.
+      var w = parseInt(q.getAttribute('data-weight'), 10);
+      if (!isNaN(w)) score += w;
     }
   });
-  var uniqueQ = document.querySelectorAll('.pz-checker-step').length;
+  var body = document.getElementById('pz-checker-body');
+  var animal = (body && body.getAttribute('data-animal')) || 'pet';
+  // Species-appropriate professional to see + care-routine wording, since a fish
+  // or reptile owner can't take a "vet" vaccination/wellness-exam message literally.
+  var speciesCopy = {
+    fish:    {pro: 'an aquatic veterinarian or experienced aquarium specialist', routine: 'feeding and water-testing routine', checkup: 'water quality test and tank health check', prevention: 'water changes and filter maintenance'},
+    bird:    {pro: 'an avian veterinarian', routine: 'feeding and cage-care routine', checkup: 'annual avian wellness check-up', prevention: 'parasite prevention and a clean cage environment'},
+    reptile: {pro: 'a reptile (exotics) veterinarian', routine: 'feeding, temperature, and humidity routine', checkup: 'annual wellness check-up', prevention: 'proper husbandry and parasite prevention'},
+    rabbit:  {pro: 'a rabbit-savvy veterinarian', routine: 'hay, feeding, and litter routine', checkup: 'annual wellness check-up', prevention: 'vaccinations (where recommended) and parasite prevention'},
+    pet:     {pro: 'your veterinarian', routine: 'feeding and care routine', checkup: 'annual wellness check-up', prevention: 'vaccinations and parasite prevention'}
+  };
+  var copy = speciesCopy[animal] || speciesCopy.pet;
   var fill = document.getElementById('pz-prog-fill');
   if(fill) fill.style.width='100%';
   result.style.display='block';
@@ -541,10 +555,10 @@ function pzRunChecker() {
     result.innerHTML='<div class="pz-result-danger" style="border-radius:16px;overflow:hidden">'
       +'<div style="background:linear-gradient(135deg,#B71C1C,#C62828);color:#fff;padding:24px;text-align:center">'
       +'<div style="font-size:40px;margin-bottom:8px">🚨</div>'
-      +'<div style="font-size:20px;font-weight:900;margin-bottom:6px">Urgent: See Your Vet Today</div>'
+      +'<div style="font-size:20px;font-weight:900;margin-bottom:6px">Urgent: See '+copy.pro+' Today</div>'
       +'<div style="font-size:13px;opacity:.8">Multiple concerning signs detected</div></div>'
       +'<div class="pz-result-tips"><ul>'
-      +'<li>Contact your veterinarian immediately or visit an emergency clinic</li>'
+      +'<li>Contact '+copy.pro+' immediately, or an emergency clinic if unavailable</li>'
       +'<li>Do not wait to see if symptoms improve on their own</li>'
       +'<li>Bring notes of all symptoms and when they started</li>'
       +'</ul></div></div>';
@@ -552,12 +566,12 @@ function pzRunChecker() {
     result.innerHTML='<div class="pz-result-warning" style="border-radius:16px;overflow:hidden">'
       +'<div style="background:linear-gradient(135deg,#E65100,#FF9800);color:#fff;padding:24px;text-align:center">'
       +'<div style="font-size:40px;margin-bottom:8px">⚠️</div>'
-      +'<div style="font-size:20px;font-weight:900;margin-bottom:6px">Monitor Closely — Vet Visit Recommended</div>'
+      +'<div style="font-size:20px;font-weight:900;margin-bottom:6px">Monitor Closely — Visit Recommended</div>'
       +'<div style="font-size:13px;opacity:.8">Some concerning signs detected</div></div>'
       +'<div class="pz-result-tips"><ul>'
-      +'<li>Schedule a vet appointment within 24–48 hours</li>'
-      +'<li>Monitor food intake, water consumption, and energy levels</li>'
-      +'<li>Take photos or video of any abnormal behavior to show your vet</li>'
+      +'<li>Schedule a visit with '+copy.pro+' within 24–48 hours</li>'
+      +'<li>Monitor '+copy.routine+' closely in the meantime</li>'
+      +'<li>Take photos or video of any abnormal signs to show '+copy.pro+'</li>'
       +'</ul></div></div>';
   } else {
     result.innerHTML='<div class="pz-result-success" style="border-radius:16px;overflow:hidden">'
@@ -566,9 +580,9 @@ function pzRunChecker() {
       +'<div style="font-size:20px;font-weight:900;margin-bottom:6px">Your Pet Looks Healthy!</div>'
       +'<div style="font-size:13px;opacity:.8">No major concerns detected</div></div>'
       +'<div class="pz-result-tips"><ul>'
-      +'<li>Continue your regular feeding and care routine</li>'
-      +'<li>Schedule an annual wellness check-up with your vet</li>'
-      +'<li>Keep up with vaccinations and parasite prevention</li>'
+      +'<li>Continue your regular '+copy.routine+'</li>'
+      +'<li>Schedule a '+copy.checkup+' with '+copy.pro+'</li>'
+      +'<li>Keep up with '+copy.prevention+'</li>'
       +'</ul></div></div>';
   }
   }, 650);

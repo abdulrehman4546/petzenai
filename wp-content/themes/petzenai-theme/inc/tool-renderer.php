@@ -690,7 +690,7 @@ function pz_render_interactive( $tool ) {
       </div>
     </div>
 
-    <div class="pz-int-body">
+    <div class="pz-int-body" id="pz-checker-body" data-animal="<?php echo esc_attr($animalL); ?>">
       <div class="pz-checker-progress-wrap">
         <div class="pz-checker-progress-bar"><div class="pz-checker-progress-fill" id="pz-prog-fill" style="width:0%"></div></div>
         <span class="pz-checker-progress-txt" id="pz-prog-txt">Question 1 of 5</span>
@@ -703,13 +703,16 @@ function pz_render_interactive( $tool ) {
         <div class="pz-checker-q-num">Question <?php echo $i+1; ?> / <?php echo count($qs); ?></div>
         <p class="pz-checker-q-text"><?php echo esc_html($q['q']); ?></p>
         <div class="pz-checker-cards">
-          <?php foreach($q['opts'] as $val=>$label):
-            $emoji = ['yes'=>'✅','no'=>'❌','none'=>'✅','once'=>'⚠️','frequent'=>'🚨',
-                      'normal'=>'✅','lower'=>'⚠️','very_low'=>'🚨','more'=>'⚠️','less'=>'⚠️',
-                      'mild'=>'⚠️','severe'=>'🚨','healthy'=>'✅','less'=>'⚠️'][$val] ?? '🔹';
+          <?php foreach($q['opts'] as $val=>$opt):
+            // $opt is [label, severity weight] — weight drives both the icon and the
+            // score pzRunChecker() reads via data-weight, so every animal's own wording
+            // (fish/bird/reptile/rabbit/default) scores correctly, not just dog/cat terms.
+            list($label, $weight) = $opt;
+            $emoji = $weight >= 3 ? '🚨' : ($weight >= 1 ? '⚠️' : '✅');
           ?>
           <label class="pz-checker-card">
             <input type="radio" name="pzq_<?php echo $i; ?>" value="<?php echo esc_attr($val); ?>"
+                   data-weight="<?php echo (int) $weight; ?>"
                    onchange="pzCheckerNext(<?php echo $i; ?>, <?php echo count($qs)-1; ?>)">
             <span class="pz-checker-card-icon"><?php echo $emoji; ?></span>
             <span class="pz-checker-card-txt"><?php echo esc_html($label); ?></span>
@@ -13508,44 +13511,48 @@ function pz_get_checker_questions($tool) {
 
     $a = $tool['animal'] ?? 'pet';
 
+    // Each option is [label, severity weight]. Weight scale: 0 = normal/no concern,
+    // 1 = mild/moderate sign, 3 = severe/urgent sign. This lets pzRunChecker() score
+    // every animal's own answer set correctly instead of relying on a shared,
+    // dog/cat-worded value whitelist (see templates/pages/auto-tool.php pzRunChecker()).
     $questions = [
         'fish' => [
-            ['q' => 'Is your fish eating normally?', 'opts' => ['yes' => 'Yes, eating well', 'less' => 'Eating less than usual', 'no' => 'Refusing all food', 'unknown' => 'Haven\'t checked']],
-            ['q' => 'How is your fish swimming?', 'opts' => ['normal' => 'Normal and active', 'sluggish' => 'Sluggish or slow', 'abnormal' => 'Floating, sinking, or spinning', 'bottom' => 'Staying at bottom or surface']],
-            ['q' => 'Any visible physical changes?', 'opts' => ['none' => 'No visible changes', 'spots' => 'Spots, patches, or discoloration', 'fins' => 'Fin damage or rot', 'bloat' => 'Bloating or unusual shape']],
-            ['q' => 'What do the droppings look like?', 'opts' => ['normal' => 'Normal (dark, short strings)', 'white' => 'White or stringy', 'unusual' => 'Unusual color', 'unchecked' => 'Haven\'t noticed']],
-            ['q' => 'How is the water quality?', 'opts' => ['good' => 'Tested recently — all good', 'untested' => 'Haven\'t tested recently', 'off' => 'Parameters are off', 'cloudy' => 'Tank looks cloudy']],
+            ['q' => 'Is your fish eating normally?', 'opts' => ['yes' => ['Yes, eating well', 0], 'less' => ['Eating less than usual', 1], 'no' => ['Refusing all food', 3], 'unknown' => ['Haven\'t checked', 0]]],
+            ['q' => 'How is your fish swimming?', 'opts' => ['normal' => ['Normal and active', 0], 'sluggish' => ['Sluggish or slow', 1], 'abnormal' => ['Floating, sinking, or spinning', 3], 'bottom' => ['Staying at bottom or surface', 3]]],
+            ['q' => 'Any visible physical changes?', 'opts' => ['none' => ['No visible changes', 0], 'spots' => ['Spots, patches, or discoloration', 1], 'fins' => ['Fin damage or rot', 1], 'bloat' => ['Bloating or unusual shape', 3]]],
+            ['q' => 'What do the droppings look like?', 'opts' => ['normal' => ['Normal (dark, short strings)', 0], 'white' => ['White or stringy', 1], 'unusual' => ['Unusual color', 1], 'unchecked' => ['Haven\'t noticed', 0]]],
+            ['q' => 'How is the water quality?', 'opts' => ['good' => ['Tested recently — all good', 0], 'untested' => ['Haven\'t tested recently', 0], 'off' => ['Parameters are off', 1], 'cloudy' => ['Tank looks cloudy', 1]]],
         ],
         'bird' => [
-            ['q' => 'Is your bird eating and drinking normally?', 'opts' => ['yes' => 'Yes, normal appetite', 'less' => 'Eating less than usual', 'no' => 'Refusing food or water', 'unknown' => 'Hard to tell']],
-            ['q' => 'How is your bird\'s energy and behavior?', 'opts' => ['normal' => 'Active and vocal as usual', 'quiet' => 'Quieter than normal', 'fluffed' => 'Fluffed up and sleepy', 'still' => 'Not moving much']],
-            ['q' => 'What do the droppings look like?', 'opts' => ['normal' => 'Normal (dark green/white)', 'watery' => 'Watery or very loose', 'unusual' => 'Unusual color (yellow, red, black)', 'unchecked' => 'Haven\'t checked']],
-            ['q' => 'Any physical signs of illness?', 'opts' => ['none' => 'No visible signs', 'discharge' => 'Nasal or eye discharge', 'feathers' => 'Feather loss or over-preening', 'swelling' => 'Swelling or injury']],
-            ['q' => 'Is your bird breathing normally?', 'opts' => ['yes' => 'Yes, breathing normally', 'tail' => 'Tail bobbing when breathing', 'open' => 'Open-beak breathing', 'wheeze' => 'Wheezing or clicking sounds']],
+            ['q' => 'Is your bird eating and drinking normally?', 'opts' => ['yes' => ['Yes, normal appetite', 0], 'less' => ['Eating less than usual', 1], 'no' => ['Refusing food or water', 3], 'unknown' => ['Hard to tell', 0]]],
+            ['q' => 'How is your bird\'s energy and behavior?', 'opts' => ['normal' => ['Active and vocal as usual', 0], 'quiet' => ['Quieter than normal', 1], 'fluffed' => ['Fluffed up and sleepy', 3], 'still' => ['Not moving much', 3]]],
+            ['q' => 'What do the droppings look like?', 'opts' => ['normal' => ['Normal (dark green/white)', 0], 'watery' => ['Watery or very loose', 1], 'unusual' => ['Unusual color (yellow, red, black)', 1], 'unchecked' => ['Haven\'t checked', 0]]],
+            ['q' => 'Any physical signs of illness?', 'opts' => ['none' => ['No visible signs', 0], 'discharge' => ['Nasal or eye discharge', 1], 'feathers' => ['Feather loss or over-preening', 1], 'swelling' => ['Swelling or injury', 3]]],
+            ['q' => 'Is your bird breathing normally?', 'opts' => ['yes' => ['Yes, breathing normally', 0], 'tail' => ['Tail bobbing when breathing', 3], 'open' => ['Open-beak breathing', 3], 'wheeze' => ['Wheezing or clicking sounds', 3]]],
         ],
         'reptile' => [
-            ['q' => 'Is your reptile eating normally?', 'opts' => ['yes' => 'Yes, eating on schedule', 'skipped' => 'Skipped one feeding', 'refusing' => 'Refusing food for 2+ weeks', 'brumation' => 'In brumation/normal fast']],
-            ['q' => 'How is your reptile\'s activity level?', 'opts' => ['normal' => 'Active and responsive', 'low' => 'Slightly less active', 'lethargic' => 'Very lethargic or unresponsive', 'mobility' => 'Unable to move normally']],
-            ['q' => 'Any shedding problems?', 'opts' => ['good' => 'Shed went well', 'partial' => 'Partial shed or stuck pieces', 'cloudy' => 'Eyes cloudy without upcoming shed', 'none' => 'No recent shed']],
-            ['q' => 'How do the droppings look?', 'opts' => ['normal' => 'Normal for this species', 'runny' => 'Runny or unusual color', 'none' => 'No droppings in 2+ weeks', 'unchecked' => 'Haven\'t checked']],
-            ['q' => 'Are temperatures and humidity correct?', 'opts' => ['yes' => 'Yes, checked recently', 'unsure' => 'Not sure — need to check', 'off' => 'Equipment seems off', 'unchecked' => 'Haven\'t checked in a while']],
+            ['q' => 'Is your reptile eating normally?', 'opts' => ['yes' => ['Yes, eating on schedule', 0], 'skipped' => ['Skipped one feeding', 0], 'refusing' => ['Refusing food for 2+ weeks', 3], 'brumation' => ['In brumation/normal fast', 0]]],
+            ['q' => 'How is your reptile\'s activity level?', 'opts' => ['normal' => ['Active and responsive', 0], 'low' => ['Slightly less active', 1], 'lethargic' => ['Very lethargic or unresponsive', 3], 'mobility' => ['Unable to move normally', 3]]],
+            ['q' => 'Any shedding problems?', 'opts' => ['good' => ['Shed went well', 0], 'partial' => ['Partial shed or stuck pieces', 1], 'cloudy' => ['Eyes cloudy without upcoming shed', 1], 'none' => ['No recent shed', 0]]],
+            ['q' => 'How do the droppings look?', 'opts' => ['normal' => ['Normal for this species', 0], 'runny' => ['Runny or unusual color', 1], 'none' => ['No droppings in 2+ weeks', 3], 'unchecked' => ['Haven\'t checked', 0]]],
+            ['q' => 'Are temperatures and humidity correct?', 'opts' => ['yes' => ['Yes, checked recently', 0], 'unsure' => ['Not sure — need to check', 0], 'off' => ['Equipment seems off', 1], 'unchecked' => ['Haven\'t checked in a while', 0]]],
         ],
         'rabbit' => [
-            ['q' => 'Is your rabbit eating hay and drinking water?', 'opts' => ['yes' => 'Yes, eating hay and drinking normally', 'less' => 'Eating less hay than usual', 'no' => 'Refusing food completely', 'unknown' => 'Hard to tell']],
-            ['q' => 'Are you seeing normal droppings?', 'opts' => ['yes' => 'Yes, normal round pellets', 'fewer' => 'Fewer droppings than usual', 'none' => 'No droppings for several hours', 'soft' => 'Soft or misshapen droppings']],
-            ['q' => 'How is your rabbit\'s energy and behavior?', 'opts' => ['normal' => 'Active and curious', 'quiet' => 'Quieter than usual', 'hiding' => 'Hiding and hunched posture', 'flat' => 'Lying flat and unresponsive']],
-            ['q' => 'Any physical signs to report?', 'opts' => ['none' => 'No visible signs', 'discharge' => 'Runny nose or wet eyes', 'wet' => 'Wet chin or dewlap', 'tilt' => 'Tilted head or loss of balance']],
-            ['q' => 'Does your rabbit\'s belly feel normal?', 'opts' => ['normal' => 'Feels normal when gently touched', 'gassy' => 'Seems gassy or bloated', 'pain' => 'Tooth grinding or signs of pain', 'unchecked' => 'Haven\'t checked']],
+            ['q' => 'Is your rabbit eating hay and drinking water?', 'opts' => ['yes' => ['Yes, eating hay and drinking normally', 0], 'less' => ['Eating less hay than usual', 1], 'no' => ['Refusing food completely', 3], 'unknown' => ['Hard to tell', 0]]],
+            ['q' => 'Are you seeing normal droppings?', 'opts' => ['yes' => ['Yes, normal round pellets', 0], 'fewer' => ['Fewer droppings than usual', 1], 'none' => ['No droppings for several hours', 3], 'soft' => ['Soft or misshapen droppings', 1]]],
+            ['q' => 'How is your rabbit\'s energy and behavior?', 'opts' => ['normal' => ['Active and curious', 0], 'quiet' => ['Quieter than usual', 1], 'hiding' => ['Hiding and hunched posture', 3], 'flat' => ['Lying flat and unresponsive', 3]]],
+            ['q' => 'Any physical signs to report?', 'opts' => ['none' => ['No visible signs', 0], 'discharge' => ['Runny nose or wet eyes', 1], 'wet' => ['Wet chin or dewlap', 1], 'tilt' => ['Tilted head or loss of balance', 3]]],
+            ['q' => 'Does your rabbit\'s belly feel normal?', 'opts' => ['normal' => ['Feels normal when gently touched', 0], 'gassy' => ['Seems gassy or bloated', 1], 'pain' => ['Tooth grinding or signs of pain', 3], 'unchecked' => ['Haven\'t checked', 0]]],
         ],
     ];
 
     // Default (dog, cat, general)
     $default_questions = [
-        ['q' => 'Is your pet eating normally?', 'opts' => ['yes' => 'Yes, normal appetite', 'less' => 'Eating less than usual', 'no' => 'Refusing all food', 'unknown' => 'Hard to tell']],
-        ['q' => 'How is your pet\'s energy level?', 'opts' => ['normal' => 'Normal and active', 'lower' => 'Slightly low energy', 'very_low' => 'Very lethargic', 'unable' => 'Unable to stand or move']],
-        ['q' => 'Any vomiting or diarrhea in the last 24 hours?', 'opts' => ['none' => 'No symptoms', 'once' => 'Once or twice', 'frequent' => 'Multiple times', 'blood' => 'Vomiting with blood']],
-        ['q' => 'Is your pet drinking water normally?', 'opts' => ['normal' => 'Yes, drinking normally', 'less' => 'Drinking less than usual', 'more' => 'Drinking much more than usual', 'none' => 'Not drinking at all']],
-        ['q' => 'Any visible injuries, swelling, or discharge?', 'opts' => ['none' => 'No visible signs', 'mild' => 'Minor discharge from eyes or nose', 'swelling' => 'Swelling or limping', 'severe' => 'Open wound or severe injury']],
+        ['q' => 'Is your pet eating normally?', 'opts' => ['yes' => ['Yes, normal appetite', 0], 'less' => ['Eating less than usual', 1], 'no' => ['Refusing all food', 3], 'unknown' => ['Hard to tell', 0]]],
+        ['q' => 'How is your pet\'s energy level?', 'opts' => ['normal' => ['Normal and active', 0], 'lower' => ['Slightly low energy', 1], 'very_low' => ['Very lethargic', 3], 'unable' => ['Unable to stand or move', 3]]],
+        ['q' => 'Any vomiting or diarrhea in the last 24 hours?', 'opts' => ['none' => ['No symptoms', 0], 'once' => ['Once or twice', 1], 'frequent' => ['Multiple times', 3], 'blood' => ['Vomiting with blood', 3]]],
+        ['q' => 'Is your pet drinking water normally?', 'opts' => ['normal' => ['Yes, drinking normally', 0], 'less' => ['Drinking less than usual', 1], 'more' => ['Drinking much more than usual', 1], 'none' => ['Not drinking at all', 3]]],
+        ['q' => 'Any visible injuries, swelling, or discharge?', 'opts' => ['none' => ['No visible signs', 0], 'mild' => ['Minor discharge from eyes or nose', 1], 'swelling' => ['Swelling or limping', 1], 'severe' => ['Open wound or severe injury', 3]]],
     ];
 
     return isset($questions[$a]) ? $questions[$a] : $default_questions;
