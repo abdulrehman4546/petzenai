@@ -219,15 +219,15 @@ function pz_get_all_tools() {
         ['slug'=>'rabbit-grooming-guide','title'=>'Rabbit Grooming Guide: Brushing & Nail Trimming','cat'=>'rabbit-care','animal'=>'rabbit','type'=>'guide','kw'=>'rabbit grooming guide','icon'=>'🪮','calc'=>'rabbit_grooming_guide'],
         ['slug'=>'rabbit-bonding-guide','title'=>'How to Bond Two Rabbits: Complete Guide','cat'=>'rabbit-care','animal'=>'rabbit','type'=>'guide','kw'=>'how to bond two rabbits','icon'=>'❤️','calc'=>'rabbit_bonding_guide'],
         ['slug'=>'rabbit-exercise-guide','title'=>'Rabbit Exercise Needs & Playtime Guide','cat'=>'rabbit-care','animal'=>'rabbit','type'=>'guide','kw'=>'rabbit exercise needs guide','icon'=>'🏃','calc'=>'rabbit_exercise_guide'],
-        ['slug'=>'indoor-rabbit-care-guide','title'=>'Indoor Rabbit Care Guide: House Rabbit Tips','cat'=>'rabbit-care','animal'=>'rabbit','type'=>'guide','kw'=>'indoor rabbit care guide','icon'=>'🏠'],
-        ['slug'=>'rabbit-gi-stasis-guide','title'=>'GI Stasis in Rabbits: Signs & Emergency Guide','cat'=>'rabbit-care','animal'=>'rabbit','type'=>'guide','kw'=>'rabbit gi stasis guide','icon'=>'🚑'],
-        ['slug'=>'dwarf-rabbit-care-guide','title'=>'Dwarf Rabbit Care Guide','cat'=>'rabbit-care','animal'=>'rabbit','type'=>'guide','kw'=>'dwarf rabbit care guide','icon'=>'🐰'],
-        ['slug'=>'rabbit-dental-health-guide','title'=>'Rabbit Dental Health & Teeth Problems Guide','cat'=>'rabbit-care','animal'=>'rabbit','type'=>'guide','kw'=>'rabbit dental health guide','icon'=>'🦷'],
+        ['slug'=>'indoor-rabbit-care-guide','title'=>'Indoor Rabbit Care Guide: House Rabbit Tips','cat'=>'rabbit-care','animal'=>'rabbit','type'=>'guide','kw'=>'indoor rabbit care guide','icon'=>'🏠','calc'=>'indoor_rabbit_care_guide'],
+        ['slug'=>'rabbit-gi-stasis-guide','title'=>'GI Stasis in Rabbits: Signs & Emergency Guide','cat'=>'rabbit-care','animal'=>'rabbit','type'=>'guide','kw'=>'rabbit gi stasis guide','icon'=>'🚑','calc'=>'rabbit_gi_stasis_guide'],
+        ['slug'=>'dwarf-rabbit-care-guide','title'=>'Dwarf Rabbit Care Guide','cat'=>'rabbit-care','animal'=>'rabbit','type'=>'guide','kw'=>'dwarf rabbit care guide','icon'=>'🐰','calc'=>'dwarf_rabbit_care_guide'],
+        ['slug'=>'rabbit-dental-health-guide','title'=>'Rabbit Dental Health & Teeth Problems Guide','cat'=>'rabbit-care','animal'=>'rabbit','type'=>'guide','kw'=>'rabbit dental health guide','icon'=>'🦷','calc'=>'rabbit_dental_health_guide'],
 
         // ═══════════════════════════════════════════
         // FISH & AQUARIUM (20)
         // ═══════════════════════════════════════════
-        ['slug'=>'aquarium-size-calculator','title'=>'Fish Tank Size Calculator: Gallons Per Fish','cat'=>'fish-aquarium','animal'=>'fish','type'=>'calculator','kw'=>'fish tank size calculator','icon'=>'🐠'],
+        ['slug'=>'aquarium-size-calculator','title'=>'Fish Tank Size Calculator: Gallons Per Fish','cat'=>'fish-aquarium','animal'=>'fish','type'=>'guide','kw'=>'fish tank size calculator','icon'=>'🐠','calc'=>'aquarium_size_calculator'],
         ['slug'=>'fish-feeding-guide','title'=>'How Much to Feed Fish: Feeding Guide & Calculator','cat'=>'fish-aquarium','animal'=>'fish','type'=>'calculator','kw'=>'how much to feed fish','icon'=>'🐡'],
         ['slug'=>'aquarium-water-temperature-guide','title'=>'Aquarium Water Temperature Guide by Fish Type','cat'=>'fish-aquarium','animal'=>'fish','type'=>'guide','kw'=>'aquarium water temperature guide','icon'=>'🌡️'],
         ['slug'=>'aquarium-ph-guide','title'=>'Aquarium pH Levels: Complete Guide','cat'=>'fish-aquarium','animal'=>'fish','type'=>'guide','kw'=>'aquarium ph guide','icon'=>'🧪'],

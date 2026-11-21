@@ -16127,3 +16127,34 @@ require_once __DIR__ . '/tool-content/rabbit-spay-neuter-guide.php';
 require_once __DIR__ . '/tool-content/rabbit-grooming-guide.php';
 require_once __DIR__ . '/tool-content/rabbit-bonding-guide.php';
 require_once __DIR__ . '/tool-content/rabbit-exercise-guide.php';
+require_once __DIR__ . '/tool-content/indoor-rabbit-care-guide.php';
+require_once __DIR__ . '/tool-content/rabbit-gi-stasis-guide.php';
+require_once __DIR__ . '/tool-content/dwarf-rabbit-care-guide.php';
+require_once __DIR__ . '/tool-content/rabbit-dental-health-guide.php';
+require_once __DIR__ . '/tool-content/aquarium-size-calculator.php';
+
+/** Static reference widget for the fish tank size guide — no JS/calculator logic, just a quick-reference card, so the page doesn't fall back to the generic mammal pet-profile form. */
+function pz_render_guide_aquarium_size_calculator( $tool ) {
+    $icon = $tool['icon'] ?? '🐠';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Fish Tank Size Quick Reference</div><div class="pz-int-sublabel">Stocking rule of thumb · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Widely-cited starting rule of thumb</label>
+          <p style="margin:8px 0 0;color:#333">About 1 gallon of water per inch of adult fish length is a commonly used starting point for small, calm community fish — treat it as a rough floor, not a precise formula, since bioload, filtration, and adult size vary a lot between species.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Why the rule alone isn't enough</label>
+          <p style="margin:8px 0 0;color:#333">Schooling fish, heavy waste producers, and fish that grow much larger than their juvenile size all need more room than the simple ratio suggests — always check a species' adult size and care needs before buying the tank.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
