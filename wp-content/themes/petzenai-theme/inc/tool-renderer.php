@@ -16149,6 +16149,11 @@ require_once __DIR__ . '/tool-content/goldfish-care-guide.php';
 require_once __DIR__ . '/tool-content/tropical-fish-care-guide.php';
 require_once __DIR__ . '/tool-content/saltwater-aquarium-guide.php';
 require_once __DIR__ . '/tool-content/fish-disease-checker.php';
+require_once __DIR__ . '/tool-content/aquarium-filter-guide.php';
+require_once __DIR__ . '/tool-content/fish-tank-lighting-guide.php';
+require_once __DIR__ . '/tool-content/fish-compatibility-guide.php';
+require_once __DIR__ . '/tool-content/guppy-care-guide.php';
+require_once __DIR__ . '/tool-content/koi-pond-care-guide.php';
 
 /** Static reference widget for the fish tank size guide — no JS/calculator logic, just a quick-reference card, so the page doesn't fall back to the generic mammal pet-profile form. */
 function pz_render_guide_aquarium_size_calculator( $tool ) {
@@ -16404,6 +16409,136 @@ function pz_render_guide_saltwater_aquarium_guide( $tool ) {
         <div class="pz-int-field" style="grid-column:1/-1">
           <label class="pz-int-label-txt">Live rock curing & higher sensitivity</label>
           <p style="margin:8px 0 0;color:#333">Live rock typically needs a curing period before fish go in, and marine species generally tolerate less parameter swing than many freshwater community fish.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for aquarium filter types — no JS/calculator logic, just filter type and sizing points. */
+function pz_render_guide_aquarium_filter_guide( $tool ) {
+    $icon = $tool['icon'] ?? '💧';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Aquarium Filter Quick Reference</div><div class="pz-int-sublabel">Types & sizing basics · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Three common filter types</label>
+          <p style="margin:8px 0 0;color:#333">Hang-on-back (HOB) filters suit many standard setups, canister filters handle larger or heavier bioloads, and sponge or internal filters are gentler choices often used for fry or breeding tanks.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Sizing rule of thumb</label>
+          <p style="margin:8px 0 0;color:#333">A commonly cited guideline is a filter rated to turn over the tank's full volume several times per hour — filter media is also where most of the beneficial cycling bacteria actually live.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for fish tank lighting — no JS/calculator logic, just duration and planted-vs-fish-only points. */
+function pz_render_guide_fish_tank_lighting_guide( $tool ) {
+    $icon = $tool['icon'] ?? '💡';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Tank Lighting Quick Reference</div><div class="pz-int-sublabel">Duration & algae basics · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Typical lighting duration</label>
+          <p style="margin:8px 0 0;color:#333">Most community tanks do well with about 8-10 hours of consistent lighting per day, with a regular daily schedule mattering as much as the exact hour count.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Planted tanks need more light, and watch for algae</label>
+          <p style="margin:8px 0 0;color:#333">Live plants generally need brighter, more specific lighting than a fish-only tank, but too much light combined with excess nutrients is a common driver of algae growth.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for fish compatibility — no JS/calculator logic, just temperament-based compatibility points. */
+function pz_render_guide_fish_compatibility_guide( $tool ) {
+    $icon = $tool['icon'] ?? '🤝';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Fish Compatibility Quick Reference</div><div class="pz-int-sublabel">Temperament basics · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Temperament matters as much as water needs</label>
+          <p style="margin:8px 0 0;color:#333">Fin-nipping species, territorial species, and schooling fish kept alone are common sources of conflict, separate from matching temperature or pH.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Watch for size mismatches</label>
+          <p style="margin:8px 0 0;color:#333">A large size difference between a small fish and a much bigger predatory species can mean the smaller fish is viewed as food rather than a tankmate.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for guppy care — no JS/calculator logic, just the livebearer/breeding points. */
+function pz_render_guide_guppy_care_guide( $tool ) {
+    $icon = $tool['icon'] ?? '🐠';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Guppy Quick Reference</div><div class="pz-int-sublabel">Breeding & hardiness basics · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Livebearers, not egg-layers</label>
+          <p style="margin:8px 0 0;color:#333">Guppies give birth to live, free-swimming young rather than laying eggs, and a mixed-sex group breeds prolifically enough to overpopulate a tank quickly.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Hardy, with wide color and fin variety</label>
+          <p style="margin:8px 0 0;color:#333">Guppies are commonly recommended for beginners thanks to their general hardiness, and selective breeding has produced a wide range of colors and fin shapes.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for koi pond care — no JS/calculator logic, just the outdoor-pond/seasonal/lifespan points. */
+function pz_render_guide_koi_pond_care_guide( $tool ) {
+    $icon = $tool['icon'] ?? '🐟';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Koi Pond Quick Reference</div><div class="pz-int-sublabel">Seasonal & space basics · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Outdoor pond space and long lifespan</label>
+          <p style="margin:8px 0 0;color:#333">Koi grow much larger than typical aquarium fish and need an outdoor pond sized accordingly, plus they are commonly cited as living for decades.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Seasonal care differs from an indoor tank</label>
+          <p style="margin:8px 0 0;color:#333">An outdoor pond faces real seasonal temperature swings, calling for reduced cold-weather feeding, winterizing, and pond-specific filtration and aeration.</p>
         </div>
       </div>
     </div>
