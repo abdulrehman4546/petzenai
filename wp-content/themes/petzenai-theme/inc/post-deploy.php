@@ -13,7 +13,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( ! defined( 'PZ_RELEASE' ) ) define( 'PZ_RELEASE', '2026-11-21-k' );
+if ( ! defined( 'PZ_RELEASE' ) ) define( 'PZ_RELEASE', '2026-11-26-a' );
 
 /** Delete Rank Math's cached sitemap files and transients. @return int number of cache entries removed */
 function pz_flush_rankmath_sitemap_cache() {
@@ -130,6 +130,24 @@ function pz_run_release_tasks() {
         }
         $log[] = 'social links set: ' . ( $set ? implode( ', ', $set ) : 'none (already set)' );
     } catch ( \Throwable $e ) { $log[] = 'social links failed: ' . $e->getMessage(); }
+
+    try {
+        // One-off meta fixes for posts with no inc/blog-content/ file (so pz_sync_post_content() never touches them).
+        $meta_fixes = [
+            'budgerigar-care-guide' => [
+                'rank_math_description' => 'Budgies are a flock species with real social needs. Learn cage bar-spacing safety, illness signs to watch for, and how toy rotation drives daily enrichment.',
+            ],
+        ];
+        $fixed = [];
+        foreach ( $meta_fixes as $slug => $meta ) {
+            $p = get_page_by_path( $slug, OBJECT, 'post' );
+            if ( ! $p ) continue;
+            foreach ( $meta as $key => $val ) {
+                if ( get_post_meta( $p->ID, $key, true ) !== $val ) { update_post_meta( $p->ID, $key, $val ); $fixed[] = "$slug:$key"; }
+            }
+        }
+        $log[] = 'no-content-file meta fixes: ' . ( $fixed ? implode( ', ', $fixed ) : 'none (already set)' );
+    } catch ( \Throwable $e ) { $log[] = 'no-content-file meta fixes failed: ' . $e->getMessage(); }
 
     try { $log[] = 'sitemap cache entries removed: ' . pz_flush_rankmath_sitemap_cache(); }
     catch ( \Throwable $e ) { $log[] = 'sitemap flush failed: ' . $e->getMessage(); }

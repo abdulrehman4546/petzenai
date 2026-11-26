@@ -8,7 +8,7 @@ return [
     'revision'    => 1,
     'category'    => 'Cat Care',
     'keyword'     => 'cat litter box',
-    'description' => 'Cat ignoring the litter box? This guide helps you diagnose the real cause behind accidents—medical, box setup, or stress—and shows the fix that actually works.',
+    'description' => 'Cat ignoring the litter box? Diagnose the real cause—medical, box setup, or stress—and the fix that actually works.',
     'excerpt'     => 'Litter box problems are the top reason cats are surrendered to shelters, and most are solvable. Here is the physical setup to get right, plus the diagnostic order to follow when a cat suddenly stops using the box.',
     'content'     => <<<'HTML'
 <p>Quick check before you read any further: has your cat ever peed outside the box, and did you assume it was “just being difficult”? If so, you’re not alone — and you may have skipped a step that matters more than any litter brand or box shape. Litter box problems are the single most common reason cats are surrendered to shelters, and the overwhelming majority of those cases were solvable. The fix almost never starts with punishment. It starts with figuring out <em>why</em>, which sometimes means a vet visit before it means a new box.</p>

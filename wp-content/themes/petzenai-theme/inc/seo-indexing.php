@@ -159,7 +159,7 @@ add_filter( 'rank_math/frontend/title', function ( $title ) {
     if ( is_singular( 'post' ) ) {
         // Shorter search titles (<= 60 chars) for older posts whose on-page headline is too long for the results page.
         static $short = [
-            'cat-litter-box-complete-guide'           => 'Cat Litter Box Guide: Setup, Cleaning, Problems | PetZenAI',
+            'cat-litter-box-complete-guide'           => 'Cat Litter Box Guide: Diagnose & Fix Accidents | PetZenAI',
             'dog-grooming-at-home-guide'              => 'Dog Grooming at Home: Step-by-Step Guide | PetZenAI',
             'freshwater-aquarium-setup-beginners'     => 'Freshwater Fish Tank Setup for Beginners | PetZenAI',
             'dog-dental-care-guide'                   => 'Dog Dental Care: How to Clean Your Dog’s Teeth | PetZenAI',
@@ -176,9 +176,9 @@ add_filter( 'rank_math/frontend/title', function ( $title ) {
             'dog-separation-anxiety-treatment'        => 'Dog Separation Anxiety: Signs and Treatment | PetZenAI',
             'cat-nutrition-guide'                     => 'Cat Nutrition Guide: What to Feed Your Cat | PetZenAI',
             'how-to-introduce-new-pet-to-home'        => 'How to Introduce a New Pet to Your Home | PetZenAI',
-            'hamster-care-guide-beginners'            => 'Hamster Care Guide for Beginners | PetZenAI',
+            'hamster-care-guide-beginners'            => 'Hamster Cage & Care Guide for Beginners | PetZenAI',
             'dog-anxiety-signs-causes-solutions'      => 'Dog Anxiety: Signs, Causes and Solutions | PetZenAI',
-            'budgerigar-care-guide'                   => 'Budgie Care Guide: How to Keep Budgerigars | PetZenAI',
+            'budgerigar-care-guide'                   => 'Budgerigar Care Guide: Cage, Diet & Health Signs | PetZenAI',
             'how-to-potty-train-a-puppy'              => 'How to Potty Train a Puppy: Step-by-Step | PetZenAI',
             'dog-flea-tick-prevention-guide'          => 'Dog Flea and Tick Prevention Guide | PetZenAI',
         ];
