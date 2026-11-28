@@ -16174,6 +16174,11 @@ require_once __DIR__ . '/tool-content/blue-tongue-skink-care.php';
 require_once __DIR__ . '/tool-content/hamster-care-guide.php';
 require_once __DIR__ . '/tool-content/guinea-pig-care-guide.php';
 require_once __DIR__ . '/tool-content/ferret-care-guide.php';
+require_once __DIR__ . '/tool-content/gerbil-care-guide.php';
+require_once __DIR__ . '/tool-content/chinchilla-care-guide.php';
+require_once __DIR__ . '/tool-content/hedgehog-care-guide.php';
+require_once __DIR__ . '/tool-content/mouse-rat-care-guide.php';
+require_once __DIR__ . '/tool-content/sugar-glider-care-guide.php';
 
 /** Static reference widget for the fish tank size guide — no JS/calculator logic, just a quick-reference card, so the page doesn't fall back to the generic mammal pet-profile form. */
 function pz_render_guide_aquarium_size_calculator( $tool ) {
@@ -17079,6 +17084,136 @@ function pz_render_guide_ferret_care_guide( $tool ) {
         <div class="pz-int-field" style="grid-column:1/-1">
           <label class="pz-int-label-txt">Playful bursts, long naps, and a curious, mischievous streak</label>
           <p style="margin:8px 0 0;color:#333">Ferrets are known for stealing and hiding small objects, and a natural musky odor is normal rather than a sign something is wrong.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for gerbil care — species-specific, no JS/calculator logic. */
+function pz_render_guide_gerbil_care_guide( $tool ) {
+    $icon = $tool['icon'] ?? '🐭';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Gerbil Quick Reference</div><div class="pz-int-sublabel">Housing, diet & activity basics · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Social and desert-adapted, unlike a Syrian hamster</label>
+          <p style="margin:8px 0 0;color:#333">Gerbils generally do better in same-sex pairs or groups, and their desert-adapted kidneys mean they need comparatively little water.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Active diggers, more daytime activity than a hamster</label>
+          <p style="margin:8px 0 0;color:#333">Deep bedding for tunneling is a priority, and gerbils are noticeably more active during the day than a nocturnal hamster.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for chinchilla care — species-specific, no JS/calculator logic. */
+function pz_render_guide_chinchilla_care_guide( $tool ) {
+    $icon = $tool['icon'] ?? '🐾';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Chinchilla Quick Reference</div><div class="pz-int-sublabel">Dust baths, diet & health basics · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Dust baths, not water baths</label>
+          <p style="margin:8px 0 0;color:#333">Dense fur traps water and doesn't dry properly, so regular dust baths are how chinchillas stay clean, and they're prone to overheating in warm rooms.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Long-lived and active — needs vertical space</label>
+          <p style="margin:8px 0 0;color:#333">Chinchillas commonly live notably longer than a hamster, gerbil, or mouse, and their jumpy nature suits a tall habitat with platforms.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for hedgehog care — species-specific, no JS/calculator logic. */
+function pz_render_guide_hedgehog_care_guide( $tool ) {
+    $icon = $tool['icon'] ?? '🦔';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Hedgehog Quick Reference</div><div class="pz-int-sublabel">Diet, housing & health basics · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">An insectivore, not a rodent, and solitary</label>
+          <p style="margin:8px 0 0;color:#333">Hedgehogs need an insectivore-appropriate diet and should be housed alone, similar to a Syrian hamster's solitary rule.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Nocturnal, with a spiked-ball defense and cold sensitivity</label>
+          <p style="margin:8px 0 0;color:#333">A cold hedgehog can attempt dangerous, unwanted hibernation, so keep the habitat consistently warm.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for mouse/rat care — species-specific, no JS/calculator logic. */
+function pz_render_guide_mouse_rat_care_guide( $tool ) {
+    $icon = $tool['icon'] ?? '🐭';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Rat & Mouse Quick Reference</div><div class="pz-int-sublabel">Housing, diet & behavior basics · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Social, same-sex groups — unlike a Syrian hamster</label>
+          <p style="margin:8px 0 0;color:#333">Both mice and rats generally do better in same-sex groups, and both are prolific breeders, so keep sexes separate unless breeding is intended.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Rats are more trainable, both are shorter-lived</label>
+          <p style="margin:8px 0 0;color:#333">Rats generally bond more socially with people than mice, and both species are shorter-lived than most other pets in this cluster.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for sugar glider care — species-specific, no JS/calculator logic. */
+function pz_render_guide_sugar_glider_care_guide( $tool ) {
+    $icon = $tool['icon'] ?? '🦎';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Sugar Glider Quick Reference</div><div class="pz-int-sublabel">Diet & bonding basics · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">A marsupial with a gliding membrane, not a rodent</label>
+          <p style="margin:8px 0 0;color:#333">Sugar gliders are a different taxonomic category from hamsters, gerbils, and mice, with a membrane built for gliding between heights.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Highly social and needs a specialized diet</label>
+          <p style="margin:8px 0 0;color:#333">Keeping one alone can cause real stress or depression, and their diet needs are more research-intensive than a typical small pet's.</p>
         </div>
       </div>
     </div>
