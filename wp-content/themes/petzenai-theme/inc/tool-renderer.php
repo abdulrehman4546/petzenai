@@ -16159,6 +16159,11 @@ require_once __DIR__ . '/tool-content/fish-quarantine-guide.php';
 require_once __DIR__ . '/tool-content/aquarium-ammonia-guide.php';
 require_once __DIR__ . '/tool-content/bearded-dragon-care-guide.php';
 require_once __DIR__ . '/tool-content/leopard-gecko-care-guide.php';
+require_once __DIR__ . '/tool-content/ball-python-care-guide.php';
+require_once __DIR__ . '/tool-content/turtle-care-guide.php';
+require_once __DIR__ . '/tool-content/reptile-temperature-guide.php';
+require_once __DIR__ . '/tool-content/reptile-uvb-lighting-guide.php';
+require_once __DIR__ . '/tool-content/reptile-feeding-calculator.php';
 
 /** Static reference widget for the fish tank size guide — no JS/calculator logic, just a quick-reference card, so the page doesn't fall back to the generic mammal pet-profile form. */
 function pz_render_guide_aquarium_size_calculator( $tool ) {
@@ -16674,6 +16679,136 @@ function pz_render_guide_leopard_gecko_care_guide( $tool ) {
         <div class="pz-int-field" style="grid-column:1/-1">
           <label class="pz-int-label-txt">Insectivorous diet, with tail fat storage and tail-drop defense</label>
           <p style="margin:8px 0 0;color:#333">Diet centers on insects rather than vegetables, the tail stores fat reserves, and rough handling can trigger the tail-drop defense mechanism called autotomy.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for ball python basics — no JS/calculator logic, just feeding-frequency/hide/humidity points. */
+function pz_render_guide_ball_python_care_guide( $tool ) {
+    $icon = $tool['icon'] ?? '🐍';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Ball Python Quick Reference</div><div class="pz-int-sublabel">Feeding & habitat basics · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Infrequent whole-prey feeding</label>
+          <p style="margin:8px 0 0;color:#333">Adults are commonly fed roughly every one to two weeks, and periodic food refusal, especially around shedding or breeding season, is often normal rather than a sign of illness.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Secure hide and non-desert humidity</label>
+          <p style="margin:8px 0 0;color:#333">As a terrestrial, secretive species, a ball python needs a tight hide to retreat into, and its humidity needs differ from a desert species like a bearded dragon.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for turtle basics — no JS/calculator logic, just housing/diet/shell/lifespan points. */
+function pz_render_guide_turtle_care_guide( $tool ) {
+    $icon = $tool['icon'] ?? '🐢';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Pet Turtle Quick Reference</div><div class="pz-int-sublabel">Tank & diet basics · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Water-and-land housing, species-specific diet</label>
+          <p style="margin:8px 0 0;color:#333">Most pet turtles are aquatic or semi-aquatic and need both a swimming area and a dry basking area, and diet varies a lot by species and shifts with age.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Shell health and a decades-long lifespan</label>
+          <p style="margin:8px 0 0;color:#333">Shell condition is a turtle-specific thing to monitor, and many pet turtles live for decades, often outliving their owners.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for general reptile temperature/humidity gradient concept — cross-species, no JS/calculator logic. */
+function pz_render_guide_reptile_temperature_guide( $tool ) {
+    $icon = $tool['icon'] ?? '🌡️';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Reptile Temperature Quick Reference</div><div class="pz-int-sublabel">Gradient basics · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">A basking-to-cool gradient, measured, not guessed</label>
+          <p style="margin:8px 0 0;color:#333">Nearly every pet reptile needs a warm basking area and a cooler area to self-regulate, confirmed with a thermometer or thermostat rather than by feel.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Numbers vary by species; nights often run cooler</label>
+          <p style="margin:8px 0 0;color:#333">Exact basking and cool-end temperatures differ by species, and many reptiles also benefit from a nighttime temperature drop rather than a constant reading.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for general reptile UVB lighting concept — cross-species, no JS/calculator logic. */
+function pz_render_guide_reptile_uvb_lighting_guide( $tool ) {
+    $icon = $tool['icon'] ?? '💡';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Reptile UVB Quick Reference</div><div class="pz-int-sublabel">Lighting basics · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">UVB supports vitamin D3, distinct from basking heat</label>
+          <p style="margin:8px 0 0;color:#333">UVB plays a role in calcium metabolism separate from the warmth a basking lamp provides, and needs vary by species — strict for a bearded dragon, less strict for a leopard gecko.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Replace bulbs on a schedule, not by appearance</label>
+          <p style="margin:8px 0 0;color:#333">UVB output can decline well before a bulb visibly stops lighting up, so following the manufacturer's replacement schedule matters more than how the bulb looks.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for reptile feeding frequency by type — cross-species schedule guidance, no JS/calculator logic. */
+function pz_render_guide_reptile_feeding_calculator( $tool ) {
+    $icon = $tool['icon'] ?? '🦗';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Reptile Feeding Quick Reference</div><div class="pz-int-sublabel">Schedule by type · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Snakes eat infrequently; omnivorous lizards eat more often</label>
+          <p style="margin:8px 0 0;color:#333">A snake like a ball python is commonly fed roughly every one to two weeks as an adult, while an omnivorous lizard like a bearded dragon generally eats daily or close to it.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Insectivorous geckos often need frequent small feedings</label>
+          <p style="margin:8px 0 0;color:#333">A species like a leopard gecko commonly needs smaller, more frequent feedings than the infrequent meals a snake eats.</p>
         </div>
       </div>
     </div>
