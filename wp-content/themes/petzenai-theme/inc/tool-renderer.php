@@ -16169,6 +16169,11 @@ require_once __DIR__ . '/tool-content/chameleon-care-guide.php';
 require_once __DIR__ . '/tool-content/tortoise-care-guide.php';
 require_once __DIR__ . '/tool-content/reptile-shedding-guide.php';
 require_once __DIR__ . '/tool-content/corn-snake-care-guide.php';
+require_once __DIR__ . '/tool-content/reptile-hibernation-guide.php';
+require_once __DIR__ . '/tool-content/blue-tongue-skink-care.php';
+require_once __DIR__ . '/tool-content/hamster-care-guide.php';
+require_once __DIR__ . '/tool-content/guinea-pig-care-guide.php';
+require_once __DIR__ . '/tool-content/ferret-care-guide.php';
 
 /** Static reference widget for the fish tank size guide — no JS/calculator logic, just a quick-reference card, so the page doesn't fall back to the generic mammal pet-profile form. */
 function pz_render_guide_aquarium_size_calculator( $tool ) {
@@ -16944,6 +16949,136 @@ function pz_render_guide_corn_snake_care_guide( $tool ) {
         <div class="pz-int-field" style="grid-column:1/-1">
           <label class="pz-int-label-txt">Active, curious temperament with many color morphs</label>
           <p style="margin:8px 0 0;color:#333">Corn snakes tend to be more active and exploratory, and decades of breeding have produced a wide range of color and pattern morphs within the species.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for the reptile brumation/hibernation guide — cross-species, no JS/calculator logic. */
+function pz_render_guide_reptile_hibernation_guide( $tool ) {
+    $icon = $tool['icon'] ?? '❄️';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Reptile Brumation Quick Reference</div><div class="pz-int-sublabel">Hibernation basics · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Brumation, not mammal-style hibernation</label>
+          <p style="margin:8px 0 0;color:#333">A brumating reptile often still wakes periodically, unlike the deep hibernation seen in mammals, and how commonly it happens varies a lot by species.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Tell it apart from illness before assuming it's normal</label>
+          <p style="margin:8px 0 0;color:#333">Reduced eating and activity can mean brumation or illness, so checking weight and condition periodically matters even during a seasonal slowdown.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for blue tongue skink care — species-specific, no JS/calculator logic. */
+function pz_render_guide_blue_tongue_skink_care( $tool ) {
+    $icon = $tool['icon'] ?? '🦎';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Blue Tongue Skink Quick Reference</div><div class="pz-int-sublabel">Housing & diet basics · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Calm temperament and a ground-dwelling lifestyle</label>
+          <p style="margin:8px 0 0;color:#333">Blue tongue skinks are known for a generally docile disposition and spend their time on the ground rather than climbing like a chameleon.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">The namesake blue tongue is a defensive display</label>
+          <p style="margin:8px 0 0;color:#333">Flashing the bright blue tongue startles potential predators; their omnivorous diet also leans differently than a bearded dragon's in balance.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for the hamster care guide checklist — no JS/calculator logic. */
+function pz_render_guide_hamster_care_guide( $tool ) {
+    $icon = $tool['icon'] ?? '🐹';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Hamster Care Quick Reference</div><div class="pz-int-sublabel">Cage, diet & health basics · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Solitary housing and a nocturnal schedule</label>
+          <p style="margin:8px 0 0;color:#333">Syrian hamsters must be housed alone, and hamsters are most active from dusk through the night, so handling goes better in the evening.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Generous floor space and a properly sized wheel</label>
+          <p style="margin:8px 0 0;color:#333">Most pet store cages fall short of what hamsters need, and a wheel that's too small forces an arched, unnatural running posture.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for guinea pig care — species-specific, no JS/calculator logic. */
+function pz_render_guide_guinea_pig_care_guide( $tool ) {
+    $icon = $tool['icon'] ?? '🐾';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Guinea Pig Quick Reference</div><div class="pz-int-sublabel">Diet, housing & health basics · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">A social species that does better with company</label>
+          <p style="margin:8px 0 0;color:#333">Unlike a hamster, which must be housed alone, guinea pigs generally do better living in pairs or small groups.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Needs a dietary source of vitamin C</label>
+          <p style="margin:8px 0 0;color:#333">Guinea pigs can't produce their own vitamin C, so fresh vegetables and a fortified commercial food matter, and they commonly live longer than hamsters.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for ferret care — species-specific, no JS/calculator logic. */
+function pz_render_guide_ferret_care_guide( $tool ) {
+    $icon = $tool['icon'] ?? '🐾';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Ferret Quick Reference</div><div class="pz-int-sublabel">Diet, housing & training basics · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">An obligate carnivore, unlike hamsters or guinea pigs</label>
+          <p style="margin:8px 0 0;color:#333">Ferrets need a meat-based diet, a fundamentally different nutritional need from the plant-based diets of other small pets.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Playful bursts, long naps, and a curious, mischievous streak</label>
+          <p style="margin:8px 0 0;color:#333">Ferrets are known for stealing and hiding small objects, and a natural musky odor is normal rather than a sign something is wrong.</p>
         </div>
       </div>
     </div>

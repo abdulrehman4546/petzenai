@@ -264,17 +264,17 @@ function pz_get_all_tools() {
         ['slug'=>'tortoise-care-guide','title'=>'Tortoise Care Guide: Diet, Lighting & Habitat','cat'=>'reptile-care','animal'=>'reptile','type'=>'guide','kw'=>'tortoise care guide','icon'=>'🐢','calc'=>'tortoise_care_guide'],
         ['slug'=>'reptile-shedding-guide','title'=>'Reptile Shedding Problems & Solutions Guide','cat'=>'reptile-care','animal'=>'reptile','type'=>'guide','kw'=>'reptile shedding guide','icon'=>'🔄','calc'=>'reptile_shedding_guide'],
         ['slug'=>'corn-snake-care-guide','title'=>'Corn Snake Care Guide for Beginners','cat'=>'reptile-care','animal'=>'reptile','type'=>'guide','kw'=>'corn snake care guide','icon'=>'🐍','calc'=>'corn_snake_care_guide'],
-        ['slug'=>'reptile-hibernation-guide','title'=>'Reptile Hibernation (Brumation) Guide','cat'=>'reptile-care','animal'=>'reptile','type'=>'guide','kw'=>'reptile brumation guide','icon'=>'❄️'],
-        ['slug'=>'blue-tongue-skink-care','title'=>'Blue Tongue Skink Care Guide','cat'=>'reptile-care','animal'=>'reptile','type'=>'guide','kw'=>'blue tongue skink care guide','icon'=>'🦎'],
+        ['slug'=>'reptile-hibernation-guide','title'=>'Reptile Hibernation (Brumation) Guide','cat'=>'reptile-care','animal'=>'reptile','type'=>'guide','kw'=>'reptile brumation guide','icon'=>'❄️','calc'=>'reptile_hibernation_guide'],
+        ['slug'=>'blue-tongue-skink-care','title'=>'Blue Tongue Skink Care Guide','cat'=>'reptile-care','animal'=>'reptile','type'=>'guide','kw'=>'blue tongue skink care guide','icon'=>'🦎','calc'=>'blue_tongue_skink_care'],
 
         // ═══════════════════════════════════════════
         // SMALL PETS (20)
         // ═══════════════════════════════════════════
-        ['slug'=>'hamster-care-guide','title'=>'Hamster Care Guide: Cage, Diet & Health','cat'=>'small-pets','animal'=>'hamster','type'=>'guide','kw'=>'hamster cage diet health basics','icon'=>'🐹'],
-        ['slug'=>'guinea-pig-care-guide','title'=>'Guinea Pig Care Guide: Diet, Housing & Health','cat'=>'small-pets','animal'=>'guinea-pig','type'=>'guide','kw'=>'guinea pig care guide','icon'=>'🐾'],
+        ['slug'=>'hamster-care-guide','title'=>'Hamster Care Guide: Cage, Diet & Health','cat'=>'small-pets','animal'=>'hamster','type'=>'guide','kw'=>'hamster cage diet health basics','icon'=>'🐹','calc'=>'hamster_care_guide'],
+        ['slug'=>'guinea-pig-care-guide','title'=>'Guinea Pig Care Guide: Diet, Housing & Health','cat'=>'small-pets','animal'=>'guinea-pig','type'=>'guide','kw'=>'guinea pig care guide','icon'=>'🐾','calc'=>'guinea_pig_care_guide'],
         ['slug'=>'guinea-pig-food-calculator','title'=>'Guinea Pig Food Portion Calculator','cat'=>'small-pets','animal'=>'guinea-pig','type'=>'calculator','kw'=>'guinea pig food portion calculator','icon'=>'🥬'],
         ['slug'=>'hamster-cage-size-calculator','title'=>'Hamster Cage Size Calculator','cat'=>'small-pets','animal'=>'hamster','type'=>'calculator','kw'=>'hamster cage size calculator','icon'=>'🏠','calc'=>'hamster_cage_size_calculator'],
-        ['slug'=>'ferret-care-guide','title'=>'Ferret Care Guide: Diet, Housing & Training','cat'=>'small-pets','animal'=>'ferret','type'=>'guide','kw'=>'ferret care guide','icon'=>'🐾'],
+        ['slug'=>'ferret-care-guide','title'=>'Ferret Care Guide: Diet, Housing & Training','cat'=>'small-pets','animal'=>'ferret','type'=>'guide','kw'=>'ferret care guide','icon'=>'🐾','calc'=>'ferret_care_guide'],
         ['slug'=>'gerbil-care-guide','title'=>'Gerbil Care Guide for Beginners','cat'=>'small-pets','animal'=>'gerbil','type'=>'guide','kw'=>'gerbil care guide','icon'=>'🐭'],
         ['slug'=>'chinchilla-care-guide','title'=>'Chinchilla Care Guide: Dust Baths, Diet & Health','cat'=>'small-pets','animal'=>'chinchilla','type'=>'guide','kw'=>'chinchilla care guide','icon'=>'🐾'],
         ['slug'=>'hedgehog-care-guide','title'=>'Hedgehog Care Guide: Diet, Housing & Health','cat'=>'small-pets','animal'=>'hedgehog','type'=>'guide','kw'=>'hedgehog care guide','icon'=>'🦔'],
