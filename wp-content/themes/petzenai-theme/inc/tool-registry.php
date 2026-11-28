@@ -243,16 +243,16 @@ function pz_get_all_tools() {
         ['slug'=>'fish-compatibility-guide','title'=>'Fish Compatibility Guide: Which Fish Can Live Together','cat'=>'fish-aquarium','animal'=>'fish','type'=>'guide','kw'=>'fish compatibility guide','icon'=>'🤝','calc'=>'fish_compatibility_guide'],
         ['slug'=>'guppy-care-guide','title'=>'Guppy Fish Care Guide: Breeding & Feeding','cat'=>'fish-aquarium','animal'=>'fish','type'=>'guide','kw'=>'guppy fish care guide','icon'=>'🐠','calc'=>'guppy_care_guide'],
         ['slug'=>'koi-pond-care-guide','title'=>'Koi Pond Care Guide: Feeding & Water Quality','cat'=>'fish-aquarium','animal'=>'fish','type'=>'guide','kw'=>'koi pond care guide','icon'=>'🐟','calc'=>'koi_pond_care_guide'],
-        ['slug'=>'aquarium-live-plants-guide','title'=>'Aquarium Live Plants Guide for Beginners','cat'=>'fish-aquarium','animal'=>'fish','type'=>'guide','kw'=>'aquarium live plants guide','icon'=>'🌿'],
-        ['slug'=>'fish-quarantine-guide','title'=>'Fish Quarantine Tank: How & Why Guide','cat'=>'fish-aquarium','animal'=>'fish','type'=>'guide','kw'=>'fish quarantine tank guide','icon'=>'🏥'],
-        ['slug'=>'aquarium-ammonia-guide','title'=>'Aquarium Ammonia: Causes, Effects & Fix','cat'=>'fish-aquarium','animal'=>'fish','type'=>'guide','kw'=>'aquarium ammonia guide','icon'=>'🧪'],
+        ['slug'=>'aquarium-live-plants-guide','title'=>'Aquarium Live Plants Guide for Beginners','cat'=>'fish-aquarium','animal'=>'fish','type'=>'guide','kw'=>'aquarium live plants guide','icon'=>'🌿','calc'=>'aquarium_live_plants_guide'],
+        ['slug'=>'fish-quarantine-guide','title'=>'Fish Quarantine Tank: How & Why Guide','cat'=>'fish-aquarium','animal'=>'fish','type'=>'guide','kw'=>'fish quarantine tank guide','icon'=>'🏥','calc'=>'fish_quarantine_guide'],
+        ['slug'=>'aquarium-ammonia-guide','title'=>'Aquarium Ammonia: Causes, Effects & Fix','cat'=>'fish-aquarium','animal'=>'fish','type'=>'guide','kw'=>'aquarium ammonia guide','icon'=>'🧪','calc'=>'aquarium_ammonia_guide'],
         ['slug'=>'oscar-fish-care-guide','title'=>'Oscar Fish Care Guide: Tank & Feeding','cat'=>'fish-aquarium','animal'=>'fish','type'=>'guide','kw'=>'oscar fish care guide','icon'=>'🐡'],
 
         // ═══════════════════════════════════════════
         // REPTILE CARE (15)
         // ═══════════════════════════════════════════
-        ['slug'=>'bearded-dragon-care-guide','title'=>'Bearded Dragon Care Guide: Diet, Lighting & Tank','cat'=>'reptile-care','animal'=>'reptile','type'=>'guide','kw'=>'bearded dragon care guide','icon'=>'🦎'],
-        ['slug'=>'leopard-gecko-care-guide','title'=>'Leopard Gecko Care Guide for Beginners','cat'=>'reptile-care','animal'=>'reptile','type'=>'guide','kw'=>'leopard gecko care guide','icon'=>'🦎'],
+        ['slug'=>'bearded-dragon-care-guide','title'=>'Bearded Dragon Care Guide: Diet, Lighting & Tank','cat'=>'reptile-care','animal'=>'reptile','type'=>'guide','kw'=>'bearded dragon care guide','icon'=>'🦎','calc'=>'bearded_dragon_care_guide'],
+        ['slug'=>'leopard-gecko-care-guide','title'=>'Leopard Gecko Care Guide for Beginners','cat'=>'reptile-care','animal'=>'reptile','type'=>'guide','kw'=>'leopard gecko care guide','icon'=>'🦎','calc'=>'leopard_gecko_care_guide'],
         ['slug'=>'ball-python-care-guide','title'=>'Ball Python Care Guide: Feeding & Habitat','cat'=>'reptile-care','animal'=>'reptile','type'=>'guide','kw'=>'ball python care guide','icon'=>'🐍'],
         ['slug'=>'turtle-care-guide','title'=>'Pet Turtle Care Guide: Tank, Diet & Health','cat'=>'reptile-care','animal'=>'reptile','type'=>'guide','kw'=>'pet turtle care guide','icon'=>'🐢'],
         ['slug'=>'reptile-temperature-guide','title'=>'Reptile Temperature & Humidity Guide','cat'=>'reptile-care','animal'=>'reptile','type'=>'guide','kw'=>'reptile temperature humidity guide','icon'=>'🌡️'],

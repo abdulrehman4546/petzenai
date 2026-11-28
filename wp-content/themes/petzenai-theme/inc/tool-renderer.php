@@ -16154,6 +16154,11 @@ require_once __DIR__ . '/tool-content/fish-tank-lighting-guide.php';
 require_once __DIR__ . '/tool-content/fish-compatibility-guide.php';
 require_once __DIR__ . '/tool-content/guppy-care-guide.php';
 require_once __DIR__ . '/tool-content/koi-pond-care-guide.php';
+require_once __DIR__ . '/tool-content/aquarium-live-plants-guide.php';
+require_once __DIR__ . '/tool-content/fish-quarantine-guide.php';
+require_once __DIR__ . '/tool-content/aquarium-ammonia-guide.php';
+require_once __DIR__ . '/tool-content/bearded-dragon-care-guide.php';
+require_once __DIR__ . '/tool-content/leopard-gecko-care-guide.php';
 
 /** Static reference widget for the fish tank size guide — no JS/calculator logic, just a quick-reference card, so the page doesn't fall back to the generic mammal pet-profile form. */
 function pz_render_guide_aquarium_size_calculator( $tool ) {
@@ -16539,6 +16544,136 @@ function pz_render_guide_koi_pond_care_guide( $tool ) {
         <div class="pz-int-field" style="grid-column:1/-1">
           <label class="pz-int-label-txt">Seasonal care differs from an indoor tank</label>
           <p style="margin:8px 0 0;color:#333">An outdoor pond faces real seasonal temperature swings, calling for reduced cold-weather feeding, winterizing, and pond-specific filtration and aeration.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for live-plant basics — no JS/calculator logic, just lighting/feeding/CO2 points. */
+function pz_render_guide_aquarium_live_plants_guide( $tool ) {
+    $icon = $tool['icon'] ?? '🌿';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Live Plants Quick Reference</div><div class="pz-int-sublabel">Lighting & feeding basics · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Lighting and feeding style</label>
+          <p style="margin:8px 0 0;color:#333">Live plants generally need brighter, more specific lighting than a fish-only tank, and feed either mainly through roots in the substrate or through leaves in the water column, depending on species.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">CO2 is an advanced option, not a beginner requirement</label>
+          <p style="margin:8px 0 0;color:#333">Many easy-care, low-light plants grow without supplemental CO2, so it's generally fine to skip it when starting out.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for fish quarantine basics — no JS/calculator logic, just duration/observation points. */
+function pz_render_guide_fish_quarantine_guide( $tool ) {
+    $icon = $tool['icon'] ?? '🏥';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Quarantine Quick Reference</div><div class="pz-int-sublabel">Duration & observation basics · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">A separate tank for observation before joining the main tank</label>
+          <p style="margin:8px 0 0;color:#333">Keeping a new fish isolated for a while helps catch an unnoticed problem before it can spread to fish already established in the main tank.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Duration is commonly described in weeks, not an exact number</label>
+          <p style="margin:8px 0 0;color:#333">A wider observation window is generally more reliable than a short, exact day count, giving slower-developing issues time to show.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for ammonia basics — no JS/calculator logic, just cycle-stage/spike-cause points. */
+function pz_render_guide_aquarium_ammonia_guide( $tool ) {
+    $icon = $tool['icon'] ?? '🧪';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Ammonia Quick Reference</div><div class="pz-int-sublabel">Cycle stage & spike causes · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Ammonia is the first stage of the nitrogen cycle</label>
+          <p style="margin:8px 0 0;color:#333">Beneficial bacteria convert ammonia into nitrite, then nitrite into nitrate — a new, uncycled tank lacks that bacteria, making it the highest-risk period for ammonia buildup.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Common spike causes in an established tank</label>
+          <p style="margin:8px 0 0;color:#333">Overfeeding, overstocking, dead fish or decaying plant matter, and rinsing filter media in tap water instead of tank water are frequent triggers.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for bearded dragon basics — no JS/calculator logic, just gradient/UVB/diet points. */
+function pz_render_guide_bearded_dragon_care_guide( $tool ) {
+    $icon = $tool['icon'] ?? '🦎';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Bearded Dragon Quick Reference</div><div class="pz-int-sublabel">Temperature & diet basics · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Temperature gradient and UVB lighting</label>
+          <p style="margin:8px 0 0;color:#333">A warm basking spot at one end and a cooler area at the other let a bearded dragon self-regulate, and UVB lighting is a separate, core requirement alongside that heat.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Omnivorous diet that shifts with age</label>
+          <p style="margin:8px 0 0;color:#333">Juveniles generally eat proportionally more insects, while adults shift toward more vegetables; a seasonal slowdown called brumation is a normal pattern, not illness.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for leopard gecko basics — no JS/calculator logic, just activity/UVB/diet/tail points. */
+function pz_render_guide_leopard_gecko_care_guide( $tool ) {
+    $icon = $tool['icon'] ?? '🦎';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Leopard Gecko Quick Reference</div><div class="pz-int-sublabel">Activity & diet basics · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Nocturnal/crepuscular, with lighter UVB needs</label>
+          <p style="margin:8px 0 0;color:#333">Most active at dusk and night rather than basking in daytime, and leopard geckos don't need UVB as strictly as a bearded dragon, though some keepers still provide a low level.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Insectivorous diet, with tail fat storage and tail-drop defense</label>
+          <p style="margin:8px 0 0;color:#333">Diet centers on insects rather than vegetables, the tail stores fat reserves, and rough handling can trigger the tail-drop defense mechanism called autotomy.</p>
         </div>
       </div>
     </div>
