@@ -13928,7 +13928,7 @@ function pz_section_mistakes($tool) {
             ['❌ Declawing as a Solution', 'Declawing removes the last bone of each toe — equivalent to cutting human fingers at the first knuckle. It causes chronic pain, litter box avoidance, and increased biting.'],
         ],
         'bird' => [
-            ['❌ Seed-Only Diet', 'A seed-only diet is the leading cause of malnutrition in pet birds. Seeds are high in fat and low in vitamins A, D, and calcium. Pellets plus fresh vegetables should make up 70-80% of the diet.'],
+            ['❌ Seed-Only Diet', 'A seed-only diet is calorie-dense and nutritionally narrow — high in fat and light on vitamins A and D and calcium. Pellets and fresh vegetables should make up the larger share of the daily diet, with seed kept to a smaller part rather than the main food.'],
             ['❌ Non-Stick Cookware Fumes', 'PTFE (Teflon) coating releases fumes when overheated that are odorless to humans but fatal to birds within minutes. Use stainless steel, cast iron, or ceramic cookware in any home with birds.'],
             ['❌ Keeping Bird in Draft or Direct Sun', 'Birds are sensitive to temperature extremes. Avoid placing cages near air vents, windows with direct afternoon sun, or exterior walls.'],
             ['❌ Ignoring Beak and Nail Overgrowth', 'Overgrown beaks prevent eating; overgrown nails lead to perching injuries. Provide proper perch textures and schedule regular grooming.'],
@@ -14229,7 +14229,7 @@ function pz_section_faq($tool) {
             ["Is {$kw} difficult for beginners?", "It depends on the species. Some fish (betta, guppies, goldfish) tolerate beginner mistakes better than others (discus, saltwater reef fish). Start with hardy species and a stable setup before advancing to more sensitive species."],
         ],
         'reptile_guide' => [
-            ["What temperature should I keep for {$kw}?", "Reptiles are ectothermic and require a temperature gradient — a warm basking spot and a cooler retreat. The exact range depends on species. Always research the specific requirements for your reptile — incorrect temperatures are the leading cause of illness in captive reptiles."],
+            ["What temperature should I keep for {$kw}?", "Reptiles are ectothermic and require a temperature gradient — a warm basking spot and a cooler retreat. The exact range depends on species, so always research the specific requirements for your reptile, since getting it wrong is a common and avoidable source of health problems in captive reptiles."],
             ["How often should I feed my reptile?", "Frequency depends on species and age. Juvenile reptiles generally eat more frequently than adults. Many reptiles eat every 2-7 days. Overfeeding causes obesity; underfeeding stunts growth. Research your specific species' recommended feeding schedule."],
             ["Why is my reptile not eating?", "Common causes: incorrect temperatures (most common), stress from a new environment, shedding cycle, seasonal slowdown (brumation), illness, or prey that is too large. Rule out temperature issues first — they cause the majority of feeding refusals."],
             ["Do reptiles need UVB lighting?", "Most reptiles — especially lizards and many turtles — require UVB light to synthesize Vitamin D3. Without it, they develop Metabolic Bone Disease over time. Replace UVB bulbs every 6-12 months even if they still produce visible light."],
@@ -16164,6 +16164,11 @@ require_once __DIR__ . '/tool-content/turtle-care-guide.php';
 require_once __DIR__ . '/tool-content/reptile-temperature-guide.php';
 require_once __DIR__ . '/tool-content/reptile-uvb-lighting-guide.php';
 require_once __DIR__ . '/tool-content/reptile-feeding-calculator.php';
+require_once __DIR__ . '/tool-content/iguana-care-guide.php';
+require_once __DIR__ . '/tool-content/chameleon-care-guide.php';
+require_once __DIR__ . '/tool-content/tortoise-care-guide.php';
+require_once __DIR__ . '/tool-content/reptile-shedding-guide.php';
+require_once __DIR__ . '/tool-content/corn-snake-care-guide.php';
 
 /** Static reference widget for the fish tank size guide — no JS/calculator logic, just a quick-reference card, so the page doesn't fall back to the generic mammal pet-profile form. */
 function pz_render_guide_aquarium_size_calculator( $tool ) {
@@ -16809,6 +16814,136 @@ function pz_render_guide_reptile_feeding_calculator( $tool ) {
         <div class="pz-int-field" style="grid-column:1/-1">
           <label class="pz-int-label-txt">Insectivorous geckos often need frequent small feedings</label>
           <p style="margin:8px 0 0;color:#333">A species like a leopard gecko commonly needs smaller, more frequent feedings than the infrequent meals a snake eats.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for green iguana care — species-specific, no JS/calculator logic. */
+function pz_render_guide_iguana_care_guide( $tool ) {
+    $icon = $tool['icon'] ?? '🦎';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Green Iguana Quick Reference</div><div class="pz-int-sublabel">Housing & diet basics · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Plan housing around adult size, not current size</label>
+          <p style="margin:8px 0 0;color:#333">A green iguana grows considerably larger at maturity than a bearded dragon or leopard gecko, so an enclosure needs to be sized for that eventual adult, not the smaller juvenile.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Adults are strictly herbivorous</label>
+          <p style="margin:8px 0 0;color:#333">Unlike the insect-and-vegetable diet of a bearded dragon or the insect-only diet of a leopard gecko, an adult iguana eats only plant matter.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for chameleon care — species-specific, no JS/calculator logic. */
+function pz_render_guide_chameleon_care_guide( $tool ) {
+    $icon = $tool['icon'] ?? '🦎';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Chameleon Quick Reference</div><div class="pz-int-sublabel">Humidity & feeding basics · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Water comes from dripping or misting, not a bowl</label>
+          <p style="margin:8px 0 0;color:#333">Chameleons generally drink water droplets off leaves and surfaces rather than from a standing water bowl, so dripping or misting systems are the way to offer water.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Primarily insectivorous, often preferring moving prey</label>
+          <p style="margin:8px 0 0;color:#333">Chameleons mainly eat feeder insects, and many keepers find chameleons respond more to prey that's moving than to food sitting still in a dish.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for tortoise care — species-specific, no JS/calculator logic. */
+function pz_render_guide_tortoise_care_guide( $tool ) {
+    $icon = $tool['icon'] ?? '🐢';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Tortoise Quick Reference</div><div class="pz-int-sublabel">Diet, lighting & habitat basics · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Land-dwelling grazers, not aquatic like a turtle</label>
+          <p style="margin:8px 0 0;color:#333">A tortoise lives entirely on land and grazes on plant matter, so its housing is built around dry land and foraging space rather than a water area.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">UVB lighting matters, from the sun outdoors or a bulb indoors</label>
+          <p style="margin:8px 0 0;color:#333">Tortoises need UVB for calcium metabolism; outdoor tortoises get it from real sunlight, since glass or plastic filters it out, while indoor tortoises need an artificial UVB source.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for reptile shedding (ecdysis) — cross-species, no JS/calculator logic. */
+function pz_render_guide_reptile_shedding_guide( $tool ) {
+    $icon = $tool['icon'] ?? '🔄';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Reptile Shedding Quick Reference</div><div class="pz-int-sublabel">Ecdysis basics · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Humidity drives a clean, complete shed</label>
+          <p style="margin:8px 0 0;color:#333">Humidity appropriate for the species supports a full shed, while running it too low is a common reason a shed ends up incomplete or patchy.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Check toes and the tail tip for retained shed</label>
+          <p style="margin:8px 0 0;color:#333">Leftover shed in these spots is easy to miss but can cut off circulation in severe cases, so it's worth checking after every shed cycle.</p>
+        </div>
+      </div>
+    </div>
+    <?php
+}
+
+/** Static reference widget for corn snake care — species-specific, no JS/calculator logic. */
+function pz_render_guide_corn_snake_care_guide( $tool ) {
+    $icon = $tool['icon'] ?? '🐍';
+    ?>
+    <div class="pz-int-header">
+      <div class="pz-int-header-left">
+        <span class="pz-int-big-icon"><?php echo $icon; ?></span>
+        <div><div class="pz-int-label">Corn Snake Quick Reference</div><div class="pz-int-sublabel">Beginner basics · Free</div></div>
+      </div>
+      <div class="pz-int-badges"><span class="pz-int-badge pz-int-badge--green">✅ No Sign-Up</span></div>
+    </div>
+    <div class="pz-int-body">
+      <div class="pz-int-grid">
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Generally a more consistent feeder than a ball python</label>
+          <p style="margin:8px 0 0;color:#333">Corn snakes are generally more food-motivated and less prone to the periodic food refusals seen in ball pythons, which is part of why they're often recommended for beginners.</p>
+        </div>
+        <div class="pz-int-field" style="grid-column:1/-1">
+          <label class="pz-int-label-txt">Active, curious temperament with many color morphs</label>
+          <p style="margin:8px 0 0;color:#333">Corn snakes tend to be more active and exploratory, and decades of breeding have produced a wide range of color and pattern morphs within the species.</p>
         </div>
       </div>
     </div>
